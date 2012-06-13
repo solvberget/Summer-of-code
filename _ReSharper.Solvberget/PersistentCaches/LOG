@@ -1,1 +1,5 @@
-2012/06/13-19:52:32.568 740 Delete type=3 #1
+2012/06/13-22:48:08.752 1b8c Recovering log #3
+2012/06/13-22:48:08.754 1b8c Level-0 table #5: started
+2012/06/13-22:48:08.839 1b8c Level-0 table #5: 303365 bytes OK
+2012/06/13-22:48:09.022 1b8c Delete type=0 #3
+2012/06/13-22:48:09.023 1b8c Delete type=3 #2
