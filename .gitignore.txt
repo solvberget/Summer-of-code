@@ -1,0 +1,69 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+*.userprefs
+*.pidb
+
+#Visual Studio files
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.opensdf
+*.unsuccessfulbuild
+
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+
+#Project files
+[Bb]uild/
+
+#idea
+.idea/workspace.xml
+.idea/tasks.xml
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+#NuGet
+packages/*
+!packages/repositories.config
+
+#node_modules
+!node_modules
+*ONSLog.txt
+*test-results.xml
+
+#generated files
+Ons.App/js/test-results.txt
+Ons.App/js/test-results.xml
+Ons.App/js/script.js
+Ons.App/js/plugins.js
+Ons.Host/Graphics/ExhibitorLogos/*
+*.min.css

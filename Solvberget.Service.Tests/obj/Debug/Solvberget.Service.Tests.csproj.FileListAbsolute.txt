@@ -1,0 +1,7 @@
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Service.Tests\obj\Debug\Solvberget.Service.Tests.csprojResolveAssemblyReference.cache
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Service.Tests\bin\Debug\Solvberget.Service.Tests.dll
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Service.Tests\bin\Debug\Solvberget.Service.Tests.pdb
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Service.Tests\bin\Debug\nunit.framework.dll
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Service.Tests\bin\Debug\nunit.framework.xml
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Service.Tests\obj\Debug\Solvberget.Service.Tests.dll
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Service.Tests\obj\Debug\Solvberget.Service.Tests.pdb

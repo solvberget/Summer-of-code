@@ -1,0 +1,9 @@
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bin\Debug\resources.pri
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bin\Debug\AppxManifest.xml
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bin\Debug\Solvberget.Metro.build.appxrecipe
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bld\Debug\priconfig.xml
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bld\Debug\layout.resfiles
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bld\Debug\resources.resfiles
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bld\Debug\pri.resfiles
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bld\Debug\LanguageQualifiers.txt
+c:\users\arnea_000\documents\visual studio 2012\Projects\Solvberget.Webservice\Solvberget.Metro\bld\Debug\ProjectArchitectures.txt

@@ -1,0 +1,1969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<present>
+  <record>
+    <record_header>
+      <set_entry>000000001</set_entry>
+    </record_header>
+    <doc_number>000596743</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id="008">110106s2010^^^^^^^^^^^a^^^^^^^^^^1^nob^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">l</subfield>
+          <subfield label="d">R</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">978-82-02-33225-9</subfield>
+          <subfield label="b">ib.</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="d">LOE</subfield>
+        </varfield>
+        <varfield id="100" i1=" " i2="0">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2="0">
+          <subfield label="a">Naiv. Super</subfield>
+          <subfield label="c">Erlend Loe</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">[Oslo]</subfield>
+          <subfield label="b">Cappelen Damm</subfield>
+          <subfield label="c">2010</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">205 s.</subfield>
+        </varfield>
+        <varfield id="440" i1=" " i2="0">
+          <subfield label="a">Favoritt</subfield>
+        </varfield>
+        <varfield id="503" i1=" " i2=" ">
+          <subfield label="a">1. utg.: Oslo : Cappelen, 1996</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">200 kr</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+          <subfield label="c">LOE</subfield>
+          <subfield label="d">2010</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">LHA</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20110106</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1254</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20110106</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1254</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KATALOG</subfield>
+          <subfield label="b">40</subfield>
+          <subfield label="c">20110201</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1136</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000002</set_entry>
+    </record_header>
+    <doc_number>000574162</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">^^^^^nim^^^^^^^^^1</fixfield>
+        <fixfield id="007">sc</fixfield>
+        <fixfield id="008">090518s2009^^^^^^^^^^^a^^^^^^^^^^1^nob^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">dc,di</subfield>
+          <subfield label="d">R</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">978-82-02-28960-7</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="d">LOE</subfield>
+        </varfield>
+        <varfield id="100" i1="1" i2="0">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2="0">
+          <subfield label="a">Naiv. Super.</subfield>
+          <subfield label="h">lydopptak</subfield>
+          <subfield label="c">Erlend Loe</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Oslo</subfield>
+          <subfield label="b">Cappelen Damm</subfield>
+          <subfield label="c">2009</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">3 kompaktplater (3 t 40 min)</subfield>
+        </varfield>
+        <varfield id="511" i1=" " i2=" ">
+          <subfield label="a">Lest av forfatteren</subfield>
+        </varfield>
+        <varfield id="546" i1=" " i2=" ">
+          <subfield label="a">Norsk tale</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">299 kr</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KATALOG</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20090518</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0811</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KATALOG</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20090518</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0811</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KATALOG</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20090518</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0811</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000003</set_entry>
+    </record_header>
+    <doc_number>000523775</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">^^^^^nam^^^^^^^^^1^^45^^</fixfield>
+        <fixfield id="008">041108s2000^^^^^^^^^^^a^^^^^^^^^^1^nob^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">l</subfield>
+          <subfield label="d">R</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">82-02-19280-3</subfield>
+          <subfield label="b">h.</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="d">LOE</subfield>
+        </varfield>
+        <varfield id="100" i1=" " i2="0">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2="0">
+          <subfield label="a">Naiv. Super</subfield>
+          <subfield label="c">Erlend Loe</subfield>
+        </varfield>
+        <varfield id="250" i1=" " i2=" ">
+          <subfield label="a">Skoleutg.</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">[Oslo]</subfield>
+          <subfield label="b">Cappelen</subfield>
+          <subfield label="c">2000</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">243 s.</subfield>
+        </varfield>
+        <varfield id="503" i1=" " i2=" ">
+          <subfield label="a">1. utg.: 1996</subfield>
+        </varfield>
+        <varfield id="546" i1=" " i2=" ">
+          <subfield label="a">Tekst på bokmål</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">98 kr</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+          <subfield label="b">LOE</subfield>
+          <subfield label="c">2004</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BSONLINE</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041108</subfield>
+          <subfield label="l">nor01</subfield>
+          <subfield label="h">0950</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20041123</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1212</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20041123</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1212</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20050531</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1501</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1302</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">OPPS</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20070817</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1417</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20110328</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1651</subfield>
+        </varfield>
+        <fixfield id="KAT">særemnesøsken</fixfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000004</set_entry>
+    </record_header>
+    <doc_number>000508290</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id="008">030402s2003^^^^^^^^^^^a^^^^^^^^^^0^nob^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">l</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">82-15-00409-1</subfield>
+          <subfield label="b">ib.</subfield>
+        </varfield>
+        <varfield id="082" i1=" " i2=" ">
+          <subfield label="a">839.823</subfield>
+          <subfield label="z">h</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="c">839.823</subfield>
+          <subfield label="d">AND</subfield>
+        </varfield>
+        <varfield id="100" i1=" " i2="0">
+          <subfield label="a">Andersen, Per Thomas</subfield>
+          <subfield label="d">1954-</subfield>
+          <subfield label="j">n.</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2="0">
+          <subfield label="a">Tankevaser</subfield>
+          <subfield label="b">om norsk 1990-tallslitteratur</subfield>
+          <subfield label="c">Per Thomas Andersen</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Oslo</subfield>
+          <subfield label="b">Universitetsforl</subfield>
+          <subfield label="c">2003</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">272 s.</subfield>
+        </varfield>
+        <varfield id="505" i1=" " i2=" ">
+          <subfield label="a">Bibliografi: s. 261-267</subfield>
+        </varfield>
+        <varfield id="546" i1=" " i2=" ">
+          <subfield label="a">Tekst på bokmål</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">249 kr</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Solstad, Dag</subfield>
+          <subfield label="d">1941-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Professor Andersens natt</subfield>
+          <subfield label="7">s. 29-59</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Frobenius, Nikolaj</subfield>
+          <subfield label="d">1965-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Latours katalog</subfield>
+          <subfield label="7">s. 29-59</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Fastvold, Marianne</subfield>
+          <subfield label="d">1951-</subfield>
+          <subfield label="t">Død som en dronte</subfield>
+          <subfield label="7">s. 61-78</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Fehr, Petra von der</subfield>
+          <subfield label="d">1963-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Jeg må ha nye klær nå</subfield>
+          <subfield label="7">s. 61-78</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Uris, Helene</subfield>
+          <subfield label="t">Dyp rød</subfield>
+          <subfield label="7">s. 61-78</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Lønn, Øystein</subfield>
+          <subfield label="d">1936-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Thranes metode</subfield>
+          <subfield label="7">s. 79-98</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Ørstavik, Hanne</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Kjærlighet</subfield>
+          <subfield label="7">s. 99-120</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Halberg, Jonny</subfield>
+          <subfield label="d">1962-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Flommen</subfield>
+          <subfield label="7">s. 99-120</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Naiv. Super</subfield>
+          <subfield label="7">s. 121-140</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Lund, Thure Erik</subfield>
+          <subfield label="d">1959-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Grøftetildragelsesmysteriet</subfield>
+          <subfield label="7">s. 121-140</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Marstein, Trude</subfield>
+          <subfield label="d">1973-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Plutselig høre noen åpne en dør</subfield>
+          <subfield label="7">s. 141-164</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Marstein, Trude</subfield>
+          <subfield label="d">1973-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Elin og Hans</subfield>
+          <subfield label="7">s. 141-164</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Vaage, Lars Amund</subfield>
+          <subfield label="d">1952-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Rubato</subfield>
+          <subfield label="7">s. 165-194</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Osmundsen, Mari</subfield>
+          <subfield label="d">1951-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Gutten som slo tida i hjel</subfield>
+          <subfield label="7">s. 195-212</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Eggen, Torgrim</subfield>
+          <subfield label="d">1958-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Hilal</subfield>
+          <subfield label="7">s. 213-232</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Kjærstad, Jan</subfield>
+          <subfield label="d">1953-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Rand</subfield>
+          <subfield label="7">s. 233-254</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Norsk litteratur</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Litteraturkritikk</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Litterære metoder</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Litteraturhistorie</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Historie 1990-2000</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+          <subfield label="c">839.823 AND</subfield>
+          <subfield label="d">2003</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1530</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030402</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1530</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030505</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1341</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030507</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1315</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030507</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1330</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030507</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1349</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030509</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1221</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030509</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1221</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20030512</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1238</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1417</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20060101</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1827</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20060213</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">2041</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KATALOG</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20060613</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1147</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1255</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20081022</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1706</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20110815</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1414</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000005</set_entry>
+    </record_header>
+    <doc_number>000416675</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">SE</fixfield>
+        <fixfield id="LDR">^^^^^nas^^^^^^^^^1</fixfield>
+        <fixfield id="008">011022s2001^^^^^^^^^^aa^^^^^^^^^^0^mul^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">l</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">82-521-5799-8</subfield>
+          <subfield label="b">h.</subfield>
+        </varfield>
+        <varfield id="041" i1=" " i2=" ">
+          <subfield label="a">nnonob</subfield>
+        </varfield>
+        <varfield id="082" i1=" " i2=" ">
+          <subfield label="a">839.8205</subfield>
+          <subfield label="z">h</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="c">839.8205</subfield>
+          <subfield label="d">NOR</subfield>
+        </varfield>
+        <varfield id="245" i1="0" i2="0">
+          <subfield label="a">Norsk litterær årbok 2001</subfield>
+          <subfield label="n">Årg. 36</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Oslo</subfield>
+          <subfield label="b">Samlaget</subfield>
+          <subfield label="c">2001</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">287 s.</subfield>
+        </varfield>
+        <varfield id="505" i1=" " i2=" ">
+          <subfield label="a">Litt. henv. i teksten</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">275 kr</subfield>
+        </varfield>
+        <varfield id="546" i1=" " i2=" ">
+          <subfield label="a">Tekst på bokmål og nynorsk</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Kjærstad, Jan</subfield>
+          <subfield label="d">1953-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Forføreren</subfield>
+          <subfield label="7">s. 9-16</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Kjærstad, Jan</subfield>
+          <subfield label="d">1953-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Erobreren</subfield>
+          <subfield label="7">s. 9-16</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Kjærstad, Jan</subfield>
+          <subfield label="d">1953-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Oppdageren</subfield>
+          <subfield label="7">s. 9-16</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Garborg, Arne</subfield>
+          <subfield label="d">1851-1924</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="7">s. 17-44</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Hamsun, Knut</subfield>
+          <subfield label="d">1859-1952</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Mysterier</subfield>
+          <subfield label="7">s. 45-51</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Aanrud, Hans</subfield>
+          <subfield label="d">1863-</subfield>
+          <subfield label="7">s. 52-67</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Lagerkvist, Pär</subfield>
+          <subfield label="d">1891-1974</subfield>
+          <subfield label="j">sv</subfield>
+          <subfield label="t">Gäst hos verkligheten</subfield>
+          <subfield label="7">s. 68-85</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Hoel, Sigurd</subfield>
+          <subfield label="d">1890-1960</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Veien til verdens ende</subfield>
+          <subfield label="7">s. 68-85</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Steinarr, Steinn</subfield>
+          <subfield label="t">Tida og vatnet</subfield>
+          <subfield label="7">s. 86-108</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Mykle, Agnar</subfield>
+          <subfield label="d">1915-1994</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Apollon og Jahve</subfield>
+          <subfield label="7">s. 109-120</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Solstad, Dag</subfield>
+          <subfield label="d">1941-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Genanse og verdighet</subfield>
+          <subfield label="7">s. 121-138</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Naiv. Super.</subfield>
+          <subfield label="7">s. 121-138</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Bøge, Kari</subfield>
+          <subfield label="d">1950-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">For alt jeg vet</subfield>
+          <subfield label="7">s. 139-148</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2="3">
+          <subfield label="a">Fosse, Jon</subfield>
+          <subfield label="d">1959-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Namnet</subfield>
+          <subfield label="7">s. 149-178</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Norsk litteratur</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Litteraturkritikk</subfield>
+        </varfield>
+        <varfield id="700" i1="1" i2="0">
+          <subfield label="a">Vannebo, Einar</subfield>
+          <subfield label="e">red.</subfield>
+        </varfield>
+        <varfield id="700" i1="1" i2="0">
+          <subfield label="a">Skei, Hans H</subfield>
+          <subfield label="d">1945-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="e">red.</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+          <subfield label="c">839.8205 NOR</subfield>
+          <subfield label="d">2001</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1532</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20011022</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1415</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20011022</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1415</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20011022</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1432</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20040329</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1411</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20020701</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0924</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1409</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20060213</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">2040</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1248</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20091218</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0929</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000006</set_entry>
+    </record_header>
+    <doc_number>000412965</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">SE</fixfield>
+        <fixfield id="LDR">^^^^^nas^^^^^^^^^1</fixfield>
+        <fixfield id="BAS">25</fixfield>
+        <fixfield id="008">^^^^^^^^^^^^^^^^^^^^^pa^^^^^^^^^^0^nob^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">j</subfield>
+        </varfield>
+        <varfield id="082" i1=" " i2=" ">
+          <subfield label="a">805</subfield>
+          <subfield label="z">h</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="c">805</subfield>
+          <subfield label="d">EDD</subfield>
+        </varfield>
+        <varfield id="245" i1="0" i2="0">
+          <subfield label="a">Edda 2001</subfield>
+          <subfield label="b">nordisk tidsskrift for litteraturforskning</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Oslo</subfield>
+          <subfield label="b">Universitetsforlaget</subfield>
+        </varfield>
+        <varfield id="310" i1=" " i2=" ">
+          <subfield label="a">4 nr pr år</subfield>
+        </varfield>
+        <varfield id="500" i1=" " i2=" ">
+          <subfield label="a">Hamsuns &quot;Fra en Indianerleir&quot; er en artikkel fra Aftenposten 2. og 4. mai 1885</subfield>
+        </varfield>
+        <varfield id="590" i1=" " i2=" ">
+          <subfield label="a">Siste årg. i skranken, bindes inn ved årets slutt</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">180 kr pr hefte</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Tidsskrift</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Strindberg, August</subfield>
+          <subfield label="d">1849-1912</subfield>
+          <subfield label="j">sv.</subfield>
+          <subfield label="t">Till Damaskus</subfield>
+          <subfield label="7">Hf.1, s.6-18</subfield>
+        </varfield>
+        <varfield id="630" i1=" " i2="3">
+          <subfield label="a">Völuspá</subfield>
+          <subfield label="7">Hf.2, s.129-144</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Ibsen, Henrik</subfield>
+          <subfield label="d">1828-1906</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="7">Hf.2, s.145-190</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Norén, Lars</subfield>
+          <subfield label="d">1944-</subfield>
+          <subfield label="j">sv.</subfield>
+          <subfield label="7">Hf.2, s.215-223</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Strindberg, August</subfield>
+          <subfield label="d">1849-1912</subfield>
+          <subfield label="j">sv.</subfield>
+          <subfield label="t">Legender</subfield>
+          <subfield label="7">Hf.1, s.19-32</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Blixen, Karen</subfield>
+          <subfield label="d">1885-1962</subfield>
+          <subfield label="j">d.</subfield>
+          <subfield label="t">Babettes gjestebud</subfield>
+          <subfield label="7">Hf.1, s.33-47</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Solstad, Dag</subfield>
+          <subfield label="d">1941-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="7">Hf.1, s.48-69</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Jarvoll, Svein</subfield>
+          <subfield label="d">1951</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">En Australiareise</subfield>
+          <subfield label="7">Hf.1, s.75-77</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Kjærstad, Jan</subfield>
+          <subfield label="d">1953-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Rand</subfield>
+          <subfield label="7">Hf.1, s.77-79</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Ørstavik, Hanne</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Kjærlighet</subfield>
+          <subfield label="7">Hf.1, s.79-81</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Lønn, Øystein</subfield>
+          <subfield label="d">1936-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Maren Gripes nødvendige ritualer</subfield>
+          <subfield label="7">Hf.1, s.81-83</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Naiv. Super</subfield>
+          <subfield label="7">Hf.1, s.85-94</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Dass, Petter</subfield>
+          <subfield label="d">1647-1707</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="7">Hf.3, s.269-279</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Kierkegaard, Søren</subfield>
+          <subfield label="d">1813-1855</subfield>
+          <subfield label="j">d.</subfield>
+          <subfield label="7">Hf.3, s.280-293</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Ibsen, Henrik</subfield>
+          <subfield label="d">1828-1906</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Kjærlighedens komedie</subfield>
+          <subfield label="7">Hf.3, s.294-314</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Hamsun, Knut</subfield>
+          <subfield label="d">1859-1952</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Pan</subfield>
+          <subfield label="7">Hf.3, s.315-323</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Vesaas, Tarjei</subfield>
+          <subfield label="d">1897-1970</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Brannen</subfield>
+          <subfield label="7">Hf.3, s.324-334</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Hamsun, Knut</subfield>
+          <subfield label="d">1859-1952</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Fra en Indianerleir</subfield>
+          <subfield label="7">Hf.4, s.385-395</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Bellman, Carl Michael</subfield>
+          <subfield label="d">1740-1795</subfield>
+          <subfield label="j">sv.</subfield>
+          <subfield label="7">Hf.4, s.374-384</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Frostenson, Katarina</subfield>
+          <subfield label="d">1953-</subfield>
+          <subfield label="j">sv.</subfield>
+          <subfield label="t">Sal P</subfield>
+          <subfield label="7">Hf.4, s.406-418</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="3">
+          <subfield label="a">Matras, Christian</subfield>
+          <subfield label="d">1900-1988</subfield>
+          <subfield label="7">Hf.4, s.396-405</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Litteratur</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Grønlandsk litteratur</subfield>
+          <subfield label="7">Hf.4, s.419-436</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Færøysk litteratur</subfield>
+          <subfield label="7">Hf.4, s.396-405</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Feminisme</subfield>
+          <subfield label="7">Hf.1, s.95-106</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Litteraturforskning</subfield>
+          <subfield label="7">Hf.1, s.95-106</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1531</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">24</subfield>
+          <subfield label="c">20010510</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0949</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">24</subfield>
+          <subfield label="c">20010510</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1008</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">24</subfield>
+          <subfield label="c">20010510</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1011</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">24</subfield>
+          <subfield label="c">20010618</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1046</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20011004</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1237</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20011214</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1311</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1407</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20060213</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">2040</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1247</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20070514</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0927</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20091218</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0928</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000007</set_entry>
+    </record_header>
+    <doc_number>000410687</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id="BAS">25</fixfield>
+        <fixfield id="008">^^^^^^s2001^^^^^^^^^^^a^^^^^^^^^^1^eng^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">l</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">1841951390</subfield>
+          <subfield label="b">h</subfield>
+        </varfield>
+        <varfield id="082" i1=" " i2=" ">
+          <subfield label="a">82</subfield>
+          <subfield label="z">h</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="c">82</subfield>
+          <subfield label="d">LOE</subfield>
+        </varfield>
+        <varfield id="100" i1="1" i2="0">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+        </varfield>
+        <varfield id="240" i1="1" i2="0">
+          <subfield label="a">Naiv. Super</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2="0">
+          <subfield label="a">Naive. Super</subfield>
+          <subfield label="c">Erlend Loe ; translated from Norwegian by Tor Ketil Solberg</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">London</subfield>
+          <subfield label="b">Canongate books</subfield>
+          <subfield label="c">2001</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">196 s.</subfield>
+        </varfield>
+        <varfield id="546" i1=" " i2=" ">
+          <subfield label="a">Tekst på engelsk</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">160 kr</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1441</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">24</subfield>
+          <subfield label="c">20010212</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0948</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20010801</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1441</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20010802</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0917</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20010802</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0917</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20010820</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1046</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1406</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1246</subfield>
+        </varfield>
+        <varfield id="LKR" i1=" " i2=" ">
+          <subfield label="a">PAR</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="b">0375981</subfield>
+          <subfield label="m">Eng. utg. 2001</subfield>
+          <subfield label="n">Norsk utg. 1997</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000008</set_entry>
+    </record_header>
+    <doc_number>000399996</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">TS</fixfield>
+        <fixfield id="LDR">^^^^^nas^^^^^^^^^1^^^^^^</fixfield>
+        <fixfield id="BAS">25</fixfield>
+        <fixfield id="008">^^^^^^^1997^^^^^^^^^paa^^^^^^^^0^0^nob^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">j</subfield>
+        </varfield>
+        <varfield id="022" i1=" " i2=" ">
+          <subfield label="a">0908 049X</subfield>
+        </varfield>
+        <varfield id="082" i1=" " i2=" ">
+          <subfield label="a">839.5</subfield>
+          <subfield label="z">h</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="b">q</subfield>
+          <subfield label="c">839.5</subfield>
+          <subfield label="d">NOR</subfield>
+        </varfield>
+        <varfield id="245" i1=" " i2=" ">
+          <subfield label="a">Nordisk litteratur 1997</subfield>
+          <subfield label="c">Red.: Håkon Harket</subfield>
+        </varfield>
+        <varfield id="246" i1=" " i2=" ">
+          <subfield label="a">Nordic Literature 1997</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Kbh.</subfield>
+          <subfield label="b">Nordisk ministerråd</subfield>
+          <subfield label="c">1997</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="b">ill.</subfield>
+          <subfield label="a">86 s.</subfield>
+        </varfield>
+        <varfield id="503" i1=" " i2=" ">
+          <subfield label="a">Også med engelsk tekst</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">100 kr</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Lindberg, Pirkko</subfield>
+          <subfield label="d">1942-</subfield>
+          <subfield label="j">fi.-sv.</subfield>
+          <subfield label="t">Candida</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Lidman, Sara</subfield>
+          <subfield label="d">1923-2004</subfield>
+          <subfield label="j">sv</subfield>
+          <subfield label="t">Livsens rot</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Tunström, Göran</subfield>
+          <subfield label="d">1937-2000</subfield>
+          <subfield label="j">sv.</subfield>
+          <subfield label="t">Skimmer</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Valkeapææ, Nils-Aslak</subfield>
+          <subfield label="d">1943-2001</subfield>
+          <subfield label="j">fin-lap</subfield>
+          <subfield label="t">If the Siberian Titmouse Laughed</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Petterson, Per</subfield>
+          <subfield label="d">1952-</subfield>
+          <subfield label="j">n.</subfield>
+          <subfield label="t">Til Sibir</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Tranströmer, Tomas</subfield>
+          <subfield label="d">1931-</subfield>
+          <subfield label="j">sv.</subfield>
+          <subfield label="t">Sorgegondolen</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Rane, Irja</subfield>
+          <subfield label="t">The Laughing Virgin</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Obrestad, Tor</subfield>
+          <subfield label="d">1938-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Sannhetens pris</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Jensen, Carsten</subfield>
+          <subfield label="d">1952-</subfield>
+          <subfield label="j">d.</subfield>
+          <subfield label="t">Jeg har sett verden begynne</subfield>
+        </varfield>
+        <varfield id="600" i1="0" i2="0">
+          <subfield label="a">Bødvar Gudmundsson</subfield>
+          <subfield label="t">Livsens tre</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Willumsen, Dorrit</subfield>
+          <subfield label="d">1940-</subfield>
+          <subfield label="j">d.</subfield>
+          <subfield label="t">Bang</subfield>
+        </varfield>
+        <varfield id="600" i1="1" i2="0">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Naiv. Super</subfield>
+        </varfield>
+        <varfield id="600" i1="0" i2="0">
+          <subfield label="a">Hannes Sigfusson</subfield>
+          <subfield label="d">1922-</subfield>
+          <subfield label="t">Karelska næsset</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Nordisk litteratur</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Årbøker</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Bokanmeldelser</subfield>
+        </varfield>
+        <varfield id="651" i1=" " i2=" ">
+          <subfield label="a">Jerusalem</subfield>
+        </varfield>
+        <varfield id="700" i1=" " i2=" ">
+          <subfield label="a">Harket, Håkon</subfield>
+          <subfield label="d">1961-</subfield>
+          <subfield label="e">red.</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">Stavangb</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1530</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">20000128</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1252</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">20000131</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1022</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">20000131</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1036</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20010205</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1451</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20010228</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1147</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20010504</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1139</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20011211</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1015</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20011211</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1018</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20011211</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1245</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20020918</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1338</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1400</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041126</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1300</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041126</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1305</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20050609</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1115</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1241</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20061214</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1432</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20090210</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0756</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20090728</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1423</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000009</set_entry>
+    </record_header>
+    <doc_number>000393971</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">TS</fixfield>
+        <fixfield id="LDR">^^^^^nas^^^^^^^^^1^^^^^^</fixfield>
+        <fixfield id="BAS">25</fixfield>
+        <fixfield id="008">^^^^^^^1999^^^^^^^^^paa^^^^^^^^0^0or^^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">j</subfield>
+        </varfield>
+        <varfield id="082" i1=" " i2=" ">
+          <subfield label="a">805</subfield>
+          <subfield label="z">h</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="b">q</subfield>
+          <subfield label="c">805</subfield>
+          <subfield label="d">BIN</subfield>
+        </varfield>
+        <varfield id="245" i1=" " i2=" ">
+          <subfield label="a">Bindestreken 1999</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Oslo</subfield>
+          <subfield label="b">Den norske Bokklubben</subfield>
+          <subfield label="c">1999</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="b">Årg.39:7</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Tidsskrift</subfield>
+        </varfield>
+        <varfield id="650" i1=" " i2=" ">
+          <subfield label="a">Litteratur</subfield>
+        </varfield>
+        <varfield id="600" i1=" " i2=" ">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="t">Naiv. Super</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">Stavangb</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1435</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990615</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">0945</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20010205</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1451</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1357</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1239</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000010</set_entry>
+    </record_header>
+    <doc_number>000393050</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id="BAS">25</fixfield>
+        <fixfield id="008">990510^1996^^^^^^^^^^^a^^^^^^^^^^1^fin^</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="a">R</subfield>
+          <subfield label="b">l</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">951-578-565-0</subfield>
+        </varfield>
+        <varfield id="041" i1=" " i2=" ">
+          <subfield label="a">fin</subfield>
+          <subfield label="h">nob</subfield>
+        </varfield>
+        <varfield id="082" i1=" " i2=" ">
+          <subfield label="a">89.4541</subfield>
+          <subfield label="z">h</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="c">89.4541</subfield>
+          <subfield label="d">LOE</subfield>
+        </varfield>
+        <varfield id="100" i1="1" i2=" ">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+        </varfield>
+        <varfield id="240" i1="1" i2=" ">
+          <subfield label="a">Naiv. Super</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2=" ">
+          <subfield label="a">Supernaiivi</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Helsinki</subfield>
+          <subfield label="b">Like</subfield>
+          <subfield label="c">1996</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">222 s.</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">180 kr</subfield>
+        </varfield>
+        <varfield id="655" i1=" " i2=" ">
+          <subfield label="a">Romaner</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+          <subfield label="c">89.4541 LOE</subfield>
+          <subfield label="d">1996</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1529</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a"></subfield>
+          <subfield label="b"></subfield>
+          <subfield label="c">19990531</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">2302</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990510</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1044</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990510</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1044</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990511</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1135</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1357</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1238</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KATALOG</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20070626</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1426</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000011</set_entry>
+    </record_header>
+    <doc_number>000385080</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">00470nim^^22001691^^45^^</fixfield>
+        <fixfield id="BAS">25</fixfield>
+        <fixfield id="007">sc</fixfield>
+        <fixfield id="008">980831^1998^^^^^^^q^^^a^^^^^^^^^^1^nob</fixfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">dc,di</subfield>
+          <subfield label="d">R</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">8242107386</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="d">LOE</subfield>
+        </varfield>
+        <varfield id="100" i1="1" i2=" ">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2=" ">
+          <subfield label="a">Naiv. Super.</subfield>
+          <subfield label="h">lydopptak</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Melhus</subfield>
+          <subfield label="b">Lydbokforl.</subfield>
+          <subfield label="c">1998</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">4 kompaktplater (4 t)</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">298 kr</subfield>
+        </varfield>
+        <varfield id="655" i1=" " i2=" ">
+          <subfield label="a">Romaner</subfield>
+        </varfield>
+        <varfield id="700" i1="1" i2=" ">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+          <subfield label="e">utøv.</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+          <subfield label="c">LOE</subfield>
+          <subfield label="d">1998</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1528</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a"></subfield>
+          <subfield label="b"></subfield>
+          <subfield label="c">19990531</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">2206</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19980831</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1108</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19980831</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1109</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19981124</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1113</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990119</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1444</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990119</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1550</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990119</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1550</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19990420</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1319</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">20</subfield>
+          <subfield label="c">20000525</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1753</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">20</subfield>
+          <subfield label="c">20000525</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1753</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1353</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1235</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KULTUR</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20091101</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1215</subfield>
+        </varfield>
+        <varfield id="LKR" i1=" " i2=" ">
+          <subfield label="a">PAR</subfield>
+          <subfield label="b">361873</subfield>
+          <subfield label="m">Naiv. Super.</subfield>
+          <subfield label="n">Naiv. Super : roman</subfield>
+        </varfield>
+        <varfield id="LKR" i1=" " i2=" ">
+          <subfield label="a">PAR</subfield>
+          <subfield label="b">383297</subfield>
+          <subfield label="m">Naiv. Super.</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <record>
+    <record_header>
+      <set_entry>000000012</set_entry>
+    </record_header>
+    <doc_number>000361873</doc_number>
+    <metadata>
+      <oai_marc>
+        <fixfield id="FMT">BK</fixfield>
+        <fixfield id="LDR">00452cam^^22001811^^45^^</fixfield>
+        <fixfield id="BAS">24</fixfield>
+        <fixfield id="BAS">25</fixfield>
+        <fixfield id="BAS">26</fixfield>
+        <fixfield id="BAS">27</fixfield>
+        <fixfield id="BAS">28</fixfield>
+        <fixfield id="BAS">29</fixfield>
+        <fixfield id="008">961002^1996^^^^^^^^^^^a^^^^^^^^^^1^nob^^</fixfield>
+        <varfield id="015" i1=" " i2=" ">
+          <subfield label="a">0361873</subfield>
+          <subfield label="b">media-f</subfield>
+        </varfield>
+        <varfield id="019" i1=" " i2=" ">
+          <subfield label="b">l</subfield>
+          <subfield label="d">R</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">8202166985</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">8202188113</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">82-02-16729-9</subfield>
+        </varfield>
+        <varfield id="020" i1=" " i2=" ">
+          <subfield label="a">978-82-0216729-5</subfield>
+        </varfield>
+        <varfield id="041" i1=" " i2=" ">
+          <subfield label="a">nob</subfield>
+        </varfield>
+        <varfield id="090" i1=" " i2=" ">
+          <subfield label="d">LOE</subfield>
+        </varfield>
+        <varfield id="100" i1=" " i2="0">
+          <subfield label="a">Loe, Erlend</subfield>
+          <subfield label="d">1969-</subfield>
+          <subfield label="j">n</subfield>
+        </varfield>
+        <varfield id="245" i1="1" i2=" ">
+          <subfield label="a">Naiv. Super : roman</subfield>
+        </varfield>
+        <varfield id="260" i1=" " i2=" ">
+          <subfield label="a">Oslo</subfield>
+          <subfield label="b">Cappelen</subfield>
+          <subfield label="c">1996</subfield>
+        </varfield>
+        <varfield id="300" i1=" " i2=" ">
+          <subfield label="a">209 s.</subfield>
+        </varfield>
+        <varfield id="599" i1=" " i2=" ">
+          <subfield label="a">260 kr</subfield>
+        </varfield>
+        <varfield id="655" i1=" " i2=" ">
+          <subfield label="a">Romaner</subfield>
+        </varfield>
+        <varfield id="850" i1=" " i2=" ">
+          <subfield label="a">stavangb</subfield>
+          <subfield label="c">LOE</subfield>
+          <subfield label="d">1996</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041103</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1527</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a"></subfield>
+          <subfield label="b"></subfield>
+          <subfield label="c">19971213</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1939</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a"></subfield>
+          <subfield label="b"></subfield>
+          <subfield label="c">19990531</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">2050</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">19991111</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1631</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">20000204</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1148</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">STVGBIBL</subfield>
+          <subfield label="b">10</subfield>
+          <subfield label="c">20000228</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1543</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20041104</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1347</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH</subfield>
+          <subfield label="b">00</subfield>
+          <subfield label="c">20050531</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1449</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="c">20060818</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1230</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">KATALOG</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20061121</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1442</subfield>
+        </varfield>
+        <varfield id="CAT" i1=" " i2=" ">
+          <subfield label="a">BATCH-UPD</subfield>
+          <subfield label="b">30</subfield>
+          <subfield label="c">20110305</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="h">1339</subfield>
+        </varfield>
+        <varfield id="LKR" i1=" " i2=" ">
+          <subfield label="a">PAR</subfield>
+          <subfield label="l">NOR01</subfield>
+          <subfield label="b">375981</subfield>
+          <subfield label="m">Naiv. Super : roman</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <error>There is no entry number: 13 in set number given</error>
+  <session-id>D5VXRMM89278JX35V5IJ126L3LRT5FQ6RJDN57FHFHKIQKF4T7</session-id>
+</present>
