@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Solvberget.Webservice")]
+[assembly: AssemblyTitle("Solvberget.Service")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Solvberget.Webservice")]
+[assembly: AssemblyProduct("Solvberget.Service")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f9202624-7583-4662-9e3a-a1edc3936bcc")]
+[assembly: Guid("272deefb-b0c7-4217-ba88-5eaf9ebabe36")]
 
 // Version information for an assembly consists of the following four values:
 //

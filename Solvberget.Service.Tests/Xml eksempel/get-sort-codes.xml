@@ -1,0 +1,31 @@
+﻿<?xml version = "1.0" encoding = "UTF-8"?>
+<get-sort-codes>
+  <sort-01>
+    <field-code-1>008##</field-code-1>
+    <field-code-2>260##</field-code-2>
+    <sub-field-2>c</sub-field-2>
+  </sort-01>
+  <sort-02>
+    <field-code-1>100##</field-code-1>
+    <sub-field-1>a</sub-field-1>
+    <field-code-2>110##</field-code-2>
+    <sub-field-2>a</sub-field-2>
+    <field-code-3>111##</field-code-3>
+    <sub-field-3>a</sub-field-3>
+    <field-code-4>130##</field-code-4>
+    <sub-field-4>a</sub-field-4>
+  </sort-02>
+  <sort-03>
+    <field-code-1>245##</field-code-1>
+    <sub-field-1>a</sub-field-1>
+    <field-code-2>240##</field-code-2>
+  </sort-03>
+  <sort-04>
+    <field-code-1>090##</field-code-1>
+  </sort-04>
+  <sort-05>
+    <field-code-1>SYS</field-code-1>
+  </sort-05>
+  <session-id>TR2DUDP8Q4M976AFJFPTYGYIV5RA3KHQNEICARTIP4SMIMRAVU</session-id>
+</get-sort-codes>
+

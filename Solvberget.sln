@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Service", "Solvberget.Webservice\Solvberget.Service.csproj", "{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}"
-EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Solvberget.Metro", "Solvberget.Metro\Solvberget.Metro.jsproj", "{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Service.Tests", "Solvberget.Service.Tests\Solvberget.Service.Tests.csproj", "{9426CD77-75BA-4FC1-BB17-19D687AC12EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Service", "Solvberget.Service\Solvberget.Service.csproj", "{97A27773-1B8E-42C1-B1BD-DBC38C588492}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,16 +53,16 @@ Global
 		{9426CD77-75BA-4FC1-BB17-19D687AC12EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9426CD77-75BA-4FC1-BB17-19D687AC12EC}.Release|x64.ActiveCfg = Release|Any CPU
 		{9426CD77-75BA-4FC1-BB17-19D687AC12EC}.Release|x86.ActiveCfg = Release|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Release|ARM.ActiveCfg = Release|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Release|x64.ActiveCfg = Release|Any CPU
-		{CDD00CF5-2127-42AC-87F1-F3AA92BB1F09}.Release|x86.ActiveCfg = Release|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Release|ARM.ActiveCfg = Release|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Release|x64.ActiveCfg = Release|Any CPU
+		{97A27773-1B8E-42C1-B1BD-DBC38C588492}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -87,6 +87,8 @@ namespace Solvberget.Service.Tests
             var doc = XDocument.Load(response.GetResponseStream());
             var nodes = from node in doc.Root.Descendants() select node;
 
+            
+
             foreach (var n in nodes)
             {
                 dynamic sorting = new ExpandoObject();

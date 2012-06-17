@@ -45,12 +45,21 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConnection.cs" />
+    <Compile Include="TestModelConvertionFromXml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="XML eksempel\Find-doc.xml" />
+    <Content Include="XML eksempel\Find.xml" />
     <Content Include="XML eksempel\Present.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Solvberget.Service\Solvberget.Service.csproj">
+      <Project>{97a27773-1b8e-42c1-b1bd-dbc38c588492}</Project>
+      <Name>Solvberget.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
