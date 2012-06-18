@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Solvberget.Service.Infrastructure;
 
 namespace Solvberget.Service
 {
@@ -24,7 +25,7 @@ namespace Solvberget.Service
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Document", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
         }
@@ -37,6 +38,8 @@ namespace Solvberget.Service
             
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
     }
 }
