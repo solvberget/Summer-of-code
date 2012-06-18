@@ -63,9 +63,4 @@ packages/*
 *test-results.xml
 
 #generated files
-Ons.App/js/test-results.txt
-Ons.App/js/test-results.xml
-Ons.App/js/script.js
-Ons.App/js/plugins.js
-Ons.Host/Graphics/ExhibitorLogos/*
 *.min.css
