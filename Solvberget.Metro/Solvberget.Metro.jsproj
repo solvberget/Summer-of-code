@@ -32,7 +32,7 @@
     <ProjectConfiguration Include="Release|x86">
       <Configuration>Release</Configuration>
       <Platform>x86</Platform>
-    </ProjectConfiguration>  
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>6a9bd7d1-7ef3-44cd-8b39-b4eb0daadc04</ProjectGuid>
@@ -57,6 +57,8 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
+    <Content Include="js\knockout-2.1.0.js" />
+    <Content Include="js\SampleViewModel.js" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
