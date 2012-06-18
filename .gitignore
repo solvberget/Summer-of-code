@@ -26,6 +26,8 @@
 *.sdf
 *.opensdf
 *.unsuccessfulbuild
+_UpgradeReport_Files/
+UpgradeLog.*
 
 ipch/
 obj/
