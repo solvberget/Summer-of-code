@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Solvberget.Service.Models;
+using Solvberget.Domain.DTO;
 
 namespace Solvberget.Service.Tests
 {
