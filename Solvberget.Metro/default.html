@@ -13,15 +13,24 @@
     <link href="/css/default.css" rel="stylesheet" />
     <script src="/js/default.js"></script>
     <script type="text/javascript" src="js/knockout-2.1.0.js"></script>
+    
+    <!-- Solvberget.Metro Testing -->
+    <link rel="stylesheet" href="/css/qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/js/Testing/qunit.js"></script>
+    <script src="/js/Testing/Default.js"></script>
+
 </head>
 <body>
-    <h1>Overskrift</h1>
-    
-    <p>First name: <input data-bind="value: firstName" /></p>
 
-    <p>Last name: <input data-bind="value: lastName" /></p>
-     
-    <p>Hallo, <span data-bind="text: fullName"></span> !</p>
+    <h1>Overskrift</h1>
+
+    <p>First name:
+        <input data-bind="value: firstName" /></p>
+
+    <p>Last name:
+        <input data-bind="value: lastName" /></p>
+
+    <p>Hallo, <span data-bind="text: fullName"></span>!</p>
 
     <!-- ViewModel må lastes etter HTML-elementene er opprettet -->
     <script type="text/javascript" src="js/SampleViewModel.js"></script>

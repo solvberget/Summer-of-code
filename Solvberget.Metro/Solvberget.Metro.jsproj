@@ -50,6 +50,7 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="css\qunit.css" />
     <Content Include="default.html" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
@@ -59,6 +60,8 @@
     <Content Include="css\default.css" />
     <Content Include="js\knockout-2.1.0.js" />
     <Content Include="js\SampleViewModel.js" />
+    <Content Include="js\Testing\Default.js" />
+    <Content Include="js\Testing\qunit.js" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
