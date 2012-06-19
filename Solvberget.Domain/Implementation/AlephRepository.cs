@@ -13,11 +13,11 @@ namespace Solvberget.Domain.Implementation
 {
     public class AlephRepository : IRepository
     {
-        private string GetUrl(string function, Dictionary<string, string> options)
+        private string GetUrl(Operation function, Dictionary<string, string> options)
         {
             var sb = new StringBuilder();
             sb.Append(Properties.Settings.Default.ServerUrl);
-            sb.Append(string.Format("op={0}", function));
+            sb.Append(GetOperationPrefix(function));
             foreach (var option in options)
             {
                 sb.Append(string.Format("&{0}={1}", option.Key, option.Value));
@@ -29,8 +29,8 @@ namespace Solvberget.Domain.Implementation
         public List<Document> Search(string value)
         {
             dynamic result = new ExpandoObject();
-            const string function = "find";
-            var options = new Dictionary<string, string> { { "base", "NOR01" }, { "request", value } };
+            const Operation function =  Operation.KeywordSearch;
+            var options = new Dictionary<string, string> { { "request", value } };
 
             string xml = string.Empty;
 
@@ -58,8 +58,8 @@ namespace Solvberget.Domain.Implementation
         {
 
             string setEntry = string.Format("0000000001-{0}", result.NumberOfRecords);
-            string function = "present";
-            var options = new Dictionary<string, string> { { "base", "NOR01" }, { "set_number", result.SetNumber }, { "set_entry", setEntry } };
+            const Operation function = Operation.PresentSetNumber;
+            var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", setEntry } };
 
             var request = WebRequest.Create(GetUrl(function, options));
             var response = request.GetResponse();
@@ -82,5 +82,21 @@ namespace Solvberget.Domain.Implementation
             return documents;
         }
 
+        private static string GetOperationPrefix(Operation op)
+        {
+            switch ((int) op)
+            {
+                case 0:
+                    return "op=item-data&base=NOR01";
+                case 1:
+                    return "op=present&base=NOR50";
+                case 2:
+                    return "op=find&base=NOR01";
+                default:
+                    return null;
+            }
+        }
+
+        private enum Operation { ItemData = 0, PresentSetNumber, KeywordSearch }
     }
 }
