@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Xml.Linq;
 
-namespace Solvberget.Service.Models
+namespace Solvberget.Domain.DTO
 {
     public class Book : Document
     {

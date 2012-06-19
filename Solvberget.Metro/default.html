@@ -12,8 +12,37 @@
     <!-- Solvberget.Metro references -->
     <link href="/css/default.css" rel="stylesheet" />
     <script src="/js/default.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/js/knockout-2.1.0.js"></script>
+    
+
 </head>
 <body>
-    <p>Content goes here</p>
+
+    <h1>Sølvberget</h1>
+
+    <!--<p>First name:
+        <input data-bind="value: firstName" /></p>
+
+    <p>Last name:
+        <input data-bind="value: lastName" /></p>
+
+    <p>Hallo, <span data-bind="text: fullName"></span>!</p>-->
+
+    <h2>Search for document</h2>
+    <p>
+        <input data-bind='value: searchString, valueUpdate: "afterkeydown"' /><button data-bind="click: search">Search</button>
+        <span data-bind="text: searchString"></span>
+    </p>
+    <ul data-bind="foreach: documents, visible: documents().length > 0">
+        <li>
+            <strong data-bind="text: title"></strong>
+        </li>
+    </ul>
+
+
+    <!-- ViewModel må lastes etter HTML-elementene er opprettet -->
+    <!--<script type="text/javascript" src="js/SampleViewModel.js"></script>-->
+    <script type="text/javascript" src="/js/DocumentSearch.js"></script>
 </body>
 </html>

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Xml.Linq;
 
-namespace Solvberget.Service.Models
+namespace Solvberget.Domain.DTO
 {
     public class Document
     {
@@ -25,7 +23,6 @@ namespace Solvberget.Service.Models
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                
                 var TitleAndResponsebility = nodes.Elements("varfield")
                     .Where(x => ((string) x.Attribute("id")).Equals("245")).Elements("subfield");
 
