@@ -29,7 +29,7 @@ namespace Solvberget.Domain.Implementation
         public List<Document> Search(string value)
         {
             dynamic result = new ExpandoObject();
-            const Operation function =  Operation.KeywordSearch;
+            const Operation function = Operation.KeywordSearch;
             var options = new Dictionary<string, string> { { "request", value } };
 
             string xml = string.Empty;
@@ -84,7 +84,7 @@ namespace Solvberget.Domain.Implementation
 
         private static string GetOperationPrefix(Operation op)
         {
-            switch ((int) op)
+            switch ((int)op)
             {
                 case 0:
                     return "op=item-data&base=NOR01";
@@ -92,11 +92,13 @@ namespace Solvberget.Domain.Implementation
                     return "op=present&base=NOR50";
                 case 2:
                     return "op=find&base=NOR01";
+                case 3:
+                    return "op=find-doc&base=NOR50";
                 default:
                     return null;
             }
         }
 
-        private enum Operation { ItemData = 0, PresentSetNumber, KeywordSearch }
+        private enum Operation { ItemData = 0, PresentSetNumber, KeywordSearch, FindDocument }
     }
 }

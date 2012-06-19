@@ -6,6 +6,7 @@ namespace Solvberget.Domain.DTO
 {
     public class Document
     {
+        public string DocumentNumber { get; set; }
         public string Title { get; set; }
         public string Language { get; set; }
         public string TargetGroup { get; set; }
@@ -22,7 +23,10 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                var nodes = xmlDoc.Root.Descendants();
+
+                DocumentNumber = "000589515"; // Max Manus
+
                 var TitleAndResponsebility = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("245")).Elements("subfield");
 
                 Title = TitleAndResponsebility.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
