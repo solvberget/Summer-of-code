@@ -1,7 +1,6 @@
 ﻿function Document(data) {
     this.title = ko.observable(data.Title);
     this.DocumentNumber = ko.observable(data.DocumentNumber);
-    //this.test = ko.observable("Test");
 }
 
 function DocumentListViewModel() {
