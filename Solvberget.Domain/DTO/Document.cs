@@ -23,10 +23,14 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                var TitleAndResponsebility = nodes.Elements("varfield")
-                    .Where(x => ((string) x.Attribute("id")).Equals("245")).Elements("subfield");
+                var TitleAndResponsebility = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("245")).Elements("subfield");
 
-                Title = TitleAndResponsebility.Where(x => ((string) x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
+                Title = TitleAndResponsebility.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
+
+                var docType = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("019")).Elements("subfield");
+
+                DocumentType = docType.Where(x => ((string)x.Attribute("label")).Equals("b")).Select(x => x.Value).FirstOrDefault();
+
             }
         }
 
