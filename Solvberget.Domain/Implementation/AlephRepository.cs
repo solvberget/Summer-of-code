@@ -40,7 +40,7 @@ namespace Solvberget.Domain.Implementation
             {
                 if (stream != null)
                 {
-                    var readStream = new StreamReader(stream, Encoding.Default);
+                    var readStream = new StreamReader(stream, Encoding.UTF8);
                     xml = readStream.ReadToEnd();
                 }
             }
@@ -66,7 +66,7 @@ namespace Solvberget.Domain.Implementation
             string xml = string.Empty;
             using (var stream = response.GetResponseStream())
             {
-                var readStream = new StreamReader(stream, Encoding.Default);
+                var readStream = new StreamReader(stream, Encoding.UTF8);
                 xml = readStream.ReadToEnd();
             }
             var doc = XDocument.Parse(xml);
