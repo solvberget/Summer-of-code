@@ -19,7 +19,7 @@
 </head>
 <body>
 
-    <h1>Overskrift</h1>
+    <h1>Sølvberget</h1>
 
     <!--<p>First name:
         <input data-bind="value: firstName" /></p>
@@ -29,9 +29,10 @@
 
     <p>Hallo, <span data-bind="text: fullName"></span>!</p>-->
 
-    <h1>Search for document</h1>
+    <h2>Search for document</h2>
     <p>
-        <span data-bind="text: test"></span>
+        <input data-bind='value: searchString, valueUpdate: "afterkeydown"' /><button data-bind="click: search">Search</button>
+        <span data-bind="text: searchString"></span>
     </p>
     <ul data-bind="foreach: documents, visible: documents().length > 0">
         <li>
