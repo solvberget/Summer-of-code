@@ -9,7 +9,6 @@ namespace Solvberget.Domain
 {
     public interface IRepository
     {
-
         List<Document> Search(string value);
     }
 

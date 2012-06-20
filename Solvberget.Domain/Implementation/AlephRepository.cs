@@ -25,7 +25,6 @@ namespace Solvberget.Domain.Implementation
             return sb.ToString();
         }
 
-
         public List<Document> Search(string value)
         {
             dynamic result = new ExpandoObject();
@@ -47,7 +46,6 @@ namespace Solvberget.Domain.Implementation
 
         private List<Document> GetSearchResults(dynamic result)
         {
-
             string setEntry = string.Format("0000000001-{0}", result.NumberOfRecords);
             const Operation function = Operation.PresentSetNumber;
             var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", setEntry } };
@@ -98,6 +96,6 @@ namespace Solvberget.Domain.Implementation
             }
         }
 
-        private enum Operation { ItemData = 0, PresentSetNumber, KeywordSearch, FindDocument }
+        private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument }
     }
 }

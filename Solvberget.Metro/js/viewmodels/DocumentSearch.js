@@ -1,9 +1,4 @@
-﻿function Document(data) {
-    this.title = ko.observable(data.Title);
-    this.DocumentType = ko.observable(data.DocumentType);
-}
-
-function DocumentListViewModel() {
+﻿function DocumentListViewModel() {
     var self = this;
     self.documents = ko.observableArray([]);
     self.searchString = ko.observable("Input search");
@@ -14,10 +9,9 @@ function DocumentListViewModel() {
     };
 
     self.populate = function (allData) {
-        var mappedDocuments = $.map(allData, function (item) { return new Document(item) });
+        var mappedDocuments = $.map(allData, function (item) { return new Document(item); });
         self.documents(mappedDocuments);
     };
-
 }
 
 ko.applyBindings(new DocumentListViewModel());

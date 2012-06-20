@@ -14,13 +14,14 @@
     <script src="/js/default.js"></script>
     <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/js/knockout-2.1.0.js"></script>
+    <script type="text/javascript" src="/js/models/Document.js"></script>
     
 
 </head>
 <body>
-
+    
     <h1>Sølvberget</h1>
-
+    
     <h2>Search for document</h2>
     <p>
         <input data-bind='value: searchString, valueUpdate: "afterkeydown"' /><button data-bind="click: search">Search</button>
@@ -31,8 +32,9 @@
             <strong data-bind="text: title"></strong> <em data-bind="text: DocumentType"></em>
         </li>
     </ul>
+    
 
     <!-- ViewModel må lastes etter HTML-elementene er opprettet -->
-    <script type="text/javascript" src="/js/DocumentSearch.js"></script>
+    <script type="text/javascript" src="/js/viewmodels/DocumentSearch.js"></script>
 </body>
 </html>
