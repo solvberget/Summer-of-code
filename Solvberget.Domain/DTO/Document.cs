@@ -25,8 +25,6 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants();
 
-                DocumentNumber = "000589515"; // Max Manus
-
                 var TitleAndResponsebility = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("245")).Elements("subfield");
 
                 Title = TitleAndResponsebility.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
