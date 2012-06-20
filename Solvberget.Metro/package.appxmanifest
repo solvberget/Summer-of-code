@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="6a9bd7d1-7ef3-44cd-8b39-b4eb0daadc05" Version="1.0.0.0" Publisher="CN=arnea_000" />
+  <Identity Name="6a9bd7d1-7ef3-44cd-8b39-b4eb0daadc07" Version="1.0.0.0" Publisher="CN=arnea_000" />
   <Properties>
     <DisplayName>Solvberget.Metro</DisplayName>
     <PublisherDisplayName>arnea_000</PublisherDisplayName>
