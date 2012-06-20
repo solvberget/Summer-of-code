@@ -28,7 +28,7 @@
     </p>
     <ul data-bind="foreach: documents, visible: documents().length > 0">
         <li>
-            <strong data-bind="text: title"></strong>
+            <strong data-bind="text: title"></strong> <em data-bind="text: DocumentType"></em>
         </li>
     </ul>
 

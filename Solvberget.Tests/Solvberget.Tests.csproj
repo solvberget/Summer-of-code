@@ -74,10 +74,6 @@
       <Project>{7eb0d844-7622-4f0d-a103-c326c6fa1293}</Project>
       <Name>Solvberget.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Solvberget.Service\Solvberget.Service.csproj">
-      <Project>{97a27773-1b8e-42c1-b1bd-dbc38c588492}</Project>
-      <Name>Solvberget.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

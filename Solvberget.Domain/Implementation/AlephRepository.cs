@@ -32,19 +32,10 @@ namespace Solvberget.Domain.Implementation
             const Operation function = Operation.KeywordSearch;
             var options = new Dictionary<string, string> { { "request", value } };
 
-            string xml = string.Empty;
+            var url = GetUrl(function, options);
 
-            var request = WebRequest.Create(GetUrl(function, options));
-            var response = request.GetResponse();
-            using (var stream = response.GetResponseStream())
-            {
-                if (stream != null)
-                {
-                    var readStream = new StreamReader(stream, Encoding.UTF8);
-                    xml = readStream.ReadToEnd();
-                }
-            }
-            var doc = XDocument.Parse(xml);
+            var doc = GetXmlFromStream(url);
+               
             if (doc.Root != null)
             {
                 result.SetNumber = doc.Root.Elements("set_number").Select(x => x.Value).FirstOrDefault();
@@ -61,15 +52,9 @@ namespace Solvberget.Domain.Implementation
             const Operation function = Operation.PresentSetNumber;
             var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", setEntry } };
 
-            var request = WebRequest.Create(GetUrl(function, options));
-            var response = request.GetResponse();
-            string xml = string.Empty;
-            using (var stream = response.GetResponseStream())
-            {
-                var readStream = new StreamReader(stream, Encoding.UTF8);
-                xml = readStream.ReadToEnd();
-            }
-            var doc = XDocument.Parse(xml);
+            var url = GetUrl(function, options);
+
+            var doc = GetXmlFromStream(url);
 
             var documents = new List<Document>();
             if (doc.Root != null)
@@ -80,6 +65,20 @@ namespace Solvberget.Domain.Implementation
             }
             documents.RemoveAll(x => x.Title == null);
             return documents;
+        }
+
+        private static XDocument GetXmlFromStream(string url)
+        {
+            var request = WebRequest.Create(url);
+            var response = request.GetResponse();
+            string xml = string.Empty;
+            using (var stream = response.GetResponseStream())
+            {
+                var readStream = new StreamReader(stream, Encoding.UTF8);
+                xml = readStream.ReadToEnd();
+            }
+
+            return XDocument.Parse(xml);
         }
 
         private static string GetOperationPrefix(Operation op)
