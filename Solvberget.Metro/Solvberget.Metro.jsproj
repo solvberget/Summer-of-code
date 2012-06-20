@@ -67,7 +67,6 @@
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </Content>
     <Content Include="js\knockout-2.1.0.js" />
-    <Content Include="js\SampleViewModel.js" />
     <Content Include="js\test\Sample.tests.js" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
