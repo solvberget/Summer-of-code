@@ -58,7 +58,6 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="js\DocumentSearch.js" />
     <Content Include="js\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </Content>
@@ -67,7 +66,9 @@
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </Content>
     <Content Include="js\knockout-2.1.0.js" />
+    <Content Include="js\models\Document.js" />
     <Content Include="js\test\Sample.tests.js" />
+    <Content Include="js\viewmodels\DocumentSearch.js" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
