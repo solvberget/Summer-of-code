@@ -59,8 +59,8 @@ packages/*
 
 #node_modules
 !node_modules
-*ONSLog.txt
 *test-results.xml
+*test-result.txt
 
 #generated files
 *.min.css
