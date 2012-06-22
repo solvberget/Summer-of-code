@@ -5,6 +5,6 @@ namespace Solvberget.Domain.Abstract
 {
     public interface ISpellingDictionary
     {
-        List<String> Lookup(string value);
+        string[] Lookup(string value);
     }
 }

@@ -22,7 +22,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
             var suggestions = repository.Lookup(testString);
 
-            var solution = suggestions.Where(suggestion => suggestion == testSolution);
+            var solution = suggestions.FirstOrDefault(suggestion => suggestion == testSolution);
 
             Assert.AreEqual(testSolution, solution);
         }
