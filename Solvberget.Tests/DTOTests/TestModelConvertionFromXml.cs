@@ -1,13 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Solvberget.Domain.DTO;
 
-namespace Solvberget.Service.Tests
+namespace Solvberget.Service.Tests.DTOTests
 {
     [TestFixture]
     public class TestModelConvertionFromXml
@@ -17,7 +11,27 @@ namespace Solvberget.Service.Tests
         {
             var media = Document.GetDocumentFromFindDocXml(getBookXml());
 
+            Assert.AreEqual('a', media.TargetGroup);
+
+            Assert.AreEqual(3, media.Language.Length);
+            Assert.AreEqual("nob", media.Language);
+
+            Assert.AreEqual("l", media.DocumentType);
+            
             Assert.AreEqual("Naiv. Super", media.Title);
+
+            Assert.AreEqual("Supert", media.SubTitle);
+
+            foreach(string person in media.InvolvedPersons)
+                Assert.AreEqual("Erlend Loe", person);
+
+            Assert.AreEqual("[Oslo]", media.PlacePublished);
+
+            Assert.AreEqual("Cappelen Damm", media.Publisher);
+
+            Assert.AreEqual(2010, media.PublishedYear);
+
+
         }
 
         [Test]
@@ -76,6 +90,7 @@ namespace Solvberget.Service.Tests
         </varfield>
         <varfield id=""245"" i1=""1"" i2=""0"">
           <subfield label=""a"">Naiv. Super</subfield>
+          <subfield label=""b"">Supert</subfield>
           <subfield label=""c"">Erlend Loe</subfield>
         </varfield>
         <varfield id=""260"" i1="" "" i2="" "">

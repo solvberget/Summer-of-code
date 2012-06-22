@@ -8,8 +8,6 @@ namespace Solvberget.Domain.DTO
     public class Book : Document
     {
         public string Author { get; set; }
-        public string SubTitle { get; set; }
-        public IEnumerable<string> InvolvedPersons { get; set; } 
 
         protected override void FillProperties(string xml)
         {
@@ -17,24 +15,26 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
+                
+                //Get root oai_marc XML-element
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-
-                var TitleAndResponsebility = nodes.Elements("varfield")
-                    .Where(x => ((string)x.Attribute("id")).Equals("245")).Elements("subfield");
-
-                if (TitleAndResponsebility != null)
-                {
-                    Title = TitleAndResponsebility.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
-                    SubTitle = TitleAndResponsebility.Where(x => ((string) x.Attribute("label")).Equals("b")).Select(x => x.Value).FirstOrDefault();
-                    InvolvedPersons = TitleAndResponsebility.Where(x => ((string) x.Attribute("label")).Equals("c")).Select(x => x.Value).FirstOrDefault().Split(';');
-                }
+                
+                //Get author
+                //Check BSMARC field 100 for author
                 var mainSchemeWord = nodes.Elements("varfield").Where(x => ((string) x.Attribute("id")).Equals("100")).Elements("subfield");
-                if (mainSchemeWord == null) mainSchemeWord = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("110")).Elements("subfield");
 
+                //If N/A, check BSMARC field 110 for author
+                if (mainSchemeWord == null)
+                    mainSchemeWord = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("110")).Elements("subfield");
+                
+                //If still N/A, check BSMARC field 130 for title when title is main scheme word
+                if (mainSchemeWord == null)
+                    mainSchemeWord = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("130")).Elements("subfield");
+
+                //Set the obtained word
                 if(mainSchemeWord != null)
-                {
                     Author = mainSchemeWord.Where(x => ((string) x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
-                }
+                
             }
         }
 
