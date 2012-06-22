@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Solvberget.Domain.DTO
@@ -27,7 +28,7 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-                
+
                 var nodes = xmlDoc.Root.Descendants();
 
                 //Get complete information code string from fixfield 008
@@ -38,8 +39,8 @@ namespace Solvberget.Domain.DTO
 
                 //Language: Set language from characters 35-37
                 Language = informationCodeString.Substring(35, 3);
-            
-               //DocumentType: Get varfield 019b
+
+                //DocumentType: Get varfield 019b
                 var docType = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("019")).Elements("subfield");
                 DocumentType = docType.Where(x => ((string)x.Attribute("label")).Equals("b")).Select(x => x.Value).FirstOrDefault();
 
@@ -62,11 +63,23 @@ namespace Solvberget.Domain.DTO
                 {
                     PlacePublished = publisherData.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
                     Publisher = publisherData.Where(x => ((string)x.Attribute("label")).Equals("b")).Select(x => x.Value).FirstOrDefault();
-                    var publishedYearString = publisherData.Where(x => ((string)x.Attribute("label")).Equals("c")).Select(x => x.Value).FirstOrDefault();
-                    PublishedYear = int.Parse(publishedYearString);
-                }
-               
 
+                    //Check and parse year published
+                    var publishedYearString = publisherData.Where(x => ((string)x.Attribute("label")).Equals("c")).Select(x => x.Value).FirstOrDefault();
+                    if (publishedYearString != null)
+                    {
+                        //Format may be "[2009]" or "2009.", trim if so
+                        var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
+                        var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
+                        if (!string.IsNullOrEmpty(foundValue))
+                        {
+                            PublishedYear = int.Parse(foundValue);
+                        }
+
+                    }
+
+                }
+                
             }
         }
 
