@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 
 namespace Solvberget.Domain.Implementation

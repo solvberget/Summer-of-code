@@ -9,7 +9,9 @@
     };
 
     self.populate = function (allData) {
-        var mappedDocuments = $.map(allData, function (item) { return new Document(item); });
+        var mappedDocuments = $.map(allData, function (item) {
+            return new Document(item);
+        });
         self.documents(mappedDocuments);
     };
 }

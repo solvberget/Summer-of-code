@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using Solvberget.Domain;
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
 
 namespace Solvberget.Service.Infrastructure
@@ -27,6 +28,7 @@ namespace Solvberget.Service.Infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IRepository>().To<AlephRepository>();
+            ninjectKernel.Bind<ISpellingDictionary>().To<LuceneRespository>();
         }
     }
 }
