@@ -43,6 +43,7 @@
   <ItemGroup>
     <Reference Include="Contrib.Regex">
       <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Contrib.Regex.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -53,9 +54,11 @@
     </Reference>
     <Reference Include="Lucene.Net.Contrib.Analyzers">
       <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Analyzers.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Lucene.Net.Contrib.Core">
       <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Lucene.Net.Contrib.Highlighter">
       <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Highlighter.dll</HintPath>

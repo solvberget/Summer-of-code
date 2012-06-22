@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Solvberget.Domain.DTO;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Solvberget.Domain.Abstract
 {
     public interface ISpellingDictionary
     {
-        List<Document> Lookup(string value);
+        List<String> Lookup(string value);
     }
 }

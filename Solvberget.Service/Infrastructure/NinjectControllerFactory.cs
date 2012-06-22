@@ -28,7 +28,7 @@ namespace Solvberget.Service.Infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IRepository>().To<AlephRepository>();
-            ninjectKernel.Bind<ISpellingDictionary>().To<LuceneRespository>();
+            ninjectKernel.Bind<ISpellingDictionary>().To<LuceneRepository>();
         }
     }
 }
