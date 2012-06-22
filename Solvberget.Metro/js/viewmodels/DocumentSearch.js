@@ -13,6 +13,7 @@
             return new Document(item);
         });
         self.documents(mappedDocuments);
+        
     };
 }
 
