@@ -16,7 +16,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookup()
         {
 
-            var repository = LuceneRepository.GetInstance();
+            var repository = new LuceneRepository();
             
             string testString = "omerfulg";
             string testSolution = "sommerfugl";
