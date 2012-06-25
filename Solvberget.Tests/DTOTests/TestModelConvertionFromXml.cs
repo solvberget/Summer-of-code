@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using Solvberget.Domain.DTO;
 
 namespace Solvberget.Service.Tests.DTOTests
@@ -51,7 +52,16 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var film = Film.GetFilmFromFindDocXml(getFilmXml());
 
-            Assert.AreEqual("Max Manus", film.Title);
+            Assert.AreEqual("7041271735935", film.Ean);
+
+            Assert.AreEqual("nob", film.SpokenLanguage.FirstOrDefault());
+            Assert.AreEqual(1, film.SpokenLanguage.Count());
+
+            Assert.AreEqual("nob", film.SubtitleLanguage.FirstOrDefault());
+            Assert.AreEqual(4, film.SubtitleLanguage.Count());
+
+            Assert.AreEqual("Max Manus", film.OriginalTitle);
+
         }
 
         [Test]
@@ -170,6 +180,9 @@ namespace Solvberget.Service.Tests.DTOTests
                 </varfield>
                 <varfield id=""090"" i1="" "" i2="" "">
                     <subfield label=""d"">MAX</subfield>
+                </varfield>
+                <varfield id=""240"" i1="" "" i2="" "">
+                    <subfield label=""a"">Max Manus</subfield>
                 </varfield>
                 <varfield id=""245"" i1=""0"" i2=""0"">
                     <subfield label=""a"">Max Manus</subfield>

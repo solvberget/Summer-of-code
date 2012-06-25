@@ -47,6 +47,7 @@
     <Compile Include="DTO\Book.cs" />
     <Compile Include="DTO\Document.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="DTO\ExtensionHelpers.cs" />
     <Compile Include="DTO\Film.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

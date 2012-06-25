@@ -73,9 +73,9 @@ namespace Solvberget.Domain.DTO
                         //Format may be "[2009]" or "2009.", trim if so
                         var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
                         var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
-                        if (!string.IsNullOrEmpty(foundValue))
+                        if (!String.IsNullOrEmpty(foundValue))
                         {
-                            PublishedYear = int.Parse(foundValue);
+                            PublishedYear = Int32.Parse(foundValue);
                         }
 
                     }
@@ -90,11 +90,9 @@ namespace Solvberget.Domain.DTO
                 var seriesNumberString = seriesInformation.Where(x => ((string)x.Attribute("label")).Equals("v")).Select(x => x.Value).FirstOrDefault();
                 if (seriesNumberString != null)
                 {
-                    SeriesNumber = int.Parse(seriesNumberString);
+                    SeriesNumber = Int32.Parse(seriesNumberString);
 
                 }
-                
-
             }
         }
 
