@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/js/knockout-2.1.0.js"></script>
     <script type="text/javascript" src="js/less-1.3.0.min.js"></script>
     <script type="text/javascript" src="/js/models/Document.js"></script>
+        <script type="text/javascript" src="/js/models/Link.js"></script>
     
 
 </head>
@@ -27,8 +28,12 @@
     <p>
         <input data-bind='value: searchString, valueUpdate: "afterkeydown"' /><button data-bind="click: search">Search</button>
         <span data-bind="text: searchString"></span>
+      
+        
     </p>
+    <p>Mente du  <a href data-bind="text: suggestion"></a>?</p>
     <ul data-bind="foreach: documents, visible: documents().length > 0">
+            
         <li>
             <strong data-bind="text: title"></strong> <em data-bind="text: DocumentType"></em>
         </li>

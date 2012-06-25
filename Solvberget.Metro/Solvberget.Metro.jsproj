@@ -68,6 +68,7 @@
     <Content Include="js\knockout-2.1.0.js" />
     <Content Include="js\less-1.3.0.min.js" />
     <Content Include="js\models\Document.js" />
+    <Content Include="js\models\Link.js" />
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
