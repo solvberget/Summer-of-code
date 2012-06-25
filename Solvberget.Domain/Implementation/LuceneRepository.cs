@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lucene.Net.Index;
-using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
-using System.Collections.Generic;
-using System.Linq;
 using SpellChecker.Net.Search.Spell;
 
 namespace Solvberget.Domain.Implementation
@@ -92,7 +84,6 @@ namespace Solvberget.Domain.Implementation
         private void AddWordToSuggestionString(ref string suggestionString, string word)
         {
             suggestionString += word + " ";
-
         }
 
         private string WordSplitErrorMerger( string value )
