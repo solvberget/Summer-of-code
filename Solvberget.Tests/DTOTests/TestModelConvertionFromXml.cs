@@ -14,10 +14,14 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual('a', media.TargetGroup);
 
+            Assert.IsTrue(media.IsFiction);
+
             Assert.AreEqual(3, media.Language.Length);
             Assert.AreEqual("nob", media.Language);
 
             Assert.AreEqual("l", media.DocumentType);
+
+            Assert.AreEqual("LOE", media.LocationCode);
             
             Assert.AreEqual("Naiv. Super", media.Title);
 
@@ -43,8 +47,11 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var book = Book.GetBookFromFindDocXml(getBookXml());
 
-            Assert.AreEqual("Naiv. Super", book.Title);
+            Assert.AreEqual("978-82-02-33225-9", book.Isbn);
             Assert.AreEqual("Loe, Erlend", book.Author);
+            Assert.AreEqual("5", book.Numbering);
+            Assert.AreEqual("5. oppl.", book.Edition);
+            
         }
 
         [Test]
@@ -72,9 +79,6 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("ee", film.DocumentType);
             
         }
-
-
-
 
         private string getBookXml()
         {
@@ -105,6 +109,10 @@ namespace Solvberget.Service.Tests.DTOTests
           <subfield label=""a"">Naiv. Super</subfield>
           <subfield label=""b"">Supert</subfield>
           <subfield label=""c"">Erlend Loe</subfield>
+          <subfield label=""n"">5</subfield>
+        </varfield>
+        <varfield id=""250"" i1="" "" i2="" "">
+          <subfield label=""a"">5. oppl.</subfield>
         </varfield>
         <varfield id=""260"" i1="" "" i2="" "">
           <subfield label=""a"">[Oslo]</subfield>

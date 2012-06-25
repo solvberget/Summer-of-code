@@ -9,8 +9,10 @@ namespace Solvberget.Domain.DTO
     public class Document
     {
         public char TargetGroup { get; set; }
+        public bool IsFiction { get; set; }
         public string Language { get; set; }
         public string DocumentType { get; set; }
+        public string LocationCode { get; set; }
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public IEnumerable<string> InvolvedPersons { get; set; }
@@ -37,14 +39,21 @@ namespace Solvberget.Domain.DTO
                 var informationCodeString = nodes.Elements("fixfield").Where(x => ((string)x.Attribute("id")).Equals("008")).Select(x => x.Value).FirstOrDefault();
 
                 //TargetGroup: set target group from character 22
-                TargetGroup = informationCodeString.ElementAt(22);
+                TargetGroup = GetFixfield(nodes, "008", 22, 22)[0];
+
+                //IsFiction: set true/false from character 33
+                var isFictionIntAsChar = informationCodeString.ElementAt(33);
+                IsFiction = isFictionIntAsChar.Equals('1') ? true : false;
 
                 //Language: Set language from characters 35-37
                 Language = informationCodeString.Substring(35, 3);
 
                 //DocumentType: Get varfield 019b
-                var docType = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("019")).Elements("subfield");
-                DocumentType = docType.Where(x => ((string)x.Attribute("label")).Equals("b")).Select(x => x.Value).FirstOrDefault();
+                DocumentType = GetVarfield(nodes, "019", "b");
+
+                //LocationMode: Get varfield 090d
+                var locCode = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("090")).Elements("subfield");
+                LocationCode = locCode.Where(x => ((string)x.Attribute("label")).Equals("d")).Select(x => x.Value).FirstOrDefault();
 
                 //Title, subtitle and involved persons: Get varfield 245abc
                 var TitleAndResponsebility = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("245")).Elements("subfield");
@@ -102,5 +111,26 @@ namespace Solvberget.Domain.DTO
             document.FillProperties(xml);
             return document;
         }
+
+        public string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
+        {
+            var fixfield = nodes.Elements("fixfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Select(x => x.Value).FirstOrDefault();
+            
+            if (fromPos == toPos)
+            {
+                return fixfield.ElementAt(fromPos).ToString();
+            }
+            else
+            {
+                return fixfield.Substring(fromPos, (toPos - fromPos) + 1);
+            }
+        }
+
+        public string GetVarfield(IEnumerable<XElement> nodes, string id, string subfieldLabel)
+        {
+            var varfield = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Elements("subfield");
+            return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
+        }
+
     }
 }
