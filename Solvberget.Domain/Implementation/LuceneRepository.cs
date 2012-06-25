@@ -32,6 +32,8 @@ namespace Solvberget.Domain.Implementation
 
         private const string PathToDictDir = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal";
 
+        /** INITIALIZATION **/
+
         public LuceneRepository()
         {
 
@@ -47,6 +49,7 @@ namespace Solvberget.Domain.Implementation
 
         }
 
+        /** STATICS **/
 
         public static void BuildDictionary()
         {
@@ -60,6 +63,8 @@ namespace Solvberget.Domain.Implementation
             }
 
         }
+
+        /** HELPERS **/
 
         private void ResetStrings(ref string prevWord, ref string currWord)
         {
@@ -77,6 +82,17 @@ namespace Solvberget.Domain.Implementation
         {
             wordErrorsRemovedString += prevWord + " " + word;
             wordErrorsRemovedString += " ";
+        }
+
+        private bool IsStopWord(string value)
+        {
+            return StopWords.Contains(value);
+        }
+
+        private void AddWordToSuggestionString(ref string suggestionString, string word)
+        {
+            suggestionString += word + " ";
+
         }
 
         private string WordSplitErrorMerger( string value )
@@ -121,12 +137,7 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-        private bool IsStopWord(string value)
-        {
-            return StopWords.Contains(value);
-        }
-
-
+        /** MAIN FUNCTIONS */
 
         public string Lookup(string value)
         {
@@ -145,49 +156,41 @@ namespace Solvberget.Domain.Implementation
 
             value = WordSplitErrorMerger(value);
 
-            var suggestionValue = string.Empty;
+            var suggestionString = string.Empty;
 
             foreach (var word in value.Split().Where(word => !string.IsNullOrEmpty(word)))
             {
                 if (IsStopWord( word ))
                 {
-
-                    suggestionValue += word;
-                    suggestionValue += " ";
+                    AddWordToSuggestionString(ref suggestionString, word);
                     continue;
-
                 }
             
                 // If the word exist in our dictionary, use it
                 if( SpellChecker.Exist(word.ToLower()))
                 {
-
-                    suggestionValue += word;
-                    suggestionValue += " ";
+                    AddWordToSuggestionString(ref suggestionString, word);
                     continue;
-
                 }
 
+                var similarWords = SpellChecker.SuggestSimilar(word, 5);
 
-                var wordSuggestions = SpellChecker.SuggestSimilar(word, 5);
-
-                if ( wordSuggestions != null && wordSuggestions.Length > 0 )
+                if ( similarWords != null && similarWords.Length > 0 )
                 {
-                    var wordSuggestion = wordSuggestions[0];
+                    var suggestionWord = similarWords[0];
                     
                     // Preserver case, e.g Fotbal will convert to Fotball, not convert to fotball. 
                     if (char.IsUpper(word[0]))
-                        wordSuggestion = char.ToUpper(wordSuggestion[0]) + wordSuggestion.Substring(1);
+                        suggestionWord = char.ToUpper(suggestionWord[0]) + suggestionWord.Substring(1);
 
-                    suggestionValue += wordSuggestion;
+                    AddWordToSuggestionString(ref suggestionString, suggestionWord);
                 }
                 else
-                    suggestionValue += word;
+                    AddWordToSuggestionString(ref suggestionString, word);
 
-                suggestionValue += " ";
             }
 
-            return Equals(suggestionValue[suggestionValue.Length - 1], ' ') ? suggestionValue.Substring(0, suggestionValue.Length - 1) : suggestionValue;
+            return Equals(suggestionString[suggestionString.Length - 1], ' ') ? suggestionString.Substring(0, suggestionString.Length - 1) : suggestionString;
         }
 
     }
