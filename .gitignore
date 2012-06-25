@@ -64,3 +64,6 @@ packages/*
 
 #generated files
 *.min.css
+
+#p4merge
+*.orig
