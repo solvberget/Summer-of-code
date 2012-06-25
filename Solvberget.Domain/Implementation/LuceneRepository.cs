@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
+using Ninject;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using SpellChecker.Net.Search.Spell;
+
+using Directory = System.IO.Directory;
 
 namespace Solvberget.Domain.Implementation
 {
@@ -22,26 +26,45 @@ namespace Solvberget.Domain.Implementation
 
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
         //TODO: Legge ut i config-fil
-        private const string PathToDict = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal\ord_bm.txt";
-        private const string PathToDictDir = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal";
+        private readonly string _pathToDict;
+        private readonly string _pathToDictDir;
 
-        public LuceneRepository()
+     
+        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null)
         {      
+ 
+            _pathToDict = string.IsNullOrEmpty(pathToDictionary) 
+                ? @"App_Data\ordlister\ord_test.txt" : pathToDictionary;
 
-            InitializeSpellChecker  ();
+            _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory) 
+                ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
+            
+            InitializeSpellChecker();
+            
+        
         }
 
         private void InitializeSpellChecker ()
         {
-             var di = new DirectoryInfo(PathToDictDir);
-             SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
+            var di = CreateTargetFolder();
+            SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
         }
 
-        public static void BuildDictionary()
+        private DirectoryInfo CreateTargetFolder()
+        {
+            var di = new DirectoryInfo(_pathToDictDir);
+            if (!di.Exists)
+            {
+                Directory.CreateDirectory(_pathToDictDir);
+            }
+            return di;
+        }
+
+        public void BuildDictionary()
         {
 
-            var di = new DirectoryInfo(PathToDictDir);
-            var fi = new FileInfo(PathToDict);
+            var di = CreateTargetFolder();
+            var fi = new FileInfo(_pathToDict);
 
             using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
             {

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Solvberget.Domain.Implementation;
 using Solvberget.Service.Infrastructure;
 
 namespace Solvberget.Service
@@ -39,7 +42,18 @@ namespace Solvberget.Service
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
+            SetupLuceneDictionary();
+
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            
+            
+        }
+
+        private static void SetupLuceneDictionary()
+        {
+            
+            var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath());
+            repository.BuildDictionary();
         }
     }
 }
