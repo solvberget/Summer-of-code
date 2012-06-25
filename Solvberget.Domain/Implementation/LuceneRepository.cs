@@ -67,7 +67,7 @@ namespace Solvberget.Domain.Implementation
             currWord = string.Empty;
         }
 
-        private void UpdateStringsTo(ref string prevWord, ref string currWord, string word)
+        private void UpdateStringsToWord(ref string prevWord, ref string currWord, string word)
         {
             prevWord = word;
             currWord = word;
@@ -91,7 +91,7 @@ namespace Solvberget.Domain.Implementation
 
                 if (string.IsNullOrEmpty(prevWord))
                 {
-                    UpdateStringsTo( ref prevWord, ref currentWord, word);
+                    UpdateStringsToWord( ref prevWord, ref currentWord, word);
                     continue;
                 }
 
@@ -111,7 +111,7 @@ namespace Solvberget.Domain.Implementation
                 else
                 {
                     wordErrorsRemovedString += prevWord;
-                    UpdateStringsTo(ref prevWord, ref currentWord, word);
+                    UpdateStringsToWord(ref prevWord, ref currentWord, word);
                 }
 
                 wordErrorsRemovedString += " ";
