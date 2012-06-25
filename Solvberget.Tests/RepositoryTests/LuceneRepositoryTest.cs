@@ -13,13 +13,22 @@ namespace Solvberget.Service.Tests.RepositoryTests
     class LuceneRepositoryTest
     {
 
+        private LuceneRepository InitRepository()
+        {
+
+            return new LuceneRepository(@"C:\Projects\Solvberget\Solvberget.Domain\App_Data\ordlister\ord_bm.txt",
+                @"C:\Projects\Solvberget\Solvberget.Domain\App_Data\ordlister_index");
+            
+        }
+
         [Test]
         public void TestLookupSingleWord()
         {
 
-            var repository = new LuceneRepository(@"C:\Users\Capgemini\Documents\GitHub\Solvberget\Solvberget.Service\bin\App_Data\ordlister\ord_bm.txt",
-                @"C:\Users\Capgemini\Documents\GitHub\Solvberget\Solvberget.Service\bin\App_Data\ordlister_index");
+            var repository = InitRepository();
+
             repository.BuildDictionary();
+            
             string testString = "omerfulg";
             string testSolution = "sommerfugl";
 
@@ -54,7 +63,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupSingleWordNotLowercase()
         {
 
-            var repository = new LuceneRepository();
+            var repository = InitRepository();
 
             const string testString = "Foball";
             const string testSolution = "Fotball";
@@ -68,7 +77,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupEmptyInput()
         {
 
-            var repository = new LuceneRepository();
+            var repository = InitRepository();
 
             const string testString = "";
             const string testSolution = "";
@@ -82,7 +91,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupBookTitles()
         {
 
-            var repository = new LuceneRepository();
+            var repository = InitRepository();
 
             const string testString = "Arry Poter";
             const string testSolution = "Harry Potter";
@@ -96,7 +105,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupWithPeriod()
         {
 
-            var repository = new LuceneRepository();
+            var repository = InitRepository();
 
             string testString = "Denne setningen avslutes med punktuum.";
             string testSolution = "Denne setningen avsluttes med punktum";
@@ -116,7 +125,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupXss()
         {
 
-            var repository = new LuceneRepository();
+            var repository = InitRepository();
 
             string testString = "<script>alert('error')";
             string testSolution = "&lt;script&gt;alert(&apos;error&apos;)";
@@ -135,9 +144,9 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupWordSplitError()
         {
 
-          
-            var repository = new LuceneRepository();
-            repository.BuildDictionary();
+
+            var repository = InitRepository();
+
              string testString = "Fotball sko";
              string testSolution = "Fotballsko";
 
@@ -154,7 +163,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void TestLookupMultipleWords()
         {
-            var repository = new LuceneRepository();
+            var repository = InitRepository();
             
             var testString = "Mine flotte fotbalsko";
             var testSolution = "Mine flotte fotballsko";

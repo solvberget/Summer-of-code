@@ -22,13 +22,13 @@ namespace Solvberget.Domain.Implementation
         private readonly string _pathToDict;
         private readonly string _pathToDictDir;
         
-        private const string PathToStopWordsDict = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal\stopwords.txt";
+        private const string PathToStopWordsDict = @"C:\Projects\Solvberget\Solvberget.Domain\App_Data\ordlister\stopwords.txt";
 
         public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null)
         {      
  
             _pathToDict = string.IsNullOrEmpty(pathToDictionary) 
-                ? @"App_Data\ordlister\ord_test.txt" : pathToDictionary;
+                ? @"App_Data\ordlister\ord_bm.txt" : pathToDictionary;
 
             _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory) 
                 ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
@@ -140,10 +140,6 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-        private bool IsStopWord(string value)
-        {
-            return StopWords.Contains(value);
-        }
 
 
 
