@@ -20,7 +20,7 @@ namespace Solvberget.Domain.DTO
         public string Publisher { get; set; }
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
-        public int SeriesNumber { get; set; }
+        public string SeriesNumber { get; set; }
 
         //public string Scope { get; set; }
         //public string Category { get; set; }
@@ -33,77 +33,54 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
 
-                var nodes = xmlDoc.Root.Descendants();
-
-                //Get complete information code string from fixfield 008
-                var informationCodeString = nodes.Elements("fixfield").Where(x => ((string)x.Attribute("id")).Equals("008")).Select(x => x.Value).FirstOrDefault();
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
 
                 //TargetGroup: set target group from character 22
                 TargetGroup = GetFixfield(nodes, "008", 22, 22)[0];
 
                 //IsFiction: set true/false from character 33
-                var isFictionIntAsChar = informationCodeString.ElementAt(33);
-                IsFiction = isFictionIntAsChar.Equals('1') ? true : false;
-
+                IsFiction = GetFixfield(nodes, "008", 33, 33).Equals("1") ? true : false;
+             
                 //Language: Set language from characters 35-37
-                Language = informationCodeString.Substring(35, 3);
+                Language = GetFixfield(nodes, "008", 35, 37);
 
                 //DocumentType: Get varfield 019b
                 DocumentType = GetVarfield(nodes, "019", "b");
 
                 //LocationMode: Get varfield 090d
-                var locCode = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("090")).Elements("subfield");
-                LocationCode = locCode.Where(x => ((string)x.Attribute("label")).Equals("d")).Select(x => x.Value).FirstOrDefault();
+                LocationCode = GetVarfield(nodes, "090", "d");
 
                 //Title, subtitle and involved persons: Get varfield 245abc
-                var TitleAndResponsebility = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("245")).Elements("subfield");
-
-                //Set title, subtitle and involved persons
-                if (TitleAndResponsebility != null)
+                Title = GetVarfield(nodes, "245", "a");
+                SubTitle = GetVarfield(nodes, "245", "b");
+                var involvedPersonsAsString = GetVarfield(nodes, "245", "c");
+                if (involvedPersonsAsString != null)
                 {
-                    Title = TitleAndResponsebility.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
-                    SubTitle = TitleAndResponsebility.Where(x => ((string)x.Attribute("label")).Equals("b")).Select(x => x.Value).FirstOrDefault();
-                    InvolvedPersons = TitleAndResponsebility.Where(x => ((string)x.Attribute("label")).Equals("c")).Select(x => x.Value).FirstOrDefault().Split(';');
+                    InvolvedPersons = involvedPersonsAsString.Split(';');
                 }
 
                 //Get publisher data form varfield 260abc
                 var publisherData = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("260")).Elements("subfield");
 
-                //Set Publisher, place and year for publishing
-                if (publisherData != null)
+                //Get Publisher, place and year for publishing
+                PlacePublished = GetVarfield(nodes, "260", "a");
+                Publisher = GetVarfield(nodes, "260", "b");
+
+                //Check and parse year published
+                var publishedYearString = GetVarfield(nodes, "260", "c");
+                if (publishedYearString != null)
                 {
-                    PlacePublished = publisherData.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
-                    Publisher = publisherData.Where(x => ((string)x.Attribute("label")).Equals("b")).Select(x => x.Value).FirstOrDefault();
-
-                    //Check and parse year published
-                    var publishedYearString = publisherData.Where(x => ((string)x.Attribute("label")).Equals("c")).Select(x => x.Value).FirstOrDefault();
-                    if (publishedYearString != null)
-                    {
-                        //Format may be "[2009]" or "2009.", trim if so
-                        var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
-                        var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
-                        if (!string.IsNullOrEmpty(foundValue))
-                        {
-                            PublishedYear = int.Parse(foundValue);
-                        }
-
-                    }
-
-                }
-
-                //SeriesTitle: Get varfield 440av
-                var seriesInformation = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("440")).Elements("subfield");
-
-                // Set series title and document number of series
-                SeriesTitle = seriesInformation.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
-                var seriesNumberString = seriesInformation.Where(x => ((string)x.Attribute("label")).Equals("v")).Select(x => x.Value).FirstOrDefault();
-                if (seriesNumberString != null)
-                {
-                    SeriesNumber = int.Parse(seriesNumberString);
-
-                }
+					//Format may be "[2009]" or "2009.", trim if so
+					var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
+					var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
+					if (!string.IsNullOrEmpty(foundValue))
+						PublishedYear = int.Parse(foundValue);
+                 }
                 
-
+                //SeriesTitle: Get varfield 440av
+                SeriesTitle = GetVarfield(nodes, "440", "a");
+                SeriesNumber = GetVarfield(nodes, "440", "v");
+                
             }
         }
 
@@ -134,5 +111,12 @@ namespace Solvberget.Domain.DTO
             return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
+        public IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id, string subfieldLabel)
+        {
+            var varfield = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Elements("subfield");
+            return varfield.Where(x => ((string) x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value);
+        }
+
     }
+
 }

@@ -37,7 +37,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Favoritt", media.SeriesTitle);
 
-            Assert.AreEqual(5, media.SeriesNumber);
+            Assert.AreEqual("5", media.SeriesNumber);
 
         }
 
@@ -47,10 +47,51 @@ namespace Solvberget.Service.Tests.DTOTests
             var book = Book.GetBookFromFindDocXml(getBookXml());
 
             Assert.AreEqual("978-82-02-33225-9", book.Isbn);
+
+            Assert.AreEqual("598.0948", book.ClassificationNr);
+
             Assert.AreEqual("Loe, Erlend", book.Author);
+
             Assert.AreEqual("5", book.Numbering);
+
             Assert.AreEqual("5. oppl.", book.Edition);
-            
+
+            Assert.AreEqual("205 s.", book.NumberOfPages);
+
+            Assert.AreEqual("Innhold: Et liv i fellesskap ; Bibelens bønnebok", book.Content);
+
+            var i = 0;
+            foreach (string subject in book.Subject)
+            {
+                if (i==0)
+                    Assert.AreEqual("Kristendom", subject);
+                if (i==1)
+                    Assert.AreEqual("Buddhisme", subject);
+                if (i==2)
+                    Assert.AreEqual("Religionsvitenskap", subject);
+                i++;
+            }
+
+            var j = 0;
+            foreach (string place in book.ReferencedPlaces)
+            {
+                if (j == 0)
+                    Assert.AreEqual("Norge", place);
+                if (j == 1)
+                    Assert.AreEqual("Rogaland", place);
+                j++;
+            }
+
+            var k = 0;
+            foreach (string genre in book.Genre)
+            {
+                if (k == 0)
+                    Assert.AreEqual("Action", genre);
+                if (k == 1)
+                    Assert.AreEqual("Komedie", genre);
+                k++;
+            }
+
         }
 
         [Test]
@@ -88,6 +129,7 @@ namespace Solvberget.Service.Tests.DTOTests
           <subfield label=""b"">ib.</subfield>
         </varfield>
         <varfield id=""090"" i1="" "" i2="" "">
+          <subfield label=""c"">598.0948</subfield>
           <subfield label=""d"">LOE</subfield>
         </varfield>
         <varfield id=""100"" i1="" "" i2=""0"">
@@ -119,8 +161,32 @@ namespace Solvberget.Service.Tests.DTOTests
         <varfield id=""503"" i1="" "" i2="" "">
           <subfield label=""a"">1. utg.: Oslo : Cappelen, 1996</subfield>
         </varfield>
+        <varfield id=""505"" i1="" "" i2="" "">
+          <subfield label=""a"">Innhold: Et liv i fellesskap ; Bibelens bønnebok</subfield>
+        </varfield>
         <varfield id=""599"" i1="" "" i2="" "">
           <subfield label=""a"">200 kr</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Kristendom</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Buddhisme</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Religionsvitenskap</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Norge</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Rogaland</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Action</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Komedie</subfield>
         </varfield>
         <varfield id=""850"" i1="" "" i2="" "">
           <subfield label=""a"">stavangb</subfield>
