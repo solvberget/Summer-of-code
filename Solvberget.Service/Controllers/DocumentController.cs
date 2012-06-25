@@ -33,7 +33,7 @@ namespace Solvberget.Service.Controllers
         public JsonResult LuceneLookup(string value)
         {
             var result = _spellingRepository.Lookup(value);
-            return this.Json(result);
+            return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 
     }

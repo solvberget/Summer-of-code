@@ -20,28 +20,50 @@ namespace Solvberget.Domain.Implementation
     public class LuceneRepository : ISpellingDictionary
     {
 
-        public SpellChecker.Net.Search.Spell.SpellChecker _SpellChecker { get; set; }
+        private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
+        //TODO: Legge ut i config-fil
+        private const string PathToDict = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal\ord_bm.txt";
+        private const string PathToDictDir = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal";
 
-        private void buildDictionary()
+        public LuceneRepository()
+        {      
+
+            InitializeSpellChecker  ();
+        }
+
+        private void InitializeSpellChecker ()
         {
-            const string path = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal\ord_bm.txt";
-            const string path_dir = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal";
-   
-            var di = new DirectoryInfo(path_dir);
-            var fi = new FileInfo(path);
-     
-            _SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
-            _SpellChecker.IndexDictionary(new PlainTextDictionary(fi));
+             var di = new DirectoryInfo(PathToDictDir);
+             SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
+        }
 
+        public static void BuildDictionary()
+        {
+
+            var di = new DirectoryInfo(PathToDictDir);
+            var fi = new FileInfo(PathToDict);
+
+            using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
+            {
+                staticSpellChecker.IndexDictionary(new PlainTextDictionary(fi));
+            }
         }
 
         public string[] Lookup(string value)
         {
-            // TODO: FIX
-            buildDictionary();
-            string[] liste = _SpellChecker.SuggestSimilar(value, 5);
-            return liste;
-         
+            if( SpellChecker == null )
+            {
+                InitializeSpellChecker();
+            }
+
+            if (SpellChecker != null)
+            {
+                var suggestions = SpellChecker.SuggestSimilar(value, 5);
+
+                if (suggestions == null) throw new ArgumentNullException("value");
+                return suggestions;
+            }
+            throw new ArgumentNullException("value");
         }
     }
 
