@@ -87,8 +87,14 @@ namespace Solvberget.Domain.DTO
 
                 // Set series title and document number of series
                 SeriesTitle = seriesInformation.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
-                var seriesNumberString = publisherData.Where(x => ((string)x.Attribute("label")).Equals("v")).Select(x => x.Value).FirstOrDefault();
-                SeriesNumber = int.Parse(seriesNumberString);
+                var seriesNumberString = seriesInformation.Where(x => ((string)x.Attribute("label")).Equals("v")).Select(x => x.Value).FirstOrDefault();
+                if (seriesNumberString != null)
+                {
+                    SeriesNumber = int.Parse(seriesNumberString);
+
+                }
+                
+
             }
         }
 
