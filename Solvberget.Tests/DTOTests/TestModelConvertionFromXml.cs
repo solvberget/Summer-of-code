@@ -31,6 +31,9 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual(2010, media.PublishedYear);
 
+            Assert.AreEqual("Favoritt", media.SeriesTitle);
+
+            Assert.AreEqual(5, media.SeriesNumber);
 
         }
 
@@ -103,6 +106,7 @@ namespace Solvberget.Service.Tests.DTOTests
         </varfield>
         <varfield id=""440"" i1="" "" i2=""0"">
           <subfield label=""a"">Favoritt</subfield>
+          <subfield label=""v"">5</subfield>
         </varfield>
         <varfield id=""503"" i1="" "" i2="" "">
           <subfield label=""a"">1. utg.: Oslo : Cappelen, 1996</subfield>

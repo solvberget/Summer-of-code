@@ -16,6 +16,8 @@ namespace Solvberget.Domain.DTO
         public string PlacePublished { get; set; }
         public string Publisher { get; set; }
         public int PublishedYear { get; set; }
+        public string SeriesTitle { get; set; }
+        public int SeriesNumber { get; set; }
 
         //public string Scope { get; set; }
         //public string Category { get; set; }
@@ -65,8 +67,14 @@ namespace Solvberget.Domain.DTO
                     var publishedYearString = publisherData.Where(x => ((string)x.Attribute("label")).Equals("c")).Select(x => x.Value).FirstOrDefault();
                     PublishedYear = int.Parse(publishedYearString);
                 }
-               
 
+                //SeriesTitle: Get varfield 440av
+                var seriesInformation = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals("440")).Elements("subfield");
+
+                // Set series title and document number of series
+                SeriesTitle = seriesInformation.Where(x => ((string)x.Attribute("label")).Equals("a")).Select(x => x.Value).FirstOrDefault();
+                var seriesNumberString = publisherData.Where(x => ((string)x.Attribute("label")).Equals("v")).Select(x => x.Value).FirstOrDefault();
+                SeriesNumber = int.Parse(seriesNumberString);
             }
         }
 
