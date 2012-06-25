@@ -18,9 +18,11 @@
         
     };
 
-    self.lookup = function() {
-        var url = "http://localhost:7089/Document/Lookup/" + self.searchString();
+    self.lookup = function () {
+
+        var url = "http://localhost:7089/Document/SpellingDictionaryLookup/?value=" + self.searchString();
         $.getJSON(url, self.suggest);
+
     };
 
     self.suggest = function(allData) {
@@ -28,7 +30,7 @@
             return new Link(item);
         });
         self.suggestions(mappedLinks);
-        self.suggestion = suggestion[0];
+        self.suggestion = suggestions[0];
     };
 
 }
