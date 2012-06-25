@@ -16,29 +16,16 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void TestLookupSingleWord()
         {
-<<<<<<< HEAD
+
             var repository = new LuceneRepository(@"C:\Users\Capgemini\Documents\GitHub\Solvberget\Solvberget.Service\bin\App_Data\ordlister\ord_bm.txt",
                 @"C:\Users\Capgemini\Documents\GitHub\Solvberget\Solvberget.Service\bin\App_Data\ordlister_index");
-            
             repository.BuildDictionary();
-=======
-
-            LuceneRepository.BuildDictionary();
->>>>>>> f0e498fdc42d46987c9e9f9fe872d13fa41bca7a
-            
-
-            var repository = new LuceneRepository();
-
             string testString = "omerfulg";
             string testSolution = "sommerfugl";
-<<<<<<< HEAD
-           
-            var suggestions = repository.Lookup(testString);
-            var solution = suggestions.FirstOrDefault(suggestion => suggestion == testSolution);
-=======
+
 
             var solution = repository.Lookup(testString);
->>>>>>> f0e498fdc42d46987c9e9f9fe872d13fa41bca7a
+
             Assert.AreEqual(testSolution, solution);
 
 
@@ -148,9 +135,9 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupWordSplitError()
         {
 
-            LuceneRepository.BuildDictionary();
+          
             var repository = new LuceneRepository();
-
+            repository.BuildDictionary();
              string testString = "Fotball sko";
              string testSolution = "Fotballsko";
 
@@ -168,7 +155,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestLookupMultipleWords()
         {
             var repository = new LuceneRepository();
-
+            
             var testString = "Mine flotte fotbalsko";
             var testSolution = "Mine flotte fotballsko";
 
