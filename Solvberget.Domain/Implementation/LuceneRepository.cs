@@ -2,12 +2,14 @@
 using System.IO;
 using System.Linq;
 using Lucene.Net.Store;
+using Ninject;
 using Solvberget.Domain.Abstract;
 using SpellChecker.Net.Search.Spell;
 
+using Directory = System.IO.Directory;
+
 namespace Solvberget.Domain.Implementation
 {
-
 
 
     public class LuceneRepository : ISpellingDictionary
@@ -17,37 +19,47 @@ namespace Solvberget.Domain.Implementation
         public string[] StopWords { get; set; }
 
         //TODO: Legge ut i config-fil
-        private const string PathToDict =
-            @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal\ord_bm.txt";
-
+        private readonly string _pathToDict;
+        private readonly string _pathToDictDir;
+        
         private const string PathToStopWordsDict = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal\stopwords.txt";
 
-        private const string PathToDictDir = @"C:\Projects\Solvberget\Solvberget.Service\App_Data\ordlister\bokmal";
+        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null)
+        {      
+ 
+            _pathToDict = string.IsNullOrEmpty(pathToDictionary) 
+                ? @"App_Data\ordlister\ord_test.txt" : pathToDictionary;
 
-        /** INITIALIZATION **/
-
-        public LuceneRepository()
-        {
-
+            _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory) 
+                ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
+            
             InitializeSpellChecker();
+            
+        
         }
 
         private void InitializeSpellChecker()
         {
-
-            var di = new DirectoryInfo(PathToDictDir);
+            var di = CreateTargetFolder();
             SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
-            StopWords =  File.ReadAllLines(PathToStopWordsDict);
-
+ StopWords =  File.ReadAllLines(PathToStopWordsDict);
         }
 
-        /** STATICS **/
+        private DirectoryInfo CreateTargetFolder()
+        {
+            var di = new DirectoryInfo(_pathToDictDir);
+            if (!di.Exists)
+            {
+                Directory.CreateDirectory(_pathToDictDir);
+            }
+            return di;
+        }
 
-        public static void BuildDictionary()
+        public void BuildDictionary()
         {
 
-            var di = new DirectoryInfo(PathToDictDir);
-            var fi = new FileInfo(PathToDict);
+            var di = CreateTargetFolder();
+            var fi = new FileInfo(_pathToDict);
 
             using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
             {
@@ -128,7 +140,12 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-        /** MAIN FUNCTIONS */
+        private bool IsStopWord(string value)
+        {
+            return StopWords.Contains(value);
+        }
+
+
 
         public string Lookup(string value)
         {
