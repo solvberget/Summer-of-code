@@ -57,6 +57,7 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="js\data.js" />
     <Content Include="js\default.js" />
     <Content Include="js\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
@@ -68,9 +69,15 @@
     <Content Include="js\knockout-2.1.0.js" />
     <Content Include="js\less-1.3.0.min.js" />
     <Content Include="js\models\Document.js" />
-    <Content Include="js\models\Link.js" />
+    <Content Include="js\navigator.js" />
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
+    <Content Include="pages\items\items.css" />
+    <Content Include="pages\items\items.html" />
+    <Content Include="pages\items\items.js" />
+    <Content Include="pages\split\split.css" />
+    <Content Include="pages\split\split.html" />
+    <Content Include="pages\split\split.js" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
