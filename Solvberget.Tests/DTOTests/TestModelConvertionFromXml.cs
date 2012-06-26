@@ -267,7 +267,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
         public void GetAudioBookWithOrganizationFromXmlTest()
         {
-            var audioBook = Book.GetBookFromFindDocXml(getAudioBookWithOrgXml());
+            var audioBook = AudioBook.GetAudioBookFromFindDocXml(getAudioBookWithOrgXml());
 
             Assert.AreEqual("Røde Kors", audioBook.Author.Name);
             Assert.AreEqual("Røde Kors", audioBook.Organization.Name);
@@ -279,7 +279,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetAudioBookWithStdTitleFromXmlTest()
         {
-            var audioBook = Book.GetBookFromFindDocXml(getAudioBookWithStdTitleXml());
+            var audioBook = AudioBook.GetAudioBookFromFindDocXml(getAudioBookWithStdTitleXml());
             Assert.AreEqual("Røde Kors", audioBook.StandarizedTitle);
         }
 
