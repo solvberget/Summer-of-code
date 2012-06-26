@@ -102,9 +102,6 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("7041271735935", film.Ean);
 
-            Assert.AreEqual("nob", film.SpokenLanguage.FirstOrDefault());
-            Assert.AreEqual(1, film.SpokenLanguage.Count());
-
             Assert.AreEqual("nob", film.SubtitleLanguage.FirstOrDefault());
             Assert.AreEqual(4, film.SubtitleLanguage.Count());
 
@@ -130,11 +127,11 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Undervisning", film.Subject);
 
-            Assert.AreEqual("Norge", film.GeoraphicSubject);
+            Assert.AreEqual("Norge", film.ReferencedPlaces.ElementAt(0));
 
             Assert.AreEqual("Popmusikk", film.CompositionType);
 
-            Assert.AreEqual("Drama", film.Genre);
+            Assert.AreEqual("Drama", film.Genre.ElementAt(0));
 
         }
 
