@@ -9,6 +9,8 @@
     <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
 
+    <!-- Common references -->
+
     <!-- Solvberget.Metro references -->
     <link rel="stylesheet/less" type="text/css" href="/css/default.less">
     <script type="text/javascript" src="/js/lib/jquery-1.7.2.min.js"></script>
@@ -16,6 +18,8 @@
     <script src="/js/utils.js"></script>
     <script type="text/javascript" src="js/lib/less-1.3.0.min.js"></script>
     <script type="text/javascript" src="/js/models/Document.js"></script>
+        <script type="text/javascript" src="/js/lib/spinn.min.js"></script>
+
     <script type="text/javascript" src="/js/viewmodels/searchResults.js"></script>
 
 </head>
@@ -26,8 +30,10 @@
     <h2>Search for document</h2>
     <p>
         <input class="inputSearchField" placeholder="Søk etter bøker, film, CDer eller noter" data-bind='value: searchString, valueUpdate: "afterkeydown"' spellcheck="true" /><button data-bind="click: search">Search</button>
-        <span data-bind="text: searchString"></span>
     </p>
+    <div id="searchField"></div>
+
+
     <p data-bind="fadeVisible: displaySearchSuggestion"><a href="#" data-bind="click: searchSuggested"><span data-bind="text: suggestionLink"></span></a></p>
     <ul data-bind="foreach: documents, visible: documents().length > 0">
         <li>
