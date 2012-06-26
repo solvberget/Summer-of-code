@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\Book.cs" />
+    <Compile Include="DTO\AudioBook.cs" />
     <Compile Include="DTO\Document.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="DTO\ExtensionHelpers.cs" />
