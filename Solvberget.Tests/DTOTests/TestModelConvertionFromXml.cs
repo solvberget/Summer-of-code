@@ -215,11 +215,11 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("n781.542", audioBook.ClassificationNumber);
 
-            Assert.AreEqual("Rowling, J.K.", audioBook.Author);
+            Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
 
-            Assert.AreEqual("1965-", audioBook.AuthorLivingYears);
+            Assert.AreEqual("1965-", audioBook.Author.LivingYears);
 
-            Assert.AreEqual("eng.", audioBook.AuthorNationality);
+            Assert.AreEqual("eng.", audioBook.Author.Nationality);
 
             Assert.AreEqual("III", audioBook.Numbering);
 
@@ -234,6 +234,34 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("England", audioBook.ReferencedPlaces.ElementAt(0));
 
             Assert.AreEqual("Fantasy", audioBook.Genre.ElementAt(0));
+
+            Assert.AreEqual(1, audioBook.ReferredPersons.Count());
+            Assert.AreEqual("Knut Hamsun", audioBook.ReferredPersons.ElementAt(0).Name);
+            Assert.AreEqual("1859-1952", audioBook.ReferredPersons.ElementAt(0).LivingYears);
+            Assert.AreEqual("Norsk", audioBook.ReferredPersons.ElementAt(0).Nationality);
+            Assert.AreEqual("Sult", audioBook.ReferredPersons.ElementAt(0).ReferredWork);
+
+            Assert.AreEqual(1, audioBook.ReferredOrganizations.Count());
+            Assert.AreEqual("Capgemini", audioBook.ReferredOrganizations.ElementAt(0).Name);
+            Assert.AreEqual("B-tech", audioBook.ReferredOrganizations.ElementAt(0).UnderOrganization);
+            Assert.AreEqual("Forklaring", audioBook.ReferredOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.AreEqual("Visjon", audioBook.ReferredOrganizations.ElementAt(0).ReferencedPublication);
+
+            Assert.AreEqual(2, audioBook.InvolvedPersons.Count());
+            Assert.AreEqual("Harald V", audioBook.InvolvedPersons.ElementAt(0).Name);
+            Assert.AreEqual("1937-", audioBook.InvolvedPersons.ElementAt(0).LivingYears);
+            Assert.AreEqual("Norsk", audioBook.InvolvedPersons.ElementAt(0).Nationality);
+            Assert.AreEqual("Konge", audioBook.InvolvedPersons.ElementAt(0).Role);
+            Assert.AreEqual("Kjell Inge Røkke", audioBook.InvolvedPersons.ElementAt(1).Name);
+            Assert.AreEqual("1950-", audioBook.InvolvedPersons.ElementAt(1).LivingYears);
+            Assert.AreEqual("Norsk", audioBook.InvolvedPersons.ElementAt(1).Nationality);
+            Assert.AreEqual("Investor", audioBook.InvolvedPersons.ElementAt(1).Role);
+
+            Assert.AreEqual(1, audioBook.InvolvedOrganizations.Count());
+            Assert.AreEqual("Cappelen Damm", audioBook.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.AreEqual("Salg", audioBook.InvolvedOrganizations.ElementAt(0).UnderOrganization);
+            Assert.AreEqual("Forklaring", audioBook.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.AreEqual("Forlag", audioBook.InvolvedOrganizations.ElementAt(0).Role);
 
         }
 
@@ -813,6 +841,18 @@ namespace Solvberget.Service.Tests.DTOTests
                 <varfield id=""599"" i1="" "" i2="" "">
                     <subfield label=""a"">173 kr</subfield>
                 </varfield>
+                <varfield id=""600"" i1="" "" i2="" "">
+                  <subfield label=""a"">Knut Hamsun</subfield>
+                  <subfield label=""d"">1859-1952</subfield>
+                  <subfield label=""e"">Norsk</subfield>
+                  <subfield label=""t"">Sult</subfield>
+                </varfield>
+                <varfield id=""610"" i1="" "" i2="" "">
+                  <subfield label=""a"">Capgemini</subfield>
+                  <subfield label=""b"">B-tech</subfield>
+                  <subfield label=""q"">Forklaring</subfield>
+                  <subfield label=""t"">Visjon</subfield>
+                </varfield>         
                 <varfield id=""650"" i1="" "" i2="" "">
                     <subfield label=""a"">Harry Potter</subfield>
                     <subfield label=""q"">fiktiv person</subfield>
@@ -823,11 +863,23 @@ namespace Solvberget.Service.Tests.DTOTests
                 <varfield id=""655"" i1="" "" i2="" "">
                     <subfield label=""a"">Fantasy</subfield>
                 </varfield>
-                <varfield id=""700"" i1="" "" i2=""0"">
-                    <subfield label=""a"">Høverstad, Torstein Bugge</subfield>
-                    <subfield label=""d"">1944-</subfield>
-                    <subfield label=""j"">n.</subfield>
-                    <subfield label=""e"">innl. og overs.</subfield>
+                <varfield id=""700"" i1="" "" i2="" "">
+                  <subfield label=""a"">Harald V</subfield>
+                  <subfield label=""d"">1937-</subfield>
+                  <subfield label=""e"">Norsk</subfield>
+                  <subfield label=""j"">Konge</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2="" "">
+                  <subfield label=""a"">Kjell Inge Røkke</subfield>
+                  <subfield label=""d"">1950-</subfield>
+                  <subfield label=""e"">Norsk</subfield>
+                  <subfield label=""j"">Investor</subfield>
+                </varfield>
+                <varfield id=""710"" i1="" "" i2="" "">
+                  <subfield label=""a"">Cappelen Damm</subfield>
+                  <subfield label=""b"">Salg</subfield>
+                  <subfield label=""e"">Forlag</subfield>
+                  <subfield label=""q"">Forklaring</subfield>
                 </varfield>
                 <varfield id=""740"" i1=""0"" i2=""0"">
                     <subfield label=""a"">HP</subfield>
