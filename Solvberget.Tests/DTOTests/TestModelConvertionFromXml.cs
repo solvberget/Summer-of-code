@@ -844,7 +844,7 @@ namespace Solvberget.Service.Tests.DTOTests
                 <varfield id=""600"" i1="" "" i2="" "">
                   <subfield label=""a"">Knut Hamsun</subfield>
                   <subfield label=""d"">1859-1952</subfield>
-                  <subfield label=""e"">Norsk</subfield>
+                  <subfield label=""j"">Norsk</subfield>
                   <subfield label=""t"">Sult</subfield>
                 </varfield>
                 <varfield id=""610"" i1="" "" i2="" "">
@@ -866,14 +866,14 @@ namespace Solvberget.Service.Tests.DTOTests
                 <varfield id=""700"" i1="" "" i2="" "">
                   <subfield label=""a"">Harald V</subfield>
                   <subfield label=""d"">1937-</subfield>
-                  <subfield label=""e"">Norsk</subfield>
-                  <subfield label=""j"">Konge</subfield>
+                  <subfield label=""j"">Norsk</subfield>
+                  <subfield label=""e"">Konge</subfield>
                 </varfield>
                 <varfield id=""700"" i1="" "" i2="" "">
                   <subfield label=""a"">Kjell Inge Røkke</subfield>
                   <subfield label=""d"">1950-</subfield>
-                  <subfield label=""e"">Norsk</subfield>
-                  <subfield label=""j"">Investor</subfield>
+                  <subfield label=""j"">Norsk</subfield>
+                  <subfield label=""e"">Investor</subfield>
                 </varfield>
                 <varfield id=""710"" i1="" "" i2="" "">
                   <subfield label=""a"">Cappelen Damm</subfield>
