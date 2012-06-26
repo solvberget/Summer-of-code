@@ -1,8 +1,9 @@
 ﻿function DocumentListViewModel() {
     var self = this;
     self.documents = ko.observableArray([]);
-    self.searchString = ko.observable("Input search");
-    self.suggestion = ko.observable("Ingen forslag");
+    self.searchString = ko.observable("");
+    self.suggestion = ko.observable("");
+    self.suggestionLink = ko.observable("");
 
     self.search = function () {
         var url = "http://localhost:7089/Document/Search/" + self.searchString();
@@ -11,12 +12,14 @@
     };
 
     self.searchSuggested = function () {
-        console.log("Search suggested with: " + self.suggestion());
+
         self.searchString(self.suggestion());
         self.search();
+
     }
 
     self.populate = function (allData) {
+
         var mappedDocuments = $.map(allData, function (item) {
             return new Document(item);
         });
@@ -36,6 +39,10 @@
         self.suggestion(allData);
     };
 
+    this.suggestionLink = ko.computed(function () {
+        // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+        return "Mente du " + this.suggestion() + "?";
+    }, this);
 }
 
 ko.applyBindings(new DocumentListViewModel());
