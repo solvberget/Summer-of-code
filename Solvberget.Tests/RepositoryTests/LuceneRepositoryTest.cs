@@ -15,7 +15,7 @@ using System.IO;
 namespace Solvberget.Service.Tests.RepositoryTests
 {
     [TestFixture]
-    class LuceneRepositoryTest
+    internal class LuceneRepositoryTest
     {
         private LuceneRepository _repository;
 
@@ -25,10 +25,10 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
             string basepath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data");
             _repository = new LuceneRepository(Path.Combine(basepath, @"ordlister\ord_bm.txt"),
-               Path.Combine(basepath, @"ordlister_index"),
-               Path.Combine(basepath, @"ordlister\stopwords.txt"),
-               Path.Combine(basepath, @"ordlister\ord_forslag.txt"));
- 
+                                               Path.Combine(basepath, @"ordlister_index"),
+                                               Path.Combine(basepath, @"ordlister\stopwords.txt"),
+                                               Path.Combine(basepath, @"ordlister\ord_forslag.txt"));
+
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void TestLookupSingleWord()
         {
-          
+
             string testString = "omerfulg";
             string testSolution = "sommerfugl";
 
@@ -121,7 +121,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
             var solution = _repository.Lookup(testString);
             Assert.AreEqual(testSolution, solution);
-            
+
             testString = "Denne setningen. avslutes med punktuum.";
             testSolution = "Denne setningen avsluttes med punktum";
 
@@ -145,7 +145,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             solution = _repository.Lookup(testString);
             Assert.IsFalse(solution.Contains("<script>"));
             Assert.IsFalse(solution.Contains("<br>"));
-         
+
         }
 
         [Test]
@@ -154,10 +154,10 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
 
 
-             string testString = "Fotball sko";
-             string testSolution = "Fotballsko";
+            string testString = "Fotball sko";
+            string testSolution = "Fotballsko";
 
-             var solution = _repository.Lookup(testString);
+            var solution = _repository.Lookup(testString);
             Assert.AreEqual(testSolution, solution);
 
             testString = "Mine fotball sko er blå";
@@ -170,7 +170,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void TestLookupMultipleWords()
         {
-            
+
             var testString = "Mine flotte fotbalsko";
             var testSolution = "Mine flotte fotballsko";
 
@@ -188,19 +188,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void TestSuggestionList()
         {
-            Assert.Contains("harry potter",_repository.SuggestionList());
+            Assert.Contains("harry potter", _repository.SuggestionList());
             Assert.Contains("villanden", _repository.SuggestionList());
         }
-        [Test]
-        public void TestAddWordToSuggestionString()
-        {
-           var suggestionString = "fotball er ";
-           const string suggestionSolution = "fotball er gøy ";
-
-           var newSuggestionString = _repository.AddWordToSuggestionString(ref suggestionString, "gøy");
-
-           Assert.Equals( newSuggestionString, suggestionSolution );
-
-        }
-        
+    }
 }
