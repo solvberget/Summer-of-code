@@ -23,11 +23,13 @@ namespace Solvberget.Domain.DTO
         public string NorwegianTitle { get; set; }
         public string Subject { get; set; }
         public string CompositionType { get; set; }
-
         public IEnumerable<string> SubtitleLanguage { get; set; }
         public IEnumerable<string> ReferencedPlaces { get; set; }
         public IEnumerable<string> Genre { get; set; }
-        public IEnumerable<string> ResponsiblePersons { get; set; }
+        public IEnumerable<Person> ReferredPersons { get; set; }
+        public IEnumerable<Organization> ReferredOrganizations { get; set; }
+        public IEnumerable<Person> InvolvedPersons { get; set; }
+        public IEnumerable<Organization> InvolvedOrganizations { get; set; }
 
         protected override void FillProperties(string xml)
         {
@@ -52,11 +54,15 @@ namespace Solvberget.Domain.DTO
                 Actors = GetVarfield(nodes, "511", "a");
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 NorwegianTitle = GetVarfield(nodes, "572", "a");
+                ReferredPersons = GeneratePersonsFromXml(nodes, "600");
+                ReferredOrganizations = GenerateOrganizationsFromXml(nodes, "610");
                 Subject = GetVarfield(nodes, "650", "a");
                 ReferencedPlaces = GetVarfieldAsList(nodes, "651", "a");
                 CompositionType = GetVarfield(nodes, "652", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
-
+                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
+                InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
+            
             }
         }
 

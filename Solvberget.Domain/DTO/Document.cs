@@ -127,8 +127,8 @@ namespace Solvberget.Domain.DTO
                 {
                     Name = GetSubFieldValue(varfield, "a"),
                     LivingYears = GetSubFieldValue(varfield, "d"),
-                    Nationality = GetSubFieldValue(varfield, "e"),
-                    Role = GetSubFieldValue(varfield, "j"),
+                    Nationality = GetSubFieldValue(varfield, "j"),
+                    Role = GetSubFieldValue(varfield, "e"),
                     ReferredWork = GetSubFieldValue(varfield, "t")
                 };
 

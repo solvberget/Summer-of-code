@@ -167,6 +167,34 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Drama", film.Genre.ElementAt(0));
 
+            Assert.AreEqual(1, film.ReferredPersons.Count());
+            Assert.AreEqual("Knut Hamsun", film.ReferredPersons.ElementAt(0).Name);
+            Assert.AreEqual("1859-1952", film.ReferredPersons.ElementAt(0).LivingYears);
+            Assert.AreEqual("Norsk", film.ReferredPersons.ElementAt(0).Nationality);
+            Assert.AreEqual("Sult", film.ReferredPersons.ElementAt(0).ReferredWork);
+
+            Assert.AreEqual(1, film.ReferredOrganizations.Count());
+            Assert.AreEqual("Capgemini", film.ReferredOrganizations.ElementAt(0).Name);
+            Assert.AreEqual("B-tech", film.ReferredOrganizations.ElementAt(0).UnderOrganization);
+            Assert.AreEqual("Forklaring", film.ReferredOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.AreEqual("Visjon", film.ReferredOrganizations.ElementAt(0).ReferencedPublication);
+
+            Assert.AreEqual(2, film.InvolvedPersons.Count());
+            Assert.AreEqual("Sandberg, Espen", film.InvolvedPersons.ElementAt(0).Name);
+            Assert.AreEqual("1971-", film.InvolvedPersons.ElementAt(0).LivingYears);
+            Assert.AreEqual("n.", film.InvolvedPersons.ElementAt(0).Nationality);
+            Assert.AreEqual("regissør", film.InvolvedPersons.ElementAt(0).Role);
+            Assert.AreEqual("Rønning, Joachim", film.InvolvedPersons.ElementAt(1).Name);
+            Assert.AreEqual("1972-", film.InvolvedPersons.ElementAt(1).LivingYears);
+            Assert.AreEqual("n.", film.InvolvedPersons.ElementAt(1).Nationality);
+            Assert.AreEqual("regissør", film.InvolvedPersons.ElementAt(1).Role);
+
+            Assert.AreEqual(1, film.InvolvedOrganizations.Count());
+            Assert.AreEqual("Cappelen Damm", film.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.AreEqual("Salg", film.InvolvedOrganizations.ElementAt(0).UnderOrganization);
+            Assert.AreEqual("Forklaring", film.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.AreEqual("Forlag", film.InvolvedOrganizations.ElementAt(0).Role);
+
         }
 
         [Test]
@@ -275,7 +303,7 @@ namespace Solvberget.Service.Tests.DTOTests
         <varfield id=""600"" i1="" "" i2="" "">
           <subfield label=""a"">Knut Hamsun</subfield>
           <subfield label=""d"">1859-1952</subfield>
-          <subfield label=""e"">Norsk</subfield>
+          <subfield label=""j"">Norsk</subfield>
           <subfield label=""t"">Sult</subfield>
         </varfield>
         <varfield id=""610"" i1="" "" i2="" "">
@@ -308,14 +336,14 @@ namespace Solvberget.Service.Tests.DTOTests
         <varfield id=""700"" i1="" "" i2="" "">
           <subfield label=""a"">Harald V</subfield>
           <subfield label=""d"">1937-</subfield>
-          <subfield label=""e"">Norsk</subfield>
-          <subfield label=""j"">Konge</subfield>
+          <subfield label=""j"">Norsk</subfield>
+          <subfield label=""e"">Konge</subfield>
         </varfield>
         <varfield id=""700"" i1="" "" i2="" "">
           <subfield label=""a"">Kjell Inge Røkke</subfield>
           <subfield label=""d"">1950-</subfield>
-          <subfield label=""e"">Norsk</subfield>
-          <subfield label=""j"">Investor</subfield>
+          <subfield label=""j"">Norsk</subfield>
+          <subfield label=""e"">Investor</subfield>
         </varfield>
         <varfield id=""710"" i1="" "" i2="" "">
           <subfield label=""a"">Cappelen Damm</subfield>
@@ -648,6 +676,18 @@ namespace Solvberget.Service.Tests.DTOTests
                 <varfield id=""572"" i1="" "" i2="" "">
                     <subfield label=""a"">Max Manus</subfield>
                 </varfield>
+                <varfield id=""600"" i1="" "" i2="" "">
+                  <subfield label=""a"">Knut Hamsun</subfield>
+                  <subfield label=""d"">1859-1952</subfield>
+                  <subfield label=""j"">Norsk</subfield>
+                  <subfield label=""t"">Sult</subfield>
+                </varfield>
+                <varfield id=""610"" i1="" "" i2="" "">
+                  <subfield label=""a"">Capgemini</subfield>
+                  <subfield label=""b"">B-tech</subfield>
+                  <subfield label=""q"">Forklaring</subfield>
+                  <subfield label=""t"">Visjon</subfield>
+                </varfield>
                 <varfield id=""650"" i1="" "" i2="" "">
                     <subfield label=""a"">Undervisning</subfield>
                 </varfield>
@@ -678,6 +718,12 @@ namespace Solvberget.Service.Tests.DTOTests
                     <subfield label=""d"">1972-</subfield>
                     <subfield label=""j"">n.</subfield>
                     <subfield label=""e"">regissør</subfield>
+                </varfield>
+                <varfield id=""710"" i1="" "" i2="" "">
+                  <subfield label=""a"">Cappelen Damm</subfield>
+                  <subfield label=""b"">Salg</subfield>
+                  <subfield label=""e"">Forlag</subfield>
+                  <subfield label=""q"">Forklaring</subfield>
                 </varfield>
                 <varfield id=""CAT"" i1="" "" i2="" "">
                     <subfield label=""a"">KATALOG</subfield>
