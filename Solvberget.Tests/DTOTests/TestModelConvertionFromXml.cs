@@ -17,7 +17,11 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.IsTrue(media.IsFiction);
 
             Assert.AreEqual(3, media.Language.Length);
-            Assert.AreEqual("nob", media.Language);
+            Assert.AreEqual("mul", media.Language);
+
+            Assert.AreEqual("nob", media.Languages.ElementAt(0));
+            Assert.AreEqual("swe", media.Languages.ElementAt(1));
+            Assert.AreEqual("eng", media.Languages.ElementAt(2));
 
             Assert.AreEqual("l", media.DocumentType);
 
@@ -27,8 +31,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Supert", media.SubTitle);
 
-            foreach(string person in media.InvolvedPersons)
-                Assert.AreEqual("Erlend Loe", person);
+            Assert.AreEqual("Erlend Loe", media.ResponsiblePersons.ElementAt(0));
 
             Assert.AreEqual("[Oslo]", media.PlacePublished);
 
@@ -51,9 +54,15 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("598.0948", book.ClassificationNr);
 
-            Assert.AreEqual("Loe, Erlend", book.Author);
+            Assert.AreEqual("Loe, Erlend", book.Author.Name);
+            Assert.AreEqual("1969-", book.Author.LivingYears);
+            Assert.AreEqual("n", book.Author.Nationality);
+
+            Assert.AreEqual("Super Naiv", book.StdOrOrgTitle);
 
             Assert.AreEqual("5", book.Numbering);
+
+            Assert.AreEqual("Tittel for del", book.PartTitle);
 
             Assert.AreEqual("5. oppl.", book.Edition);
 
@@ -61,38 +70,63 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Innhold: Et liv i fellesskap ; Bibelens bønnebok", book.Content);
 
-            var i = 0;
-            foreach (string subject in book.Subject)
-            {
-                if (i==0)
-                    Assert.AreEqual("Kristendom", subject);
-                if (i==1)
-                    Assert.AreEqual("Buddhisme", subject);
-                if (i==2)
-                    Assert.AreEqual("Religionsvitenskap", subject);
-                i++;
-            }
+            Assert.AreEqual("Kristendom", book.Subject.ElementAt(0));
+            Assert.AreEqual("Buddhisme", book.Subject.ElementAt(1));
+            Assert.AreEqual("Religionsvitenskap", book.Subject.ElementAt(2));
 
-            var j = 0;
-            foreach (string place in book.ReferencedPlaces)
-            {
-                if (j == 0)
-                    Assert.AreEqual("Norge", place);
-                if (j == 1)
-                    Assert.AreEqual("Rogaland", place);
-                j++;
-            }
+            Assert.AreEqual("Norge", book.ReferencedPlaces.ElementAt(0));
+            Assert.AreEqual("Rogaland", book.ReferencedPlaces.ElementAt(1));
 
-            var k = 0;
-            foreach (string genre in book.Genre)
-            {
-                if (k == 0)
-                    Assert.AreEqual("Action", genre);
-                if (k == 1)
-                    Assert.AreEqual("Komedie", genre);
-                k++;
-            }
+            Assert.AreEqual("Action", book.Genre.ElementAt(0));
+            Assert.AreEqual("Komedie", book.Genre.ElementAt(1));
 
+            Assert.AreEqual(1, book.ReferredPersons.Count());
+            Assert.AreEqual("Knut Hamsun", book.ReferredPersons.ElementAt(0).Name);
+            Assert.AreEqual("1859-1952", book.ReferredPersons.ElementAt(0).LivingYears);
+            Assert.AreEqual("Norsk", book.ReferredPersons.ElementAt(0).Nationality);
+            Assert.AreEqual("Sult", book.ReferredPersons.ElementAt(0).ReferredWork);
+
+            Assert.AreEqual(1, book.ReferredOrganizations.Count());
+            Assert.AreEqual("Capgemini", book.ReferredOrganizations.ElementAt(0).Name);
+            Assert.AreEqual("B-tech", book.ReferredOrganizations.ElementAt(0).UnderOrganization);
+            Assert.AreEqual("Forklaring", book.ReferredOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.AreEqual("Visjon", book.ReferredOrganizations.ElementAt(0).ReferencedPublication);
+
+            Assert.AreEqual(2, book.InvolvedPersons.Count());
+            Assert.AreEqual("Harald V", book.InvolvedPersons.ElementAt(0).Name);
+            Assert.AreEqual("1937-", book.InvolvedPersons.ElementAt(0).LivingYears);
+            Assert.AreEqual("Norsk", book.InvolvedPersons.ElementAt(0).Nationality);
+            Assert.AreEqual("Konge", book.InvolvedPersons.ElementAt(0).Role);
+            Assert.AreEqual("Kjell Inge Røkke", book.InvolvedPersons.ElementAt(1).Name);
+            Assert.AreEqual("1950-", book.InvolvedPersons.ElementAt(1).LivingYears);
+            Assert.AreEqual("Norsk", book.InvolvedPersons.ElementAt(1).Nationality);
+            Assert.AreEqual("Investor", book.InvolvedPersons.ElementAt(1).Role);
+
+            Assert.AreEqual(1, book.InvolvedOrganizations.Count());
+            Assert.AreEqual("Cappelen Damm", book.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.AreEqual("Salg", book.InvolvedOrganizations.ElementAt(0).UnderOrganization);
+            Assert.AreEqual("Forklaring", book.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.AreEqual("Forlag", book.InvolvedOrganizations.ElementAt(0).Role);
+
+        }
+
+        [Test]
+        public void GetBookWithOrganizationFromXmlTest()
+        {
+            var book = Book.GetBookFromFindDocXml(getBookWithOrgXml());
+
+            Assert.AreEqual("Røde Kors", book.Author.Name);
+            Assert.AreEqual("Røde Kors", book.Organization.Name);
+            Assert.AreEqual("Hjelpekorpset", book.Organization.UnderOrganization);
+            Assert.AreEqual("Hjelper folk", book.Organization.FurtherExplanation);
+
+        }
+
+        [Test]
+        public void GetBookWithStdTitleFromXmlTest()
+        {
+            var book = Book.GetBookFromFindDocXml(getBookWithStdTitleXml());
+            Assert.AreEqual("Røde Kors", book.StandarizedTitle);
         }
 
         [Test]
@@ -100,15 +134,15 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var film = Film.GetFilmFromFindDocXml(getFilmXml());
 
-            Assert.AreEqual("7041271735935", film.Ean);
+            //Assert.AreEqual("7041271735935", film.Ean);
 
-            Assert.AreEqual("nob", film.SpokenLanguage.FirstOrDefault());
-            Assert.AreEqual(1, film.SpokenLanguage.Count());
+            //Assert.AreEqual("nob", film.SpokenLanguage.FirstOrDefault());
+            //Assert.AreEqual(1, film.SpokenLanguage.Count());
 
-            Assert.AreEqual("nob", film.SubtitleLanguage.FirstOrDefault());
-            Assert.AreEqual(4, film.SubtitleLanguage.Count());
+            //Assert.AreEqual("nob", film.SubtitleLanguage.FirstOrDefault());
+            //Assert.AreEqual(4, film.SubtitleLanguage.Count());
 
-            Assert.AreEqual("Max Manus", film.OriginalTitle);
+            //Assert.AreEqual("Max Manus", film.OriginalTitle);
 
         }
 
@@ -129,7 +163,7 @@ namespace Solvberget.Service.Tests.DTOTests
       <oai_marc>
         <fixfield id=""FMT"">BK</fixfield>
         <fixfield id=""LDR"">^^^^^nam^^^^^^^^^1</fixfield>
-        <fixfield id=""008"">110106s2010^^^^^^^^^^^a^^^^^^^^^^1^nob^^</fixfield>
+        <fixfield id=""008"">110106s2010^^^^^^^^^^^a^^^^^^^^^^1^mul^^</fixfield>
         <varfield id=""019"" i1="" "" i2="" "">
           <subfield label=""b"">l</subfield>
           <subfield label=""d"">R</subfield>
@@ -137,6 +171,9 @@ namespace Solvberget.Service.Tests.DTOTests
         <varfield id=""020"" i1="" "" i2="" "">
           <subfield label=""a"">978-82-02-33225-9</subfield>
           <subfield label=""b"">ib.</subfield>
+        </varfield>
+        <varfield id=""041"" i1="" "" i2="" "">
+          <subfield label=""a"">nobsweeng</subfield>
         </varfield>
         <varfield id=""090"" i1="" "" i2="" "">
           <subfield label=""c"">598.0948</subfield>
@@ -146,6 +183,153 @@ namespace Solvberget.Service.Tests.DTOTests
           <subfield label=""a"">Loe, Erlend</subfield>
           <subfield label=""d"">1969-</subfield>
           <subfield label=""j"">n</subfield>
+        </varfield>
+        <varfield id=""240"" i1="" "" i2="" "">
+          <subfield label=""a"">Super Naiv</subfield>
+        </varfield>
+        <varfield id=""245"" i1=""1"" i2=""0"">
+          <subfield label=""a"">Naiv. Super</subfield>
+          <subfield label=""b"">Supert</subfield>
+          <subfield label=""c"">Erlend Loe</subfield>
+          <subfield label=""n"">5</subfield>
+          <subfield label=""p"">Tittel for del</subfield>
+        </varfield>
+        <varfield id=""250"" i1="" "" i2="" "">
+          <subfield label=""a"">5. oppl.</subfield>
+        </varfield>
+        <varfield id=""260"" i1="" "" i2="" "">
+          <subfield label=""a"">[Oslo]</subfield>
+          <subfield label=""b"">Cappelen Damm</subfield>
+          <subfield label=""c"">2010</subfield>
+        </varfield>
+        <varfield id=""300"" i1="" "" i2="" "">
+          <subfield label=""a"">205 s.</subfield>
+        </varfield>
+        <varfield id=""440"" i1="" "" i2=""0"">
+          <subfield label=""a"">Favoritt</subfield>
+          <subfield label=""v"">5</subfield>
+        </varfield>
+        <varfield id=""503"" i1="" "" i2="" "">
+          <subfield label=""a"">1. utg.: Oslo : Cappelen, 1996</subfield>
+        </varfield>
+        <varfield id=""505"" i1="" "" i2="" "">
+          <subfield label=""a"">Innhold: Et liv i fellesskap ; Bibelens bønnebok</subfield>
+        </varfield>
+        <varfield id=""599"" i1="" "" i2="" "">
+          <subfield label=""a"">200 kr</subfield>
+        </varfield>
+        <varfield id=""600"" i1="" "" i2="" "">
+          <subfield label=""a"">Knut Hamsun</subfield>
+          <subfield label=""d"">1859-1952</subfield>
+          <subfield label=""e"">Norsk</subfield>
+          <subfield label=""t"">Sult</subfield>
+        </varfield>
+        <varfield id=""610"" i1="" "" i2="" "">
+          <subfield label=""a"">Capgemini</subfield>
+          <subfield label=""b"">B-tech</subfield>
+          <subfield label=""q"">Forklaring</subfield>
+          <subfield label=""t"">Visjon</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Kristendom</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Buddhisme</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Religionsvitenskap</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Norge</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Rogaland</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Action</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Komedie</subfield>
+        </varfield>
+        <varfield id=""700"" i1="" "" i2="" "">
+          <subfield label=""a"">Harald V</subfield>
+          <subfield label=""d"">1937-</subfield>
+          <subfield label=""e"">Norsk</subfield>
+          <subfield label=""j"">Konge</subfield>
+        </varfield>
+        <varfield id=""700"" i1="" "" i2="" "">
+          <subfield label=""a"">Kjell Inge Røkke</subfield>
+          <subfield label=""d"">1950-</subfield>
+          <subfield label=""e"">Norsk</subfield>
+          <subfield label=""j"">Investor</subfield>
+        </varfield>
+        <varfield id=""710"" i1="" "" i2="" "">
+          <subfield label=""a"">Cappelen Damm</subfield>
+          <subfield label=""b"">Salg</subfield>
+          <subfield label=""e"">Forlag</subfield>
+          <subfield label=""q"">Forklaring</subfield>
+        </varfield>
+        <varfield id=""850"" i1="" "" i2="" "">
+          <subfield label=""a"">stavangb</subfield>
+          <subfield label=""c"">LOE</subfield>
+          <subfield label=""d"">2010</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">LHA</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">BATCH-UPD</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">KATALOG</subfield>
+          <subfield label=""b"">40</subfield>
+          <subfield label=""c"">20110201</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1136</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <session-id>XXIT5PJTANKBX77H4PR6X8VJMN3BTGXFEURFSCSIH4FBMJSXHX</session-id>
+</find-doc>";
+        }
+
+        private string getBookWithOrgXml()
+        {
+            return @"<find-doc>
+  <record>
+    <metadata>
+      <oai_marc>
+        <fixfield id=""FMT"">BK</fixfield>
+        <fixfield id=""LDR"">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id=""008"">110106s2010^^^^^^^^^^^a^^^^^^^^^^1^mul^^</fixfield>
+        <varfield id=""019"" i1="" "" i2="" "">
+          <subfield label=""b"">l</subfield>
+          <subfield label=""d"">R</subfield>
+        </varfield>
+        <varfield id=""020"" i1="" "" i2="" "">
+          <subfield label=""a"">978-82-02-33225-9</subfield>
+          <subfield label=""b"">ib.</subfield>
+        </varfield>
+        <varfield id=""041"" i1="" "" i2="" "">
+          <subfield label=""a"">nobsweeng</subfield>
+        </varfield>
+        <varfield id=""090"" i1="" "" i2="" "">
+          <subfield label=""c"">598.0948</subfield>
+          <subfield label=""d"">LOE</subfield>
+        </varfield>
+        <varfield id=""110"" i1="" "" i2=""0"">
+          <subfield label=""a"">Røde Kors</subfield>
+          <subfield label=""b"">Hjelpekorpset</subfield>
+          <subfield label=""q"">Hjelper folk</subfield>
         </varfield>
         <varfield id=""245"" i1=""1"" i2=""0"">
           <subfield label=""a"">Naiv. Super</subfield>
@@ -230,7 +414,118 @@ namespace Solvberget.Service.Tests.DTOTests
   <session-id>XXIT5PJTANKBX77H4PR6X8VJMN3BTGXFEURFSCSIH4FBMJSXHX</session-id>
 </find-doc>";
         }
-       
+
+        private string getBookWithStdTitleXml()
+        {
+            return @"<find-doc>
+  <record>
+    <metadata>
+      <oai_marc>
+        <fixfield id=""FMT"">BK</fixfield>
+        <fixfield id=""LDR"">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id=""008"">110106s2010^^^^^^^^^^^a^^^^^^^^^^1^mul^^</fixfield>
+        <varfield id=""019"" i1="" "" i2="" "">
+          <subfield label=""b"">l</subfield>
+          <subfield label=""d"">R</subfield>
+        </varfield>
+        <varfield id=""020"" i1="" "" i2="" "">
+          <subfield label=""a"">978-82-02-33225-9</subfield>
+          <subfield label=""b"">ib.</subfield>
+        </varfield>
+        <varfield id=""041"" i1="" "" i2="" "">
+          <subfield label=""a"">nobsweeng</subfield>
+        </varfield>
+        <varfield id=""090"" i1="" "" i2="" "">
+          <subfield label=""c"">598.0948</subfield>
+          <subfield label=""d"">LOE</subfield>
+        </varfield>
+        <varfield id=""130"" i1="" "" i2=""0"">
+          <subfield label=""a"">Røde Kors</subfield>
+        </varfield>
+        <varfield id=""245"" i1=""1"" i2=""0"">
+          <subfield label=""a"">Naiv. Super</subfield>
+          <subfield label=""b"">Supert</subfield>
+          <subfield label=""c"">Erlend Loe</subfield>
+          <subfield label=""n"">5</subfield>
+        </varfield>
+        <varfield id=""250"" i1="" "" i2="" "">
+          <subfield label=""a"">5. oppl.</subfield>
+        </varfield>
+        <varfield id=""260"" i1="" "" i2="" "">
+          <subfield label=""a"">[Oslo]</subfield>
+          <subfield label=""b"">Cappelen Damm</subfield>
+          <subfield label=""c"">2010</subfield>
+        </varfield>
+        <varfield id=""300"" i1="" "" i2="" "">
+          <subfield label=""a"">205 s.</subfield>
+        </varfield>
+        <varfield id=""440"" i1="" "" i2=""0"">
+          <subfield label=""a"">Favoritt</subfield>
+          <subfield label=""v"">5</subfield>
+        </varfield>
+        <varfield id=""503"" i1="" "" i2="" "">
+          <subfield label=""a"">1. utg.: Oslo : Cappelen, 1996</subfield>
+        </varfield>
+        <varfield id=""505"" i1="" "" i2="" "">
+          <subfield label=""a"">Innhold: Et liv i fellesskap ; Bibelens bønnebok</subfield>
+        </varfield>
+        <varfield id=""599"" i1="" "" i2="" "">
+          <subfield label=""a"">200 kr</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Kristendom</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Buddhisme</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Religionsvitenskap</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Norge</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Rogaland</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Action</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Komedie</subfield>
+        </varfield>
+        <varfield id=""850"" i1="" "" i2="" "">
+          <subfield label=""a"">stavangb</subfield>
+          <subfield label=""c"">LOE</subfield>
+          <subfield label=""d"">2010</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">LHA</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">BATCH-UPD</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">KATALOG</subfield>
+          <subfield label=""b"">40</subfield>
+          <subfield label=""c"">20110201</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1136</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <session-id>XXIT5PJTANKBX77H4PR6X8VJMN3BTGXFEURFSCSIH4FBMJSXHX</session-id>
+</find-doc>";
+        }
+
         private string getFilmXml()
         {
             return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
