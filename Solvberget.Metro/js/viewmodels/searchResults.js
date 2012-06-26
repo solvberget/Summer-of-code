@@ -190,7 +190,7 @@
         if (args.detail.kind === appModel.Activation.ActivationKind.search) {
             args.setPromise(ui.processAll().then(function () {
                 if (!nav.location) {
-                    nav.history.current = { location: Application.navigator.home, initialState: {} };
+                   // nav.history.current = { location: Application.navigator.home, initialState: {} };
                 }
 
                 return nav.navigate(searchPageURI, { queryText: args.detail.queryText });
