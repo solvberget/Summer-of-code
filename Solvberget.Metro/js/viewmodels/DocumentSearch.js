@@ -2,13 +2,19 @@
     var self = this;
     self.documents = ko.observableArray([]);
     self.searchString = ko.observable("Input search");
-    self.suggestions = ko.observableArray([]);
     self.suggestion = ko.observable("Ingen forslag");
 
     self.search = function () {
         var url = "http://localhost:7089/Document/Search/" + self.searchString();
+        self.lookup();
         $.getJSON(url, self.populate);
     };
+
+    self.searchSuggested = function () {
+        console.log("Search suggested with: " + self.suggestion());
+        self.searchString(self.suggestion());
+        self.search();
+    }
 
     self.populate = function (allData) {
         var mappedDocuments = $.map(allData, function (item) {
@@ -20,17 +26,14 @@
 
     self.lookup = function () {
 
-        var url = "http://localhost:7089/Document/SpellingDictionaryLookup/?value=" + self.searchString();
-        $.getJSON(url, self.suggest);
+        var url = "http://localhost:7089/Document/SpellingDictionaryLookup/";
+        $.getJSON(url, { value : self.searchString() }, self.suggest);
 
     };
 
-    self.suggest = function(allData) {
-        var mappedLinks = $.map(allData, function(item) {
-            return new Link(item);
-        });
-        self.suggestions(mappedLinks);
-        self.suggestion = suggestions[0];
+    self.suggest = function (allData) {
+        console.log("Return: "+allData);
+        self.suggestion(allData);
     };
 
 }
