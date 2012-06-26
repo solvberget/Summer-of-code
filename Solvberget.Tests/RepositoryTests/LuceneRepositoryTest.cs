@@ -184,5 +184,23 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(testSolution, solution);
 
         }
-    }
+
+        [Test]
+        public void TestSuggestionList()
+        {
+            Assert.Contains("harry potter",_repository.SuggestionList());
+            Assert.Contains("villanden", _repository.SuggestionList());
+        }
+        [Test]
+        public void TestAddWordToSuggestionString()
+        {
+           var suggestionString = "fotball er ";
+           const string suggestionSolution = "fotball er gøy ";
+
+           var newSuggestionString = _repository.AddWordToSuggestionString(ref suggestionString, "gøy");
+
+           Assert.Equals( newSuggestionString, suggestionSolution );
+
+        }
+        
 }
