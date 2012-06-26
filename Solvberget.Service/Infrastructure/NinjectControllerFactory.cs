@@ -32,7 +32,8 @@ namespace Solvberget.Service.Infrastructure
                 .To<LuceneRepository>()
                 .WithConstructorArgument("pathToDictionary", EnvironmentHelper.GetDictionaryPath())
                 .WithConstructorArgument("pathToDictionaryDirectory", EnvironmentHelper.GetDictionaryIndexPath())
-                .WithConstructorArgument("pathToStopWordsDict", EnvironmentHelper.GetStopwordsPath()); ;
+                .WithConstructorArgument("pathToStopWordsDict", EnvironmentHelper.GetStopwordsPath())
+                .WithConstructorArgument("pathToSuggestionListDict", EnvironmentHelper.GetSuggestionListPath());
                 
         }
     }

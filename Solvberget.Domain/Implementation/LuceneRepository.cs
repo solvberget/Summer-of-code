@@ -18,12 +18,15 @@ namespace Solvberget.Domain.Implementation
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
         public string[] StopWords { get; set; }
 
+
         //TODO: Legge ut i config-fil
         private readonly string _pathToDict;
         private readonly string _pathToDictDir;
         private readonly string _pathToStopwordsDict;
+        private readonly string _pathToSuggestionsDict;
+        private string[] _suggestionList;
 
-        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict=null)
+        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict = null, string pathToSuggestionListDict = null)
         {
             _pathToStopwordsDict = string.IsNullOrEmpty(pathToStopWordsDict)
                 ? @"App_Data\ordlister\stopwords.txt" : pathToStopWordsDict;
@@ -31,17 +34,24 @@ namespace Solvberget.Domain.Implementation
             _pathToDict = string.IsNullOrEmpty(pathToDictionary) 
                 ? @"App_Data\ordlister\ord_bm.txt" : pathToDictionary;
 
+            _pathToSuggestionsDict = string.IsNullOrEmpty(pathToSuggestionListDict)
+                ? @"App_Data\ordlister\ord_forslag.txt" : pathToSuggestionListDict;
+
             _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory) 
                 ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
             
+
             InitializeSpellChecker();
         }
 
         private void InitializeSpellChecker()
         {
+            if (SpellChecker != null) return;
+
             var di = CreateTargetFolder();
             SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
- StopWords =  File.ReadAllLines(_pathToStopwordsDict);
+            _suggestionList = File.ReadAllLines(_pathToSuggestionsDict);
+            StopWords = File.ReadAllLines(_pathToStopwordsDict);
         }
 
         private DirectoryInfo CreateTargetFolder()
@@ -141,15 +151,10 @@ namespace Solvberget.Domain.Implementation
 
 
 
-
         public string Lookup(string value)
         {
 
-            if (SpellChecker == null)
-                InitializeSpellChecker();
-
-            if (SpellChecker == null)
-                return String.Empty;
+            InitializeSpellChecker();
 
             // Escape harmful values in input string
             value = System.Security.SecurityElement.Escape(value);
@@ -192,10 +197,14 @@ namespace Solvberget.Domain.Implementation
                     AddWordToSuggestionString(ref suggestionString, word);
 
             }
-
-            return Equals(suggestionString[suggestionString.Length - 1], ' ') ? suggestionString.Substring(0, suggestionString.Length - 1) : suggestionString;
+            return suggestionString.TrimEnd();
         }
 
+        public string[] SuggestionList()
+        {
+            var suggestions = _suggestionList ?? File.ReadAllLines(_pathToSuggestionsDict);
+            return suggestions;
+        }
     }
 
 
