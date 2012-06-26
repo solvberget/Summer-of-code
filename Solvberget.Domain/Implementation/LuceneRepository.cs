@@ -21,12 +21,13 @@ namespace Solvberget.Domain.Implementation
         //TODO: Legge ut i config-fil
         private readonly string _pathToDict;
         private readonly string _pathToDictDir;
-        
-        private const string PathToStopWordsDict = @"C:\Projects\Solvberget\Solvberget.Domain\App_Data\ordlister\stopwords.txt";
+        private readonly string _pathToStopwordsDict;
 
-        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null)
-        {      
- 
+        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict=null)
+        {
+            _pathToStopwordsDict = string.IsNullOrEmpty(pathToStopWordsDict)
+                ? @"App_Data\ordlister\stopwords.txt" : pathToStopWordsDict;
+
             _pathToDict = string.IsNullOrEmpty(pathToDictionary) 
                 ? @"App_Data\ordlister\ord_bm.txt" : pathToDictionary;
 
@@ -34,15 +35,13 @@ namespace Solvberget.Domain.Implementation
                 ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
             
             InitializeSpellChecker();
-            
-        
         }
 
         private void InitializeSpellChecker()
         {
             var di = CreateTargetFolder();
             SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
- StopWords =  File.ReadAllLines(PathToStopWordsDict);
+ StopWords =  File.ReadAllLines(_pathToStopwordsDict);
         }
 
         private DirectoryInfo CreateTargetFolder()

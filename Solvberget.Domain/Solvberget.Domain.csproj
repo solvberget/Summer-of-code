@@ -105,9 +105,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ordlister\ord_bm.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="bin\Debug\Contrib.Regex.dll" />
     <Content Include="bin\Debug\Contrib.Regex.xml" />
     <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />

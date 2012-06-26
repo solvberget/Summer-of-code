@@ -52,7 +52,7 @@ namespace Solvberget.Service
         private static void SetupLuceneDictionary()
         {
             
-            var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath());
+            var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath(), EnvironmentHelper.GetStopwordsPath());
             repository.BuildDictionary();
         }
     }

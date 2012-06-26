@@ -31,7 +31,9 @@ namespace Solvberget.Service.Infrastructure
             ninjectKernel.Bind<ISpellingDictionary>()
                 .To<LuceneRepository>()
                 .WithConstructorArgument("pathToDictionary", EnvironmentHelper.GetDictionaryPath())
-                .WithConstructorArgument("pathToDictionaryDirectory", EnvironmentHelper.GetDictionaryIndexPath());
+                .WithConstructorArgument("pathToDictionaryDirectory", EnvironmentHelper.GetDictionaryIndexPath())
+                .WithConstructorArgument("pathToStopWordsDict", EnvironmentHelper.GetStopwordsPath()); ;
+                
         }
     }
 }
