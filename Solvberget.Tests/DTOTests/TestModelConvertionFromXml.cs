@@ -265,6 +265,24 @@ namespace Solvberget.Service.Tests.DTOTests
 
         }
 
+        public void GetAudioBookWithOrganizationFromXmlTest()
+        {
+            var audioBook = Book.GetBookFromFindDocXml(getAudioBookWithOrgXml());
+
+            Assert.AreEqual("Røde Kors", audioBook.Author.Name);
+            Assert.AreEqual("Røde Kors", audioBook.Organization.Name);
+            Assert.AreEqual("Hjelpekorpset", audioBook.Organization.UnderOrganization);
+            Assert.AreEqual("Hjelper folk", audioBook.Organization.FurtherExplanation);
+
+        }
+
+        [Test]
+        public void GetAudioBookWithStdTitleFromXmlTest()
+        {
+            var audioBook = Book.GetBookFromFindDocXml(getAudioBookWithStdTitleXml());
+            Assert.AreEqual("Røde Kors", audioBook.StandarizedTitle);
+        }
+
         private string getBookXml()
         {
             return @"<find-doc>
@@ -905,6 +923,230 @@ namespace Solvberget.Service.Tests.DTOTests
         </metadata>
     </record>
     <session-id>PSQGNNC65MPCDKMD5UNGS3IH7P3CAAUY221CRR1F8K4FXIB5KH</session-id>
+</find-doc>";
+        }
+
+        private string getAudioBookWithOrgXml()
+        {
+            return @"<find-doc>
+  <record>
+    <metadata>
+      <oai_marc>
+        <fixfield id=""FMT"">BK</fixfield>
+        <fixfield id=""LDR"">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id=""008"">110106s2010^^^^^^^^^^^a^^^^^^^^^^1^mul^^</fixfield>
+        <varfield id=""019"" i1="" "" i2="" "">
+          <subfield label=""b"">l</subfield>
+          <subfield label=""d"">R</subfield>
+        </varfield>
+        <varfield id=""020"" i1="" "" i2="" "">
+          <subfield label=""a"">978-82-02-33225-9</subfield>
+          <subfield label=""b"">ib.</subfield>
+        </varfield>
+        <varfield id=""041"" i1="" "" i2="" "">
+          <subfield label=""a"">nobsweeng</subfield>
+        </varfield>
+        <varfield id=""090"" i1="" "" i2="" "">
+          <subfield label=""c"">598.0948</subfield>
+          <subfield label=""d"">LOE</subfield>
+        </varfield>
+        <varfield id=""110"" i1="" "" i2=""0"">
+          <subfield label=""a"">Røde Kors</subfield>
+          <subfield label=""b"">Hjelpekorpset</subfield>
+          <subfield label=""q"">Hjelper folk</subfield>
+        </varfield>
+        <varfield id=""245"" i1=""1"" i2=""0"">
+          <subfield label=""a"">Naiv. Super</subfield>
+          <subfield label=""b"">Supert</subfield>
+          <subfield label=""c"">Erlend Loe</subfield>
+          <subfield label=""n"">5</subfield>
+        </varfield>
+        <varfield id=""250"" i1="" "" i2="" "">
+          <subfield label=""a"">5. oppl.</subfield>
+        </varfield>
+        <varfield id=""260"" i1="" "" i2="" "">
+          <subfield label=""a"">[Oslo]</subfield>
+          <subfield label=""b"">Cappelen Damm</subfield>
+          <subfield label=""c"">2010</subfield>
+        </varfield>
+        <varfield id=""300"" i1="" "" i2="" "">
+          <subfield label=""a"">205 s.</subfield>
+        </varfield>
+        <varfield id=""440"" i1="" "" i2=""0"">
+          <subfield label=""a"">Favoritt</subfield>
+          <subfield label=""v"">5</subfield>
+        </varfield>
+        <varfield id=""503"" i1="" "" i2="" "">
+          <subfield label=""a"">1. utg.: Oslo : Cappelen, 1996</subfield>
+        </varfield>
+        <varfield id=""505"" i1="" "" i2="" "">
+          <subfield label=""a"">Innhold: Et liv i fellesskap ; Bibelens bønnebok</subfield>
+        </varfield>
+        <varfield id=""599"" i1="" "" i2="" "">
+          <subfield label=""a"">200 kr</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Kristendom</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Buddhisme</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Religionsvitenskap</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Norge</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Rogaland</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Action</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Komedie</subfield>
+        </varfield>
+        <varfield id=""850"" i1="" "" i2="" "">
+          <subfield label=""a"">stavangb</subfield>
+          <subfield label=""c"">LOE</subfield>
+          <subfield label=""d"">2010</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">LHA</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">BATCH-UPD</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">KATALOG</subfield>
+          <subfield label=""b"">40</subfield>
+          <subfield label=""c"">20110201</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1136</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <session-id>XXIT5PJTANKBX77H4PR6X8VJMN3BTGXFEURFSCSIH4FBMJSXHX</session-id>
+</find-doc>";
+        }
+
+        private string getAudioBookWithStdTitleXml()
+        {
+            return @"<find-doc>
+  <record>
+    <metadata>
+      <oai_marc>
+        <fixfield id=""FMT"">BK</fixfield>
+        <fixfield id=""LDR"">^^^^^nam^^^^^^^^^1</fixfield>
+        <fixfield id=""008"">110106s2010^^^^^^^^^^^a^^^^^^^^^^1^mul^^</fixfield>
+        <varfield id=""019"" i1="" "" i2="" "">
+          <subfield label=""b"">l</subfield>
+          <subfield label=""d"">R</subfield>
+        </varfield>
+        <varfield id=""020"" i1="" "" i2="" "">
+          <subfield label=""a"">978-82-02-33225-9</subfield>
+          <subfield label=""b"">ib.</subfield>
+        </varfield>
+        <varfield id=""041"" i1="" "" i2="" "">
+          <subfield label=""a"">nobsweeng</subfield>
+        </varfield>
+        <varfield id=""090"" i1="" "" i2="" "">
+          <subfield label=""c"">598.0948</subfield>
+          <subfield label=""d"">LOE</subfield>
+        </varfield>
+        <varfield id=""130"" i1="" "" i2=""0"">
+          <subfield label=""a"">Røde Kors</subfield>
+        </varfield>
+        <varfield id=""245"" i1=""1"" i2=""0"">
+          <subfield label=""a"">Naiv. Super</subfield>
+          <subfield label=""b"">Supert</subfield>
+          <subfield label=""c"">Erlend Loe</subfield>
+          <subfield label=""n"">5</subfield>
+        </varfield>
+        <varfield id=""250"" i1="" "" i2="" "">
+          <subfield label=""a"">5. oppl.</subfield>
+        </varfield>
+        <varfield id=""260"" i1="" "" i2="" "">
+          <subfield label=""a"">[Oslo]</subfield>
+          <subfield label=""b"">Cappelen Damm</subfield>
+          <subfield label=""c"">2010</subfield>
+        </varfield>
+        <varfield id=""300"" i1="" "" i2="" "">
+          <subfield label=""a"">205 s.</subfield>
+        </varfield>
+        <varfield id=""440"" i1="" "" i2=""0"">
+          <subfield label=""a"">Favoritt</subfield>
+          <subfield label=""v"">5</subfield>
+        </varfield>
+        <varfield id=""503"" i1="" "" i2="" "">
+          <subfield label=""a"">1. utg.: Oslo : Cappelen, 1996</subfield>
+        </varfield>
+        <varfield id=""505"" i1="" "" i2="" "">
+          <subfield label=""a"">Innhold: Et liv i fellesskap ; Bibelens bønnebok</subfield>
+        </varfield>
+        <varfield id=""599"" i1="" "" i2="" "">
+          <subfield label=""a"">200 kr</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Kristendom</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Buddhisme</subfield>
+        </varfield>
+        <varfield id=""650"" i1="" "" i2="" "">
+          <subfield label=""a"">Religionsvitenskap</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Norge</subfield>
+        </varfield>
+        <varfield id=""651"" i1="" "" i2="" "">
+          <subfield label=""a"">Rogaland</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Action</subfield>
+        </varfield>
+        <varfield id=""655"" i1="" "" i2="" "">
+          <subfield label=""a"">Komedie</subfield>
+        </varfield>
+        <varfield id=""850"" i1="" "" i2="" "">
+          <subfield label=""a"">stavangb</subfield>
+          <subfield label=""c"">LOE</subfield>
+          <subfield label=""d"">2010</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">LHA</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">BATCH-UPD</subfield>
+          <subfield label=""b"">30</subfield>
+          <subfield label=""c"">20110106</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1254</subfield>
+        </varfield>
+        <varfield id=""CAT"" i1="" "" i2="" "">
+          <subfield label=""a"">KATALOG</subfield>
+          <subfield label=""b"">40</subfield>
+          <subfield label=""c"">20110201</subfield>
+          <subfield label=""l"">NOR01</subfield>
+          <subfield label=""h"">1136</subfield>
+        </varfield>
+      </oai_marc>
+    </metadata>
+  </record>
+  <session-id>XXIT5PJTANKBX77H4PR6X8VJMN3BTGXFEURFSCSIH4FBMJSXHX</session-id>
 </find-doc>";
         }
     }
