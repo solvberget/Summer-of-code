@@ -70,10 +70,17 @@ namespace Solvberget.Domain.DTO
                 var publishedYearString = GetVarfield(nodes, "260", "c");
                 if (publishedYearString != null)
                 {
+                    //Format may be "[2009]" or "2009.", trim if so
+                    var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
+                    var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
+                    if (!string.IsNullOrEmpty(foundValue))
+                        PublishedYear = int.Parse(foundValue);
+                }
+
                 //SeriesTitle: Get varfield 440av
                 SeriesTitle = GetVarfield(nodes, "440", "a");
                 SeriesNumber = GetVarfield(nodes, "440", "v");
-                
+
             }
         }
 
