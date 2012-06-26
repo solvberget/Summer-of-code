@@ -144,6 +144,32 @@ namespace Solvberget.Service.Tests.DTOTests
 
             //Assert.AreEqual("Max Manus", film.OriginalTitle);
 
+            Assert.AreEqual("1", film.Numbering);
+
+            Assert.AreEqual("Max", film.PartTitle);
+
+            Assert.AreEqual("Collector's edition", film.Edition);
+
+            Assert.AreEqual("2008", film.ProductionYear);
+
+            Assert.AreEqual("2 videoplater (DVD-video)(1 t 53 min)", film.TypeAndNumberOfDiscs);
+
+            Assert.AreEqual("Innhold: Lily's theme ; Statues ; Neville the hero ; Courtyard apocalypse ; Severus and Lily ; Harry's sacrifice ; The resurrection stone ; A new beginning ; Lily's lullaby", film.Contents);
+
+            Assert.AreEqual("Rolleliste: Aksel Hennie, Nicolai Cleve Broch, Christian Rubeck, Knut Joner, Mats Eldøen, Pål Sverre Valheim, Agnes Kittelsen, Viktoria Winge, Kyrre Haugen Sydness, Jakob Oftebro, Petter Næss", film.Actors);
+
+            Assert.AreEqual("Aldersgrense: 15 år", film.AgeLimit);
+
+            Assert.AreEqual("Max Manus", film.NorwegianTitle);
+
+            Assert.AreEqual("Undervisning", film.Subject);
+
+            Assert.AreEqual("Norge", film.GeoraphicSubject);
+
+            Assert.AreEqual("Popmusikk", film.CompositionType);
+
+            Assert.AreEqual("Drama", film.Genre);
+
         }
 
         [Test]
@@ -153,6 +179,37 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("ee", film.DocumentType);
             
+        }
+
+        [Test]
+        public void GetAudioBookFromXmlTest()
+        {
+            var audioBook = AudioBook.GetAudioBookFromFindDocXml(getAudioBookXML());
+
+            Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
+
+            Assert.AreEqual("n781.542", audioBook.ClassificationNumber);
+
+            Assert.AreEqual("Rowling, J.K.", audioBook.Author);
+
+            Assert.AreEqual("1965-", audioBook.AuthorLivingYears);
+
+            Assert.AreEqual("eng.", audioBook.AuthorNationality);
+
+            Assert.AreEqual("III", audioBook.Numbering);
+
+            Assert.AreEqual("Atter en konge", audioBook.PartTitle);
+
+            Assert.AreEqual("Collector's edition", audioBook.Edition);
+
+            Assert.AreEqual("2 CDer (24 t, 35 min)", audioBook.TypeAndNumberOfDiscs);
+
+            Assert.AreEqual("Harry Potter", audioBook.Subject);
+
+            Assert.AreEqual("England", audioBook.ReferencedPlaces.ElementAt(0));
+
+            Assert.AreEqual("Fantasy", audioBook.Genre.ElementAt(0));
+
         }
 
         private string getBookXml()
@@ -555,8 +612,13 @@ namespace Solvberget.Service.Tests.DTOTests
                 </varfield>
                 <varfield id=""245"" i1=""0"" i2=""0"">
                     <subfield label=""a"">Max Manus</subfield>
-                    <subfield label=""h"">DVD</subfield>
                     <subfield label=""c"">regi: Espen Sandberg og Joachim Rønning ; manuskript Thomas Nordset-Tiller</subfield>
+                    <subfield label=""h"">DVD</subfield>
+                    <subfield label=""n"">1</subfield>
+                    <subfield label=""p"">Max</subfield>
+                </varfield>
+                <varfield id=""250"" i1="" "" i2="" "">
+                    <subfield label=""a"">Collector's edition</subfield>
                 </varfield>
                 <varfield id=""260"" i1="" "" i2="" "">
                     <subfield label=""a"">[Oslo]</subfield>
@@ -571,6 +633,9 @@ namespace Solvberget.Service.Tests.DTOTests
                 <varfield id=""503"" i1="" "" i2="" "">
                     <subfield label=""a"">Filmen ble laget i 2008</subfield>
                 </varfield>
+                <varfield id=""505"" i1="" "" i2="" "">
+                    <subfield label=""a"">Innhold: Lily&apos;s theme ; Statues ; Neville the hero ; Courtyard apocalypse ; Severus and Lily ; Harry&apos;s sacrifice ; The resurrection stone ; A new beginning ; Lily&apos;s lullaby</subfield>
+                </varfield>
                 <varfield id=""511"" i1="" "" i2="" "">
                     <subfield label=""a"">Rolleliste: Aksel Hennie, Nicolai Cleve Broch, Christian Rubeck, Knut Joner, Mats Eldøen, Pål Sverre Valheim, Agnes Kittelsen, Viktoria Winge, Kyrre Haugen Sydness, Jakob Oftebro, Petter Næss</subfield>
                 </varfield>
@@ -583,9 +648,18 @@ namespace Solvberget.Service.Tests.DTOTests
                 <varfield id=""599"" i1="" "" i2="" "">
                     <subfield label=""a"">200 kr</subfield>
                 </varfield>
+                <varfield id=""572"" i1="" "" i2="" "">
+                    <subfield label=""a"">Max Manus</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Undervisning</subfield>
+                </varfield>
                 <varfield id=""651"" i1="" "" i2="" "">
                     <subfield label=""a"">Norge</subfield>
                     <subfield label=""q"">produksjonsland</subfield>
+                </varfield>
+                <varfield id=""652"" i1="" "" i2="" "">
+                    <subfield label=""a"">Popmusikk</subfield>
                 </varfield>
                 <varfield id=""655"" i1="" "" i2="" "">
                     <subfield label=""a"">Drama</subfield>
@@ -621,6 +695,122 @@ namespace Solvberget.Service.Tests.DTOTests
     <session-id>T5VLQNV2CIYLSGIXLXY5IE8Y8KASU29MCGA6685TEHJ5Y8DTDK</session-id>
 </find-doc>
  ";
+        }
+
+        private string getAudioBookXML()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<find-doc>
+    <record>
+        <metadata>
+            <oai_marc>
+                <fixfield id=""FMT"">BK</fixfield>
+                <fixfield id=""LDR"">^^^^^nim^^^^^^^^^1</fixfield>
+                <fixfield id=""008"">110324^2008^^^^^^^^^^^j^^^^^^^^^^1^nob^2</fixfield>
+                <varfield id=""019"" i1="" "" i2="" "">
+                    <subfield label=""a"">bu,u,mu</subfield>
+                    <subfield label=""b"">dc,di,dz</subfield>
+                    <subfield label=""d"">R</subfield>
+                </varfield>
+                <varfield id=""020"" i1="" "" i2="" "">
+                    <subfield label=""a"">978-82-02-29195-2</subfield>
+                </varfield>
+                <varfield id=""041"" i1="" "" i2="" "">
+                    <subfield label=""h"">eng</subfield>
+                </varfield>
+                <varfield id=""090"" i1="" "" i2="" "">
+                    <subfield label=""c"">n781.542</subfield>
+                    <subfield label=""d"">ROW</subfield>
+                </varfield>
+                <varfield id=""100"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Rowling, J.K.</subfield>
+                    <subfield label=""d"">1965-</subfield>
+                    <subfield label=""j"">eng.</subfield>
+                </varfield>
+                <varfield id=""240"" i1=""1"" i2=""0"">
+                    <subfield label=""a"">Harry Potter and the deathly hallows</subfield>
+                </varfield>
+                <varfield id=""245"" i1=""1"" i2=""0"">
+                    <subfield label=""a"">Harry Potter og dødstalismanene</subfield>
+                    <subfield label=""c"">J.K. Rowling ; [oversetter: Torstein Bugge Høverstad]</subfield>
+                    <subfield label=""h"">lydopptak</subfield>
+                    <subfield label=""n"">III</subfield>
+                    <subfield label=""p"">Atter en konge</subfield>
+                </varfield>
+                <varfield id=""250"" i1=""1"" i2=""0"">
+                    <subfield label=""a"">Collector's edition</subfield>
+                </varfield>
+                <varfield id=""260"" i1="" "" i2="" "">
+                    <subfield label=""a"">[Oslo]</subfield>
+                    <subfield label=""b"">Cappelen Damm</subfield>
+                    <subfield label=""c"">2008</subfield>
+                </varfield>
+                <varfield id=""300"" i1="" "" i2="" "">
+                    <subfield label=""a"">2 CDer (24 t, 35 min)</subfield>
+                </varfield>
+                <varfield id=""440"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Harry Potter</subfield>
+                    <subfield label=""v"">7</subfield>
+                </varfield>
+                <varfield id=""440"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Lommelydbok</subfield>
+                </varfield>
+                <varfield id=""500"" i1="" "" i2="" "">
+                    <subfield label=""a"">Mp3-format</subfield>
+                </varfield>
+                <varfield id=""511"" i1="" "" i2="" "">
+                    <subfield label=""a"">Lest av Torstein Bugge Høverstad</subfield>
+                </varfield>
+                <varfield id=""520"" i1="" "" i2="" "">
+                    <subfield label=""a"">I &quot;Harry Potter og halvblodsprinsen&quot; ble det hengende igjen tre spørsmål: Dør Harry? Er Slur god eller ond? Er Humlesnurr virkelig død? I &quot;Harry Potter og dødstalismanene&quot; gis det svar på alle tre spørsmålene, pluss mye mer. Allerede i første kapittel kommer et grusomt dødsfall, noe som demonstrerer hvordan Voldemort og hans dødsetere både har fått makt og går hardere til verks. De holder til i huset til Lucius Malfang, og legger en plan for å ta Harry når han skal flyttes fra Hekkveien til et hemmelig sted. Harry fyller 17 år, og da mister han den spesielle beskyttelsen han har hatt gjennom å bo hos sin familie. I tillegg blir Humlesnurrs historie nøstet opp. Endelig får vi vite hva som er Harrys egentlige skjebne og hvordan det går med han og vennene hans det siste året på Galtvort. Syvende og siste bok i serien om Harry Potter er dystrere enn de foregående bøkene.</subfield>
+                </varfield>
+                <varfield id=""546"" i1="" "" i2="" "">
+                    <subfield label=""a"">Norsk tale</subfield>
+                </varfield>
+                <varfield id=""599"" i1="" "" i2="" "">
+                    <subfield label=""a"">173 kr</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Harry Potter</subfield>
+                    <subfield label=""q"">fiktiv person</subfield>
+                </varfield>
+                <varfield id=""651"" i1="" "" i2="" "">
+                    <subfield label=""a"">England</subfield>
+                </varfield>
+                <varfield id=""655"" i1="" "" i2="" "">
+                    <subfield label=""a"">Fantasy</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Høverstad, Torstein Bugge</subfield>
+                    <subfield label=""d"">1944-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""e"">innl. og overs.</subfield>
+                </varfield>
+                <varfield id=""740"" i1=""0"" i2=""0"">
+                    <subfield label=""a"">HP</subfield>
+                </varfield>
+                <varfield id=""780"" i1=""0"" i2=""0"">
+                    <subfield label=""t"">Harry Potter og halvblodsprinsen</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20110324</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0849</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20110324</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0849</subfield>
+                </varfield>
+            </oai_marc>
+        </metadata>
+    </record>
+    <session-id>PSQGNNC65MPCDKMD5UNGS3IH7P3CAAUY221CRR1F8K4FXIB5KH</session-id>
+</find-doc>";
         }
     }
 }
