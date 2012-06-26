@@ -172,9 +172,9 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Harry Potter", audioBook.Subject);
 
-            Assert.AreEqual("England", audioBook.ReferencedPlaces);
+            Assert.AreEqual("England", audioBook.ReferencedPlaces.ElementAt(0));
 
-            Assert.AreEqual("Fantasy", audioBook.Genre);
+            Assert.AreEqual("Fantasy", audioBook.Genre.ElementAt(0));
 
         }
 
