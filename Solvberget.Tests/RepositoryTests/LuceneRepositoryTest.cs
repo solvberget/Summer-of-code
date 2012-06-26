@@ -26,8 +26,9 @@ namespace Solvberget.Service.Tests.RepositoryTests
             string basepath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data");
             _repository = new LuceneRepository(Path.Combine(basepath, @"ordlister\ord_bm.txt"),
                Path.Combine(basepath, @"ordlister_index"),
-               Path.Combine(basepath, @"ordlister\stopwords.txt"));
-          
+               Path.Combine(basepath, @"ordlister\stopwords.txt"),
+               Path.Combine(basepath, @"ordlister\ord_forslag.txt"));
+ 
         }
 
         [Test]
