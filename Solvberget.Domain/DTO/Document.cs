@@ -114,6 +114,58 @@ namespace Solvberget.Domain.DTO
             return varfield.Elements("subfield").Where(x => ((string)x.Attribute("label")).Equals(label)).Select(x => x.Value).FirstOrDefault();
         }
 
+        protected static IEnumerable<Person> GeneratePersonsFromXml(IEnumerable<XElement> nodes, string id)
+        {
+
+            var persons = new List<Person>();
+
+            var varfields = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).ToList();
+
+            foreach (var varfield in varfields)
+            {
+                var person = new Person()
+                {
+                    Name = GetSubFieldValue(varfield, "a"),
+                    LivingYears = GetSubFieldValue(varfield, "d"),
+                    Nationality = GetSubFieldValue(varfield, "e"),
+                    Role = GetSubFieldValue(varfield, "j"),
+                    ReferredWork = GetSubFieldValue(varfield, "t")
+                };
+
+                persons.Add(person);
+
+            }
+
+            return persons;
+
+        }
+
+        protected static IEnumerable<Organization> GenerateOrganizationsFromXml(IEnumerable<XElement> nodes, string id)
+        {
+
+            var organizations = new List<Organization>();
+
+            var varfields = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).ToList();
+
+            foreach (var varfield in varfields)
+            {
+                var org = new Organization()
+                {
+                    Name = GetSubFieldValue(varfield, "a"),
+                    UnderOrganization = GetSubFieldValue(varfield, "b"),
+                    Role = GetSubFieldValue(varfield, "e"),
+                    FurtherExplanation = GetSubFieldValue(varfield, "q"),
+                    ReferencedPublication = GetSubFieldValue(varfield, "t")
+                };
+
+                organizations.Add(org);
+
+            }
+
+            return organizations;
+
+        }
+
     }
 
 }
