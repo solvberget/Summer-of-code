@@ -4,6 +4,7 @@
     self.searchString = ko.observable("");
     self.suggestion = ko.observable("");
     self.suggestionLink = ko.observable("");
+    self.displaySearchSuggestion = ko.observable(false);
 
     self.search = function () {
         var url = "http://localhost:7089/Document/Search/" + self.searchString();
@@ -34,15 +35,28 @@
 
     };
 
+
     self.suggest = function (allData) {
-        console.log("Return: "+allData);
+
         self.suggestion(allData);
+
+        if ( self.searchString() == allData ) 
+            self.displaySearchSuggestion(false);
+        else 
+            self.displaySearchSuggestion(true);
+
     };
 
     this.suggestionLink = ko.computed(function () {
-        // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
-        return "Mente du " + this.suggestion() + "?";
+        // Will recompute when suggestion is changed
+        return "Mente du " + self.suggestion() + "?";
     }, this);
+
+    Windows.ApplicationModel.Search.SearchPane.getForCurrentView().onquerysubmitted = function (eventObject) {
+        self.searchString(eventObject.queryText);
+        self.search();
+    };
+
 }
 
 ko.applyBindings(new DocumentListViewModel());

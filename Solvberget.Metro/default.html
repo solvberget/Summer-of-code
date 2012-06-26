@@ -18,7 +18,7 @@
     <script type="text/javascript" src="js/lib/less-1.3.0.min.js"></script>
     <script type="text/javascript" src="/js/models/Document.js"></script>
     <script type="text/javascript" src="/js/models/Link.js"></script>
-    
+    <script type="text/javascript" src="/js/viewmodels/searchResults.js"></script>
 
 </head>
 <body>
@@ -30,7 +30,7 @@
         <input class="inputSearchField" placeholder="Søk etter bøker, film, CDer eller noter" data-bind='value: searchString, valueUpdate: "afterkeydown"' spellcheck="true" /><button data-bind="click: search">Search</button>
         <span data-bind="text: searchString"></span>
     </p>
-    <p id="pDidYouMean"><a href="#" data-bind="click: searchSuggested"><span data-bind="text: suggestionLink"></span></a></p>
+    <p data-bind="fadeVisible: displaySearchSuggestion"><a href="#" data-bind="click: searchSuggested"><span data-bind="text: suggestionLink"></span></a></p>
     <ul data-bind="foreach: documents, visible: documents().length > 0">
         <li>
             <strong data-bind="text: title"></strong> <em data-bind="text: DocumentType"></em>

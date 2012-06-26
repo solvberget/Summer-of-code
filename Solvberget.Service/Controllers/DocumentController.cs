@@ -37,6 +37,11 @@ namespace Solvberget.Service.Controllers
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult SuggestionList ( )
+        {
+            return this.Json(_spellingRepository.SuggestionList(), JsonRequestBehavior.AllowGet);
+        }
+
     }
 
 }

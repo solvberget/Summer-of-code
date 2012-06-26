@@ -72,6 +72,9 @@
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
+    <Content Include="js\viewmodels\searchResults.css" />
+    <Content Include="js\viewmodels\searchResults.html" />
+    <Content Include="js\viewmodels\searchResults.js" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

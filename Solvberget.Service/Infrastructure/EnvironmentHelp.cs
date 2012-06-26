@@ -26,5 +26,10 @@ namespace Solvberget.Service.Infrastructure
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_bm.txt");
         }
+
+        public static string GetSuggestionListPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_forslag.txt");
+        }
     }
 }
