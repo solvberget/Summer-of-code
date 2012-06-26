@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Hosting;
 using NUnit.Framework;
 using Solvberget.Domain.Implementation;
 using Solvberget.Service.Infrastructure;
+using System.IO;
 
 namespace Solvberget.Service.Tests.RepositoryTests
 {
@@ -15,9 +20,10 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         private LuceneRepository InitRepository()
         {
-
-            return new LuceneRepository(@"C:\Projects\Solvberget\Solvberget.Domain\App_Data\ordlister\ord_bm.txt",
-                @"C:\Projects\Solvberget\Solvberget.Domain\App_Data\ordlister_index");
+            string basepath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data");
+            return new LuceneRepository(Path.Combine(basepath, @"ordlister\ord_bm.txt"),
+               Path.Combine(basepath, @"ordlister_index"),
+               Path.Combine(basepath, @"ordlister\stopwords.txt"));
             
         }
 

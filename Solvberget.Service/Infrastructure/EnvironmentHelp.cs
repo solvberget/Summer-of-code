@@ -17,6 +17,11 @@ namespace Solvberget.Service.Infrastructure
             return Path.Combine(ApplicationAppDataPath, "ordlister_index");
         }
 
+        public static string GetStopwordsPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"ordlister\stopwords.txt");
+        }
+
         public static string GetTestDictionaryPath()
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_bm.txt");
