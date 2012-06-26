@@ -33,7 +33,8 @@ namespace Solvberget.Service.Infrastructure
                 .WithConstructorArgument("pathToDictionary", EnvironmentHelper.GetDictionaryPath())
                 .WithConstructorArgument("pathToDictionaryDirectory", EnvironmentHelper.GetDictionaryIndexPath())
                 .WithConstructorArgument("pathToStopWordsDict", EnvironmentHelper.GetStopwordsPath())
-                .WithConstructorArgument("pathToSuggestionListDict", EnvironmentHelper.GetSuggestionListPath());
+                .WithConstructorArgument("pathToSuggestionListDict", EnvironmentHelper.GetSuggestionListPath())
+                .WithConstructorArgument("pathToTestDict", EnvironmentHelper.GetTestDictionaryPath());
                 
         }
     }

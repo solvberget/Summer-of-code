@@ -24,9 +24,11 @@ namespace Solvberget.Domain.Implementation
         private readonly string _pathToDictDir;
         private readonly string _pathToStopwordsDict;
         private readonly string _pathToSuggestionsDict;
+        private readonly string _pathToTestDict;
+
         private string[] _suggestionList;
 
-        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict = null, string pathToSuggestionListDict = null)
+        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict = null, string pathToSuggestionListDict = null, string pathToTestDict=null)
         {
             _pathToStopwordsDict = string.IsNullOrEmpty(pathToStopWordsDict)
                 ? @"App_Data\ordlister\stopwords.txt" : pathToStopWordsDict;
@@ -39,7 +41,9 @@ namespace Solvberget.Domain.Implementation
 
             _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory) 
                 ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
-            
+
+            _pathToTestDict = string.IsNullOrEmpty(pathToTestDict)
+                ? @"App_Data\ordlister\ord_test.txt" : pathToTestDict;
 
             InitializeSpellChecker();
         }
@@ -68,8 +72,8 @@ namespace Solvberget.Domain.Implementation
         {
 
             var di = CreateTargetFolder();
-            var fi = new FileInfo(_pathToDict);
-
+            // var fi = new FileInfo(_pathToDict);
+            var fi = new FileInfo(_pathToTestDict);
             using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
             {
                 staticSpellChecker.IndexDictionary(new PlainTextDictionary(fi));

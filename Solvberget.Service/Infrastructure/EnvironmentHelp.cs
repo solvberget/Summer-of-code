@@ -31,5 +31,9 @@ namespace Solvberget.Service.Infrastructure
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_forslag.txt");
         }
+        public static string GetTestDictPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_test.txt");
+        }
     }
 }
