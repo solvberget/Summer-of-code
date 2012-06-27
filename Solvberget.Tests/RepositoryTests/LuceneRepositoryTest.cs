@@ -27,7 +27,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             _repository = new LuceneRepository(Path.Combine(basepath, @"ordlister\ord_bm.txt"),
                                                Path.Combine(basepath, @"ordlister_index"),
                                                Path.Combine(basepath, @"ordlister\stopwords.txt"),
-                                               Path.Combine(basepath, @"ordlister\ord_forslag.txt"));
+                                               Path.Combine(basepath, @"ordlister\ord_forslag.txt"),
+                                               Path.Combine(basepath, @"ordlister\ord_test.txt"));
 
         }
 
@@ -136,7 +137,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
 
             string testString = "<script>alert('error')";
-            string testSolution = "&lt;script&gt;alert(&apos;error&apos;)";
+            const string testSolution = "&lt;script&gt;alert(&apos;error&apos;)";
 
             var solution = _repository.Lookup(testString);
             Assert.AreEqual(testSolution, solution);
@@ -191,5 +192,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.Contains("harry potter", _repository.SuggestionList());
             Assert.Contains("villanden", _repository.SuggestionList());
         }
+
+
     }
 }

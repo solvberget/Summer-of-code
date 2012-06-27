@@ -68,8 +68,10 @@
     </Content>
     <Content Include="js\lib\knockout-2.1.0.js" />
     <Content Include="js\lib\less-1.3.0.min.js" />
+    <Content Include="js\lib\spinn.min.js" />
     <Content Include="js\models\Document.js" />
     <Content Include="js\navigator.js" />
+    <Content Include="js\test\DocumentSearch.tests.js" />
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
@@ -88,7 +90,6 @@
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\NewFolder\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />

@@ -15,10 +15,14 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
     var searchPageURI = "/pages/searchResults/searchResults.html";
-    var self = {
-        suggestionList : [],
+    var suggestionMethods = {
+        suggestionList: [],
+        url : "http://localhost:7089/Document/SuggestionList/",
         populateSuggestionList : function (allData) {
-            self.suggestionList = allData;
+            suggestionMethods.suggestionList = allData;
+        },
+        getSuggestionListFromServer: function () {
+            $.getJSON(suggestionMethods.url, suggestionMethods.populateSuggestionList);
         }
     };
 
@@ -201,9 +205,7 @@
     appModel.Search.SearchPane.getForCurrentView().onquerysubmitted = function (args) { nav.navigate(searchPageURI, args); };
     
     // Populate suggestionList from server
-    var url = "http://localhost:7089/Document/SuggestionList/";
-    $.getJSON(url , self.populateSuggestionList);
-
+    suggestionMethods.getSuggestionListFromServer();
 
 
     Windows.ApplicationModel.Search.SearchPane.getForCurrentView().onsuggestionsrequested = function (eventObject) {
@@ -212,9 +214,9 @@
         var maxNumberOfSuggestions = 5;
                     
 
-        for (var i = 0, len = self.suggestionList.length; i < len; i++) {
-            if (self.suggestionList[i].substr(0, query.length).toLowerCase() === query) {
-                suggestionRequest.searchSuggestionCollection.appendQuerySuggestion(self.suggestionList[i]);
+        for (var i = 0, len = suggestionMethods.suggestionList.length; i < len; i++) {
+            if (suggestionMethods.suggestionList[i].substr(0, query.length).toLowerCase() === query) {
+                suggestionRequest.searchSuggestionCollection.appendQuerySuggestion(suggestionMethods.suggestionList[i]);
                 if (suggestionRequest.searchSuggestionCollection.size === maxNumberOfSuggestions) {
                     break;
                 }
