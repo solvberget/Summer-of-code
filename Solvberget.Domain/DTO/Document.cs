@@ -12,7 +12,7 @@ namespace Solvberget.Domain.DTO
         public bool IsFiction { get; set; }
         public string Language { get; set; }
         public IEnumerable<string> Languages { get; set; }
-        public string DocumentType { get; set; }
+        public IEnumerable<string> DocumentType { get; set; }
         public string LocationCode { get; set; }
         public string Title { get; set; }
         public string SubTitle { get; set; }
@@ -46,7 +46,7 @@ namespace Solvberget.Domain.DTO
                     Languages = GetVarfield(nodes, "041", "a").SplitByLength(3).ToList();
                 }
 
-                DocumentType = GetVarfield(nodes, "019", "b");
+                DocumentType = GetVarfield(nodes, "019", "b").Split(';');
                 LocationCode = GetVarfield(nodes, "090", "d");
                 Title = GetVarfield(nodes, "245", "a");
                 SubTitle = GetVarfield(nodes, "245", "b");

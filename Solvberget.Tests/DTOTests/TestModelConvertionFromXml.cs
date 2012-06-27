@@ -23,7 +23,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("swe", media.Languages.ElementAt(1));
             Assert.AreEqual("eng", media.Languages.ElementAt(2));
 
-            Assert.AreEqual("l", media.DocumentType);
+            Assert.AreEqual("l", media.DocumentType.ElementAt(0));
 
             Assert.AreEqual("LOE", media.LocationCode);
             
@@ -202,7 +202,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var film = Film.GetFilmFromFindDocXml(getFilmXml());
 
-            Assert.AreEqual("ee", film.DocumentType);
+            Assert.AreEqual("ee", film.DocumentType.ElementAt(0));
             
         }
 
