@@ -33,11 +33,10 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
 
                 var targetGrpString = GetFixfield(nodes, "008", 22, 22);
-                if (targetGrpString != null && targetGrpString.Length > 0)
+                if (!string.IsNullOrEmpty(targetGrpString))
                     TargetGroup = targetGrpString[0];
                 IsFiction = GetFixfield(nodes, "008", 33, 33).Equals("1") ? true : false;
 
@@ -181,6 +180,8 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
+                DocumentNumber = xmlDoc.Root.Descendants("doc_number").Select(x => x.Value).FirstOrDefault();
+                
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 Language = GetFixfield(nodes, "008", 35, 37);
 

@@ -12,7 +12,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var media = Document.GetDocumentFromFindDocXml(getBookXml());
 
-            //Assert.AreEqual("123456789", media.DocumentNumber);
+            Assert.AreEqual("123456789", media.DocumentNumber);
 
             Assert.AreEqual('a', media.TargetGroup);
 
@@ -51,6 +51,7 @@ namespace Solvberget.Service.Tests.DTOTests
         public void GetDocumentLightFromXmlTest()
         {
             var media = Document.GetDocumentFromFindDocXmlLight(getBookXml());
+            Assert.AreEqual("123456789", media.DocumentNumber);
             Assert.AreEqual(3, media.Language.Length);
             Assert.AreEqual("mul", media.Language);
             Assert.AreEqual("l", media.DocumentType.ElementAt(0));
