@@ -46,6 +46,17 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
+        public void GetDocumentLightFromXmlTest()
+        {
+            var media = Document.GetDocumentFromFindDocXmlLight(getBookXml());
+            Assert.AreEqual(3, media.Language.Length);
+            Assert.AreEqual("mul", media.Language);
+            Assert.AreEqual("l", media.DocumentType.ElementAt(0));
+            Assert.AreEqual("Naiv. Super", media.Title);
+            Assert.AreEqual(2010, media.PublishedYear);
+        }
+
+        [Test]
         public void GetBookFromXmlTest()
         {
             var book = Book.GetBookFromFindDocXml(getBookXml());

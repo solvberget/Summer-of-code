@@ -30,6 +30,9 @@ namespace Solvberget.Domain.DTO
 
         protected virtual void FillProperties(string xml)
         {
+            
+            FillPropertiesLight(xml);
+
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
@@ -38,7 +41,6 @@ namespace Solvberget.Domain.DTO
 
                 TargetGroup = GetFixfield(nodes, "008", 22, 22)[0];
                 IsFiction = GetFixfield(nodes, "008", 33, 33).Equals("1") ? true : false;
-                Language = GetFixfield(nodes, "008", 35, 37);
 
                 //Only get languages (041a) if language in base equals "mul" 
                 if (Language.Equals("mul"))
@@ -46,29 +48,17 @@ namespace Solvberget.Domain.DTO
                     Languages = GetVarfield(nodes, "041", "a").SplitByLength(3).ToList();
                 }
 
-                DocumentType = GetVarfield(nodes, "019", "b").Split(';');
                 LocationCode = GetVarfield(nodes, "090", "d");
-                Title = GetVarfield(nodes, "245", "a");
                 SubTitle = GetVarfield(nodes, "245", "b");
-                
+
                 var involvedPersonsAsString = GetVarfield(nodes, "245", "c");
                 if (involvedPersonsAsString != null)
                 {
                     ResponsiblePersons = involvedPersonsAsString.Split(';');
                 }
-                
+
                 PlacePublished = GetVarfield(nodes, "260", "a");
                 Publisher = GetVarfield(nodes, "260", "b");
-
-                var publishedYearString = GetVarfield(nodes, "260", "c");
-                if (publishedYearString != null)
-                {
-                    //Format may be "[2009]" or "2009.", trim if so
-                    var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
-                    var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
-                    if (!string.IsNullOrEmpty(foundValue))
-                        PublishedYear = int.Parse(foundValue);
-                }
 
                 SeriesTitle = GetVarfield(nodes, "440", "a");
                 SeriesNumber = GetVarfield(nodes, "440", "v");
@@ -83,10 +73,19 @@ namespace Solvberget.Domain.DTO
             return document;
         }
 
+        public static Document GetDocumentFromFindDocXmlLight(string xml)
+        {
+            var document = new Document();
+            document.FillPropertiesLight(xml);
+            return document;
+        }
+
         protected static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
         {
-            var fixfield = nodes.Elements("fixfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Select(x => x.Value).FirstOrDefault();
-            
+            var fixfield =
+                nodes.Elements("fixfield").Where(x => ((string) x.Attribute("id")).Equals(id)).Select(x => x.Value).
+                    FirstOrDefault();
+
             if (fromPos == toPos)
             {
                 return fixfield.ElementAt(fromPos).ToString();
@@ -99,19 +98,26 @@ namespace Solvberget.Domain.DTO
 
         protected static string GetVarfield(IEnumerable<XElement> nodes, string id, string subfieldLabel)
         {
-            var varfield = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Elements("subfield");
-            return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
+            var varfield =
+                nodes.Elements("varfield").Where(x => ((string) x.Attribute("id")).Equals(id)).Elements("subfield");
+            return
+                varfield.Where(x => ((string) x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).
+                    FirstOrDefault();
         }
 
-        protected static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id, string subfieldLabel)
+        protected static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
+                                                               string subfieldLabel)
         {
-            var varfield = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Elements("subfield");
+            var varfield =
+                nodes.Elements("varfield").Where(x => ((string) x.Attribute("id")).Equals(id)).Elements("subfield");
             return varfield.Where(x => ((string) x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value);
         }
 
         protected static string GetSubFieldValue(XElement varfield, string label)
         {
-            return varfield.Elements("subfield").Where(x => ((string)x.Attribute("label")).Equals(label)).Select(x => x.Value).FirstOrDefault();
+            return
+                varfield.Elements("subfield").Where(x => ((string) x.Attribute("label")).Equals(label)).Select(
+                    x => x.Value).FirstOrDefault();
         }
 
         protected static IEnumerable<Person> GeneratePersonsFromXml(IEnumerable<XElement> nodes, string id)
@@ -119,18 +125,18 @@ namespace Solvberget.Domain.DTO
 
             var persons = new List<Person>();
 
-            var varfields = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).ToList();
+            var varfields = nodes.Elements("varfield").Where(x => ((string) x.Attribute("id")).Equals(id)).ToList();
 
             foreach (var varfield in varfields)
             {
                 var person = new Person()
-                {
-                    Name = GetSubFieldValue(varfield, "a"),
-                    LivingYears = GetSubFieldValue(varfield, "d"),
-                    Nationality = GetSubFieldValue(varfield, "j"),
-                    Role = GetSubFieldValue(varfield, "e"),
-                    ReferredWork = GetSubFieldValue(varfield, "t")
-                };
+                                 {
+                                     Name = GetSubFieldValue(varfield, "a"),
+                                     LivingYears = GetSubFieldValue(varfield, "d"),
+                                     Nationality = GetSubFieldValue(varfield, "j"),
+                                     Role = GetSubFieldValue(varfield, "e"),
+                                     ReferredWork = GetSubFieldValue(varfield, "t")
+                                 };
 
                 persons.Add(person);
 
@@ -145,18 +151,18 @@ namespace Solvberget.Domain.DTO
 
             var organizations = new List<Organization>();
 
-            var varfields = nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).ToList();
+            var varfields = nodes.Elements("varfield").Where(x => ((string) x.Attribute("id")).Equals(id)).ToList();
 
             foreach (var varfield in varfields)
             {
                 var org = new Organization()
-                {
-                    Name = GetSubFieldValue(varfield, "a"),
-                    UnderOrganization = GetSubFieldValue(varfield, "b"),
-                    Role = GetSubFieldValue(varfield, "e"),
-                    FurtherExplanation = GetSubFieldValue(varfield, "q"),
-                    ReferencedPublication = GetSubFieldValue(varfield, "t")
-                };
+                              {
+                                  Name = GetSubFieldValue(varfield, "a"),
+                                  UnderOrganization = GetSubFieldValue(varfield, "b"),
+                                  Role = GetSubFieldValue(varfield, "e"),
+                                  FurtherExplanation = GetSubFieldValue(varfield, "q"),
+                                  ReferencedPublication = GetSubFieldValue(varfield, "t")
+                              };
 
                 organizations.Add(org);
 
@@ -166,6 +172,27 @@ namespace Solvberget.Domain.DTO
 
         }
 
-    }
+        protected virtual void FillPropertiesLight(string xml)
+        {
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                Language = GetFixfield(nodes, "008", 35, 37);
+                DocumentType = GetVarfield(nodes, "019", "b").Split(';');
+                Title = GetVarfield(nodes, "245", "a");
+                var publishedYearString = GetVarfield(nodes, "260", "c");
+                if (publishedYearString != null)
+                {
+                    //Format may be "[2009]" or "2009.", trim if so
+                    var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
+                    var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
+                    if (!string.IsNullOrEmpty(foundValue))
+                        PublishedYear = int.Parse(foundValue);
+                }
 
+            }
+        }
+
+    }
 }
