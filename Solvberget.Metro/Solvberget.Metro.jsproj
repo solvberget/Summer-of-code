@@ -50,7 +50,12 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="config.rb" />
+    <Content Include="css\default.css" />
     <Content Include="css\default.less" />
+    <Content Include="css\ie.css" />
+    <Content Include="css\print.css" />
+    <Content Include="css\screen.css" />
     <Content Include="default.html" />
     <Content Include="DocumentInfo.html" />
     <Content Include="images\logo.png" />
@@ -84,6 +89,10 @@
     <Content Include="js\viewmodels\searchResults.css" />
     <Content Include="js\viewmodels\searchResults.html" />
     <Content Include="js\viewmodels\searchResults.js" />
+    <Content Include="sass\default.scss" />
+    <Content Include="sass\ie.scss" />
+    <Content Include="sass\print.scss" />
+    <Content Include="sass\screen.scss" />
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
