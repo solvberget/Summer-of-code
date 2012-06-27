@@ -43,7 +43,7 @@
         itemInvoked: function (args) {
             args.detail.itemPromise.done(function itemInvoked(item) {
                 // TODO: Navigate to the item that was invoked.
-                nav.navigate("default.html", {item: item.data});
+                nav.navigate("searchResults.html", {item: item.data});
             });
         },
 

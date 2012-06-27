@@ -37,6 +37,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
             DictionaryBuilder.Build(_dictPath, _indexPath);
 
         }
+        [Test]
+        public void TestCreateTargetFolder()
+        {
+            DictionaryBuilder.CreateTargetFolder(Path.Combine(_basepath, "testpath"));
+            Assert.Pass();
+        }
+
 
         [Test]
         public void TestBuildDictionary()
