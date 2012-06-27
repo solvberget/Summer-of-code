@@ -10,16 +10,17 @@
     var lightGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY7h4+cp/AAhpA3h+ANDKAAAAAElFTkSuQmCC";
     var mediumGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g8dcZ/AAY/AsAlWFQ+AAAAAElFTkSuQmCC";
     var darkGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY3B0cPoPAANMAcOba1BlAAAAAElFTkSuQmCC";
+    var search = "/images/icon/Icon Pack 1/png/search.png";
 
     // Each of these sample groups must have a unique key to be displayed
     // separately.
     var sampleGroups = [
-        { key: "group1", title: "Group Title: 1", subtitle: "Group Subtitle: 1", backgroundImage: darkGray, description: groupDescription },
-        { key: "group2", title: "Group Title: 2", subtitle: "Group Subtitle: 2", backgroundImage: lightGray, description: groupDescription },
-        { key: "group3", title: "Group Title: 3", subtitle: "Group Subtitle: 3", backgroundImage: mediumGray, description: groupDescription },
-        { key: "group4", title: "Group Title: 4", subtitle: "Group Subtitle: 4", backgroundImage: lightGray, description: groupDescription },
-        { key: "group5", title: "Group Title: 5", subtitle: "Group Subtitle: 5", backgroundImage: mediumGray, description: groupDescription },
-        { key: "group6", title: "Group Title: 6", subtitle: "Group Subtitle: 6", backgroundImage: darkGray, description: groupDescription }
+        { key: "group1", title: "Film", subtitle: "Mine Filmer", backgroundImage: darkGray, description: groupDescription },
+        { key: "group2", title: "Bøker", subtitle: "Mine Bøker", backgroundImage: lightGray, description: groupDescription },
+        { key: "group3", title: "Min Side", subtitle: "", backgroundImage: mediumGray, description: groupDescription },
+        { key: "group4", title: "Topp 5 bøker", subtitle: "Bibliotekets anbefalinger", backgroundImage: lightGray, description: groupDescription },
+        { key: "group5", title: "Informasjon", subtitle: "Kontaktinfo og åpningstider", backgroundImage: darkGray, description: groupDescription },
+        { key: "group6", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, description: groupDescription }
     ];
 
     // Each of these sample items should have a reference to a particular
