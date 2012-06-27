@@ -11,15 +11,22 @@
     var mediumGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY5g8dcZ/AAY/AsAlWFQ+AAAAAElFTkSuQmCC";
     var darkGray = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY3B0cPoPAANMAcOba1BlAAAAAElFTkSuQmCC";
     var search = "/images/icon/Icon Pack 1/png/search.png";
+    var movies = "/images/icon/Icon Pack 1/png/camre.png";
+    var info = "/images/icon/Icon Pack 1/png/info.png";
+    var music = "/images/icon/Icon Pack 1/png/music.png";
+    var home = "/images/icon/Icon Pack 1/png/home.png";
+    var tasks = "/images/icon/Icon Pack 1/png/tasks.png";
+
+
 
     // Each of these sample groups must have a unique key to be displayed
     // separately.
     var sampleGroups = [
-        { key: "group1", title: "Film", subtitle: "Mine Filmer", backgroundImage: darkGray, description: groupDescription },
-        { key: "group2", title: "Bøker", subtitle: "Mine Bøker", backgroundImage: lightGray, description: groupDescription },
-        { key: "group3", title: "Min Side", subtitle: "", backgroundImage: mediumGray, description: groupDescription },
-        { key: "group4", title: "Topp 5 bøker", subtitle: "Bibliotekets anbefalinger", backgroundImage: lightGray, description: groupDescription },
-        { key: "group5", title: "Informasjon", subtitle: "Kontaktinfo og åpningstider", backgroundImage: darkGray, description: groupDescription },
+        { key: "group1", title: "Film", subtitle: "Mine Filmer", backgroundImage: movies, description: groupDescription },
+        { key: "group2", title: "Musikk", subtitle: "Min musikk", backgroundImage: music, description: groupDescription },
+        { key: "group3", title: "Min Side", subtitle: "", backgroundImage: home, description: groupDescription },
+        { key: "group4", title: "Topp 5 bøker", subtitle: "Bibliotekets anbefalinger", backgroundImage: tasks, description: groupDescription },
+        { key: "group5", title: "Informasjon", subtitle: "Kontaktinfo og åpningstider", backgroundImage: info, description: groupDescription },
         { key: "group6", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, description: groupDescription }
     ];
 
