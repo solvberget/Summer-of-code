@@ -8,6 +8,8 @@ namespace Solvberget.Domain.DTO
 {
     public class Document
     {
+        public string DocumentNumber { get; set; }
+        
         public char TargetGroup { get; set; }
         public bool IsFiction { get; set; }
         public string Language { get; set; }
@@ -22,11 +24,6 @@ namespace Solvberget.Domain.DTO
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
-
-        //public string Scope { get; set; }
-        //public string Category { get; set; }
-        //public string AlphabeticalStatement { get; set; }
-        //public string DocumentNumber { get; set; }
 
         protected virtual void FillProperties(string xml)
         {
@@ -62,6 +59,28 @@ namespace Solvberget.Domain.DTO
 
                 SeriesTitle = GetVarfield(nodes, "440", "a");
                 SeriesNumber = GetVarfield(nodes, "440", "v");
+
+            }
+        }
+
+        protected virtual void FillPropertiesLight(string xml)
+        {
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                Language = GetFixfield(nodes, "008", 35, 37);
+                DocumentType = GetVarfield(nodes, "019", "b").Split(';');
+                Title = GetVarfield(nodes, "245", "a");
+                var publishedYearString = GetVarfield(nodes, "260", "c");
+                if (publishedYearString != null)
+                {
+                    //Format may be "[2009]" or "2009.", trim if so
+                    var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
+                    var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
+                    if (!string.IsNullOrEmpty(foundValue))
+                        PublishedYear = int.Parse(foundValue);
+                }
 
             }
         }
@@ -170,28 +189,6 @@ namespace Solvberget.Domain.DTO
 
             return organizations;
 
-        }
-
-        protected virtual void FillPropertiesLight(string xml)
-        {
-            var xmlDoc = XDocument.Parse(xml);
-            if (xmlDoc.Root != null)
-            {
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
-                Language = GetFixfield(nodes, "008", 35, 37);
-                DocumentType = GetVarfield(nodes, "019", "b").Split(';');
-                Title = GetVarfield(nodes, "245", "a");
-                var publishedYearString = GetVarfield(nodes, "260", "c");
-                if (publishedYearString != null)
-                {
-                    //Format may be "[2009]" or "2009.", trim if so
-                    var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
-                    var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
-                    if (!string.IsNullOrEmpty(foundValue))
-                        PublishedYear = int.Parse(foundValue);
-                }
-
-            }
         }
 
     }

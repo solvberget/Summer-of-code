@@ -66,6 +66,21 @@ namespace Solvberget.Domain.DTO
             }
         }
 
+        protected override void FillPropertiesLight(string xml)
+        {
+            base.FillPropertiesLight(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+                var nodes = xmlDoc.Root.Descendants();
+                OriginalTitle = GetVarfield(nodes, "240", "a");
+                ProductionYear = GetVarfield(nodes, "260", "g");
+                AgeLimit = GetVarfield(nodes, "521", "a");
+                Genre = GetVarfieldAsList(nodes, "655", "a");
+
+            }
+        }
+
         public static Film GetFilmFromFindDocXml(string xml)
         {
             var film = new Film();
@@ -74,5 +89,15 @@ namespace Solvberget.Domain.DTO
 
             return film;
         }
+
+        public static Film GetFilmFromFindDocXmlLight(string xml)
+        {
+            var film = new Film();
+
+            film.FillPropertiesLight(xml);
+
+            return film;
+        }
+
     }
 }

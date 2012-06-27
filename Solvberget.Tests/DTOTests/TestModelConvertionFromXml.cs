@@ -12,6 +12,8 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var media = Document.GetDocumentFromFindDocXml(getBookXml());
 
+            //Assert.AreEqual("123456789", media.DocumentNumber);
+
             Assert.AreEqual('a', media.TargetGroup);
 
             Assert.IsTrue(media.IsFiction);
@@ -122,6 +124,25 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
+        public void GetBookLightFromXmlTest()
+        {
+            var book1 = Book.GetBookFromFindDocXmlLight(getBookXml());
+            Assert.AreEqual("Loe, Erlend", book1.Author.Name);
+            Assert.AreEqual("1969-", book1.Author.LivingYears);
+            Assert.AreEqual("n", book1.Author.Nationality);
+
+            var book2 = Book.GetBookFromFindDocXmlLight(getBookWithOrgXml());
+            Assert.AreEqual("Røde Kors", book2.Author.Name);
+            Assert.AreEqual("Røde Kors", book2.Organization.Name);
+            Assert.AreEqual("Hjelpekorpset", book2.Organization.UnderOrganization);
+            Assert.AreEqual("Hjelper folk", book2.Organization.FurtherExplanation);
+
+            var book3 = Book.GetBookFromFindDocXmlLight(getBookWithStdTitleXml());
+            Assert.AreEqual("Røde Kors", book3.StandarizedTitle);
+
+        }
+
+        [Test]
         public void GetBookWithOrganizationFromXmlTest()
         {
             var book = Book.GetBookFromFindDocXml(getBookWithOrgXml());
@@ -209,6 +230,16 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
+        public void GetFilmLightFromXmlTest()
+        {
+            var film = Film.GetFilmFromFindDocXmlLight(getFilmXml());
+            Assert.AreEqual("Max Manus", film.OriginalTitle);
+            Assert.AreEqual("2008", film.ProductionYear);
+            Assert.AreEqual("Aldersgrense: 15 år", film.AgeLimit);
+            Assert.AreEqual("Drama", film.Genre.ElementAt(0));
+        }
+
+        [Test]
         public void GetDocumentTypeFromXml()
         {
             var film = Film.GetFilmFromFindDocXml(getFilmXml());
@@ -276,15 +307,32 @@ namespace Solvberget.Service.Tests.DTOTests
 
         }
 
+        [Test]
+        public void GetAudioBookLightFromXmlTest()
+        {
+            var audioBook1 = AudioBook.GetAudioBookFromFindDocXmlLight(getAudioBookXML());
+            Assert.AreEqual("Rowling, J.K.", audioBook1.Author.Name);
+            Assert.AreEqual("1965-", audioBook1.Author.LivingYears);
+            Assert.AreEqual("eng.", audioBook1.Author.Nationality);
+
+            var audioBook2 = AudioBook.GetAudioBookFromFindDocXmlLight(getAudioBookWithOrgXml());
+            Assert.AreEqual("Røde Kors", audioBook2.Author.Name);
+            Assert.AreEqual("Røde Kors", audioBook2.Organization.Name);
+            Assert.AreEqual("Hjelpekorpset", audioBook2.Organization.UnderOrganization);
+            Assert.AreEqual("Hjelper folk", audioBook2.Organization.FurtherExplanation);
+
+            var audioBook3 = AudioBook.GetAudioBookFromFindDocXmlLight(getAudioBookWithStdTitleXml());
+            Assert.AreEqual("Røde Kors", audioBook3.StandarizedTitle);
+        }
+
+        [Test]
         public void GetAudioBookWithOrganizationFromXmlTest()
         {
             var audioBook = AudioBook.GetAudioBookFromFindDocXml(getAudioBookWithOrgXml());
-
             Assert.AreEqual("Røde Kors", audioBook.Author.Name);
             Assert.AreEqual("Røde Kors", audioBook.Organization.Name);
             Assert.AreEqual("Hjelpekorpset", audioBook.Organization.UnderOrganization);
             Assert.AreEqual("Hjelper folk", audioBook.Organization.FurtherExplanation);
-
         }
 
         [Test]
@@ -298,6 +346,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             return @"<find-doc>
   <record>
+    <doc_number>123456789</doc_number>
     <metadata>
       <oai_marc>
         <fixfield id=""FMT"">BK</fixfield>
@@ -445,6 +494,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             return @"<find-doc>
   <record>
+    <doc_number>123456789</doc_number>
     <metadata>
       <oai_marc>
         <fixfield id=""FMT"">BK</fixfield>
@@ -558,6 +608,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             return @"<find-doc>
   <record>
+    <doc_number>123456789</doc_number>
     <metadata>
       <oai_marc>
         <fixfield id=""FMT"">BK</fixfield>
@@ -670,6 +721,7 @@ namespace Solvberget.Service.Tests.DTOTests
             return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
 <find-doc>
     <record>
+        <doc_number>123456789</doc_number>
         <metadata>
             <oai_marc>
                 <fixfield id=""FMT"">VM</fixfield>
@@ -802,6 +854,7 @@ namespace Solvberget.Service.Tests.DTOTests
             return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
 <find-doc>
     <record>
+        <doc_number>123456789</doc_number>
         <metadata>
             <oai_marc>
                 <fixfield id=""FMT"">BK</fixfield>
@@ -941,6 +994,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             return @"<find-doc>
   <record>
+    <doc_number>123456789</doc_number>
     <metadata>
       <oai_marc>
         <fixfield id=""FMT"">BK</fixfield>
@@ -1055,6 +1109,7 @@ namespace Solvberget.Service.Tests.DTOTests
             return @"<find-doc>
   <record>
     <metadata>
+      <doc_number>123456789</doc_number>
       <oai_marc>
         <fixfield id=""FMT"">BK</fixfield>
         <fixfield id=""LDR"">^^^^^nam^^^^^^^^^1</fixfield>
