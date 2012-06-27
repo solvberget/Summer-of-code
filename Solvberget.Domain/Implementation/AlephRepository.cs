@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 
 namespace Solvberget.Domain.Implementation
@@ -16,7 +17,7 @@ namespace Solvberget.Domain.Implementation
         private string GetUrl(Operation function, Dictionary<string, string> options)
         {
             var sb = new StringBuilder();
-            sb.Append(Properties.Settings.Default.ServerUrl);
+          sb.Append(Properties.Settings.Default.ServerUrl);
             sb.Append(GetOperationPrefix(function));
             foreach (var option in options)
             {
