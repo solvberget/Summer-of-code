@@ -14,6 +14,7 @@
     <!-- Solvberget.Metro references -->
 
     <link rel="stylesheet/less" type="text/css" href="/css/default.less">
+    <link rel="stylesheet" href="/css/default.css" />
 
     <script type="text/javascript" src="/js/lib/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/js/lib/knockout-2.1.0.js"></script>
@@ -30,14 +31,20 @@
 
 </head>
 <body>
+
      <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/items/items.html'}"></div>
 <!--  <h1>Sølvberget</h1>
     
     <h2>Search for document</h2>
+    
+    <h1>Sølvberget</h1>
+    
+    <h2>Søk i biblioteket</h2>
+
     <p>
-        <input class="inputSearchField" placeholder="Søk etter bøker, film, CDer eller noter" data-bind='value: searchString, valueUpdate: "afterkeydown"' spellcheck="true" /><button data-bind="click: search">Search</button>
+        <input class="inputSearchField" placeholder="Søk etter bøker, film, CDer eller noter" data-bind='value: searchString, valueUpdate: "afterkeydown"' spellcheck="true" /><button data-bind="click: search" style="margin-left: 1cm;">Search</button>
     </p>
-    <div id="searchField"></div>
+    <div id="searchField" style="width: 63px; height: 28.5px;"></div>
 
 
     <p data-bind="fadeVisible: displaySearchSuggestion"><a href="#" data-bind="click: searchSuggested"><span data-bind="text: suggestionLink"></span></a></p>
@@ -45,12 +52,12 @@
         <li>
             <strong data-bind="text: title"></strong> <em data-bind="text: DocumentType"></em>
         </li>
-    </ul>
-    
-
-  
-
-    <script type="text/javascript" src="/js/viewmodels/DocumentSearch.js"></script>
+    </ul>  
       -->
+    <!-- ViewModel må lastes etter HTML-elementene er opprettet -->
+  <!--
+      <script type="text/javascript" src="/js/viewmodels/DocumentSearch.js"></script>
+      -->
+
 </body>
 </html>
