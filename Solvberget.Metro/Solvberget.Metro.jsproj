@@ -83,12 +83,12 @@
     <Content Include="pages\items\items.css" />
     <Content Include="pages\items\items.html" />
     <Content Include="pages\items\items.js" />
+    <Content Include="pages\searchResults\searchResults.css" />
+    <Content Include="pages\searchResults\searchResults.html" />
+    <Content Include="pages\searchResults\searchResults.js" />
     <Content Include="pages\split\split.css" />
     <Content Include="pages\split\split.html" />
     <Content Include="pages\split\split.js" />
-    <Content Include="js\viewmodels\searchResults.css" />
-    <Content Include="js\viewmodels\searchResults.html" />
-    <Content Include="js\viewmodels\searchResults.js" />
     <Content Include="sass\default.scss" />
     <Content Include="sass\ie.scss" />
     <Content Include="sass\print.scss" />

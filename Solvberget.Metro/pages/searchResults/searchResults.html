@@ -11,7 +11,8 @@
     <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
     
     <link href="/css/default.css" rel="stylesheet" />
-    <link href="/js/viewmodels/searchResults.css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/viewmodels/searchResults.js"></script>
+    <link href="/pages/searchResults/searchResults.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
 </head>
 <body>
@@ -43,7 +44,13 @@
                 <select class="filterselect"></select>
             </div>
             <div class="resultslist" aria-label="Search results" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+            <ul data-bind="foreach: documents, visible: documents().length > 0">
+        <li>
+            <strong data-bind="text: title"></strong> <em data-bind="text: DocumentType"></em>
+        </li>
+    </ul>
         </section>
     </div>
+          <script type="text/javascript" src="/js/viewmodels/DocumentSearch.js"></script>
 </body>
 </html>
