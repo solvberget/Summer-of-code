@@ -81,7 +81,7 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-        public static Film GetFilmFromFindDocXml(string xml)
+        public static Film GetObjectFromFindDocXmlBSMarc(string xml)
         {
             var film = new Film();
 
@@ -90,7 +90,7 @@ namespace Solvberget.Domain.DTO
             return film;
         }
 
-        public static Film GetFilmFromFindDocXmlLight(string xml)
+        public static Film GetObjectFromFindDocXmlBSMarcLight(string xml)
         {
             var film = new Film();
 

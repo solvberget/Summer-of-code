@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -39,7 +41,7 @@ namespace Solvberget.Domain.Implementation
             if (doc.Root != null)
             {
                 result.SetNumber = doc.Root.Elements("set_number").Select(x => x.Value).FirstOrDefault();
-                result.NumberOfRecords = doc.Root.Elements("no_records").Select(x => x.Value).FirstOrDefault();
+                result.NumberOfRecords = doc.Root.Elements("no_records").Select(x  x.Value).FirstOrDefault();
             }
 
             return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
@@ -59,12 +61,38 @@ namespace Solvberget.Domain.Implementation
             if (doc.Root != null)
             {
                 var xmlResult = doc.Root.Elements("record").Select(x => x).ToList();
-                //Todo: Implement checking of document type and create appropriate document
-                xmlResult.ForEach(x => documents.Add(Document.GetDocumentFromFindDocXml(x.ToString())));
+                //Populate list with light documents of correct type
+                xmlResult.ForEach(x => documents.Add(PopulateDocument(x, true)));
             }
             documents.RemoveAll(x => x.Title == null);
             return documents;
         }
+
+        private static Document PopulateDocument(XElement record, Boolean populateLight)
+        {
+            var xmlDoc = XDocument.Parse(record.ToString());
+            var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+            var docTypeString = Document.GetVarfield(nodes, "019", "b");
+
+            if (docTypeString != null)
+            {
+                var className =  GetDocumentType(docTypeString.Split(';'));
+
+                var type = Type.GetType("Solvberget.Domain.DTO." + className);
+
+                var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBSMarcLight" : "GetObjectFromFindDocXmlBSMarc");
+
+                return (Document)methodInfo.Invoke(type, BindingFlags.InvokeMethod | BindingFlags.Default, null, new object[] { record.ToString() },CultureInfo.CurrentCulture);
+
+            }
+            else
+            {
+               return Document.GetObjectFromFindDocXmlBSMarcLight(record.ToString());
+            }
+            
+        }
+
 
         private static XDocument GetXmlFromStream(string url)
         {
@@ -99,9 +127,7 @@ namespace Solvberget.Domain.Implementation
 
         private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument }
 
-        private enum DocumentType { Document, Book, Film, AudioBook, ClassicalCd, PopularCd, SheetMusic, Journal }
-
-        private static DocumentType GetDocumentType(IEnumerable<string> documentTypeCodes)
+        private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
             foreach(string dtc in documentTypeCodes)
             {
@@ -110,19 +136,19 @@ namespace Solvberget.Domain.Implementation
 
                 if (dtc.Equals("l"))
                 {
-                    return DocumentType.Book;
+                    return "Book";
                 }
                 else if (dtc.StartsWith("e"))
                 {
-                    return DocumentType.Film;
+                    return "Film";
                 }
                 else if (dtc.Equals("di"))
                 {
-                    return DocumentType.AudioBook;
+                    return "AudioBook";
                 }
             }
             
-            return DocumentType.Document;
+            return "Document";
 
         }   
     }
