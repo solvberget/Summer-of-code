@@ -14,7 +14,7 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
-    var searchPageURI = "/js/viewmodels/searchResults.html";
+    var searchPageURI = "/pages/searchResults/searchResults.html";
     var self = {
         suggestionList : [],
         populateSuggestionList : function (allData) {

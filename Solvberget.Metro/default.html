@@ -11,20 +11,23 @@
 
     <!-- Solvberget.Metro references -->
     <link rel="stylesheet/less" type="text/css" href="/css/default.less">
+
     <script type="text/javascript" src="/js/lib/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/js/lib/knockout-2.1.0.js"></script>
+     <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
     <script src="/js/utils.js"></script>
     <script type="text/javascript" src="js/lib/less-1.3.0.min.js"></script>
     <script type="text/javascript" src="/js/models/Document.js"></script>
-    <script type="text/javascript" src="/js/models/Link.js"></script>
-    <script type="text/javascript" src="/js/viewmodels/searchResults.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/default.js"></script>
+    <script src="/js/navigator.js"></script>
 
 </head>
 <body>
+      <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/items/items.html'}"></div>
+     <!-- <h1>Sølvberget</h1>
     
-    <h1>Sølvberget</h1>
-    
-    <h2>Search for document</h2>
+       <h2>Search for document</h2>
     <p>
         <input class="inputSearchField" placeholder="Søk etter bøker, film, CDer eller noter" data-bind='value: searchString, valueUpdate: "afterkeydown"' spellcheck="true" /><button data-bind="click: search">Search</button>
         <span data-bind="text: searchString"></span>
@@ -37,7 +40,8 @@
     </ul>
     
 
-    <!-- ViewModel må lastes etter HTML-elementene er opprettet -->
-    <script type="text/javascript" src="/js/viewmodels/DocumentSearch.js"></script>
+  
+   -->
+      <script type="text/javascript" src="/js/viewmodels/DocumentSearch.js"></script>
 </body>
 </html>
