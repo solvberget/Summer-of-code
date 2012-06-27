@@ -8,6 +8,8 @@ namespace Solvberget.Domain.DTO
 {
     public class Document
     {
+        public string DocumentNumber { get; set; }
+        
         public char TargetGroup { get; set; }
         public bool IsFiction { get; set; }
         public string Language { get; set; }
@@ -23,11 +25,6 @@ namespace Solvberget.Domain.DTO
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
 
-        //public string Scope { get; set; }
-        //public string Category { get; set; }
-        //public string AlphabeticalStatement { get; set; }
-        //public string DocumentNumber { get; set; }
-
         protected virtual void FillProperties(string xml)
         {
             
@@ -36,10 +33,11 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
 
-                TargetGroup = GetFixfield(nodes, "008", 22, 22)[0];
+                var targetGrpString = GetFixfield(nodes, "008", 22, 22);
+                if (!string.IsNullOrEmpty(targetGrpString))
+                    TargetGroup = targetGrpString[0];
                 IsFiction = GetFixfield(nodes, "008", 33, 33).Equals("1") ? true : false;
 
                 //Only get languages (041a) if language in base equals "mul" 
@@ -82,17 +80,22 @@ namespace Solvberget.Domain.DTO
 
         protected static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
         {
-            var fixfield =
-                nodes.Elements("fixfield").Where(x => ((string) x.Attribute("id")).Equals(id)).Select(x => x.Value).
-                    FirstOrDefault();
-
-            if (fromPos == toPos)
+            var fixfield = nodes.Elements("fixfield").Where(x => ((string) x.Attribute("id")).Equals(id)).Select(x => x.Value).FirstOrDefault();
+            
+            if (!string.IsNullOrEmpty(fixfield) && toPos < fixfield.Length)
             {
-                return fixfield.ElementAt(fromPos).ToString();
+                if (fromPos == toPos)
+                {
+                    return fixfield.ElementAt(fromPos).ToString();
+                }
+                else
+                {
+                    return fixfield.Substring(fromPos, (toPos - fromPos) + 1);
+                }
             }
             else
             {
-                return fixfield.Substring(fromPos, (toPos - fromPos) + 1);
+                return "";
             }
         }
 
@@ -177,9 +180,15 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
+                DocumentNumber = xmlDoc.Root.Descendants("doc_number").Select(x => x.Value).FirstOrDefault();
+                
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 Language = GetFixfield(nodes, "008", 35, 37);
-                DocumentType = GetVarfield(nodes, "019", "b").Split(';');
+
+                var docTypeString = GetVarfield(nodes, "019", "b");
+                if (docTypeString != null)
+                    DocumentType = docTypeString.Split(';');
+                
                 Title = GetVarfield(nodes, "245", "a");
                 var publishedYearString = GetVarfield(nodes, "260", "c");
                 if (publishedYearString != null)

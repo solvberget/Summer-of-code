@@ -80,11 +80,55 @@ namespace Solvberget.Domain.DTO
             }
         }
 
+        protected override void FillPropertiesLight(string xml)
+        {
+            base.FillPropertiesLight(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+                //Author, check BSMARC field 100 for author
+                Author = new Person
+                {
+                    Name = GetVarfield(nodes, "100", "a"),
+                    LivingYears = GetVarfield(nodes, "100", "d"),
+                    Nationality = GetVarfield(nodes, "100", "j"),
+                    Role = "Author"
+                };
+
+                //If N/A, check BSMARC field 110 for author
+                if (Author.Name == null)
+                {
+                    Author.Name = GetVarfield(nodes, "110", "a");
+
+                    //Organization (110abq)
+                    Organization = GenerateOrganizationsFromXml(nodes, "110").FirstOrDefault();
+
+                }
+
+                //If still N/A, check BSMARC field 130 for title when title is main scheme word
+                if (Author.Name == null)
+                    StandarizedTitle = GetVarfield(nodes, "130", "a");
+
+            }
+        }
+
         public static Book GetBookFromFindDocXml(string xml)
         {
             var book = new Book();
 
             book.FillProperties(xml);
+
+            return book;
+        }
+
+        public static Book GetBookFromFindDocXmlLight(string xml)
+        {
+            var book = new Book();
+
+            book.FillPropertiesLight(xml);
 
             return book;
         }
