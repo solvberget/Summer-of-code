@@ -93,9 +93,37 @@ namespace Solvberget.Domain.Implementation
                     return "op=find-doc&base=NOR50";
                 default:
                     return null;
-            }
+            }   
         }
 
         private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument }
+
+        private enum DocumentType { Document, Book, Film, AudioBook, ClassicalCd, PopularCd, SheetMusic, Journal }
+
+        private static DocumentType GetDocumentType(IEnumerable<string> documentTypeCodes)
+        {
+            foreach(string dtc in documentTypeCodes)
+            {
+                //Logic for determining DocumentType from combination of DocumentCodes
+                //TODO: Add logic for CD, Journal and Sheet music
+
+                if (dtc.Equals("l"))
+                {
+                    return DocumentType.Book;
+                }
+                else if (dtc.StartsWith("e"))
+                {
+                    return DocumentType.Film;
+                }
+                else if (dtc.Equals("di"))
+                {
+                    return DocumentType.AudioBook;
+                }
+            }
+            
+            return DocumentType.Document;
+
+        }   
     }
+
 }
