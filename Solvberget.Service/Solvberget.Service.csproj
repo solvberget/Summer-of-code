@@ -41,6 +41,46 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Contrib.Regex">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Contrib.Regex.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=2.9.4.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Lucene.Net.2.9.4.1\lib\net40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Analyzers">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Analyzers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Core">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Highlighter">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Highlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Queries">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Queries.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Snowball">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Snowball.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Spatial">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.FastVectorHighlighter">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.FastVectorHighlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Search.SimpleFacetedSearch">
+      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Search.SimpleFacetedSearch.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -98,10 +138,78 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\EnvironmentHelp.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\App_Data\ordlister\ord_bm.txt" />
+    <Content Include="bin\App_Data\ordlister\stopwords.txt" />
+    <Content Include="bin\Contrib.Regex.dll" />
+    <Content Include="bin\Contrib.Regex.xml" />
+    <Content Include="bin\Debug\Contrib.Regex.dll" />
+    <Content Include="bin\Debug\Contrib.Regex.xml" />
+    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Analyzers.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Analyzers.xml" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Core.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Core.xml" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Highlighter.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Highlighter.xml" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Queries.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Queries.xml" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Snowball.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Snowball.xml" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Spatial.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.Spatial.xml" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.SpellChecker.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Contrib.SpellChecker.xml" />
+    <Content Include="bin\Debug\Lucene.Net.dll" />
+    <Content Include="bin\Debug\Lucene.Net.FastVectorHighlighter.dll" />
+    <Content Include="bin\Debug\Lucene.Net.FastVectorHighlighter.xml" />
+    <Content Include="bin\Debug\Lucene.Net.Search.SimpleFacetedSearch.dll" />
+    <Content Include="bin\Debug\Lucene.Net.Search.SimpleFacetedSearch.xml" />
+    <Content Include="bin\Debug\Lucene.Net.xml" />
+    <Content Include="bin\Debug\Ninject.dll" />
+    <Content Include="bin\Debug\Ninject.pdb" />
+    <Content Include="bin\Debug\Ninject.xml" />
+    <Content Include="bin\Debug\Solvberget.Domain.dll" />
+    <Content Include="bin\Debug\Solvberget.Domain.pdb" />
+    <Content Include="bin\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.Analyzers.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.Analyzers.xml" />
+    <Content Include="bin\Lucene.Net.Contrib.Core.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.Core.xml" />
+    <Content Include="bin\Lucene.Net.Contrib.Highlighter.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.Highlighter.xml" />
+    <Content Include="bin\Lucene.Net.Contrib.Queries.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.Queries.xml" />
+    <Content Include="bin\Lucene.Net.Contrib.Snowball.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.Snowball.xml" />
+    <Content Include="bin\Lucene.Net.Contrib.Spatial.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.Spatial.xml" />
+    <Content Include="bin\Lucene.Net.Contrib.SpellChecker.dll" />
+    <Content Include="bin\Lucene.Net.Contrib.SpellChecker.xml" />
+    <Content Include="bin\Lucene.Net.dll" />
+    <Content Include="bin\Lucene.Net.FastVectorHighlighter.dll" />
+    <Content Include="bin\Lucene.Net.FastVectorHighlighter.xml" />
+    <Content Include="bin\Lucene.Net.Search.SimpleFacetedSearch.dll" />
+    <Content Include="bin\Lucene.Net.Search.SimpleFacetedSearch.xml" />
+    <Content Include="bin\Lucene.Net.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Ninject.dll" />
+    <Content Include="bin\Ninject.pdb" />
+    <Content Include="bin\Ninject.xml" />
+    <Content Include="bin\Solvberget.Domain.dll" />
+    <Content Include="bin\Solvberget.Domain.pdb" />
+    <Content Include="bin\Solvberget.Service.dll" />
+    <Content Include="bin\Solvberget.Service.pdb" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -131,6 +239,17 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="bin\Debug\Solvberget.Domain.dll.config" />
+    <Content Include="bin\App_Data\ordlister_index\segments.gen" />
+    <Content Include="bin\App_Data\ordlister_index\segments_3" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.fdt" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.fdx" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.fnm" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.frq" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.nrm" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.prx" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.tii" />
+    <Content Include="bin\App_Data\ordlister_index\_2j80.tis" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -153,7 +272,9 @@
       <DependentUpon>jquery.validate.js</DependentUpon>
     </Content>
     <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -177,7 +298,7 @@
     <Content Include="Views\Document\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="bin\Release\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

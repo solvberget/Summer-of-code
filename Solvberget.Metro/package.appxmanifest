@@ -19,6 +19,9 @@
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="images\splashscreen.png" />
       </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
