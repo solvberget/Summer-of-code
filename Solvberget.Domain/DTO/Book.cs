@@ -115,7 +115,7 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-        public static Book GetBookFromFindDocXml(string xml)
+        public static Book GetObjectFromFindDocXmlBSMarc(string xml)
         {
             var book = new Book();
 
@@ -124,7 +124,7 @@ namespace Solvberget.Domain.DTO
             return book;
         }
 
-        public static Book GetBookFromFindDocXmlLight(string xml)
+        public static Book GetObjectFromFindDocXmlBSMarcLight(string xml)
         {
             var book = new Book();
 

@@ -110,7 +110,7 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-        public static AudioBook GetAudioBookFromFindDocXml(string xml)
+        public static AudioBook GetObjectFromFindDocXmlBSMarc(string xml)
         {
             var audioBook = new AudioBook();
 
@@ -119,7 +119,7 @@ namespace Solvberget.Domain.DTO
             return audioBook;
         }
 
-        public static AudioBook GetAudioBookFromFindDocXmlLight(string xml)
+        public static AudioBook GetObjectFromFindDocXmlBSMarcLight(string xml)
         {
             var audioBook = new AudioBook();
 
