@@ -26,7 +26,7 @@
                     nav.history.current.initialPlaceholder = true;
                     return nav.navigate(nav.location, nav.state);
                 } else {
-                    //return nav.navigate(Application.navigator.home);
+                    return nav.navigate(Application.navigator.home);
                 }
             }));
         }
