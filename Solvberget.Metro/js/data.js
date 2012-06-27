@@ -25,7 +25,7 @@
         { key: "group1", title: "Film", subtitle: "Mine Filmer", backgroundImage: movies, description: groupDescription },
         { key: "group2", title: "Musikk", subtitle: "Min musikk", backgroundImage: music, description: groupDescription },
         { key: "group3", title: "Min Side", subtitle: "", backgroundImage: home, description: groupDescription },
-        { key: "group4", title: "Topp 5 bøker", subtitle: "Bibliotekets anbefalinger", backgroundImage: tasks, description: groupDescription },
+        { key: "group4", title: "Topp 5 bøker", subtitle: "Mest lest", backgroundImage: tasks, description: groupDescription },
         { key: "group5", title: "Informasjon", subtitle: "Kontaktinfo og åpningstider", backgroundImage: info, description: groupDescription },
         { key: "group6", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, description: groupDescription }
     ];
@@ -33,11 +33,11 @@
     // Each of these sample items should have a reference to a particular
     // group.
     var sampleItems = [
-        { group: sampleGroups[0], title: "Item Title: 1", subtitle: "Item Subtitle: 1", description: itemDescription, content: itemContent, backgroundImage: lightGray },
-        { group: sampleGroups[0], title: "Item Title: 2", subtitle: "Item Subtitle: 2", description: itemDescription, content: itemContent, backgroundImage: darkGray },
-        { group: sampleGroups[0], title: "Item Title: 3", subtitle: "Item Subtitle: 3", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
-        { group: sampleGroups[0], title: "Item Title: 4", subtitle: "Item Subtitle: 4", description: itemDescription, content: itemContent, backgroundImage: darkGray },
-        { group: sampleGroups[0], title: "Item Title: 5", subtitle: "Item Subtitle: 5", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
+        { group: sampleGroups[0], title: "Drageløperen", subtitle: "av Khaled Hosseini", description: "Gjennomsnittlig terningkast: 5.03 av 6, basert på 1101 terningkast.", content: itemContent, backgroundImage: lightGray },
+        { group: sampleGroups[0], title: "Menn som hater kvinner", subtitle: "av Stieg Larsson", description: "Gjennomsnittlig terningkast: 5.14 av 6, basert på 1033 terningkast.", content: itemContent, backgroundImage: darkGray },
+        { group: sampleGroups[0], title: "Harry Potter og de vises sten", subtitle: "av J.K. Rowling", description: "Gjennomsnittlig terningkast: 5.27 av 6, basert på 907 terningkast.", content: itemContent, backgroundImage: mediumGray },
+        { group: sampleGroups[0], title: "Da Vinci-koden", subtitle: "av Dan Brown", description: "Gjennomsnittlig terningkast: 4.21 av 6, basert på 958 terningkast.", content: itemContent, backgroundImage: darkGray },
+        { group: sampleGroups[0], title: "Jenta som lekte med ilden", subtitle: "av Stieg Larsson", description: "Gjennomsnittlig terningkast: 5.14 av 6, basert på 890 terningkast.", content: itemContent, backgroundImage: mediumGray },
 
         { group: sampleGroups[1], title: "Item Title: 1", subtitle: "Item Subtitle: 1", description: itemDescription, content: itemContent, backgroundImage: darkGray },
         { group: sampleGroups[1], title: "Item Title: 2", subtitle: "Item Subtitle: 2", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
