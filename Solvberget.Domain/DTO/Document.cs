@@ -36,7 +36,9 @@ namespace Solvberget.Domain.DTO
 
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
 
-                TargetGroup = GetFixfield(nodes, "008", 22, 22)[0];
+                var targetGrpString = GetFixfield(nodes, "008", 22, 22);
+                if (targetGrpString != null && targetGrpString.Length > 0)
+                    TargetGroup = targetGrpString[0];
                 IsFiction = GetFixfield(nodes, "008", 33, 33).Equals("1") ? true : false;
 
                 //Only get languages (041a) if language in base equals "mul" 
@@ -63,28 +65,6 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-        protected virtual void FillPropertiesLight(string xml)
-        {
-            var xmlDoc = XDocument.Parse(xml);
-            if (xmlDoc.Root != null)
-            {
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
-                Language = GetFixfield(nodes, "008", 35, 37);
-                DocumentType = GetVarfield(nodes, "019", "b").Split(';');
-                Title = GetVarfield(nodes, "245", "a");
-                var publishedYearString = GetVarfield(nodes, "260", "c");
-                if (publishedYearString != null)
-                {
-                    //Format may be "[2009]" or "2009.", trim if so
-                    var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
-                    var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
-                    if (!string.IsNullOrEmpty(foundValue))
-                        PublishedYear = int.Parse(foundValue);
-                }
-
-            }
-        }
-
         public static Document GetDocumentFromFindDocXml(string xml)
         {
             var document = new Document();
@@ -101,17 +81,22 @@ namespace Solvberget.Domain.DTO
 
         protected static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
         {
-            var fixfield =
-                nodes.Elements("fixfield").Where(x => ((string) x.Attribute("id")).Equals(id)).Select(x => x.Value).
-                    FirstOrDefault();
-
-            if (fromPos == toPos)
+            var fixfield = nodes.Elements("fixfield").Where(x => ((string) x.Attribute("id")).Equals(id)).Select(x => x.Value).FirstOrDefault();
+            
+            if (!string.IsNullOrEmpty(fixfield) && toPos < fixfield.Length)
             {
-                return fixfield.ElementAt(fromPos).ToString();
+                if (fromPos == toPos)
+                {
+                    return fixfield.ElementAt(fromPos).ToString();
+                }
+                else
+                {
+                    return fixfield.Substring(fromPos, (toPos - fromPos) + 1);
+                }
             }
             else
             {
-                return fixfield.Substring(fromPos, (toPos - fromPos) + 1);
+                return "";
             }
         }
 
@@ -189,6 +174,32 @@ namespace Solvberget.Domain.DTO
 
             return organizations;
 
+        }
+
+        protected virtual void FillPropertiesLight(string xml)
+        {
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                Language = GetFixfield(nodes, "008", 35, 37);
+
+                var docTypeString = GetVarfield(nodes, "019", "b");
+                if (docTypeString != null)
+                    DocumentType = docTypeString.Split(';');
+                
+                Title = GetVarfield(nodes, "245", "a");
+                var publishedYearString = GetVarfield(nodes, "260", "c");
+                if (publishedYearString != null)
+                {
+                    //Format may be "[2009]" or "2009.", trim if so
+                    var regExp = new Regex(@"[a-zA-Z.\[\]]*(\d+)[a-zA-Z.\[\]]*");
+                    var foundValue = regExp.Match(publishedYearString).Groups[1].ToString();
+                    if (!string.IsNullOrEmpty(foundValue))
+                        PublishedYear = int.Parse(foundValue);
+                }
+
+            }
         }
 
     }
