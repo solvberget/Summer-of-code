@@ -60,8 +60,11 @@
         itemInvoked: function (args) {
             args.detail.itemPromise.done(function itemInvoked(item) {
                 // TODO: Navigate to the item that was invoked.
-                var item = Data.items.getAt(args.detail.itemIndex);
-                nav.navigate("/pages/itemDetail/itemDetail.html", { item: args.detail.itemPromise._value.data, key: args.detail.itemPromise._value.data.DocumentNumber });
+                var itemObject = args.detail.itemPromise._value.data;
+                if (itemObject.DocType == "Book")
+                    nav.navigate("/pages/itemDetail/bookDetail/bookDetail.html", { item: itemObject, key: args.detail.itemPromise._value.data.DocumentNumber });
+                else 
+                     nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: args.detail.itemPromise._value.data.DocumentNumber });
 
             });
         },
