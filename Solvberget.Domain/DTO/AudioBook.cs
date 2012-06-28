@@ -1,53 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Solvberget.Domain.DTO
 {
-    public class Book : Document
+    public class AudioBook : Document
     {
-
         public string Isbn { get; set; }
-        public string LanguagesInBook { get; set; }
-        public string ClassificationNr { get; set; }
+        public string ClassificationNumber { get; set; }
         public Person Author { get; set; }
         public Organization Organization { get; set; }
         public string StandarizedTitle { get; set; }
-        public string StdOrOrgTitle { get; set; }
         public string Numbering { get; set; }
         public string PartTitle { get; set; }
         public string Edition { get; set; }
-        public string NumberOfPages { get; set; }
-        public string Content { get; set; }
+        public string TypeAndNumberOfDiscs { get; set; }
+        public string Subject { get; set; }
+
         public IEnumerable<Person> ReferredPersons { get; set; }
         public IEnumerable<Organization> ReferredOrganizations { get; set; } 
-        public IEnumerable<string> ReferencedPlaces { get; set; } 
-        public IEnumerable<string> Subject { get; set; }
-        public IEnumerable<string> Genre { get; set; }
         public IEnumerable<Person> InvolvedPersons { get; set; }
         public IEnumerable<Organization> InvolvedOrganizations { get; set; }
-
+        public IEnumerable<string> ReferencedPlaces { get; set; }
+        public IEnumerable<string> Genre { get; set; }
+        
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-                
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
-                
-                Isbn = GetVarfield(nodes, "020", "a");
-                ClassificationNr = GetVarfield(nodes, "090", "c");
+                var nodes = xmlDoc.Root.Descendants();
 
-                //Author, check BSMARC field 100 for author
-                Author  = new Person
-                              {
-                                    Name = GetVarfield(nodes, "100", "a"),
-                                    LivingYears = GetVarfield(nodes, "100", "d"),
-                                    Nationality = GetVarfield(nodes, "100", "j"),
-                                    Role = "Author"
-                              };
+                Isbn = GetVarfield(nodes, "020", "a");
+                ClassificationNumber = GetVarfield(nodes, "090", "c");
+
+               //Author, check BSMARC field 100 for author
+                Author = new Person
+                {
+                    Name = GetVarfield(nodes, "100", "a"),
+                    LivingYears = GetVarfield(nodes, "100", "d"),
+                    Nationality = GetVarfield(nodes, "100", "j"),
+                    Role = "Author"
+                };
 
                 //If N/A, check BSMARC field 110 for author
                 if (Author.Name == null)
@@ -63,20 +62,17 @@ namespace Solvberget.Domain.DTO
                 if (Author.Name == null)
                     StandarizedTitle = GetVarfield(nodes, "130", "a");
 
-                StdOrOrgTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
                 PartTitle = GetVarfield(nodes, "245", "p");
                 Edition = GetVarfield(nodes, "250", "a");
-                NumberOfPages = GetVarfield(nodes, "300", "a");
-                Content = GetVarfield(nodes, "505", "a");
+                TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
                 ReferredPersons = GeneratePersonsFromXml(nodes, "600");
                 ReferredOrganizations = GenerateOrganizationsFromXml(nodes, "610");
+                Subject = GetVarfield(nodes, "650", "a");
                 ReferencedPlaces = GetVarfieldAsList(nodes, "651", "a");
-                Subject = GetVarfieldAsList(nodes, "650", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
-
             }
         }
 
@@ -86,8 +82,7 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                var nodes = xmlDoc.Root.Descendants();
 
                 //Author, check BSMARC field 100 for author
                 Author = new Person
@@ -115,24 +110,23 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-        public static Book GetBookFromFindDocXml(string xml)
+        public static AudioBook GetAudioBookFromFindDocXml(string xml)
         {
-            var book = new Book();
+            var audioBook = new AudioBook();
 
-            book.FillProperties(xml);
+            audioBook.FillProperties(xml);
 
-            return book;
+            return audioBook;
         }
 
-        public static Book GetBookFromFindDocXmlLight(string xml)
+        public static AudioBook GetAudioBookFromFindDocXmlLight(string xml)
         {
-            var book = new Book();
+            var audioBook = new AudioBook();
 
-            book.FillPropertiesLight(xml);
+            audioBook.FillPropertiesLight(xml);
 
-            return book;
+            return audioBook;
         }
 
     }
-
 }

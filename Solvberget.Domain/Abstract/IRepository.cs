@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain
+namespace Solvberget.Domain.Abstract
 {
     public interface IRepository
     {
         List<Document> Search(string value);
-    }
-
+    }  
     
 }

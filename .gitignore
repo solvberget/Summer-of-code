@@ -7,6 +7,9 @@
 #SASS
 .sass-cache*/
 
+#Ordliste files
+ordlister_index*/
+
 #Visual Studio files
 *.[Oo]bj
 *.user
@@ -62,8 +65,11 @@ packages/*
 
 #node_modules
 !node_modules
-*ONSLog.txt
 *test-results.xml
+*test-result.txt
 
 #generated files
 *.min.css
+
+#p4merge
+*.orig
