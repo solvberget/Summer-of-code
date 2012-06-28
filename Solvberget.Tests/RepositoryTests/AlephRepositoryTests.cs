@@ -9,14 +9,19 @@ namespace Solvberget.Service.Tests.RepositoryTests
     public class AlephRepositoryTests
     {
 
+        private AlephRepository _repository;
 
+        [SetUp]
+        public void InitRepository()
+        {
+            _repository = new AlephRepository();
+        }
 
         [Test]
         public void TestFind()
         {
             const string searchString = "naiv super";
-            var repository = new AlephRepository();
-            var documents = repository.Search(searchString);
+            var documents = _repository.Search(searchString);
 
             var books = documents.Where(x => x.GetType().Name.Equals("Book"));
 
@@ -30,9 +35,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             const string documentNumberForBook = "000596743"; //Naiv. Super
             const string documentNumberForFilm = "000604643"; //The Matrix
             const string documentNumberForAudioBook = "000599186"; //Harry Potter og dødtalismanene
-            var repository = new AlephRepository();
             
-            var book = (Book)repository.GetDocument(documentNumberForBook);
+            var book = (Book)_repository.GetDocument(documentNumberForBook);
             Assert.AreEqual("Book", book.GetType().Name);
             Assert.AreEqual("Naiv. Super", book.Title);
             Assert.AreEqual("Loe, Erlend", book.Author.Name);
@@ -42,7 +46,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(2010, book.PublishedYear);
             Assert.AreEqual("[Oslo]", book.PlacePublished);
             
-            var film = (Film)repository.GetDocument(documentNumberForFilm);
+            var film = (Film)_repository.GetDocument(documentNumberForFilm);
             Assert.AreEqual("Film", film.GetType().Name);
             Assert.AreEqual("The matrix revolutions", film.Title);
             Assert.AreEqual("2003", film.ProductionYear);
@@ -53,12 +57,14 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("eng", film.Languages.ElementAt(0));
             Assert.AreEqual("ger", film.Languages.ElementAt(1));
 
-            var audioBook = (AudioBook) repository.GetDocument(documentNumberForAudioBook);
+            var audioBook = (AudioBook)_repository.GetDocument(documentNumberForAudioBook);
             Assert.AreEqual("AudioBook", audioBook.GetType().Name);
-
+            Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
+            Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
+            Assert.IsTrue(audioBook.IsFiction);
+            Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
+        
         }
-
-
 
     }
 }
