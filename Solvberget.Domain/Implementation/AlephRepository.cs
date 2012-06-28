@@ -93,14 +93,14 @@ namespace Solvberget.Domain.Implementation
 
                 var type = Type.GetType("Solvberget.Domain.DTO." + className);
 
-                var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBSMarcLight" : "GetObjectFromFindDocXmlBSMarc");
+                var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBsMarcLight" : "GetObjectFromFindDocXmlBsMarc");
 
                 return (Document)methodInfo.Invoke(type, BindingFlags.InvokeMethod | BindingFlags.Default, null, new object[] { record.ToString() }, CultureInfo.CurrentCulture);
 
             }
             else
             {
-               return Document.GetObjectFromFindDocXmlBSMarcLight(record.ToString());
+               return Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
             }
             
         }
