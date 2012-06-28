@@ -10,6 +10,9 @@
 #Ordliste files
 ordlister_index*/
 
+#SASS CACHE files
+.sass-cache*/
+
 #Visual Studio files
 *.[Oo]bj
 *.user

@@ -1,9 +1,10 @@
 ﻿describe('SuggestionListTest', function () {
     it('Should return an array containing at least Harry Potter', function () {
-        window.suggestionMethods.getSuggestionListFromServer();
 
-        var suggestionList = window.suggestionMethods.suggestionList;
+        suggestionMethods.getSuggestionListFromServer(done);
+        var suggestionList = suggestionMethods.suggestionList;
         var book = 'harry potter';
-        suggestionList.should.contain(book);
+        ($.inArray(book, suggestionList)).should.be.true;
+
     });
 });

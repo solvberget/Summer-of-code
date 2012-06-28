@@ -1,4 +1,5 @@
-﻿function DocumentListViewModel() {
+﻿/**
+function DocumentListViewModel() {
     var self = this;
     self.documents = ko.observableArray([]);
     self.searchString = ko.observable("");
@@ -104,3 +105,4 @@
 }
 
 ko.applyBindings(new DocumentListViewModel());
+*/

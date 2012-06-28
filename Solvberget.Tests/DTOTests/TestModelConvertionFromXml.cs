@@ -10,7 +10,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetDocumentFromXmlTest()
         {
-            var media = Document.GetDocumentFromFindDocXml(getBookXml());
+            var media = Document.GetObjectFromFindDocXmlBsMarc(getBookXml());
 
             Assert.AreEqual("123456789", media.DocumentNumber);
 
@@ -50,7 +50,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetDocumentLightFromXmlTest()
         {
-            var media = Document.GetDocumentFromFindDocXmlLight(getBookXml());
+            var media = Document.GetObjectFromFindDocXmlBsMarcLight(getBookXml());
             Assert.AreEqual("123456789", media.DocumentNumber);
             Assert.AreEqual(3, media.Language.Length);
             Assert.AreEqual("mul", media.Language);
@@ -62,7 +62,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetBookFromXmlTest()
         {
-            var book = Book.GetBookFromFindDocXml(getBookXml());
+            var book = Book.GetObjectFromFindDocXmlBsMarc(getBookXml());
 
             Assert.AreEqual("978-82-02-33225-9", book.Isbn);
 
@@ -127,18 +127,18 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetBookLightFromXmlTest()
         {
-            var book1 = Book.GetBookFromFindDocXmlLight(getBookXml());
+            var book1 = Book.GetObjectFromFindDocXmlBsMarcLight(getBookXml());
             Assert.AreEqual("Loe, Erlend", book1.Author.Name);
             Assert.AreEqual("1969-", book1.Author.LivingYears);
             Assert.AreEqual("n", book1.Author.Nationality);
 
-            var book2 = Book.GetBookFromFindDocXmlLight(getBookWithOrgXml());
+            var book2 = Book.GetObjectFromFindDocXmlBsMarcLight(getBookWithOrgXml());
             Assert.AreEqual("Røde Kors", book2.Author.Name);
             Assert.AreEqual("Røde Kors", book2.Organization.Name);
             Assert.AreEqual("Hjelpekorpset", book2.Organization.UnderOrganization);
             Assert.AreEqual("Hjelper folk", book2.Organization.FurtherExplanation);
 
-            var book3 = Book.GetBookFromFindDocXmlLight(getBookWithStdTitleXml());
+            var book3 = Book.GetObjectFromFindDocXmlBsMarcLight(getBookWithStdTitleXml());
             Assert.AreEqual("Røde Kors", book3.StandarizedTitle);
 
         }
@@ -146,7 +146,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetBookWithOrganizationFromXmlTest()
         {
-            var book = Book.GetBookFromFindDocXml(getBookWithOrgXml());
+            var book = Book.GetObjectFromFindDocXmlBsMarc(getBookWithOrgXml());
 
             Assert.AreEqual("Røde Kors", book.Author.Name);
             Assert.AreEqual("Røde Kors", book.Organization.Name);
@@ -158,14 +158,14 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetBookWithStdTitleFromXmlTest()
         {
-            var book = Book.GetBookFromFindDocXml(getBookWithStdTitleXml());
+            var book = Book.GetObjectFromFindDocXmlBsMarc(getBookWithStdTitleXml());
             Assert.AreEqual("Røde Kors", book.StandarizedTitle);
         }
 
         [Test]
         public void GetFilmFromXmlTest()
         {
-            var film = Film.GetFilmFromFindDocXml(getFilmXml());
+            var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
 
             Assert.AreEqual("7041271735935", film.Ean);
 
@@ -233,7 +233,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetFilmLightFromXmlTest()
         {
-            var film = Film.GetFilmFromFindDocXmlLight(getFilmXml());
+            var film = Film.GetObjectFromFindDocXmlBsMarcLight(getFilmXml());
             Assert.AreEqual("Max Manus", film.OriginalTitle);
             Assert.AreEqual("2008", film.ProductionYear);
             Assert.AreEqual("Aldersgrense: 15 år", film.AgeLimit);
@@ -243,7 +243,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetDocumentTypeFromXml()
         {
-            var film = Film.GetFilmFromFindDocXml(getFilmXml());
+            var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
 
             Assert.AreEqual("ee", film.DocumentType.ElementAt(0));
             
@@ -252,7 +252,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetAudioBookFromXmlTest()
         {
-            var audioBook = AudioBook.GetAudioBookFromFindDocXml(getAudioBookXML());
+            var audioBook = AudioBook.GetObjectFromFindDocXmlBsMarc(getAudioBookXML());
 
             Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
 
@@ -311,25 +311,25 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetAudioBookLightFromXmlTest()
         {
-            var audioBook1 = AudioBook.GetAudioBookFromFindDocXmlLight(getAudioBookXML());
+            var audioBook1 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookXML());
             Assert.AreEqual("Rowling, J.K.", audioBook1.Author.Name);
             Assert.AreEqual("1965-", audioBook1.Author.LivingYears);
             Assert.AreEqual("eng.", audioBook1.Author.Nationality);
 
-            var audioBook2 = AudioBook.GetAudioBookFromFindDocXmlLight(getAudioBookWithOrgXml());
+            var audioBook2 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithOrgXml());
             Assert.AreEqual("Røde Kors", audioBook2.Author.Name);
             Assert.AreEqual("Røde Kors", audioBook2.Organization.Name);
             Assert.AreEqual("Hjelpekorpset", audioBook2.Organization.UnderOrganization);
             Assert.AreEqual("Hjelper folk", audioBook2.Organization.FurtherExplanation);
 
-            var audioBook3 = AudioBook.GetAudioBookFromFindDocXmlLight(getAudioBookWithStdTitleXml());
+            var audioBook3 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithStdTitleXml());
             Assert.AreEqual("Røde Kors", audioBook3.StandarizedTitle);
         }
 
         [Test]
         public void GetAudioBookWithOrganizationFromXmlTest()
         {
-            var audioBook = AudioBook.GetAudioBookFromFindDocXml(getAudioBookWithOrgXml());
+            var audioBook = AudioBook.GetObjectFromFindDocXmlBsMarc(getAudioBookWithOrgXml());
             Assert.AreEqual("Røde Kors", audioBook.Author.Name);
             Assert.AreEqual("Røde Kors", audioBook.Organization.Name);
             Assert.AreEqual("Hjelpekorpset", audioBook.Organization.UnderOrganization);
@@ -339,7 +339,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetAudioBookWithStdTitleFromXmlTest()
         {
-            var audioBook = AudioBook.GetAudioBookFromFindDocXml(getAudioBookWithStdTitleXml());
+            var audioBook = AudioBook.GetObjectFromFindDocXmlBsMarc(getAudioBookWithStdTitleXml());
             Assert.AreEqual("Røde Kors", audioBook.StandarizedTitle);
         }
 
