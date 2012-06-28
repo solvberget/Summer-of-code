@@ -11,8 +11,8 @@ namespace Solvberget.Service.Controllers
 {
     public class DocumentController : Controller
     {
-        private IRepository _repository;
-        private ISpellingDictionary _spellingRepository;
+        private readonly IRepository _repository;
+        private readonly ISpellingDictionary _spellingRepository;
 
         public DocumentController(IRepository repository, ISpellingDictionary spellingRepository)
         {
