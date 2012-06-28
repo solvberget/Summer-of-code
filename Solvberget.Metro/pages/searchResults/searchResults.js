@@ -61,7 +61,8 @@
             args.detail.itemPromise.done(function itemInvoked(item) {
                 // TODO: Navigate to the item that was invoked.
                 var item = Data.items.getAt(args.detail.itemIndex);
-                nav.navigate("/pages/itemDetail/itemDetail.html", { item: Data.getItemReference(item) });
+                nav.navigate("/pages/itemDetail/itemDetail.html", { item: args.detail.itemPromise._value.data, key: args.detail.itemPromise._value.data.DocumentNumber });
+
             });
         },
 
