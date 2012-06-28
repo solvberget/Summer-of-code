@@ -19,7 +19,13 @@
 
         itemInvoked: function (args) {
             var groupKey = Data.groups.getAt(args.detail.itemIndex).key;
-            WinJS.Navigation.navigate("/pages/split/split.html", { groupKey: groupKey });
+            if (groupKey === "group6") {
+                var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                searchPane.show();
+            } else {
+
+                WinJS.Navigation.navigate("/pages/split/split.html", { groupKey: groupKey });
+            }
         },
 
         // This function is called whenever a user navigates to this page. It
