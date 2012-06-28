@@ -249,6 +249,12 @@
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
+    <Content Include="pages\itemDetail\bookDetail\bookDetail.css" />
+    <Content Include="pages\itemDetail\bookDetail\bookDetail.html" />
+    <Content Include="pages\itemDetail\bookDetail\bookDetail.js" />
+    <Content Include="pages\itemDetail\FilmDetail\filmDetail.css" />
+    <Content Include="pages\itemDetail\FilmDetail\filmDetail.html" />
+    <Content Include="pages\itemDetail\FilmDetail\filmDetail.js" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />
