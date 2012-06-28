@@ -16,17 +16,7 @@ namespace Solvberget.Domain.Implementation
 {
     public class AlephRepository : IRepository
     {
-        private string GetUrl(Operation function, Dictionary<string, string> options)
-        {
-            var sb = new StringBuilder();
-          sb.Append(Properties.Settings.Default.ServerUrl);
-            sb.Append(GetOperationPrefix(function));
-            foreach (var option in options)
-            {
-                sb.Append(string.Format("&{0}={1}", option.Key, option.Value));
-            }
-            return sb.ToString();
-        }
+       
 
         public List<Document> Search(string value)
         {
@@ -45,6 +35,28 @@ namespace Solvberget.Domain.Implementation
             }
 
             return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
+        }
+
+        public Document GetDocument(string documentNumber)
+        {
+            const Operation function = Operation.FindDocument;
+            var options = new Dictionary<string, string> { { "doc_number", documentNumber} };
+
+            var url = GetUrl(function, options);
+
+            var doc = GetXmlFromStream(url);
+
+            if (doc.Root != null)
+            {
+                var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
+                if (xmlResult != null)
+                {
+                    return PopulateDocument(xmlResult, false);
+                }
+            }
+
+            return null;
+            
         }
 
         private List<Document> GetSearchResults(dynamic result)
@@ -68,7 +80,7 @@ namespace Solvberget.Domain.Implementation
             return documents;
         }
 
-        private static Document PopulateDocument(XElement record, Boolean populateLight)
+        private static Document PopulateDocument(XElement record, bool populateLight)
         {
             var xmlDoc = XDocument.Parse(record.ToString());
             var nodes = xmlDoc.Root.Descendants("oai_marc");
@@ -81,18 +93,29 @@ namespace Solvberget.Domain.Implementation
 
                 var type = Type.GetType("Solvberget.Domain.DTO." + className);
 
-                var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBSMarcLight" : "GetObjectFromFindDocXmlBSMarc");
+                var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBsMarcLight" : "GetObjectFromFindDocXmlBsMarc");
 
-                return (Document)methodInfo.Invoke(type, BindingFlags.InvokeMethod | BindingFlags.Default, null, new object[] { record.ToString() },CultureInfo.CurrentCulture);
+                return (Document)methodInfo.Invoke(type, BindingFlags.InvokeMethod | BindingFlags.Default, null, new object[] { record.ToString() }, CultureInfo.CurrentCulture);
 
             }
             else
             {
-               return Document.GetObjectFromFindDocXmlBSMarcLight(record.ToString());
+               return Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
             }
             
         }
 
+        private string GetUrl(Operation function, Dictionary<string, string> options)
+        {
+            var sb = new StringBuilder();
+            sb.Append(Properties.Settings.Default.ServerUrl);
+            sb.Append(GetOperationPrefix(function));
+            foreach (var option in options)
+            {
+                sb.Append(string.Format("&{0}={1}", option.Key, option.Value));
+            }
+            return sb.ToString();
+        }
 
         private static XDocument GetXmlFromStream(string url)
         {
@@ -119,7 +142,7 @@ namespace Solvberget.Domain.Implementation
                 case 2:
                     return "op=find&base=NOR01";
                 case 3:
-                    return "op=find-doc&base=NOR50";
+                    return "op=find-doc&base=NOR01";
                 default:
                     return null;
             }   
@@ -132,7 +155,7 @@ namespace Solvberget.Domain.Implementation
             foreach(string dtc in documentTypeCodes)
             {
                 //Logic for determining DocumentType from combination of DocumentCodes
-                //TODO: Add logic for CD, Journal and Sheet music
+                //TODO: Generally improve and add logic for CD, Journal and Sheet music
 
                 if (dtc.Equals("l"))
                 {
