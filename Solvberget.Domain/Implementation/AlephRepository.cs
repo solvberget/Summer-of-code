@@ -49,10 +49,13 @@ namespace Solvberget.Domain.Implementation
             if (doc.Root != null)
             {
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
-                return PopulateDocument(xmlResult, false);
+                if (xmlResult != null)
+                {
+                    return PopulateDocument(xmlResult, false);
+                }
             }
 
-            return new Document();
+            return null;
             
         }
 
