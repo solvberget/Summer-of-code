@@ -31,6 +31,12 @@ namespace Solvberget.Service.Controllers
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetDocument(string key)
+        {
+            var result = _repository.FindDocument(key);
+            return this.Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult SpellingDictionaryLookup(string value)
         {
             var result = _spellingRepository.Lookup(value);
