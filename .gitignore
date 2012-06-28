@@ -4,6 +4,9 @@
 *.userprefs
 *.pidb
 
+#SASS
+.sass-cache*/
+
 #Visual Studio files
 *.[Oo]bj
 *.user
