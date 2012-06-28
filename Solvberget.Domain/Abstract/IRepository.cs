@@ -6,7 +6,7 @@ namespace Solvberget.Domain.Abstract
     public interface IRepository
     {
         List<Document> Search(string value);
-        Document FindDocument(string documentNumber);
+        Document GetDocument(string documentNumber);
     }  
     
 }

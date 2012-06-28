@@ -37,7 +37,7 @@ namespace Solvberget.Domain.Implementation
             return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
         }
 
-        public Document FindDocument(string documentNumber)
+        public Document GetDocument(string documentNumber)
         {
             const Operation function = Operation.FindDocument;
             var options = new Dictionary<string, string> { { "doc_number", documentNumber} };
@@ -80,7 +80,7 @@ namespace Solvberget.Domain.Implementation
             return documents;
         }
 
-        private static Document PopulateDocument(XElement record, Boolean populateLight)
+        private static Document PopulateDocument(XElement record, bool populateLight)
         {
             var xmlDoc = XDocument.Parse(record.ToString());
             var nodes = xmlDoc.Root.Descendants("oai_marc");

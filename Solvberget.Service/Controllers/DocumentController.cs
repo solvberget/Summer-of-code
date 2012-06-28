@@ -33,7 +33,7 @@ namespace Solvberget.Service.Controllers
 
         public JsonResult GetDocument(string key)
         {
-            var result = _repository.FindDocument(key);
+            var result = _repository.GetDocument(key);
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 
