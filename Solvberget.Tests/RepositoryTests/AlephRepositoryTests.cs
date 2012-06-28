@@ -18,7 +18,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var books = documents.Where(x => x.GetType().Name.Equals("Book"));
 
             Assert.AreEqual(7, books.Count());
-            Assert.AreEqual(5, documents.Count(x => x.GetType().Name.Equals("Document")));
+            Assert.AreEqual(3, documents.Count(x => x.GetType().Name.Equals("Document")));
         }
     }
 }
