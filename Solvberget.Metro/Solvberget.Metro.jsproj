@@ -249,6 +249,9 @@
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
+    <Content Include="pages\itemDetail\itemDetail.css" />
+    <Content Include="pages\itemDetail\itemDetail.html" />
+    <Content Include="pages\itemDetail\itemDetail.js" />
     <Content Include="pages\items\items.css" />
     <Content Include="pages\items\items.html" />
     <Content Include="pages\items\items.js" />
@@ -270,6 +273,7 @@
   <ItemGroup>
     <Folder Include="js\models\" />
     <Folder Include="lib\" />
+    <Folder Include="pages\shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

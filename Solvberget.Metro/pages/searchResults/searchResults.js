@@ -26,6 +26,9 @@
         }
     };
 
+    var spellingMethods = {
+
+    }
     ui.Pages.define(searchPageURI, {
         /// <field elementType="Object" />
         filters: [],
@@ -43,7 +46,8 @@
         itemInvoked: function (args) {
             args.detail.itemPromise.done(function itemInvoked(item) {
                 // TODO: Navigate to the item that was invoked.
-                nav.navigate("searchResults.html", {item: item.data});
+                var item = Data.items.getAt(args.detail.itemIndex);
+                nav.navigate("/pages/itemDetail/itemDetail.html", { item: Data.getItemReference(item) });
             });
         },
 
