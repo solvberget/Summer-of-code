@@ -30,6 +30,10 @@
         { key: "group6", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, description: groupDescription }
     ];
 
+    var searchResultItems = [
+
+    ];
+
     // Each of these sample items should have a reference to a particular
     // group.
     var sampleItems = [

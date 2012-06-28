@@ -8,8 +8,8 @@ namespace Solvberget.Domain.DTO
 {
     public class Document
     {
+        public string DocType { get { return this.GetType().Name; } private set { } }
         public string DocumentNumber { get; set; }
-        
         public char TargetGroup { get; set; }
         public bool IsFiction { get; set; }
         public string Language { get; set; }
@@ -92,14 +92,14 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-        public static Document GetObjectFromFindDocXmlBSMarc(string xml)
+        public static Document GetObjectFromFindDocXmlBsMarc(string xml)
         {
             var document = new Document();
             document.FillProperties(xml);
             return document;
         }
 
-        public static Document GetObjectFromFindDocXmlBSMarcLight(string xml)
+        public static Document GetObjectFromFindDocXmlBsMarcLight(string xml)
         {
             var document = new Document();
             document.FillPropertiesLight(xml);

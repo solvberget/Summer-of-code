@@ -11,8 +11,8 @@ namespace Solvberget.Service.Controllers
 {
     public class DocumentController : Controller
     {
-        private IRepository _repository;
-        private ISpellingDictionary _spellingRepository;
+        private readonly IRepository _repository;
+        private readonly ISpellingDictionary _spellingRepository;
 
         public DocumentController(IRepository repository, ISpellingDictionary spellingRepository)
         {
@@ -28,6 +28,12 @@ namespace Solvberget.Service.Controllers
         public JsonResult Search(string id)
         {
             var result = _repository.Search(id);
+            return this.Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDocument(string key)
+        {
+            var result = _repository.GetDocument(key);
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 

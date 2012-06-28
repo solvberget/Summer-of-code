@@ -23,12 +23,24 @@
         },
         getSuggestionListFromServer: function () {
             $.getJSON(suggestionMethods.url, suggestionMethods.populateSuggestionList);
-        }
+        },
+        didYouMean : "",
+
     };
 
     var spellingMethods = {
 
     }
+
+
+    var ajaxSearchDocuments = function (query) {
+        return $.getJSON("http://localhost:7089/Document/Search/" + query); 
+    }
+    var lookupDict =  function ( query ) {
+        console.log("Go JSON go!: " + query);
+        return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function ( allD ) { console.log("WHADDAFØKK: "+allD);});
+    }
+
     ui.Pages.define(searchPageURI, {
         /// <field elementType="Object" />
         filters: [],
@@ -36,11 +48,13 @@
 
         generateFilters: function () {
             this.filters = [];
-            this.filters.push({ results: null, text: "All", predicate: function (item) { return true; } });
+            this.filters.push({ results: null, text: "Alle", predicate: function (item) { return true; } });
 
             // TODO: Replace or remove example filters.
-            this.filters.push({ results: null, text: "Group 1", predicate: function (item) { return item.group.key === "group1"; } });
-            this.filters.push({ results: null, text: "Group 2+", predicate: function (item) { return item.group.key !== "group1"; } });
+            this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
+            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film" } });
+            this.filters.push({ results: null, text: "Audiobok", predicate: function (item) { return item.DocType == "AudioBook" } });
+            this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document" } });
         },
 
         itemInvoked: function (args) {
@@ -54,18 +68,28 @@
         // This function populates a WinJS.Binding.List with search results for the
         // provided query.
         searchData: function (queryText) {
+
+           
+
             var originalResults;
             var regex;
+
+
+
+            /**
             // TODO: Perform the appropriate search on your data.
             if (window.Data) {
+
                 originalResults = Data.items.createFiltered(function (item) {
                     regex = new RegExp(queryText, "gi");
                     return (item.title.match(regex) || item.subtitle.match(regex) || item.description.match(regex));
                 });
+
             } else {
                 originalResults = new WinJS.Binding.List();
             }
             return originalResults;
+            **/
         },
 
         // This function filters the search data using the specified filter.
@@ -98,9 +122,21 @@
             utils.markSupportedForProcessing(searchResults.markText);
             this.initializeLayout(element.querySelector(".resultslist").winControl, Windows.UI.ViewManagement.ApplicationView.value);
             this.generateFilters();
-            originalResults = this.searchData(args.queryText);
-            this.populateFilterBar(element, originalResults);
-            this.applyFilter(this.filters[0], originalResults);
+            $.when(ajaxSearchDocuments(args.queryText))
+               .then($.proxy(function (response) {
+
+                   var originalResults = new WinJS.Binding.List();
+
+                   for (var x in response) {
+                       originalResults.push(response[x]);
+                   }
+
+                   this.populateFilterBar(element, originalResults);
+                   this.applyFilter(this.filters[0], originalResults);
+
+               }, this)
+            );
+            
         },
 
         // This function updates the ListView with new layouts
@@ -114,17 +150,28 @@
                 document.querySelector(".titlearea .pagesubtitle").innerHTML = "";
             } else {
                 listView.layout = new ui.GridLayout();
-                document.querySelector(".titlearea .pagetitle").innerHTML = "Search";
-                document.querySelector(".titlearea .pagesubtitle").innerHTML = "Results for " + modernQuotationMark + toStaticHTML(this.lastSearch) + modernQuotationMark;
+                document.querySelector(".titlearea .pagetitle").innerHTML = "Søk";
+                document.querySelector(".titlearea .pagesubtitle").innerHTML = "Resultater for " + modernQuotationMark + toStaticHTML(this.lastSearch) + modernQuotationMark;
             }
         },
 
         // This function colors the search term. Referenced in /js/viewmodels/searchResults.html
         // as part of the ListView item templates.
         markText: function (source, sourceProperties, dest, destProperties) {
-            var text = source[sourceProperties[0]];
-            var regex = new RegExp(this.lastSearch, "gi");
-            dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
+
+            if (source.AgeLimit != undefined && sourceProperties[0] == "AgeLimit") {
+
+                var text = source[sourceProperties[0]];
+                var regex = new RegExp(this.lastSearch, "gi");
+                dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
+
+            }
+            else if (sourceProperties[0] != "AgeLimit") {
+                var text = source[sourceProperties[0]];
+                var regex = new RegExp(this.lastSearch, "gi");
+                dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
+
+            }
         },
 
         // This function generates the filter selection list.
@@ -165,11 +212,13 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+
             var listView = element.querySelector(".resultslist").winControl;
             listView.itemTemplate = element.querySelector(".itemtemplate")
             listView.oniteminvoked = this.itemInvoked;
             this.handleQuery(element, options);
             listView.element.focus();
+
         },
 
         // This function updates the page layout in response to viewState changes.
@@ -198,7 +247,7 @@
         if (args.detail.kind === appModel.Activation.ActivationKind.search) {
             args.setPromise(ui.processAll().then(function () {
                 if (!nav.location) {
-                   // nav.history.current = { location: Application.navigator.home, initialState: {} };
+                   //nav.history.current = { location: Application.navigator.home, initialState: {} };
                 }
 
                 return nav.navigate(searchPageURI, { queryText: args.detail.queryText });
@@ -209,7 +258,10 @@
     appModel.Search.SearchPane.getForCurrentView().onquerysubmitted = function (args) { nav.navigate(searchPageURI, args); };
     
     // Populate suggestionList from server
+    console.log("Get suggestion list");
     suggestionMethods.getSuggestionListFromServer();
+
+
 
 
     Windows.ApplicationModel.Search.SearchPane.getForCurrentView().onsuggestionsrequested = function (eventObject) {
@@ -217,6 +269,7 @@
         var query = queryText.toLowerCase();
         var maxNumberOfSuggestions = 5;
                     
+        // Suggestion based on content
 
         for (var i = 0, len = suggestionMethods.suggestionList.length; i < len; i++) {
             if (suggestionMethods.suggestionList[i].substr(0, query.length).toLowerCase() === query) {
@@ -227,6 +280,28 @@
             }
         }
 
+        if (queryText.length > 2) {
+
+            // Suggestion type: "Did you mean?"
+            suggestionRequest.searchSuggestionCollection.appendSearchSeparator("Mente du?");
+
+            
+            $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
+
+                console.log(allData + " and " + queryText);
+
+                if (queryText != allData)
+                    //   async error:suggestionRequest.searchSuggestionCollection.appendQuerySuggestion(allData);
+                    suggestionMethods.didYouMean = allData;
+
+            });
+
+            // Quickfix for async
+            if ( suggestionMethods.didYouMean != "" ) 
+                suggestionRequest.searchSuggestionCollection.appendQuerySuggestion(suggestionMethods.didYouMean);
+
+  
+        }
         if (suggestionRequest.searchSuggestionCollection.size > 0) {
             WinJS.log && WinJS.log("Suggestions provided for query: " + queryText, "sample", "status");
         } else {
