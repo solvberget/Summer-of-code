@@ -36,9 +36,9 @@
     var ajaxSearchDocuments = function (query) {
         return $.getJSON("http://localhost:7089/Document/Search/" + query); 
     }
-    var lookupDict =  function ( query ) {
-        console.log("Go JSON go!: " + query);
-        return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function ( allD ) { console.log("WHADDAFØKK: "+allD);});
+    var lookupDict = function (query) {
+        // Does not work, do not return the json promise
+        return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
     }
 
     ui.Pages.define(searchPageURI, {
@@ -53,7 +53,7 @@
             // TODO: Replace or remove example filters.
             this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
             this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film" } });
-            this.filters.push({ results: null, text: "Audiobok", predicate: function (item) { return item.DocType == "AudioBook" } });
+            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook" } });
             this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document" } });
         },
 
@@ -69,12 +69,8 @@
         // provided query.
         searchData: function (queryText) {
 
-           
-
             var originalResults;
             var regex;
-
-
 
             /**
             // TODO: Perform the appropriate search on your data.
@@ -287,8 +283,6 @@
 
             
             $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
-
-                console.log(allData + " and " + queryText);
 
                 if (queryText != allData)
                     //   async error:suggestionRequest.searchSuggestionCollection.appendQuerySuggestion(allData);

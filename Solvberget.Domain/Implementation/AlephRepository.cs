@@ -89,7 +89,7 @@ namespace Solvberget.Domain.Implementation
 
             if (docTypeString != null)
             {
-                var className =  GetDocumentType(docTypeString.Split(';'));
+                var className =  GetDocumentType(docTypeString.Split(','));
 
                 var type = Type.GetType("Solvberget.Domain.DTO." + className);
 
