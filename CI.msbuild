@@ -1,11 +1,14 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
 
   <ItemGroup>
-    <ProjectReference Include="**\*.*proj" Exclude="Solvberget.Metro\Solvberget.Metro.jsproj" />
+    <ProjectReference Include="**\*.csproj" />
   </ItemGroup>
 
-  <Target Name="BuildAllExceptWixProject">
-    <MSBuild Projects="@(ProjectReferences)" Targets="Build" />
+  <Target Name="Build">
+
+    <MSBuild Projects="@(ProjectReference)"
+             Targets="Build"
+             Properties="Configuration=Debug;OutputPath=bin\Debug\" />
   </Target>
 
 </Project>
