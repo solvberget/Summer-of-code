@@ -1,7 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
 
   <ItemGroup>
-    <ProjectReference Include="**\*.csproj" />
+    <ProjectReference Include="**\*.csproj" Exclude="Solvberget.Metro\Solvberget.Metro.jsproj" />
   </ItemGroup>
 
   <Target Name="Build">
