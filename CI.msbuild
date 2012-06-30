@@ -5,7 +5,7 @@
   </ItemGroup>
 
   <Target Name="Build">
-    <MSBuild Projects="@(ProjectReferences)" Targets="Build">
+    <MSBuild Projects="@(ProjectReference)" Targets="Build">
       <Output TaskParameter="TargetOutputs" ItemName="BuildOutput"/>
     </MSBuild>
   </Target>
