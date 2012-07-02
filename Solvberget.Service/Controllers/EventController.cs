@@ -17,11 +17,6 @@ namespace Solvberget.Service.Controllers
             _eventRepository = eventRepository;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public JsonResult GetEvents()
         {
             var result = _eventRepository.GetEvents();
