@@ -237,6 +237,7 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\eventDataSource.js" />
     <Content Include="pages\events\events.css" />
     <Content Include="pages\events\events.html" />
     <Content Include="pages\events\events.js" />
