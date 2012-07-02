@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Solvberget.Domain.Abstract;
+
+namespace Solvberget.Service.Controllers
+{
+    public class EventController : Controller
+    {
+
+        private readonly IEventRepository _eventRepository;
+
+        public EventController(IEventRepository eventRepository)
+        {
+            _eventRepository = eventRepository;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public JsonResult GetEvents()
+        {
+            var result = _eventRepository.GetEvents();
+            return this.Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+    }
+}
