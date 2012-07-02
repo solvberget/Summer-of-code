@@ -11,6 +11,10 @@
     <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
     
     <link href="/css/default.css" rel="stylesheet" />
+    <link href="/css/searchResults.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/js/lib/spinn.min.js"></script>
+
     <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
     <link href="/pages/searchResults/searchResults.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
@@ -28,7 +32,7 @@
                 <h4 class="item-subtitle win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: AgeLimit searchResults.markText"></h4>
                <!-- <h4 class="item-description win-type-x-small win-type-ellipsis" data-win-bind=""></h4> -->
             </div>
-        </div>
+        </div>       
     </div>
 
     <!-- The content that will be loaded and displayed. -->
@@ -44,8 +48,14 @@
             <div class="filterarea">
                 <ul class="filterbar"></ul>
                 <select class="filterselect"></select>
+                <a href="#" id="hrefDidYouMean"><span data-win-bind="innerText: didYouMean;" id="spanDidYouMean"></span></a>
             </div>
-            <div class="resultslist" aria-label="Search results" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+            <div id="search-loading-wheel">
+                    
+            </div>
+            <div class="resultslist" aria-label="Search results" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }">
+                
+            </div>
 
         </section>
     </div>

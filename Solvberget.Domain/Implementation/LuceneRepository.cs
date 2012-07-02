@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Lucene.Net.Store;
@@ -19,7 +20,6 @@ namespace Solvberget.Domain.Implementation
         public string[] StopWords { get; set; }
 
 
-        //TODO: Legge ut i config-fil
         private readonly string _pathToDict;
         private readonly string _pathToDictDir;
         private readonly string _pathToStopwordsDict;
@@ -28,24 +28,25 @@ namespace Solvberget.Domain.Implementation
 
         private string[] _suggestionList;
 
-        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict = null, string pathToSuggestionListDict = null, string pathToTestDict=null)
+        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict = null, string pathToSuggestionListDict = null, string pathToTestDict = null)
         {
             _pathToStopwordsDict = string.IsNullOrEmpty(pathToStopWordsDict)
                 ? @"App_Data\ordlister\stopwords.txt" : pathToStopWordsDict;
 
-            _pathToDict = string.IsNullOrEmpty(pathToDictionary) 
+            _pathToDict = string.IsNullOrEmpty(pathToDictionary)
                 ? @"App_Data\ordlister\ord_bm.txt" : pathToDictionary;
 
             _pathToSuggestionsDict = string.IsNullOrEmpty(pathToSuggestionListDict)
                 ? @"App_Data\ordlister\ord_forslag.txt" : pathToSuggestionListDict;
 
-            _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory) 
+            _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory)
                 ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
 
             _pathToTestDict = string.IsNullOrEmpty(pathToTestDict)
                 ? @"App_Data\ordlister\ord_test.txt" : pathToTestDict;
 
             InitializeSpellChecker();
+
         }
 
         private void InitializeSpellChecker()
@@ -58,79 +59,55 @@ namespace Solvberget.Domain.Implementation
             StopWords = File.ReadAllLines(_pathToStopwordsDict);
         }
 
-    
+
 
 
 
         /** HELPERS **/
-
-        private void ResetStrings(ref string prevWord, ref string currWord)
-        {
-            prevWord = string.Empty;
-            currWord = string.Empty;
-        }
-
-        private void UpdateStringsToWord(ref string prevWord, ref string currWord, string word)
-        {
-            prevWord = word;
-            currWord = word;
-        }
-
-        private void AddPrevAndCurrentWord( ref string wordErrorsRemovedString, ref string prevWord, string word )
-        {
-            wordErrorsRemovedString += prevWord + " " + word;
-            wordErrorsRemovedString += " ";
-        }
-
-        private bool IsStopWord(string value)
-        {
-            return StopWords.Contains(value);
-        }
 
         private void AddWordToSuggestionString(ref string suggestionString, string word)
         {
             suggestionString += word + " ";
         }
 
-        private string WordSplitErrorMerger( string value )
+        private string WordSplitErrorMerger(string value)
         {
+            var returnlist = new List<string>();
+            var words = value.Split();
 
-            var wordErrorsRemovedString = string.Empty;
-            var prevWord = string.Empty;
-            var currentWord = string.Empty;
+            if (words.Count() == 1) return value;
 
-            foreach (var word in value.Split())
+            for (var i = 1; i < words.Count(); i++)
             {
+                var prevWord = words.ElementAt(i - 1);
+                var currentWord = words.ElementAt(i);
 
-                if (string.IsNullOrEmpty(prevWord))
+                if (StopWords.Contains(prevWord) || StopWords.Contains(currentWord))
                 {
-                    UpdateStringsToWord( ref prevWord, ref currentWord, word);
+                    returnlist.Add(prevWord);
+                    if (i == words.Count() - 1)
+                    {
+                        returnlist.Add(currentWord);
+                    }
                     continue;
                 }
-
-                if (IsStopWord(word))
-                {
-                    AddPrevAndCurrentWord(ref wordErrorsRemovedString, ref prevWord, word);
-                    ResetStrings( ref prevWord, ref currentWord );
-                    continue;
-                }
-
-                var combinedWord = prevWord + word;
+                var combinedWord = prevWord + currentWord;
                 if (SpellChecker.Exist(combinedWord.ToLower()))
                 {
-                    wordErrorsRemovedString += combinedWord;
-                    ResetStrings( ref prevWord, ref currentWord );
+                    returnlist.Add(combinedWord);
+                    i++;
                 }
                 else
                 {
-                    wordErrorsRemovedString += prevWord;
-                    UpdateStringsToWord(ref prevWord, ref currentWord, word);
+                    returnlist.Add(prevWord);
+                    if (i == words.Count() - 1)
+                    {
+                        returnlist.Add(currentWord);
+                    }
                 }
-
-                wordErrorsRemovedString += " ";
-
             }
-            return string.IsNullOrEmpty(wordErrorsRemovedString) ? prevWord : wordErrorsRemovedString + currentWord;
+
+            return string.Join(" ", returnlist);
 
         }
 
@@ -138,29 +115,31 @@ namespace Solvberget.Domain.Implementation
 
         public string Lookup(string value)
         {
-
             InitializeSpellChecker();
-
             // Escape harmful values in input string
             value = System.Security.SecurityElement.Escape(value);
 
-            if (string.IsNullOrEmpty(value))
-                return string.Empty;
+            if (string.IsNullOrEmpty(value)) return string.Empty;
 
             value = WordSplitErrorMerger(value);
 
             var suggestionString = string.Empty;
 
+            return GetSuggestionString(value, suggestionString).TrimEnd();
+        }
+
+        private string GetSuggestionString(string value, string suggestionString)
+        {
             foreach (var word in value.Split().Where(word => !string.IsNullOrEmpty(word)))
             {
-                if (IsStopWord( word ))
+                if (StopWords.Contains(word))
                 {
                     AddWordToSuggestionString(ref suggestionString, word);
                     continue;
                 }
-            
+
                 // If the word exist in our dictionary, use it
-                if( SpellChecker.Exist(word.ToLower()))
+                if (SpellChecker.Exist(word.ToLower()))
                 {
                     AddWordToSuggestionString(ref suggestionString, word);
                     continue;
@@ -168,10 +147,10 @@ namespace Solvberget.Domain.Implementation
 
                 var similarWords = SpellChecker.SuggestSimilar(word, 5);
 
-                if ( similarWords != null && similarWords.Length > 0 )
+                if (similarWords != null && similarWords.Length > 0)
                 {
                     var suggestionWord = similarWords[0];
-                    
+
                     // Preserver case, e.g Fotbal will convert to Fotball, not convert to fotball. 
                     if (char.IsUpper(word[0]))
                         suggestionWord = char.ToUpper(suggestionWord[0]) + suggestionWord.Substring(1);
@@ -180,9 +159,8 @@ namespace Solvberget.Domain.Implementation
                 }
                 else
                     AddWordToSuggestionString(ref suggestionString, word);
-
             }
-            return suggestionString.TrimEnd();
+            return suggestionString;
         }
 
         public string[] SuggestionList()
