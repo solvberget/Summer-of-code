@@ -24,13 +24,47 @@
         getSuggestionListFromServer: function () {
             $.getJSON(suggestionMethods.url, suggestionMethods.populateSuggestionList);
         },
-        didYouMean : "",
+        didYouMean: "",
+        suggestionQuery : "",
 
     };
 
     var spellingMethods = {
 
     }
+
+    var loadingWheel = {
+        opts: {
+            lines: 17, // The number of lines to draw
+            length: 23, // The length of each line
+            width: 5, // The line thickness
+            radius: 40, // The radius of the inner circle
+            rotate: 13, // The rotation offset
+            color: '#FFF', // #rgb or #rrggbb
+            speed: 1.1, // Rounds per second
+            trail: 86, // Afterglow percentage
+            shadow: true, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: 'auto', // Top position relative to parent in px
+            left: 'auto' // Left position relative to parent in px
+        },
+        spinner: null,
+        spin: function () {
+
+                var target = document.getElementById('search-loading-wheel');
+                loadingWheel.spinner = new Spinner(loadingWheel.opts).spin();
+                target.appendChild(loadingWheel.spinner.el);
+                loadingWheel.initialized = true;
+
+        },
+        stop: function () {
+
+            loadingWheel.spinner.stop();
+
+        },
+    };
 
 
     var ajaxSearchDocuments = function (query) {
@@ -75,21 +109,7 @@
 
             var originalResults;
             var regex;
-
-            /**
-            // TODO: Perform the appropriate search on your data.
-            if (window.Data) {
-
-                originalResults = Data.items.createFiltered(function (item) {
-                    regex = new RegExp(queryText, "gi");
-                    return (item.title.match(regex) || item.subtitle.match(regex) || item.description.match(regex));
-                });
-
-            } else {
-                originalResults = new WinJS.Binding.List();
-            }
-            return originalResults;
-            **/
+            
         },
 
         // This function filters the search data using the specified filter.
@@ -113,6 +133,41 @@
 
             listView.itemDataSource = this.filters[filterIndex].results.dataSource;
         },
+        updateSuggestions : function( query ) {
+
+            // Reset suggestion
+            suggestionMethods.didYouMean = "";
+            suggestionMethods.suggestionQuery = "";
+
+
+            // Get a new search-suggestion
+            $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
+
+                // Check to see if we have a suggestion
+                if (query != allData && allData != "") {
+
+                    suggestionMethods.didYouMean = allData;
+                    suggestionMethods.suggestionQuery = allData;
+
+                    var bindingSource = WinJS.Binding.as(suggestionMethods);
+                    bindingSource.didYouMean = "Mente du " + suggestionMethods.didYouMean + "?";
+
+                    var spanDidYouMean = document.getElementById("spanDidYouMean");
+
+                    $(spanDidYouMean).click(function () {
+
+                        var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                        searchPane.show(suggestionMethods.suggestionQuery);
+
+                    });
+
+                    WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+
+                }
+            });
+
+        },
+        
 
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
@@ -122,6 +177,16 @@
             utils.markSupportedForProcessing(searchResults.markText);
             this.initializeLayout(element.querySelector(".resultslist").winControl, Windows.UI.ViewManagement.ApplicationView.value);
             this.generateFilters();
+
+            // Hide search pane ** Not implemented by Microsoft yet **
+                //var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                //searchPane.hide(); ** Not implemented by Microsoft yet **
+
+            // Show loadingWheel
+            loadingWheel.spin();
+
+            this.updateSuggestions(args.queryText);
+            
             $.when(ajaxSearchDocuments(args.queryText))
                .then($.proxy(function (response) {
 
@@ -133,6 +198,7 @@
 
                    this.populateFilterBar(element, originalResults);
                    this.applyFilter(this.filters[0], originalResults);
+                   loadingWheel.stop();
 
                }, this)
             );
@@ -177,36 +243,39 @@
         // This function generates the filter selection list.
         populateFilterBar: function (element, originalResults) {
             var filterBar = element.querySelector(".filterbar");
-            var listView = element.querySelector(".resultslist").winControl;
-            var li, option, filterIndex;
+            if (element.querySelector(".resultslist") != undefined) {
+                var listView = element.querySelector(".resultslist").winControl;
 
-            filterBar.innerHTML = "";
-            for (filterIndex = 0; filterIndex < this.filters.length; filterIndex++) {
-                this.applyFilter(this.filters[filterIndex], originalResults);
+                var li, option, filterIndex;
 
-                li = document.createElement("li");
-                li.filterIndex = filterIndex;
-                li.tabIndex = 0;
-                li.textContent = this.filters[filterIndex].text + " (" + this.filters[filterIndex].results.length + ")";
-                li.onclick = function (args) { this.filterChanged(element, args.target.filterIndex); }.bind(this);
-                li.onkeyup = function (args) {
-                    if (args.key === "Enter" || args.key === "Spacebar")
-                        this.filterChanged(element, args.target.filterIndex);
-                }.bind(this);
-                filterBar.appendChild(li);
+                filterBar.innerHTML = "";
+                for (filterIndex = 0; filterIndex < this.filters.length; filterIndex++) {
+                    this.applyFilter(this.filters[filterIndex], originalResults);
 
-                if (filterIndex === 0) {
-                    utils.addClass(li, "highlight");
-                    listView.itemDataSource = this.filters[filterIndex].results.dataSource;
+                    li = document.createElement("li");
+                    li.filterIndex = filterIndex;
+                    li.tabIndex = 0;
+                    li.textContent = this.filters[filterIndex].text + " (" + this.filters[filterIndex].results.length + ")";
+                    li.onclick = function (args) { this.filterChanged(element, args.target.filterIndex); }.bind(this);
+                    li.onkeyup = function (args) {
+                        if (args.key === "Enter" || args.key === "Spacebar")
+                            this.filterChanged(element, args.target.filterIndex);
+                    }.bind(this);
+                    filterBar.appendChild(li);
+
+                    if (filterIndex === 0) {
+                        utils.addClass(li, "highlight");
+                        listView.itemDataSource = this.filters[filterIndex].results.dataSource;
+                    }
+
+                    option = document.createElement("option");
+                    option.value = filterIndex;
+                    option.textContent = this.filters[filterIndex].text + " (" + this.filters[filterIndex].results.length + ")";
+                    element.querySelector(".filterselect").appendChild(option);
                 }
 
-                option = document.createElement("option");
-                option.value = filterIndex;
-                option.textContent = this.filters[filterIndex].text + " (" + this.filters[filterIndex].results.length + ")";
-                element.querySelector(".filterselect").appendChild(option);
+                element.querySelector(".filterselect").onchange = function (args) { this.filterChanged(element, args.currentTarget.value); }.bind(this);
             }
-
-            element.querySelector(".filterselect").onchange = function (args) { this.filterChanged(element, args.currentTarget.value); }.bind(this);
         },
 
         // This function is called whenever a user navigates to this page. It
@@ -218,6 +287,10 @@
             listView.oniteminvoked = this.itemInvoked;
             this.handleQuery(element, options);
             listView.element.focus();
+
+            var spanDidYouMean = document.getElementById("spanDidYouMean");
+            WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+
 
         },
 
@@ -258,7 +331,6 @@
     appModel.Search.SearchPane.getForCurrentView().onquerysubmitted = function (args) { nav.navigate(searchPageURI, args); };
     
     // Populate suggestionList from server
-    console.log("Get suggestion list");
     suggestionMethods.getSuggestionListFromServer();
 
 
@@ -280,26 +352,6 @@
             }
         }
 
-        if (queryText.length > 2) {
-
-            // Suggestion type: "Did you mean?"
-            suggestionRequest.searchSuggestionCollection.appendSearchSeparator("Mente du?");
-
-            
-            $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
-
-                if (queryText != allData)
-                    //   async error:suggestionRequest.searchSuggestionCollection.appendQuerySuggestion(allData);
-                    suggestionMethods.didYouMean = allData;
-
-            });
-
-            // Quickfix for async
-            if ( suggestionMethods.didYouMean != "" ) 
-                suggestionRequest.searchSuggestionCollection.appendQuerySuggestion(suggestionMethods.didYouMean);
-
-  
-        }
         if (suggestionRequest.searchSuggestionCollection.size > 0) {
             WinJS.log && WinJS.log("Suggestions provided for query: " + queryText, "sample", "status");
         } else {
