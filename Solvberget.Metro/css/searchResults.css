@@ -1,0 +1,12 @@
+/* line 6, ../sass/searchResults.scss */
+#hrefDidYouMean {
+  float: left;
+  margin-left: 120px;
+  padding-bottom: -100px;
+}
+
+/* line 18, ../sass/searchResults.scss */
+.spinner {
+  margin: 100px;
+  margin-left: 150px;
+}

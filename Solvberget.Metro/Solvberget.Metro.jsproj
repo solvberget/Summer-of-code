@@ -55,6 +55,7 @@
     <Content Include="css\ie.css" />
     <Content Include="css\print.css" />
     <Content Include="css\screen.css" />
+    <Content Include="css\searchResults.css" />
     <Content Include="default.html" />
     <Content Include="DocumentInfo.html" />
     <Content Include="images\dummydata\davincikoden.jpeg" />
@@ -236,6 +237,7 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="sass\searchResults.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </None>

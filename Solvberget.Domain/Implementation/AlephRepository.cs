@@ -91,7 +91,7 @@ namespace Solvberget.Domain.Implementation
             {
                 var className =  GetDocumentType(docTypeString.Split(','));
 
-                var type = Type.GetType("Solvberget.Domain.DTO." + className);
+                var type = Type.GetType(className);
 
                 var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBsMarcLight" : "GetObjectFromFindDocXmlBsMarc");
 
@@ -159,19 +159,19 @@ namespace Solvberget.Domain.Implementation
 
                 if (dtc.Equals("l"))
                 {
-                    return "Book";
+                    return typeof(Book).FullName;
                 }
                 else if (dtc.StartsWith("e"))
                 {
-                    return "Film";
+                    return typeof(Film).FullName;
                 }
                 else if (dtc.Equals("di"))
                 {
-                    return "AudioBook";
+                    return typeof(AudioBook).FullName;
                 }
             }
             
-            return "Document";
+            return typeof(Document).FullName;
 
         }   
     }
