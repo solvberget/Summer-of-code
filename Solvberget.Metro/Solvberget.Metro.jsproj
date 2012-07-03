@@ -58,6 +58,7 @@
     <Content Include="css\searchResults.css" />
     <Content Include="default.html" />
     <Content Include="DocumentInfo.html" />
+    <Content Include="images\ajax_loading.gif" />
     <Content Include="images\dummydata\davincikoden.jpeg" />
     <Content Include="images\dummydata\drageloperen.jpeg" />
     <Content Include="images\dummydata\hp1.jpeg" />
@@ -237,6 +238,11 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="pages\itemDetail\viewmodels\documentList.js" />
+    <Content Include="js\EventDataSource.js" />
+    <Content Include="pages\events\events.css" />
+    <Content Include="pages\events\events.html" />
+    <Content Include="pages\events\events.js" />
     <Content Include="sass\searchResults.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
@@ -251,15 +257,18 @@
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
-    <Content Include="pages\itemDetail\bookDetail\bookDetail.css" />
-    <Content Include="pages\itemDetail\bookDetail\bookDetail.html" />
-    <Content Include="pages\itemDetail\bookDetail\bookDetail.js" />
-    <Content Include="pages\itemDetail\FilmDetail\filmDetail.css" />
-    <Content Include="pages\itemDetail\FilmDetail\filmDetail.html" />
-    <Content Include="pages\itemDetail\FilmDetail\filmDetail.js" />
+    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.css" />
+    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.html" />
+    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.js" />
+    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.css" />
+    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.html" />
+    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.js" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />
+    <Content Include="pages\itemDetail\viewmodels\audioBookItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\bookItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\movieItem.js" />
     <Content Include="pages\items\items.css" />
     <Content Include="pages\items\items.html" />
     <Content Include="pages\items\items.js" />
@@ -279,7 +288,6 @@
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\models\" />
     <Folder Include="lib\" />
     <Folder Include="pages\shared\" />
   </ItemGroup>

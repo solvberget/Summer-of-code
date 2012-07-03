@@ -2,17 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>itemDetailPage</title>
-    
+    <title>Bokinformasjon</title>
+
     <!-- WinJS references -->
     <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
 
     <link href="/css/default.css" rel="stylesheet" />
-    <link href="/pages/itemDetail/itemDetail.css" rel="stylesheet" />
-    <script src="/js/data.js"></script>
-    <script src="/pages/itemDetail/itemDetail.js"></script>
+    <link href="/pages/itemDetail/fragments/movieFragment/movieFragment.css" rel="stylesheet" />
+         <script src="/pages/itemDetail/fragments/movieFragment/movieFragment.js"></script>
 </head>
 <body>
     <!-- The content that will be loaded and displayed. -->
@@ -27,11 +26,14 @@
             <article>
                 <div>
                     <header>
-                        <h2 class="item-title"></h2>
-                        <h4 class="item-subtitle"></h4>
+                        <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
+                        <h4 class="item-subtitle" data-win-bind="textContent: subtitle"></h4>
                     </header>
-                    <img class="item-image" src="#" />
-                    <div class="item-content"></div>
+                    <img class="item-image" src="#" data-win-bind="src: image; alt: title" />
+                    <div class="item-actors" data-win-bind="innerHTML: actors"></div>
+                    <div class="item-agelimit" data-win-bind="innerHTML: agelimit"></div>
+                    <div class="item-genre" data-win-bind="innerHTML: genre"></div>
+                    <div class="item-content" data-win-bind="innerHTML: content"></div>
                 </div>
             </article>
         </div>
