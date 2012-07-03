@@ -95,11 +95,7 @@
             args.detail.itemPromise.done(function itemInvoked(item) {
                 // TODO: Navigate to the item that was invoked.
                 var itemObject = args.detail.itemPromise._value.data;
-                if (itemObject.DocType == "Book")
-                    nav.navigate("/pages/itemDetail/bookDetail/bookDetail.html", { item: itemObject, key: args.detail.itemPromise._value.data.DocumentNumber });
-                else 
-                     nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: args.detail.itemPromise._value.data.DocumentNumber });
-
+                     nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: itemObject.DocumentNumber });
             });
         },
 

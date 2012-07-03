@@ -251,15 +251,18 @@
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
-    <Content Include="pages\itemDetail\bookDetail\bookDetail.css" />
-    <Content Include="pages\itemDetail\bookDetail\bookDetail.html" />
-    <Content Include="pages\itemDetail\bookDetail\bookDetail.js" />
-    <Content Include="pages\itemDetail\FilmDetail\filmDetail.css" />
-    <Content Include="pages\itemDetail\FilmDetail\filmDetail.html" />
-    <Content Include="pages\itemDetail\FilmDetail\filmDetail.js" />
+    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.css" />
+    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.html" />
+    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.js" />
+    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.css" />
+    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.html" />
+    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.js" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />
+    <Content Include="pages\itemDetail\viewmodels\audioBookItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\bookItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\movieItem.js" />
     <Content Include="pages\items\items.css" />
     <Content Include="pages\items\items.html" />
     <Content Include="pages\items\items.js" />
@@ -279,7 +282,6 @@
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\models\" />
     <Folder Include="lib\" />
     <Folder Include="pages\shared\" />
   </ItemGroup>
