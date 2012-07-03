@@ -15,6 +15,20 @@
     <script src="/pages/itemDetail/bookDetail/bookDetail.js"></script>
 </head>
 <body>
+
+    <!-- Confirmation Flyout. -->
+    <div id="personal-message-flyout" data-win-control="WinJS.UI.Flyout" aria-label="{personal-message-flyout}">
+           <form onsubmit="return false;">
+                <p>Skriv en personlig melding i delingen</p>
+                <p>
+                    <span>Personlig melding: </span><input type="text" id="input-message"/>
+                </p>
+                 <button id="button-flyout-finished" aria-label="OK">OK</button>
+            </form>
+
+        
+    </div>
+
     <!-- The content that will be loaded and displayed. -->
     <div class="itemdetailpage fragment">
         <header aria-label="Header content" role="banner">
@@ -36,9 +50,11 @@
 
                     </header>
                     <img class="item-image" src="#" />
-                    <div class="item-content">
+                    <div id="item-content">
                         
                     </div>
+                    <br /><br />
+                    <a href="#" id="openShare">Del med andre!</a>
                 </div>
             </article>
 

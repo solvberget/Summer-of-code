@@ -291,6 +291,7 @@
             var spanDidYouMean = document.getElementById("spanDidYouMean");
             WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
 
+            
 
         },
 
