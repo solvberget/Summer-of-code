@@ -10,52 +10,78 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+
             this.fragmentScriptCSSDiv = element.querySelector("#fragments");
             this.item = options.item;
             this.documentId = options.key;
             this.defaultScript();
             this.registerForShare();
             element.querySelector(".content").focus();
+
         },
         registerForShare: function () {
 
+            // Register/listen to share requests
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
             dataTransferManager.addEventListener("datarequested", this.shareHtmlHandler);
+
+            // Open share dialog on openShare-link clicked
             $("#openShare").click(function () {
                 Windows.ApplicationModel.DataTransfer.DataTransferManager.showShareUI();
             });
+
         },
 
         shareHtmlHandler: function (e) {
 
+            // Set in settings? Get from apps settings?
+
+            var SHARE_MODE_FACEBOOK = "facebook", SHARE_MODE_HTML = "html";
+            var shareMode = SHARE_MODE_HTML;
+
+            // Share request object
             var request = e.request;
-            var documentTitle = $(".item-title").text();
 
-            request.data.properties.title = documentTitle;
-            request.data.properties.description = 
-                "Del innholdet med dine venner!";
+            // This documents title and img
+            var documentTitle = $("#item-title").text();
 
-            // Data to share
-            var imagePath = $("article .item-image").attr("src");
+            if ((typeof documentTitle === "string") && (documentTitle !== "")) {
 
-            var shareText = "Denne her tror jeg er noe for deg!";
-            
-            var localImage = "ms-appx://"+imagePath;
-            var htmlContent = '<p>'+
-                                '<img src="' + localImage + '"alt="'+documentTitle+'" title="'+documentTitle+'"></img>'+
-                              '</p>'+
-                              '<p>' + shareText + '</p>';
 
-            var htmlFormat = 
-                Windows.ApplicationModel.DataTransfer.HtmlFormatHelper.createHtmlFormat(htmlContent);
 
-            request.data.setHtmlFormat(htmlFormat);
-            request.data.setText("Denne må du sjekke ut!");
+                    request.data.setUri(new Windows.Foundation.Uri("http://www.stavanger-kulturhus.no/soelvberget/soek_i_biblioteket?searchstring=" + documentTitle));
 
-            var streamRef =
-                Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(new Windows.Foundation.Uri(localImage));
 
-            request.data.resourceMap[localImage] = streamRef;
+                    var range = document.createRange();
+                    range.selectNode(document.getElementById("fragments"));
+                    request.data = MSApp.createDataPackage(range);
+
+                    request.data.setText("Hello!!");
+
+                    // Set the title and description of this share-event
+                    request.data.properties.title = documentTitle;
+                    request.data.properties.description =
+                        "Del innholdet med dine venner!";
+
+
+
+                    var path = document.getElementById("item-image").getAttribute("src");
+
+                    var imageUri = new Windows.Foundation.Uri(path);
+                    var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
+                    request.data.resourceMap[path] = streamReference;
+                   
+
+                    if (shareMode == SHARE_MODE_FACEBOOK) {
+
+
+                    }
+                
+            } else {
+
+                request.failWithDisplayText("Fant ingen tittel å dele!");
+
+            }
 
         },
 
@@ -113,10 +139,9 @@
 
                 },
 
-        function (error) {
-            WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
-        }
-            );
+            function (error) {
+                WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
+            });
         }
     });
 })();

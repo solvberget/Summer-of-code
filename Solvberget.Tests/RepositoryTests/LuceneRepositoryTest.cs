@@ -28,13 +28,14 @@ namespace Solvberget.Service.Tests.RepositoryTests
             _basepath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data");
             _dictPath= Path.Combine(_basepath,@"ordlister\ord_test.txt");
             _indexPath = Path.Combine(_basepath, @"ordlister_index");
-           
+
+            DictionaryBuilder.Build(_dictPath, _indexPath);
+
             _repository = new LuceneRepository(Path.Combine(_basepath, @"ordlister\ord_bm.txt"),
                                                Path.Combine(_basepath, @"ordlister_index"),
                                                Path.Combine(_basepath, @"ordlister\stopwords.txt"),
                                                Path.Combine(_basepath, @"ordlister\ord_forslag.txt"),
                                                Path.Combine(_basepath, @"ordlister\ord_test.txt"));
-            DictionaryBuilder.Build(_dictPath, _indexPath);
 
         }
         [Test]

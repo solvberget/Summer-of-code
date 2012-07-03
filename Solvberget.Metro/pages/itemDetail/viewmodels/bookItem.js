@@ -15,7 +15,7 @@
             fillProperties: function (bookItem) {
                 this.title = bookItem.Title;
                 this.subtitle = bookItem.PublishedYear;
-                this.image = "/images/dummydata/hp1.jpeg";
+                this.image = "ms-appx:///images/dummydata/hp1.jpeg";
                 this.content = "Lorem ipsum dolor sit amet";
                 this.author = bookItem.Author.Name;
                 this.published = bookItem.PublishedYear;
