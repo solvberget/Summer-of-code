@@ -53,7 +53,8 @@
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
                     // For single-column detail view, load the article.
-                    binding.processAll(element.querySelector(".articlesection"), listView.selection.getItems()[0]);
+                    console.log("Binding break");
+                    binding.processAll(element.querySelector(".articlesection"), options.item);
                 }
             } else {
                 if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/events/events.html") {
@@ -68,6 +69,7 @@
         },
 
         selectionChanged: function (args) {
+            console.log("!!!");
             var listView = document.body.querySelector(".itemlist").winControl;
             var details;
             var that = this;
@@ -78,7 +80,7 @@
                     if (that.isSingleColumn()) {
                         // If snapped or portrait, navigate to a new page containing the
                         // selected item's details.
-                        nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex });
+                        nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
                     } else {
                         // If fullscreen or filled, update the details column with new data.
                         details = document.querySelector(".articlesection");

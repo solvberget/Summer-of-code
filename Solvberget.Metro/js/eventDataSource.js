@@ -82,9 +82,10 @@
                                         stop: "Slutter kl. " + dataItem.Stop,
                                         location: dataItem.Location,
                                         description: dataItem.Description,
-                                        teaser: dataItem.Teaser,
+                                        //NB: Teaser er foreløpig dummydata, skal bindes mot dataItem.Teaser, men dette er vanligvis tomt.
+                                        teaser: "Dette blir veldig spennende, dere! (Dette er en teaser)",
                                         type: "Passer for: " + dataItem.TypeName,
-                                        url: dataItem.Link,
+                                        url: { l : dataItem.Link, t : "Link til arrangement" },
                                         address: dataItem.Address,
                                         city: dataItem.City + " " + dataItem.PostalCode,
                                         thumbImage: dataItem.ThumbUrl,

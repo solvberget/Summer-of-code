@@ -59,17 +59,17 @@
                         <h3 class="article-subtitle" data-win-bind="textContent: stop"></h3>
                         <h2 class="article-subtitle" data-win-bind="textContent: location"></h2>
                     </div>
-                    <img class="article-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+                    <img class="article-image" src="/images/ajax_loading.gif" data-win-bind="src: backgroundImage; alt: title" />
                 </header>
                 <br />
                 <!-- Denne skal bindes til teaser. Den er tom, så vi bruker dummydata for å få det pent-->
-                <div class="article-content">Dette blir veldig spennende, dere! (Dette er en teaser)</div> 
+                <div class="article-content" data-win-bind="innerHTML: teaser"></div> 
                 <br />
                 <div class="article-content" data-win-bind="innerHTML: description"></div>
                 <br />
                 <div class="article-content" data-win-bind="innerHTML: type"></div>
                 <br />
-                <a class="article-content" href="#" data-win-bind="href: url">Link til arrangement</a>
+                <a class="article-content" href="#" data-win-bind="href: url.l; textContent: url.t"></a>
             </article>
         </div>
     </div>
