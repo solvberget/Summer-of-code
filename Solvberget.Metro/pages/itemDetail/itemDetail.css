@@ -8,6 +8,15 @@
     z-index: 0;
 }
 
+#openShare {
+    margin-top:120px;
+    margin-left: 120px;
+    float:left;
+    width:300px;
+    font-size:x-large;
+}
+
+
 
 @media screen and (-ms-view-state: snapped) {
     .itemdetailpage .content {
@@ -17,6 +26,4 @@
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
-
-    }
-
+}
