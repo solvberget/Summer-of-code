@@ -31,11 +31,12 @@
                     if (item.DocType == "Book") {
                         self.viewModel = ViewModel.Book;
                         self.viewModel.viewPath = "/pages/itemDetail/fragments/bookFragment/bookFragment.html";
+                        //Handle changes in book ui
                         self.viewModel.fragment = Book_Fragment;
                     }
                     if (item.DocType == "Film") {
                         self.viewModel = ViewModel.Movie;
-                        self.viewModel.viewtPath = "/pages/itemDetail/fragments/movieFragment/movieFragment.html";
+                        self.viewModel.viewPath = "/pages/itemDetail/fragments/movieFragment/movieFragment.html";
                         self.viewModel.fragment = Movie_Fragment;
                     }
                     self.viewModel.fillProperties(item);
