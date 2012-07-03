@@ -46,23 +46,17 @@
 
             if ((typeof documentTitle === "string") && (documentTitle !== "")) {
 
-
-
-                    request.data.setUri(new Windows.Foundation.Uri("http://www.stavanger-kulturhus.no/soelvberget/soek_i_biblioteket?searchstring=" + documentTitle));
-
+                var SHARE_MODE_FACEBOOK = "facebook", SHARE_MODE_HTML = "html";
+                var shareMode = SHARE_MODE_HTML;
 
                     var range = document.createRange();
                     range.selectNode(document.getElementById("fragments"));
                     request.data = MSApp.createDataPackage(range);
 
-                    request.data.setText("Hello!!");
-
                     // Set the title and description of this share-event
                     request.data.properties.title = documentTitle;
                     request.data.properties.description =
                         "Del innholdet med dine venner!";
-
-
 
                     var path = document.getElementById("item-image").getAttribute("src");
 
@@ -73,6 +67,7 @@
 
                     if (shareMode == SHARE_MODE_FACEBOOK) {
 
+                        request.data.setUri(new Windows.Foundation.Uri("http://www.stavanger-kulturhus.no/soelvberget/soek_i_biblioteket?searchstring=" + documentTitle));
 
                     }
                 
@@ -124,18 +119,15 @@
                   WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
                   self.viewModel.fragment.fragmentLoad(fragment);
                   WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
-              }
-          );
+              },
+            function (error) {
+                WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
+            });
             }
 
             renderItem(self.item);
-
-
-        function (error) {
-            WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
         }
     });
-
 
 })();
 
