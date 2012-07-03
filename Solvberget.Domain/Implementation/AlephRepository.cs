@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
+using Solvberget.Domain.Utils;
 
 namespace Solvberget.Domain.Implementation
 {
@@ -26,7 +27,7 @@ namespace Solvberget.Domain.Implementation
 
             var url = GetUrl(function, options);
 
-            var doc = GetXmlFromStream(url);
+            var doc = RepositoryUtils.GetXmlFromStream(url);
                
             if (doc.Root != null)
             {
@@ -44,7 +45,7 @@ namespace Solvberget.Domain.Implementation
 
             var url = GetUrl(function, options);
 
-            var doc = GetXmlFromStream(url);
+            var doc = RepositoryUtils.GetXmlFromStream(url);
 
             if (doc.Root != null)
             {
@@ -67,7 +68,7 @@ namespace Solvberget.Domain.Implementation
 
             var url = GetUrl(function, options);
 
-            var doc = GetXmlFromStream(url);
+            var doc = RepositoryUtils.GetXmlFromStream(url);
 
             var documents = new List<Document>();
             if (doc.Root != null)
@@ -91,7 +92,7 @@ namespace Solvberget.Domain.Implementation
             {
                 var className =  GetDocumentType(docTypeString.Split(','));
 
-                var type = Type.GetType("Solvberget.Domain.DTO." + className);
+                var type = Type.GetType(className);
 
                 var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBsMarcLight" : "GetObjectFromFindDocXmlBsMarc");
 
@@ -108,7 +109,7 @@ namespace Solvberget.Domain.Implementation
         private string GetUrl(Operation function, Dictionary<string, string> options)
         {
             var sb = new StringBuilder();
-            sb.Append(Properties.Settings.Default.ServerUrl);
+            sb.Append(Properties.Settings.Default.AlephServerUrl);
             sb.Append(GetOperationPrefix(function));
             foreach (var option in options)
             {
@@ -116,21 +117,7 @@ namespace Solvberget.Domain.Implementation
             }
             return sb.ToString();
         }
-
-        private static XDocument GetXmlFromStream(string url)
-        {
-            var request = WebRequest.Create(url);
-            var response = request.GetResponse();
-            string xml = string.Empty;
-            using (var stream = response.GetResponseStream())
-            {
-                var readStream = new StreamReader(stream, Encoding.UTF8);
-                xml = readStream.ReadToEnd();
-            }
-
-            return XDocument.Parse(xml);
-        }
-
+        
         private static string GetOperationPrefix(Operation op)
         {
             switch ((int)op)
@@ -159,19 +146,19 @@ namespace Solvberget.Domain.Implementation
 
                 if (dtc.Equals("l"))
                 {
-                    return "Book";
+                    return typeof(Book).FullName;
                 }
                 else if (dtc.StartsWith("e"))
                 {
-                    return "Film";
+                    return typeof(Film).FullName;
                 }
                 else if (dtc.Equals("di"))
                 {
-                    return "AudioBook";
+                    return typeof(AudioBook).FullName;
                 }
             }
             
-            return "Document";
+            return typeof(Document).FullName;
 
         }   
     }
