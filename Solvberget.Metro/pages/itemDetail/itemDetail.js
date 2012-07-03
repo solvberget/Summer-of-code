@@ -12,12 +12,11 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            this.fragmentScriptCSSDiv = element.querySelector("#fragments");
             this.item = options.item;
             this.documentId = options.key;
             this.defaultScript();
             this.registerForShare();
-            element.querySelector(".content").focus();
+            element.querySelector(".itemdetailpage").focus();
         },
         registerForShare: function () {
 
@@ -81,7 +80,7 @@
         },
 
         defaultScript: function () {
-            this.fragmentsDiv = this.element.querySelector("#fragments");
+            this.fragmentsDiv = this.element.querySelector(".content");
             this.fragmentsDiv.innerHTML = "";
             var self = this;
 
