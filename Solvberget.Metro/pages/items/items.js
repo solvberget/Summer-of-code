@@ -22,8 +22,10 @@
             if (groupKey === "group6") {
                 var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
                 searchPane.show();
-            } else {
-
+            }   else if (groupKey === "events") {
+                WinJS.Navigation.navigate("/pages/events/events.html", { groupKey: groupKey });
+            }
+            else {
                 WinJS.Navigation.navigate("/pages/split/split.html", { groupKey: groupKey });
             }
         },

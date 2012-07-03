@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Arrangementer</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+    
+    <!-- Common references -->
+    <script src="../../js/data.js"></script>
+
+    <!-- Split references -->
+    <link href="../../css/default.css" rel="stylesheet" />
+    <link href="events.css" rel="stylesheet" />
+    <script src="events.js"></script>
+    <script src="../../js/EventDataSource.js"></script>
+    <script type="text/javascript" src="../../js/lib/jquery-1.7.2.min.js"></script>
+
+
+</head>
+<body>
+    <!-- This template is used to display each item in the ListView declared below. -->
+    <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
+        <img class="item-image" src="#" data-win-bind="src: thumbImage; alt: title" />
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
+            <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: dateAndTime"></h6>
+            <h3 class="item-description" data-win-bind="textContent: location"></h3>
+
+        </div>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="splitpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle"></span>
+
+            </h1>
+        </header>
+
+      
+        <div class="itemlistsection" aria-label="List column">
+              
+            <div class="itemlist" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+        	
+        </div>
+        <div class="articlesection" aria-atomic="true" aria-label="Item detail column" aria-live="assertive">
+            <article class="article-box">
+                <header class="header">
+                    <div class="text">
+                        <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h1>
+                        <h3 class="article-subtitle" data-win-bind="textContent: date"></h3>
+                        <h3 class="article-subtitle" data-win-bind="textContent: start"></h3>
+                        <h3 class="article-subtitle" data-win-bind="textContent: stop"></h3>
+                        <h2 class="article-subtitle" data-win-bind="textContent: location"></h2>
+                    </div>
+                    <img class="article-image" src="/images/ajax_loading.gif" data-win-bind="src: backgroundImage; alt: title" />
+                </header>
+                <br />
+                <!-- Denne skal bindes til teaser. Den er tom, så vi bruker dummydata for å få det pent-->
+                <div class="article-content" data-win-bind="innerHTML: teaser"></div> 
+                <br />
+                <div class="article-content" data-win-bind="innerHTML: description"></div>
+                <br />
+                <div class="article-content" data-win-bind="innerHTML: type"></div>
+                <br />
+                <a class="article-content" href="#" data-win-bind="href: url.l; textContent: url.t"></a>
+            </article>
+        </div>
+    </div>
+    
+</body>
+</html>
