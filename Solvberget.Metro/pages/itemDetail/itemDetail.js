@@ -6,7 +6,7 @@
     ui.Pages.define("/pages/itemDetail/itemDetail.html", {
         item: undefined,
         documentId: undefined,
-       
+
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
@@ -15,7 +15,7 @@
             this.documentId = options.key;
             this.defaultScript();
             element.querySelector(".content").focus();
-                
+
         },
 
         defaultScript: function () {
@@ -26,12 +26,12 @@
 
             // Read fragment from the HMTL file and load it into the div.  This
             // fragment also loads linked CSS and JavaScript specified in the fragment
-            if (self.item.DocType == "Book") {
-                WinJS.UI.Fragments.renderCopy("/pages/itemDetail/fragments/bookFragment/bookFragment.html",
-                    this.fragmentScriptCSSDiv)
-                    .done(function(fragment) {
 
+            WinJS.UI.Fragments.renderCopy("/pages/itemDetail/fragments/bookFragment/bookFragment.html",
+                this.fragmentScriptCSSDiv)
+                .done(function (fragment) {
 
+                    if (self.item.DocType == "Book") {
                         var book;
                         if (ViewModel.BookList[self.documentId] != undefined) {
                             book = ViewModel.BookList[self.documentId];
@@ -49,8 +49,8 @@
                         Fragment.fragmentLoad(fragment);
                         WinJS.log && WinJS.log("successfully loaded fragment, change date to fire change event.", "sample", "status");
                     }
-            }
-            if (self.item.DocType == "Film") {
+
+                    if (self.item.DocType == "Film") {
                         var movie;
                         if (ViewModel.MovieList[self.documentId] != undefined) {
                             movie = ViewModel.MovieList[self.documentId];
@@ -70,11 +70,11 @@
                         WinJS.log && WinJS.log("successfully loaded fragment, change date to fire change event.", "sample", "status");
                     }
 
-            },
+                },
 
-                function (error) {
-                    WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
-                }
+        function (error) {
+            WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
+        }
             );
         }
     });
