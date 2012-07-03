@@ -32,10 +32,10 @@
         .itemdetailpage .content article #item-image {
             height: 240px;
             margin-bottom: 3px;
-            width: 240px;
+            width: 460px;
         }
 
-        .itemdetailpage .content article .item-content p{
+        .itemdetailpage .content article .item-content p {
             margin-bottom: 20px;
             margin-right: 20px;
             vertical-align: baseline;
