@@ -50,7 +50,7 @@
                 var shareMode = SHARE_MODE_HTML;
 
                 var range = document.createRange();
-                range.selectNode(document.getElementById("fragments"));
+                range.selectNode(document.getElementById("fragmentcontent"));
                 request.data = MSApp.createDataPackage(range);
 
                 // Set the title and description of this share-event
