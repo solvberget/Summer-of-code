@@ -15,11 +15,11 @@
             this.item = options.item;
             this.documentId = options.key;
             this.defaultScript();
-            element.querySelector(".content").focus();
+            element.querySelector(".itemdetailpage").focus();
         },
 
         defaultScript: function () {
-            this.fragmentsDiv = this.element.querySelector("#fragments");
+            this.fragmentsDiv = this.element.querySelector(".content");
             this.fragmentsDiv.innerHTML = "";
             var self = this;
 
