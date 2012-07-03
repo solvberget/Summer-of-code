@@ -97,6 +97,10 @@
                 width: 180px;
             }
 
+        .splitpage .articlesection .article-box {
+            margin-top: 250px;
+        }
+      
         .splitpage .articlesection .article-content {
             overflow-y: auto;
         }
