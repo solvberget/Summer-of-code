@@ -8,10 +8,10 @@
             ///book specific
             author: null,
             published: null,
-
             isbn: null,
             genre: null,
             image: null,
+            fragmentPath: null,
             fillProperties: function (bookItem) {
                 this.title = bookItem.Title;
                 this.subtitle = bookItem.PublishedYear;
@@ -24,13 +24,6 @@
             },
         }),
 
-        BookList: WinJS.Binding.as({
-            bookItems: [],
-            ///item specific
-
-            addBook: function (newBook) {
-                this.bookItems.push(newBook);
-            },
-        })
+ 
     });
 })();
