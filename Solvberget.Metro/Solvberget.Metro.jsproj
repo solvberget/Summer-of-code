@@ -58,6 +58,7 @@
     <Content Include="css\searchResults.css" />
     <Content Include="default.html" />
     <Content Include="DocumentInfo.html" />
+    <Content Include="images\ajax_loading.gif" />
     <Content Include="images\dummydata\davincikoden.jpeg" />
     <Content Include="images\dummydata\drageloperen.jpeg" />
     <Content Include="images\dummydata\hp1.jpeg" />
@@ -238,6 +239,10 @@
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
     <Content Include="pages\itemDetail\viewmodels\documentList.js" />
+    <Content Include="js\EventDataSource.js" />
+    <Content Include="pages\events\events.css" />
+    <Content Include="pages\events\events.html" />
+    <Content Include="pages\events\events.js" />
     <Content Include="sass\searchResults.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>

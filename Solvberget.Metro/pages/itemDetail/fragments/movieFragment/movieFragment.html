@@ -21,15 +21,14 @@
             <article>
                 <div>
                     <header>
-                        <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
-                        <h3 class="item-subtitle" data-win-bind="textContent: subtitle"></h3>
-                        <h4 class="item-actors" data-win-bind="innerHTML: actors"></h4>
-                        <h4 class="item-agelimit" data-win-bind="innerHTML: agelimit"></h4>
-                        <h4 class="item-genre" data-win-bind="innerHTML: genre"></h4>
+                        <h2 id="item-title" class="win-type-ellipsis" data-win-bind="textContent: title"></h2>
+                        <h3 id="item-subtitle" data-win-bind="textContent: subtitle"></h3>
+                        <h4 id="item-actors" data-win-bind="innerHTML: actors"></h4>
+                        <h4 id="item-agelimit" data-win-bind="innerHTML: agelimit"></h4>
+                        <h4 id="item-genre" data-win-bind="innerHTML: genre"></h4>
                     </header>
-                    <img class="item-image" src="#" data-win-bind="src: image; alt: title" />
-
-                    <div class="item-content" data-win-bind="innerHTML: content"></div>
+                    <img id="item-image" src="#" data-win-bind="src: image; alt: title" />
+                    <div id="item-content" data-win-bind="innerHTML: content"></div>
                 </div>
             </article>
         </div>

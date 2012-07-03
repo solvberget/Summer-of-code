@@ -1,4 +1,22 @@
-﻿.itemdetailpage .content {
+﻿ /* Flyout title. */
+    .win-flyout:not(.win-menu) .win-type-x-large
+    {
+        font-weight: 300;
+        margin-top: -13px;
+        padding-bottom: 18px;
+    }
+
+    /* Flyout buttons. */
+    .win-flyout:not(.win-menu) button,
+    .win-flyout:not(.win-menu) input[type="button"]
+    {
+        margin-top: 16px;
+        margin-left: 20px;
+        float: right;
+    }
+
+
+.itemdetailpage .content {
     -ms-grid-row: 2;
     display: block;
     height: 100%;
@@ -19,17 +37,17 @@
         width: 480px;
     }
 
-        .itemdetailpage .content article header .item-title {
+        .itemdetailpage .content article header #item-title {
             margin-bottom: 20px;
             margin-top: 0;
         }
 
-        .itemdetailpage .content article header .item-subtitle {
+        .itemdetailpage .content article header #item-subtitle {
             margin-bottom: 20px;
             margin-top: 0;
         }
 
-        .itemdetailpage .content article .item-image {
+        .itemdetailpage .content article #item-image {
             height: 240px;
             margin-bottom: 3px;
             width: 460px;
@@ -58,7 +76,7 @@
             width: 300px;
         }
 
-            .itemdetailpage .content article .item-image {
+            .itemdetailpage .content article #item-image {
                 height: 140px;
                 width: 280px;
             }
