@@ -1,4 +1,6 @@
-﻿(function () {
+﻿//var eventsDataSource = eventsDataSource || {};
+
+(function () {
     "use strict";
 
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
@@ -6,14 +8,12 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
-    var ajaxGetEvents = function() {
-        return $.getJSON("http://localhost:7089/Event/GetEvents");
-    };
+    
 
     ui.Pages.define("/pages/events/events.html", {
 
         /// <field type="WinJS.Binding.List" />
-        items: null,
+        //items: null,
         /// <field type="Object" />
         group: null,
         itemSelectionIndex: -1,
@@ -28,30 +28,23 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-
             
-
             var listView = element.querySelector(".itemlist").winControl;
+
+            //Setup the EventDataSource
+            var eventsDataSource = new DataSources.eventsDataSource();
 
             // Store information about the group and selection that this page will
             // display.
             this.group = (options && options.groupKey) ? Data.resolveGroupReference(options.groupKey) : Data.groups.getAt(0);
-            //this.items = Data.getItemsFromGroup(this.group);
+            //this.items = null;
             this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
 
-            console.log("Getting Events from WebService");
-
-            //Get Events from WebService
-            $.when(ajaxGetEvents())
-               .then($.proxy(function (response) {
-                   this.items = response;
-               }, this)
-            );
-
             element.querySelector("header[role=banner] .pagetitle").textContent = this.group.title;
+                        
 
             // Set up the ListView.
-            listView.itemDataSource = this.items.dataSource;
+            listView.itemDataSource = eventsDataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.onselectionchanged = this.selectionChanged.bind(this);
             listView.layout = new ui.ListLayout();
@@ -60,7 +53,7 @@
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
                     // For single-column detail view, load the article.
-                    binding.processAll(element.querySelector(".articlesection"), this.items.getAt(this.itemSelectionIndex));
+                    binding.processAll(element.querySelector(".articlesection"), listView.selection.getItems()[0]);
                 }
             } else {
                 if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/events/events.html") {
@@ -97,7 +90,7 @@
         },
 
         unload: function () {
-            this.items.dispose();
+            //this.items.dispose();
         },
 
         // This function updates the page layout in response to viewState changes.

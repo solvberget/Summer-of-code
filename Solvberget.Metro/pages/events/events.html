@@ -16,6 +16,7 @@
     <link href="../../css/default.css" rel="stylesheet" />
     <link href="events.css" rel="stylesheet" />
     <script src="events.js"></script>
+    <script src="../../js/EventDataSource.js"></script>
     <script type="text/javascript" src="../../js/lib/jquery-1.7.2.min.js"></script>
 
 
@@ -23,11 +24,13 @@
 <body>
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
-        <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+        <img class="item-image" src="#" data-win-bind="src: thumbImage; alt: title" />
         <div class="item-info">
-            <h3 class="item-title win-type-ellipsis" data-win-bind="textContent: Name"></h3>
-            <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: subtitle"></h6>
-            <h4 class="item-description" data-win-bind="textContent: description"></h4>
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
+            <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: dateAndTime"></h6>
+            <h3 class="item-description" data-win-bind="textContent: location"></h3>
+            <!-- Denne skal bindes til teaser. Den er tom, så vi bruker dummydata for å få det pent-->
+            <h5 class="item-description">Dette blir veldig spennende, dere! (Dette er en teaser)</h5> 
         </div>
     </div>
 
@@ -51,12 +54,19 @@
             <article>
                 <header class="header">
                     <div class="text">
-                        <h2 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
-                        <h4 class="article-subtitle" data-win-bind="textContent: subtitle"></h4>
+                        <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h1>
+                        <h4 class="article-subtitle" data-win-bind="textContent: date"></h4>
+                        <h4 class="article-subtitle" data-win-bind="textContent: start"></h4>
+                        <h4 class="article-subtitle" data-win-bind="textContent: stop"></h4>
+                        <h3 class="article-subtitle" data-win-bind="textContent: location"></h3>
                     </div>
                     <img class="article-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
                 </header>
-                <div class="article-content" data-win-bind="innerHTML: content"></div>
+                <div class="article-content" data-win-bind="innerHTML: description"></div>
+                <br />
+                <div class="article-content" data-win-bind="innerHTML: type"></div>
+                <br />
+                <a class="article-content" href="#" data-win-bind="href: url">Link til arrangement</a>
             </article>
         </div>
     </div>
