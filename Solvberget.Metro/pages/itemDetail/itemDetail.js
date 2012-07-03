@@ -100,6 +100,11 @@
                         self.viewModel.viewPath = "/pages/itemDetail/fragments/movieFragment/movieFragment.html";
                         self.viewModel.fragment = Movie_Fragment;
                     }
+                    if (item.DocType == "AudioBook") {
+                        self.viewModel = ViewModel.AudioBook;
+                        self.viewModel.viewPath = "/pages/itemDetail/fragments/audioBookFragment/audioBookFragment.html";
+                        self.viewModel.fragment = AudioBook_Fragment;
+                    }
                     self.viewModel.fillProperties(item);
                     ViewModel.DocumentList[self.documentId] = self.viewModel;
                 }
