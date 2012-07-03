@@ -10,25 +10,17 @@
             agelimit: null,
             genre: null,
             image: null,
-            fillProperties: function (bookItem) {
-                this.title = bookItem.Title;
-                this.subtitle = bookItem.PublishedYear;
+            fragmentPath: null,
+            fillProperties: function (movieItem) {
+                this.title = movieItem.Title;
+                this.subtitle = movieItem.PublishedYear;
                 this.image = "/images/dummydata/hp1.jpeg";
                 this.content = "Lorem ipsum dolor sit amet";
-                this.agelimit = bookItem.AgeLimit;
-                this.actors = bookItem.Actors;
-                this.genre = bookItem.Genre.toString();
+                this.agelimit = movieItem.AgeLimit;
+                this.actors = movieItem.Actors;
+                this.genre = movieItem.Genre.toString();
                 
             },
         }),
-
-        MovieList: WinJS.Binding.as({
-            movieItems: [],
-            ///item specific
-
-            addMovie: function (newMovie) {
-                this.movieItems.push(newMovie);
-            },
-        })
     });
 })();

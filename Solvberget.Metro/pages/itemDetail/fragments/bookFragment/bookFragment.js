@@ -18,7 +18,7 @@
         });
     }
 
-    WinJS.Namespace.define('Fragment', {
+    WinJS.Namespace.define('Book_Fragment', {
         fragmentLoad: fragmentLoad,
     });
 
