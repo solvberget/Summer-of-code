@@ -26,9 +26,18 @@ namespace Solvberget.Domain.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://aleph.stavanger.kommune.no/X?")]
-        public string ServerUrl {
+        public string AlephServerUrl {
             get {
-                return ((string)(this["ServerUrl"]));
+                return ((string)(this["AlephServerUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.linticket.no/json/Sølvberget")]
+        public string LinticketUrl {
+            get {
+                return ((string)(this["LinticketUrl"]));
             }
         }
     }
