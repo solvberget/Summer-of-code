@@ -50,28 +50,28 @@
                 var SHARE_MODE_FACEBOOK = "facebook", SHARE_MODE_HTML = "html";
                 var shareMode = SHARE_MODE_HTML;
 
-                    var range = document.createRange();
-                    range.selectNode(document.getElementById("fragments"));
-                    request.data = MSApp.createDataPackage(range);
+                var range = document.createRange();
+                range.selectNode(document.getElementById("fragments"));
+                request.data = MSApp.createDataPackage(range);
 
-                    // Set the title and description of this share-event
-                    request.data.properties.title = documentTitle;
-                    request.data.properties.description =
-                        "Del innholdet med dine venner!";
+                // Set the title and description of this share-event
+                request.data.properties.title = documentTitle;
+                request.data.properties.description =
+                    "Del innholdet med dine venner!";
 
-                    var path = document.getElementById("item-image").getAttribute("src");
+                var path = document.getElementById("item-image").getAttribute("src");
 
-                    var imageUri = new Windows.Foundation.Uri(path);
-                    var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
-                    request.data.resourceMap[path] = streamReference;
-                   
+                var imageUri = new Windows.Foundation.Uri(path);
+                var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
+                request.data.resourceMap[path] = streamReference;
 
-                    if (shareMode == SHARE_MODE_FACEBOOK) {
 
-                        request.data.setUri(new Windows.Foundation.Uri("http://www.stavanger-kulturhus.no/soelvberget/soek_i_biblioteket?searchstring=" + documentTitle));
+                if (shareMode == SHARE_MODE_FACEBOOK) {
 
-                    }
-                
+                    request.data.setUri(new Windows.Foundation.Uri("http://www.stavanger-kulturhus.no/soelvberget/soek_i_biblioteket?searchstring=" + documentTitle));
+
+                }
+
             } else {
 
                 request.failWithDisplayText("Fant ingen tittel å dele!");
