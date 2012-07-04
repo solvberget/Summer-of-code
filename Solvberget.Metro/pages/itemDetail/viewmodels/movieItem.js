@@ -9,7 +9,12 @@
             fragmentPath: null,
             output: null,
             myConverter: WinJS.Binding.converter(function (val) {
-                var returnvalue = val != null ? "block" : "none";
+                var returnvalue;
+                if (val != null) {
+                    returnvalue = val.toString() == [] ? "none" : "block";;
+                } else {
+                    returnvalue = "none";
+                }
                 return returnvalue;
             }),
             fillProperties: function (movieItem) {
@@ -21,13 +26,14 @@
                 this.output = "";
                 for (var property in movieItem) {
                     eval('this.' + property + '=' + 'movieItem.' + property + '; ');
+                    
                     this.output += "<b data-win-bind="+"\""+"style.display: " + property + " ViewModel.Movie.myConverter" + "\"" +">" + property + "</b>" +
                         "<div id=" + "\"" + "item-" + property + "\""
                         + " data-win-bind=" + "\"" + "innerHTML: " + property + ";"
                         + " style.display: " + property + " ViewModel.Movie.myConverter" + "\"" + "></div>";
                 }
-                //console.log(output);
 
+                console.log(this);
             },
         }),
     });

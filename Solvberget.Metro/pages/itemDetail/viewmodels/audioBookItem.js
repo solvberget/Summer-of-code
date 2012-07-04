@@ -9,7 +9,12 @@
             fragmentPath: null,
             output: null,
             myConverter: WinJS.Binding.converter(function (val) {
-                var returnvalue = val != null ? "block" : "none";
+                var returnvalue;
+                if (val != null) {
+                    returnvalue = val.toString() == [] ? "none" : "block";;
+                } else {
+                    returnvalue = "none";
+                }
                 return returnvalue;
             }),
             fillProperties: function (audioBookItem) {
