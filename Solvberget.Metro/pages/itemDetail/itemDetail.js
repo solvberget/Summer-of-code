@@ -108,29 +108,41 @@
                     self.viewModel.fillProperties(item);
                     ViewModel.DocumentList[self.documentId] = self.viewModel;
                 }
-            }
-
+            };
+            var ajaxGetDocument = function (query) {
+                return $.getJSON("http://localhost:7089/Document/GetDocument/" + query);
+            };
             var renderItem = function (item) {
                 createViewModel(item);
                 // Read fragment from the HMTL file and load it into the div.  This
                 // fragment also loads linked CSS and JavaScript specified in the fragment
                 WinJS.UI.Fragments.renderCopy(self.viewModel.viewPath,
-              self.fragmentsDiv)
-              .done(function (fragment) {
-                  // After the fragment is loaded into the target element,
-                  // CSS and JavaScript referenced in the fragment are loaded.  The
-                  // fragment loads script that defines an initialization function,
-                  // so we can now call it to initialize the fragment's contents.
-                  WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
-                  self.viewModel.fragment.fragmentLoad(fragment);
-                  WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
-              },
-            function (error) {
-                WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
-            });
-            }
+                    self.fragmentsDiv)
+                    .done(function (fragment) {
+                        // After the fragment is loaded into the target element,
+                        // CSS and JavaScript referenced in the fragment are loaded.  The
+                        // fragment loads script that defines an initialization function,
+                        // so we can now call it to initialize the fragment's contents.
+                        WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
+                        self.viewModel.fragment.fragmentLoad(fragment);
+                        WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
+                    },
+                        function (error) {
+                            WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
+                        });
+            };
 
+            //render
             renderItem(self.item);
+            
+            $.when(ajaxGetDocument(self.item.DocumentNumber))
+                .then($.proxy(function (response) {
+                    self.item = response;
+                    //rerender
+                    //???
+                }, self)
+             );
+
         }
     });
 

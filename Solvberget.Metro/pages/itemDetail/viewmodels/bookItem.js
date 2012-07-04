@@ -18,6 +18,7 @@
                     eval('this.' + property + '=' + 'bookItem.' + property + '; ');
                     output += "<div id=" + "\"" + "item-" + property + "\"" + " data-win-bind=" + "\"" + "innerHTML: " + property + "\"" + "></div> ";
                 }
+                this.Author = bookItem.Author.Name;
                 console.log(output);
             },
         }),
