@@ -32,6 +32,13 @@
                         + " data-win-bind=" + "\"" + "innerHTML: " + property + ";"
                         + " style.display: " + property + " ViewModel.Movie.myConverter" + "\"" + "></div>";
                 }
+                if (this.InvolvedPersons != null) {
+                    var involvedPersonsString ="";
+                    for (var i=0; i<movieItem.InvolvedPersons.length; i++) {
+                        involvedPersonsString += this.InvolvedPersons[i].Name +"<br/> " ;
+                    }
+                    this.InvolvedPersons = involvedPersonsString;
+               }
 
                 console.log(this);
             },
