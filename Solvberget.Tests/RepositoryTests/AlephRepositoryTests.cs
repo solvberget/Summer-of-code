@@ -53,7 +53,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("The matrix revolutions", film.Title);
             Assert.AreEqual("2003", film.ProductionYear);
             Assert.AreEqual("7321900680592", film.Ean);
-            Assert.IsTrue(film.IsFiction);
+            Assert.AreEqual("Fiksjon", film.IsFiction);
             Assert.AreEqual("mul", film.Language);
             Assert.AreEqual(2, film.Languages.Count());
             Assert.AreEqual("eng", film.Languages.ElementAt(0));
@@ -68,7 +68,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("AudioBook", audioBook.GetType().Name);
             Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
             Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
-            Assert.IsTrue(audioBook.IsFiction);
+            Assert.AreEqual("Fiksjon", audioBook.IsFiction);
             Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
         }
 
