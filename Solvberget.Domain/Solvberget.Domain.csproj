@@ -89,6 +89,7 @@
     <Compile Include="Abstract\IEventRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="DTO\Book.cs" />
+    <Compile Include="DTO\LibraryList.cs" />
     <Compile Include="DTO\Event.cs" />
     <Compile Include="DTO\Organization.cs" />
     <Compile Include="DTO\Person.cs" />
