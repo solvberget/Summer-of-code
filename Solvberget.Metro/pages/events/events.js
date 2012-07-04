@@ -1,6 +1,4 @@
-﻿//var eventsDataSource = eventsDataSource || {};
-
-(function () {
+﻿(function () {
     "use strict";
 
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
@@ -69,7 +67,6 @@
         },
 
         selectionChanged: function (args) {
-            console.log("!!!");
             var listView = document.body.querySelector(".itemlist").winControl;
             var details;
             var that = this;

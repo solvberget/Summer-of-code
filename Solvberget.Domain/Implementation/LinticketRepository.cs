@@ -17,7 +17,7 @@ namespace Solvberget.Domain.Implementation
         public List<Event> GetEvents()
         {
             var events = new List<Event>();
-            var eventsAsJson = RepositoryUtils.GetJsonFromString(Properties.Settings.Default.LinticketUrl);
+            var eventsAsJson = RepositoryUtils.GetJsonFromStream(Properties.Settings.Default.LinticketUrl);
             
             if (eventsAsJson != null)
             {
