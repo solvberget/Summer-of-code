@@ -9,7 +9,12 @@
             fragmentPath: null,
             output: null,
             myConverter: WinJS.Binding.converter(function (val) {
-                var returnvalue = val != null ? "block" : "none";
+                var returnvalue;
+                if (val != null) {
+                    returnvalue = val.toString() == [] ? "none" : "block";;
+                } else {
+                    returnvalue = "none";
+                }
                 return returnvalue;
             }),
             fillProperties: function (audioBookItem) {
@@ -28,7 +33,14 @@
                         + " data-win-bind=" + "\"" + "innerHTML: " + property + ";"
                         + " style.display: " + property +" ViewModel.AudioBook.myConverter" + "\"" + "></div>";
                 }
-                console.log(this.output);
+                this.Author = audioBookItem.Author.Name;
+                if (this.InvolvedPersons != null) {
+                    var involvedPersonsString = "";
+                    for (var i = 0; i < audioBookItem.InvolvedPersons.length; i++) {
+                        involvedPersonsString += this.InvolvedPersons[i].Name + "<br/> ";
+                    }
+                    this.InvolvedPersons = involvedPersonsString;
+                }
             },
         }),
 
