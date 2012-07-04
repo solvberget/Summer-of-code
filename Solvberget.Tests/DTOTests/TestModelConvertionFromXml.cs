@@ -14,7 +14,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("123456789", media.DocumentNumber);
 
-            Assert.AreEqual('a', media.TargetGroup);
+            Assert.AreEqual("Voksne", media.TargetGroup);
 
             Assert.IsTrue(media.IsFiction);
 
@@ -45,6 +45,8 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("5", media.SeriesNumber);
 
+            Assert.AreEqual("Document", media.DocType);
+
         }
 
         [Test]
@@ -57,6 +59,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("l", media.DocumentType.ElementAt(0));
             Assert.AreEqual("Naiv. Super", media.Title);
             Assert.AreEqual(2010, media.PublishedYear);
+            Assert.AreEqual("Document", media.DocType);
         }
 
         [Test]
@@ -122,6 +125,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("Forklaring", book.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
             Assert.AreEqual("Forlag", book.InvolvedOrganizations.ElementAt(0).Role);
 
+            Assert.AreEqual("Book", book.DocType);
         }
 
         [Test]
@@ -131,6 +135,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("Loe, Erlend", book1.Author.Name);
             Assert.AreEqual("1969-", book1.Author.LivingYears);
             Assert.AreEqual("n", book1.Author.Nationality);
+            Assert.AreEqual("Book", book1.DocType);
 
             var book2 = Book.GetObjectFromFindDocXmlBsMarcLight(getBookWithOrgXml());
             Assert.AreEqual("Røde Kors", book2.Author.Name);
@@ -166,6 +171,8 @@ namespace Solvberget.Service.Tests.DTOTests
         public void GetFilmFromXmlTest()
         {
             var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
+
+            Assert.AreEqual("Barn og ungdom", film.TargetGroup);
 
             Assert.AreEqual("7041271735935", film.Ean);
 
@@ -228,6 +235,8 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("Forklaring", film.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
             Assert.AreEqual("Forlag", film.InvolvedOrganizations.ElementAt(0).Role);
 
+            Assert.AreEqual("Film", film.DocType);
+
         }
 
         [Test]
@@ -238,13 +247,13 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("2008", film.ProductionYear);
             Assert.AreEqual("Aldersgrense: 15 år", film.AgeLimit);
             Assert.AreEqual("Drama", film.Genre.ElementAt(0));
+            Assert.AreEqual("Film", film.DocType);
         }
 
         [Test]
         public void GetDocumentTypeFromXml()
         {
             var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
-
             Assert.AreEqual("ee", film.DocumentType.ElementAt(0));
             
         }
@@ -306,6 +315,9 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("Forklaring", audioBook.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
             Assert.AreEqual("Forlag", audioBook.InvolvedOrganizations.ElementAt(0).Role);
 
+            Assert.AreEqual("AudioBook", audioBook.DocType);
+
+
         }
 
         [Test]
@@ -315,6 +327,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("Rowling, J.K.", audioBook1.Author.Name);
             Assert.AreEqual("1965-", audioBook1.Author.LivingYears);
             Assert.AreEqual("eng.", audioBook1.Author.Nationality);
+            Assert.AreEqual("AudioBook", audioBook1.DocType);
 
             var audioBook2 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithOrgXml());
             Assert.AreEqual("Røde Kors", audioBook2.Author.Name);
@@ -324,6 +337,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             var audioBook3 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithStdTitleXml());
             Assert.AreEqual("Røde Kors", audioBook3.StandarizedTitle);
+            
         }
 
         [Test]
@@ -728,7 +742,7 @@ namespace Solvberget.Service.Tests.DTOTests
                 <fixfield id=""FMT"">VM</fixfield>
                 <fixfield id=""LDR"">^^^^^ngm^^^^^^^^^1</fixfield>
                 <fixfield id=""007"">vd</fixfield>
-                <fixfield id=""008"">090626s2009^^^^^^^^^^^a^^^^^^^^^^1^nob^^</fixfield>
+                <fixfield id=""008"">090626s2009^^^^^^^^^^^j^^^^^^^^^^1^nob^^</fixfield>
                 <varfield id=""019"" i1="" "" i2="" "">
                     <subfield label=""b"">ee</subfield>
                 </varfield>

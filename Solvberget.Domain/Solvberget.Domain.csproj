@@ -87,8 +87,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IEventRepository.cs" />
+    <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="DTO\Book.cs" />
+    <Compile Include="DTO\ImdbObject.cs" />
     <Compile Include="DTO\Event.cs" />
     <Compile Include="DTO\Organization.cs" />
     <Compile Include="DTO\Person.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="DTO\Film.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />
+    <Compile Include="Implementation\ImageRepository.cs" />
     <Compile Include="Implementation\LinticketRepository.cs" />
     <Compile Include="Implementation\LuceneRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

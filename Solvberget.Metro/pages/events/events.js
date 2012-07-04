@@ -1,6 +1,4 @@
-﻿//var eventsDataSource = eventsDataSource || {};
-
-(function () {
+﻿(function () {
     "use strict";
 
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
@@ -8,7 +6,7 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
-    
+
 
     ui.Pages.define("/pages/events/events.html", {
 
@@ -28,7 +26,7 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            
+
             var listView = element.querySelector(".itemlist").winControl;
 
             //Setup the EventDataSource
@@ -41,7 +39,7 @@
             this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
 
             element.querySelector("header[role=banner] .pagetitle").textContent = this.group.title;
-                        
+
 
             // Set up the ListView.
             listView.itemDataSource = eventsDataSource;
@@ -69,7 +67,6 @@
         },
 
         selectionChanged: function (args) {
-            console.log("!!!");
             var listView = document.body.querySelector(".itemlist").winControl;
             var details;
             var that = this;
@@ -83,9 +80,16 @@
                         nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
                     } else {
                         // If fullscreen or filled, update the details column with new data.
+
                         details = document.querySelector(".articlesection");
                         binding.processAll(details, items[0].data);
                         details.scrollTop = 0;
+
+                        // Fix for removing cached data, Windows error. 
+                        setTimeout(function () {
+                            window.focus();
+                        }, 0);
+
                     }
                 }
             });
