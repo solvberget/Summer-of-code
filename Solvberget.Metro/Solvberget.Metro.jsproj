@@ -238,6 +238,9 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.css" />
+    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.html" />
+    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js" />
     <Content Include="pages\itemDetail\viewmodels\documentList.js" />
     <Content Include="js\EventDataSource.js" />
     <Content Include="pages\events\events.css" />

@@ -24,7 +24,7 @@ namespace Solvberget.Domain.Utils
             return XDocument.Parse(xml);
         }
 
-        public static string GetJsonFromString(string url)
+        public static string GetJsonFromStream(string url)
         {
             var request = WebRequest.Create(url);
             var response = request.GetResponse();
