@@ -29,6 +29,7 @@ namespace Solvberget.Service.Infrastructure
         {
             ninjectKernel.Bind<IRepository>().To<AlephRepository>();
             ninjectKernel.Bind<IEventRepository>().To<LinticketRepository>();
+            ninjectKernel.Bind<IImageRepository>().To<ImageRepository>();
             ninjectKernel.Bind<ISpellingDictionary>()
                 .To<LuceneRepository>()
                 .WithConstructorArgument("pathToDictionary", EnvironmentHelper.GetDictionaryPath())

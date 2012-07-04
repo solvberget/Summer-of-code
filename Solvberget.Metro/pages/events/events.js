@@ -85,6 +85,7 @@
                         binding.processAll(details, items[0].data);
                         details.scrollTop = 0;
 
+                        // Fix for removing cached data, Windows error. 
                         setTimeout(function () {
                             window.focus();
                         }, 0);
