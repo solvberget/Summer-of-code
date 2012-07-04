@@ -23,7 +23,8 @@
                 for (var property in audioBookItem) {
     
                     eval('this.' + property + '=' + 'audioBookItem.' + property + '; ');
-                    this.output += "<b>"+property+"</b><div id=" + "\"" + "item-" + property + "\""
+                    this.output += "<b data-win-bind=" + "\"" + "style.display: " + property + " ViewModel.Movie.myConverter" + "\"" + ">" + property + "</b>" +
+                        "<div id=" + "\"" + "item-" + property + "\""
                         + " data-win-bind=" + "\"" + "innerHTML: " + property + ";"
                         + " style.display: " + property +" ViewModel.AudioBook.myConverter" + "\"" + "></div>";
                 }

@@ -21,7 +21,8 @@
                 this.output = "";
                 for (var property in bookItem) {
                     eval('this.' + property + '=' + 'bookItem.' + property + '; ');
-                    this.output += "<b>" + property + "</b>"+"<div id=" + "\"" + "item-" + property + "\""
+                    this.output += "<b data-win-bind=" + "\"" + "style.display: " + property + " ViewModel.Movie.myConverter" + "\"" + ">" + property + "</b>" +
+                        "<div id=" + "\"" + "item-" + property + "\""
                        + " data-win-bind=" + "\"" + "innerHTML: " + property + ";"
                        + " style.display: " + property + " ViewModel.Book.myConverter" + "\"" + "></div>";
                 }
