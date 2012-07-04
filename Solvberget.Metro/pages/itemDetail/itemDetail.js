@@ -128,6 +128,7 @@
                         // CSS and JavaScript referenced in the fragment are loaded.  The
                         // fragment loads script that defines an initialization function,
                         // so we can now call it to initialize the fragment's contents.
+                        $("#item-dynamic-content").html(self.viewModel.output);
                         WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
                         self.viewModel.fragment.fragmentLoad(fragment);
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
