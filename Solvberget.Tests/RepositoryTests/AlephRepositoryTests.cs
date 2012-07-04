@@ -72,5 +72,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
         }
 
+        [Test]
+        public void TestGetNonExistingDoc()
+        {
+            const string documentNumberForBook = "abcdefg"; //Burde ikke funke
+            var doc = _repository.GetDocument(documentNumberForBook);
+            Assert.IsNull(doc);
+        }
+
     }
 }
