@@ -18,6 +18,10 @@
             this.registerForShare();
             element.querySelector(".itemdetailpage").focus();
         },
+        unload : function () {
+            var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
+            dataTransferManager.removeEventListener("datarequested", this.shareHtmlHandler);
+        },
         registerForShare: function () {
 
             // Register/listen to share requests
