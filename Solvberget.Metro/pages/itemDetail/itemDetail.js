@@ -18,7 +18,7 @@
             this.registerForShare();
             element.querySelector(".itemdetailpage").focus();
         },
-        unload : function () {
+        unload: function () {
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
             dataTransferManager.removeEventListener("datarequested", this.shareHtmlHandler);
         },
@@ -88,7 +88,7 @@
             this.fragmentsDiv.innerHTML = "";
             var self = this;
 
-            var createViewModel = function (item) {
+            var setViewModel = function (item) {
 
                 if (ViewModel.DocumentList[self.documentId] != undefined) {
                     self.viewModel = ViewModel.DocumentList[self.documentId];
@@ -109,15 +109,16 @@
                         self.viewModel.viewPath = "/pages/itemDetail/fragments/audioBookFragment/audioBookFragment.html";
                         self.viewModel.fragment = AudioBook_Fragment;
                     }
-                    self.viewModel.fillProperties(item);
+                   
                     ViewModel.DocumentList[self.documentId] = self.viewModel;
                 }
+                self.viewModel.fillProperties(item);
             };
             var ajaxGetDocument = function (query) {
                 return $.getJSON("http://localhost:7089/Document/GetDocument/" + query);
             };
-            var renderItem = function (item) {
-                createViewModel(item);
+            var render = function () {
+                
                 // Read fragment from the HMTL file and load it into the div.  This
                 // fragment also loads linked CSS and JavaScript specified in the fragment
                 WinJS.UI.Fragments.renderCopy(self.viewModel.viewPath,
@@ -127,6 +128,7 @@
                         // CSS and JavaScript referenced in the fragment are loaded.  The
                         // fragment loads script that defines an initialization function,
                         // so we can now call it to initialize the fragment's contents.
+                        $("#item-dynamic-content").html(self.viewModel.output);
                         WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
                         self.viewModel.fragment.fragmentLoad(fragment);
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
@@ -134,18 +136,20 @@
                         function (error) {
                             WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
                         });
+                $.when(ajaxGetDocument(self.item.DocumentNumber))
+                .then($.proxy(function (response) {
+                    setViewModel(response);
+                    WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
+
+                   
+                }, self)
+             );
             };
 
             //render
-            renderItem(self.item);
-            
-            $.when(ajaxGetDocument(self.item.DocumentNumber))
-                .then($.proxy(function (response) {
-                    self.item = response;
-                    //rerender
-                    //???
-                }, self)
-             );
+            setViewModel(self.item);
+            render();
+
 
         }
     });

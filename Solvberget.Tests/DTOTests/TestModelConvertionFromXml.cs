@@ -14,7 +14,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("123456789", media.DocumentNumber);
 
-            Assert.AreEqual('a', media.TargetGroup);
+            Assert.AreEqual("Voksne", media.TargetGroup);
 
             Assert.IsTrue(media.IsFiction);
 
@@ -171,6 +171,8 @@ namespace Solvberget.Service.Tests.DTOTests
         public void GetFilmFromXmlTest()
         {
             var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
+
+            Assert.AreEqual("Barn og ungdom", film.TargetGroup);
 
             Assert.AreEqual("7041271735935", film.Ean);
 
@@ -740,7 +742,7 @@ namespace Solvberget.Service.Tests.DTOTests
                 <fixfield id=""FMT"">VM</fixfield>
                 <fixfield id=""LDR"">^^^^^ngm^^^^^^^^^1</fixfield>
                 <fixfield id=""007"">vd</fixfield>
-                <fixfield id=""008"">090626s2009^^^^^^^^^^^a^^^^^^^^^^1^nob^^</fixfield>
+                <fixfield id=""008"">090626s2009^^^^^^^^^^^j^^^^^^^^^^1^nob^^</fixfield>
                 <varfield id=""019"" i1="" "" i2="" "">
                     <subfield label=""b"">ee</subfield>
                 </varfield>
