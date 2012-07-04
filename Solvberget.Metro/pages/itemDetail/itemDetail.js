@@ -141,8 +141,7 @@
                     setViewModel(response);
                     WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
 
-                    //rerender
-                    //???
+                   
                 }, self)
              );
             };

@@ -7,7 +7,11 @@
             image: null,
             content: null,
             fragmentPath: null,
-            output:null,
+            output: null,
+            myConverter: WinJS.Binding.converter(function (val) {
+                var returnvalue = val != null ? "block" : "none";
+                return returnvalue;
+            }),
             fillProperties: function (movieItem) {
                 this.title = movieItem.Title;
                 this.subtitle = movieItem.PublishedYear;
@@ -17,7 +21,9 @@
                 this.output = "";
                 for (var property in movieItem) {
                     eval('this.' + property + '=' + 'movieItem.' + property + '; ');
-                    this.output += "<div id=" + "\"" + "item-" + property + "\"" + " data-win-bind=" + "\"" + "innerHTML: " + property + "\"" + "></div>";
+                    this.output += "<b>" + property + "</b><div id=" + "\"" + "item-" + property + "\""
+                        + " data-win-bind=" + "\"" + "innerHTML: " + property + ";"
+                        + " style.display: " + property + " ViewModel.Movie.myConverter" + "\"" + "></div>";
                 }
                 //console.log(output);
 
