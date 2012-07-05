@@ -144,6 +144,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\App_Data\librarylists\example_list1.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list2.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list3.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list4.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list5.xml" />
     <Content Include="bin\App_Data\ordlister\ord_bm.txt" />
     <Content Include="bin\App_Data\ordlister\stopwords.txt" />
     <Content Include="bin\Contrib.Regex.dll" />
@@ -211,7 +216,6 @@
     <Content Include="bin\System.Web.WebPages.Deployment.dll" />
     <Content Include="bin\System.Web.WebPages.dll" />
     <Content Include="bin\System.Web.WebPages.Razor.dll" />
-    <Content Include="Content\librarylists\example_list.xml" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -312,6 +316,9 @@
       <Project>{7eb0d844-7622-4f0d-a103-c326c6fa1293}</Project>
       <Name>Solvberget.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
