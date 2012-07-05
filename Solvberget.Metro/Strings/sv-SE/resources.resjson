@@ -1,6 +1,6 @@
 ﻿// For details on localizing a Windows app, see: http://go.microsoft.com/fwlink/?LinkId=212836
 //Språk engelsk
-// æøå: Ã¦  Ã¸  Ã¥
+// æøå: Ã¦  Ã¸  Ã¥ ... Use replace all to change
 {
     "Author"                : "Forfatter",
     "OriginalTitle"         : "Original Tittel",
@@ -10,7 +10,7 @@
     "SubtitleLanguage"      : "UndertekstsprÃ¥k",
     "Genre"                 : "Sjanger",
     "InvolvedPersons"       : "Involverte personer",
-    "DocType"               : "Dokument type",
+    "DocType"               : "Dokumenttype",
     "TargetGroup"           : "MÃ¥lgruppe",
     "IsFiction"             : "Er fiksjon",
     "Language"              : "SprÃ¥k",
@@ -18,10 +18,10 @@
     "DocumentType"          : "Dokumenttype",
     "Title"                 : "Tittel",
     "SubTitle"              : "Undertittel",
-    "PlacePublished"        : "Publiseringssted",
+    "PlacePublished"        : "Sted for utgivelse",
     "Publisher"             : "Publiserer",
-    "PublishedYear"         : "PubliseringsÃ¥r",
-    "ClassificationNr"      : "Klassifiseringsnummer",
+    "PublishedYear"         : "PublikasjonsÃ¥r",
+    "ClassificationNr"      : "Klassifikasjonsnummer",
     "NumberOfPages"         : "Antall sider",
     "LocationCode"          : "Lokasjonskode",
     "SeriesTitle"           : "Serie tittel",
