@@ -298,6 +298,11 @@
     <Folder Include="lib\" />
     <Folder Include="pages\shared\" />
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\resources.resjson" />
+    <PRIResource Include="Strings\nb-NO\resources.resjson" />
+    <PRIResource Include="Strings\sv-SE\resources.resjson" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

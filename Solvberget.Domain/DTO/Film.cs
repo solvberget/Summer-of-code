@@ -42,8 +42,14 @@ namespace Solvberget.Domain.DTO
 
                 Ean = GetVarfield(nodes, "025", "a");
                 //Each subtitlelanguage is given as a 3-char long code, all put together to one string
-                var subtitleString = GetVarfield(nodes, "041", "b");
-                SubtitleLanguage = subtitleString.SplitByLength(3);
+               
+                var subtitles = GetVarfield(nodes, "041", "b").SplitByLength(3).ToList();
+
+                for (var i = 0; i < subtitles.Count(); i++)
+                    subtitles[i] = LanguageDictionary[subtitles[i]];
+                SubtitleLanguage = subtitles;
+
+
                 OriginalTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
                 PartTitle = GetVarfield(nodes, "245", "p");
