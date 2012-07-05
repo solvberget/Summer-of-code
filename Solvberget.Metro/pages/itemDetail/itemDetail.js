@@ -4,6 +4,11 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
 
+    var ajaxGetThumbnailDocumentImage = function (query, size) {
+        var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
+        return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
+    }
+
     ui.Pages.define("/pages/itemDetail/itemDetail.html", {
 
         item: undefined,
@@ -16,6 +21,21 @@
             this.documentId = options.key;
             this.defaultScript();
             this.registerForShare();
+
+            $.when(ajaxGetThumbnailDocumentImage(this.documentId, 500))
+                .then($.proxy(function (response) {
+
+                    var fragmentsDiv = this.element.querySelector(".content");
+
+                    if (response != undefined && response != "") {
+                        // Set the new value in the model of this item
+                        this.viewModel.image = response;
+
+                        WinJS.Binding.processAll(fragmentsDiv, this.viewModel);
+
+                    }
+                }, this));
+
             element.querySelector(".itemdetailpage").focus();
         },
         unload: function () {
@@ -109,16 +129,17 @@
                         self.viewModel.viewPath = "/pages/itemDetail/fragments/audioBookFragment/audioBookFragment.html";
                         self.viewModel.fragment = AudioBook_Fragment;
                     }
-                   
+
                     ViewModel.DocumentList[self.documentId] = self.viewModel;
                 }
-                self.viewModel.fillProperties(item);
+                if (self.viewModel !== undefined)
+                    self.viewModel.fillProperties(item);
             };
             var ajaxGetDocument = function (query) {
                 return $.getJSON("http://localhost:7089/Document/GetDocument/" + query);
             };
             var render = function () {
-                
+
                 // Read fragment from the HMTL file and load it into the div.  This
                 // fragment also loads linked CSS and JavaScript specified in the fragment
                 WinJS.UI.Fragments.renderCopy(self.viewModel.viewPath,
@@ -141,7 +162,7 @@
                     setViewModel(response);
                     WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
 
-                   
+
                 }, self)
              );
             };

@@ -233,6 +233,10 @@
     <Content Include="images\icon\Icon Pack 1\png\word.png" />
     <Content Include="images\icon\Icon Pack 1\png\youtbe.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\placeholders\AudioBook.png" />
+    <Content Include="images\placeholders\Book.png" />
+    <Content Include="images\placeholders\Document.png" />
+    <Content Include="images\placeholders\Film.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />

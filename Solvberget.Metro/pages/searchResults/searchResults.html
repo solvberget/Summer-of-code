@@ -24,8 +24,8 @@
          below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item">
-            <img class="item-image" src="/images/dummydata/hp1.jpeg" data-win-bind="alt: Title" />
-           <!-- <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: Title" /> -->
+            <!--<img class="item-image" src="/images/dummydata/hp1.jpeg" data-win-bind="alt: Title" />-->
+            <img class="item-image" src="/images/placeholders/document.png" data-win-bind="src:backgroundImage; alt: Title" />
             
             <div class="item-content">
                 <h3 class="item-title win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: Title searchResults.markText"></h3>
@@ -44,7 +44,7 @@
                 <h2 class="pagesubtitle"></h2>
             </div>
         </header>
-        <section aria-label="Main content" role="main">
+        <section aria-label="Main content" id="searchResultSection" role="main">
             <div class="filterarea">
                 <ul class="filterbar"></ul>
                 <select class="filterselect"></select>

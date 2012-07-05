@@ -21,7 +21,7 @@ namespace Solvberget.Domain.Implementation
                 return string.Empty;
 
             _alephRepository = new AlephRepository();
-
+            
             var doc = _alephRepository.GetDocument(id);
 
             if (doc == null)
@@ -35,6 +35,18 @@ namespace Solvberget.Domain.Implementation
 
             //throw new NotImplementedException();
             return string.Empty;
+        }
+
+        public string GetDocumentThumbnailImage(string id, string size)
+        {
+            var posterUrl = GetDocumentImage(id);
+            if (string.IsNullOrEmpty(posterUrl))
+                return string.Empty;
+
+            
+            posterUrl = posterUrl.Replace("640.jpg", size != null ? size+".jpg" : "150.jpg");
+
+            return posterUrl;
         }
 
         private string GetFilmImage(Film film)
@@ -59,7 +71,7 @@ namespace Solvberget.Domain.Implementation
             if (imdbObject == null)
                 return false;
 
-            if (imdbObject.Poster.Equals("N/A"))
+            if (string.IsNullOrEmpty(imdbObject.Poster) || imdbObject.Poster.Equals("N/A"))
                 return false;
 
             foreach (var person in film.InvolvedPersons)
