@@ -40,5 +40,14 @@ namespace Solvberget.Domain.Properties {
                 return ((string)(this["LinticketUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.imdbapi.com/?t=")]
+        public string ImdbApiUrl {
+            get {
+                return ((string)(this["ImdbApiUrl"]));
+            }
+        }
     }
 }

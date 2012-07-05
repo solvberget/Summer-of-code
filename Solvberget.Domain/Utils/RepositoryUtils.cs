@@ -37,5 +37,26 @@ namespace Solvberget.Domain.Utils
 
             return json;
         }
+
+        public static string GetJsonFromStreamWithParam(string uri, string param)
+        {
+            var url = uri + param;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = WebRequestMethods.Http.Get;
+            request.Accept = "application/json";
+
+            var response = request.GetResponse();
+
+            string json = string.Empty;
+            using (var stream = response.GetResponseStream())
+            {
+                var readStream = new StreamReader(stream, Encoding.UTF8);
+                json = readStream.ReadToEnd();
+            }
+
+            return json;
+        }
+
+
     }
 }

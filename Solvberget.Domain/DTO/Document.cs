@@ -11,7 +11,7 @@ namespace Solvberget.Domain.DTO
         public string DocType { get { return this.GetType().Name; } private set { } }
         public string DocumentNumber { get; set; }
         public string TargetGroup { get; set; }
-        public bool IsFiction { get; set; }
+        public string IsFiction { get; set; }
         public string Language { get; set; }
         public IEnumerable<string> Languages { get; set; }
         public IEnumerable<string> DocumentType { get; set; }
@@ -38,7 +38,7 @@ namespace Solvberget.Domain.DTO
                 var targetGrpString = GetFixfield(nodes, "008", 22, 22);
                 if (!string.IsNullOrEmpty(targetGrpString))
                     TargetGroup = targetGrpString[0].Equals('j') ? "Barn og ungdom" : "Voksne";
-                IsFiction = GetFixfield(nodes, "008", 33, 33).Equals("1") ? true : false;
+                IsFiction = GetFixfield(nodes, "008", 33, 33).Equals("1") ? "Fiksjon" : "Fakta";
 
                 //Only get languages (041a) if language in base equals "mul" 
                 if (Language.Equals("mul"))
