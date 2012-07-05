@@ -54,10 +54,10 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("2003", film.ProductionYear);
             Assert.AreEqual("7321900680592", film.Ean);
             Assert.AreEqual("Fiksjon", film.IsFiction);
-            Assert.AreEqual("mul", film.Language);
+            Assert.AreEqual("Flerspråklig", film.Language);
             Assert.AreEqual(2, film.Languages.Count());
-            Assert.AreEqual("eng", film.Languages.ElementAt(0));
-            Assert.AreEqual("ger", film.Languages.ElementAt(1));
+            Assert.AreEqual("Engelsk", film.Languages.ElementAt(0));
+            Assert.AreEqual("Tysk", film.Languages.ElementAt(1));
         }
 
         [Test]

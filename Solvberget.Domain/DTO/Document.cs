@@ -76,9 +76,13 @@ namespace Solvberget.Domain.DTO
                 DocumentNumber = xmlDoc.Root.Descendants("doc_number").Select(x => x.Value).FirstOrDefault();
 
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                Language = GetFixfield(nodes, "008", 35, 37);
+                var language = GetFixfield(nodes, "008", 35, 37);
 
-                Language = LanguageDictionary[Language];
+                string languageLookupValue = null;
+                if (language != null)
+                    LanguageDictionary.TryGetValue(language, out languageLookupValue);
+
+                Language = languageLookupValue ?? language;
 
                 var docTypeString = GetVarfield(nodes, "019", "b");
                 if (docTypeString != null)
@@ -166,8 +170,9 @@ namespace Solvberget.Domain.DTO
             foreach (var varfield in varfields)
             {
                 var nationality = GetSubFieldValue(varfield, "j");
-                string nationalityLookupValue;
-                NationalityDictionary.TryGetValue(nationality, out nationalityLookupValue);
+                string nationalityLookupValue = null;
+                if (nationality != null)
+                    NationalityDictionary.TryGetValue(nationality, out nationalityLookupValue);
                 
                 var person = new Person()
                                  {
