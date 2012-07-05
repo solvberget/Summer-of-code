@@ -12,13 +12,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
     internal class LibraryListsFromXmlRepositoryTest
     {
         private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\";
-        private LibraryListsFromXmlRepository _listRepository;
+        private LibraryListXmlRepository _listRepository;
 
         [TestFixtureSetUp]
         public void Init()
         {
             var path = Path.Combine(Environment.CurrentDirectory, PathString);
-            _listRepository = new LibraryListsFromXmlRepository(path);
+            _listRepository = new LibraryListXmlRepository(path);
         }
 
         [Test]
