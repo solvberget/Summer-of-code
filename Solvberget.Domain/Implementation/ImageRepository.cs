@@ -76,6 +76,9 @@ namespace Solvberget.Domain.Implementation
 
             foreach (var person in film.InvolvedPersons)
             {
+                if ( string.IsNullOrEmpty(person.Name))
+                    continue;
+                
                 var personNames = person.Name.Split(',');
                 var personName = personNames[1] + " " + personNames[0];
                 personName = personName.Trim();

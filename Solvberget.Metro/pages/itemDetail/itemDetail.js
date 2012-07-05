@@ -4,9 +4,9 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
 
-    var ajaxGetThumbnailDocumentImage = function (query, size) {
-        var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
-        return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
+    var ajaxGetDocumentImage = function (query) {
+        var url = "http://localhost:7089/Document/GetDocumentImage/";
+        return $.getJSON(url + query);
     }
 
     ui.Pages.define("/pages/itemDetail/itemDetail.html", {
@@ -23,7 +23,7 @@
             this.defaultScript();
             this.registerForShare();
 
-            $.when(ajaxGetThumbnailDocumentImage(this.documentId, 500))
+            $.when(ajaxGetDocumentImage(this.documentId))
                 .then($.proxy(function (response) {
 
                     var fragmentsDiv = this.element.querySelector(".content");
