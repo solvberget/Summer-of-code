@@ -18,7 +18,7 @@
         });
     }
 
-    WinJS.Namespace.define('Movie_Fragment', {
+    WinJS.Namespace.define('Facts_Fragment', {
         fragmentLoad: fragmentLoad,
     });
 

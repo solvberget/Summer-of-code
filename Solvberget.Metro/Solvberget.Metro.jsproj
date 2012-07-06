@@ -242,9 +242,9 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
-    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.css" />
-    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.html" />
-    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js" />
+    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.css" />
+    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.html" />
+    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.js" />
     <Content Include="pages\itemDetail\viewmodels\documentList.js" />
     <Content Include="js\EventDataSource.js" />
     <Content Include="pages\events\events.css" />
@@ -264,12 +264,6 @@
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
-    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.css" />
-    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.html" />
-    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.js" />
-    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.css" />
-    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.html" />
-    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.js" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />
