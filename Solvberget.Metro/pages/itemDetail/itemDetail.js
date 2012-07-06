@@ -161,7 +161,7 @@
                 .then($.proxy(function (response) {
                     setViewModel(response);
                     WinJS.Binding.processAll(self.contentDiv, self.viewModel);
-                    WinJS.Binding.processAll(self.contentDiv, self.viewModel);
+                   
 
 
                 }, self)
