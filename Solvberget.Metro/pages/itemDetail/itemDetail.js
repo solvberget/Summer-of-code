@@ -26,13 +26,15 @@
             $.when(ajaxGetDocumentImage(this.documentId))
                 .then($.proxy(function (response) {
 
-                    var fragmentsDiv = this.element.querySelector(".content");
-
+                    var imgDiv = this.element.querySelector(".content article div img");
+                    var hideDiv = this.element.querySelector("#hideIt");
                     if (response != undefined && response != "") {
-                        // Set the new value in the model of this item
-                        this.viewModel.image = response;
+                        // Set the new value in the model of this item                     
+                        //  $(".content .item-image").attr("src", response);//.attr("src", response).show("200");
 
-                        WinJS.Binding.processAll(fragmentsDiv, this.viewModel);
+                        this.viewModel.image = response;
+                        WinJS.Binding.processAll(imgDiv, this.viewModel);
+                       //$("#hideIt").fadeIn(200);
 
                     }
                 }, this));

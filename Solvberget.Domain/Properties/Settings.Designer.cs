@@ -49,5 +49,23 @@ namespace Solvberget.Domain.Properties {
                 return ((string)(this["ImdbApiUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:7089/Content/")]
+        public string ServerUrl {
+            get {
+                return ((string)(this["ServerUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cacheImages/")]
+        public string ImageCacheFolder {
+            get {
+                return ((string)(this["ImageCacheFolder"]));
+            }
+        }
     }
 }

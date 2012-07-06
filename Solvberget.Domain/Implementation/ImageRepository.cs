@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.Script.Serialization;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
@@ -12,23 +16,38 @@ namespace Solvberget.Domain.Implementation
     {
 
         private IRepository _alephRepository;
+        private string _pathToImageCache;
 
 
+        public ImageRepository(string pathToImageCache = null)
+        {
+
+            _pathToImageCache = string.IsNullOrEmpty(pathToImageCache)
+    ? @"App_Data\"+Properties.Settings.Default.ImageCacheFolder : pathToImageCache;
+
+        }
+
+        private Document GetDocumentFromId(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return null;
+
+            _alephRepository = new AlephRepository();
+
+
+            return _alephRepository.GetDocument(id);
+
+        }
 
         public string GetDocumentImage(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                return string.Empty;
 
-            _alephRepository = new AlephRepository();
-            
-            var doc = _alephRepository.GetDocument(id);
-
+            var doc = GetDocumentFromId(id);
             if (doc == null)
                 return string.Empty;
 
             if (Equals(doc.DocType, typeof(Film).Name))
-                return GetFilmImage(doc as Film);
+                return GetLocalImageUrl(GetFilmImage(doc as Film));
 
             //if (Equals(doc.DocType, typeof(Book).Name))
             //GetFilm(doc);
@@ -39,33 +58,71 @@ namespace Solvberget.Domain.Implementation
 
         public string GetDocumentThumbnailImage(string id, string size)
         {
-            var posterUrl = GetDocumentImage(id);
-            if (string.IsNullOrEmpty(posterUrl))
+
+            var doc = GetDocumentFromId(id);
+            if (doc == null)
                 return string.Empty;
 
+            var posterUrl = string.Empty;
+            if (Equals(doc.DocType, typeof(Film).Name))
+                posterUrl = GetFilmImage(doc as Film);
             
             posterUrl = posterUrl.Replace("640.jpg", size != null ? size+".jpg" : "150.jpg");
 
-            return posterUrl;
+            return GetLocalImageUrl(posterUrl);
         }
 
         private string GetFilmImage(Film film)
         {
 
-            // First; try IMDB
-            var imdbObject = GetImdbObjectFromTitle(film.Title);
+            // --------------------------- IMDB ---------------------------
 
-            if (isValidImdbMatch(film, imdbObject))
+            var searchTitle = GetSearchTitle(film);
+
+            var imdbObject = GetImdbObjectFromTitle(searchTitle);
+
+            if (IsValidImdbMatch(film, imdbObject))
                 return imdbObject.Poster;
 
-            // Then try second source
-            // TODO: Get a second source....
+            if(!string.IsNullOrEmpty(film.OriginalTitle))
+                imdbObject = GetImdbObjectFromTitle(film.OriginalTitle);
+         
+            if (IsValidImdbMatch(film, imdbObject))
+                return imdbObject.Poster;
+
+            // --------------------------- END IMDB ------------------------
+
+            // Here we can try other sources if available
 
             return string.Empty;
 
         }
 
-        private bool isValidImdbMatch(Film film, ImdbObject imdbObject)
+        private static string GetSearchTitle(Film film)
+        {
+            var searchTitle = film.SeriesTitle + " " + film.SeriesNumber + " " + film.Title + " " + film.SubTitle;
+            searchTitle = searchTitle.Replace("null", "");
+            searchTitle = searchTitle.Trim();
+            return searchTitle;
+        }
+
+        private string GetLocalImageUrl ( string externalImageUrl )
+        {
+
+            if (string.IsNullOrEmpty(externalImageUrl))
+                return string.Empty;
+
+            var imageName = Path.GetFileName(externalImageUrl);
+            RepositoryUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
+
+            var serverUrl = Properties.Settings.Default.ServerUrl;
+            var imageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
+            var internalmageUrl = serverUrl + imageCacheFolder + imageName;
+
+            return internalmageUrl;
+        }
+
+        private static bool IsValidImdbMatch(Film film, ImdbObject imdbObject)
         {
 
             if (imdbObject == null)
@@ -98,11 +155,7 @@ namespace Solvberget.Domain.Implementation
         {
             var imdbObjectAsJson = RepositoryUtils.GetJsonFromStreamWithParam(Properties.Settings.Default.ImdbApiUrl, title);
 
-            if (imdbObjectAsJson != null)
-                return new JavaScriptSerializer().Deserialize<ImdbObject>(imdbObjectAsJson);
-
-            return null;
-
+            return imdbObjectAsJson != null ? new JavaScriptSerializer().Deserialize<ImdbObject>(imdbObjectAsJson) : null;
         }
 
 
