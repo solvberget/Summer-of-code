@@ -112,3 +112,13 @@ html {
         }
 }
 
+.imageLoader img {
+    opacity: 0;
+    -ms-transform: scale(0.8, 0.8);
+}
+
+    .imageLoader img.loaded {
+        opacity: 1;
+        -ms-transition: opacity ease-out 0.2s, -ms-transform ease-out 0.2s;
+        -ms-transform: scale(1, 1);
+    }

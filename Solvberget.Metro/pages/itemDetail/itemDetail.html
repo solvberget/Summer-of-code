@@ -41,15 +41,17 @@
                         <h3 id="item-subtitle" data-win-bind="textContent: subtitle"></h3>
                           
                     </header>
-                    <img id="item-image" src="#" data-win-bind="src: image; alt: title" />
+                    <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                        <img id="item-image" src="#" data-win-bind="src: image; alt: title" />
+                    </div>
                     
-                    <div class="fragment">
+                    <div id="fragmentContainer" class="fragment">
                         <div id="factsFragment"></div>
                     </div>
                    
-                    <div class="fragment">
+                   
                          <div id="item-content" data-win-bind="innerHTML: content"></div>
-                    </div>
+                   
                    
                 </div>
             </article>

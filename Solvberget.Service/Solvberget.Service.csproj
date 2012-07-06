@@ -136,6 +136,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,6 +145,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\App_Data\librarylists\example_list1.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list2.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list3.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list4.xml" />
+    <Content Include="bin\App_Data\librarylists\example_list5.xml" />
     <Content Include="bin\App_Data\ordlister\ord_bm.txt" />
     <Content Include="bin\App_Data\ordlister\stopwords.txt" />
     <Content Include="bin\Contrib.Regex.dll" />
@@ -311,6 +317,9 @@
       <Project>{7eb0d844-7622-4f0d-a103-c326c6fa1293}</Project>
       <Name>Solvberget.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

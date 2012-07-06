@@ -17,15 +17,15 @@
     var searchPageURI = "/pages/searchResults/searchResults.html";
     var suggestionMethods = {
         suggestionList: [],
-        url : "http://localhost:7089/Document/SuggestionList/",
-        populateSuggestionList : function (allData) {
+        url: "http://localhost:7089/Document/SuggestionList/",
+        populateSuggestionList: function (allData) {
             suggestionMethods.suggestionList = allData;
         },
         getSuggestionListFromServer: function () {
             $.getJSON(suggestionMethods.url, suggestionMethods.populateSuggestionList);
         },
         didYouMean: "",
-        suggestionQuery : "",
+        suggestionQuery: "",
 
     };
 
@@ -53,10 +53,10 @@
         spinner: null,
         spin: function () {
 
-                var target = document.getElementById('search-loading-wheel');
-                loadingWheel.spinner = new Spinner(loadingWheel.opts).spin();
-                target.appendChild(loadingWheel.spinner.el);
-                loadingWheel.initialized = true;
+            var target = document.getElementById('search-loading-wheel');
+            loadingWheel.spinner = new Spinner(loadingWheel.opts).spin();
+            target.appendChild(loadingWheel.spinner.el);
+            loadingWheel.initialized = true;
 
         },
         stop: function () {
@@ -68,7 +68,11 @@
 
 
     var ajaxSearchDocuments = function (query) {
-        return $.getJSON("http://localhost:7089/Document/Search/" + query); 
+        return $.getJSON("http://localhost:7089/Document/Search/" + query);
+    }
+    var ajaxGetThumbnailDocumentImage = function (query, size) {
+        var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
+        return $.getJSON(size == undefined ? url + query : url + query + "/" + size );
     }
     var lookupDict = function (query) {
         // Does not work, do not return the json promise
@@ -95,7 +99,7 @@
             args.detail.itemPromise.done(function itemInvoked(item) {
                 // TODO: Navigate to the item that was invoked.
                 var itemObject = args.detail.itemPromise._value.data;
-                     nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: itemObject.DocumentNumber });
+                nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: itemObject.DocumentNumber });
             });
         },
 
@@ -105,7 +109,7 @@
 
             var originalResults;
             var regex;
-            
+
         },
 
         // This function filters the search data using the specified filter.
@@ -129,7 +133,7 @@
 
             listView.itemDataSource = this.filters[filterIndex].results.dataSource;
         },
-        updateSuggestions : function( query ) {
+        updateSuggestions: function (query) {
 
             // Reset suggestion
             suggestionMethods.didYouMean = "";
@@ -163,7 +167,7 @@
             });
 
         },
-        
+
 
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
@@ -175,30 +179,62 @@
             this.generateFilters();
 
             // Hide search pane ** Not implemented by Microsoft yet **
-                //var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
-                //searchPane.hide(); ** Not implemented by Microsoft yet **
+            //var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+            //searchPane.hide(); ** Not implemented by Microsoft yet **
 
             // Show loadingWheel
             loadingWheel.spin();
 
             this.updateSuggestions(args.queryText);
-            
+
             $.when(ajaxSearchDocuments(args.queryText))
                .then($.proxy(function (response) {
 
                    var originalResults = new WinJS.Binding.List();
 
                    for (var x in response) {
+                       response[x].backgroundImage = "images/placeholders/" + response[x].DocType + ".png";
                        originalResults.push(response[x]);
                    }
+
+
+
 
                    this.populateFilterBar(element, originalResults);
                    this.applyFilter(this.filters[0], originalResults);
                    loadingWheel.stop();
 
+                   for (var x in response) {
+                       this.getAndSetThumbImage(originalResults.getItem(x), x);
+                   }
+
+
                }, this)
             );
-            
+        },
+        getAndSetThumbImage: function (item, index) {
+            var that = this;
+
+            $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
+            .then($.proxy(function (response) {
+
+                if (response != undefined && response != "") {
+                    // Set the new value in the model of this item
+                    item.data.backgroundImage = response;
+
+                    // Get the live DOM-object of this item
+                    var section = document.getElementById("searchResultSection");
+                    if (section != undefined) {
+                        var listView = section.querySelector(".resultslist").winControl;
+                        var htmlItem = listView.elementFromIndex(index);
+
+                        // Update the live DOM-object
+                        $(htmlItem).find("img").attr("src", item.data.backgroundImage);
+                    }
+                }
+            }, this));
+
+
         },
 
         // This function updates the ListView with new layouts
@@ -287,7 +323,7 @@
             var spanDidYouMean = document.getElementById("spanDidYouMean");
             WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
 
-            
+
 
         },
 
@@ -317,7 +353,7 @@
         if (args.detail.kind === appModel.Activation.ActivationKind.search) {
             args.setPromise(ui.processAll().then(function () {
                 if (!nav.location) {
-                   //nav.history.current = { location: Application.navigator.home, initialState: {} };
+                    //nav.history.current = { location: Application.navigator.home, initialState: {} };
                 }
 
                 return nav.navigate(searchPageURI, { queryText: args.detail.queryText });
@@ -326,7 +362,7 @@
     });
 
     appModel.Search.SearchPane.getForCurrentView().onquerysubmitted = function (args) { nav.navigate(searchPageURI, args); };
-    
+
     // Populate suggestionList from server
     suggestionMethods.getSuggestionListFromServer();
 
@@ -337,7 +373,7 @@
         var queryText = eventObject.queryText, suggestionRequest = eventObject.request;
         var query = queryText.toLowerCase();
         var maxNumberOfSuggestions = 5;
-                    
+
         // Suggestion based on content
 
         for (var i = 0, len = suggestionMethods.suggestionList.length; i < len; i++) {
@@ -355,6 +391,6 @@
             WinJS.log && WinJS.log("No suggestions provided for query: " + queryText, "sample", "status");
         }
     };
-    
+
 
 })();

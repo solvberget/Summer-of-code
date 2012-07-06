@@ -26,6 +26,18 @@ namespace Solvberget.Service
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "GetList", // Route name
+                "List/GetLists/{limit}", // URL with parameters
+                new { controller = "List", action = "GetLists", limit = UrlParameter.Optional} // Parameter defaults
+            );
+            
+            routes.MapRoute(
+                "GetDocumentThumbnailRoute", // Route name
+                "{controller}/{action}/{id}/{size}", // URL with parameters
+                new { controller = "Document", action = "Index", id = UrlParameter.Optional, size = UrlParameter.Optional } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional } // Parameter defaults
@@ -38,22 +50,22 @@ namespace Solvberget.Service
             AreaRegistration.RegisterAllAreas();
 
             // Use LocalDB for Entity Framework by default
-            
+
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
             SetupLuceneDictionary();
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
-            
-            
+
+
         }
 
         private static void SetupLuceneDictionary()
         {
             DictionaryBuilder.Build(EnvironmentHelper.GetTestDictPath(), EnvironmentHelper.GetDictionaryIndexPath());
             var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath(), EnvironmentHelper.GetStopwordsPath(), EnvironmentHelper.GetSuggestionListPath(), EnvironmentHelper.GetTestDictPath());
-           
+
         }
     }
 }

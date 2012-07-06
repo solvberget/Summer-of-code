@@ -89,11 +89,13 @@
     <Compile Include="Abstract\IEventRepository.cs" />
     <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
+    <Compile Include="Abstract\IListRepository.cs" />
     <Compile Include="DTO\Book.cs" />
     <Compile Include="DTO\Cd.cs" />
     <Compile Include="DTO\CdClassical.cs" />
     <Compile Include="DTO\CdPopular.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
+    <Compile Include="DTO\LibraryList.cs" />
     <Compile Include="DTO\Event.cs" />
     <Compile Include="DTO\Journal.cs" />
     <Compile Include="DTO\LanguageCourse.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Implementation\DictionaryBuilder.cs" />
     <Compile Include="Implementation\ImageRepository.cs" />
     <Compile Include="Implementation\LinticketRepository.cs" />
+    <Compile Include="Implementation\LibraryListXmlRepository.cs" />
     <Compile Include="Implementation\LuceneRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -116,6 +119,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Utils\RepositoryUtils.cs" />
   </ItemGroup>
   <ItemGroup>
