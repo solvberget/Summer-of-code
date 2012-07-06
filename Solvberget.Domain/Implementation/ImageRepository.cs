@@ -22,7 +22,7 @@ namespace Solvberget.Domain.Implementation
 
             _alephRepository = new AlephRepository();
             
-            var doc = _alephRepository.GetDocument(id);
+            var doc = _alephRepository.GetDocument(id, false);
 
             if (doc == null)
                 return string.Empty;

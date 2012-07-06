@@ -251,9 +251,9 @@
     <Content Include="pages\events\events.css" />
     <Content Include="pages\events\events.html" />
     <Content Include="pages\events\events.js" />
-    <Content Include="pages\libraryLists\libraryLists.css" />
-    <Content Include="pages\libraryLists\libraryLists.html" />
-    <Content Include="pages\libraryLists\libraryLists.js" />
+    <Content Include="pages\lists\libraryLists.css" />
+    <Content Include="pages\lists\libraryLists.html" />
+    <Content Include="pages\lists\libraryLists.js" />
     <Content Include="sass\searchResults.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
