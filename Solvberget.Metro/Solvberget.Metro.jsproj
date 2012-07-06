@@ -276,31 +276,15 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
-    <Content Include="js\data.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="js\default.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
+    <Content Include="js\data.js" />
+    <Content Include="js\default.js" />
+    <Content Include="js\LibraryListDataSource.js" />
+    <Content Include="js\script.js" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.html" />
+    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js" />
+    <Content Include="pages\itemDetail\viewmodels\documentList.js" />
+    <Content Include="js\EventDataSource.js" />
+    <Content Include="pages\events\events.css" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -355,14 +339,11 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
+    <Content Include="pages\lists\libraryLists.css" />
+    <Content Include="pages\lists\libraryLists.html" />
+    <Content Include="pages\lists\libraryLists.js" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
     </None>
     <Content Include="js\lib\jquery-1.7.2.js">
       <Compile>True</Compile>

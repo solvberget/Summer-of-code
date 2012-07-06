@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Implementation;
@@ -33,7 +34,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetBook()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
-            var book = (Book)_repository.GetDocument(documentNumberForBook);
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
             Assert.AreEqual("Book", book.GetType().Name);
             Assert.AreEqual("Naiv. Super", book.Title);
             Assert.AreEqual("Loe, Erlend", book.Author.Name);
@@ -48,7 +49,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetFilm()
         {
             const string documentNumberForFilm = "000604643"; //The Matrix
-            var film = (Film)_repository.GetDocument(documentNumberForFilm);
+            var film = (Film)_repository.GetDocument(documentNumberForFilm, false);
             Assert.AreEqual("Film", film.GetType().Name);
             Assert.AreEqual("The matrix revolutions", film.Title);
             Assert.AreEqual("2003", film.ProductionYear);
@@ -64,7 +65,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetAudioBook()
         {
             const string documentNumberForAudioBook = "000599186"; //Harry Potter og dødtalismanene
-            var audioBook = (AudioBook)_repository.GetDocument(documentNumberForAudioBook);
+            var audioBook = (AudioBook)_repository.GetDocument(documentNumberForAudioBook, false);
             Assert.AreEqual("AudioBook", audioBook.GetType().Name);
             Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
             Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
@@ -76,8 +77,45 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetNonExistingDoc()
         {
             const string documentNumberForBook = "abcdefg"; //Burde ikke funke
-            var doc = _repository.GetDocument(documentNumberForBook);
+            var doc = _repository.GetDocument(documentNumberForBook, false);
             Assert.IsNull(doc);
+        }
+
+        [Test]
+        public void TestGetDocumentsLightCountAndContent()
+        {
+            IEnumerable<string> books = new string[] { "000588841", "000588844", "000588843", "000598029", "000567325" };
+            var result = _repository.GetDocumentsLight(books.Take(1));
+            var firstResult = (Film)result.ElementAt(0);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("Ringenes herre : Atter en konge", firstResult.Title);
+            Assert.AreEqual(2010, firstResult.PublishedYear);
+            Assert.AreEqual("The Lord of the rings", firstResult.OriginalTitle);
+
+        }
+
+        [Test]
+        public void TestGetDocumentsLightCount()
+        {
+            IEnumerable<string> books = new string[] { "000588841", "000588844", "000588843", "000598029", "000567325" };
+            var result = _repository.GetDocumentsLight(books);
+            Assert.AreEqual(5, result.Count);
+        }
+
+        [Test]
+        public void TestGetDocumentsLightInvalidIds()
+        {
+            IEnumerable<string> invalidIds = new string[] { "abs2ls", "000123lkjsdf" };
+            var result = _repository.GetDocumentsLight(invalidIds);
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [Test]
+        public void TestGetDocumentsLightMixOfValidAndInvalidIds()
+        {
+            IEnumerable<string> mixedIds = new string[] { "000588841", "abs2ls", "000588844", "000588843", "000123lkjsdf", "000598029", "000567325" };
+            var result = _repository.GetDocumentsLight(mixedIds);
+            Assert.AreEqual(5, result.Count);
         }
 
     }

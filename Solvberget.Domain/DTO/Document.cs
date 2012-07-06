@@ -173,13 +173,18 @@ namespace Solvberget.Domain.DTO
                 string nationalityLookupValue = null;
                 if (nationality != null)
                     NationalityDictionary.TryGetValue(nationality, out nationalityLookupValue);
-                
+
+                var role = GetSubFieldValue(varfield, "e");
+                string roleLookupValue = null;
+                if (role != null)
+                    RoleDictionary.TryGetValue(role, out roleLookupValue);
+
                 var person = new Person()
                                  {
                                      Name = GetSubFieldValue(varfield, "a"),
                                      LivingYears = GetSubFieldValue(varfield, "d"),
                                      Nationality = nationalityLookupValue ?? nationality,
-                                     Role = GetSubFieldValue(varfield, "e"),
+                                     Role = roleLookupValue ?? role,
                                      ReferredWork = GetSubFieldValue(varfield, "t")
                                  };
 
@@ -570,5 +575,31 @@ namespace Solvberget.Domain.DTO
                                     {"zimb.", "Zimbabwisk"},
                                     {"øst.", "Østerriksk"},
                                 };
+
+        protected static readonly Dictionary<string, string> RoleDictionary = new Dictionary<string, string>
+                                {
+                                    {"arr.", "arrangør"},
+                                    {"bearb.", "bearbeider"},
+                                    {"dir.", "dirigent"},
+                                    {"forf.", "forfatter"},
+                                    {"fotogr.", "fotograf"},
+                                    {"illustr.", "illustratør"},
+                                    {"innl.", "innleser"},
+                                    {"komm.", "kommentator"},
+                                    {"komp.", "komponist"},
+                                    {"manusforf.", "manusforfatter"},
+                                    {"medarb.", "medarbeider"},
+                                    {"medforf.", "medforfatter"},
+                                    {"oppr.forf.", "opprinnelig forfatter"},
+                                    {"overs.", "oversetter"},
+                                    {"red.", "redaktør"},
+                                    {"regissør", "regissør"},
+                                    {"skuesp.", "skuespiller"},
+                                    {"utg.", "utgiver"},
+                                    {"utøv.", "utøver"},
+                                };
     }
 }
+
+
+

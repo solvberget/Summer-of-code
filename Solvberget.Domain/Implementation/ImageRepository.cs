@@ -15,7 +15,7 @@ namespace Solvberget.Domain.Implementation
     public class ImageRepository : IImageRepository
     {
 
-        private IRepository _alephRepository;
+        private static readonly IRepository AlephRepository = new AlephRepository();
         private string _pathToImageCache;
 
 
@@ -27,22 +27,11 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-        private Document GetDocumentFromId(string id)
-        {
-            if (string.IsNullOrEmpty(id))
-                return null;
-
-            _alephRepository = new AlephRepository();
-
-
-            return _alephRepository.GetDocument(id);
-
-        }
 
         public string GetDocumentImage(string id)
         {
 
-            var doc = GetDocumentFromId(id);
+            var doc = AlephRepository.GetDocument(id, false);
             if (doc == null)
                 return string.Empty;
 
@@ -59,7 +48,8 @@ namespace Solvberget.Domain.Implementation
         public string GetDocumentThumbnailImage(string id, string size)
         {
 
-            var doc = GetDocumentFromId(id);
+            var doc = AlephRepository.GetDocument(id, false);
+
             if (doc == null)
                 return string.Empty;
 

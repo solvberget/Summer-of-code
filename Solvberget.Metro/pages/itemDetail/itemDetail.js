@@ -8,6 +8,12 @@
         var url = "http://localhost:7089/Document/GetDocumentImage/";
         return $.getJSON(url + query);
     }
+    var ajaxGetThumbnailDocumentImage = function (query, size) {
+        var url = "http://localhost:7089/Document/GetDocumentImage/";
+        var thumbUrl = size == undefined ? url + query : url + query + "/" + size;
+        return $.getJSON(thumbUrl);
+
+    }
 
     ui.Pages.define("/pages/itemDetail/itemDetail.html", {
 
@@ -20,24 +26,11 @@
             WinJS.Resources.processAll();
             this.item = options.item;
             this.documentId = options.key;
+            this.contentDiv = element.querySelector("#item-detailpage");
+            this.factsFragmentsDiv = element.querySelector("#factsFragment");
             this.defaultScript();
             this.registerForShare();
 
-            $.when(ajaxGetDocumentImage(this.documentId))
-                .then($.proxy(function (response) {
-
-                    var imgDiv = this.element.querySelector(".content article div img");
-                    var hideDiv = this.element.querySelector("#hideIt");
-                    if (response != undefined && response != "") {
-                        // Set the new value in the model of this item                     
-                        //  $(".content .item-image").attr("src", response);//.attr("src", response).show("200");
-
-                        this.viewModel.image = response;
-                        WinJS.Binding.processAll(imgDiv, this.viewModel);
-                       //$("#hideIt").fadeIn(200);
-
-                    }
-                }, this));
 
             element.querySelector(".itemdetailpage").focus();
         },
@@ -77,7 +70,7 @@
                 var shareMode = SHARE_MODE_HTML;
 
                 var range = document.createRange();
-                range.selectNode(document.getElementById("fragmentcontent"));
+                range.selectNode(document.getElementById("content"));
                 request.data = MSApp.createDataPackage(range);
 
                 // Set the title and description of this share-event
@@ -107,8 +100,8 @@
         },
 
         defaultScript: function () {
-            this.fragmentsDiv = this.element.querySelector(".content");
-            this.fragmentsDiv.innerHTML = "";
+           
+            this.factsFragmentsDiv.innerHTML = "";
             var self = this;
 
             var setViewModel = function (item) {
@@ -146,33 +139,52 @@
                 // Read fragment from the HMTL file and load it into the div.  This
                 // fragment also loads linked CSS and JavaScript specified in the fragment
                 WinJS.UI.Fragments.renderCopy(self.viewModel.viewPath,
-                    self.fragmentsDiv)
+                    self.factsFragmentsDiv)
                     .done(function (fragment) {
                         // After the fragment is loaded into the target element,
                         // CSS and JavaScript referenced in the fragment are loaded.  The
                         // fragment loads script that defines an initialization function,
                         // so we can now call it to initialize the fragment's contents.
                         $("#item-dynamic-content").html(self.viewModel.output);
-                        WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
+
+                        //Load existing data first
+                        WinJS.Binding.processAll(self.factsFragmentsDiv, self.viewModel);
                         self.viewModel.fragment.fragmentLoad(fragment);
+                        //Then get more data
+                        
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
                     },
                         function (error) {
                             WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
                         });
-                $.when(ajaxGetDocument(self.item.DocumentNumber))
-                .then($.proxy(function (response) {
-                    setViewModel(response);
-                    WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
-
-
-                }, self)
-             );
+                
             };
 
             //render
             setViewModel(self.item);
             render();
+            WinJS.Binding.processAll(self.contentDiv, self.viewModel);
+            $.when(ajaxGetDocument(self.item.DocumentNumber))
+                .then($.proxy(function (response) {
+                    setViewModel(response);
+                    WinJS.Binding.processAll(self.contentDiv, self.viewModel);
+                }, self)
+             );
+
+            $.when(ajaxGetThumbnailDocumentImage(this.documentId, 500))
+               .then($.proxy(function (response) {
+
+                   var fragmentsDiv = this.element.querySelector(".content");
+
+                   if (response != undefined && response != "") {
+                       // Set the new value in the model of this item
+                       this.viewModel.image = response;
+
+                       WinJS.Binding.processAll(fragmentsDiv, this.viewModel);
+
+                   }
+               }, this));
+            
 
 
         }

@@ -38,5 +38,10 @@ namespace Solvberget.Service.Infrastructure
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_test.txt");
         }
+
+        public static string GetXmlListPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"librarylists");
+        }
     }
 }
