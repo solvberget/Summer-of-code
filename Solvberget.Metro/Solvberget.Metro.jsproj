@@ -242,7 +242,7 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
-    <Content Include="js\LibraryListDataSource.js" />
+    <Content Include="js\ListDataSource.js" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.css" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.html" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js" />

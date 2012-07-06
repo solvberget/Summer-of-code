@@ -8,7 +8,7 @@
     var utils = WinJS.Utilities;
 
 
-    ui.Pages.define("/pages/libraryLists/libraryLists.html", {
+    ui.Pages.define("/pages/lists/libraryLists.html", {
 
         /// <field type="WinJS.Binding.List" />
         //items: null,
@@ -29,8 +29,8 @@
 
             var listView = element.querySelector(".itemlist").winControl;
 
-            //Setup the EventDataSource
-            var libraryListsDataSource = new DataSources.libraryListsDataSource();
+            //Setup the ListDataSource
+            var listDataSource = new DataSources.listDataSource();
 
             // Store information about the group and selection that this page will
             // display.
@@ -42,7 +42,7 @@
 
 
             // Set up the ListView.
-            listView.itemDataSource = libraryListsDataSource;
+            listView.itemDataSource = listDataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.onselectionchanged = this.selectionChanged.bind(this);
             listView.layout = new ui.ListLayout();
@@ -55,7 +55,7 @@
                     binding.processAll(element.querySelector(".articlesection"), options.item);
                 }
             } else {
-                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/libraryLists/libraryLists.html") {
+                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/lists/libraryLists.html") {
                     // Clean up the backstack to handle a user snapping, navigating
                     // away, unsnapping, and then returning to this page.
                     nav.history.backStack.pop();
@@ -77,7 +77,7 @@
                     if (that.isSingleColumn()) {
                         // If snapped or portrait, navigate to a new page containing the
                         // selected item's details.
-                        nav.navigate("/pages/libraryLists/libraryLists.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
+                        nav.navigate("/pages/lists/libraryLists.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
                     } else {
                         // If fullscreen or filled, update the details column with new data.
 
@@ -124,7 +124,7 @@
                         selectedIndex: this.itemSelectionIndex
                     };
                     nav.history.backStack.push({
-                        location: "/pages/libraryLists/libraryLists.html",
+                        location: "/pages/lists/libraryLists.html",
                         state: { groupKey: this.group.key }
                     });
                     element.querySelector(".articlesection").focus();
@@ -136,7 +136,7 @@
             } else {
                 // If the app has unsnapped into the two-column view, remove any
                 // splitPage instances that got added to the backstack.
-                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/libraryLists/libraryLists.html") {
+                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/lists/libraryLists.html") {
                     nav.history.backStack.pop();
                 }
                 if (viewState !== lastViewState) {

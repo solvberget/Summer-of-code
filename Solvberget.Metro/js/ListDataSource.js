@@ -1,7 +1,7 @@
 ﻿(function () {
 
     // Define the IListDataAdapter.
-    var libraryListsDataAdapter = WinJS.Class.define(
+    var listDataAdapter = WinJS.Class.define(
         function () {
 
             // Constructor
@@ -133,10 +133,10 @@
         }
         );
 
-    var libraryListsDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function () {
-        this._baseDataSourceConstructor(new libraryListsDataAdapter());
+    var listDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function () {
+        this._baseDataSourceConstructor(new listDataAdapter());
     });
 
-    WinJS.Namespace.define("DataSources", { libraryListsDataSource: libraryListsDataSource });
+    WinJS.Namespace.define("DataSources", { listDataSource: listDataSource });
 
 })();
