@@ -242,6 +242,7 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\LibraryListDataSource.js" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.css" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.html" />
     <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js" />
@@ -250,6 +251,9 @@
     <Content Include="pages\events\events.css" />
     <Content Include="pages\events\events.html" />
     <Content Include="pages\events\events.js" />
+    <Content Include="pages\libraryLists\libraryLists.css" />
+    <Content Include="pages\libraryLists\libraryLists.html" />
+    <Content Include="pages\libraryLists\libraryLists.js" />
     <Content Include="sass\searchResults.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
