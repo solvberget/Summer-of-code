@@ -100,7 +100,7 @@
         },
 
         defaultScript: function () {
-           
+
             this.factsFragmentsDiv.innerHTML = "";
             var self = this;
 
@@ -151,19 +151,20 @@
                         WinJS.Binding.processAll(self.factsFragmentsDiv, self.viewModel);
                         self.viewModel.fragment.fragmentLoad(fragment);
                         //Then get more data
-                        
+
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
                     },
                         function (error) {
                             WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
                         });
-                
+
             };
 
             //render
             setViewModel(self.item);
             render();
             WinJS.Binding.processAll(self.contentDiv, self.viewModel);
+
             $.when(ajaxGetDocument(self.item.DocumentNumber))
                 .then($.proxy(function (response) {
                     setViewModel(response);
@@ -179,12 +180,13 @@
                    if (response != undefined && response != "") {
                        // Set the new value in the model of this item
                        this.viewModel.image = response;
+                       var imageDiv = document.getElementById("content-image");
 
-                       WinJS.Binding.processAll(fragmentsDiv, this.viewModel);
+                       WinJS.Binding.processAll(imageDiv, this.viewModel);
 
                    }
                }, this));
-            
+
 
 
         }
