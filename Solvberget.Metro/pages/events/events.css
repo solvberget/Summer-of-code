@@ -93,8 +93,10 @@
             }
 
             .splitpage .articlesection header .article-image {
-                height: 180px;
-                width: 180px;
+                height: auto;
+                width: auto;
+                max-height: 180px;
+                max-width: 180px;
             }
 
         .splitpage .articlesection .article-box {
