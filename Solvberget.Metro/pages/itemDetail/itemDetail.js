@@ -4,9 +4,15 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
 
+    var ajaxGetDocumentImage = function (query) {
+        var url = "http://localhost:7089/Document/GetDocumentImage/";
+        return $.getJSON(url + query);
+    }
     var ajaxGetThumbnailDocumentImage = function (query, size) {
-        var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
-        return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
+        var url = "http://localhost:7089/Document/GetDocumentImage/";
+        var thumbUrl = size == undefined ? url + query : url + query + "/" + size;
+        return $.getJSON(thumbUrl);
+
     }
 
     ui.Pages.define("/pages/itemDetail/itemDetail.html", {
@@ -25,7 +31,6 @@
             this.defaultScript();
             this.registerForShare();
 
-           
 
             element.querySelector(".itemdetailpage").focus();
         },
@@ -95,7 +100,7 @@
         },
 
         defaultScript: function () {
-           
+
             this.factsFragmentsDiv.innerHTML = "";
             var self = this;
 
@@ -145,19 +150,20 @@
                         WinJS.Binding.processAll(self.factsFragmentsDiv, self.viewModel);
                         self.viewModel.fragment.fragmentLoad(fragment);
                         //Then get more data
-                        
+
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
                     },
                         function (error) {
                             WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
                         });
-                
+
             };
 
             //render
             setViewModel(self.item);
             render();
             WinJS.Binding.processAll(self.contentDiv, self.viewModel);
+
             $.when(ajaxGetDocument(self.item.DocumentNumber))
                 .then($.proxy(function (response) {
                     setViewModel(response);
@@ -173,12 +179,13 @@
                    if (response != undefined && response != "") {
                        // Set the new value in the model of this item
                        this.viewModel.image = response;
+                       var imageDiv = document.getElementById("content-image");
 
-                       WinJS.Binding.processAll(fragmentsDiv, this.viewModel);
+                       WinJS.Binding.processAll(imageDiv, this.viewModel);
 
                    }
                }, this));
-            
+
 
 
         }

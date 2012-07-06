@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Solvberget.Domain;
 using Solvberget.Domain.Abstract;
+using Solvberget.Domain.DTO;
 
 namespace Solvberget.Service.Controllers
 {
@@ -35,7 +36,7 @@ namespace Solvberget.Service.Controllers
 
         public JsonResult GetDocument(string id)
         {
-            var result = _repository.GetDocument(id);
+            var result = _repository.GetDocument(id, false);
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -59,6 +60,20 @@ namespace Solvberget.Service.Controllers
         public JsonResult SuggestionList ()
         {
             return this.Json(_spellingRepository.SuggestionList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDocumentsLight(string ids)
+        {
+            if (ids != null)
+            {
+                IEnumerable<string> splitParams = ids.Split('-');
+                var result = _repository.GetDocumentsLight(splitParams);
+                return this.Json(result, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return this.Json(new List<Document>(), JsonRequestBehavior.AllowGet);
+            }
         }
 
     }

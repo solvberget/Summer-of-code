@@ -38,6 +38,46 @@ namespace Solvberget.Domain.Utils
             return json;
         }
 
+        public static void DownloadImageFromUrl(string imageUrl, string imageName, string pathToCache)
+        {
+            System.Drawing.Image image = null;
+
+            if (!Directory.Exists(pathToCache))
+                Directory.CreateDirectory(pathToCache);
+
+            var fileName = Path.Combine(pathToCache, imageName);
+            if (File.Exists(fileName))
+                return;
+
+
+            try
+            {
+                var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(imageUrl);
+                webRequest.AllowWriteStreamBuffering = true;
+                webRequest.Timeout = 30000;
+
+                var webResponse = webRequest.GetResponse();
+
+                var stream = webResponse.GetResponseStream();
+
+                image = System.Drawing.Image.FromStream(stream);
+
+
+                webResponse.Close();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+
+            
+
+           
+            image.Save(fileName);
+        }
+
+
         public static string GetJsonFromStreamWithParam(string uri, string param)
         {
             var url = uri + param;
@@ -50,8 +90,10 @@ namespace Solvberget.Domain.Utils
             string json = string.Empty;
             using (var stream = response.GetResponseStream())
             {
+
                 var readStream = new StreamReader(stream, Encoding.UTF8);
                 json = readStream.ReadToEnd();
+
             }
 
             return json;

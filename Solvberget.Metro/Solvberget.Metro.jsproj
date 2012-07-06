@@ -51,11 +51,46 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="config.rb" />
-    <Content Include="css\default.css" />
-    <Content Include="css\ie.css" />
-    <Content Include="css\print.css" />
-    <Content Include="css\screen.css" />
-    <Content Include="css\searchResults.css" />
+    <Content Include="css\default.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="css\ie.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="css\print.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="css\screen.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="css\searchResults.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="default.html" />
     <Content Include="DocumentInfo.html" />
     <Content Include="images\ajax_loading.gif" />
@@ -237,29 +272,86 @@
     <Content Include="images\placeholders\Book.png" />
     <Content Include="images\placeholders\Document.png" />
     <Content Include="images\placeholders\Film.png" />
+    <Content Include="images\placeholders\transp.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\EventDataSource.js" />
+    <Content Include="js\LibraryListDataSource.js" />
+    <Content Include="js\script.js" />
+    <Content Include="pages\events\events.css" />
+    <Content Include="js\EventDataSource.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\events\events.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\events\events.html" />
+    <Content Include="pages\events\events.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.css" />
     <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.html" />
     <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.js" />
+    <Content Include="pages\itemDetail\itemDetail.css" />
+    <Content Include="pages\itemDetail\itemDetail.html" />
+    <Content Include="pages\itemDetail\itemDetail.js" />
+    <Content Include="pages\itemDetail\viewmodels\audioBookItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\bookItem.js" />
     <Content Include="pages\itemDetail\viewmodels\documentList.js" />
-    <Content Include="js\EventDataSource.js" />
-    <Content Include="pages\events\events.css" />
-    <Content Include="pages\events\events.html" />
-    <Content Include="pages\events\events.js" />
+    <Content Include="pages\itemDetail\viewmodels\movieItem.js" />
+    <Content Include="sass\default.css" />
+    <Content Include="sass\ie.css" />
+    <Content Include="sass\print.css" />
+    <Content Include="sass\screen.css" />
+    <Content Include="sass\searchResults.css" />
+    <Content Include="sass\searchResults.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
     <Content Include="pages\lists\libraryLists.css" />
     <Content Include="pages\lists\libraryLists.html" />
     <Content Include="pages\lists\libraryLists.js" />
-    <Content Include="sass\searchResults.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </None>
-    <Content Include="js\lib\jquery-1.7.2.js" />
+    <Content Include="js\lib\jquery-1.7.2.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="js\lib\jquery-1.7.2.min.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
     </Content>
     <Content Include="js\lib\spinn.min.js" />
     <Content Include="js\navigator.js" />
@@ -267,25 +359,137 @@
     <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
     <Content Include="js\viewmodels\DocumentSearch.js" />
-    <Content Include="pages\itemDetail\itemDetail.css" />
-    <Content Include="pages\itemDetail\itemDetail.html" />
-    <Content Include="pages\itemDetail\itemDetail.js" />
-    <Content Include="pages\itemDetail\viewmodels\audioBookItem.js" />
-    <Content Include="pages\itemDetail\viewmodels\bookItem.js" />
-    <Content Include="pages\itemDetail\viewmodels\movieItem.js" />
-    <Content Include="pages\items\items.css" />
+    <Content Include="js\lib\spinn.min.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\navigator.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\test\DocumentSearch.tests.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\test\Sample.tests.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\utils.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\viewmodels\DocumentSearch.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\items\items.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="pages\items\items.html" />
-    <Content Include="pages\items\items.js" />
-    <Content Include="pages\searchResults\searchResults.css" />
+    <Content Include="pages\items\items.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\searchResults\searchResults.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="pages\searchResults\searchResults.html" />
-    <Content Include="pages\searchResults\searchResults.js" />
-    <Content Include="pages\split\split.css" />
+    <Content Include="pages\searchResults\searchResults.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\split\split.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="pages\split\split.html" />
-    <Content Include="pages\split\split.js" />
-    <Content Include="sass\default.scss" />
-    <Content Include="sass\ie.scss" />
-    <Content Include="sass\print.scss" />
-    <Content Include="sass\screen.scss" />
+    <Content Include="pages\split\split.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="sass\default.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="sass\ie.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="sass\print.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="sass\screen.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

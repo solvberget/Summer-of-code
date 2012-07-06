@@ -38,7 +38,7 @@ namespace Solvberget.Domain.Implementation
             return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
         }
 
-        public Document GetDocument(string documentNumber)
+        public Document GetDocument(string documentNumber, bool isLight)
         {
             const Operation function = Operation.FindDocument;
             var options = new Dictionary<string, string> { { "doc_number", documentNumber} };
@@ -52,12 +52,17 @@ namespace Solvberget.Domain.Implementation
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)
                 {
-                    return PopulateDocument(xmlResult, false);
+                    return PopulateDocument(xmlResult, isLight);
                 }
             }
 
             return null;
             
+        }
+
+        public List<Document> GetDocumentsLight(IEnumerable<string> docNumbers)
+        {
+            return (from docNumber in docNumbers let doc = GetDocument(docNumber, true) where doc != null select GetDocument(docNumber, true)).ToList();
         }
 
         private List<Document> GetSearchResults(dynamic result)
