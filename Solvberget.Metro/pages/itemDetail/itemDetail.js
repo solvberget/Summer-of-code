@@ -65,7 +65,7 @@
                 var shareMode = SHARE_MODE_HTML;
 
                 var range = document.createRange();
-                range.selectNode(document.getElementById("content"));
+                range.selectNode(document.getElementById("share-content"));
                 request.data = MSApp.createDataPackage(range);
 
                 // Set the title and description of this share-event
