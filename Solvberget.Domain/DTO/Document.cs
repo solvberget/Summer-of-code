@@ -600,3 +600,6 @@ namespace Solvberget.Domain.DTO
                                 };
     }
 }
+
+
+
