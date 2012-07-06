@@ -142,6 +142,7 @@
                 return $.getJSON("http://localhost:7089/Document/GetDocument/" + query);
             };
             var render = function () {
+
                 // Read fragment from the HMTL file and load it into the div.  This
                 // fragment also loads linked CSS and JavaScript specified in the fragment
                 WinJS.UI.Fragments.renderCopy(self.viewModel.viewPath,
@@ -161,7 +162,7 @@
                 .then($.proxy(function (response) {
                     setViewModel(response);
                     WinJS.Binding.processAll(self.contentDiv, self.viewModel);
-                   
+     
 
 
                 }, self)

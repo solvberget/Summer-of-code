@@ -52,11 +52,13 @@
             width: 460px;
         }
 
-          .itemdetailpage .content article item-fragment-fact-container{
+          .itemdetailpage .content article .factsFragment{
             margin-bottom: 20px;
             margin-right: 20px;
             vertical-align: baseline;
         }
+
+        
 
         .itemdetailpage .content article .item-content p {
             margin-bottom: 20px;
