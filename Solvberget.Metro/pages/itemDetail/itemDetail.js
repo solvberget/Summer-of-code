@@ -25,19 +25,7 @@
             this.defaultScript();
             this.registerForShare();
 
-            $.when(ajaxGetThumbnailDocumentImage(this.documentId, 500))
-                .then($.proxy(function (response) {
-
-                    var fragmentsDiv = this.element.querySelector(".content");
-
-                    if (response != undefined && response != "") {
-                        // Set the new value in the model of this item
-                        this.viewModel.image = response;
-
-                        WinJS.Binding.processAll(fragmentsDiv, this.viewModel);
-
-                    }
-                }, this));
+           
 
             element.querySelector(".itemdetailpage").focus();
         },
@@ -158,15 +146,7 @@
                         WinJS.Binding.processAll(self.factsFragmentsDiv, self.viewModel);
                         self.viewModel.fragment.fragmentLoad(fragment);
                         //Then get more data
-                        $.when(ajaxGetDocument(self.item.DocumentNumber))
-                .then($.proxy(function (response) {
-                    setViewModel(response);
-                    WinJS.Binding.processAll(self.contentDiv, self.viewModel);
-     
-
-
-                }, self)
-             );
+                        
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
                     },
                         function (error) {
@@ -178,6 +158,28 @@
             //render
             setViewModel(self.item);
             render();
+            WinJS.Binding.processAll(self.contentDiv, self.viewModel);
+            $.when(ajaxGetDocument(self.item.DocumentNumber))
+                .then($.proxy(function (response) {
+                    setViewModel(response);
+                    WinJS.Binding.processAll(self.contentDiv, self.viewModel);
+                }, self)
+             );
+
+            $.when(ajaxGetThumbnailDocumentImage(this.documentId, 500))
+               .then($.proxy(function (response) {
+
+                   var fragmentsDiv = this.element.querySelector(".content");
+
+                   if (response != undefined && response != "") {
+                       // Set the new value in the model of this item
+                       this.viewModel.image = response;
+
+                       WinJS.Binding.processAll(fragmentsDiv, this.viewModel);
+
+                   }
+               }, this));
+            
 
 
         }
