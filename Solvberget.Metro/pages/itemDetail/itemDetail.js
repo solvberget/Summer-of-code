@@ -15,6 +15,8 @@
             WinJS.Resources.processAll();
             this.item = options.item;
             this.documentId = options.key;
+            this.contentDiv = element.querySelector("#item-detailpage");
+            this.factsFragmentsDiv = element.querySelector("#factsFragment");
             this.defaultScript();
             this.registerForShare();
             element.querySelector(".itemdetailpage").focus();
@@ -55,7 +57,7 @@
                 var shareMode = SHARE_MODE_HTML;
 
                 var range = document.createRange();
-                range.selectNode(document.getElementById("fragmentcontent"));
+                range.selectNode(document.getElementById("content"));
                 request.data = MSApp.createDataPackage(range);
 
                 // Set the title and description of this share-event
@@ -85,8 +87,8 @@
         },
 
         defaultScript: function () {
-            this.fragmentsDiv = this.element.querySelector(".content");
-            this.fragmentsDiv.innerHTML = "";
+           
+            this.factsFragmentsDiv.innerHTML = "";
             var self = this;
 
             var setViewModel = function (item) {
@@ -123,14 +125,14 @@
                 // Read fragment from the HMTL file and load it into the div.  This
                 // fragment also loads linked CSS and JavaScript specified in the fragment
                 WinJS.UI.Fragments.renderCopy(self.viewModel.viewPath,
-                    self.fragmentsDiv)
+                    self.factsFragmentsDiv)
                     .done(function (fragment) {
                         // After the fragment is loaded into the target element,
                         // CSS and JavaScript referenced in the fragment are loaded.  The
                         // fragment loads script that defines an initialization function,
                         // so we can now call it to initialize the fragment's contents.
                         $("#item-dynamic-content").html(self.viewModel.output);
-                        WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
+                        WinJS.Binding.processAll(self.contentDiv, self.viewModel);
                         self.viewModel.fragment.fragmentLoad(fragment);
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
                     },
@@ -140,7 +142,7 @@
                 $.when(ajaxGetDocument(self.item.DocumentNumber))
                 .then($.proxy(function (response) {
                     setViewModel(response);
-                    WinJS.Binding.processAll(self.fragmentsDiv, self.viewModel);
+                    WinJS.Binding.processAll(self.contentDiv, self.viewModel);
 
                    
                 }, self)

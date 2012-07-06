@@ -206,3 +206,6 @@ namespace Solvberget.Domain.DTO
 
     }
 }
+
+
+

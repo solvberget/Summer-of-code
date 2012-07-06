@@ -90,8 +90,13 @@
     <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="DTO\Book.cs" />
+    <Compile Include="DTO\Cd.cs" />
+    <Compile Include="DTO\CdClassical.cs" />
+    <Compile Include="DTO\CdPopular.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
     <Compile Include="DTO\Event.cs" />
+    <Compile Include="DTO\Journal.cs" />
+    <Compile Include="DTO\LanguageCourse.cs" />
     <Compile Include="DTO\Organization.cs" />
     <Compile Include="DTO\Person.cs" />
     <Compile Include="DTO\AudioBook.cs" />
@@ -99,6 +104,7 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="DTO\ExtensionHelpers.cs" />
     <Compile Include="DTO\Film.cs" />
+    <Compile Include="DTO\SheetMusic.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />
     <Compile Include="Implementation\ImageRepository.cs" />
