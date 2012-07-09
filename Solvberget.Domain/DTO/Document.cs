@@ -46,10 +46,14 @@ namespace Solvberget.Domain.DTO
                 {
                     var languages = GetVarfield(nodes, "041", "a").SplitByLength(3).ToList();
                     for (var i = 0; i < languages.Count(); i++)
-                        languages[i] = LanguageDictionary[languages[i]];
+                    {
+                        string languageLookupValue = null;
+                        LanguageDictionary.TryGetValue(languages[i], out languageLookupValue);
+                        languages[i] = languageLookupValue ?? languages[i];
+                    }
                     Languages = languages;
                 }
-
+             
                 LocationCode = GetVarfield(nodes, "090", "d");
                 SubTitle = GetVarfield(nodes, "245", "b");
 
