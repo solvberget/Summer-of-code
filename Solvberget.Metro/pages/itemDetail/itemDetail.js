@@ -23,11 +23,13 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            WinJS.Resources.processAll();
+
             this.item = options.item;
+
             this.documentId = options.key;
             this.contentDiv = element.querySelector("#item-detailpage");
             this.factsFragmentsDiv = element.querySelector("#factsFragment");
+            WinJS.Binding.processAll(self.contentDiv);
             this.defaultScript();
             this.registerForShare();
 
@@ -111,20 +113,21 @@
                 } else {
                     if (item.DocType == "Book") {
                         self.viewModel = ViewModel.Book;
-                       
+
                     }
                     if (item.DocType == "Film") {
                         self.viewModel = ViewModel.Movie;
-                        
+
                     }
                     if (item.DocType == "AudioBook") {
                         self.viewModel = ViewModel.AudioBook;
-                       
+
                     }
 
                     ViewModel.DocumentList[self.documentId] = self.viewModel;
+                    
                 }
-                self.viewModel.viewPath = "/pages/itemDetail/fragments/factsFragment/factsFragment.html";
+
                 //Handle changes in book ui
                 self.viewModel.fragment = Facts_Fragment;
                 if (self.viewModel !== undefined)
@@ -148,7 +151,7 @@
 
                         //Load existing data first
                         WinJS.Binding.processAll(self.factsFragmentsDiv, self.viewModel);
-                        self.viewModel.fragment.fragmentLoad(fragment);
+                         self.viewModel.fragment.fragmentLoad(fragment);
                         //Then get more data
 
                         WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
@@ -166,6 +169,7 @@
 
             $.when(ajaxGetDocument(self.item.DocumentNumber))
                 .then($.proxy(function (response) {
+          
                     setViewModel(response);
                     WinJS.Binding.processAll(self.contentDiv, self.viewModel);
                 }, self)
@@ -174,7 +178,7 @@
             $.when(ajaxGetThumbnailDocumentImage(this.documentId, 500))
                .then($.proxy(function (response) {
 
-             
+
                    if (response != undefined && response != "") {
                        // Set the new value in the model of this item
                        this.viewModel.image = response;

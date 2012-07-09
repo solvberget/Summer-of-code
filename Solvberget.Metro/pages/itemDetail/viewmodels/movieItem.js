@@ -8,6 +8,7 @@
             content: null,
             fragmentPath: null,
             output: null,
+            viewPath :"/pages/itemDetail/fragments/factsFragment/factsFragment.html",
             myConverter: WinJS.Binding.converter(function (val) {
                 var returnvalue;
                 if (val != null) {
