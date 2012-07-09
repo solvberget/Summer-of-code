@@ -78,7 +78,35 @@
         // Does not work, do not return the json promise
         return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
     }
+    var getImageQueue = {
+        queue: [],
+        working: false,
+        inSearchPage : false,
+        fireFinished: function () {
 
+            this.working = false;
+            this.startWorking();
+
+        },
+        addToQueue: function (item, index) {
+
+            this.queue.push({ item: item, index: index });
+            this.startWorking();
+
+        },
+        startWorking: function () {
+            if (!this.working && this.inSearchPage) {
+                this.working = true;
+
+                var itemIndexObj = this.queue[0];
+                this.queue.shift();
+                if (itemIndexObj != undefined)
+                    self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
+
+            }
+        }
+    };
+    var self;
     ui.Pages.define(searchPageURI, {
         /// <field elementType="Object" />
         filters: [],
@@ -171,7 +199,6 @@
 
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
-            var originalResults;
             this.lastSearch = args.queryText;
             WinJS.Namespace.define("searchResults", { markText: this.markText.bind(this) });
             utils.markSupportedForProcessing(searchResults.markText);
@@ -192,20 +219,17 @@
 
                    var originalResults = new WinJS.Binding.List();
 
-                   for (var x in response) {
+                   for (x in response) {
                        response[x].backgroundImage = "images/placeholders/" + response[x].DocType + ".png";
                        originalResults.push(response[x]);
                    }
-
-
-
 
                    this.populateFilterBar(element, originalResults);
                    this.applyFilter(this.filters[0], originalResults);
                    loadingWheel.stop();
 
                    for (var x in response) {
-                       this.getAndSetThumbImage(originalResults.getItem(x), x);
+                       getImageQueue.addToQueue(originalResults.getItem(x), x);
                    }
 
 
@@ -213,29 +237,33 @@
             );
         },
         getAndSetThumbImage: function (item, index) {
-            var that = this;
 
             $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
             .then($.proxy(function (response) {
 
                 if (response != undefined && response != "") {
-                    // Set the new value in the model of this item
+                    // Set the new value in the model of this item                   
                     item.data.backgroundImage = response;
 
                     // Get the live DOM-object of this item
                     var section = document.getElementById("searchResultSection");
                     if (section != undefined) {
-                        var listView = section.querySelector(".resultslist").winControl;
+                        var listView = section.querySelector(".resultslist").winControl;                       
                         var htmlItem = listView.elementFromIndex(index);
 
                         // Update the live DOM-object
-                        $(htmlItem).find("img").attr("src", item.data.backgroundImage);
+                        if(getImageQueue.inSearchPage) 
+                           $(htmlItem).find("img").attr("src", item.data.backgroundImage);
+
+                        
                     }
                 }
+                getImageQueue.fireFinished();
             }, this));
 
 
         },
+        
 
         // This function updates the ListView with new layouts
         initializeLayout: function (listView, viewState) {
@@ -314,16 +342,19 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
 
+            self = this;
+            getImageQueue.inSearchPage = true;
+
             var listView = element.querySelector(".resultslist").winControl;
-            listView.itemTemplate = element.querySelector(".itemtemplate")
+            listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.oniteminvoked = this.itemInvoked;
             this.handleQuery(element, options);
             listView.element.focus();
 
-            var spanDidYouMean = document.getElementById("spanDidYouMean");
-            WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+        },
+        unload: function () {
 
-
+            getImageQueue.inSearchPage = false;
 
         },
 
@@ -353,7 +384,7 @@
         if (args.detail.kind === appModel.Activation.ActivationKind.search) {
             args.setPromise(ui.processAll().then(function () {
                 if (!nav.location) {
-                    //nav.history.current = { location: Application.navigator.home, initialState: {} };
+                    nav.history.current = { location: Application.navigator.home, initialState: {} };
                 }
 
                 return nav.navigate(searchPageURI, { queryText: args.detail.queryText });
