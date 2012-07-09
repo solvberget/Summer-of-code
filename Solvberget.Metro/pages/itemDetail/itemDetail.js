@@ -166,7 +166,7 @@
 
             $.when(ajaxGetDocument(self.item.DocumentNumber))
                 .then($.proxy(function (response) {
-                    self.setViewModel(response);
+                    setViewModel(response);
                     WinJS.Binding.processAll(self.contentDiv, self.viewModel);
                 }, self)
              );
