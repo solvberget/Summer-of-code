@@ -174,12 +174,11 @@
             $.when(ajaxGetThumbnailDocumentImage(this.documentId, 500))
                .then($.proxy(function (response) {
 
-                   var fragmentsDiv = this.element.querySelector(".content");
-
+             
                    if (response != undefined && response != "") {
                        // Set the new value in the model of this item
                        this.viewModel.image = response;
-                       var imageDiv = document.getElementById("content-image");
+                       var imageDiv = document.getElementById("#item-image");
 
                        WinJS.Binding.processAll(imageDiv, this.viewModel);
 
