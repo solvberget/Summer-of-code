@@ -32,7 +32,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestListNameAndDocumentNumbers()
         {
             var list = _listRepository.GetLists().First();
-            Assert.AreEqual("Eksempelliste 1", list.Name);
+            Assert.AreEqual("Sindres anbefalinger", list.Name);
             Assert.AreEqual(1, list.Priority);
             Assert.AreEqual(5, list.DocumentNumbers.Count);
             Assert.AreEqual("000588841", list.DocumentNumbers.ElementAt(0));
@@ -47,9 +47,9 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             var lists1 = _listRepository.GetLists(2);
             Assert.AreEqual(2, lists1.Count);
-            Assert.AreEqual("Eksempelliste 1", lists1.ElementAt(0).Name);
+            Assert.AreEqual("Sindres anbefalinger", lists1.ElementAt(0).Name);
             Assert.AreEqual(1, lists1.ElementAt(0).Priority);
-            Assert.AreEqual("Eksempelliste 2", lists1.ElementAt(1).Name);
+            Assert.AreEqual("Ferske lesetips fra Sølvbergets ansatte - Skjønnlitteratur", lists1.ElementAt(1).Name);
             Assert.AreEqual(2, lists1.ElementAt(1).Priority);
 
             //Case where limit is higher than file conunt in folder
@@ -65,7 +65,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var list = _listRepository.GetLists().First();
             var document = list.Documents.ElementAt(0);
             Assert.AreEqual(5, list.Documents.Count());
-            Assert.AreEqual("Eksempelliste 1", list.Name);
+            Assert.AreEqual("Sindres anbefalinger", list.Name);
             Assert.AreEqual("Ringenes herre : Atter en konge", document.Title);
             Assert.AreEqual(2010, document.PublishedYear);
             Assert.AreEqual("Film", document.DocType);
