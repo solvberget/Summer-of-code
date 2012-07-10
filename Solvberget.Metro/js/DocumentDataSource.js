@@ -1,8 +1,10 @@
 ﻿(function () {
 
     // Define the IListDataAdapter.
-    var eventsDataAdapter = WinJS.Class.define(
-        function () {
+    var documentDataAdapter = WinJS.Class.define(
+        function (query) {
+            this._query = query;
+
 
             // Constructor
             this._minPageSize = 10;  // default
@@ -24,7 +26,8 @@
             // The implementation should return the requested item. You can choose how many
             // additional items to send back. It can be more or less than those requested.
             //
-            //   This funtion must return an object that implements IFetchResult. 
+            //   This funtion must return an object that implements IFetchResult.
+
             itemsFromIndex: function (requestIndex, countBefore, countAfter) {
                 var that = this;
                 if (requestIndex >= that._maxCount) {
@@ -53,8 +56,8 @@
                 }
 
                 // Create the request string. 
-                var requestStr = "http://localhost:7089/Event/GetEvents";
-               
+                var requestStr = "http://localhost:7089/Document/GetDocument/" + that._query;
+
                 // Return the promise from making an XMLHttpRequest to the server.
                 return WinJS.xhr({ url: requestStr }).then(
 
@@ -67,41 +70,41 @@
 
                         // Verify that the service returned images.
                         if (obj !== undefined) {
-                            var items = obj;
-
+                            var item = obj;
+                            //var items = [];
                             // Create an array of IItem objects:
-                            // results =[{ key: key1, data : { field1: value, field2: value, ... }}, { key: key2, data : {...}}, ...];
-                            for (var i = 0, itemsLength = items.length; i < itemsLength; i++) {
-                                var dataItem = items[i];
-                                results.push({
-                                    key: (fetchIndex + i).toString(),
-                                    data: {
-                                        title: dataItem.Name,
-                                        date: dataItem.Date,
-                                        start: "Starter kl. " + dataItem.Start,
-                                        stop: "Slutter kl. " + dataItem.Stop,
-                                        location: dataItem.Location,
-                                        description: dataItem.Description,
-                                        //NB: Teaser er foreløpig dummydata, skal bindes mot dataItem.Teaser, men dette er vanligvis tomt.
-                                        teaser: "Dette blir veldig spennende, dere! (Dette er en teaser)",
-                                        type: "Passer for: " + dataItem.TypeName,
-                                        url: { l : dataItem.Link, t : "Link til arrangement" },
-                                        address: dataItem.Address,
-                                        city: dataItem.City + " " + dataItem.PostalCode,
-                                        thumbImage: dataItem.ThumbUrl,
-                                        backgroundImage: dataItem.PictureUrl,
-                                        dateAndTime: dataItem.Date + " " + dataItem.Start
-                                    }
-                                });
+                            // results =[{ key:i, data: propertyName1, propertyValue1}, {...}, ...];
+                            var i = 0;
+                            for (property in item) {
+                                var itemValue = null;
+                                var itemName = null;
+                                itemValue = eval("item." + property);
+                                itemName = property;
+                                if (itemValue !== null) {
+                                    //items[i] = new Object();
+                                    //var temp = items[i];
+                                    //eval("temp." + itemName + "='" + itemValue + "'");
+
+                                    results.push(
+                                    {
+                                        key: (fetchIndex + i).toString(),
+                                        data:
+                                        {
+                                            propertyName: itemName,
+                                            propertyValue: itemValue,
+                                        }
+                                    });
+                                    i++;
+                                }
                             }
 
                             // Get the count.
-                            count = items.length;
+                            count = results.length;
 
                             return {
-                                items: results, // The array of items.
-                                offset: requestIndex - fetchIndex, // The index of the requested item in the items array.
-                                totalCount: Math.min(count, that._maxCount), // The total number of records. Bing will only return 1000, so we cap the value.
+                                items: results, // The array of items.      
+                                offset: requestIndex - fetchIndex,
+                                totalCount: Math.min(count, that._maxCount), // The total number of records.
                             };
                         } else {
                             return WinJS.UI.FetchError.doesNotExist;
@@ -113,32 +116,36 @@
                         return WinJS.UI.FetchError.noResponse;
                     });
             },
-
-
             // Gets the number of items in the result list. 
             // The count can be updated in itemsFromIndex.
             getCount: function () {
                 var that = this;
 
                 // Create up a request for 1 item so we can get the count
-                var requestStr = "http://localhost:7089/Event/GetEvents";
-                               
+                var requestStr = "http://localhost:7089/Document/GetDocument/" + that._query;
+
                 // Make an XMLHttpRequest to the server and use it to get the count.
                 return WinJS.xhr({ url: requestStr }).then(
 
                     // The callback for a successful operation.
                     function (request) {
                         var data = JSON.parse(request.responseText);
+                        var i = 0;
+                        for (property in item) {
+                            var itemValue = eval("item." + property);
+                            if (itemValue !== null) {
+                               
+                                i++;
+                            }
+                        }
 
-                        // Bing may return a large count of items, 
-                        /// but you can only fetch the first 1000.
-                        return Math.min(data.length, that._maxCount);
+                        // Get the count.
+                        return i;
                     },
                     function (request) {
                         return WinJS.Promise.wrapError(new WinJS.ErrorFromName(WinJS.UI.FetchError.doesNotExist));
                     });
             }
-            
             // setNotificationHandler: not implemented
             // itemsFromStart: not implemented
             // itemsFromEnd: not implemented
@@ -147,10 +154,13 @@
         }
         );
 
-    var eventsDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function () {
-        this._baseDataSourceConstructor(new eventsDataAdapter());
+
+
+    var documentDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function (query) {
+        this._baseDataSourceConstructor(new documentDataAdapter(query));
     });
 
-    WinJS.Namespace.define("DataSources", { eventsDataSource: eventsDataSource }); 
+
+    WinJS.Namespace.define("DataSources", { documentDataSource: documentDataSource });
 
 })();
