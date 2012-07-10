@@ -18,6 +18,11 @@ namespace Solvberget.Domain.Implementation
         private static readonly IRepository AlephRepository = new AlephRepository();
         private string _pathToImageCache;
 
+        private const string Serveruri = "http://193.91.211.230/bokomslagServer/getInfoNew.Asp?";
+        private readonly string[] _trueParams = { "SMALL_PICTURE", "LARGE_PICTURE", "PUBLISHER_TEXT", "FSREVIEW", "CONTENTS", "SOUND", "EXTRACT", "REVIEWS", "nocrypt" };
+        private const string _system = "1";
+        private string _xmluri = "";
+
 
         public ImageRepository(string pathToImageCache = null)
         {
@@ -25,6 +30,12 @@ namespace Solvberget.Domain.Implementation
             _pathToImageCache = string.IsNullOrEmpty(pathToImageCache)
     ? @"App_Data\"+Properties.Settings.Default.ImageCacheFolder : pathToImageCache;
 
+            _xmluri = Serveruri;
+            foreach (var param in _trueParams)
+            {
+                _xmluri += param + "=true&";
+            }
+            _xmluri += "SYSTEM=" + _system;
         }
 
 
@@ -36,10 +47,15 @@ namespace Solvberget.Domain.Implementation
                 return string.Empty;
 
             if (Equals(doc.DocType, typeof(Film).Name))
-                return GetLocalImageUrl(GetFilmImage(doc as Film));
+                return GetLocalImageUrl(GetFilmImage(doc as Film), false);
 
-            //if (Equals(doc.DocType, typeof(Book).Name))
-            //GetFilm(doc);
+            if (Equals(doc.DocType, typeof(Book).Name))
+                return GetLocalImageUrl(GetBookImage(doc as Book, false), false);
+
+            if (Equals(doc.DocType, typeof(AudioBook).Name))
+                return GetLocalImageUrl(GetAudioBookImage(doc as AudioBook, false), false);
+
+
 
             //throw new NotImplementedException();
             return string.Empty;
@@ -55,12 +71,44 @@ namespace Solvberget.Domain.Implementation
 
             var posterUrl = string.Empty;
             if (Equals(doc.DocType, typeof(Film).Name))
+            {
                 posterUrl = GetFilmImage(doc as Film);
-            
-            posterUrl = posterUrl.Replace("640.jpg", size != null ? size+".jpg" : "150.jpg");
+                posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "150.jpg");
+                return GetLocalImageUrl(posterUrl, true);
 
-            return GetLocalImageUrl(posterUrl);
+            }
+            if (Equals(doc.DocType, typeof(Book).Name))
+                return GetLocalImageUrl(GetBookImage(doc as Book, size == null || int.Parse(size) <= 150), true);
+
+
+            return string.Empty;
         }
+
+        private string GetBookImage ( Book book, bool fetchThumbnail )
+        {
+
+            var isbn = book.Isbn;
+            var xmlBook = new BokBasenBook();
+            xmlBook.FillProperties(_xmluri + "&ISBN="+isbn);
+            if ( fetchThumbnail )
+                return !string.IsNullOrEmpty(xmlBook.Thumb_Cover_Picture) ? xmlBook.Thumb_Cover_Picture : string.Empty;
+
+            return !string.IsNullOrEmpty(xmlBook.Large_Cover_Picture) ? xmlBook.Large_Cover_Picture : string.Empty;
+        }
+
+
+        private string GetAudioBookImage(AudioBook abook, bool fetchThumbnail)
+        {
+
+            var isbn = abook.Isbn;
+            var xmlBook = new BokBasenBook();
+            xmlBook.FillProperties(_xmluri + "&ISBN=" + isbn);
+            if (fetchThumbnail)
+                return !string.IsNullOrEmpty(xmlBook.Thumb_Cover_Picture) ? xmlBook.Thumb_Cover_Picture : string.Empty;
+
+            return !string.IsNullOrEmpty(xmlBook.Large_Cover_Picture) ? xmlBook.Large_Cover_Picture : string.Empty;
+        }
+
 
         private string GetFilmImage(Film film)
         {
@@ -96,13 +144,18 @@ namespace Solvberget.Domain.Implementation
             return searchTitle;
         }
 
-        private string GetLocalImageUrl ( string externalImageUrl )
+        private string GetLocalImageUrl ( string externalImageUrl, bool isThumbnail )
         {
 
             if (string.IsNullOrEmpty(externalImageUrl))
                 return string.Empty;
 
             var imageName = Path.GetFileName(externalImageUrl);
+            if (imageName != null) imageName = imageName.Replace("-", "");
+            if (imageName != null) imageName = imageName.Replace("+", "");
+            if (isThumbnail)
+                imageName = "thumb" + imageName;
+
             RepositoryUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
 
             var serverUrl = Properties.Settings.Default.ServerUrl;

@@ -24,7 +24,7 @@ namespace Solvberget.Domain.DTO
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
-        public string Test { get; set; }
+
 
         protected virtual void FillProperties(string xml)
         {

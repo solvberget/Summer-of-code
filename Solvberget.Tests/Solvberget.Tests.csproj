@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOTests\BokBasenBookTest.cs" />
     <Compile Include="RepositoryTests\AlephRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTOTests\TestModelConvertionFromXml.cs" />
