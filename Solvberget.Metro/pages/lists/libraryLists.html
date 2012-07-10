@@ -17,24 +17,29 @@
     <link href="libraryLists.css" rel="stylesheet" />
     <script src="libraryLists.js"></script>
     <script src="../../js/ListDataSource.js"></script>
+    <script src="../../js/ListContentDataSource.js"></script>
     <script type="text/javascript" src="../../js/lib/jquery-1.7.2.min.js"></script>
 
 </head>
 
 <body>
-    
-    
 
-    <!-- This template is used to display each item in the ListView declared below. -->
-    <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
-        <div class="item-info">
-            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
+
+
+    <!-- ItemTemplate for each "List of Lists" -->
+    <div class="listListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="list-info">
+            <h2 class="list-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
         </div>
     </div>
-    
 
-
-
+    <!-- ItemTemplate for each "List of content" -->
+    <div class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title">TITTEL</h2>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear">SUBTITTEL</h4>
+        </div>
+    </div>
 
 
 
@@ -46,32 +51,35 @@
             <button class="win-backbutton" aria-label="Back" disabled></button>
             <h1 class="titlearea win-type-ellipsis">
                 <span class="pagetitle"></span>
-
             </h1>
         </header>
 
-      
 
 
-
-
-
-        <div class="itemlistsection" aria-label="List column">
-            <div class="itemlist" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+        <!-- ListView for Lists -->
+        <div class="listOfListsSection" aria-label="List column">
+            <div class="listOfLists" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
         </div>
 
+        <!-- Header for each list -->
         <div class="articlesection" aria-atomic="true" aria-label="Item detail column" aria-live="assertive">
             <article class="article-box">
                 <header class="header">
                     <div class="text">
-                        <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h1>
+                        <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title">Laster lister...</h1>
                     </div>
                 </header>
-                
-                <!-- LEGG INN LISTE RANGERING -->
+
+                <p class="article-content win-type-ellipsis" data-win-bind="textContent: docs">Dokument nummer...</p>
 
             </article>
+
+            <div class="listOfListContentSection" aria-label="List column">
+                <div class="listOfListContent" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+            </div>
+
         </div>
+
     </div>
 
 

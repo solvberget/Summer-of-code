@@ -7,7 +7,6 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
 
-
     ui.Pages.define("/pages/lists/libraryLists.html", {
 
         /// <field type="WinJS.Binding.List" />
@@ -27,10 +26,14 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
 
-            var listView = element.querySelector(".itemlist").winControl;
+            var listViewForLists = element.querySelector(".listOfLists").winControl;
+            var listViewForListContent = element.querySelector(".listOfListContent").winControl;
 
             //Setup the ListDataSource
-            var listDataSource = new DataSources.listDataSource();
+            var listDataSource = new DataSources.List.ListDataSource();
+
+            ////Setup an (empty) ListContentDataSource
+            //var listContentDataSource = new DataSources.List.ListContentDataSource([]);
 
             // Store information about the group and selection that this page will
             // display.
@@ -38,20 +41,28 @@
             //this.items = null;
             this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
 
+            //Set page header
             element.querySelector("header[role=banner] .pagetitle").textContent = this.group.title;
 
 
-            // Set up the ListView.
-            listView.itemDataSource = listDataSource;
-            listView.itemTemplate = element.querySelector(".itemtemplate");
-            listView.onselectionchanged = this.selectionChanged.bind(this);
-            listView.layout = new ui.ListLayout();
+            // Set up the listViewForLists.
+            listViewForLists.itemDataSource = listDataSource;
+            listViewForLists.itemTemplate = element.querySelector(".listListTemplate");
+            listViewForLists.onselectionchanged = this.listOfListsSelectionChanged.bind(this);
+            listViewForLists.layout = new ui.ListLayout();
+            
+            // Set up the listViewForLists.
+            listViewForListContent.itemTemplate = element.querySelector(".listContentTemplate");
+            listViewForListContent.layout = new ui.ListLayout();
 
+           
+            //Set the List of content to list 0
+            //listViewForListContent.itemDataSource
+                
             this.updateVisibility();
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
                     // For single-column detail view, load the article.
-                    console.log("Binding break");
                     binding.processAll(element.querySelector(".articlesection"), options.item);
                 }
             } else {
@@ -61,34 +72,33 @@
                     nav.history.backStack.pop();
                 }
                 // If this page has a selectionIndex, make that selection
-                // appear in the ListView.
-                listView.selection.set(Math.max(this.itemSelectionIndex, 0));
+                // appear in the listViewForLists.
+                listViewForLists.selection.set(Math.max(this.itemSelectionIndex, 0));
             }
+
+
         },
 
-        selectionChanged: function (args) {
-            var listView = document.body.querySelector(".itemlist").winControl;
+        listOfListsSelectionChanged: function (args) {
+            var listViewForLists = document.body.querySelector(".listOfLists").winControl;
             var details;
             var that = this;
             // By default, the selection is restriced to a single item.
-            listView.selection.getItems().done(function updateDetails(items) {
+            listViewForLists.selection.getItems().done(function updateDetails(items) {
                 if (items.length > 0) {
                     that.itemSelectionIndex = items[0].index;
                     if (that.isSingleColumn()) {
+
                         // If snapped or portrait, navigate to a new page containing the
                         // selected item's details.
                         nav.navigate("/pages/lists/libraryLists.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
-                    } else {
-                        // If fullscreen or filled, update the details column with new data.
 
+                    } else {
+                        
+                        // If fullscreen or filled, update the details column with new data.
                         details = document.querySelector(".articlesection");
                         binding.processAll(details, items[0].data);
                         details.scrollTop = 0;
-
-                        // Fix for removing cached data, Windows error. 
-                        setTimeout(function () {
-                            window.focus();
-                        }, 0);
 
                     }
                 }
@@ -105,17 +115,17 @@
             /// <param name="viewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
             /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
 
-            var listView = element.querySelector(".itemlist").winControl;
-            var firstVisible = listView.indexOfFirstVisible;
+            var listViewForLists = element.querySelector(".listOfLists").winControl;
+            var firstVisible = listViewForLists.indexOfFirstVisible;
             this.updateVisibility();
 
             var handler = function (e) {
-                listView.removeEventListener("contentanimating", handler, false);
+                listViewForLists.removeEventListener("contentanimating", handler, false);
                 e.preventDefault();
             }
 
             if (this.isSingleColumn()) {
-                listView.selection.clear();
+                listViewForLists.selection.clear();
                 if (this.itemSelectionIndex >= 0) {
                     // If the app has snapped into a single-column detail view,
                     // add the single-column list view to the backstack.
@@ -129,9 +139,9 @@
                     });
                     element.querySelector(".articlesection").focus();
                 } else {
-                    listView.addEventListener("contentanimating", handler, false);
-                    listView.indexOfFirstVisible = firstVisible;
-                    listView.forceLayout();
+                    listViewForLists.addEventListener("contentanimating", handler, false);
+                    listViewForLists.indexOfFirstVisible = firstVisible;
+                    listViewForLists.forceLayout();
                 }
             } else {
                 // If the app has unsnapped into the two-column view, remove any
@@ -140,12 +150,12 @@
                     nav.history.backStack.pop();
                 }
                 if (viewState !== lastViewState) {
-                    listView.addEventListener("contentanimating", handler, false);
-                    listView.indexOfFirstVisible = firstVisible;
-                    listView.forceLayout();
+                    listViewForLists.addEventListener("contentanimating", handler, false);
+                    listViewForLists.indexOfFirstVisible = firstVisible;
+                    listViewForLists.forceLayout();
                 }
 
-                listView.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
+                listViewForLists.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
             }
         },
 
@@ -162,11 +172,12 @@
                     document.querySelector(".articlesection").focus();
                 } else {
                     utils.addClass(document.querySelector(".itemlistsection"), "primarycolumn");
-                    document.querySelector(".itemlist").focus();
+                    document.querySelector(".listOfLists").focus();
                 }
             } else {
-                document.querySelector(".itemlist").focus();
+                document.querySelector(".listOfLists").focus();
             }
         }
+
     });
 })();

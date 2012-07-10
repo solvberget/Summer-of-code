@@ -1,19 +1,19 @@
 ﻿(function () {
 
     // Define the IListDataAdapter.
-    var listDataAdapter = WinJS.Class.define(
-        function () {
+    var listContentDataAdapter = WinJS.Class.define(
+        function (docnumbers) {
 
             // Constructor
-            this._minPageSize = 1;  // default
-            this._maxPageSize = 10;  // max
-            this._maxCount = 20;   // limit
+            this._minPageSize = 10;  // based on the default of 10
+            this._maxPageSize = 50;  // max request size for bing images
+            this._maxCount = 1000;   // limit on the bing API
+            this._docnumbers = docnumbers;
             this._count = 0;
 
         },
 
         // IListDataDapter methods
-       
         {
             
             //   This funtion must return an object that implements IFetchResult. 
@@ -44,8 +44,11 @@
                     fetchIndex = requestIndex - countBefore;
                 }
 
-                // Create the request string for the lists (no query parameters) 
-                var requestStr = "http://localhost:7089/List/GetLists";
+                //Make request URL for the (light) documents we want
+                var requestStr = "http://localhost:7089/Document/GetDocumentsLight/?ids=";
+                for (var i = 0, docnumbersLength = this._docnumbers.length; i < docnumbersLength; i++) {
+                    requestStr += this._docnumbers[i] + "-";
+                }
 
                 // Return the promise from making an XMLHttpRequest to the server.
                 return WinJS.xhr({ url: requestStr }).then(
@@ -60,7 +63,7 @@
 
                         // Verify that the service returned images.
                         if (obj !== undefined) {
-                            var items = obj
+                            var items = obj;
 
                             // Create an array of IItem objects:
                             // results =[{ key: key1, data : { field1: value, field2: value, ... }}, { key: key2, data : {...}}, ...];
@@ -69,8 +72,8 @@
                                 results.push({
                                     key: (fetchIndex + i).toString(),
                                     data: {
-                                        title: dataItem.Name,
-                                        docs: dataItem.DocumentNumbers
+                                        rank: (i+1).toString(),
+                                        doc: dataItem
                                     }
                                 });
                             }
@@ -82,7 +85,7 @@
                             return {
                                 items: results, // The array of items.
                                 offset: requestIndex - fetchIndex, // The index of the requested item in the items array.
-                                totalCount: Math.min(count, that._maxCount), // The total number of records. Bing will only return 1000, so we cap the value.
+                                totalCount: Math.min(count, that._maxCount), // The total number of records.
                             };
                         } else {
                             return WinJS.UI.FetchError.doesNotExist;
@@ -99,8 +102,12 @@
             // Gets the number of items in the result list. 
             // The count can be updated in itemsFromIndex.
             getCount: function () {
-                // Create the request string for the lists (no query parameters) 
-                var requestStr = "http://localhost:7089/List/GetLists";
+
+                //Make request URL for the (light) documents we want
+                var requestStr = "http://localhost:7089/Document/GetDocumentsLight/?ids=";
+                for (var i = 0, docnumbersLength = this._docnumbers.length; i < docnumbersLength; i++) {
+                    requestStr += this._docnumbers[i] + "-";
+                }
 
                 // Return the promise from making an XMLHttpRequest to the server.
                 return WinJS.xhr({ url: requestStr }).then(
@@ -124,14 +131,13 @@
                         return WinJS.UI.FetchError.noResponse;
                     });
             }
-            
         }
         );
 
-    var listDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function () {
-        this._baseDataSourceConstructor(new listDataAdapter());
+    var listContentDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function (docnumbers) {
+        this._baseDataSourceConstructor(new listContentDataAdapter(docnumbers));
     });
 
-    WinJS.Namespace.define("DataSources.List", { ListDataSource: listDataSource });
+    WinJS.Namespace.define("DataSources.List", { ListContentDataSource: listContentDataSource });
 
 })();
