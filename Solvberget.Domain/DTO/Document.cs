@@ -229,6 +229,7 @@ namespace Solvberget.Domain.DTO
 
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>
                                 {
+                                    {"^^^", "Språk er ikke registrert"},
                                     {"ace", "Aceh"},
                                     {"afr", "Afrikaans"},
                                     {"akk", "Akkadisk"},

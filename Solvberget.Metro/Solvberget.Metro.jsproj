@@ -278,29 +278,10 @@
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\EventDataSource.js" />
     <Content Include="js\LibraryListDataSource.js" />
     <Content Include="js\script.js" />
-    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.html" />
-    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js" />
-    <Content Include="pages\itemDetail\viewmodels\documentList.js" />
-    <Content Include="js\EventDataSource.js" />
     <Content Include="pages\events\events.css" />
-    <Content Include="pages\itemDetail\fragments\audioBookFragment\audioBookFragment.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\viewmodels\documentList.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="js\EventDataSource.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -326,6 +307,16 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
+    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.css" />
+    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.html" />
+    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.js" />
+    <Content Include="pages\itemDetail\itemDetail.css" />
+    <Content Include="pages\itemDetail\itemDetail.html" />
+    <Content Include="pages\itemDetail\itemDetail.js" />
+    <Content Include="pages\itemDetail\viewmodels\audioBookItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\bookItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\documentList.js" />
+    <Content Include="pages\itemDetail\viewmodels\movieItem.js" />
     <Content Include="sass\default.css" />
     <Content Include="sass\ie.css" />
     <Content Include="sass\print.css" />
@@ -362,6 +353,12 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
+    <Content Include="js\lib\spinn.min.js" />
+    <Content Include="js\navigator.js" />
+    <Content Include="js\test\DocumentSearch.tests.js" />
+    <Content Include="js\test\Sample.tests.js" />
+    <Content Include="js\utils.js" />
+    <Content Include="js\viewmodels\DocumentSearch.js" />
     <Content Include="js\lib\spinn.min.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -403,81 +400,6 @@
       </IncludedFiles>
     </Content>
     <Content Include="js\viewmodels\DocumentSearch.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.html" />
-    <Content Include="pages\itemDetail\fragments\bookFragment\bookFragment.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.html" />
-    <Content Include="pages\itemDetail\fragments\movieFragment\movieFragment.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\itemDetail.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\itemDetail.html" />
-    <Content Include="pages\itemDetail\itemDetail.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\viewmodels\audioBookItem.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\viewmodels\bookItem.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\itemDetail\viewmodels\movieItem.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>
@@ -575,7 +497,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="pages\shared\" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-US\resources.resjson" />

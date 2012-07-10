@@ -65,7 +65,7 @@
                 var shareMode = SHARE_MODE_HTML;
 
                 var range = document.createRange();
-                range.selectNode(document.getElementById("content"));
+                range.selectNode(document.getElementById("share-content"));
                 request.data = MSApp.createDataPackage(range);
 
                 // Set the title and description of this share-event
@@ -106,23 +106,22 @@
                 } else {
                     if (item.DocType == "Book") {
                         self.viewModel = ViewModel.Book;
-                        self.viewModel.viewPath = "/pages/itemDetail/fragments/bookFragment/bookFragment.html";
-                        //Handle changes in book ui
-                        self.viewModel.fragment = Book_Fragment;
+                       
                     }
                     if (item.DocType == "Film") {
                         self.viewModel = ViewModel.Movie;
-                        self.viewModel.viewPath = "/pages/itemDetail/fragments/movieFragment/movieFragment.html";
-                        self.viewModel.fragment = Movie_Fragment;
+                        
                     }
                     if (item.DocType == "AudioBook") {
                         self.viewModel = ViewModel.AudioBook;
-                        self.viewModel.viewPath = "/pages/itemDetail/fragments/audioBookFragment/audioBookFragment.html";
-                        self.viewModel.fragment = AudioBook_Fragment;
+                       
                     }
 
                     ViewModel.DocumentList[self.documentId] = self.viewModel;
                 }
+                self.viewModel.viewPath = "/pages/itemDetail/fragments/factsFragment/factsFragment.html";
+                //Handle changes in book ui
+                self.viewModel.fragment = Facts_Fragment;
                 if (self.viewModel !== undefined)
                     self.viewModel.fillProperties(item);
             };
@@ -170,12 +169,11 @@
             $.when(ajaxGetDocumentImage(this.documentId))
                .then($.proxy(function (response) {
 
-                   var fragmentsDiv = this.element.querySelector(".content");
-
+             
                    if (response != undefined && response != "") {
                        // Set the new value in the model of this item
                        this.viewModel.image = response;
-                       var imageDiv = document.getElementById("content-image");
+                       var imageDiv = document.getElementById("#item-image");
 
                        WinJS.Binding.processAll(imageDiv, this.viewModel);
 
