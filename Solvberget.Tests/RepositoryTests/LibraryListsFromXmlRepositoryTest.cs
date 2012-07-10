@@ -18,7 +18,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void Init()
         {
             var path = Path.Combine(Environment.CurrentDirectory, PathString);
-            _listRepository = new LibraryListXmlRepository(path);
+            _listRepository = new LibraryListXmlRepository(new AlephRepository(), path);
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
-        public void TestListNameAndContent()
+        public void TestListNameAndDocumentNumbers()
         {
             var list = _listRepository.GetLists().First();
             Assert.AreEqual("Eksempelliste 1", list.Name);
@@ -56,5 +56,21 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var lists2 = _listRepository.GetLists(6);
             Assert.AreEqual(5, lists2.Count);
         }
+    
+
+
+        [Test]
+        public void TestListContent()
+        {
+            var list = _listRepository.GetLists().First();
+            var document = list.Documents.ElementAt(0);
+            Assert.AreEqual(5, list.Documents.Count());
+            Assert.AreEqual("Eksempelliste 1", list.Name);
+            Assert.AreEqual("Ringenes herre : Atter en konge", document.Title);
+            Assert.AreEqual(2010, document.PublishedYear);
+            Assert.AreEqual("Film", document.DocType);
+        }
+
+
     }
 }
