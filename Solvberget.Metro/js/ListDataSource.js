@@ -70,7 +70,8 @@
                                     key: (fetchIndex + i).toString(),
                                     data: {
                                         title: dataItem.Name,
-                                        docs: dataItem.DocumentNumbers
+                                        docnrs: dataItem.DocumentNumbers,
+                                        docs: dataItem.Documents
                                     }
                                 });
                             }
