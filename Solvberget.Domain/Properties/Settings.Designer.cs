@@ -67,5 +67,23 @@ namespace Solvberget.Domain.Properties {
                 return ((string)(this["ImageCacheFolder"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://193.91.211.230/bokomslagServer/getInfoNew.Asp?")]
+        public string BokBasenServerUri {
+            get {
+                return ((string)(this["BokBasenServerUri"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string BokBasenSystem {
+            get {
+                return ((string)(this["BokBasenSystem"]));
+            }
+        }
     }
 }

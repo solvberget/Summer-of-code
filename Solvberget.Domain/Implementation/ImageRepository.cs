@@ -18,10 +18,10 @@ namespace Solvberget.Domain.Implementation
         private static readonly IRepository AlephRepository = new AlephRepository();
         private string _pathToImageCache;
 
-        private const string Serveruri = "http://193.91.211.230/bokomslagServer/getInfoNew.Asp?";
+        private readonly string _serveruri = string.Empty;
         private readonly string[] _trueParams = { "SMALL_PICTURE", "LARGE_PICTURE", "PUBLISHER_TEXT", "FSREVIEW", "CONTENTS", "SOUND", "EXTRACT", "REVIEWS", "nocrypt" };
-        private const string _system = "1";
-        private string _xmluri = "";
+        private readonly string _serverSystem = string.Empty;
+        private readonly string _xmluri = "";
 
 
         public ImageRepository(string pathToImageCache = null)
@@ -30,12 +30,15 @@ namespace Solvberget.Domain.Implementation
             _pathToImageCache = string.IsNullOrEmpty(pathToImageCache)
     ? @"App_Data\"+Properties.Settings.Default.ImageCacheFolder : pathToImageCache;
 
-            _xmluri = Serveruri;
+            _serveruri = Properties.Settings.Default.BokBasenServerUri;
+            _serverSystem = Properties.Settings.Default.BokBasenSystem;
+
+            _xmluri = _serveruri;
             foreach (var param in _trueParams)
             {
                 _xmluri += param + "=true&";
             }
-            _xmluri += "SYSTEM=" + _system;
+            _xmluri += "SYSTEM=" + _serverSystem;
         }
 
 
@@ -79,6 +82,8 @@ namespace Solvberget.Domain.Implementation
             }
             if (Equals(doc.DocType, typeof(Book).Name))
                 return GetLocalImageUrl(GetBookImage(doc as Book, size == null || int.Parse(size) <= 150), true);
+            if (Equals(doc.DocType, typeof(AudioBook).Name))
+                return GetLocalImageUrl(GetAudioBookImage(doc as AudioBook, size == null || int.Parse(size) <= 150), true);
 
 
             return string.Empty;
