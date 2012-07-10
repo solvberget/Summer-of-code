@@ -33,11 +33,44 @@
         </div>
     </div>
 
-    <!-- ItemTemplate for each "List of content" -->
-    <div class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+
+
+
+
+    <!-- ItemTemplates for each "List of content" -->
+    <!-- DOCUMENT -->
+    <div id="documentTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
         <div class="item-info">
-            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title">TITTEL</h2>
-            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear">SUBTITTEL</h4>
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
+
+    <!-- BOOK -->
+    <div id="bookTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: Author.Name"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
+
+    <!-- FILM -->
+    <div id="filmTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: AgeLimit"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
+
+    <!-- AUDIOBOOK -->
+    <div id="audioBookTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h5 class="item-subtitle win-type-ellipsis">Lydbok</h5>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: Author.Name"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
         </div>
     </div>
 
@@ -69,8 +102,6 @@
                         <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title">Laster lister...</h1>
                     </div>
                 </header>
-
-                <p class="article-content win-type-ellipsis" data-win-bind="textContent: docs">Dokument nummer...</p>
 
             </article>
 

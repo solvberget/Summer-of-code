@@ -9,9 +9,6 @@
 
     ui.Pages.define("/pages/lists/libraryLists.html", {
 
-        /// <field type="WinJS.Binding.List" />
-        //items: null,
-        /// <field type="Object" />
         group: null,
         itemSelectionIndex: -1,
 
@@ -20,6 +17,52 @@
         isSingleColumn: function () {
             var viewState = Windows.UI.ViewManagement.ApplicationView.value;
             return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
+        },
+
+        listOfContentItemInvoked: function (eventInfo) {
+
+            console.log("Item invoked!");
+
+            var listViewForListContent = document.body.querySelector(".listOfListContent").winControl;
+            var details;
+            var that = this;
+            // By default, the selection is restriced to a single item.
+            listViewForListContent.selection.getItems().done(function updateDetails(items) {
+                if (items.length > 0) {
+                    that.itemSelectionIndex = items[0].index;
+                    nav.navigate("/pages/itemDetail/itemDetail.html", { item: items[0].data, key: items[0].data.DocumentNumber });
+                }
+            });
+
+        },
+
+        itemTemplateFunction: function (itemPromise) {
+            return itemPromise.then(function (item) {
+
+                // Select either normal product template or on sale template
+                var itemTemplate = document.getElementById("documentTemplate");
+
+                if (item.data.DocType === "Book") {
+                    itemTemplate = document.getElementById("bookTemplate");
+                }
+                else if (item.data.DocType === "Film") {
+                    itemTemplate = document.getElementById("filmTemplate");
+                }
+                else if (item.data.DocType === "AudioBook") {
+                    itemTemplate = document.getElementById("audioBookTemplate");
+                }
+
+                // Render selected template to DIV container
+                var container = document.createElement("div");
+                itemTemplate.winControl.render(item.data, container);
+                return container;
+            });
+        },
+
+        updateListViewForContentDataSoruce: function (itemData) {
+            var listViewForListContent = document.body.querySelector(".listOfListContent").winControl;
+            var docs = new WinJS.Binding.List(itemData.docs);
+            listViewForListContent.itemDataSource = docs.dataSource;
         },
 
         // This function is called whenever a user navigates to this page. It
@@ -31,9 +74,6 @@
 
             //Setup the ListDataSource
             var listDataSource = new DataSources.List.ListDataSource();
-
-            ////Setup an (empty) ListContentDataSource
-            //var listContentDataSource = new DataSources.List.ListContentDataSource([]);
 
             // Store information about the group and selection that this page will
             // display.
@@ -52,13 +92,10 @@
             listViewForLists.layout = new ui.ListLayout();
             
             // Set up the listViewForLists.
-            listViewForListContent.itemTemplate = element.querySelector(".listContentTemplate");
+            listViewForListContent.itemTemplate = this.itemTemplateFunction;
+            listViewForListContent.oniteminvoked = this.listOfContentItemInvoked.bind(this);
             listViewForListContent.layout = new ui.ListLayout();
 
-           
-            //Set the List of content to list 0
-            //listViewForListContent.itemDataSource
-                
             this.updateVisibility();
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
@@ -99,6 +136,9 @@
                         details = document.querySelector(".articlesection");
                         binding.processAll(details, items[0].data);
                         details.scrollTop = 0;
+
+                        //Update list content
+                        setImmediate(that.updateListViewForContentDataSoruce(items[0].data));
 
                     }
                 }
