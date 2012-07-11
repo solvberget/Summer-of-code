@@ -69,7 +69,7 @@
                                 results.push({
                                     key: (fetchIndex + i).toString(),
                                     data: {
-                                        title: dataItem.Name,
+                                        listtitle: dataItem.Name,
                                         docnrs: dataItem.DocumentNumbers,
                                         docs: dataItem.Documents
                                     }
