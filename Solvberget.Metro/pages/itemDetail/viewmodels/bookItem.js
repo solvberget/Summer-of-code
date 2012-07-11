@@ -14,13 +14,7 @@
                 ///book specific
                 
                 this.Author = bookItem.Author.Name;
-                if (this.InvolvedPersons != null) {
-                    var involvedPersonsString = "";
-                    for (var i = 0; i < bookItem.InvolvedPersons.length; i++) {
-                        involvedPersonsString += this.InvolvedPersons[i].Name + "<br/> ";
-                    }
-                    this.InvolvedPersons = involvedPersonsString;
-                }
+                
                 
             },
         }),

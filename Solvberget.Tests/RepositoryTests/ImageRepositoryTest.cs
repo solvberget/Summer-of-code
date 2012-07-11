@@ -28,12 +28,12 @@ namespace Solvberget.Service.Tests.RepositoryTests
             const string harryPotterMovie = "000605680";
             var hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, null);
             Assert.IsNotNullOrEmpty(hpMovieImage);
-            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
+            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "thumb000605680.jpg"));
 
             // 000605680 - Harry Potter og dødstalismanene del 2, size: 100
             hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, "100");
             Assert.IsNotNullOrEmpty(hpMovieImage);
-            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX100.jpg"));
+            Assert.AreEqual(ServerCacheImagesPath + "thumb000605680-100.jpg", hpMovieImage);
 
         }
 
@@ -55,13 +55,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.True(Directory.Exists(_imageCache));
 
             // Check if file exists
-            Assert.True(File.Exists(_imageCache + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
+            Assert.True(File.Exists(_imageCache + "thumb000605680.jpg"));
 
             hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, "120");
             Assert.IsNotNullOrEmpty(hpMovieImage);
 
             // Check if file exists
-            Assert.True(File.Exists(_imageCache + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX120.jpg"));
+            Assert.True(File.Exists(_imageCache + "thumb000605680-120.jpg"));
 
 
 
@@ -84,7 +84,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.True(Directory.Exists(_imageCache));
 
             // Check if file exists
-            Assert.True(File.Exists(_imageCache + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX640.jpg"));
+            Assert.True(File.Exists(_imageCache + "000605680.jpg"));
 
         }
 
@@ -100,32 +100,32 @@ namespace Solvberget.Service.Tests.RepositoryTests
             const string harryPotterBook = "000610109";
             var hpBook = _imageRepository.GetDocumentImage(harryPotterBook);
             Assert.IsNotNullOrEmpty(hpBook);
-            Assert.AreEqual(hpBook, "http://localhost:7089/Content/cacheImages/LXfWuxTioTaDH1QDFaghdlQ6dcWIwp1.jpg");
+            Assert.AreEqual(hpBook, ServerCacheImagesPath + "000610109.jpg");
            
             // 000605680 - Harry Potter og dødstalismanene del 2
             const string harryPotterMovie = "000605680";
             var hpMovieImage = _imageRepository.GetDocumentImage(harryPotterMovie);
             Assert.IsNotNullOrEmpty(hpMovieImage);
-            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX640.jpg"));
+            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "000605680.jpg"));
 
             // 000579526 - Istid 3
             const string theDawnOfTheIceAgeMovie = "000579526";
             var iceAgeMovie = _imageRepository.GetDocumentImage(theDawnOfTheIceAgeMovie);
             Assert.IsNotNullOrEmpty(iceAgeMovie);
-            Assert.True(iceAgeMovie.Equals(ServerCacheImagesPath + "MV5BMjEyNzI1ODA0MF5BMl5BanBnXkFtZTYwODIxODY3._V1_SX640.jpg"));
+            Assert.True(iceAgeMovie.Equals(ServerCacheImagesPath + "000579526.jpg"));
 
 
             // 000588841 - Atter en konge
             const string atterEnKongeMovie = "000588841";
             var rhMovie = _imageRepository.GetDocumentImage(atterEnKongeMovie);
             Assert.IsNotNullOrEmpty(rhMovie);
-            Assert.True(rhMovie.Equals(ServerCacheImagesPath + "MV5BMjE4MjA1NTAyMV5BMl5BanBnXkFtZTcwNzM1NDQyMQ@@._V1_SX640.jpg"));
+            Assert.True(rhMovie.Equals(ServerCacheImagesPath + "000588841.jpg"));
 
             // 000418201 - Mongoland
             const string mongolandMovie = "000418201";
             var mongoMovie = _imageRepository.GetDocumentImage(mongolandMovie);
             Assert.IsNotNullOrEmpty(mongoMovie);
-            Assert.True(mongoMovie.Equals(ServerCacheImagesPath + "MV5BNDk4NTc2NjcwNV5BMl5BanBnXkFtZTcwNjU1MDY5MQ@@._V1_SX640.jpg"));
+            Assert.True(mongoMovie.Equals(ServerCacheImagesPath + "000418201.jpg"));
 
             // 000605883 - Den hemmelighetsfulle leiligheten
             const string randomIbsenMovie = "000605883";

@@ -45,6 +45,7 @@ namespace Solvberget.Service.Controllers
             var result = _imageRepository.GetDocumentImage(id);
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
+
         public JsonResult GetDocumentThumbnailImage(string id, string size)
         {
             var result = _imageRepository.GetDocumentThumbnailImage(id, size);
