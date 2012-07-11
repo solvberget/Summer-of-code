@@ -63,20 +63,6 @@ namespace Solvberget.Service.Controllers
             return this.Json(_spellingRepository.SuggestionList(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetDocumentsLight(string ids)
-        {
-            if (ids != null)
-            {
-                IEnumerable<string> splitParams = ids.Split('-');
-                var result = _repository.GetDocumentsLight(splitParams);
-                return this.Json(result, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return this.Json(new List<Document>(), JsonRequestBehavior.AllowGet);
-            }
-        }
-
     }
 
 }
