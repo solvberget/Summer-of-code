@@ -16,7 +16,12 @@ namespace Solvberget.Domain.Implementation
     {
 
         private static readonly IRepository AlephRepository = new AlephRepository();
-        private string _pathToImageCache;
+        private readonly string _pathToImageCache;
+
+        private readonly string _serveruri = string.Empty;
+        private readonly string[] _trueParams = { "SMALL_PICTURE", "LARGE_PICTURE", "PUBLISHER_TEXT", "FSREVIEW", "CONTENTS", "SOUND", "EXTRACT", "REVIEWS", "nocrypt" };
+        private readonly string _serverSystem = string.Empty;
+        private readonly string _xmluri = string.Empty;
 
 
         public ImageRepository(string pathToImageCache = null)
@@ -25,6 +30,15 @@ namespace Solvberget.Domain.Implementation
             _pathToImageCache = string.IsNullOrEmpty(pathToImageCache)
     ? @"App_Data\"+Properties.Settings.Default.ImageCacheFolder : pathToImageCache;
 
+            _serveruri = Properties.Settings.Default.BokBasenServerUri;
+            _serverSystem = Properties.Settings.Default.BokBasenSystem;
+
+            _xmluri = _serveruri;
+
+            foreach (var param in _trueParams)
+                _xmluri += param + "=true&";
+
+            _xmluri += "SYSTEM=" + _serverSystem;
         }
 
 
@@ -36,12 +50,15 @@ namespace Solvberget.Domain.Implementation
                 return string.Empty;
 
             if (Equals(doc.DocType, typeof(Film).Name))
-                return GetLocalImageUrl(GetFilmImage(doc as Film));
+                return GetLocalImageUrl(GetExternalFilmImageUri(doc as Film), false);
 
-            //if (Equals(doc.DocType, typeof(Book).Name))
-            //GetFilm(doc);
+            if (Equals(doc.DocType, typeof(Book).Name))
+                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, false), false);
 
-            //throw new NotImplementedException();
+            if (Equals(doc.DocType, typeof(AudioBook).Name))
+                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, false), false);
+
+
             return string.Empty;
         }
 
@@ -53,31 +70,71 @@ namespace Solvberget.Domain.Implementation
             if (doc == null)
                 return string.Empty;
 
-            var posterUrl = string.Empty;
             if (Equals(doc.DocType, typeof(Film).Name))
-                posterUrl = GetFilmImage(doc as Film);
-            
-            posterUrl = posterUrl.Replace("640.jpg", size != null ? size+".jpg" : "150.jpg");
+            {
+                var posterUrl = GetExternalFilmImageUri(doc as Film);
+                posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "150.jpg");
+                return GetLocalImageUrl(posterUrl, true);
 
-            return GetLocalImageUrl(posterUrl);
+            }
+           
+            if (Equals(doc.DocType, typeof(Book).Name))
+                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 150), true);
+            
+            if (Equals(doc.DocType, typeof(AudioBook).Name))
+                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 150), true);
+
+            return string.Empty;
         }
 
-        private string GetFilmImage(Film film)
+
+
+        private string GetExternalBookImageUri ( Book book, bool fetchThumbnail )
+        {
+
+            var isbn = book.Isbn;
+            var xmlBook = new BokBasenBook();
+
+            xmlBook.FillProperties(_xmluri + "&ISBN="+isbn);
+
+            if ( fetchThumbnail )
+                return !string.IsNullOrEmpty(xmlBook.Thumb_Cover_Picture) ? xmlBook.Thumb_Cover_Picture : string.Empty;
+
+            return !string.IsNullOrEmpty(xmlBook.Large_Cover_Picture) ? xmlBook.Large_Cover_Picture : string.Empty;
+        }
+
+
+        private string GetExternalAudioBookImageUri(AudioBook abook, bool fetchThumbnail)
+        {
+
+            var isbn = abook.Isbn;
+            var xmlBook = new BokBasenBook();
+
+            xmlBook.FillProperties(_xmluri + "&ISBN=" + isbn);
+
+            if (fetchThumbnail)
+                return !string.IsNullOrEmpty(xmlBook.Thumb_Cover_Picture) ? xmlBook.Thumb_Cover_Picture : string.Empty;
+
+            return !string.IsNullOrEmpty(xmlBook.Large_Cover_Picture) ? xmlBook.Large_Cover_Picture : string.Empty;
+        }
+
+
+        private string GetExternalFilmImageUri(Film film)
         {
 
             // --------------------------- IMDB ---------------------------
 
-            var searchTitle = GetSearchTitle(film);
+            var searchQuery = GetFilmSearchQuery(film);
 
-            var imdbObject = GetImdbObjectFromTitle(searchTitle);
+            var imdbObject = GetImdbObjectFromSeachQuery(searchQuery);
 
-            if (IsValidImdbMatch(film, imdbObject))
+            if (IsFilmValidImdbMatch(film, imdbObject))
                 return imdbObject.Poster;
 
             if(!string.IsNullOrEmpty(film.OriginalTitle))
-                imdbObject = GetImdbObjectFromTitle(film.OriginalTitle);
+                imdbObject = GetImdbObjectFromSeachQuery(film.OriginalTitle);
          
-            if (IsValidImdbMatch(film, imdbObject))
+            if (IsFilmValidImdbMatch(film, imdbObject))
                 return imdbObject.Poster;
 
             // --------------------------- END IMDB ------------------------
@@ -88,31 +145,23 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-        private static string GetSearchTitle(Film film)
+
+        private static string GetFilmSearchQuery(Film film)
         {
             var searchTitle = film.SeriesTitle + " " + film.SeriesNumber + " " + film.Title + " " + film.SubTitle;
-            searchTitle = searchTitle.Replace("null", "");
-            searchTitle = searchTitle.Trim();
+            searchTitle = searchTitle.Replace("null", "").Trim();
             return searchTitle;
         }
 
-        private string GetLocalImageUrl ( string externalImageUrl )
+
+        private static ImdbObject GetImdbObjectFromSeachQuery(string title)
         {
+            var imdbObjectAsJson = RepositoryUtils.GetJsonFromStreamWithParam(Properties.Settings.Default.ImdbApiUrl, title);
 
-            if (string.IsNullOrEmpty(externalImageUrl))
-                return string.Empty;
-
-            var imageName = Path.GetFileName(externalImageUrl);
-            RepositoryUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
-
-            var serverUrl = Properties.Settings.Default.ServerUrl;
-            var imageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
-            var internalmageUrl = serverUrl + imageCacheFolder + imageName;
-
-            return internalmageUrl;
+            return imdbObjectAsJson != null ? new JavaScriptSerializer().Deserialize<ImdbObject>(imdbObjectAsJson) : null;
         }
 
-        private static bool IsValidImdbMatch(Film film, ImdbObject imdbObject)
+        private static bool IsFilmValidImdbMatch(Film film, ImdbObject imdbObject)
         {
 
             if (imdbObject == null)
@@ -141,14 +190,24 @@ namespace Solvberget.Domain.Implementation
             return false;
         }
 
-        private ImdbObject GetImdbObjectFromTitle(string title)
+        private string GetLocalImageUrl(string externalImageUrl, bool isThumbnail)
         {
-            var imdbObjectAsJson = RepositoryUtils.GetJsonFromStreamWithParam(Properties.Settings.Default.ImdbApiUrl, title);
 
-            return imdbObjectAsJson != null ? new JavaScriptSerializer().Deserialize<ImdbObject>(imdbObjectAsJson) : null;
+            if (string.IsNullOrEmpty(externalImageUrl))
+                return string.Empty;
+
+            var imageName = isThumbnail ? "thumb" : "";
+            imageName += Path.GetFileName(externalImageUrl);
+            if (imageName != "thumb") imageName = imageName.Replace("-", "").Replace("+", "");
+
+            RepositoryUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
+
+            var localServerUrl = Properties.Settings.Default.ServerUrl;
+            var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
+            return localServerUrl + localImageCacheFolder + imageName;
+
         }
 
-
-
     }
+ 
 }

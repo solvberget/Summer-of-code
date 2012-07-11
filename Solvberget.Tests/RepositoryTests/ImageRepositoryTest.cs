@@ -28,12 +28,12 @@ namespace Solvberget.Service.Tests.RepositoryTests
             const string harryPotterMovie = "000605680";
             var hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, null);
             Assert.IsNotNullOrEmpty(hpMovieImage);
-            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
+            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
 
             // 000605680 - Harry Potter og dødstalismanene del 2, size: 100
             hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, "100");
             Assert.IsNotNullOrEmpty(hpMovieImage);
-            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX100.jpg"));
+            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX100.jpg"));
 
         }
 
@@ -55,13 +55,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.True(Directory.Exists(_imageCache));
 
             // Check if file exists
-            Assert.True(File.Exists(_imageCache + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
+            Assert.True(File.Exists(_imageCache + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
 
             hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, "120");
             Assert.IsNotNullOrEmpty(hpMovieImage);
 
             // Check if file exists
-            Assert.True(File.Exists(_imageCache + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX120.jpg"));
+            Assert.True(File.Exists(_imageCache + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX120.jpg"));
 
 
 
@@ -99,8 +99,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             // 000605680 - Harry Potter and the philosophers stone (book)
             const string harryPotterBook = "000610109";
             var hpBook = _imageRepository.GetDocumentImage(harryPotterBook);
-            Assert.IsNullOrEmpty(hpBook);
-
+            Assert.IsNotNullOrEmpty(hpBook);
+            Assert.AreEqual(hpBook, "http://localhost:7089/Content/cacheImages/LXfWuxTioTaDH1QDFaghdlQ6dcWIwp1.jpg");
            
             // 000605680 - Harry Potter og dødstalismanene del 2
             const string harryPotterMovie = "000605680";
