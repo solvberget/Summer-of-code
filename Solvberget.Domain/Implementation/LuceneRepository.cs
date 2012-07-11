@@ -17,7 +17,7 @@ namespace Solvberget.Domain.Implementation
     {
 
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
-        public string[] StopWords { get; set; }
+        private string[] StopWords { get; set; }
 
 
         private readonly string _pathToDict;

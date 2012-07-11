@@ -24,7 +24,7 @@ namespace Solvberget.Domain.DTO
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
-        public string Test { get; set; }
+
 
         protected virtual void FillProperties(string xml)
         {
@@ -46,10 +46,14 @@ namespace Solvberget.Domain.DTO
                 {
                     var languages = GetVarfield(nodes, "041", "a").SplitByLength(3).ToList();
                     for (var i = 0; i < languages.Count(); i++)
-                        languages[i] = LanguageDictionary[languages[i]];
+                    {
+                        string languageLookupValue = null;
+                        LanguageDictionary.TryGetValue(languages[i], out languageLookupValue);
+                        languages[i] = languageLookupValue ?? languages[i];
+                    }
                     Languages = languages;
                 }
-
+             
                 LocationCode = GetVarfield(nodes, "090", "d");
                 SubTitle = GetVarfield(nodes, "245", "b");
 
@@ -225,6 +229,7 @@ namespace Solvberget.Domain.DTO
 
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>
                                 {
+                                    {"^^^", "Språk er ikke registrert"},
                                     {"ace", "Aceh"},
                                     {"afr", "Afrikaans"},
                                     {"akk", "Akkadisk"},

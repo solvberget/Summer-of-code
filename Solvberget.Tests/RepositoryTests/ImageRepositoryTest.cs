@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using NUnit.Framework;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
@@ -10,11 +11,81 @@ namespace Solvberget.Service.Tests.RepositoryTests
     {
 
         private ImageRepository _imageRepository;
-
+        private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
+        private const string ServerCacheImagesPath = "http://localhost:7089/Content/cacheImages/";
+        
         [SetUp]
         public void InitRepository()
         {
-            _imageRepository = new ImageRepository();
+            _imageRepository = new ImageRepository(_imageCache);
+            
+        }
+
+        [Test]
+        public void TestGetDocumentThumbnailImage()
+        {
+            // 000605680 - Harry Potter og dødstalismanene del 2, size: default (150)
+            const string harryPotterMovie = "000605680";
+            var hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, null);
+            Assert.IsNotNullOrEmpty(hpMovieImage);
+            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
+
+            // 000605680 - Harry Potter og dødstalismanene del 2, size: 100
+            hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, "100");
+            Assert.IsNotNullOrEmpty(hpMovieImage);
+            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX100.jpg"));
+
+        }
+
+
+        [Test]
+        public void TestLocalThumbnailImageCache()
+        {
+
+            // Delete cache folder if it exists
+            if ( Directory.Exists(_imageCache))
+                Directory.Delete(_imageCache, true);
+
+            // 000605680 - Harry Potter og dødstalismanene del 2, size: default thumb (150)
+            const string harryPotterMovie = "000605680";
+            var hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, null);
+            Assert.IsNotNullOrEmpty(hpMovieImage);
+
+            // Check if cache folder exists
+            Assert.True(Directory.Exists(_imageCache));
+
+            // Check if file exists
+            Assert.True(File.Exists(_imageCache + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX150.jpg"));
+
+            hpMovieImage = _imageRepository.GetDocumentThumbnailImage(harryPotterMovie, "120");
+            Assert.IsNotNullOrEmpty(hpMovieImage);
+
+            // Check if file exists
+            Assert.True(File.Exists(_imageCache + "thumbMV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX120.jpg"));
+
+
+
+        }
+
+        [Test]
+        public void TestLocalImageCache()
+        {
+
+            // Delete cache folder if it exists
+            if (Directory.Exists(_imageCache))
+                Directory.Delete(_imageCache, true);
+
+            // 000605680 - Harry Potter og dødstalismanene del 2
+            const string harryPotterMovie = "000605680";
+            var hpMovieImage = _imageRepository.GetDocumentImage(harryPotterMovie);
+            Assert.IsNotNullOrEmpty(hpMovieImage);
+
+            // Check if cache folder exists
+            Assert.True(Directory.Exists(_imageCache));
+
+            // Check if file exists
+            Assert.True(File.Exists(_imageCache + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX640.jpg"));
+
         }
 
         [Test]
@@ -28,37 +99,33 @@ namespace Solvberget.Service.Tests.RepositoryTests
             // 000605680 - Harry Potter and the philosophers stone (book)
             const string harryPotterBook = "000610109";
             var hpBook = _imageRepository.GetDocumentImage(harryPotterBook);
-            Assert.IsNullOrEmpty(hpBook);
-
-            
-            // 000605680 - Harry Potter og dødstalismanene
+            Assert.IsNotNullOrEmpty(hpBook);
+            Assert.AreEqual(hpBook, "http://localhost:7089/Content/cacheImages/LXfWuxTioTaDH1QDFaghdlQ6dcWIwp1.jpg");
+           
+            // 000605680 - Harry Potter og dødstalismanene del 2
             const string harryPotterMovie = "000605680";
             var hpMovieImage = _imageRepository.GetDocumentImage(harryPotterMovie);
             Assert.IsNotNullOrEmpty(hpMovieImage);
-            Assert.True(hpMovieImage.Contains("http"));
-            Assert.True(hpMovieImage.Equals("http://ia.media-imdb.com/images/M/MV5BMTQ2OTE1Mjk0N15BMl5BanBnXkFtZTcwODE3MDAwNA@@._V1_SX640.jpg"));
+            Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_SX640.jpg"));
 
             // 000579526 - Istid 3
             const string theDawnOfTheIceAgeMovie = "000579526";
             var iceAgeMovie = _imageRepository.GetDocumentImage(theDawnOfTheIceAgeMovie);
             Assert.IsNotNullOrEmpty(iceAgeMovie);
-            Assert.True(iceAgeMovie.Contains("http"));
-            Assert.True(iceAgeMovie.Equals("http://ia.media-imdb.com/images/M/MV5BMjEyNzI1ODA0MF5BMl5BanBnXkFtZTYwODIxODY3._V1_SX640.jpg"));
+            Assert.True(iceAgeMovie.Equals(ServerCacheImagesPath + "MV5BMjEyNzI1ODA0MF5BMl5BanBnXkFtZTYwODIxODY3._V1_SX640.jpg"));
 
 
             // 000588841 - Atter en konge
             const string atterEnKongeMovie = "000588841";
             var rhMovie = _imageRepository.GetDocumentImage(atterEnKongeMovie);
             Assert.IsNotNullOrEmpty(rhMovie);
-            Assert.True(rhMovie.Contains("http"));
-            Assert.True(rhMovie.Equals("http://ia.media-imdb.com/images/M/MV5BMjE4MjA1NTAyMV5BMl5BanBnXkFtZTcwNzM1NDQyMQ@@._V1_SX640.jpg"));
+            Assert.True(rhMovie.Equals(ServerCacheImagesPath + "MV5BMjE4MjA1NTAyMV5BMl5BanBnXkFtZTcwNzM1NDQyMQ@@._V1_SX640.jpg"));
 
             // 000418201 - Mongoland
             const string mongolandMovie = "000418201";
             var mongoMovie = _imageRepository.GetDocumentImage(mongolandMovie);
             Assert.IsNotNullOrEmpty(mongoMovie);
-            Assert.True(rhMovie.Contains("http"));
-            Assert.True(mongoMovie.Equals("http://ia.media-imdb.com/images/M/MV5BNDk4NTc2NjcwNV5BMl5BanBnXkFtZTcwNjU1MDY5MQ@@._V1_SX640.jpg"));
+            Assert.True(mongoMovie.Equals(ServerCacheImagesPath + "MV5BNDk4NTc2NjcwNV5BMl5BanBnXkFtZTcwNjU1MDY5MQ@@._V1_SX640.jpg"));
 
             // 000605883 - Den hemmelighetsfulle leiligheten
             const string randomIbsenMovie = "000605883";
@@ -70,8 +137,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             // Original title: null
             const string olsenbandenJr3In1 = "000600766";
             var olsenbandenjrMovie = _imageRepository.GetDocumentImage(olsenbandenJr3In1);
-            Assert.IsNullOrEmpty(olsenbandenjrMovie);           
- 
+            Assert.IsNullOrEmpty(olsenbandenjrMovie);
+
         }
 
     }

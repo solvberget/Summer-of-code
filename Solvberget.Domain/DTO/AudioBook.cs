@@ -36,7 +36,6 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants();
 
-                Isbn = GetVarfield(nodes, "020", "a");
                 ClassificationNumber = GetVarfield(nodes, "090", "c");
 
                FillPropertiesLight(xml);
@@ -62,6 +61,8 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants();
+
+                Isbn = GetVarfield(nodes, "020", "a");
 
                 //Author, check BSMARC field 100 for author
                 var nationality = GetVarfield(nodes, "100", "j");

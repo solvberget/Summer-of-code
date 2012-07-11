@@ -10,7 +10,7 @@
     "use strict";
 
     var appModel = Windows.ApplicationModel;
-    var appViewState = Windows.UI.ViewManagement.ApplicationViewState
+    var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
@@ -31,8 +31,7 @@
 
     var spellingMethods = {
 
-    }
-
+    };
     var loadingWheel = {
         opts: {
             lines: 17, // The number of lines to draw
@@ -69,16 +68,44 @@
 
     var ajaxSearchDocuments = function (query) {
         return $.getJSON("http://localhost:7089/Document/Search/" + query);
-    }
+    };
     var ajaxGetThumbnailDocumentImage = function (query, size) {
         var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
         return $.getJSON(size == undefined ? url + query : url + query + "/" + size );
-    }
+    };
     var lookupDict = function (query) {
         // Does not work, do not return the json promise
         return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
-    }
+    };
+    var getImageQueue = {
+        queue: [],
+        working: false,
+        inSearchPage : false,
+        fireFinished: function () {
 
+            getImageQueue.working = false;
+            getImageQueue.startWorking();
+
+        },
+        addToQueue: function (item, index) {
+
+            getImageQueue.queue.push({ item: item, index: index });
+            getImageQueue.startWorking();
+
+        },
+        startWorking: function () {
+            if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
+                getImageQueue.working = true;
+
+                var itemIndexObj = getImageQueue.queue[0];
+                getImageQueue.queue.shift();
+                if (itemIndexObj != undefined)
+                    self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
+
+            }
+        }
+    };
+    var self;
     ui.Pages.define(searchPageURI, {
         /// <field elementType="Object" />
         filters: [],
@@ -90,9 +117,9 @@
 
             // TODO: Replace or remove example filters.
             this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
-            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film" } });
-            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook" } });
-            this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document" } });
+            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film"; } });
+            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook"; } });
+            this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document"; } });
         },
 
         itemInvoked: function (args) {
@@ -171,7 +198,6 @@
 
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
-            var originalResults;
             this.lastSearch = args.queryText;
             WinJS.Namespace.define("searchResults", { markText: this.markText.bind(this) });
             utils.markSupportedForProcessing(searchResults.markText);
@@ -192,20 +218,17 @@
 
                    var originalResults = new WinJS.Binding.List();
 
-                   for (var x in response) {
-                       response[x].backgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                   for (x in response) {
+                       response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
                        originalResults.push(response[x]);
                    }
-
-
-
 
                    this.populateFilterBar(element, originalResults);
                    this.applyFilter(this.filters[0], originalResults);
                    loadingWheel.stop();
 
                    for (var x in response) {
-                       this.getAndSetThumbImage(originalResults.getItem(x), x);
+                       getImageQueue.addToQueue(originalResults.getItem(x), x);
                    }
 
 
@@ -213,29 +236,33 @@
             );
         },
         getAndSetThumbImage: function (item, index) {
-            var that = this;
 
             $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
             .then($.proxy(function (response) {
 
                 if (response != undefined && response != "") {
-                    // Set the new value in the model of this item
-                    item.data.backgroundImage = response;
+                    // Set the new value in the model of this item                   
+                    item.data.BackgroundImage = response;
 
                     // Get the live DOM-object of this item
                     var section = document.getElementById("searchResultSection");
                     if (section != undefined) {
-                        var listView = section.querySelector(".resultslist").winControl;
+                        var listView = section.querySelector(".resultslist").winControl;                       
                         var htmlItem = listView.elementFromIndex(index);
 
                         // Update the live DOM-object
-                        $(htmlItem).find("img").attr("src", item.data.backgroundImage);
+                        if(getImageQueue.inSearchPage) 
+                            $(htmlItem).find("img").attr("src", item.data.BackgroundImage);
+
+                        
                     }
                 }
+                getImageQueue.fireFinished();
             }, this));
 
 
         },
+        
 
         // This function updates the ListView with new layouts
         initializeLayout: function (listView, viewState) {
@@ -313,18 +340,22 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+            
+            self = this;
+            getImageQueue.inSearchPage = true;
 
             var listView = element.querySelector(".resultslist").winControl;
-            listView.itemTemplate = element.querySelector(".itemtemplate")
+            listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.oniteminvoked = this.itemInvoked;
             this.handleQuery(element, options);
             listView.element.focus();
 
-            var spanDidYouMean = document.getElementById("spanDidYouMean");
-            WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+        },
+        unload: function () {
 
-
-
+            getImageQueue.inSearchPage = false;
+            getImageQueue.queue = [];
+            
         },
 
         // This function updates the page layout in response to viewState changes.
@@ -339,7 +370,7 @@
                     var handler = function (e) {
                         listView.removeEventListener("contentanimating", handler, false);
                         e.preventDefault();
-                    }
+                    };
                     listView.addEventListener("contentanimating", handler, false);
                     var firstVisible = listView.indexOfFirstVisible;
                     this.initializeLayout(listView, viewState);
@@ -353,7 +384,7 @@
         if (args.detail.kind === appModel.Activation.ActivationKind.search) {
             args.setPromise(ui.processAll().then(function () {
                 if (!nav.location) {
-                    //nav.history.current = { location: Application.navigator.home, initialState: {} };
+                    nav.history.current = { location: Application.navigator.home, initialState: {} };
                 }
 
                 return nav.navigate(searchPageURI, { queryText: args.detail.queryText });

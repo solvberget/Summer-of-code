@@ -21,6 +21,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         private string _basepath;
         private string _dictPath;
         private string _indexPath;
+
         [TestFixtureSetUp]
         public void InitRepository()
         {

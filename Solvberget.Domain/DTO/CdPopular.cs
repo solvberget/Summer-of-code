@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Solvberget.Domain.DTO
 {
-    public class CdPopular : Cd
+    public class CdPopular : Disc
     {
         protected override void FillProperties(string xml)
         {
