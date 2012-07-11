@@ -15,11 +15,13 @@ namespace Solvberget.Domain.Implementation
         private const string StdFolderPath = @"App_Data\librarylists\";
         private readonly string _folderPath;
         private readonly IRepository _repository;
+        private readonly IImageRepository _imageRepository;
 
-        public LibraryListXmlRepository(IRepository repository, string folderPath = null)
+        public LibraryListXmlRepository(IRepository repository, IImageRepository imageRepository, string folderPath = null)
         {
-            _folderPath = string.IsNullOrEmpty(folderPath) ? StdFolderPath : folderPath;
             _repository = repository;
+            _imageRepository = imageRepository;
+            _folderPath = string.IsNullOrEmpty(folderPath) ? StdFolderPath : folderPath;
         }
 
 
@@ -43,7 +45,10 @@ namespace Solvberget.Domain.Implementation
         {
             foreach(var docnr in libraryList.DocumentNumbers)
             {
-                libraryList.Documents.Add(_repository.GetDocument(docnr, true));       
+                Document document = (_repository.GetDocument(docnr, true));
+                //We want to add the thumbnail url to the document in this case
+                document.ThumbnailUrl = _imageRepository.GetDocumentThumbnailImage(docnr, "60");
+                libraryList.Documents.Add(document);
             }
         }
 
