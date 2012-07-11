@@ -277,6 +277,7 @@
     <Content Include="images\solvberget150.png" />
     <Content Include="images\solvberget30.png" />
     <Content Include="images\solvberget_splash.png" />
+    <Content Include="images\solvberget_wide.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\data.js" />
