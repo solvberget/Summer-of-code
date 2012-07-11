@@ -51,7 +51,7 @@
     }
 
     .splitpage .listOfListsSection .listOfLists .win-item {
-        -ms-grid-columns: 110px 1fr;
+        /*-ms-grid-columns: 110px 1fr;*/
         -ms-grid-rows: 1fr;
         display: -ms-grid;
         height: 110px;
@@ -59,14 +59,14 @@
     }
 
         .splitpage .listOfListsSection .listOfLists .win-item .list-info {
-            -ms-grid-column: 2;
+            /*-ms-grid-column: 2;*/
             margin-left: 10px;
             margin-right: 10px;
-            overflow: hidden;
         }
 
             .splitpage .listOfListsSection .listOfLists .win-item .list-info .item-title {
                 margin-top: 4px;
+                overflow: hidden;
             }
 
     .splitpage .listOfListsSection .listOfLists .item .list-info .item-subtitle {
@@ -123,7 +123,7 @@
         -ms-grid-rows: 1fr;
         display: -ms-grid;
         height: 110px;
-        width: 500px;
+        width: auto;
     }
 
         .splitpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info {
@@ -172,7 +172,7 @@
             -ms-grid-rows: 100px;
             display: -ms-grid;
             margin-bottom: 6px;
-            margin-top: 60px;
+            margin-top: 0px;
         }
 
             .splitpage .articlesection header .text {
@@ -180,7 +180,7 @@
             }
 
         .splitpage .articlesection .article-box {
-            margin-top: 250px;
+            margin-top: 37px;
         }
       
         .splitpage .articlesection .article-content {
@@ -212,22 +212,23 @@
 
         /* LIST OF LISTS */
         .splitpage .listOfListsSection .listOfLists .win-item {
-            -ms-grid-columns: 60px 1fr;
+            /*-ms-grid-columns: 60px 1fr;*/
             height: 60px;
             margin-bottom: 0;
             width: 282px;
         }
 
-            .splitpage .listOfListsSection .listOfLists .win-item .list-image {
+            /*.splitpage .listOfListsSection .listOfLists .win-item .list-image {
                 height: 60px;
                 width: 60px;
-            }
+            }*/
 
             .splitpage .listOfListsSection .listOfLists .win-item .list-info .list-title {
                 margin-top: 0px;
                 max-height: 40px;
                 overflow: hidden;
-            }
+                text-overflow: ellipsis; 
+           }
 
             .splitpage .listOfListsSection .listOfLists .win-item .list-info .list-description {
                 display: none;
@@ -238,7 +239,7 @@
                 -ms-grid-columns: 60px 1fr;
                 height: 60px;
                 margin-bottom: 0;
-                width: 282px;
+                width: 600px;
             }
 
                 .splitpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-image {

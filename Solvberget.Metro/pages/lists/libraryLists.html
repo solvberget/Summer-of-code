@@ -29,7 +29,7 @@
     <!-- ItemTemplate for each "List of Lists" -->
     <div class="listListTemplate" data-win-control="WinJS.Binding.Template">
         <div class="list-info">
-            <h2 class="list-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
+            <h2 class="list-title" data-win-bind="textContent: listtitle"></h2>
         </div>
     </div>
 
@@ -40,6 +40,9 @@
     <!-- ItemTemplates for each "List of content" -->
     <!-- DOCUMENT -->
     <div id="documentTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
         <div class="item-info">
             <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
             <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
@@ -48,6 +51,9 @@
 
     <!-- BOOK -->
     <div id="bookTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
         <div class="item-info">
             <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
             <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: Author.Name"></h3>
@@ -57,6 +63,9 @@
 
     <!-- FILM -->
     <div id="filmTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
         <div class="item-info">
             <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
             <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: AgeLimit"></h3>
@@ -66,6 +75,9 @@
 
     <!-- AUDIOBOOK -->
     <div id="audioBookTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
         <div class="item-info">
             <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
             <h5 class="item-subtitle win-type-ellipsis">Lydbok</h5>
@@ -99,7 +111,7 @@
             <article class="article-box">
                 <header class="header">
                     <div class="text">
-                        <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title">Laster lister...</h1>
+                        <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: listtitle">Laster lister...</h1>
                     </div>
                 </header>
 

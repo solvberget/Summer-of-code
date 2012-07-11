@@ -30,7 +30,7 @@
             listViewForListContent.selection.getItems().done(function updateDetails(items) {
                 if (items.length > 0) {
                     that.itemSelectionIndex = items[0].index;
-                    nav.navigate("/pages/itemDetail/itemDetail.html", { item: items[0].data, key: items[0].data.DocumentNumber });
+                    nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: items[0].data, key: items[0].data.DocumentNumber });
                 }
             });
 
@@ -99,6 +99,9 @@
             this.updateVisibility();
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
+
+                    //FIX
+
                     // For single-column detail view, load the article.
                     binding.processAll(element.querySelector(".articlesection"), options.item);
                 }
@@ -113,7 +116,6 @@
                 listViewForLists.selection.set(Math.max(this.itemSelectionIndex, 0));
             }
 
-
         },
 
         listOfListsSelectionChanged: function (args) {
@@ -126,6 +128,8 @@
                     that.itemSelectionIndex = items[0].index;
                     if (that.isSingleColumn()) {
 
+                        //FIX
+
                         // If snapped or portrait, navigate to a new page containing the
                         // selected item's details.
                         nav.navigate("/pages/lists/libraryLists.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
@@ -133,9 +137,9 @@
                     } else {
                         
                         // If fullscreen or filled, update the details column with new data.
-                        details = document.querySelector(".articlesection");
+                        details = document.querySelector(".article-title");
                         binding.processAll(details, items[0].data);
-                        details.scrollTop = 0;
+                        //details.scrollTop = 0;
 
                         //Update list content
                         setImmediate(that.updateListViewForContentDataSoruce(items[0].data));
@@ -178,6 +182,8 @@
                         state: { groupKey: this.group.key }
                     });
                     element.querySelector(".articlesection").focus();
+
+
                 } else {
                     listViewForLists.addEventListener("contentanimating", handler, false);
                     listViewForLists.indexOfFirstVisible = firstVisible;
@@ -196,6 +202,7 @@
                 }
 
                 listViewForLists.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
+
             }
         },
 
@@ -208,8 +215,8 @@
             }
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
-                    utils.addClass(document.querySelector(".articlesection"), "primarycolumn");
-                    document.querySelector(".articlesection").focus();
+                    utils.addClass(document.querySelector(".listOfListContentSection"), "primarycolumn");
+                    document.querySelector(".listOfListContent").focus();
                 } else {
                     utils.addClass(document.querySelector(".itemlistsection"), "primarycolumn");
                     document.querySelector(".listOfLists").focus();
