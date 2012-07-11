@@ -11,5 +11,17 @@
     <Setting Name="ImdbApiUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://www.imdbapi.com/?t=</Value>
     </Setting>
+    <Setting Name="ServerUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:7089/Content/</Value>
+    </Setting>
+    <Setting Name="ImageCacheFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cacheImages/</Value>
+    </Setting>
+    <Setting Name="BokBasenServerUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://193.91.211.230/bokomslagServer/getInfoNew.Asp?</Value>
+    </Setting>
+    <Setting Name="BokBasenSystem" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

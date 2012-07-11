@@ -1,5 +1,5 @@
 ﻿.itemdetailpage .content {
-    -ms-grid-row: 1;
+    -ms-grid-row: 2;
     display: block;
     height: 100%;
     overflow-x: auto;
@@ -8,22 +8,142 @@
     z-index: 0;
 }
 
-#openShare {
-    margin-top:120px;
-    margin-left: 120px;
-    float:left;
-    width:300px;
-    font-size:x-large;
-}
 
 
+
+    .itemdetailpage .content article {
+        /* Define a multi-column, horizontally scrolling article by default. */
+        column-fill: auto;
+        column-gap: 80px;
+        column-width: 480px;
+        height: calc(100% - 50px);
+        margin-left: 120px;
+        margin-top: 5px;
+        width: calc(20% - 50px);
+        float: left;
+    }
+
+        .itemdetailpage .content article #openShare {
+            margin-bottom: 20px;
+            margin-top: 0;
+            font-size: x-large;
+        }
+
+
+        .itemdetailpage .content article header #item-title {
+            margin-bottom: 20px;
+            margin-top: 0;
+             overflow: auto;
+        }
+
+        .itemdetailpage .content article header #item-subtitle {
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+
+        .itemdetailpage .content article #item-image {
+            height: auto;
+            width: auto;
+            max-height: 450px;
+            max-width: 240px;
+            margin-bottom: 3px;
+        }
+
+
+
+    .itemdetailpage .content .itemlist {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-right: 5px;
+        width: calc(70% - 50px);
+        height: calc(100% - 50px);
+        float: right;
+    }
+
+        .itemdetailpage .content .itemlist .win-vertical.win-viewport .win-container {
+            margin-bottom: 15px;
+            margin-right: 5px;
+            height: 100%;
+        }
+
+        .itemdetailpage .content .itemlist .win-container .win-selectioncheckmark {
+            display: none;
+        }
+
+        .itemdetailpage .content .itemlist .win-container .win-selectioncheckmarkbackground {
+            display: none;
+        }
+
+        .itemdetailpage .content .itemlist .win-item {
+            height: 60px;
+            width: 500px;
+        }
+
+            .itemdetailpage .content .itemlist .win-item .item-info {
+                -ms-grid-column: 2;
+                margin-left: 10px;
+                margin-right: 20px;
+                overflow: auto;
+            }
+
+                .itemdetailpage .content .itemlist .win-item .item-info .item-title {
+                    margin-top: 4px;
+                    overflow: auto;
+                }
+
+                .itemdetailpage .content .itemlist .win-item .item-info .item-value {
+                    opacity: 1;
+                    overflow: auto;
+                }
+
+
+
+
+    .itemdetailpage .content article .item-content p {
+        margin-bottom: 20px;
+        margin-right: 20px;
+        vertical-align: baseline;
+    }
 
 @media screen and (-ms-view-state: snapped) {
     .itemdetailpage .content {
         overflow-x: hidden;
         overflow-y: auto;
     }
+
+        .itemdetailpage .content article {
+            /* Define a single column, vertically scrolling article in snapped mode. */
+            -ms-grid-columns: 300px 1fr;
+            -ms-grid-row: 2;
+            -ms-grid-rows: auto 60px;
+            display: -ms-grid;
+            height: 100px;
+            margin-left: 20px;
+            width: 300px;
+        }
+
+            .itemdetailpage .content article #item-image {
+                width: auto;
+                height: auto;
+                max-height: 140px;
+                max-width: 280px;
+            }
+
+            .itemdetailpage .content article .item-content {
+                padding-bottom: 60px;
+            }
+
+        .itemdetailpage .content .itemlist {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-right: 5px;
+            width: calc(70% - 50px);
+            height: calc(100% - 50px);
+        }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
+    .itemdetailpage .content article {
+        margin-left: 100px;
+    }
 }

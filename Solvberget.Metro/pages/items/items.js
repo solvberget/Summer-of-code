@@ -24,6 +24,8 @@
                 searchPane.show();
             }   else if (groupKey === "events") {
                 WinJS.Navigation.navigate("/pages/events/events.html", { groupKey: groupKey });
+            } else if (groupKey === "lists") {
+                WinJS.Navigation.navigate("/pages/lists/libraryLists.html", { groupKey: groupKey });
             }
             else {
                 WinJS.Navigation.navigate("/pages/split/split.html", { groupKey: groupKey });

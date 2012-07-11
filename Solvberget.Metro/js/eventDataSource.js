@@ -67,7 +67,7 @@
 
                         // Verify that the service returned images.
                         if (obj !== undefined) {
-                            var items = obj
+                            var items = obj;
 
                             // Create an array of IItem objects:
                             // results =[{ key: key1, data : { field1: value, field2: value, ... }}, { key: key2, data : {...}}, ...];

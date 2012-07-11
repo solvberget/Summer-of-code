@@ -1,135 +1,23 @@
-﻿// For an introduction to the Search Contract template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkId=232512
-
-// TODO: Add the following script tag to the start page's head to
-// subscribe to search contract events.
-//  
-// <script src="/js/viewmodels/searchResults.js"></script>
-
-(function () {
+﻿(function () {
     "use strict";
 
     var appModel = Windows.ApplicationModel;
-    var appViewState = Windows.UI.ViewManagement.ApplicationViewState
+    var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
     var searchPageURI = "/pages/searchResults/searchResults.html";
+
     var suggestionMethods = {
         suggestionList: [],
-        url : "http://localhost:7089/Document/SuggestionList/",
-        populateSuggestionList : function (allData) {
+        url: "http://localhost:7089/Document/SuggestionList/",
+        populateSuggestionList: function (allData) {
             suggestionMethods.suggestionList = allData;
         },
         getSuggestionListFromServer: function () {
             $.getJSON(suggestionMethods.url, suggestionMethods.populateSuggestionList);
         },
-        didYouMean: "",
-        suggestionQuery : "",
-
-    };
-
-    var spellingMethods = {
-
-    }
-
-    var loadingWheel = {
-        opts: {
-            lines: 17, // The number of lines to draw
-            length: 23, // The length of each line
-            width: 5, // The line thickness
-            radius: 40, // The radius of the inner circle
-            rotate: 13, // The rotation offset
-            color: '#FFF', // #rgb or #rrggbb
-            speed: 1.1, // Rounds per second
-            trail: 86, // Afterglow percentage
-            shadow: true, // Whether to render a shadow
-            hwaccel: false, // Whether to use hardware acceleration
-            className: 'spinner', // The CSS class to assign to the spinner
-            zIndex: 2e9, // The z-index (defaults to 2000000000)
-            top: 'auto', // Top position relative to parent in px
-            left: 'auto' // Left position relative to parent in px
-        },
-        spinner: null,
-        spin: function () {
-
-                var target = document.getElementById('search-loading-wheel');
-                loadingWheel.spinner = new Spinner(loadingWheel.opts).spin();
-                target.appendChild(loadingWheel.spinner.el);
-                loadingWheel.initialized = true;
-
-        },
-        stop: function () {
-
-            loadingWheel.spinner.stop();
-
-        },
-    };
-
-
-    var ajaxSearchDocuments = function (query) {
-        return $.getJSON("http://localhost:7089/Document/Search/" + query); 
-    }
-    var lookupDict = function (query) {
-        // Does not work, do not return the json promise
-        return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
-    }
-
-    ui.Pages.define(searchPageURI, {
-        /// <field elementType="Object" />
-        filters: [],
-        lastSearch: "",
-
-        generateFilters: function () {
-            this.filters = [];
-            this.filters.push({ results: null, text: "Alle", predicate: function (item) { return true; } });
-
-            // TODO: Replace or remove example filters.
-            this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
-            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film" } });
-            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook" } });
-            this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document" } });
-        },
-
-        itemInvoked: function (args) {
-            args.detail.itemPromise.done(function itemInvoked(item) {
-                // TODO: Navigate to the item that was invoked.
-                var itemObject = args.detail.itemPromise._value.data;
-                     nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: itemObject.DocumentNumber });
-            });
-        },
-
-        // This function populates a WinJS.Binding.List with search results for the
-        // provided query.
-        searchData: function (queryText) {
-
-            var originalResults;
-            var regex;
-            
-        },
-
-        // This function filters the search data using the specified filter.
-        applyFilter: function (filter, originalResults) {
-            if (filter.results === null) {
-                filter.results = originalResults.createFiltered(filter.predicate);
-            }
-            return filter.results;
-        },
-
-        // This function responds to a user selecting a new filter. It updates the
-        // selection list and the displayed results.
-        filterChanged: function (element, filterIndex) {
-            var filterBar = element.querySelector(".filterbar");
-            var listView = element.querySelector(".resultslist").winControl;
-
-            utils.removeClass(filterBar.querySelector(".highlight"), "highlight");
-            utils.addClass(filterBar.childNodes[filterIndex], "highlight");
-
-            element.querySelector(".filterselect").selectedIndex = filterIndex;
-
-            listView.itemDataSource = this.filters[filterIndex].results.dataSource;
-        },
-        updateSuggestions : function( query ) {
+        updateSuggestions: function (query) {
 
             // Reset suggestion
             suggestionMethods.didYouMean = "";
@@ -157,17 +45,145 @@
 
                     });
 
+                    // Fade in the suggestion
+                    $(spanDidYouMean).hide();
                     WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
-
+                    setTimeout(function () {
+                        $(spanDidYouMean).fadeIn(250);
+                    }, 1600);
                 }
             });
 
         },
-        
+        didYouMean: "",
+        suggestionQuery: "",
 
+    };
+
+    var loadingWheel = {
+        opts: {
+            lines: 17, // The number of lines to draw
+            length: 23, // The length of each line
+            width: 5, // The line thickness
+            radius: 40, // The radius of the inner circle
+            rotate: 13, // The rotation offset
+            color: '#FFF', // #rgb or #rrggbb
+            speed: 1.1, // Rounds per second
+            trail: 86, // Afterglow percentage
+            shadow: true, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: 'auto', // Top position relative to parent in px
+            left: 'auto' // Left position relative to parent in px
+        },
+        spinner: null,
+        spin: function () {
+
+            var target = document.getElementById('search-loading-wheel');
+            loadingWheel.spinner = new Spinner(loadingWheel.opts).spin();
+            target.appendChild(loadingWheel.spinner.el);
+            loadingWheel.initialized = true;
+
+        },
+        stop: function () {
+
+            loadingWheel.spinner.stop();
+
+        },
+    };
+
+
+    var ajaxSearchDocuments = function (query) {
+        return $.getJSON("http://localhost:7089/Document/Search/" + query);
+    };
+    var ajaxGetThumbnailDocumentImage = function (query, size) {
+        var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
+        return $.getJSON(size == undefined ? url + query : url + query + "/" + size );
+    };
+    var lookupDict = function (query) {
+        return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
+    };
+    var getImageQueue = {
+        queue: [],
+        working: false,
+        inSearchPage : false,
+        fireFinished: function () {
+
+            getImageQueue.working = false;
+            getImageQueue.startWorking();
+
+        },
+        addToQueue: function (item, index) {
+
+            getImageQueue.queue.push({ item: item, index: index });
+            getImageQueue.startWorking();
+
+        },
+        startWorking: function () {
+            if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
+                getImageQueue.working = true;
+
+                var itemIndexObj = getImageQueue.queue[0];
+                getImageQueue.queue.shift();
+                if (itemIndexObj != undefined)
+                    self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
+
+            }
+        }
+    };
+
+    var self;
+
+    ui.Pages.define(searchPageURI, {
+        filters: [],
+        lastSearch: "",
+
+        generateFilters: function () {
+
+            this.filters = [];
+
+            this.filters.push({ results: null, text: "Alle", predicate: function (item) { return true; } });
+            this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
+            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film"; } });
+            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook"; } });
+            this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document"; } });
+
+        },
+
+        itemInvoked: function (args) {
+            args.detail.itemPromise.done(function itemInvoked(item) {
+
+                var itemObject = args.detail.itemPromise._value.data;
+                nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: itemObject, key: itemObject.DocumentNumber });
+            });
+        },
+
+
+        // This function filters the search data using the specified filter.
+        applyFilter: function (filter, originalResults) {
+            if (filter.results === null) {
+                filter.results = originalResults.createFiltered(filter.predicate);
+            }
+            return filter.results;
+        },
+
+        // This function responds to a user selecting a new filter. It updates the
+        // selection list and the displayed results.
+        filterChanged: function (element, filterIndex) {
+            var filterBar = element.querySelector(".filterbar");
+            var listView = element.querySelector(".resultslist").winControl;
+
+            utils.removeClass(filterBar.querySelector(".highlight"), "highlight");
+            utils.addClass(filterBar.childNodes[filterIndex], "highlight");
+
+            element.querySelector(".filterselect").selectedIndex = filterIndex;
+
+            listView.itemDataSource = this.filters[filterIndex].results.dataSource;
+        },
+        
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
-            var originalResults;
             this.lastSearch = args.queryText;
             WinJS.Namespace.define("searchResults", { markText: this.markText.bind(this) });
             utils.markSupportedForProcessing(searchResults.markText);
@@ -175,20 +191,22 @@
             this.generateFilters();
 
             // Hide search pane ** Not implemented by Microsoft yet **
-                //var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
-                //searchPane.hide(); ** Not implemented by Microsoft yet **
+            //var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+            //searchPane.hide(); ** Not implemented by Microsoft yet **
 
             // Show loadingWheel
             loadingWheel.spin();
 
-            this.updateSuggestions(args.queryText);
-            
+            suggestionMethods.updateSuggestions(args.queryText);
+
+            // Perform the search
             $.when(ajaxSearchDocuments(args.queryText))
                .then($.proxy(function (response) {
 
                    var originalResults = new WinJS.Binding.List();
 
-                   for (var x in response) {
+                   for (x in response) {
+                       response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
                        originalResults.push(response[x]);
                    }
 
@@ -196,10 +214,37 @@
                    this.applyFilter(this.filters[0], originalResults);
                    loadingWheel.stop();
 
+                   for (var x in response) {
+                       getImageQueue.addToQueue(originalResults.getItem(x), x);
+                   }
+
                }, this)
             );
-            
         },
+        getAndSetThumbImage: function (item, index) {
+
+            $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
+            .then($.proxy(function (response) {
+
+                if (response != undefined && response != "") {
+                    // Set the new value in the model of this item                   
+                    item.data.BackgroundImage = response;
+
+                    // Get the live DOM-object of this item
+                    var section = document.getElementById("searchResultSection");
+                    if (section != undefined) {
+                        var listView = section.querySelector(".resultslist").winControl;                       
+                        var htmlItem = listView.elementFromIndex(index);
+
+                        WinJS.Binding.processAll(htmlItem, item.data);
+                        
+                    }
+                }
+                getImageQueue.fireFinished();
+            }, this));
+
+        },
+        
 
         // This function updates the ListView with new layouts
         initializeLayout: function (listView, viewState) {
@@ -277,25 +322,58 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+            
+            self = this;
+            getImageQueue.inSearchPage = true;
 
             var listView = element.querySelector(".resultslist").winControl;
-            listView.itemTemplate = element.querySelector(".itemtemplate")
+            listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.oniteminvoked = this.itemInvoked;
             this.handleQuery(element, options);
             listView.element.focus();
 
-            var spanDidYouMean = document.getElementById("spanDidYouMean");
-            WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+            document.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
+            document.getElementById("eventsMenuItem").addEventListener("click", function () { self.goToSection("Arrangementer"); }, false);
+            document.getElementById("searchMenuItem").addEventListener("click", function () { self.goToSection("Søk"); }, false);
+            document.getElementById("musicMenuItem").addEventListener("click", function () { self.goToSection("Musikk"); }, false);
+            document.getElementById("listsMenuItem").addEventListener("click", function () { self.goToSection("Lister"); }, false);
+            document.getElementById("mypageMenuItem").addEventListener("click", function () { self.goToSection("Min side"); }, false);
+            document.getElementById("infoMenuItem").addEventListener("click", function () { self.goToSection("Informasjon"); }, false);
+            document.getElementById("homeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
 
+        },
+        
+        showHeaderMenu : function() {
             
+           var title = document.querySelector("header .titlearea");
+            var menu = document.getElementById("headerMenu").winControl;
+             menu.anchor = title;
+           menu.placement = "bottom";
+            menu.alignment = "left";
 
+            menu.show();
+            
+        },
+        goToSection : function(section) {
+            
+            WinJS.log && WinJS.log("You are viewing the " + section + " section.", "sample", "status");
+            
+        },
+        goHome : function() {
+            
+            WinJS.log && WinJS.log("You are home.", "sample", "status");
+            
+        },
+
+        unload: function () {
+
+            getImageQueue.inSearchPage = false;
+            getImageQueue.queue = [];
+            
         },
 
         // This function updates the page layout in response to viewState changes.
         updateLayout: function (element, viewState, lastViewState) {
-            /// <param name="element" domElement="true" />
-            /// <param name="viewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
-            /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
 
             var listView = element.querySelector(".resultslist").winControl;
             if (lastViewState !== viewState) {
@@ -303,7 +381,7 @@
                     var handler = function (e) {
                         listView.removeEventListener("contentanimating", handler, false);
                         e.preventDefault();
-                    }
+                    };
                     listView.addEventListener("contentanimating", handler, false);
                     var firstVisible = listView.indexOfFirstVisible;
                     this.initializeLayout(listView, viewState);
@@ -317,7 +395,7 @@
         if (args.detail.kind === appModel.Activation.ActivationKind.search) {
             args.setPromise(ui.processAll().then(function () {
                 if (!nav.location) {
-                   //nav.history.current = { location: Application.navigator.home, initialState: {} };
+                    nav.history.current = { location: Application.navigator.home, initialState: {} };
                 }
 
                 return nav.navigate(searchPageURI, { queryText: args.detail.queryText });
@@ -326,18 +404,15 @@
     });
 
     appModel.Search.SearchPane.getForCurrentView().onquerysubmitted = function (args) { nav.navigate(searchPageURI, args); };
-    
+
     // Populate suggestionList from server
     suggestionMethods.getSuggestionListFromServer();
-
-
-
 
     Windows.ApplicationModel.Search.SearchPane.getForCurrentView().onsuggestionsrequested = function (eventObject) {
         var queryText = eventObject.queryText, suggestionRequest = eventObject.request;
         var query = queryText.toLowerCase();
         var maxNumberOfSuggestions = 5;
-                    
+
         // Suggestion based on content
 
         for (var i = 0, len = suggestionMethods.suggestionList.length; i < len; i++) {
@@ -355,6 +430,6 @@
             WinJS.log && WinJS.log("No suggestions provided for query: " + queryText, "sample", "status");
         }
     };
-    
+
 
 })();

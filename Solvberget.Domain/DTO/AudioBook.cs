@@ -36,31 +36,9 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants();
 
-                Isbn = GetVarfield(nodes, "020", "a");
                 ClassificationNumber = GetVarfield(nodes, "090", "c");
 
-               //Author, check BSMARC field 100 for author
-                Author = new Person
-                {
-                    Name = GetVarfield(nodes, "100", "a"),
-                    LivingYears = GetVarfield(nodes, "100", "d"),
-                    Nationality = GetVarfield(nodes, "100", "j"),
-                    Role = "Author"
-                };
-
-                //If N/A, check BSMARC field 110 for author
-                if (Author.Name == null)
-                {
-                    Author.Name = GetVarfield(nodes, "110", "a");
-
-                    //Organization (110abq)
-                    Organization = GenerateOrganizationsFromXml(nodes, "110").FirstOrDefault();
-
-                }
-
-                //If still N/A, check BSMARC field 130 for title when title is main scheme word
-                if (Author.Name == null)
-                    StandarizedTitle = GetVarfield(nodes, "130", "a");
+               FillPropertiesLight(xml);
 
                 Numbering = GetVarfield(nodes, "245", "n");
                 PartTitle = GetVarfield(nodes, "245", "p");
@@ -84,12 +62,18 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants();
 
+                Isbn = GetVarfield(nodes, "020", "a");
+
                 //Author, check BSMARC field 100 for author
+                var nationality = GetVarfield(nodes, "100", "j");
+                string nationalityLookupValue = null;
+                if (nationality != null)
+                    NationalityDictionary.TryGetValue(nationality, out nationalityLookupValue);
                 Author = new Person
                 {
                     Name = GetVarfield(nodes, "100", "a"),
                     LivingYears = GetVarfield(nodes, "100", "d"),
-                    Nationality = GetVarfield(nodes, "100", "j"),
+                    Nationality = nationalityLookupValue ?? nationality,
                     Role = "Author"
                 };
 

@@ -19,12 +19,13 @@
     <script src="../../js/EventDataSource.js"></script>
     <script type="text/javascript" src="../../js/lib/jquery-1.7.2.min.js"></script>
 
-
 </head>
 <body>
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
-        <img class="item-image" src="#" data-win-bind="src: thumbImage; alt: title" />
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: thumbImage; alt: title" />
+        </div>
         <div class="item-info">
             <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
             <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: dateAndTime"></h6>
@@ -59,7 +60,11 @@
                         <h3 class="article-subtitle" data-win-bind="textContent: stop"></h3>
                         <h2 class="article-subtitle" data-win-bind="textContent: location"></h2>
                     </div>
-                    <img class="article-image" src="/images/ajax_loading.gif" data-win-bind="src: backgroundImage; alt: title" />
+
+                    <div class="article-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                        <img class="article-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+                    </div>
+
                 </header>
                 <br />
                 <!-- Denne skal bindes til teaser. Den er tom, så vi bruker dummydata for å få det pent-->

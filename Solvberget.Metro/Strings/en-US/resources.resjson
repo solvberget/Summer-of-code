@@ -1,0 +1,39 @@
+// For details on localizing a Windows app, see: http://go.microsoft.com/fwlink/?LinkId=212836
+//Spr�k engelsk
+// ���: æ  ø  å ... Use replace all to change
+{
+    "Author"                : "Forfatter",
+    "OriginalTitle"         : "Original Tittel",
+    "TypeAndNumberOfDiscs"  : "Type og nummer disker",
+    "Actors"                : "Skuespillere",
+    "AgeLimit"              : "Aldersgrense",
+    "SubtitleLanguage"      : "Undertekstspråk",
+    "Genre"                 : "Sjanger",
+    "InvolvedPersons"       : "Involverte personer",
+    "DocType"               : "Dokumenttype",
+    "TargetGroup"           : "Målgruppe",
+    "IsFiction"             : "Er fiksjon",
+    "Language"              : "Språk",
+    "Languages"             : "Språk",
+    "DocumentType"          : "Dokumenttype",
+    "Title"                 : "Tittel",
+    "SubTitle"              : "Undertittel",
+    "PlacePublished"        : "Sted for utgivelse",
+    "Publisher"             : "Publiserer",
+    "PublishedYear"         : "Publikasjonsår",
+    "ClassificationNr"      : "Klassifikasjonsnummer",
+    "NumberOfPages"         : "Antall sider",
+    "LocationCode"          : "Lokasjonskode",
+    "SeriesTitle"           : "Serie tittel",
+    "SeriesNumber"          : "Serienummer",
+    "DocumentNumber"        : "Dokument nummer",
+    "ReferredPersons"       : "Omtalte personer",
+    "ReferredOrganizations" : "Omtalte organisasjoner/grupper",
+    "ReferrencedPlaces"         : "Omtalte steder",
+    "ReferencedPlaces"         : "Omtalte steder",
+    "Subject"               : "Emne",
+    "InvolvedOrganizations" : "Knyttet organisasjon/gruppe",
+    "ResponsiblePersons"    : "Liste over ansvarlige personer",
+    "ProductionYear"        : "Publikasjonsår"
+
+}

@@ -29,7 +29,10 @@ namespace Solvberget.Service.Infrastructure
         {
             ninjectKernel.Bind<IRepository>().To<AlephRepository>();
             ninjectKernel.Bind<IEventRepository>().To<LinticketRepository>();
-            ninjectKernel.Bind<IImageRepository>().To<ImageRepository>();
+            ninjectKernel.Bind<IImageRepository>().To<ImageRepository>()
+                 .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
+            ninjectKernel.Bind<IListRepository>().To<LibraryListXmlRepository>()
+                .WithConstructorArgument("folderPath", EnvironmentHelper.GetXmlListPath());
             ninjectKernel.Bind<ISpellingDictionary>()
                 .To<LuceneRepository>()
                 .WithConstructorArgument("pathToDictionary", EnvironmentHelper.GetDictionaryPath())
@@ -37,7 +40,6 @@ namespace Solvberget.Service.Infrastructure
                 .WithConstructorArgument("pathToStopWordsDict", EnvironmentHelper.GetStopwordsPath())
                 .WithConstructorArgument("pathToSuggestionListDict", EnvironmentHelper.GetSuggestionListPath())
                 .WithConstructorArgument("pathToTestDict", EnvironmentHelper.GetTestDictPath());
-                
         }
     }
 }
