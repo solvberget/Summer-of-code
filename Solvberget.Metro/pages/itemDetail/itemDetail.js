@@ -28,9 +28,12 @@
 
             //Init viewmodel
             var initViewModel = function () {
-                var contentDiv = element.querySelector(".article");
+                var article = element.querySelector(".article");
+                var pageTitle = element.querySelector(".pagetitle");
+                
                 that.setViewModel(that.itemModel);
-                WinJS.Binding.processAll(contentDiv, that.viewModel);
+                WinJS.Binding.processAll(article, that.viewModel);
+                WinJS.Binding.processAll(pageTitle, that.viewModel);
             }
             initViewModel();
 
@@ -57,7 +60,6 @@
             listView.layout = new ui.GridLayout();
 
             //Refresh list..
-            
             listView.selection.set(0);
             listView.selection.clear();
 
@@ -126,6 +128,7 @@
                 }
 
                 listView.selection.set(0);
+                listView.selection.clear();
             }
         },
         registerForShare: function () {

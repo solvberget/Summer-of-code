@@ -40,9 +40,9 @@
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back" disabled></button>
             <h1 class="titlearea win-type-ellipsis">
-                <span class="pagetitle">Informasjon</span>
+                <span class="pagetitle" data-win-bind="textContent: title">Informasjon</span>
             </h1>
-            <div id="openShare"><a href="#">Del med andre!</a></div>
+            
 
 
         </header>
@@ -50,17 +50,19 @@
 
             <article>
                 <div>
+                     <div id="openShare"><a href="#">Del med andre!</a></div>
                     <header>
-                        <h2 id="item-title" class="win-type-ellipsis" data-win-bind="textContent: title"></h2>
-                        <h3 id="item-subtitle" data-win-bind="textContent: subtitle"></h3>
+                        <!-- <h2 id="item-title" class="win-type-ellipsis" data-win-bind="textContent: subtitle"></h2>-->
+                       <h3 id="item-subtitle" class="win-type-ellipsis" data-win-bind="textContent: subtitle"></h3>
 
                     </header>
+                    
                     <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                         <img id="item-image" src="#" data-win-bind="src: image; alt: title" />
                     </div>
 
 
-
+                   
 
                 </div>
             </article>
