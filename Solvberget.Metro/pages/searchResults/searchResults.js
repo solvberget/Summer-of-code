@@ -277,7 +277,6 @@
                 var text = source[sourceProperties[0]];
                 var regex = new RegExp(this.lastSearch, "gi");
                 dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
-
             }
         },
 
