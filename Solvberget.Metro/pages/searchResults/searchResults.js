@@ -22,7 +22,7 @@
             // Reset suggestion
             suggestionMethods.didYouMean = "";
             suggestionMethods.suggestionQuery = "";
-
+            var suggestionText = document.getElementById("spanDidYouMean");
 
             // Get a new search-suggestion
             $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
@@ -47,9 +47,12 @@
 
                     // Fade in the suggestion
                     $(spanDidYouMean).hide();
-                    WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+                    if (spanDidYouMean != null)
+                        WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+
                     setTimeout(function () {
-                        $(spanDidYouMean).fadeIn(250);
+                        if ($(spanDidYouMean).text() !== "undefined")
+                            $(spanDidYouMean).fadeIn(250);
                     }, 1600);
                 }
             });
@@ -99,7 +102,7 @@
     };
     var ajaxGetThumbnailDocumentImage = function (query, size) {
         var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
-        return $.getJSON(size == undefined ? url + query : url + query + "/" + size );
+        return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
     };
     var lookupDict = function (query) {
         return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
@@ -107,7 +110,7 @@
     var getImageQueue = {
         queue: [],
         working: false,
-        inSearchPage : false,
+        inSearchPage: false,
         fireFinished: function () {
 
             getImageQueue.working = false;
@@ -123,12 +126,12 @@
         startWorking: function () {
             if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
                 getImageQueue.working = true;
-
-                var itemIndexObj = getImageQueue.queue[0];
-                getImageQueue.queue.shift();
-                if (itemIndexObj != undefined)
-                    self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
-
+                setTimeout(function () {
+                    var itemIndexObj = getImageQueue.queue[0];
+                    getImageQueue.queue.shift();
+                    if (itemIndexObj != undefined)
+                        self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
+                }, Math.floor(Math.random() * 1500 + 1));
             }
         }
     };
@@ -181,7 +184,7 @@
 
             listView.itemDataSource = this.filters[filterIndex].results.dataSource;
         },
-        
+
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
             this.lastSearch = args.queryText;
@@ -215,7 +218,7 @@
                    loadingWheel.stop();
 
                    for (var x in response) {
-                       getImageQueue.addToQueue(originalResults.getItem(x), x);
+                       self.getAndSetThumbImage(originalResults.getItem(x), x);
                    }
 
                }, this)
@@ -223,28 +226,41 @@
         },
         getAndSetThumbImage: function (item, index) {
 
-            $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
-            .then($.proxy(function (response) {
+            if (item.data.ThumbnailUrl != undefined && item.data.ThumbnailUrl !== "") {
+                item.data.BackgroundImage = item.data.ThumbnailUrl;
 
-                if (response != undefined && response != "") {
-                    // Set the new value in the model of this item                   
-                    item.data.BackgroundImage = response;
-
-                    // Get the live DOM-object of this item
-                    var section = document.getElementById("searchResultSection");
-                    if (section != undefined) {
-                        var listView = section.querySelector(".resultslist").winControl;                       
-                        var htmlItem = listView.elementFromIndex(index);
-
+                var section = document.getElementById("searchResultSection");
+                if (section != undefined) {
+                    var listView = section.querySelector(".resultslist").winControl;
+                    var htmlItem = listView.elementFromIndex(index);
+                    if (htmlItem != null)
                         WinJS.Binding.processAll(htmlItem, item.data);
-                        
-                    }
                 }
-                getImageQueue.fireFinished();
-            }, this));
+            }
+            else {
+
+                $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
+                .then($.proxy(function (response) {
+
+                    if (response != undefined && response != "") {
+                        // Set the new value in the model of this item                   
+                        item.data.BackgroundImage = response;
+
+                        // Get the live DOM-object of this item
+                        var section = document.getElementById("searchResultSection");
+                        if (section != undefined) {
+                            var listView = section.querySelector(".resultslist").winControl;
+                            var htmlItem = listView.elementFromIndex(index);
+                            if (htmlItem != null)
+                                WinJS.Binding.processAll(htmlItem, item.data);
+
+                        }
+                    }
+                }, this));
+            }
 
         },
-        
+
 
         // This function updates the ListView with new layouts
         initializeLayout: function (listView, viewState) {
@@ -275,9 +291,10 @@
             }
             else if (sourceProperties[0] != "AgeLimit") {
                 var text = source[sourceProperties[0]];
-                var regex = new RegExp(this.lastSearch, "gi");
-                dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
-
+                if (text != undefined) {
+                    var regex = new RegExp(this.lastSearch, "gi");
+                    dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
+                }
             }
         },
 
@@ -322,7 +339,7 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            
+
             self = this;
             getImageQueue.inSearchPage = true;
 
@@ -333,43 +350,62 @@
             listView.element.focus();
 
             document.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
-            document.getElementById("eventsMenuItem").addEventListener("click", function () { self.goToSection("Arrangementer"); }, false);
-            document.getElementById("searchMenuItem").addEventListener("click", function () { self.goToSection("Søk"); }, false);
-            document.getElementById("musicMenuItem").addEventListener("click", function () { self.goToSection("Musikk"); }, false);
-            document.getElementById("listsMenuItem").addEventListener("click", function () { self.goToSection("Lister"); }, false);
-            document.getElementById("mypageMenuItem").addEventListener("click", function () { self.goToSection("Min side"); }, false);
-            document.getElementById("infoMenuItem").addEventListener("click", function () { self.goToSection("Informasjon"); }, false);
+            document.getElementById("eventsMenuItem").addEventListener("click", function () { self.goToSection(0); }, false);
+            document.getElementById("searchMenuItem").addEventListener("click", function () { self.goToSection(1); }, false);
+            document.getElementById("musicMenuItem").addEventListener("click", function () { self.goToSection(2); }, false);
+            document.getElementById("listsMenuItem").addEventListener("click", function () { self.goToSection(3); }, false);
+            document.getElementById("mypageMenuItem").addEventListener("click", function () { self.goToSection(4); }, false);
+            document.getElementById("infoMenuItem").addEventListener("click", function () { self.goToSection(5); }, false);
             document.getElementById("homeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
 
         },
-        
-        showHeaderMenu : function() {
-            
-           var title = document.querySelector("header .titlearea");
+
+        showHeaderMenu: function () {
+
+            var title = document.querySelector("header .titlearea");
             var menu = document.getElementById("headerMenu").winControl;
-             menu.anchor = title;
-           menu.placement = "bottom";
+            menu.anchor = title;
+            menu.placement = "bottom";
             menu.alignment = "left";
 
             menu.show();
-            
+
         },
-        goToSection : function(section) {
-            
-            WinJS.log && WinJS.log("You are viewing the " + section + " section.", "sample", "status");
-            
+        goToSection: function (section) {
+            switch (section) {
+                case 0:
+                    WinJS.Navigation.navigate("/pages/events/events.html");
+                    break;
+                case 1:
+                    // SearchPage
+                    break;
+                case 2:
+                    WinJS.Navigation.navigate("/pages/split/split.html");
+                    break;
+                case 3:
+                    WinJS.Navigation.navigate("/pages/lists/libraryLists.html");
+                    break;
+                case 4:
+                    WinJS.Navigation.navigate("/pages/split/split.html");
+                    break;
+                case 5:
+                    WinJS.Navigation.navigate("/pages/split/split.html");
+                    break;
+            }
+            WinJS.log && WinJS.log("You are viewing the #" + section + " section.", "sample", "status");
+
         },
-        goHome : function() {
-            
+        goHome: function () {
+            WinJS.Navigation.navigate("/pages/items/items.html");
             WinJS.log && WinJS.log("You are home.", "sample", "status");
-            
+
         },
 
         unload: function () {
 
             getImageQueue.inSearchPage = false;
             getImageQueue.queue = [];
-            
+
         },
 
         // This function updates the page layout in response to viewState changes.

@@ -17,7 +17,13 @@ namespace Solvberget.Domain.Implementation
 {
     public class AlephRepository : IRepository
     {
-       
+
+        private readonly StorageHelper _storageHelper;
+
+        public AlephRepository(string pathToImageCache)
+        {
+            _storageHelper = new StorageHelper(pathToImageCache);
+        }
 
         public List<Document> Search(string value)
         {
@@ -52,7 +58,9 @@ namespace Solvberget.Domain.Implementation
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)
                 {
-                    return PopulateDocument(xmlResult, isLight);
+                    var returnDocument = PopulateDocument(xmlResult, isLight);
+                    // Todo: thumb url
+                    return returnDocument;
                 }
             }
 
