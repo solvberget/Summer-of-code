@@ -24,17 +24,13 @@ namespace Solvberget.Domain.Implementation
             _folderPath = string.IsNullOrEmpty(folderPath) ? StdFolderPath : folderPath;
         }
 
-
         public List<LibraryList> GetLists(int? limit = null)
         {
             var lists = new ConcurrentBag<LibraryList>();
 
             Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(LibraryList.GetLibraryListFromXml(file)));
 
-            foreach(var l in lists)
-            {
-                AddContentToList(l);
-            }
+            lists.ToList().ForEach(liblist => { if (liblist != null) AddContentToList(liblist); });
 
             return limit != null 
                 ? lists.OrderBy(list => list.Priority).Take((int)limit).ToList() 
@@ -51,8 +47,6 @@ namespace Solvberget.Domain.Implementation
                 libraryList.Documents.Add(document);
             }
         }
-
-
 
     }
 }

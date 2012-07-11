@@ -18,7 +18,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void Init()
         {
             var path = Path.Combine(Environment.CurrentDirectory, PathString);
-            _listRepository = new LibraryListXmlRepository(new AlephRepository(), path);
+            _listRepository = new LibraryListXmlRepository(new AlephRepository(), new ImageRepository(), path);
         }
 
         [Test]
