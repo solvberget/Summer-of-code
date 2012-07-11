@@ -209,7 +209,12 @@
                    var originalResults = new WinJS.Binding.List();
 
                    for (x in response) {
-                       response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+
+                       if (response[x].ThumbnailUrl !== "")
+                           response[x].BackgroundImage = response[x].ThumbnailUrl;
+                       else
+                           response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+
                        originalResults.push(response[x]);
                    }
 
@@ -218,7 +223,8 @@
                    loadingWheel.stop();
 
                    for (var x in response) {
-                       self.getAndSetThumbImage(originalResults.getItem(x), x);
+                       if (response[x].ThumbnailUrl === "")
+                           self.getAndSetThumbImage(originalResults.getItem(x), x);
                    }
 
                }, this)
@@ -226,38 +232,26 @@
         },
         getAndSetThumbImage: function (item, index) {
 
-            if (item.data.ThumbnailUrl != undefined && item.data.ThumbnailUrl !== "") {
-                item.data.BackgroundImage = item.data.ThumbnailUrl;
 
-                var section = document.getElementById("searchResultSection");
-                if (section != undefined) {
-                    var listView = section.querySelector(".resultslist").winControl;
-                    var htmlItem = listView.elementFromIndex(index);
-                    if (htmlItem != null)
-                        WinJS.Binding.processAll(htmlItem, item.data);
-                }
-            }
-            else {
+            $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
+            .then($.proxy(function (response) {
 
-                $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
-                .then($.proxy(function (response) {
+                if (response != undefined && response != "") {
+                    // Set the new value in the model of this item                   
+                    item.data.BackgroundImage = response;
 
-                    if (response != undefined && response != "") {
-                        // Set the new value in the model of this item                   
-                        item.data.BackgroundImage = response;
+                    // Get the live DOM-object of this item
+                    var section = document.getElementById("searchResultSection");
+                    if (section != undefined) {
+                        var listView = section.querySelector(".resultslist").winControl;
+                        var htmlItem = listView.elementFromIndex(index);
+                        if (htmlItem != null)
+                            WinJS.Binding.processAll(htmlItem, item.data);
 
-                        // Get the live DOM-object of this item
-                        var section = document.getElementById("searchResultSection");
-                        if (section != undefined) {
-                            var listView = section.querySelector(".resultslist").winControl;
-                            var htmlItem = listView.elementFromIndex(index);
-                            if (htmlItem != null)
-                                WinJS.Binding.processAll(htmlItem, item.data);
-
-                        }
                     }
-                }, this));
-            }
+                }
+            }, this));
+
 
         },
 

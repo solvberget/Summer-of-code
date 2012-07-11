@@ -88,16 +88,16 @@ namespace Solvberget.Domain.Implementation
             if (Equals(doc.DocType, typeof(Film).Name))
             {
                 var posterUrl = GetExternalFilmImageUri(doc as Film);
-                posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "150.jpg");
+                posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "60.jpg");
                 return GetLocalImageUrl(posterUrl, size != null ? id + "-" + size : id, true);
 
             }
            
             if (Equals(doc.DocType, typeof(Book).Name))
-                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 150), id, true);
+                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 60), id, true);
             
             if (Equals(doc.DocType, typeof(AudioBook).Name))
-                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 150), id, true);
+                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 60), id, true);
 
             return string.Empty;
         }

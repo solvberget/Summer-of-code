@@ -1,29 +1,21 @@
 ﻿(function () {
 
     // Define the IListDataAdapter.
-    var libraryListsDataAdapter = WinJS.Class.define(
+    var listDataAdapter = WinJS.Class.define(
         function () {
 
             // Constructor
-            this._minPageSize = 10;  // default
-            this._maxPageSize = 50;  // max
-            this._maxCount = 1000;   // limit
+            this._minPageSize = 1;  // default
+            this._maxPageSize = 10;  // max
+            this._maxCount = 20;   // limit
+            this._count = 0;
+
         },
 
         // IListDataDapter methods
-        // These methods define the contract between the IListDataSource and the IListDataAdapter.
-        // These methods will be called by vIListDataSource to fetch items, 
-        // get the number of items, and so on.
+       
         {
-            // This example only implements the itemsFromIndex and count methods
-
-            // The itemsFromIndex method is called by the IListDataSource 
-            // to retrieve items. 
-            // It will request a specific item and hints for a number of items before and after the
-            // requested item. 
-            // The implementation should return the requested item. You can choose how many
-            // additional items to send back. It can be more or less than those requested.
-            //
+            
             //   This funtion must return an object that implements IFetchResult. 
             itemsFromIndex: function (requestIndex, countBefore, countAfter) {
                 var that = this;
@@ -52,7 +44,7 @@
                     fetchIndex = requestIndex - countBefore;
                 }
 
-                // Create the request string. 
+                // Create the request string for the lists (no query parameters) 
                 var requestStr = "http://localhost:7089/List/GetLists";
 
                 // Return the promise from making an XMLHttpRequest to the server.
@@ -60,6 +52,7 @@
 
                     // The callback for a successful operation. 
                     function (request) {
+                        var self = that;
                         var results = [], count;
 
                         // Use the JSON parser on the results (it's safer than using eval).
@@ -76,13 +69,16 @@
                                 results.push({
                                     key: (fetchIndex + i).toString(),
                                     data: {
-                                        title: dataItem.Name,
+                                        listtitle: dataItem.Name,
+                                        docnrs: dataItem.DocumentNumbers,
+                                        docs: dataItem.Documents
                                     }
                                 });
                             }
 
-                            // Get the count.
+                            // Get the count
                             count = items.length;
+                            self._count = count;
 
                             return {
                                 items: results, // The array of items.
@@ -104,39 +100,39 @@
             // Gets the number of items in the result list. 
             // The count can be updated in itemsFromIndex.
             getCount: function () {
-                var that = this;
-
-                // Create up a request for 1 item so we can get the count
+                // Create the request string for the lists (no query parameters) 
                 var requestStr = "http://localhost:7089/List/GetLists";
 
-                // Make an XMLHttpRequest to the server and use it to get the count.
+                // Return the promise from making an XMLHttpRequest to the server.
                 return WinJS.xhr({ url: requestStr }).then(
 
-                    // The callback for a successful operation.
+                    // The callback for a successful operation. 
                     function (request) {
-                        var data = JSON.parse(request.responseText);
 
-                        // Bing may return a large count of items, 
-                        /// but you can only fetch the first 1000.
-                        return Math.min(data.length, that._maxCount);
+                        // Use the JSON parser on the results (it's safer than using eval).
+                        var obj = JSON.parse(request.responseText);
+
+                        // Verify that the service returned images.
+                        if (obj !== undefined) {
+                            return obj.length;
+                        } else {
+                            return WinJS.UI.FetchError.doesNotExist;
+                        }
                     },
+
+                    // Called if the WinJS.xhr funtion returned an error. 
                     function (request) {
-                        return WinJS.Promise.wrapError(new WinJS.ErrorFromName(WinJS.UI.FetchError.doesNotExist));
+                        return WinJS.UI.FetchError.noResponse;
                     });
             }
-
-            // setNotificationHandler: not implemented
-            // itemsFromStart: not implemented
-            // itemsFromEnd: not implemented
-            // itemsFromKey: not implemented
-            // itemsFromDescription: not implemented
+            
         }
         );
 
-    var libraryListsDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function () {
-        this._baseDataSourceConstructor(new libraryListsDataAdapter());
+    var listDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function () {
+        this._baseDataSourceConstructor(new listDataAdapter());
     });
 
-    WinJS.Namespace.define("DataSources", { libraryListsDataSource: libraryListsDataSource });
+    WinJS.Namespace.define("DataSources.List", { ListDataSource: listDataSource });
 
 })();

@@ -285,6 +285,7 @@
     <Content Include="js\converters.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\ListDataSource.js" />
     <Content Include="js\DocumentDataSource.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -294,7 +295,6 @@
       </IncludedFiles>
     </Content>
     <Content Include="js\EventDataSource.js" />
-    <Content Include="js\LibraryListDataSource.js" />
     <Content Include="pages\events\events.css" />
     <Content Include="js\EventDataSource.js">
       <Compile>True</Compile>

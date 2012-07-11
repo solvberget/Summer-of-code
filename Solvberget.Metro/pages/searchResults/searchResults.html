@@ -29,8 +29,9 @@
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item">
             <!--<img class="item-image" src="/images/dummydata/hp1.jpeg" data-win-bind="alt: Title" />-->
-            <img class="item-image" src="#" data-win-bind="src:BackgroundImage; alt: Title" />
-            
+            <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                <img class="item-image" src="#" data-win-bind="src:BackgroundImage; alt: Title" />
+            </div>
             <div class="item-content">
                 <h3 class="item-title win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: Title searchResults.markText"></h3>
                 <h4 class="item-subtitle win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: AgeLimit searchResults.markText"></h4>

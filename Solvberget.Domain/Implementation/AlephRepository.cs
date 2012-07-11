@@ -58,9 +58,18 @@ namespace Solvberget.Domain.Implementation
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)
                 {
-                    var returnDocument = PopulateDocument(xmlResult, isLight);
-                    // Todo: thumb url
-                    return returnDocument;
+                    var docToReturn = PopulateDocument(xmlResult, isLight);
+                    //We add the number here because it is not in the result 
+                    //when getting the document it self from Aleph
+                    docToReturn.DocumentNumber = documentNumber;
+
+                    docToReturn.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(docToReturn.DocumentNumber, true);
+
+                    if (!isLight)
+                        docToReturn.ImageUrl = _storageHelper.GetLocalImageFileCacheUrl(docToReturn.DocumentNumber, false);
+
+                    
+                    return docToReturn;
                 }
             }
 
@@ -91,6 +100,8 @@ namespace Solvberget.Domain.Implementation
                 xmlResult.ForEach(x => documents.Add(PopulateDocument(x, true)));
             }
             documents.RemoveAll(x => x.Title == null);
+            documents.ForEach(d => d.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(d.DocumentNumber, true));
+            
             return documents;
         }
 
