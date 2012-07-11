@@ -26,7 +26,7 @@
     margin-left: 120px;
     margin-top: 5px;
     width: 400px;
-    float:left;
+    float: left;
 }
 
 
@@ -56,44 +56,44 @@
     margin-right: 5px;
     width: calc(70% - 50px);
     height: calc(100% - 50px);
-    float:right;
+    float: right;
 }
 
-.itemdetailpage .content .itemlist .win-vertical.win-viewport .win-container {
-    margin-bottom: 15px;
-    margin-right: 5px;
-    height: 100%;
-}
-
-.itemdetailpage .content .itemlist .win-container .win-selectioncheckmark {
-    display: none;
-}
-
-.itemdetailpage .content .itemlist .win-container .win-selectioncheckmarkbackground {
-    display: none;
-}
-
-.itemdetailpage .content .itemlist .win-item {
-    height: 60px;
-    width: 500px;
-}
-
-    .itemdetailpage .content .itemlist .win-item .item-info {
-        -ms-grid-column: 2;
-        margin-left: 10px;
-        margin-right: 20px;
-        overflow: auto;
+    .itemdetailpage .content .itemlist .win-vertical.win-viewport .win-container {
+        margin-bottom: 15px;
+        margin-right: 5px;
+        height: 100%;
     }
 
-        .itemdetailpage .content .itemlist .win-item .item-info .item-title {
-            margin-top: 4px;
+    .itemdetailpage .content .itemlist .win-container .win-selectioncheckmark {
+        display: none;
+    }
+
+    .itemdetailpage .content .itemlist .win-container .win-selectioncheckmarkbackground {
+        display: none;
+    }
+
+    .itemdetailpage .content .itemlist .win-item {
+        height: 60px;
+        width: 500px;
+    }
+
+        .itemdetailpage .content .itemlist .win-item .item-info {
+            -ms-grid-column: 2;
+            margin-left: 10px;
+            margin-right: 20px;
             overflow: auto;
         }
 
-        .itemdetailpage .content .itemlist .win-item .item-info .item-value {
-            opacity: 1;
-            overflow: auto;
-        }
+            .itemdetailpage .content .itemlist .win-item .item-info .item-title {
+                margin-top: 4px;
+                overflow: auto;
+            }
+
+            .itemdetailpage .content .itemlist .win-item .item-info .item-value {
+                opacity: 1;
+                overflow: auto;
+            }
 
 
 
@@ -116,7 +116,7 @@
             -ms-grid-row: 2;
             -ms-grid-rows: auto 60px;
             display: -ms-grid;
-            height: 100%;
+            height: 100px;
             margin-left: 20px;
             width: 300px;
         }
@@ -131,6 +131,15 @@
             .itemdetailpage .content article .item-content {
                 padding-bottom: 60px;
             }
+
+        .itemdetailpage .content .itemlist {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-right: 5px;
+            width: calc(70% - 50px);
+            height: calc(100% - 50px);
+            
+        }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {

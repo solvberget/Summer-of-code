@@ -127,7 +127,7 @@
             args.detail.itemPromise.done(function itemInvoked(item) {
                 // TODO: Navigate to the item that was invoked.
                 var itemObject = args.detail.itemPromise._value.data;
-                nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: itemObject.DocumentNumber });
+                nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: itemObject, key: itemObject.DocumentNumber });
             });
         },
 

@@ -7,20 +7,9 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
 
-    var ajaxGetDocumentImage = function (query) {
-        var url = "http://localhost:7089/Document/GetDocumentImage/";
-        return $.getJSON(url + query);
-    }
-    var ajaxGetThumbnailDocumentImage = function (query, size) {
-        var url = "http://localhost:7089/Document/GetDocumentImage/";
-        var thumbUrl = size == undefined ? url + query : url + query + "/" + size;
-        return $.getJSON(thumbUrl);
-
-    }
-
     ui.Pages.define("/pages/itemDetail/itemDetail.html", {
 
-        item: undefined,
+        itemModel: undefined,
         documentId: undefined,
         viewModel: undefined,
         itemSelectionIndex: -1,
@@ -32,60 +21,25 @@
             return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
         },
 
-        selectionChanged: function (args) {
-            var listView = document.body.querySelector(".itemlist").winControl;
-            var details;
-            var that = this;
-            // By default, the selection is restriced to a single item.
-            listView.selection.getItems().done(function updateDetails(items) {
-                if (items.length > 0) {
-                    that.itemSelectionIndex = items[0].index;
-                    if (that.isSingleColumn()) {
-                        // If snapped or portrait, navigate to a new page containing the
-                        // selected item's details.
-                        // NOT IMPLEMENTED
-                        //nav.navigate("/pages/itemDetail/itemDetail.html", { selectedIndex: that.itemSelectionIndex, item: items[0].data });
-                    } else {
-                        // If fullscreen or filled, update the details column with new data.
-
-                        details = document.querySelector(".itemlist");
-                        binding.processAll(details, items[0].data);
-
-
-                        // Fix for removing cached data, Windows error. 
-                        setTimeout(function () {
-                            window.focus();
-                        }, 0);
-
-                    }
-                }
-            });
-        },
         ready: function (element, options) {
             var that = this;
-            this.item = options.item;
+            this.itemModel = options.itemModel;
             this.documentId = options.key;
 
             //Init viewmodel
-
             var initViewModel = function () {
-               
                 var contentDiv = element.querySelector(".article");
-              
-                that.setViewModel(that.item);
+                that.setViewModel(that.itemModel);
                 WinJS.Binding.processAll(contentDiv, that.viewModel);
             }
             initViewModel();
 
-
-
-            $.when(ajaxGetThumbnailDocumentImage(this.documentId, 1000))
+            $.when(Solvberget.DocumentImage.get(this.documentId))
                .then($.proxy(function (response) {
                    if (response != undefined && response != "") {
                        // Set the new value in the model of this item
                        this.viewModel.image = response;
-                       var imageDiv = document.getElementById("#item-image");
-
+                       var imageDiv = document.querySelector(".item-image-container");
                        WinJS.Binding.processAll(imageDiv, this.viewModel);
 
                    }
@@ -97,45 +51,26 @@
             //Setup the EventDataSource
             var documentDataSource = new DataSources.documentDataSource(this.documentId);
 
-            this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
-
             // Set up the ListView.
             listView.itemDataSource = documentDataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
-            listView.onselectionchanged = this.selectionChanged.bind(this);
             listView.layout = new ui.GridLayout();
 
-           
-            if (this.isSingleColumn()) {
-                if (this.itemSelectionIndex >= 0) {
-                    // For single-column detail view, load the article.
-                    console.log("Binding break");
-                    //binding.processAll(element.querySelector(".articlesection"), options.item);
-                }
-            } else {
-                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/itemDetail/itemDetail.html") {
-                    // Clean up the backstack to handle a user snapping, navigating
-                    // away, unsnapping, and then returning to this page.
-                    nav.history.backStack.pop();
-                }
-                // If this page has a selectionIndex, make that selection
-                // appear in the ListView.
-                listView.selection.set(Math.max(this.itemSelectionIndex, 0));
-            }
-            // Store information about the group and selection that this page will
-            // display.
-
+            //Used to refresh list..
+            listView.selection.set(0);
+            listView.selection.clear();
 
             this.registerForShare();
-
 
             element.querySelector(".itemdetailpage").focus();
         },
 
-        setViewModel: function (item) {
-            eval("this.viewModel = ViewModel." + item.DocType.toString());
+        setViewModel: function (itemModel) {
+
+            eval("this.viewModel = ViewModel." + itemModel.DocType);
             if (this.viewModel !== undefined)
-                this.viewModel.fillProperties(item);
+                this.viewModel.fillProperties(itemModel);
+            this.viewModel.image = "undefined";
         },
         unload: function () {
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
@@ -150,7 +85,7 @@
 
             var listView = element.querySelector(".itemlist").winControl;
             var firstVisible = listView.indexOfFirstVisible;
-          
+
 
             var handler = function (e) {
                 listView.removeEventListener("contentanimating", handler, false);
@@ -163,14 +98,15 @@
                     // If the app has snapped into a single-column detail view,
                     // add the single-column list view to the backstack.
                     nav.history.current.state = {
-                        selectedIndex: this.itemSelectionIndex
+                        itemModel: this.itemModel,
+                        key: this.documentId
                     };
                     nav.history.backStack.push({
                         location: "/pages/itemDetail/itemDetail.html",
-                        state: { }
+
+                        state: { itemModel: this.itemModel, key: this.documentId }
                     });
-                   
-                    element.querySelector(".itemdetailpage").focus();
+                    element.querySelector(".content").focus();
                 } else {
                     listView.addEventListener("contentanimating", handler, false);
                     listView.indexOfFirstVisible = firstVisible;
@@ -188,12 +124,8 @@
                     listView.forceLayout();
                 }
 
-                listView.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
-                //Init viewmodel
-               
-
+                listView.selection.set(0);
             }
-           
         },
         registerForShare: function () {
 

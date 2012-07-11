@@ -276,6 +276,8 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="js\documentImage.js" />
+    <Content Include="js\localizationHelper.js" />
     <Content Include="js\converters.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
@@ -289,7 +291,6 @@
     </Content>
     <Content Include="js\EventDataSource.js" />
     <Content Include="js\LibraryListDataSource.js" />
-    <Content Include="js\script.js" />
     <Content Include="pages\events\events.css" />
     <Content Include="js\EventDataSource.js">
       <Compile>True</Compile>

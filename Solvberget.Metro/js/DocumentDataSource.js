@@ -78,9 +78,21 @@
                             for (property in item) {
                                 var itemValue = null;
                                 var itemName = null;
+
                                 itemValue = eval("item." + property);
-                                itemName = property;
-                                if (itemValue !== null) {
+                                itemName = Solvberget.Localization.getString(property);
+                                if (itemValue !== null && itemValue.toString() !== []) {
+                                    var type = typeof (itemValue);
+                                    while (type !== "string" && type !== "integer") {
+                                        itemValue = itemValue.toString();
+                                        type = typeof (itemValue);     
+                                    }
+                                    if (itemValue.toString==="[object Object],[object Object]") {
+                                        for (var property in itemValue) {
+                                            itemValue += property + ": " + eval("itemValue." + property);
+                                        }
+                                    }
+
                                     //items[i] = new Object();
                                     //var temp = items[i];
                                     //eval("temp." + itemName + "='" + itemValue + "'");
@@ -94,6 +106,7 @@
                                             propertyValue: itemValue,
                                         }
                                     });
+
                                     i++;
                                 }
                             }
@@ -134,7 +147,7 @@
                         for (property in item) {
                             var itemValue = eval("item." + property);
                             if (itemValue !== null) {
-                               
+
                                 i++;
                             }
                         }
