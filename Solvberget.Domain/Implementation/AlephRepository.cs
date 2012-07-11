@@ -52,7 +52,11 @@ namespace Solvberget.Domain.Implementation
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)
                 {
-                    return PopulateDocument(xmlResult, isLight);
+                    var docToReturn = PopulateDocument(xmlResult, isLight);
+                    //We add the number here because it is not in the result 
+                    //when getting the document it self from Aleph
+                    docToReturn.DocumentNumber = documentNumber;
+                    return docToReturn;
                 }
             }
 

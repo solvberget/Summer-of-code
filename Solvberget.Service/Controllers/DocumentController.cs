@@ -45,6 +45,7 @@ namespace Solvberget.Service.Controllers
             var result = _imageRepository.GetDocumentImage(id);
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
+
         public JsonResult GetDocumentThumbnailImage(string id, string size)
         {
             var result = _imageRepository.GetDocumentThumbnailImage(id, size);
@@ -60,20 +61,6 @@ namespace Solvberget.Service.Controllers
         public JsonResult SuggestionList ()
         {
             return this.Json(_spellingRepository.SuggestionList(), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetDocumentsLight(string ids)
-        {
-            if (ids != null)
-            {
-                IEnumerable<string> splitParams = ids.Split('-');
-                var result = _repository.GetDocumentsLight(splitParams);
-                return this.Json(result, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return this.Json(new List<Document>(), JsonRequestBehavior.AllowGet);
-            }
         }
 
     }

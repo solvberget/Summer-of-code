@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
@@ -41,29 +42,37 @@ namespace Solvberget.Domain.Implementation
             _xmluri += "SYSTEM=" + _serverSystem;
         }
 
-
+        [OutputCache]
         public string GetDocumentImage(string id)
         {
+            var cacheUrl = GetLocalFileCacheUrl(id, false);
+            if (!string.IsNullOrEmpty(cacheUrl))
+                return cacheUrl;
 
             var doc = AlephRepository.GetDocument(id, false);
             if (doc == null)
                 return string.Empty;
 
             if (Equals(doc.DocType, typeof(Film).Name))
-                return GetLocalImageUrl(GetExternalFilmImageUri(doc as Film), false);
+                return GetLocalImageUrl(GetExternalFilmImageUri(doc as Film), id, false);
 
             if (Equals(doc.DocType, typeof(Book).Name))
-                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, false), false);
+                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, false), id, false);
 
             if (Equals(doc.DocType, typeof(AudioBook).Name))
-                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, false), false);
+                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, false), id, false);
 
 
             return string.Empty;
         }
 
+        [OutputCache]
         public string GetDocumentThumbnailImage(string id, string size)
         {
+
+            var cacheUrl = GetLocalFileCacheUrl(size != null ? id + "-" + size : id, true);
+            if (!string.IsNullOrEmpty(cacheUrl))
+                return cacheUrl;
 
             var doc = AlephRepository.GetDocument(id, false);
 
@@ -74,20 +83,35 @@ namespace Solvberget.Domain.Implementation
             {
                 var posterUrl = GetExternalFilmImageUri(doc as Film);
                 posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "150.jpg");
-                return GetLocalImageUrl(posterUrl, true);
+                return GetLocalImageUrl(posterUrl, size != null ? id + "-" + size : id, true);
 
             }
            
             if (Equals(doc.DocType, typeof(Book).Name))
-                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 150), true);
+                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 150), id, true);
             
             if (Equals(doc.DocType, typeof(AudioBook).Name))
-                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 150), true);
+                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 150), id, true);
 
             return string.Empty;
         }
 
+        private string GetLocalFileCacheUrl(string id, bool isThumb)
+        {
+            if (!Directory.Exists(_pathToImageCache))
+                return string.Empty;
 
+            var fileName = isThumb ? Path.Combine(_pathToImageCache, "thumb" + id + ".jpg") : Path.Combine(_pathToImageCache, id + ".jpg");
+
+            if (File.Exists(fileName))
+            {
+                var imageName = isThumb ? "thumb" + id + ".jpg" : id + ".jpg";
+                var localServerUrl = Properties.Settings.Default.ServerUrl;
+                var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
+                return localServerUrl + localImageCacheFolder + imageName;
+            }
+            return string.Empty;
+        }
 
         private string GetExternalBookImageUri ( Book book, bool fetchThumbnail )
         {
@@ -119,7 +143,7 @@ namespace Solvberget.Domain.Implementation
         }
 
 
-        private string GetExternalFilmImageUri(Film film)
+        private static string GetExternalFilmImageUri(Film film)
         {
 
             // --------------------------- IMDB ---------------------------
@@ -190,15 +214,13 @@ namespace Solvberget.Domain.Implementation
             return false;
         }
 
-        private string GetLocalImageUrl(string externalImageUrl, bool isThumbnail)
+        private string GetLocalImageUrl(string externalImageUrl, string id, bool isThumbnail)
         {
 
             if (string.IsNullOrEmpty(externalImageUrl))
                 return string.Empty;
 
-            var imageName = isThumbnail ? "thumb" : "";
-            imageName += Path.GetFileName(externalImageUrl);
-            if (imageName != "thumb") imageName = imageName.Replace("-", "").Replace("+", "");
+           var imageName = isThumbnail ? "thumb" + id + ".jpg" : id + ".jpg";
 
             RepositoryUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
 

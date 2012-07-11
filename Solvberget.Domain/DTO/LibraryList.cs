@@ -11,10 +11,12 @@ namespace Solvberget.Domain.DTO
         public string Name { get; private set; }
         public int Priority { get; private set; }
         public List<string> DocumentNumbers { get; private set; }
+        public List<Document> Documents { get; set; } 
 
         private LibraryList()
         {
             DocumentNumbers = new List<string>();
+            Documents = new List<Document>();
         }
 
         public static LibraryList GetLibraryListFromXml(string xmlFilePath)
