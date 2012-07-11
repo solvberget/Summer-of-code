@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <VisualElements DisplayName="Solvberget.Metro" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="Solvberget.Metro" ForegroundText="light" BackgroundColor="#464646">
+      <VisualElements DisplayName="Sølvberget" Logo="images\solvberget150.png" SmallLogo="images\solvberget30.png" Description="Søk i Stavanger Bibliotek sine bøker, filmer og lydbøker, og få oversikt over kommende arrangementer!" ForegroundText="light" BackgroundColor="#000000">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="images\splashscreen.png" />
+        <SplashScreen Image="images\solvberget_splash.png" />
       </VisualElements>
       <Extensions>
         <Extension Category="windows.search" />
