@@ -274,13 +274,27 @@
     <Content Include="images\placeholders\Film.png" />
     <Content Include="images\placeholders\transp.png" />
     <Content Include="images\smalllogo.png" />
+    <Content Include="images\solvberget150.png" />
+    <Content Include="images\solvberget30.png" />
+    <Content Include="images\solvberget_splash.png" />
+    <Content Include="images\solvberget_wide.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="js\documentImage.js" />
+    <Content Include="js\localizationHelper.js" />
+    <Content Include="js\converters.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\DocumentDataSource.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="js\EventDataSource.js" />
     <Content Include="js\LibraryListDataSource.js" />
-    <Content Include="js\script.js" />
     <Content Include="pages\events\events.css" />
     <Content Include="js\EventDataSource.js">
       <Compile>True</Compile>
@@ -316,7 +330,7 @@
     <Content Include="pages\itemDetail\viewmodels\audioBookItem.js" />
     <Content Include="pages\itemDetail\viewmodels\bookItem.js" />
     <Content Include="pages\itemDetail\viewmodels\documentList.js" />
-    <Content Include="pages\itemDetail\viewmodels\movieItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\filmItem.js" />
     <Content Include="sass\default.css" />
     <Content Include="sass\ie.css" />
     <Content Include="sass\print.css" />

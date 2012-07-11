@@ -26,5 +26,14 @@
     "LocationCode"          : "Lokasjonskode",
     "SeriesTitle"           : "Serie tittel",
     "SeriesNumber"          : "Serienummer",
-    "DocumentNumber"        : "Dokument nummer"
+    "DocumentNumber"        : "Dokument nummer",
+    "ReferredPersons"       : "Omtalte personer",
+    "ReferredOrganizations" : "Omtalte organisasjoner/grupper",
+    "ReferrencedPlaces"         : "Omtalte steder",
+    "ReferencedPlaces"         : "Omtalte steder",
+    "Subject"               : "Emne",
+    "InvolvedOrganizations" : "Knyttet organisasjon/gruppe",
+    "ResponsiblePersons"    : "Liste over ansvarlige personer",
+    "ProductionYear"        : "Publikasjonsår"
+
 }

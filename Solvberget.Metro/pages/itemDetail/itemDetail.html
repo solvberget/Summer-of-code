@@ -13,16 +13,30 @@
     <link href="/pages/itemDetail/itemDetail.css" rel="stylesheet" />
     <script src="/pages/itemDetail/itemDetail.js"></script>
     <script src="/pages/itemDetail/viewmodels/bookItem.js"></script>
-    <script src="/pages/itemDetail/viewmodels/movieItem.js"></script>
+    <script src="/pages/itemDetail/viewmodels/filmItem.js"></script>
     <script src="/pages/itemDetail/viewmodels/audioBookItem.js"></script>
     <script src="/pages/itemDetail/viewmodels/documentList.js"></script>
-    <script src="/pages/itemDetail/fragments/factsFragment/factsFragment.js"></script>
+    <script src="../../js/DocumentDataSource.js"></script>
+     <script src="../../js/localizationHelper.js"></script>
+     <script src="../../js/documentImage.js"></script>
+    <script src="../../js/converters.js"></script>
 
 
 
 </head>
 <body>
-    <div id="item-detailpage" class="itemdetailpage fragment">
+
+    <!-- This template is used to display each item in the ListView declared below. -->
+    <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-info">
+            <b class="item-title" data-win-bind="textContent: propertyName;"></b>
+            <div class="item-value" data-win-bind="innerHTML: propertyValue; ">
+                <!--style.display: propertyValue Solvberget.Converters.styleNullToHiddenConverter">-->
+            </div>
+        </div>
+    </div>
+
+    <div class="itemdetailpage fragment">
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back" disabled></button>
             <h1 class="titlearea win-type-ellipsis">
@@ -45,15 +59,14 @@
                         <img id="item-image" src="#" data-win-bind="src: image; alt: title" />
                     </div>
 
-                    <div id="factsFragmentContainter">
-                        <div id="factsFragment"></div>
-                    </div>
 
-                    <div id="item-content" data-win-bind="innerHTML: content"></div>
 
 
                 </div>
             </article>
+    
+
+                <div id="itemlist" class="itemlist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
 
         </div>
     </div>
