@@ -56,7 +56,8 @@
             listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.layout = new ui.GridLayout();
 
-            //Used to refresh list..
+            //Refresh list..
+            
             listView.selection.set(0);
             listView.selection.clear();
 

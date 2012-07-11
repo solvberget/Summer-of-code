@@ -10,7 +10,7 @@
     "use strict";
 
     var appModel = Windows.ApplicationModel;
-    var appViewState = Windows.UI.ViewManagement.ApplicationViewState
+    var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
@@ -31,8 +31,7 @@
 
     var spellingMethods = {
 
-    }
-
+    };
     var loadingWheel = {
         opts: {
             lines: 17, // The number of lines to draw
@@ -69,37 +68,37 @@
 
     var ajaxSearchDocuments = function (query) {
         return $.getJSON("http://localhost:7089/Document/Search/" + query);
-    }
+    };
     var ajaxGetThumbnailDocumentImage = function (query, size) {
         var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
         return $.getJSON(size == undefined ? url + query : url + query + "/" + size );
-    }
+    };
     var lookupDict = function (query) {
         // Does not work, do not return the json promise
         return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
-    }
+    };
     var getImageQueue = {
         queue: [],
         working: false,
         inSearchPage : false,
         fireFinished: function () {
 
-            this.working = false;
-            this.startWorking();
+            getImageQueue.working = false;
+            getImageQueue.startWorking();
 
         },
         addToQueue: function (item, index) {
 
-            this.queue.push({ item: item, index: index });
-            this.startWorking();
+            getImageQueue.queue.push({ item: item, index: index });
+            getImageQueue.startWorking();
 
         },
         startWorking: function () {
-            if (!this.working && this.inSearchPage) {
-                this.working = true;
+            if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
+                getImageQueue.working = true;
 
-                var itemIndexObj = this.queue[0];
-                this.queue.shift();
+                var itemIndexObj = getImageQueue.queue[0];
+                getImageQueue.queue.shift();
                 if (itemIndexObj != undefined)
                     self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
 
@@ -118,9 +117,9 @@
 
             // TODO: Replace or remove example filters.
             this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
-            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film" } });
-            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook" } });
-            this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document" } });
+            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film"; } });
+            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook"; } });
+            this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document"; } });
         },
 
         itemInvoked: function (args) {
@@ -220,7 +219,7 @@
                    var originalResults = new WinJS.Binding.List();
 
                    for (x in response) {
-                       response[x].backgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                       response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
                        originalResults.push(response[x]);
                    }
 
@@ -243,7 +242,7 @@
 
                 if (response != undefined && response != "") {
                     // Set the new value in the model of this item                   
-                    item.data.backgroundImage = response;
+                    item.data.BackgroundImage = response;
 
                     // Get the live DOM-object of this item
                     var section = document.getElementById("searchResultSection");
@@ -253,7 +252,7 @@
 
                         // Update the live DOM-object
                         if(getImageQueue.inSearchPage) 
-                           $(htmlItem).find("img").attr("src", item.data.backgroundImage);
+                            $(htmlItem).find("img").attr("src", item.data.BackgroundImage);
 
                         
                     }
@@ -341,7 +340,7 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-
+            
             self = this;
             getImageQueue.inSearchPage = true;
 
@@ -355,7 +354,8 @@
         unload: function () {
 
             getImageQueue.inSearchPage = false;
-
+            getImageQueue.queue = [];
+            
         },
 
         // This function updates the page layout in response to viewState changes.
@@ -370,7 +370,7 @@
                     var handler = function (e) {
                         listView.removeEventListener("contentanimating", handler, false);
                         e.preventDefault();
-                    }
+                    };
                     listView.addEventListener("contentanimating", handler, false);
                     var firstVisible = listView.indexOfFirstVisible;
                     this.initializeLayout(listView, viewState);
