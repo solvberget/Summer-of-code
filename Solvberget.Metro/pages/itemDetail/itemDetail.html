@@ -17,8 +17,8 @@
     <script src="/pages/itemDetail/viewmodels/audioBookItem.js"></script>
     <script src="/pages/itemDetail/viewmodels/documentList.js"></script>
     <script src="../../js/DocumentDataSource.js"></script>
-     <script src="../../js/localizationHelper.js"></script>
-     <script src="../../js/documentImage.js"></script>
+    <script src="../../js/localizationHelper.js"></script>
+    <script src="../../js/documentImage.js"></script>
     <script src="../../js/converters.js"></script>
 
 
@@ -42,7 +42,7 @@
             <h1 class="titlearea win-type-ellipsis">
                 <span class="pagetitle" data-win-bind="textContent: title">Informasjon</span>
             </h1>
-            
+
 
 
         </header>
@@ -50,25 +50,22 @@
 
             <article>
                 <div>
-                     <div id="openShare"><a href="#">Del med andre!</a></div>
+                    <div id="openShare"><a href="#">Del med andre!</a></div>
                     <header>
                         <!-- <h2 id="item-title" class="win-type-ellipsis" data-win-bind="textContent: subtitle"></h2>-->
-                       <h3 id="item-subtitle" class="win-type-ellipsis" data-win-bind="textContent: subtitle"></h3>
+                        <h3 id="item-subtitle" class="win-type-ellipsis" data-win-bind="textContent: subtitle"></h3>
 
                     </header>
-                    
+
                     <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                         <img id="item-image" src="#" data-win-bind="src: image; alt: title" />
                     </div>
 
-
-                   
-
                 </div>
             </article>
-    
 
-                <div id="itemlist" class="itemlist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+
+            <div id="itemlist" class="itemlist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
 
         </div>
     </div>
