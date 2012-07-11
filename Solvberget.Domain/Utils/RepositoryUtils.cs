@@ -70,11 +70,11 @@ namespace Solvberget.Domain.Utils
                 return;
             }
 
-
-            
-
-           
-            image.Save(fileName);
+            try
+            {
+                image.Save(fileName);
+            }
+            catch (Exception) { }
         }
 
 
