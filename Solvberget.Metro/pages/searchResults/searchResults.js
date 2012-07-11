@@ -1,12 +1,4 @@
-﻿// For an introduction to the Search Contract template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkId=232512
-
-// TODO: Add the following script tag to the start page's head to
-// subscribe to search contract events.
-//  
-// <script src="/js/viewmodels/searchResults.js"></script>
-
-(function () {
+﻿(function () {
     "use strict";
 
     var appModel = Windows.ApplicationModel;
@@ -15,6 +7,7 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
     var searchPageURI = "/pages/searchResults/searchResults.html";
+
     var suggestionMethods = {
         suggestionList: [],
         url: "http://localhost:7089/Document/SuggestionList/",
@@ -24,14 +17,49 @@
         getSuggestionListFromServer: function () {
             $.getJSON(suggestionMethods.url, suggestionMethods.populateSuggestionList);
         },
+        updateSuggestions: function (query) {
+
+            // Reset suggestion
+            suggestionMethods.didYouMean = "";
+            suggestionMethods.suggestionQuery = "";
+
+
+            // Get a new search-suggestion
+            $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
+
+                // Check to see if we have a suggestion
+                if (query != allData && allData != "") {
+
+                    suggestionMethods.didYouMean = allData;
+                    suggestionMethods.suggestionQuery = allData;
+
+                    var bindingSource = WinJS.Binding.as(suggestionMethods);
+                    bindingSource.didYouMean = "Mente du " + suggestionMethods.didYouMean + "?";
+
+                    var spanDidYouMean = document.getElementById("spanDidYouMean");
+
+                    $(spanDidYouMean).click(function () {
+
+                        var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                        searchPane.show(suggestionMethods.suggestionQuery);
+
+                    });
+
+                    // Fade in the suggestion
+                    $(spanDidYouMean).hide();
+                    WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+                    setTimeout(function () {
+                        $(spanDidYouMean).fadeIn(250);
+                    }, 1600);
+                }
+            });
+
+        },
         didYouMean: "",
         suggestionQuery: "",
 
     };
 
-    var spellingMethods = {
-
-    };
     var loadingWheel = {
         opts: {
             lines: 17, // The number of lines to draw
@@ -74,7 +102,6 @@
         return $.getJSON(size == undefined ? url + query : url + query + "/" + size );
     };
     var lookupDict = function (query) {
-        // Does not work, do not return the json promise
         return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
     };
     var getImageQueue = {
@@ -105,39 +132,33 @@
             }
         }
     };
+
     var self;
+
     ui.Pages.define(searchPageURI, {
-        /// <field elementType="Object" />
         filters: [],
         lastSearch: "",
 
         generateFilters: function () {
-            this.filters = [];
-            this.filters.push({ results: null, text: "Alle", predicate: function (item) { return true; } });
 
-            // TODO: Replace or remove example filters.
+            this.filters = [];
+
+            this.filters.push({ results: null, text: "Alle", predicate: function (item) { return true; } });
             this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
             this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film"; } });
             this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook"; } });
             this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document"; } });
+
         },
 
         itemInvoked: function (args) {
             args.detail.itemPromise.done(function itemInvoked(item) {
-                // TODO: Navigate to the item that was invoked.
+
                 var itemObject = args.detail.itemPromise._value.data;
                 nav.navigate("/pages/itemDetail/itemDetail.html", { item: itemObject, key: itemObject.DocumentNumber });
             });
         },
 
-        // This function populates a WinJS.Binding.List with search results for the
-        // provided query.
-        searchData: function (queryText) {
-
-            var originalResults;
-            var regex;
-
-        },
 
         // This function filters the search data using the specified filter.
         applyFilter: function (filter, originalResults) {
@@ -160,42 +181,7 @@
 
             listView.itemDataSource = this.filters[filterIndex].results.dataSource;
         },
-        updateSuggestions: function (query) {
-
-            // Reset suggestion
-            suggestionMethods.didYouMean = "";
-            suggestionMethods.suggestionQuery = "";
-
-
-            // Get a new search-suggestion
-            $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
-
-                // Check to see if we have a suggestion
-                if (query != allData && allData != "") {
-
-                    suggestionMethods.didYouMean = allData;
-                    suggestionMethods.suggestionQuery = allData;
-
-                    var bindingSource = WinJS.Binding.as(suggestionMethods);
-                    bindingSource.didYouMean = "Mente du " + suggestionMethods.didYouMean + "?";
-
-                    var spanDidYouMean = document.getElementById("spanDidYouMean");
-
-                    $(spanDidYouMean).click(function () {
-
-                        var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
-                        searchPane.show(suggestionMethods.suggestionQuery);
-
-                    });
-
-                    WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
-
-                }
-            });
-
-        },
-
-
+        
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
             this.lastSearch = args.queryText;
@@ -211,8 +197,9 @@
             // Show loadingWheel
             loadingWheel.spin();
 
-            this.updateSuggestions(args.queryText);
+            suggestionMethods.updateSuggestions(args.queryText);
 
+            // Perform the search
             $.when(ajaxSearchDocuments(args.queryText))
                .then($.proxy(function (response) {
 
@@ -230,7 +217,6 @@
                    for (var x in response) {
                        getImageQueue.addToQueue(originalResults.getItem(x), x);
                    }
-
 
                }, this)
             );
@@ -250,16 +236,12 @@
                         var listView = section.querySelector(".resultslist").winControl;                       
                         var htmlItem = listView.elementFromIndex(index);
 
-                        // Update the live DOM-object
-                        if(getImageQueue.inSearchPage) 
-                            $(htmlItem).find("img").attr("src", item.data.BackgroundImage);
-
+                        WinJS.Binding.processAll(htmlItem, item.data);
                         
                     }
                 }
                 getImageQueue.fireFinished();
             }, this));
-
 
         },
         
@@ -350,7 +332,39 @@
             this.handleQuery(element, options);
             listView.element.focus();
 
+            document.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
+            document.getElementById("eventsMenuItem").addEventListener("click", function () { self.goToSection("Arrangementer"); }, false);
+            document.getElementById("searchMenuItem").addEventListener("click", function () { self.goToSection("Søk"); }, false);
+            document.getElementById("musicMenuItem").addEventListener("click", function () { self.goToSection("Musikk"); }, false);
+            document.getElementById("listsMenuItem").addEventListener("click", function () { self.goToSection("Lister"); }, false);
+            document.getElementById("mypageMenuItem").addEventListener("click", function () { self.goToSection("Min side"); }, false);
+            document.getElementById("infoMenuItem").addEventListener("click", function () { self.goToSection("Informasjon"); }, false);
+            document.getElementById("homeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
+
         },
+        
+        showHeaderMenu : function() {
+            
+           var title = document.querySelector("header .titlearea");
+            var menu = document.getElementById("headerMenu").winControl;
+             menu.anchor = title;
+           menu.placement = "bottom";
+            menu.alignment = "left";
+
+            menu.show();
+            
+        },
+        goToSection : function(section) {
+            
+            WinJS.log && WinJS.log("You are viewing the " + section + " section.", "sample", "status");
+            
+        },
+        goHome : function() {
+            
+            WinJS.log && WinJS.log("You are home.", "sample", "status");
+            
+        },
+
         unload: function () {
 
             getImageQueue.inSearchPage = false;
@@ -360,9 +374,6 @@
 
         // This function updates the page layout in response to viewState changes.
         updateLayout: function (element, viewState, lastViewState) {
-            /// <param name="element" domElement="true" />
-            /// <param name="viewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
-            /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
 
             var listView = element.querySelector(".resultslist").winControl;
             if (lastViewState !== viewState) {
@@ -396,9 +407,6 @@
 
     // Populate suggestionList from server
     suggestionMethods.getSuggestionListFromServer();
-
-
-
 
     Windows.ApplicationModel.Search.SearchPane.getForCurrentView().onsuggestionsrequested = function (eventObject) {
         var queryText = eventObject.queryText, suggestionRequest = eventObject.request;
