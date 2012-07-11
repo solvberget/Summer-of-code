@@ -1,37 +1,132 @@
 ﻿(function () {
     "use strict";
 
+    var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
+    var binding = WinJS.Binding;
+    var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
 
-    var ajaxGetDocumentImage = function (query) {
-        var url = "http://localhost:7089/Document/GetDocumentImage/";
-        return $.getJSON(url + query);
-    }
-
-
     ui.Pages.define("/pages/itemDetail/itemDetail.html", {
 
-        item: undefined,
+        itemModel: undefined,
         documentId: undefined,
         viewModel: undefined,
+        itemSelectionIndex: -1,
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
+
+        isSingleColumn: function () {
+            var viewState = Windows.UI.ViewManagement.ApplicationView.value;
+            return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
+        },
+
         ready: function (element, options) {
-            WinJS.Resources.processAll();
-            this.item = options.item;
+            var that = this;
+            this.itemModel = options.itemModel;
             this.documentId = options.key;
-            this.contentDiv = element.querySelector("#item-detailpage");
-            this.factsFragmentsDiv = element.querySelector("#factsFragment");
-            this.defaultScript();
+
+            //Init viewmodel
+            var initViewModel = function () {
+                var contentDiv = element.querySelector(".article");
+                that.setViewModel(that.itemModel);
+                WinJS.Binding.processAll(contentDiv, that.viewModel);
+            }
+            initViewModel();
+
+            $.when(Solvberget.DocumentImage.get(this.documentId))
+               .then($.proxy(function (response) {
+                   if (response != undefined && response != "") {
+                       // Set the new value in the model of this item
+                       this.viewModel.image = response;
+                       var imageDiv = document.querySelector(".item-image-container");
+                       WinJS.Binding.processAll(imageDiv, this.viewModel);
+
+                   }
+               }, this));
+
+            //Init list
+            var listView = element.querySelector(".itemlist").winControl;
+
+            //Setup the EventDataSource
+            var documentDataSource = new DataSources.documentDataSource(this.documentId);
+
+            // Set up the ListView.
+            listView.itemDataSource = documentDataSource;
+            listView.itemTemplate = element.querySelector(".itemtemplate");
+            listView.layout = new ui.GridLayout();
+
+            //Refresh list..
+            
+            listView.selection.set(0);
+            listView.selection.clear();
+
             this.registerForShare();
 
-
             element.querySelector(".itemdetailpage").focus();
+        },
+
+        setViewModel: function (itemModel) {
+
+            eval("this.viewModel = ViewModel." + itemModel.DocType);
+            if (this.viewModel !== undefined)
+                this.viewModel.fillProperties(itemModel);
+            this.viewModel.image = "undefined";
         },
         unload: function () {
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
             dataTransferManager.removeEventListener("datarequested", this.shareHtmlHandler);
+        },
+
+        // This function updates the page layout in response to viewState changes.
+        updateLayout: function (element, viewState, lastViewState) {
+            /// <param name="element" domElement="true" />
+            /// <param name="viewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
+            /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
+
+            var listView = element.querySelector(".itemlist").winControl;
+            var firstVisible = listView.indexOfFirstVisible;
+
+
+            var handler = function (e) {
+                listView.removeEventListener("contentanimating", handler, false);
+                e.preventDefault();
+            }
+
+            if (this.isSingleColumn()) {
+                listView.selection.clear();
+                if (this.itemSelectionIndex >= 0) {
+                    // If the app has snapped into a single-column detail view,
+                    // add the single-column list view to the backstack.
+                    nav.history.current.state = {
+                        itemModel: this.itemModel,
+                        key: this.documentId
+                    };
+                    nav.history.backStack.push({
+                        location: "/pages/itemDetail/itemDetail.html",
+
+                        state: { itemModel: this.itemModel, key: this.documentId }
+                    });
+                    element.querySelector(".content").focus();
+                } else {
+                    listView.addEventListener("contentanimating", handler, false);
+                    listView.indexOfFirstVisible = firstVisible;
+                    listView.forceLayout();
+                }
+            } else {
+                // If the app has unsnapped into the two-column view, remove any
+                // splitPage instances that got added to the backstack.
+                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/itemDetail/itemDetail.html") {
+                    nav.history.backStack.pop();
+                }
+                if (viewState !== lastViewState) {
+                    listView.addEventListener("contentanimating", handler, false);
+                    listView.indexOfFirstVisible = firstVisible;
+                    listView.forceLayout();
+                }
+
+                listView.selection.set(0);
+            }
         },
         registerForShare: function () {
 
@@ -94,95 +189,6 @@
 
         },
 
-        defaultScript: function () {
-
-            this.factsFragmentsDiv.innerHTML = "";
-            var self = this;
-
-            var setViewModel = function (item) {
-
-                if (ViewModel.DocumentList[self.documentId] != undefined) {
-                    self.viewModel = ViewModel.DocumentList[self.documentId];
-                } else {
-                    if (item.DocType == "Book") {
-                        self.viewModel = ViewModel.Book;
-                       
-                    }
-                    if (item.DocType == "Film") {
-                        self.viewModel = ViewModel.Movie;
-                        
-                    }
-                    if (item.DocType == "AudioBook") {
-                        self.viewModel = ViewModel.AudioBook;
-                       
-                    }
-
-                    ViewModel.DocumentList[self.documentId] = self.viewModel;
-                }
-                self.viewModel.viewPath = "/pages/itemDetail/fragments/factsFragment/factsFragment.html";
-                //Handle changes in book ui
-                self.viewModel.fragment = Facts_Fragment;
-                if (self.viewModel !== undefined)
-                    self.viewModel.fillProperties(item);
-            };
-            var ajaxGetDocument = function (query) {
-                return $.getJSON("http://localhost:7089/Document/GetDocument/" + query);
-            };
-            var render = function () {
-
-                // Read fragment from the HMTL file and load it into the div.  This
-                // fragment also loads linked CSS and JavaScript specified in the fragment
-                WinJS.UI.Fragments.renderCopy(self.viewModel.viewPath,
-                    self.factsFragmentsDiv)
-                    .done(function (fragment) {
-                        // After the fragment is loaded into the target element,
-                        // CSS and JavaScript referenced in the fragment are loaded.  The
-                        // fragment loads script that defines an initialization function,
-                        // so we can now call it to initialize the fragment's contents.
-                        $("#item-dynamic-content").html(self.viewModel.output);
-
-                        //Load existing data first
-                        WinJS.Binding.processAll(self.factsFragmentsDiv, self.viewModel);
-                        self.viewModel.fragment.fragmentLoad(fragment);
-                        //Then get more data
-
-                        WinJS.log && WinJS.log("successfully loaded fragment.", "sample", "status");
-                    },
-                        function (error) {
-                            WinJS.log && WinJS.log("error loading fragment: " + error, "sample", "error");
-                        });
-
-            };
-
-            //render
-            setViewModel(self.item);
-            render();
-            WinJS.Binding.processAll(self.contentDiv, self.viewModel);
-
-            $.when(ajaxGetDocument(self.item.DocumentNumber))
-                .then($.proxy(function (response) {
-                    setViewModel(response);
-                    WinJS.Binding.processAll(self.contentDiv, self.viewModel);
-                }, self)
-             );
-
-            $.when(ajaxGetDocumentImage(this.documentId))
-               .then($.proxy(function (response) {
-
-             
-                   if (response != undefined && response != "") {
-                       // Set the new value in the model of this item
-                       this.viewModel.image = response;
-                       var imageDiv = document.getElementById("#item-image");
-
-                       WinJS.Binding.processAll(imageDiv, this.viewModel);
-
-                   }
-               }, this));
-
-
-
-        }
     });
 
 })();
