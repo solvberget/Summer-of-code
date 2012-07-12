@@ -1,0 +1,284 @@
+/* line 4, ../sass/splitview.scss */
+.splitpage {
+  -ms-grid-columns: 2fr 3fr;
+  display: -ms-grid;
+  height: 100%;
+  width: 100%;
+  background-color: #fffffe;
+}
+
+/* line 12, ../sass/splitview.scss */
+.splitpage .itemlist .win-vertical.win-viewport .win-surface {
+  margin-bottom: 60px;
+}
+
+/* line 16, ../sass/splitview.scss */
+.splitpage header[role=banner] .pagetitle {
+  -ms-grid-column: 2;
+  overflow: hidden;
+  width: calc(100% - 20px);
+}
+
+/* line 22, ../sass/splitview.scss */
+.splitpage .itemlistsection {
+  -ms-grid-row: 2;
+  margin-left: 106px;
+}
+
+/* line 27, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+
+/* line 34, ../sass/splitview.scss */
+.splitpage .itemlist .win-vertical.win-viewport .win-container {
+  margin-bottom: 15px;
+  margin-right: 42px;
+  padding: 7px;
+}
+
+/* line 40, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist .win-container .win-selectioncheckmark {
+  display: none;
+}
+
+/* line 44, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist .win-container .win-selectioncheckmarkbackground {
+  display: none;
+}
+
+/* line 48, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist .win-item {
+  -ms-grid-columns: 110px 1fr;
+  -ms-grid-rows: 1fr;
+  display: -ms-grid;
+  height: 110px;
+  width: 500px;
+}
+
+/* line 56, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist .win-item .item-info {
+  -ms-grid-column: 2;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+/* line 63, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist .win-item .item-info .item-title {
+  margin-top: 4px;
+}
+
+/* line 67, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist .item .item-info .item-subtitle {
+  opacity: 0.6;
+}
+
+/* line 71, ../sass/splitview.scss */
+.splitpage .itemlistsection .itemlist .win-item .item-info .item-description {
+  max-height: 60px;
+  overflow: hidden;
+}
+
+/* line 76, ../sass/splitview.scss */
+.splitpage .articlesection {
+  -ms-grid-column: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-row: 1;
+  margin-left: 70px;
+  overflow-y: auto;
+  padding-right: 120px;
+  position: relative;
+  z-index: 0;
+}
+
+/* line 87, ../sass/splitview.scss */
+.splitpage .articlesection header {
+  -ms-grid-columns: 180px 20px 1fr;
+  -ms-grid-rows: 180px;
+  display: -ms-grid;
+  margin-bottom: 6px;
+  margin-top: 60px;
+}
+
+/* line 95, ../sass/splitview.scss */
+.splitpage .articlesection header .text {
+  -ms-grid-column: 3;
+}
+
+/* line 99, ../sass/splitview.scss */
+.splitpage .articlesection header .article-image {
+  height: 180px;
+  width: 180px;
+}
+
+/* line 104, ../sass/splitview.scss */
+.splitpage .articlesection .article-content {
+  overflow-y: auto;
+}
+
+/* line 108, ../sass/splitview.scss */
+.splitpage .articlesection .article-content p {
+  margin-bottom: 16pt;
+}
+
+@media screen and (-ms-view-state: filled) {
+  /* line 113, ../sass/splitview.scss */
+  .splitpage {
+    -ms-grid-columns: 420px 1fr;
+  }
+
+  /* line 117, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item {
+    -ms-grid-columns: 60px 1fr;
+    height: 60px;
+    margin-bottom: 0;
+    width: 282px;
+  }
+
+  /* line 124, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item .item-image {
+    height: 60px;
+    width: 60px;
+  }
+
+  /* line 129, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item .item-info .item-title {
+    margin-top: 0px;
+    max-height: 40px;
+    overflow: hidden;
+  }
+
+  /* line 135, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item .item-info .item-description {
+    display: none;
+  }
+
+  /* line 139, ../sass/splitview.scss */
+  .splitpage .articlesection {
+    padding-right: 66px;
+  }
+}
+@media screen and (-ms-view-state: snapped) {
+  /* line 145, ../sass/splitview.scss */
+  .splitpage {
+    -ms-grid-columns: 320px 0px;
+  }
+
+  /* line 149, ../sass/splitview.scss */
+  .splitpage .itemlistsection {
+    margin-left: 6px;
+  }
+
+  /* line 153, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item {
+    -ms-grid-columns: 60px 1fr;
+    height: 60px;
+    width: 282px;
+  }
+
+  /* line 159, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item .item-image {
+    height: 60px;
+    width: 60px;
+  }
+
+  /* line 164, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item .item-info .item-title {
+    margin-top: 2px;
+    max-height: 30pt;
+    overflow: hidden;
+  }
+
+  /* line 170, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-item .item-info .item-description {
+    visibility: hidden;
+  }
+
+  /* line 174, ../sass/splitview.scss */
+  .splitpage .articlesection {
+    -ms-grid-row-span: 1;
+    -ms-grid-row: 2;
+    margin-left: 20px;
+    padding-right: 36px;
+  }
+
+  /* line 181, ../sass/splitview.scss */
+  .splitpage .articlesection header {
+    display: block;
+    margin-top: 0;
+  }
+
+  /* line 186, ../sass/splitview.scss */
+  .splitpage .articlesection header .article-image {
+    height: 160px;
+    width: 242px;
+  }
+
+  /* line 191, ../sass/splitview.scss */
+  .splitpage .articlesection header .text {
+    -ms-grid-column: 1;
+  }
+
+  /* line 195, ../sass/splitview.scss */
+  .splitpage .articlesection header .text .article-subtitle {
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  /* line 200, ../sass/splitview.scss */
+  .splitpage .itemlistsection, .splitpage .articlesection {
+    -ms-grid-column: 2;
+    visibility: hidden;
+  }
+
+  /* line 205, ../sass/splitview.scss */
+  .splitpage .primarycolumn {
+    -ms-grid-column: 1;
+    visibility: visible;
+  }
+}
+@media screen and (-ms-view-state: fullscreen-portrait) {
+  /* line 212, ../sass/splitview.scss */
+  .splitpage {
+    -ms-grid-columns: 1fr 0px;
+  }
+
+  /* line 216, ../sass/splitview.scss */
+  .splitpage .itemlistsection {
+    margin-left: 86px;
+  }
+
+  /* line 220, ../sass/splitview.scss */
+  .splitpage .itemlistsection .itemlist .win-vertical.win-viewport .win-container {
+    margin-right: calc(100% - 510px);
+  }
+
+  /* line 224, ../sass/splitview.scss */
+  .splitpage .articlesection {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    margin-left: 100px;
+    padding-right: 100px;
+  }
+
+  /* line 231, ../sass/splitview.scss */
+  .splitpage .articlesection .header {
+    margin-top: 0;
+  }
+
+  /* line 235, ../sass/splitview.scss */
+  .splitpage .itemlistsection, .splitpage .articlesection {
+    -ms-grid-column: 2;
+    visibility: hidden;
+  }
+
+  /* line 240, ../sass/splitview.scss */
+  .splitpage .primarycolumn {
+    -ms-grid-column: 1;
+    visibility: visible;
+  }
+}

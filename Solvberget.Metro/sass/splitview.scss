@@ -1,8 +1,12 @@
-﻿.splitpage {
-    -ms-grid-columns: 638px 1fr;
+﻿
+$white: #FFFFFE;
+
+.splitpage {
+    -ms-grid-columns: 2fr 3fr;
     display: -ms-grid;
     height: 100%;
     width: 100%;
+    background-color: $white;
 }
 
     .splitpage .itemlist .win-vertical.win-viewport .win-surface {
@@ -27,8 +31,7 @@
             z-index: 0;
         }
 
-
-    .splitpage .itemlist .win-vertical .win-viewport .win-container {
+    .splitpage .itemlist .win-vertical.win-viewport .win-container {
         margin-bottom: 15px;
         margin-right: 42px;
         padding: 7px;
@@ -49,11 +52,6 @@
         height: 110px;
         width: 500px;
     }
-
-        .splitpage .itemlistsection .itemlist .win-item .item-image-container .item-image {
-            max-width: 110px;
-        }
-
 
         .splitpage .itemlistsection .itemlist .win-item .item-info {
             -ms-grid-column: 2;
@@ -86,42 +84,23 @@
         z-index: 0;
     }
 
-        .splitpage .articlesection .article-box {
-            margin-top: 37px;
-            margin-bottom: 50px;
-        }
-    
-        .splitpage .articlesection .article-box header {
+        .splitpage .articlesection header {
             -ms-grid-columns: 180px 20px 1fr;
-            -ms-grid-rows: auto 180px;
+            -ms-grid-rows: 180px;
             display: -ms-grid;
             margin-bottom: 6px;
             margin-top: 60px;
         }
 
-            .splitpage .articlesection  .article-box header .article-title {
-                -ms-grid-column-span: 3;
-            }
-            
-            .splitpage .articlesection  .article-box header .text {
-                -ms-grid-row: 2;
+            .splitpage .articlesection header .text {
                 -ms-grid-column: 3;
             }
 
-            .splitpage .articlesection .article-box header .article-image-container {
-                -ms-grid-row: 2;
-                overflow: hidden;
-                text-align: center;
+            .splitpage .articlesection header .article-image {
+                height: 180px;
+                width: 180px;
             }
-            
-            .splitpage .articlesection .article-box header .article-image-container .article-image {
-                /*
-                max-width: 180px;
-                height: auto;
-                width: auto; */
-                max-height: 180px;
-            }
-      
+
         .splitpage .articlesection .article-content {
             overflow-y: auto;
         }
@@ -137,29 +116,26 @@
 
         .splitpage .itemlistsection .itemlist .win-item {
             -ms-grid-columns: 60px 1fr;
-            -ms-grid-rows: 1fr;
-            display: -ms-grid;
             height: 60px;
-            width: 280px;
+            margin-bottom: 0;
+            width: 282px;
         }
 
-            .splitpage .itemlistsection .itemlist .win-item .item-image-container {
-                overflow: hidden;
+            .splitpage .itemlistsection .itemlist .win-item .item-image {
+                height: 60px;
+                width: 60px;
             }
-        
-               .splitpage .itemlistsection .itemlist .win-item .item-image-container .item-image {
-                    max-height: 60px;
-                }
 
             .splitpage .itemlistsection .itemlist .win-item .item-info .item-title {
                 margin-top: 0px;
                 max-height: 40px;
+                overflow: hidden;
             }
 
             .splitpage .itemlistsection .itemlist .win-item .item-info .item-description {
                 display: none;
             }
-            
+
         .splitpage .articlesection {
             padding-right: 66px;
         }
@@ -180,9 +156,9 @@
                 width: 282px;
             }
 
-                .splitpage .itemlistsection .itemlist .win-item .item-image-container .item-image {
-                    max-width: 60px;
-                    
+                .splitpage .itemlistsection .itemlist .win-item .item-image {
+                    height: 60px;
+                    width: 60px;
                 }
 
                 .splitpage .itemlistsection .itemlist .win-item .item-info .item-title {
@@ -196,51 +172,30 @@
                 }
 
         .splitpage .articlesection {
+            -ms-grid-row-span: 1;
             -ms-grid-row: 2;
             margin-left: 20px;
             padding-right: 36px;
-            -ms-grid-columns: 1fr;
-            -ms-grid-rows: auto 60px 1fr;
-            display: -ms-grid;
-            margin-bottom: 25px;
-            margin-top: 2px;
-        }
-        
-        .splitpage .articlesection .article-box {
         }
 
-            .splitpage .articlesection .article-box header {
+            .splitpage .articlesection header {
                 display: block;
                 margin-top: 0;
             }
-            
-        .splitpage .articlesection .article-box header {
-            margin-bottom: 25px;
-            margin-top: 5px;
-        }
-            
-            .splitpage .articlesection  .article-box header .article-title {
-                -ms-grid-row: 1;
-            }
 
-                .splitpage .articlesection .articlebox header .text {
-                    -ms-grid-row: 3;
+                .splitpage .articlesection header .article-image {
+                    height: 160px;
+                    width: 242px;
+                }
+
+                .splitpage .articlesection header .text {
+                    -ms-grid-column: 1;
                 }
 
                     .splitpage .articlesection header .text .article-subtitle {
                         margin-bottom: 20px;
                         overflow: hidden;
                     }
-                    
-            .splitpage .articlesection .article-box header .article-image-container {
-                -ms-grid-row: 2;
-                overflow: hidden;
-                text-align: center;
-            }
-            
-            .splitpage .articlesection .article-box header .article-image-container .article-image {
-                max-height: fill-available;
-            }
 
         .splitpage .itemlistsection, .splitpage .articlesection {
             -ms-grid-column: 2;
