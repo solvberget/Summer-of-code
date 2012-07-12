@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lister fra Biblioteket</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <!-- Common references -->
+    <script src="../../js/data.js"></script>
+
+    <!-- Split references -->
+    <link href="../../css/default.css" rel="stylesheet" />
+    <link href="libraryLists.css" rel="stylesheet" />
+    <script src="libraryLists.js"></script>
+    <script src="../../js/ListDataSource.js"></script>
+    <script src="../../js/ListContentDataSource.js"></script>
+    <script type="text/javascript" src="../../js/lib/jquery-1.7.2.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+    <!-- ItemTemplate for each "List of Lists" -->
+    <div class="listListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="list-info">
+            <h2 class="list-title" data-win-bind="textContent: listtitle"></h2>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- ItemTemplates for each "List of content" -->
+    <!-- DOCUMENT -->
+    <div id="documentTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
+
+    <!-- BOOK -->
+    <div id="bookTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: Author.Name"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
+
+    <!-- FILM -->
+    <div id="filmTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: AgeLimit"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
+
+    <!-- AUDIOBOOK -->
+    <div id="audioBookTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h5 class="item-subtitle win-type-ellipsis">Lydbok</h5>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: Author.Name"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="splitpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle"></span>
+            </h1>
+        </header>
+
+
+
+        <!-- ListView for Lists -->
+        <div class="listOfListsSection" aria-label="List column">
+            <div class="listOfLists" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+        </div>
+
+        <!-- Header for each list -->
+        <div class="articlesection" aria-atomic="true" aria-label="Item detail column" aria-live="assertive">
+            <article class="article-box">
+                <header class="header">
+                    <div class="text">
+                        <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: listtitle">Laster lister...</h1>
+                    </div>
+                </header>
+
+            </article>
+
+            <div class="listOfListContentSection" aria-label="List column">
+                <div class="listOfListContent" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

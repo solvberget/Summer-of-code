@@ -16,14 +16,13 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Voksne", media.TargetGroup);
 
-            Assert.IsTrue(media.IsFiction);
+            Assert.AreEqual("Fiksjon", media.IsFiction);
 
-            Assert.AreEqual(3, media.Language.Length);
-            Assert.AreEqual("mul", media.Language);
+            Assert.AreEqual("Flerspråklig", media.Language);
 
-            Assert.AreEqual("nob", media.Languages.ElementAt(0));
-            Assert.AreEqual("swe", media.Languages.ElementAt(1));
-            Assert.AreEqual("eng", media.Languages.ElementAt(2));
+            Assert.AreEqual("Norsk bokmål", media.Languages.ElementAt(0));
+            Assert.AreEqual("Svensk", media.Languages.ElementAt(1));
+            Assert.AreEqual("Engelsk", media.Languages.ElementAt(2));
 
             Assert.AreEqual("l", media.DocumentType.ElementAt(0));
 
@@ -54,8 +53,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var media = Document.GetObjectFromFindDocXmlBsMarcLight(getBookXml());
             Assert.AreEqual("123456789", media.DocumentNumber);
-            Assert.AreEqual(3, media.Language.Length);
-            Assert.AreEqual("mul", media.Language);
+            Assert.AreEqual("Flerspråklig", media.Language);
             Assert.AreEqual("l", media.DocumentType.ElementAt(0));
             Assert.AreEqual("Naiv. Super", media.Title);
             Assert.AreEqual(2010, media.PublishedYear);
@@ -172,11 +170,13 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
 
+            Assert.AreEqual("Fakta", film.IsFiction);
+
             Assert.AreEqual("Barn og ungdom", film.TargetGroup);
 
             Assert.AreEqual("7041271735935", film.Ean);
 
-            Assert.AreEqual("nob", film.SubtitleLanguage.FirstOrDefault());
+            Assert.AreEqual("Norsk bokmål", film.SubtitleLanguage.FirstOrDefault());
             Assert.AreEqual(4, film.SubtitleLanguage.Count());
 
             Assert.AreEqual("Max Manus", film.OriginalTitle);
@@ -222,11 +222,11 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual(2, film.InvolvedPersons.Count());
             Assert.AreEqual("Sandberg, Espen", film.InvolvedPersons.ElementAt(0).Name);
             Assert.AreEqual("1971-", film.InvolvedPersons.ElementAt(0).LivingYears);
-            Assert.AreEqual("n.", film.InvolvedPersons.ElementAt(0).Nationality);
+            Assert.AreEqual("Norsk", film.InvolvedPersons.ElementAt(0).Nationality);
             Assert.AreEqual("regissør", film.InvolvedPersons.ElementAt(0).Role);
             Assert.AreEqual("Rønning, Joachim", film.InvolvedPersons.ElementAt(1).Name);
             Assert.AreEqual("1972-", film.InvolvedPersons.ElementAt(1).LivingYears);
-            Assert.AreEqual("n.", film.InvolvedPersons.ElementAt(1).Nationality);
+            Assert.AreEqual("Norsk", film.InvolvedPersons.ElementAt(1).Nationality);
             Assert.AreEqual("regissør", film.InvolvedPersons.ElementAt(1).Role);
 
             Assert.AreEqual(1, film.InvolvedOrganizations.Count());
@@ -271,7 +271,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("1965-", audioBook.Author.LivingYears);
 
-            Assert.AreEqual("eng.", audioBook.Author.Nationality);
+            Assert.AreEqual("Engelsk", audioBook.Author.Nationality);
 
             Assert.AreEqual("III", audioBook.Numbering);
 
@@ -326,7 +326,7 @@ namespace Solvberget.Service.Tests.DTOTests
             var audioBook1 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookXML());
             Assert.AreEqual("Rowling, J.K.", audioBook1.Author.Name);
             Assert.AreEqual("1965-", audioBook1.Author.LivingYears);
-            Assert.AreEqual("eng.", audioBook1.Author.Nationality);
+            Assert.AreEqual("Engelsk", audioBook1.Author.Nationality);
             Assert.AreEqual("AudioBook", audioBook1.DocType);
 
             var audioBook2 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithOrgXml());
@@ -742,7 +742,7 @@ namespace Solvberget.Service.Tests.DTOTests
                 <fixfield id=""FMT"">VM</fixfield>
                 <fixfield id=""LDR"">^^^^^ngm^^^^^^^^^1</fixfield>
                 <fixfield id=""007"">vd</fixfield>
-                <fixfield id=""008"">090626s2009^^^^^^^^^^^j^^^^^^^^^^1^nob^^</fixfield>
+                <fixfield id=""008"">090626s2009^^^^^^^^^^^j^^^^^^^^^^0^nob^^</fixfield>
                 <varfield id=""019"" i1="" "" i2="" "">
                     <subfield label=""b"">ee</subfield>
                 </varfield>

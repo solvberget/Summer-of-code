@@ -10,8 +10,11 @@
 #Ordliste files
 ordlister_index*/
 
-# Image cache
-cacheImages/
+#cacheImages
+cacheImages*/
+
+#Library lists
+librarylists*/
 
 #SASS CACHE files
 .sass-cache*/

@@ -5,6 +5,9 @@
     display: -ms-grid;
 }
 
+.titlecontainer {
+    border: none;
+}
     .searchResults section[role=main] .filterarea {
         -ms-grid-row: 1;
     }

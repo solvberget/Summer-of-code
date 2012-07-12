@@ -6,7 +6,8 @@ namespace Solvberget.Service.Infrastructure
     public class EnvironmentHelper
     {
         private static readonly string ApplicationAppDataPath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"bin\App_Data");
-        
+        private static readonly string ApplicationContentDataPath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"Content");
+      
  
 
         public static string GetDictionaryPath()
@@ -24,6 +25,10 @@ namespace Solvberget.Service.Infrastructure
             return Path.Combine(ApplicationAppDataPath, @"ordlister\stopwords.txt");
         }
 
+        public static string GetImageCachePath()
+        {
+            return Path.Combine(ApplicationContentDataPath, @"cacheImages\");
+        }
 
         public static string GetSuggestionListPath()
         {
@@ -32,6 +37,11 @@ namespace Solvberget.Service.Infrastructure
         public static string GetTestDictPath()
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_test.txt");
+        }
+
+        public static string GetXmlListPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"librarylists");
         }
     }
 }

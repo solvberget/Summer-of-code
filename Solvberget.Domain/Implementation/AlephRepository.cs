@@ -38,7 +38,7 @@ namespace Solvberget.Domain.Implementation
             return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
         }
 
-        public Document GetDocument(string documentNumber)
+        public Document GetDocument(string documentNumber, bool isLight)
         {
             const Operation function = Operation.FindDocument;
             var options = new Dictionary<string, string> { { "doc_number", documentNumber} };
@@ -52,12 +52,21 @@ namespace Solvberget.Domain.Implementation
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)
                 {
-                    return PopulateDocument(xmlResult, false);
+                    var docToReturn = PopulateDocument(xmlResult, isLight);
+                    //We add the number here because it is not in the result 
+                    //when getting the document it self from Aleph
+                    docToReturn.DocumentNumber = documentNumber;
+                    return docToReturn;
                 }
             }
 
             return null;
             
+        }
+
+        public List<Document> GetDocumentsLight(IEnumerable<string> docNumbers)
+        {
+            return (from docNumber in docNumbers let doc = GetDocument(docNumber, true) where doc != null select GetDocument(docNumber, true)).ToList();
         }
 
         private List<Document> GetSearchResults(dynamic result)
