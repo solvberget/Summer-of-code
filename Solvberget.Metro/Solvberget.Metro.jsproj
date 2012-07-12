@@ -285,10 +285,8 @@
     <Content Include="js\converters.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
-    <Content Include="js\EventDataSource.js" />
-    <Content Include="js\LibraryListDataSource.js" />
-    <Content Include="pages\events\events.css" />
-    <Content Include="js\EventDataSource.js">
+    <Content Include="js\ListDataSource.js" />
+    <Content Include="js\DocumentDataSource.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>
@@ -296,7 +294,10 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\events\events.css">
+    <Content Include="js\EventDataSource.js" />
+    <Content Include="js\LibraryListDataSource.js" />
+    <Content Include="pages\events\events.css" />
+    <Content Include="js\EventDataSource.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>
@@ -313,6 +314,8 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
+    <Content Include="pages\events\events.html" />
+    <Content Include="pages\events\events.js">
     <Content Include="pages\itemDetail\documentListDataSource.js">
       <Compile>True</Compile>
       <Minify>False</Minify>

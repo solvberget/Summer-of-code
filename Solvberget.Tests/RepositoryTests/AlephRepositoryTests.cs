@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Solvberget.Domain.DTO;
@@ -11,11 +13,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
     {
 
         private AlephRepository _repository;
+        private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
 
         [SetUp]
         public void InitRepository()
         {
-            _repository = new AlephRepository();
+
+            _repository = new AlephRepository(_imageCache);
         }
 
         [Test]

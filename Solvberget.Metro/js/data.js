@@ -24,7 +24,7 @@
     // Each of these sample groups must have a unique key to be displayed
     // separately.
     var sampleGroups = [
-        { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, description: groupDescription },
+        { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, description: libraryListsDescription },
         { key: "group2", title: "Musikk", subtitle: "Min musikk", backgroundImage: music, description: groupDescription },
         { key: "group3", title: "Min Side", subtitle: "", backgroundImage: home, description: groupDescription },
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, description: eventsDescription },
