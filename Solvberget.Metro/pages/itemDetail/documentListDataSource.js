@@ -34,26 +34,7 @@
                     return Promise.wrapError(new WinJS.ErrorFromName(UI.FetchError.doesNotExist));
                 }
 
-                var fetchSize, fetchIndex;
-
-                // See which side of the requestIndex is the overlap.
-                if (countBefore > countAfter) {
-                    // Limit the overlap
-                    countAfter = Math.min(countAfter, 10);
-
-                    // Bound the request size based on the minimum and maximum sizes.
-                    var fetchBefore = Math.max(
-                        Math.min(countBefore, that._maxPageSize - (countAfter + 1)),
-                        that._minPageSize - (countAfter + 1)
-                        );
-                    fetchSize = fetchBefore + countAfter + 1;
-                    fetchIndex = requestIndex - fetchBefore;
-                } else {
-                    countBefore = Math.min(countBefore, 10);
-                    var fetchAfter = Math.max(Math.min(countAfter, that._maxPageSize - (countBefore + 1)), that._minPageSize - (countBefore + 1));
-                    fetchSize = countBefore + fetchAfter + 1;
-                    fetchIndex = requestIndex - countBefore;
-                }
+                
 
                 // Create the request string. 
                 var requestStr = "http://localhost:7089/Document/GetDocument/" + that._query;
@@ -81,17 +62,37 @@
 
                                 itemValue = eval("item." + property);
                                 itemName = Solvberget.Localization.getString(property);
-                                if (itemValue !== null && itemValue.toString() !== []) {
+                                if(itemName == "Forfatter") {
+                                    console.log("debug");
+                                }
+                                if (itemValue !== null ) {
+                                    if (itemValue[0] != undefined ) {
+                                        if (itemValue[0].Name != undefined)
+                                            itemValue = itemValue[0].Name+",";
+                                    }else if(itemValue.Name != undefined) {
+                                        itemValue = itemValue.Name;
+                                    }
+                                }
+                                
+                                if ((itemValue !== null) && (itemValue !== []) && (itemValue !="")) {
                                     var type = typeof (itemValue);
+                                    
                                     while (type !== "string" && type !== "integer") {
                                         itemValue = itemValue.toString();
+                                        var itemValueTemp="";
+                                        for (var j = 0; j < itemValue.length; j++) {
+                                            if (itemValue[j] == ",") {
+                                                
+                                                itemValueTemp += ", ";
+                                            }else {
+                                                itemValueTemp += itemValue[j];
+                                            }
+                                        }
+                                        itemValue = itemValueTemp;
+                                       
                                         type = typeof (itemValue);     
                                     }
-                                    if (itemValue.toString==="[object Object],[object Object]") {
-                                        for (var property in itemValue) {
-                                            itemValue += property + ": " + eval("itemValue." + property);
-                                        }
-                                    }
+                                    
 
                                     //items[i] = new Object();
                                     //var temp = items[i];
@@ -99,7 +100,7 @@
 
                                     results.push(
                                     {
-                                        key: (fetchIndex + i).toString(),
+                                        key: (i).toString(),
                                         data:
                                         {
                                             propertyName: itemName,
@@ -116,7 +117,7 @@
 
                             return {
                                 items: results, // The array of items.      
-                                offset: requestIndex - fetchIndex,
+                                offset: requestIndex,
                                 totalCount: Math.min(count, that._maxCount), // The total number of records.
                             };
                         } else {

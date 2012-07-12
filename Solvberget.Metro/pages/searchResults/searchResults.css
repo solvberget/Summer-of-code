@@ -3,6 +3,7 @@
     -ms-grid-columns: 1fr;
     -ms-grid-rows: auto 18px 1fr;
     display: -ms-grid;
+     
 }
 
 .titlecontainer {
