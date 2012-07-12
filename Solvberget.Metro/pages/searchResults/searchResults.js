@@ -111,9 +111,11 @@
         queue: [],
         working: false,
         inSearchPage: false,
+        numInProgress: 0,
         fireFinished: function () {
 
             getImageQueue.working = false;
+            getImageQueue.numInProgress = getImageQueue.numInProgress - 1;
             getImageQueue.startWorking();
 
         },
@@ -125,13 +127,23 @@
         },
         startWorking: function () {
             if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
-                getImageQueue.working = true;
-                setTimeout(function () {
-                    var itemIndexObj = getImageQueue.queue[0];
-                    getImageQueue.queue.shift();
-                    if (itemIndexObj != undefined)
-                        self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
-                }, Math.floor(Math.random() * 1500 + 1));
+                if (getImageQueue.numInProgress == 10)
+                    getImageQueue.working = true;
+
+                getImageQueue.numInProgress = getImageQueue.numInProgress + 1;
+
+
+                var itemIndexObj = getImageQueue.queue[0];
+                getImageQueue.queue.shift();
+                if (itemIndexObj != undefined)
+                    self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
+            }
+            else {
+                if (getImageQueue.numInProgress < 1) {
+                    getImageQueue.working = false;
+                    getImageQueue.startWorking();
+                }
+
             }
         }
     };
@@ -226,7 +238,7 @@
 
                    for (var x in response) {
                        if (response[x].ThumbnailUrl === "")
-                           self.getAndSetThumbImage(originalResults.getItem(x), x);
+                           getImageQueue.addToQueue(originalResults.getItem(x), x);
                    }
 
                }, this)
@@ -249,7 +261,7 @@
                         var htmlItem = listView.elementFromIndex(index);
                         if (htmlItem != null)
                             WinJS.Binding.processAll(htmlItem, item.data);
-
+                        getImageQueue.fireFinished();
                     }
                 }
             }, this));
@@ -403,6 +415,8 @@
 
             getImageQueue.inSearchPage = false;
             getImageQueue.queue = [];
+            getImageQueue.numInProgress = 0;
+
 
         },
 
