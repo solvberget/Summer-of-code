@@ -1,32 +1,37 @@
-/* line 13, ../sass/default.scss */
+/* line 6, ../sass/default.scss */
+body {
+  background-size: 100% 100%;
+}
+
+/* line 16, ../sass/default.scss */
 #searchField {
   z-index: -1;
   display: block;
   text-align: center;
 }
 
-/* line 22, ../sass/default.scss */
+/* line 25, ../sass/default.scss */
 .inputSearchField {
   width: 300px;
 }
 
-/* line 28, ../sass/default.scss */
+/* line 31, ../sass/default.scss */
 h2 {
-  color: #0099cc;
+  color: #dacfce;
 }
 
-/* line 33, ../sass/default.scss */
+/* line 36, ../sass/default.scss */
 html {
   cursor: default;
 }
 
-/* line 37, ../sass/default.scss */
+/* line 40, ../sass/default.scss */
 #contenthost {
   height: 100%;
   width: 100%;
 }
 
-/* line 42, ../sass/default.scss */
+/* line 45, ../sass/default.scss */
 .fragment {
   /* Define a grid with rows for a banner and a body */
   -ms-grid-columns: 1fr;
@@ -36,7 +41,7 @@ html {
   width: 100%;
 }
 
-/* line 51, ../sass/default.scss */
+/* line 54, ../sass/default.scss */
 .fragment header[role=banner] {
   /* Define a grid with columns for the back button and page title. */
   -ms-grid-columns: 120px 1fr;
@@ -44,24 +49,24 @@ html {
   display: -ms-grid;
 }
 
-/* line 58, ../sass/default.scss */
+/* line 61, ../sass/default.scss */
 .fragment header[role=banner] .win-backbutton {
   margin-left: 39px;
   margin-top: 59px;
 }
 
-/* line 63, ../sass/default.scss */
+/* line 66, ../sass/default.scss */
 .fragment header[role=banner] .titlearea {
   -ms-grid-column: 2;
   margin-top: 37px;
 }
 
-/* line 68, ../sass/default.scss */
+/* line 71, ../sass/default.scss */
 .fragment header[role=banner] .titlearea .pagetitle {
   width: calc(100% - 20px);
 }
 
-/* line 72, ../sass/default.scss */
+/* line 75, ../sass/default.scss */
 .fragment section[role=main] {
   -ms-grid-row: 2;
   height: 100%;
@@ -69,25 +74,25 @@ html {
 }
 
 @media screen and (-ms-view-state: snapped) {
-  /* line 85, ../sass/default.scss */
+  /* line 88, ../sass/default.scss */
   .fragment header[role=banner] {
     -ms-grid-columns: auto 1fr;
     margin-left: 20px;
   }
 
-  /* line 90, ../sass/default.scss */
+  /* line 93, ../sass/default.scss */
   .fragment header[role=banner] .win-backbutton {
     margin: 0;
     margin-right: 10px;
     margin-top: 76px;
   }
 
-  /* line 96, ../sass/default.scss */
+  /* line 99, ../sass/default.scss */
   .fragment header[role=banner] .win-backbutton:disabled {
     display: none;
   }
 
-  /* line 100, ../sass/default.scss */
+  /* line 103, ../sass/default.scss */
   .fragment header[role=banner] .titlearea {
     -ms-grid-column: 2;
     margin-left: 0;
@@ -95,23 +100,23 @@ html {
   }
 }
 @media screen and (-ms-view-state: fullscreen-portrait) {
-  /* line 108, ../sass/default.scss */
+  /* line 111, ../sass/default.scss */
   .fragment header[role=banner] {
     -ms-grid-columns: 100px 1fr;
   }
 
-  /* line 112, ../sass/default.scss */
+  /* line 115, ../sass/default.scss */
   .fragment header[role=banner] .win-backbutton {
     margin-left: 29px;
   }
 }
-/* line 115, ../sass/default.scss */
+/* line 120, ../sass/default.scss */
 .imageLoader img {
   opacity: 0;
   -ms-transform: scale(0.8, 0.8);
 }
 
-/* line 120, ../sass/default.scss */
+/* line 125, ../sass/default.scss */
 .imageLoader img.loaded {
   opacity: 1;
   -ms-transition: opacity ease-out 0.2s, -ms-transform ease-out 0.2s;
