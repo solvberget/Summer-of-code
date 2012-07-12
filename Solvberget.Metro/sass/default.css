@@ -1,5 +1,4 @@
 body {
-  background-color: #003366;
   background-size: 100% 100%; }
 
 #searchField {
@@ -11,7 +10,7 @@ body {
   width: 300px; }
 
 h2 {
-  color: #dacfce; }
+  color: #003366; }
 
 html {
   cursor: default; }
