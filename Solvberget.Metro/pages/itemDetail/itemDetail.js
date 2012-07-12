@@ -141,12 +141,13 @@
                 request.data.properties.description =
                     "Del innholdet med dine venner!";
 
+
                 var path = document.getElementById("item-image").getAttribute("src");
-
-                var imageUri = new Windows.Foundation.Uri(path);
-                var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
-                request.data.resourceMap[path] = streamReference;
-
+                if (path !== undefined && path !== "undefined") {
+                    var imageUri = new Windows.Foundation.Uri(path);
+                    var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
+                    request.data.resourceMap[path] = streamReference;
+                }
 
                 if (shareMode == SHARE_MODE_FACEBOOK) {
 
