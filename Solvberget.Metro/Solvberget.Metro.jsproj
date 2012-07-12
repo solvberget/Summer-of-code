@@ -282,30 +282,14 @@
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\documentImage.js" />
+    <Content Include="js\ListDataSource.js" />
     <Content Include="js\localizationHelper.js" />
     <Content Include="js\converters.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
-    <Content Include="js\ListDataSource.js" />
-    <Content Include="js\DocumentDataSource.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="js\EventDataSource.js" />
     <Content Include="pages\events\events.css" />
     <Content Include="js\EventDataSource.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\events\events.css">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>
@@ -322,9 +306,14 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.css" />
-    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.html" />
-    <Content Include="pages\itemDetail\fragments\factsFragment\factsFragment.js" />
+    <Content Include="pages\itemDetail\documentListDataSource.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />

@@ -276,14 +276,14 @@
         // as part of the ListView item templates.
         markText: function (source, sourceProperties, dest, destProperties) {
 
-            if (source.AgeLimit != undefined && sourceProperties[0] == "AgeLimit") {
+            if (source.DocType != undefined && sourceProperties[0] == "DocType") {
 
                 var text = source[sourceProperties[0]];
                 var regex = new RegExp(this.lastSearch, "gi");
                 dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
 
             }
-            else if (sourceProperties[0] != "AgeLimit") {
+            else if (sourceProperties[0] != "DocType") {
                 var text = source[sourceProperties[0]];
                 if (text != undefined) {
                     var regex = new RegExp(this.lastSearch, "gi");
