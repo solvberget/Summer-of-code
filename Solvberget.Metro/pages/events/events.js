@@ -68,31 +68,33 @@
 
         selectionChanged: function (args) {
             var listView = document.body.querySelector(".itemlist").winControl;
-            var details;
-            var that = this;
-            // By default, the selection is restriced to a single item.
-            listView.selection.getItems().done(function updateDetails(items) {
-                if (items.length > 0) {
-                    that.itemSelectionIndex = items[0].index;
-                    if (that.isSingleColumn()) {
-                        // If snapped or portrait, navigate to a new page containing the
-                        // selected item's details.
-                        nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
-                    } else {
-                        // If fullscreen or filled, update the details column with new data.
+            if (listView != null) {
+                var details;
+                var that = this;
+                // By default, the selection is restriced to a single item.
+                listView.selection.getItems().done(function updateDetails(items) {
+                    if (items.length > 0) {
+                        that.itemSelectionIndex = items[0].index;
+                        if (that.isSingleColumn()) {
+                            // If snapped or portrait, navigate to a new page containing the
+                            // selected item's details.
+                            nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
+                        } else {
+                            // If fullscreen or filled, update the details column with new data.
 
-                        details = document.querySelector(".articlesection");
-                        binding.processAll(details, items[0].data);
-                        details.scrollTop = 0;
+                            details = document.querySelector(".articlesection");
+                            binding.processAll(details, items[0].data);
+                            details.scrollTop = 0;
 
-                        // Fix for removing cached data, Windows error. 
-                        setTimeout(function () {
-                            window.focus();
-                        }, 0);
+                            // Fix for removing cached data, Windows error. 
+                            setTimeout(function () {
+                                window.focus();
+                            }, 0);
 
+                        }
                     }
-                }
-            });
+                });
+            }
         },
 
         unload: function () {

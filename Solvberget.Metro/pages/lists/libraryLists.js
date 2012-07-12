@@ -20,9 +20,6 @@
         },
 
         listOfContentItemInvoked: function (eventInfo) {
-
-            console.log("Item invoked!");
-
             var listViewForListContent = document.body.querySelector(".listOfListContent").winControl;
             var details;
             var that = this;
@@ -99,11 +96,12 @@
             this.updateVisibility();
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
-
-                    //FIX
-
-                    // For single-column detail view, load the article.
+                    // For single-column detail view, load title and list content.
                     binding.processAll(element.querySelector(".articlesection"), options.item);
+                    setImmediate(this.updateListViewForContentDataSoruce(options.item));
+                }
+                else {
+                    listViewForLists.selection.set(Math.max(this.itemSelectionIndex, 0));
                 }
             } else {
                 if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/lists/libraryLists.html") {
@@ -120,33 +118,33 @@
 
         listOfListsSelectionChanged: function (args) {
             var listViewForLists = document.body.querySelector(".listOfLists").winControl;
-            var details;
-            var that = this;
-            // By default, the selection is restriced to a single item.
-            listViewForLists.selection.getItems().done(function updateDetails(items) {
-                if (items.length > 0) {
-                    that.itemSelectionIndex = items[0].index;
-                    if (that.isSingleColumn()) {
+            if (listViewForLists != null) {
+                var details;
+                var that = this;
+                // By default, the selection is restriced to a single item.
+                listViewForLists.selection.getItems().done(function updateDetails(items) {
+                    if (items.length > 0) {
+                        that.itemSelectionIndex = items[0].index;
+                        if (that.isSingleColumn()) {
 
-                        //FIX
+                            // If snapped or portrait, navigate to a new page containing the
+                            // selected item's details.
+                            nav.navigate("/pages/lists/libraryLists.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
 
-                        // If snapped or portrait, navigate to a new page containing the
-                        // selected item's details.
-                        nav.navigate("/pages/lists/libraryLists.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
+                        } else {
 
-                    } else {
-                        
-                        // If fullscreen or filled, update the details column with new data.
-                        details = document.querySelector(".article-title");
-                        binding.processAll(details, items[0].data);
-                        //details.scrollTop = 0;
+                            // If fullscreen or filled, update the details column with new data.
+                            details = document.querySelector(".article-title");
+                            binding.processAll(details, items[0].data);
+                            //details.scrollTop = 0;
 
-                        //Update list content
-                        setImmediate(that.updateListViewForContentDataSoruce(items[0].data));
+                            //Update list content
+                            setImmediate(that.updateListViewForContentDataSoruce(items[0].data));
 
+                        }
                     }
-                }
-            });
+                });
+            }
         },
 
         unload: function () {
@@ -215,10 +213,10 @@
             }
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
-                    utils.addClass(document.querySelector(".listOfListContentSection"), "primarycolumn");
-                    document.querySelector(".listOfListContent").focus();
+                    utils.addClass(document.querySelector(".articlesection"), "primarycolumn");
+                    document.querySelector(".articlesection").focus();
                 } else {
-                    utils.addClass(document.querySelector(".itemlistsection"), "primarycolumn");
+                  utils.addClass(document.querySelector(".listOfListsSection"), "primarycolumn");
                     document.querySelector(".listOfLists").focus();
                 }
             } else {
