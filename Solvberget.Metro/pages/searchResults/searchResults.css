@@ -1,8 +1,13 @@
-﻿.searchResults section[role=main] {
+﻿.searchResults {
+background-color: #005522;
+}
+
+.searchResults section[role=main] {
     /* Define a grid with rows for the filters, spacing and results */
     -ms-grid-columns: 1fr;
     -ms-grid-rows: auto 18px 1fr;
     display: -ms-grid;
+     
 }
 
 .titlecontainer {
