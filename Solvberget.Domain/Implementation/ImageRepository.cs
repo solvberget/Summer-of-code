@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Script.Serialization;
+﻿using System.Web.Script.Serialization;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Utils;
@@ -48,7 +41,6 @@ namespace Solvberget.Domain.Implementation
             _xmluri += "SYSTEM=" + _serverSystem;
         }
 
-        [OutputCache]
         public string GetDocumentImage(string id)
         {
             var cacheUrl = _storageHelper.GetLocalImageFileCacheUrl(id, false);
@@ -72,7 +64,6 @@ namespace Solvberget.Domain.Implementation
             return string.Empty;
         }
 
-        [OutputCache]
         public string GetDocumentThumbnailImage(string id, string size)
         {
 
