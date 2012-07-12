@@ -71,9 +71,10 @@
         setViewModel: function (itemModel) {
 
             eval("this.viewModel = ViewModel." + itemModel.DocType);
-            if (this.viewModel !== undefined)
+            if (this.viewModel !== undefined) {
                 this.viewModel.fillProperties(itemModel);
-            this.viewModel.image = "undefined";
+                this.viewModel.image = undefined;
+            }
         },
         unload: function () {
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
@@ -141,7 +142,7 @@
             var request = e.request;
 
             // This documents title and img
-            var documentTitle = $("#item-title").text();
+            var documentTitle = $(".pagetitle").text();
 
             if ((typeof documentTitle === "string") && (documentTitle !== "")) {
 

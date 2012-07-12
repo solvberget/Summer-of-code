@@ -53,7 +53,7 @@ namespace Solvberget.Domain.Implementation
 
             var doc = RepositoryUtils.GetXmlFromStream(url);
 
-            if (doc.Root != null)
+            if (doc != null && doc.Root != null)
             {
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)

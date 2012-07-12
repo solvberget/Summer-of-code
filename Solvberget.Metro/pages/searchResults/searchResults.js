@@ -210,10 +210,12 @@
 
                    for (x in response) {
 
-                       if (response[x].ThumbnailUrl !== "")
+                       if (response[x].ThumbnailUrl !== "") {
                            response[x].BackgroundImage = response[x].ThumbnailUrl;
-                       else
+                       }
+                       else {
                            response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                       }
 
                        originalResults.push(response[x]);
                    }
@@ -371,7 +373,9 @@
                     WinJS.Navigation.navigate("/pages/events/events.html");
                     break;
                 case 1:
-                    // SearchPage
+                    // searchPane
+                    var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                    searchPane.show();
                     break;
                 case 2:
                     WinJS.Navigation.navigate("/pages/split/split.html");
