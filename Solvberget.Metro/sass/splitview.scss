@@ -1,12 +1,17 @@
-﻿
-$white: #FFFFFE;
+﻿$orange: #FF9900;
+$darkorange: #CC3300;
+$green: #88BB00;
+$drakgreen: #005522;
+$blue: #0099CC;
+$darkblue: #003366;
+$purple: #660066;
+$darkpurple: #330033;
 
 .splitpage {
     -ms-grid-columns: 2fr 3fr;
     display: -ms-grid;
     height: 100%;
     width: 100%;
-    background-color: $white;
 }
 
     .splitpage .itemlist .win-vertical.win-viewport .win-surface {
@@ -50,8 +55,12 @@ $white: #FFFFFE;
         -ms-grid-rows: 1fr;
         display: -ms-grid;
         height: 110px;
-        width: 500px;
+        width: auto;
     }
+
+	    .splitpage .itemlistsection .itemlist .win-item .item-image-container .item-image {
+            max-width: 110px;
+        }
 
         .splitpage .itemlistsection .itemlist .win-item .item-info {
             -ms-grid-column: 2;
@@ -84,23 +93,42 @@ $white: #FFFFFE;
         z-index: 0;
     }
 
-        .splitpage .articlesection header {
+        .splitpage .articlesection .article-box {
+            margin-top: 37px;
+            margin-bottom: 50px;
+        }
+
+        .splitpage .articlesection .article-box header {
             -ms-grid-columns: 180px 20px 1fr;
-            -ms-grid-rows: 180px;
+            -ms-grid-rows: auto 180px;
             display: -ms-grid;
             margin-bottom: 6px;
             margin-top: 60px;
         }
 
-            .splitpage .articlesection header .text {
+		.splitpage .articlesection  .article-box header .article-title {
+                -ms-grid-column-span: 3;
+        }
+
+            .splitpage .articlesection  .article-box header .text {
+                -ms-grid-row: 2;
                 -ms-grid-column: 3;
             }
 
-            .splitpage .articlesection header .article-image {
-                height: 180px;
-                width: 180px;
+            .splitpage .articlesection .article-box .article-image-container {
+                -ms-grid-row: 2;
+                overflow: hidden;
+                text-align: center;
             }
-
+            
+            .splitpage .articlesection .article-box .article-image-container .article-image {
+                /*
+                max-width: 180px;
+                height: auto;
+                width: auto; */
+                max-height: 180px;
+            }
+      
         .splitpage .articlesection .article-content {
             overflow-y: auto;
         }
@@ -116,15 +144,15 @@ $white: #FFFFFE;
 
         .splitpage .itemlistsection .itemlist .win-item {
             -ms-grid-columns: 60px 1fr;
+            -ms-grid-rows: 1fr;
+            display: -ms-grid;
             height: 60px;
-            margin-bottom: 0;
-            width: 282px;
+            width: 280px;
         }
 
-            .splitpage .itemlistsection .itemlist .win-item .item-image {
-                height: 60px;
-                width: 60px;
-            }
+               .splitpage .itemlistsection .itemlist .win-item .item-image-container .item-image {
+                    max-width: 60px;
+                }
 
             .splitpage .itemlistsection .itemlist .win-item .item-info .item-title {
                 margin-top: 0px;
@@ -156,9 +184,9 @@ $white: #FFFFFE;
                 width: 282px;
             }
 
-                .splitpage .itemlistsection .itemlist .win-item .item-image {
-                    height: 60px;
-                    width: 60px;
+                .splitpage .itemlistsection .itemlist .win-item .item-image-container .item-image {
+                    max-width: 60px;
+                    
                 }
 
                 .splitpage .itemlistsection .itemlist .win-item .item-info .item-title {
@@ -171,31 +199,46 @@ $white: #FFFFFE;
                     visibility: hidden;
                 }
 
-        .splitpage .articlesection {
-            -ms-grid-row-span: 1;
-            -ms-grid-row: 2;
-            margin-left: 20px;
-            padding-right: 36px;
-        }
+		.splitpage .articlesection {
+			-ms-grid-row-span: 2;
+			-ms-grid-row: 2;
+			margin-left: 20px;
+			padding-right: 36px;
+			display: -ms-grid;
+			margin-bottom: 25px;
+			margin-top: 2px;
+		}
 
-            .splitpage .articlesection header {
-                display: block;
-                margin-top: 0;
-            }
+				.splitpage .articlesection .article-box header {
+					-ms-grid-rows: auto 60px 1fr;
+					display: block;
+					margin-top: 0;
+					margin-bottom: 25px;
+					margin-top: 5px;
+				}
 
-                .splitpage .articlesection header .article-image {
-                    height: 160px;
-                    width: 242px;
-                }
+					.splitpage .articlesection .article-box .article-image-container {
+						-ms-grid-row: 2;
+						overflow: hidden;
+						text-align: center;
+					}
+            
+						.splitpage .articlesection .article-box .article-image-container .article-image {
+							max-height: fill-available;
+						}
 
-                .splitpage .articlesection header .text {
-                    -ms-grid-column: 1;
-                }
+					.splitpage .articlesection  .article-box header .article-title {
+						-ms-grid-row: 1;
+					} 
 
-                    .splitpage .articlesection header .text .article-subtitle {
-                        margin-bottom: 20px;
-                        overflow: hidden;
-                    }
+					.splitpage .articlesection .article-box header .text {
+						-ms-grid-row: 3;
+					}
+
+						.splitpage .articlesection .article-box header .text .article-subtitle {
+							margin-bottom: 20px;
+							overflow: hidden;
+						}
 
         .splitpage .itemlistsection, .splitpage .articlesection {
             -ms-grid-column: 2;
