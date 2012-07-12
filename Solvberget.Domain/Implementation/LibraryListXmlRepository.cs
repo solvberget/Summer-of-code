@@ -43,7 +43,9 @@ namespace Solvberget.Domain.Implementation
             {
                 Document document = (_repository.GetDocument(docnr, true));
                 //We want to add the thumbnail url to the document in this case
-                document.ThumbnailUrl = _imageRepository.GetDocumentThumbnailImage(docnr, "60");
+                //Check if already cached
+                if (string.IsNullOrEmpty(document.ThumbnailUrl))
+                    document.ThumbnailUrl = _imageRepository.GetDocumentThumbnailImage(docnr, "60");
                 libraryList.Documents.Add(document);
             }
         }

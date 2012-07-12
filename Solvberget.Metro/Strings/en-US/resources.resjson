@@ -1,5 +1,5 @@
 // For details on localizing a Windows app, see: http://go.microsoft.com/fwlink/?LinkId=212836
-//Språk engelsk
+//Språk norsk
 // æøå: Ã¦  Ã¸  Ã¥ ... Use replace all to change
 {
     "Author"                : "Forfatter",
@@ -34,6 +34,9 @@
     "Subject"               : "Emne",
     "InvolvedOrganizations" : "Knyttet organisasjon/gruppe",
     "ResponsiblePersons"    : "Liste over ansvarlige personer",
-    "ProductionYear"        : "PublikasjonsÃ¥r"
+    "ProductionYear"        : "PublikasjonsÃ¥r",
+    "Book"                  : "Bok",
+    "Film"                  : "Film",
+    "AudioBook"             : "Lydbok"
 
 }

@@ -26,12 +26,6 @@ namespace Solvberget.Service
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "GetDocumentsLight", // Route name
-                "Document/GetDocumentsLight/{ids}", // URL with parameters
-                new { controller = "Document", action = "GetDocumentsLight", ids = UrlParameter.Optional } // Parameter defaults
-            );
-
-            routes.MapRoute(
                 "GetList", // Route name
                 "List/GetLists/{limit}", // URL with parameters
                 new { controller = "List", action = "GetLists", limit = UrlParameter.Optional} // Parameter defaults

@@ -27,7 +27,9 @@ namespace Solvberget.Service.Infrastructure
 
         private void AddBindings()
         {
-            ninjectKernel.Bind<IRepository>().To<AlephRepository>();
+            ninjectKernel.Bind<IRepository>().To<AlephRepository>()
+                .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
+
             ninjectKernel.Bind<IEventRepository>().To<LinticketRepository>();
             ninjectKernel.Bind<IImageRepository>().To<ImageRepository>()
                  .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());

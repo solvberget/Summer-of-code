@@ -30,7 +30,7 @@
             var initViewModel = function () {
                 var article = element.querySelector(".article");
                 var pageTitle = element.querySelector(".pagetitle");
-                
+
                 that.setViewModel(that.itemModel);
                 WinJS.Binding.processAll(article, that.viewModel);
                 WinJS.Binding.processAll(pageTitle, that.viewModel);
@@ -71,9 +71,10 @@
         setViewModel: function (itemModel) {
 
             eval("this.viewModel = ViewModel." + itemModel.DocType);
-            if (this.viewModel !== undefined)
+            if (this.viewModel !== undefined) {
                 this.viewModel.fillProperties(itemModel);
-            this.viewModel.image = "undefined";
+                this.viewModel.image = undefined;
+            }
         },
         unload: function () {
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
@@ -87,6 +88,7 @@
             /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
 
             var listView = element.querySelector(".itemlist").winControl;
+
             var firstVisible = listView.indexOfFirstVisible;
 
 
@@ -95,40 +97,25 @@
                 e.preventDefault();
             }
 
+            listView.selection.set(0);
+            listView.selection.clear()
             if (this.isSingleColumn()) {
-                listView.selection.clear();
-                if (this.itemSelectionIndex >= 0) {
-                    // If the app has snapped into a single-column detail view,
-                    // add the single-column list view to the backstack.
-                    nav.history.current.state = {
-                        itemModel: this.itemModel,
-                        key: this.documentId
-                    };
-                    nav.history.backStack.push({
-                        location: "/pages/itemDetail/itemDetail.html",
+                //listView.layout = new ui.ListLayout();
 
-                        state: { itemModel: this.itemModel, key: this.documentId }
-                    });
-                    element.querySelector(".content").focus();
-                } else {
-                    listView.addEventListener("contentanimating", handler, false);
-                    listView.indexOfFirstVisible = firstVisible;
-                    listView.forceLayout();
-                }
+                element.querySelector(".content").focus();
+                listView.addEventListener("contentanimating", handler, false);
+                listView.indexOfFirstVisible = firstVisible;
+                listView.forceLayout();
+
             } else {
-                // If the app has unsnapped into the two-column view, remove any
-                // splitPage instances that got added to the backstack.
-                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/itemDetail/itemDetail.html") {
-                    nav.history.backStack.pop();
-                }
+               
                 if (viewState !== lastViewState) {
                     listView.addEventListener("contentanimating", handler, false);
                     listView.indexOfFirstVisible = firstVisible;
                     listView.forceLayout();
                 }
 
-                listView.selection.set(0);
-                listView.selection.clear();
+                ;
             }
         },
         registerForShare: function () {
@@ -155,7 +142,7 @@
             var request = e.request;
 
             // This documents title and img
-            var documentTitle = $("#item-title").text();
+            var documentTitle = $(".pagetitle").text();
 
             if ((typeof documentTitle === "string") && (documentTitle !== "")) {
 
