@@ -88,34 +88,17 @@
             /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
 
             var listView = element.querySelector(".itemlist").winControl;
-
-            var firstVisible = listView.indexOfFirstVisible;
-
-
-            var handler = function (e) {
-                listView.removeEventListener("contentanimating", handler, false);
-                e.preventDefault();
-            }
-
-            listView.selection.set(0);
-            listView.selection.clear()
             if (this.isSingleColumn()) {
-                //listView.layout = new ui.ListLayout();
+                listView.layout = new ui.ListLayout();
 
-                element.querySelector(".content").focus();
-                listView.addEventListener("contentanimating", handler, false);
-                listView.indexOfFirstVisible = firstVisible;
                 listView.forceLayout();
 
             } else {
-               
-                if (viewState !== lastViewState) {
-                    listView.addEventListener("contentanimating", handler, false);
-                    listView.indexOfFirstVisible = firstVisible;
-                    listView.forceLayout();
-                }
+                listView.layout = new ui.GridLayout();
 
-                ;
+                listView.forceLayout();
+
+
             }
         },
         registerForShare: function () {
