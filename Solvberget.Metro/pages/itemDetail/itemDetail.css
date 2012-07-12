@@ -107,13 +107,14 @@
 
 @media screen and (-ms-view-state: snapped) {
     .itemdetailpage .content {
+        -ms-grid-rows: auto 60px;
         overflow-x: hidden;
         overflow-y: auto;
     }
 
         .itemdetailpage .content article {
             /* Define a single column, vertically scrolling article in snapped mode. */
-            -ms-grid-rows: auto 60px;
+            
             -ms-grid-row: 2;
             display: -ms-grid;
             height: 100px;
@@ -141,6 +142,43 @@
             width: calc(70% - 50px);
             height: calc(100% - 50px);
         }
+
+            .itemdetailpage .content .itemlist .item {
+                margin-bottom: 15px;
+                margin-right: 5px;
+                height: 100%;
+            }
+
+            .itemdetailpage .content .itemlist .win-container .win-selectioncheckmark {
+                display: none;
+            }
+
+            .itemdetailpage .content .itemlist .win-container .win-selectioncheckmarkbackground {
+                display: none;
+            }
+
+            .itemdetailpage .content .itemlist .win-item {
+                height: 60px;
+                width: 500px;
+            }
+
+                .itemdetailpage .content .itemlist .win-item .item-info {
+                    -ms-grid-column: 2;
+                    margin-left: 10px;
+                    margin-right: 20px;
+                    overflow: auto;
+                }
+
+                    .itemdetailpage .content .itemlist .win-item .item-info .item-title {
+                        margin-top: 4px;
+                        overflow: auto;
+                    }
+
+                    .itemdetailpage .content .itemlist .win-item .item-info .item-value {
+                        opacity: 1;
+                        overflow: auto;
+                    }
+
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {

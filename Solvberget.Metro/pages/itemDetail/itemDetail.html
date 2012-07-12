@@ -25,10 +25,12 @@
 
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
-        <div class="item-info">
-            <b class="item-title" data-win-bind="textContent: propertyName;"></b>
-            <div class="item-value" data-win-bind="innerHTML: propertyValue; ">
-                <!--style.display: propertyValue Solvberget.Converters.styleNullToHiddenConverter">-->
+        <div class="item">
+            <div class="item-info">
+                <b class="item-title" data-win-bind="textContent: propertyName;"></b>
+                <div class="item-value" data-win-bind="innerHTML: propertyValue; ">
+                    <!--style.display: propertyValue Solvberget.Converters.styleNullToHiddenConverter">-->
+                </div>
             </div>
         </div>
     </div>
