@@ -8,6 +8,8 @@
             this._minPageSize = 10;  // default
             this._maxPageSize = 50;  // max
             this._maxCount = 1000;   // limit
+            this._count = 0;
+
         },
 
         // IListDataDapter methods
@@ -95,8 +97,9 @@
                                 });
                             }
 
-                            // Get the count.
+                            // Get the count
                             count = items.length;
+                            self._count = count;
 
                             return {
                                 items: results, // The array of items.
@@ -118,32 +121,19 @@
             // Gets the number of items in the result list. 
             // The count can be updated in itemsFromIndex.
             getCount: function () {
-                var that = this;
-
-                // Create up a request for 1 item so we can get the count
-                var requestStr = "http://localhost:7089/Event/GetEvents";
-                               
-                // Make an XMLHttpRequest to the server and use it to get the count.
-                return WinJS.xhr({ url: requestStr }).then(
-
-                    // The callback for a successful operation.
-                    function (request) {
-                        var data = JSON.parse(request.responseText);
-
-                        // Bing may return a large count of items, 
-                        /// but you can only fetch the first 1000.
-                        return Math.min(data.length, that._maxCount);
-                    },
-                    function (request) {
-                        return WinJS.Promise.wrapError(new WinJS.ErrorFromName(WinJS.UI.FetchError.doesNotExist));
+                var self = this
+                return WinJS.Promise.timeout(100)
+                    .then(function () {
+                        return self._count;
                     });
             }
-            
+
             // setNotificationHandler: not implemented
             // itemsFromStart: not implemented
             // itemsFromEnd: not implemented
             // itemsFromKey: not implemented
             // itemsFromDescription: not implemented
+
         }
         );
 

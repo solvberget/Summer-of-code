@@ -13,9 +13,9 @@
         },
 
         // IListDataDapter methods
-       
+
         {
-            
+
             //   This funtion must return an object that implements IFetchResult. 
             itemsFromIndex: function (requestIndex, countBefore, countAfter) {
                 var that = this;
@@ -58,7 +58,6 @@
                         // Use the JSON parser on the results (it's safer than using eval).
                         var obj = JSON.parse(request.responseText);
 
-                        // Verify that the service returned images.
                         if (obj !== undefined) {
                             var items = obj
 
@@ -100,34 +99,14 @@
             // Gets the number of items in the result list. 
             // The count can be updated in itemsFromIndex.
             getCount: function () {
-                // Create the request string for the lists (no query parameters) 
-                var requestStr = "http://localhost:7089/List/GetLists";
-
-                // Return the promise from making an XMLHttpRequest to the server.
-                return WinJS.xhr({ url: requestStr }).then(
-
-                    // The callback for a successful operation. 
-                    function (request) {
-
-                        // Use the JSON parser on the results (it's safer than using eval).
-                        var obj = JSON.parse(request.responseText);
-
-                        // Verify that the service returned images.
-                        if (obj !== undefined) {
-                            return obj.length;
-                        } else {
-                            return WinJS.UI.FetchError.doesNotExist;
-                        }
-                    },
-
-                    // Called if the WinJS.xhr funtion returned an error. 
-                    function (request) {
-                        return WinJS.UI.FetchError.noResponse;
+                var self = this
+                return WinJS.Promise.timeout(100)
+                    .then(function () {
+                        return self._count;
                     });
             }
-            
         }
-        );
+    );
 
     var listDataSource = WinJS.Class.derive(WinJS.UI.VirtualizedDataSource, function () {
         this._baseDataSourceConstructor(new listDataAdapter());
