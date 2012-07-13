@@ -242,9 +242,10 @@
                 width: 600px;
             }
 
+
                 .splitpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-image {
+                    width: auto;
                     height: 60px;
-                    width: 60px;
                 }
 
                 .splitpage .articlesection .listOfListContentSection .listOfListContent .win-item .list-info .item-title {

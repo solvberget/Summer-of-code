@@ -17,7 +17,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [SetUp]
         public void InitRepository()
         {
-            _imageRepository = new ImageRepository(_imageCache);
+            
+            _imageRepository = new ImageRepository(new AlephRepository(_imageCache),_imageCache);
             
         }
 

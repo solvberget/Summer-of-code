@@ -3,6 +3,8 @@
     display: -ms-grid;
     height: 100%;
     width: 100%;
+
+  
 }
 
     .splitpage .itemlist .win-vertical.win-viewport .win-surface {
@@ -18,6 +20,7 @@
     .splitpage .itemlistsection {
         -ms-grid-row: 2;
         margin-left: 106px;
+      
     }
 
         .splitpage .itemlistsection .itemlist {
@@ -78,37 +81,44 @@
         padding-right: 120px;
         position: relative;
         z-index: 0;
+
     }
 
-        .splitpage .articlesection header {
+        .splitpage .articlesection .article-box {
+            margin-top: 37px;
+            margin-bottom: 50px;
+        }
+    
+        .splitpage .articlesection .article-box header {
             -ms-grid-columns: 180px 20px 1fr;
-            -ms-grid-rows: 180px;
+            -ms-grid-rows: auto 180px;
             display: -ms-grid;
             margin-bottom: 6px;
             margin-top: 60px;
         }
 
-            .splitpage .articlesection header .text {
+            .splitpage .articlesection  .article-box header .article-title {
+                -ms-grid-column-span: 3;
+            }
+            
+            .splitpage .articlesection  .article-box header .text {
+                -ms-grid-row: 2;
                 -ms-grid-column: 3;
             }
 
-            .splitpage .articlesection header .article-image-container {
+            .splitpage .articlesection .article-box header .article-image-container {
+                -ms-grid-row: 2;
                 overflow: hidden;
                 text-align: center;
             }
             
-            .splitpage .articlesection header .article-image-container .article-image {
+            .splitpage .articlesection .article-box header .article-image-container .article-image {
                 /*
                 max-width: 180px;
                 height: auto;
                 width: auto; */
                 max-height: 180px;
             }
-
-        .splitpage .articlesection .article-box {
-            margin-top: 37px;
-            margin-bottom: 50px;
-        }
       
         .splitpage .articlesection .article-content {
             overflow-y: auto;
@@ -187,21 +197,48 @@
             -ms-grid-row: 2;
             margin-left: 20px;
             padding-right: 36px;
+            -ms-grid-columns: 1fr;
+            -ms-grid-rows: auto 60px 1fr;
+            display: -ms-grid;
+            margin-bottom: 25px;
+            margin-top: 2px;
+        }
+        
+        .splitpage .articlesection .article-box {
         }
 
-            .splitpage .articlesection header {
+            .splitpage .articlesection .article-box header {
                 display: block;
                 margin-top: 0;
             }
+            
+        .splitpage .articlesection .article-box header {
+            margin-bottom: 25px;
+            margin-top: 5px;
+        }
+            
+            .splitpage .articlesection  .article-box header .article-title {
+                -ms-grid-row: 1;
+            }
 
-                .splitpage .articlesection header .text {
-                    -ms-grid-column: 1;
+                .splitpage .articlesection .articlebox header .text {
+                    -ms-grid-row: 3;
                 }
 
                     .splitpage .articlesection header .text .article-subtitle {
                         margin-bottom: 20px;
                         overflow: hidden;
                     }
+                    
+            .splitpage .articlesection .article-box header .article-image-container {
+                -ms-grid-row: 2;
+                overflow: hidden;
+                text-align: center;
+            }
+            
+            .splitpage .articlesection .article-box header .article-image-container .article-image {
+                max-height: fill-available;
+            }
 
         .splitpage .itemlistsection, .splitpage .articlesection {
             -ms-grid-column: 2;

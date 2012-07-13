@@ -12,13 +12,16 @@ namespace Solvberget.Service.Tests.RepositoryTests
     internal class LibraryListsFromXmlRepositoryTest
     {
         private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\";
+        private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
+
         private LibraryListXmlRepository _listRepository;
 
         [TestFixtureSetUp]
         public void Init()
         {
             var path = Path.Combine(Environment.CurrentDirectory, PathString);
-            _listRepository = new LibraryListXmlRepository(new AlephRepository(), new ImageRepository(), path);
+            var aleph = new AlephRepository(_imageCache);
+            _listRepository = new LibraryListXmlRepository(aleph, new ImageRepository(aleph, _imageCache), path);
         }
 
         [Test]

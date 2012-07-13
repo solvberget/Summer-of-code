@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Script.Serialization;
+﻿using System.Web.Script.Serialization;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Utils;
@@ -16,20 +9,26 @@ namespace Solvberget.Domain.Implementation
     public class ImageRepository : IImageRepository
     {
 
-        private static readonly IRepository AlephRepository = new AlephRepository();
+        private readonly IRepository _documentRepository;
         private readonly string _pathToImageCache;
 
         private readonly string _serveruri = string.Empty;
         private readonly string[] _trueParams = { "SMALL_PICTURE", "LARGE_PICTURE", "PUBLISHER_TEXT", "FSREVIEW", "CONTENTS", "SOUND", "EXTRACT", "REVIEWS", "nocrypt" };
         private readonly string _serverSystem = string.Empty;
         private readonly string _xmluri = string.Empty;
+        private readonly StorageHelper _storageHelper;
 
-
-        public ImageRepository(string pathToImageCache = null)
+        public ImageRepository(IRepository documentRepository, string pathToImageCache = null)
         {
+
+
+            _documentRepository = documentRepository;
 
             _pathToImageCache = string.IsNullOrEmpty(pathToImageCache)
     ? @"App_Data\"+Properties.Settings.Default.ImageCacheFolder : pathToImageCache;
+
+            _storageHelper = new StorageHelper(_pathToImageCache);
+
 
             _serveruri = Properties.Settings.Default.BokBasenServerUri;
             _serverSystem = Properties.Settings.Default.BokBasenSystem;
@@ -42,14 +41,13 @@ namespace Solvberget.Domain.Implementation
             _xmluri += "SYSTEM=" + _serverSystem;
         }
 
-        [OutputCache]
         public string GetDocumentImage(string id)
         {
-            var cacheUrl = GetLocalFileCacheUrl(id, false);
+            var cacheUrl = _storageHelper.GetLocalImageFileCacheUrl(id, false);
             if (!string.IsNullOrEmpty(cacheUrl))
                 return cacheUrl;
 
-            var doc = AlephRepository.GetDocument(id, false);
+            var doc = _documentRepository.GetDocument(id, false);
             if (doc == null)
                 return string.Empty;
 
@@ -66,15 +64,14 @@ namespace Solvberget.Domain.Implementation
             return string.Empty;
         }
 
-        [OutputCache]
         public string GetDocumentThumbnailImage(string id, string size)
         {
 
-            var cacheUrl = GetLocalFileCacheUrl(size != null ? id + "-" + size : id, true);
+            var cacheUrl = _storageHelper.GetLocalImageFileCacheUrl(size != null ? id + "-" + size : id, true);
             if (!string.IsNullOrEmpty(cacheUrl))
                 return cacheUrl;
 
-            var doc = AlephRepository.GetDocument(id, false);
+            var doc = _documentRepository.GetDocument(id, false);
 
             if (doc == null)
                 return string.Empty;
@@ -82,36 +79,21 @@ namespace Solvberget.Domain.Implementation
             if (Equals(doc.DocType, typeof(Film).Name))
             {
                 var posterUrl = GetExternalFilmImageUri(doc as Film);
-                posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "150.jpg");
+                posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "60.jpg");
                 return GetLocalImageUrl(posterUrl, size != null ? id + "-" + size : id, true);
 
             }
            
             if (Equals(doc.DocType, typeof(Book).Name))
-                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 150), id, true);
+                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 60), id, true);
             
             if (Equals(doc.DocType, typeof(AudioBook).Name))
-                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 150), id, true);
+                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 60), id, true);
 
             return string.Empty;
         }
 
-        private string GetLocalFileCacheUrl(string id, bool isThumb)
-        {
-            if (!Directory.Exists(_pathToImageCache))
-                return string.Empty;
-
-            var fileName = isThumb ? Path.Combine(_pathToImageCache, "thumb" + id + ".jpg") : Path.Combine(_pathToImageCache, id + ".jpg");
-
-            if (File.Exists(fileName))
-            {
-                var imageName = isThumb ? "thumb" + id + ".jpg" : id + ".jpg";
-                var localServerUrl = Properties.Settings.Default.ServerUrl;
-                var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
-                return localServerUrl + localImageCacheFolder + imageName;
-            }
-            return string.Empty;
-        }
+       
 
         private string GetExternalBookImageUri ( Book book, bool fetchThumbnail )
         {
@@ -200,7 +182,12 @@ namespace Solvberget.Domain.Implementation
                     continue;
                 
                 var personNames = person.Name.Split(',');
-                var personName = personNames[1] + " " + personNames[0];
+                string personName;
+                if (personNames.Length > 1)
+                    personName = personNames[1] + " " + personNames[0];
+                else
+                    personName = personNames[0];
+
                 personName = personName.Trim();
 
                 if (imdbObject.Director.Split(',').Any(director => director.Trim().Equals(personName)))

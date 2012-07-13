@@ -13,7 +13,15 @@ namespace Solvberget.Domain.Utils
         public static XDocument GetXmlFromStream(string url)
         {
             var request = WebRequest.Create(url);
-            var response = request.GetResponse();
+            WebResponse response;
+            try
+            {
+                response = request.GetResponse();
+            }
+            catch (WebException)
+            {
+                return null;
+            }
             string xml = string.Empty;
             using (var stream = response.GetResponseStream())
             {
