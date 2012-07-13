@@ -10,7 +10,7 @@
     ui.Pages.define("/pages/lists/libraryLists.html", {
 
         group: null,
-        itemSelectionIndex: -1,
+        itemSelectionIndex: 0,
 
         // This function checks if the list and details columns should be displayed
         // on separate pages instead of side-by-side.
@@ -68,6 +68,8 @@
 
             var listViewForLists = element.querySelector(".listOfLists").winControl;
             var listViewForListContent = element.querySelector(".listOfListContent").winControl;
+            listViewForLists.layout = new ui.ListLayout();
+            listViewForListContent.layout = new ui.ListLayout();
 
             //Setup the ListDataSource
             var listDataSource = new DataSources.List.ListDataSource();
@@ -81,18 +83,15 @@
             //Set page header
             element.querySelector("header[role=banner] .pagetitle").textContent = this.group.title;
 
-
             // Set up the listViewForLists.
             listViewForLists.itemDataSource = listDataSource;
             listViewForLists.itemTemplate = element.querySelector(".listListTemplate");
             listViewForLists.onselectionchanged = this.listOfListsSelectionChanged.bind(this);
-            listViewForLists.layout = new ui.ListLayout();
             
             // Set up the listViewForLists.
             listViewForListContent.itemTemplate = this.itemTemplateFunction;
             listViewForListContent.oniteminvoked = this.listOfContentItemInvoked.bind(this);
-            listViewForListContent.layout = new ui.ListLayout();
-
+            
             this.updateVisibility();
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
@@ -158,48 +157,50 @@
             /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
 
             var listViewForLists = element.querySelector(".listOfLists").winControl;
-            var firstVisible = listViewForLists.indexOfFirstVisible;
+            //var firstVisible = listViewForLists.indexOfFirstVisible;
             this.updateVisibility();
 
-            var handler = function (e) {
-                listViewForLists.removeEventListener("contentanimating", handler, false);
-                e.preventDefault();
-            }
+            //var handler = function (e) {
+            //    listViewForLists.removeEventListener("contentanimating", handler, false);
+            //    e.preventDefault();
+            //}
 
             if (this.isSingleColumn()) {
                 listViewForLists.selection.clear();
                 if (this.itemSelectionIndex >= 0) {
                     // If the app has snapped into a single-column detail view,
                     // add the single-column list view to the backstack.
-                    nav.history.current.state = {
-                        groupKey: this.group.key,
-                        selectedIndex: this.itemSelectionIndex
-                    };
-                    nav.history.backStack.push({
-                        location: "/pages/lists/libraryLists.html",
-                        state: { groupKey: this.group.key }
-                    });
+                    //nav.history.current.state = {
+                    //    groupKey: this.group.key,
+                    //    selectedIndex: this.itemSelectionIndex
+                    //};
+                    //nav.history.backStack.push({
+                    //    location: "/pages/lists/libraryLists.html",
+                    //    state: { groupKey: this.group.key }
+                    //});
                     element.querySelector(".articlesection").focus();
 
 
                 } else {
                     listViewForLists.addEventListener("contentanimating", handler, false);
-                    listViewForLists.indexOfFirstVisible = firstVisible;
+                    //listViewForLists.indexOfFirstVisible = firstVisible;
                     listViewForLists.forceLayout();
                 }
             } else {
                 // If the app has unsnapped into the two-column view, remove any
                 // splitPage instances that got added to the backstack.
                 if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/lists/libraryLists.html") {
+                    nav.navigate("/pages/lists/libraryLists.html", { groupKey: this.group.key });
                     nav.history.backStack.pop();
+                    return;
                 }
                 if (viewState !== lastViewState) {
                     listViewForLists.addEventListener("contentanimating", handler, false);
-                    listViewForLists.indexOfFirstVisible = firstVisible;
+                    //listViewForLists.indexOfFirstVisible = firstVisible;
                     listViewForLists.forceLayout();
                 }
 
-                listViewForLists.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
+                //listViewForLists.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
 
             }
         },
