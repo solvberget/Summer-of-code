@@ -76,7 +76,7 @@
             shadow: true, // Whether to render a shadow
             hwaccel: false, // Whether to use hardware acceleration
             className: 'spinner', // The CSS class to assign to the spinner
-            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            zIndex: -1, // The z-index (defaults to 2000000000)
             top: 'auto', // Top position relative to parent in px
             left: 'auto' // Left position relative to parent in px
         },
@@ -111,9 +111,11 @@
         queue: [],
         working: false,
         inSearchPage: false,
+        numInProgress: 0,
         fireFinished: function () {
 
             getImageQueue.working = false;
+            getImageQueue.numInProgress = getImageQueue.numInProgress - 1;
             getImageQueue.startWorking();
 
         },
@@ -125,13 +127,23 @@
         },
         startWorking: function () {
             if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
-                getImageQueue.working = true;
-                setTimeout(function () {
-                    var itemIndexObj = getImageQueue.queue[0];
-                    getImageQueue.queue.shift();
-                    if (itemIndexObj != undefined)
-                        self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
-                }, Math.floor(Math.random() * 1500 + 1));
+                if (getImageQueue.numInProgress == 10)
+                    getImageQueue.working = true;
+
+                getImageQueue.numInProgress = getImageQueue.numInProgress + 1;
+
+
+                var itemIndexObj = getImageQueue.queue[0];
+                getImageQueue.queue.shift();
+                if (itemIndexObj != undefined)
+                    self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
+            }
+            else {
+                if (getImageQueue.numInProgress < 1) {
+                    getImageQueue.working = false;
+                    getImageQueue.startWorking();
+                }
+
             }
         }
     };
@@ -210,10 +222,12 @@
 
                    for (x in response) {
 
-                       if (response[x].ThumbnailUrl !== "")
+                       if (response[x].ThumbnailUrl !== "") {
                            response[x].BackgroundImage = response[x].ThumbnailUrl;
-                       else
+                       }
+                       else {
                            response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                       }
 
                        originalResults.push(response[x]);
                    }
@@ -224,7 +238,7 @@
 
                    for (var x in response) {
                        if (response[x].ThumbnailUrl === "")
-                           self.getAndSetThumbImage(originalResults.getItem(x), x);
+                           getImageQueue.addToQueue(originalResults.getItem(x), x);
                    }
 
                }, this)
@@ -247,7 +261,7 @@
                         var htmlItem = listView.elementFromIndex(index);
                         if (htmlItem != null)
                             WinJS.Binding.processAll(htmlItem, item.data);
-
+                        getImageQueue.fireFinished();
                     }
                 }
             }, this));
@@ -371,7 +385,9 @@
                     WinJS.Navigation.navigate("/pages/events/events.html");
                     break;
                 case 1:
-                    // SearchPage
+                    // searchPane
+                    var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                    searchPane.show();
                     break;
                 case 2:
                     WinJS.Navigation.navigate("/pages/split/split.html");
@@ -399,6 +415,8 @@
 
             getImageQueue.inSearchPage = false;
             getImageQueue.queue = [];
+            getImageQueue.numInProgress = 0;
+
 
         },
 

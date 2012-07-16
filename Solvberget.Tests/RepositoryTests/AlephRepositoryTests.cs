@@ -31,7 +31,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var books = documents.Where(x => x.GetType().Name.Equals("Book"));
 
             Assert.AreEqual(7, books.Count());
-            Assert.AreEqual(3, documents.Count(x => x.GetType().Name.Equals("Document")));
+            Assert.AreEqual(0, documents.Count(x => x.GetType().Name.Equals("Document")));
         }
 
         [Test]
@@ -75,6 +75,19 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
             Assert.AreEqual("Fiksjon", audioBook.IsFiction);
             Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
+        }
+
+        [Test]
+        public void TestGetJournal()
+        {
+            const string documentNumberForJournal = "000175989"; //Newsweek
+            var journal = (Journal)_repository.GetDocument(documentNumberForJournal, false);
+            Assert.AreEqual("Journal", journal.GetType().Name);
+            Assert.AreEqual("Newsweek", journal.Title);
+            Assert.AreEqual("0163-7053", journal.Issn);
+            Assert.AreEqual("the international newsmagazine", journal.SubTitle);
+            Assert.AreEqual("Engelsk", journal.Language);
+            Assert.AreEqual("51 nummer pr. år", journal.JournalsPerYear);
         }
 
         [Test]

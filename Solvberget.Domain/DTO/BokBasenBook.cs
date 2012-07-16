@@ -30,8 +30,17 @@ namespace Solvberget.Domain.DTO
 
         public void FillProperties(string xml)
         {
-            XDocument xdoc = XDocument.Load(xml);
-
+            XDocument xdoc;
+            try
+            {                            
+                xdoc = XDocument.Load(xml);
+            }
+            catch
+            {
+                return;
+            }
+            
+            
             if (xdoc.Root == null) return;
 
             var xElement = xdoc.Element("BOOK_JACKETS");
@@ -52,6 +61,7 @@ namespace Solvberget.Domain.DTO
             Extract = GetXmlValue(xElementRecord, GetPropertyName(() => Extract));
             Marc = GetXmlValue(xElementRecord, GetPropertyName(() => Marc));
             Reviews = GetXmlValue(xElementRecord, GetPropertyName(() => Reviews));
+                
 
         }
 

@@ -53,7 +53,7 @@ namespace Solvberget.Domain.Implementation
 
             var doc = RepositoryUtils.GetXmlFromStream(url);
 
-            if (doc.Root != null)
+            if (doc != null && doc.Root != null)
             {
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)
@@ -166,7 +166,7 @@ namespace Solvberget.Domain.Implementation
             foreach(string dtc in documentTypeCodes)
             {
                 //Logic for determining DocumentType from combination of DocumentCodes
-                //TODO: Generally improve and add logic for CD, Journal and Sheet music
+                //TODO: Generally improve and add logic for CDs and Sheet music
 
                 if (dtc.Equals("l"))
                 {
@@ -179,6 +179,10 @@ namespace Solvberget.Domain.Implementation
                 else if (dtc.Equals("di"))
                 {
                     return typeof(AudioBook).FullName;
+                }
+                else if (dtc.StartsWith("j"))
+                {
+                    return typeof (Journal).FullName;
                 }
             }
             

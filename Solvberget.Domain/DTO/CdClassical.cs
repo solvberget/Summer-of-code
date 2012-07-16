@@ -8,24 +8,50 @@ using System.Xml.Linq;
 
 namespace Solvberget.Domain.DTO
 {
-    public class CdClassical : Disc
+    public class CdClassical : Document
     {
         protected override void FillProperties(string xml)
         {
+            base.FillProperties(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+
+            }
         }
 
-        protected override void FillPropertiesLight(string xml)
+        protected void FillPropertiesLight(string xml)
         {
+            base.FillProperties(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+
+            }
         }
 
-        public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
+        public new static CdClassical GetObjectFromFindDocXmlBsMarc(string xml)
         {
-            return null;
+            var document = new CdClassical();
+
+            document.FillProperties(xml);
+
+            return document;
         }
 
-        public new static Book GetObjectFromFindDocXmlBsMarcLight(string xml)
+        public new static CdClassical GetObjectFromFindDocXmlBsMarcLight(string xml)
         {
-            return null;
+            var document = new CdClassical();
+
+            document.FillPropertiesLight(xml);
+
+            return document;
         }
     }
 }
