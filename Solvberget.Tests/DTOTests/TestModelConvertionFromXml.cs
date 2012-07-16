@@ -378,8 +378,6 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var journal = Journal.GetObjectFromFindDocXmlBsMarcLight(getJournalXml());
             Assert.AreEqual("0163-7053", journal.Issn);
-            Assert.AreEqual("51 nummer pr. år", journal.JournalsPerYear);
-            Assert.AreEqual("Biblioteket har: Siste årg.", journal.InventoryInfomation);
         }
 
         private string getBookXml()
