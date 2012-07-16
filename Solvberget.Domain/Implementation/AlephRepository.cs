@@ -163,29 +163,22 @@ namespace Solvberget.Domain.Implementation
 
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
-            foreach(string dtc in documentTypeCodes)
-            {
-                //Logic for determining DocumentType from combination of DocumentCodes
-                //TODO: Generally improve and add logic for CDs and Sheet music
 
-                if (dtc.Equals("l"))
-                {
-                    return typeof(Book).FullName;
-                }
-                else if (dtc.StartsWith("e"))
-                {
-                    return typeof(Film).FullName;
-                }
-                else if (dtc.Equals("di"))
-                {
-                    return typeof(AudioBook).FullName;
-                }
-                else if (dtc.StartsWith("j"))
-                {
-                    return typeof (Journal).FullName;
-                }
-            }
-            
+            var dtc = new HashSet<string>(documentTypeCodes);
+
+            if (dtc.Contains("l"))
+                return typeof(Book).FullName;
+            else if (dtc.Where(x => x.StartsWith("e")).Select(x => x).Count() != 0)
+                return typeof(Film).FullName;
+            else if (dtc.Contains("dc") && dtc.Contains("dg"))
+                return typeof(CdPopular).FullName;
+            else if (dtc.Contains("di"))
+                return typeof(AudioBook).FullName;
+            else if (dtc.Contains("dh"))
+                return typeof (LanguageCourse).FullName;
+            else if (dtc.Contains("j"))
+                return typeof(Journal).FullName;
+
             return typeof(Document).FullName;
 
         }   

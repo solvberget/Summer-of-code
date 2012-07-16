@@ -91,6 +91,7 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
+    <Content Include="css\splitview.css" />
     <Content Include="default.html" />
     <Content Include="DocumentInfo.html" />
     <Content Include="images\ajax_loading.gif" />
@@ -336,6 +337,8 @@
     <Content Include="pages\lists\libraryLists.css" />
     <Content Include="pages\lists\libraryLists.html" />
     <Content Include="pages\lists\libraryLists.js" />
+    <Content Include="sass\splitview.css" />
+    <Content Include="sass\splitview.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </None>
