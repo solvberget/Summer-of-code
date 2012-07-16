@@ -108,6 +108,39 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.IsEmpty(cd.InvolvedMusicGroups);
         }
 
+
+        [Test]
+        public void TestGetLanguageCourse()
+        {
+            const string documentNumberForLanguageCourse = "000391825"; //Jeg snakker norsk språkkurs
+            var languageCourse = (LanguageCourse)_repository.GetDocument(documentNumberForLanguageCourse, false);
+            Assert.AreEqual("Ingnes, Nils", languageCourse.Author.Name);
+            Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
+            Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
+
+            Assert.AreEqual("439.683", languageCourse.ClassificationNr);
+
+            Assert.AreEqual(0, languageCourse.InvolvedOrganizations.Count());
+
+            Assert.AreEqual(0, languageCourse.InvolvedPersons.Count());
+
+            Assert.AreEqual("Engelsk", languageCourse.Language);
+
+            Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
+            Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
+
+            Assert.AreEqual("Språkkurs", languageCourse.Subject.ElementAt(0));
+            Assert.AreEqual("Norsk", languageCourse.Subject.ElementAt(1));
+            Assert.AreEqual(2, languageCourse.Subject.Count());
+
+            Assert.AreEqual(null, languageCourse.TitlesOtherWritingForms);
+
+            Assert.AreEqual("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
+
+            Assert.AreEqual("LanguageCourse", languageCourse.DocType);
+
+        }
+
         [Test]
         public void TestGetNonExistingDoc()
         {
