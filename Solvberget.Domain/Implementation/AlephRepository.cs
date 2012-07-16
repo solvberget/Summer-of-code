@@ -168,7 +168,7 @@ namespace Solvberget.Domain.Implementation
 
             if (dtc.Contains("l"))
                 return typeof(Book).FullName;
-            else if (dtc.Where(x => x.StartsWith("e")).Select(x => x).Count() != 0)
+            else if (dtc.Any(x => x.StartsWith("e")))
                 return typeof(Film).FullName;
             else if (dtc.Contains("dc") && dtc.Contains("dg"))
                 return typeof(CdPopular).FullName;
