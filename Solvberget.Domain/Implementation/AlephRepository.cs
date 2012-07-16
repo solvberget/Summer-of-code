@@ -164,7 +164,7 @@ namespace Solvberget.Domain.Implementation
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
 
-            var dtc = new HashSet<string>(documentTypeCodes);
+            var dtc = new HashSet<string>(documentTypeCodes.Select(x => x.Trim()));
 
             if (dtc.Contains("l"))
                 return typeof(Book).FullName;

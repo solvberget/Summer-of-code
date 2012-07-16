@@ -27,7 +27,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("l", media.DocumentType.ElementAt(0));
 
             Assert.AreEqual("LOE", media.LocationCode);
-            
+
             Assert.AreEqual("Naiv. Super", media.Title);
 
             Assert.AreEqual("Supert", media.SubTitle);
@@ -255,7 +255,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
             Assert.AreEqual("ee", film.DocumentType.ElementAt(0));
-            
+
         }
 
         [Test]
@@ -337,7 +337,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             var audioBook3 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithStdTitleXml());
             Assert.AreEqual("Røde Kors", audioBook3.StandarizedTitle);
-            
+
         }
 
         [Test]
@@ -405,6 +405,575 @@ namespace Solvberget.Service.Tests.DTOTests
 
             var cd2 = CdPopular.GetObjectFromFindDocXmlBsMarcLight(getCdPopluarArtistXml());
             Assert.AreEqual("Abel, Morten", cd2.Artist.Name);
+        }
+
+
+        [Test]
+        public void GetLanguageCourseFromXml()
+        {
+            var languageCourse = LanguageCourse.GetObjectFromFindDocXmlBsMarc(getLanguageCourseXml()); ;
+
+            Assert.AreEqual("Ingnes, Nils", languageCourse.Author.Name);
+            Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
+            Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
+
+            Assert.AreEqual("439.683", languageCourse.ClassificationNr);
+
+            Assert.AreEqual(0, languageCourse.InvolvedOrganizations.Count());
+
+            Assert.AreEqual(0, languageCourse.InvolvedPersons.Count());
+
+            Assert.AreEqual("Engelsk", languageCourse.Language);
+
+            Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
+            Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
+
+            Assert.AreEqual("Språkkurs", languageCourse.Subject.ElementAt(0));
+            Assert.AreEqual("Norsk", languageCourse.Subject.ElementAt(1));
+            Assert.AreEqual(2, languageCourse.Subject.Count());
+
+            Assert.AreEqual(null, languageCourse.TitlesOtherWritingForms);
+
+            Assert.AreEqual("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
+
+            Assert.AreEqual("LanguageCourse", languageCourse.DocType);
+
+
+
+            var languageCourse2 = LanguageCourse.GetObjectFromFindDocXmlBsMarc(getLanguageCourseWithIsbnXml());
+
+            Assert.AreEqual("Simons, Margaretha Danbolt", languageCourse2.Author.Name);
+
+            Assert.AreEqual("439.8283", languageCourse2.ClassificationNr);
+
+            Assert.AreEqual(0, languageCourse2.InvolvedPersons.Count());
+            Assert.AreEqual(0, languageCourse2.InvolvedOrganizations.Count());
+
+            Assert.AreEqual("978-1-444-10720-3", languageCourse2.Isbn);
+
+            Assert.AreEqual("Engelsk", languageCourse.Language);
+
+            Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
+            Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
+
+            Assert.AreEqual("Norsk", languageCourse2.Subject.ElementAt(0));
+            Assert.AreEqual("Engelsk", languageCourse2.Subject.ElementAt(1));
+            Assert.AreEqual("Språkkurs", languageCourse2.Subject.ElementAt(2));
+
+            Assert.AreEqual(3, languageCourse2.Subject.Count());
+
+            Assert.AreEqual(null, languageCourse2.TitlesOtherWritingForms);
+
+            Assert.AreEqual("1 lærebok, 2 CD-er", languageCourse2.TypeAndNumberOfDiscs);
+
+            Assert.AreEqual("LanguageCourse", languageCourse2.DocType);
+
+
+
+            var languageCourse3 = LanguageCourse.GetObjectFromFindDocXmlBsMarc(getLanguageCourseWithInvolvedPersonsXml());
+            Assert.AreEqual("8250804716", languageCourse3.Isbn);
+
+            Assert.AreEqual("428.3", languageCourse3.ClassificationNr);
+
+            Assert.AreEqual("Bennett, Brenda", languageCourse3.Author.Name);
+
+
+
+
+            Assert.AreEqual(1, languageCourse3.InvolvedPersons.Count());
+            Assert.AreEqual("Webster, Diana", languageCourse3.InvolvedPersons.ElementAt(0).Name);
+            Assert.IsNull(languageCourse3.InvolvedPersons.ElementAt(0).LivingYears);
+
+            Assert.AreEqual(3, languageCourse3.InvolvedOrganizations.Count());
+            Assert.AreEqual("Norsk rikskringkasting", languageCourse3.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.AreEqual("Folkets brevskole", languageCourse3.InvolvedOrganizations.ElementAt(1).Name);
+            Assert.AreEqual("NKS høgskole", languageCourse3.InvolvedOrganizations.ElementAt(2).Name);
+            Assert.AreEqual("utgiver", languageCourse3.InvolvedOrganizations.ElementAt(0).Role);
+            Assert.AreEqual("LanguageCourse", languageCourse3.DocType);
+        }
+
+        [Test]
+        public void GetLanguageCourseLightFromXml()
+        {
+            var languageCourse = LanguageCourse.GetObjectFromFindDocXmlBsMarcLight(getLanguageCourseWithIsbnXml());
+            Assert.AreEqual("Simons, Margaretha Danbolt", languageCourse.Author.Name);
+        }
+
+        private string getLanguageCourseWithInvolvedPersonsXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<find-doc>
+    <record>
+        <metadata>
+            <oai_marc>
+                <fixfield id=""FMT"">BK</fixfield>
+                <fixfield id=""LDR"">00948cim^^22003131^^45^^</fixfield>
+                <fixfield id=""BAS"">25</fixfield>
+                <fixfield id=""007"">ss</fixfield>
+                <fixfield id=""008"">860228^1985^^^^^^^^^^^a^^^^^^^^^^0^eng^^</fixfield>
+                <varfield id=""015"" i1="" "" i2="" "">
+                    <subfield label=""a"">0146277</subfield>
+                    <subfield label=""b"">media-f</subfield>
+                </varfield>
+                <varfield id=""019"" i1="" "" i2="" "">
+                    <subfield label=""b"">db, dh</subfield>
+                </varfield>
+                <varfield id=""020"" i1="" "" i2="" "">
+                    <subfield label=""a"">8250804716</subfield>
+                </varfield>
+                <varfield id=""041"" i1="" "" i2="" "">
+                    <subfield label=""a"">eng</subfield>
+                </varfield>
+                <varfield id=""082"" i1="" "" i2="" "">
+                    <subfield label=""a"">428.3</subfield>
+                    <subfield label=""z"">h</subfield>
+                </varfield>
+                <varfield id=""090"" i1="" "" i2="" "">
+                    <subfield label=""c"">428.3</subfield>
+                    <subfield label=""d"">BEN</subfield>
+                </varfield>
+                <varfield id=""091"" i1="" "" i2="" "">
+                    <subfield label=""f"">0</subfield>
+                    <subfield label=""h"">eng</subfield>
+                </varfield>
+                <varfield id=""100"" i1="" "" i2="" "">
+                    <subfield label=""a"">Bennett, Brenda</subfield>
+                </varfield>
+                <varfield id=""245"" i1="" "" i2="" "">
+                    <subfield label=""a"">Take it easy 4 : lydopptak : A-b og C kassetter: radioprogrammene: kassett 1-9</subfield>
+                </varfield>
+                <varfield id=""260"" i1="" "" i2="" "">
+                    <subfield label=""a"">Oslo</subfield>
+                    <subfield label=""b"">Folkets brevskole</subfield>
+                    <subfield label=""c"">1985</subfield>
+                </varfield>
+                <varfield id=""300"" i1="" "" i2="" "">
+                    <subfield label=""b"">koffert (9 kassetter, 1 bok)</subfield>
+                </varfield>
+                <varfield id=""500"" i1="" "" i2="" "">
+                    <subfield label=""a"">Verket består av flere bind</subfield>
+                </varfield>
+                <varfield id=""500"" i1="" "" i2="" "">
+                    <subfield label=""a"">Eget teksthefte til kassettene</subfield>
+                </varfield>
+                <varfield id=""599"" i1="" "" i2="" "">
+                    <subfield label=""a"">0570</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Engelsk</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Språkkurs</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Lærebøker</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2="" "">
+                    <subfield label=""a"">Webster, Diana</subfield>
+                </varfield>
+                <varfield id=""710"" i1="" "" i2="" "">
+                    <subfield label=""a"">Norsk rikskringkasting</subfield>
+                    <subfield label=""e"">utgiver</subfield>
+                </varfield>
+                <varfield id=""710"" i1="" "" i2="" "">
+                    <subfield label=""a"">Folkets brevskole</subfield>
+                    <subfield label=""e"">utgiver</subfield>
+                </varfield>
+                <varfield id=""710"" i1="" "" i2="" "">
+                    <subfield label=""a"">NKS høgskole</subfield>
+                </varfield>
+                <varfield id=""850"" i1="" "" i2="" "">
+                    <subfield label=""a"">stavangb</subfield>
+                    <subfield label=""c"">428.3 BEN</subfield>
+                    <subfield label=""d"">1985</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20041103</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1340</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b""></subfield>
+                    <subfield label=""c"">19971213</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1805</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b""></subfield>
+                    <subfield label=""c"">19990531</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1512</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b""></subfield>
+                    <subfield label=""c"">19991116</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0954</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20000409</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1241</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20000704</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1240</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20001212</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1751</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20010225</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1633</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20010305</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1221</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20020217</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1604</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20020519</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0915</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20020520</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0854</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20020708</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1556</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20020708</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1557</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20020715</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1920</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20021102</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">2307</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20021104</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0524</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20021119</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1523</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20041104</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1255</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20050531</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1353</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20060818</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1153</subfield>
+                </varfield>
+            </oai_marc>
+        </metadata>
+    </record>
+    <session-id>KEM8UE8U3SXKJSTU8HHND7CY589KGLBXBSS9CD94FQHFR3AUV5</session-id>
+</find-doc>";
+        }
+
+        private string getLanguageCourseWithIsbnXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<find-doc>
+    <record>
+        <metadata>
+            <oai_marc>
+                <fixfield id=""FMT"">MX</fixfield>
+                <fixfield id=""LDR"">^^^^^nom^^^^^^^^^1</fixfield>
+                <fixfield id=""008"">110121^2010^^^^^^^^^^^a^^^^^^^^^^0^mul^2</fixfield>
+                <varfield id=""019"" i1="" "" i2="" "">
+                    <subfield label=""b"">dk,dh</subfield>
+                    <subfield label=""d"">L</subfield>
+                </varfield>
+                <varfield id=""020"" i1="" "" i2="" "">
+                    <subfield label=""a"">978-1-444-10720-3</subfield>
+                </varfield>
+                <varfield id=""041"" i1="" "" i2="" "">
+                    <subfield label=""a"">engnob</subfield>
+                </varfield>
+                <varfield id=""082"" i1="" "" i2="" "">
+                    <subfield label=""a"">439.8283</subfield>
+                    <subfield label=""z"">h</subfield>
+                </varfield>
+                <varfield id=""090"" i1="" "" i2="" "">
+                    <subfield label=""c"">439.8283</subfield>
+                    <subfield label=""d"">SIM</subfield>
+                </varfield>
+                <varfield id=""100"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Simons, Margaretha Danbolt</subfield>
+                </varfield>
+                <varfield id=""245"" i1=""1"" i2=""0"">
+                    <subfield label=""a"">Complete Norwegian</subfield>
+                    <subfield label=""h"">kombidokument</subfield>
+                    <subfield label=""c"">Margaretha Danbolt Simons</subfield>
+                </varfield>
+                <varfield id=""260"" i1="" "" i2="" "">
+                    <subfield label=""a"">London</subfield>
+                    <subfield label=""b"">Hodder Education</subfield>
+                    <subfield label=""c"">2010</subfield>
+                </varfield>
+                <varfield id=""300"" i1="" "" i2="" "">
+                    <subfield label=""a"">1 lærebok, 2 CD-er</subfield>
+                </varfield>
+                <varfield id=""440"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Teach yourself</subfield>
+                    <subfield label=""p"">Level 4</subfield>
+                </varfield>
+                <varfield id=""546"" i1="" "" i2="" "">
+                    <subfield label=""a"">Tekst og tale på engelsk og norsk</subfield>
+                </varfield>
+                <varfield id=""599"" i1="" "" i2="" "">
+                    <subfield label=""a"">450 kr</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Norsk</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Engelsk</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Språkkurs</subfield>
+                </varfield>
+                <varfield id=""850"" i1="" "" i2="" "">
+                    <subfield label=""a"">stavangb</subfield>
+                    <subfield label=""c"">439.8283 SIM</subfield>
+                    <subfield label=""d"">2010</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BSONLINE</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20110121</subfield>
+                    <subfield label=""l"">nor01</subfield>
+                    <subfield label=""h"">0911</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20110218</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0947</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20110218</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0947</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20110321</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1249</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20110321</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1250</subfield>
+                </varfield>
+            </oai_marc>
+        </metadata>
+    </record>
+    <session-id>GX9BGIHB3C3E7SS4NCUGSLDE48Y6MJYVYLKVG258RHI2MBMMTS</session-id>
+</find-doc>";
+        }
+
+        private string getLanguageCourseXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<find-doc>
+    <record>
+        <metadata>
+            <oai_marc>
+                <fixfield id=""FMT"">BK</fixfield>
+                <fixfield id=""LDR"">^^^^^nom^^^^^^^^^1</fixfield>
+                <fixfield id=""BAS"">25</fixfield>
+                <fixfield id=""007"">sc</fixfield>
+                <fixfield id=""008"">990408^1999^^^^^^^j^^^a^^^^^^^^^^0^eng^</fixfield>
+                <varfield id=""019"" i1="" "" i2="" "">
+                    <subfield label=""b"">dc, dh</subfield>
+                </varfield>
+                <varfield id=""041"" i1="" "" i2="" "">
+                    <subfield label=""a"">nob</subfield>
+                </varfield>
+                <varfield id=""082"" i1="" "" i2="" "">
+                    <subfield label=""a"">439.683</subfield>
+                    <subfield label=""z"">h</subfield>
+                </varfield>
+                <varfield id=""090"" i1="" "" i2="" "">
+                    <subfield label=""c"">439.683</subfield>
+                    <subfield label=""d"">ING</subfield>
+                </varfield>
+                <varfield id=""100"" i1="" "" i2="" "">
+                    <subfield label=""a"">Ingnes, Nils</subfield>
+                    <subfield label=""d"">1941-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                </varfield>
+                <varfield id=""245"" i1=""1"" i2="" "">
+                    <subfield label=""a"">Jeg snakker norsk : norsk-engelsk</subfield>
+                    <subfield label=""b"">course in practical Norwegian : level: beginners/intermediate</subfield>
+                </varfield>
+                <varfield id=""260"" i1="" "" i2="" "">
+                    <subfield label=""a"">Elverum</subfield>
+                    <subfield label=""b"">Språkconcult</subfield>
+                    <subfield label=""c"">[1999]</subfield>
+                </varfield>
+                <varfield id=""300"" i1="" "" i2="" "">
+                    <subfield label=""a"">4 CD plater og 1 veiledningshefte</subfield>
+                </varfield>
+                <varfield id=""440"" i1="" "" i2="" "">
+                    <subfield label=""a"">Språkconsult&apos;s populærserie</subfield>
+                </varfield>
+                <varfield id=""599"" i1="" "" i2="" "">
+                    <subfield label=""a"">1190 kr</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Språkkurs</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Norsk</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20041103</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1435</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b""></subfield>
+                    <subfield label=""c"">19990531</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">2252</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">STVGBIBL</subfield>
+                    <subfield label=""b"">10</subfield>
+                    <subfield label=""c"">19990406</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1143</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">STVGBIBL</subfield>
+                    <subfield label=""b"">10</subfield>
+                    <subfield label=""c"">19990406</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1205</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">STVGBIBL</subfield>
+                    <subfield label=""b"">10</subfield>
+                    <subfield label=""c"">19990408</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1347</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">STVGBIBL</subfield>
+                    <subfield label=""b"">10</subfield>
+                    <subfield label=""c"">19990408</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1357</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">STVGBIBL</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20030115</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1252</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">STVGBIBL</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20040513</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1314</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">STVGBIBL</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20040513</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1315</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20041104</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1356</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20050531</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1454</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20060818</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1238</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20110208</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1246</subfield>
+                </varfield>
+            </oai_marc>
+        </metadata>
+    </record>
+    <session-id>G53JL4AYQLTJX4QNAFJHDN8YC3STBI1VG5G9SUQ44PA6IUHVQ3</session-id>
+</find-doc>";
         }
 
         private string getBookXml()

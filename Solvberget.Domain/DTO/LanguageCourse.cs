@@ -10,22 +10,104 @@ namespace Solvberget.Domain.DTO
 {
     public class LanguageCourse : Document
     {
+
+        public string Isbn { get; set; }
+        public string LearningAndTeachingLanguages { get; set; }
+        public string ClassificationNr { get; set; }
+
+        public Person Author { get; set; }
+
+        public string TypeAndNumberOfDiscs { get; set; }
+
+
+
+
+        public IEnumerable<string> Subject { get; set; }
+        public IEnumerable<Person> InvolvedPersons { get; set; }
+        public IEnumerable<Organization> InvolvedOrganizations { get; set; }
+
+        public string TitlesOtherWritingForms { get; set; }
+        
+
+      
         protected override void FillProperties(string xml)
         {
+            base.FillProperties(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+                Isbn = GetVarfield(nodes, "020", "a");
+
+                LearningAndTeachingLanguages = GetVarfield(nodes, "041", "a");
+
+                ClassificationNr = GetVarfield(nodes, "090", "c");
+
+                FillPropertiesLight(xml);
+
+                TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
+
+
+                Subject = GetVarfieldAsList(nodes, "650", "a");
+
+                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
+
+                InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
+
+                TitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
+
+              
+
+            }
         }
 
         protected override void FillPropertiesLight(string xml)
         {
+            base.FillPropertiesLight(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                var nationality = GetVarfield(nodes, "100", "j");
+                string nationalityLookupValue = null;
+                if (nationality != null)
+                    NationalityDictionary.TryGetValue(nationality, out nationalityLookupValue);
+                Author = new Person
+                {
+                    Name = GetVarfield(nodes, "100", "a"),
+                    LivingYears = GetVarfield(nodes, "100", "d"),
+                    Nationality = nationalityLookupValue ?? nationality,
+                    Role = "Author"
+
+                };
+                //If N/A, check BSMARC field 110 for author
+                if (Author.Name == null)
+                {
+                    Author.Name = GetVarfield(nodes, "110", "a");
+
+                }
+            }
         }
 
-        public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
+        public new static LanguageCourse GetObjectFromFindDocXmlBsMarc(string xml)
         {
-            return null;
+            var document = new LanguageCourse();
+
+            document.FillProperties(xml);
+
+            return document;
         }
 
-        public new static Book GetObjectFromFindDocXmlBsMarcLight(string xml)
+        public new static LanguageCourse GetObjectFromFindDocXmlBsMarcLight(string xml)
         {
-            return null;
+            var document = new LanguageCourse();
+
+            document.FillProperties(xml);
+
+            return document;
         }
     }
 }
