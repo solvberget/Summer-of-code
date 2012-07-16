@@ -10,38 +10,15 @@ namespace Solvberget.Domain.DTO
 {
     public class Journal : Document
     {
-        public string DateRegistered { get; set; }
 
+        public string Issn { get; set; }
         public string JournalsPerYear { get; set; }
-
-        public string GeneralInformation { get; set; }
         public string InventoryInfomation { get; set; }
-        public string Topic { get; set; }
-        public string ReferencedPlaces { get; set; }
-        public string ReferredPersons { get; set; }
-
-        public string InvolvedOrganizations { get; set; }
-        public string OtherTitles { get; set; }
-
-        protected override void FillProperties(string xml)
-        {
-            base.FillProperties(xml);
-            var xmlDoc = XDocument.Parse(xml);
-            if (xmlDoc.Root != null)
-            {
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
-                DateRegistered = GetVarfield(nodes, "008", "00, 05");
-                JournalsPerYear = GetVarfield(nodes, "310", "a");
-                GeneralInformation = GetVarfield(nodes, "500", "a");
-                InventoryInfomation = GetVarfield(nodes, "590", "a");
-                Topic = GetVarfield(nodes, "650", "a");
-                ReferencedPlaces = GetVarfield(nodes, "651", "a");
-                ReferredPersons = GetVarfield(nodes, "700", "a");
-                InvolvedOrganizations = GetVarfield(nodes, "710", "a");
-                OtherTitles = GetVarfield(nodes, "740", "a");   
-            }
-
-        }
+        public IEnumerable<string> Subject { get; set; }
+        public IEnumerable<string> ReferencedPlaces { get; set; }
+        public IEnumerable<Person> InvolvedPersons { get; set; }
+        public IEnumerable<Organization> InvolvedOrganizations { get; set; }
+        public IEnumerable<string> OtherTitles { get; set; }
 
         protected override void FillPropertiesLight(string xml)
         {
@@ -51,16 +28,35 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                DateRegistered = GetVarfield(nodes, "008", "00, 05");
-                JournalsPerYear = GetVarfield(nodes, "310", "a");
-                GeneralInformation = GetVarfield(nodes, "500", "a");
-                InventoryInfomation = GetVarfield(nodes, "590", "a");
-                Topic = GetVarfield(nodes, "650", "a");
-                ReferencedPlaces = GetVarfield(nodes, "651", "a");
-                ReferredPersons = GetVarfield(nodes, "700", "a");
-                InvolvedOrganizations = GetVarfield(nodes, "710", "a");
-                OtherTitles = GetVarfield(nodes, "740", "a");  
+                Issn = GetVarfield(nodes, "022", "a");
             }
+        }
+
+        protected override void FillProperties(string xml)
+        {
+            base.FillProperties(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                JournalsPerYear = GetVarfield(nodes, "310", "a");
+                InventoryInfomation = GetVarfield(nodes, "590", "a");
+                Subject = GetVarfieldAsList(nodes, "650", "a");
+                ReferencedPlaces = GetVarfieldAsList(nodes, "651", "a");
+                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
+                InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
+                OtherTitles = GetVarfieldAsList(nodes, "740", "a");
+            }
+
+        }
+
+        public new static Journal GetObjectFromFindDocXmlBsMarcLight(string xml)
+        {
+            var domainObject = new Journal();
+
+            domainObject.FillPropertiesLight(xml);
+
+            return domainObject;
         }
 
         public new static Journal GetObjectFromFindDocXmlBsMarc(string xml)
@@ -72,13 +68,5 @@ namespace Solvberget.Domain.DTO
             return domainObject;
         }
 
-        public new static Journal GetObjectFromFindDocXmlBsMarcLight(string xml)
-        {
-            var domainObject = new Journal();
-
-            domainObject.FillPropertiesLight(xml);
-
-            return domainObject;
-        }
     }
 }

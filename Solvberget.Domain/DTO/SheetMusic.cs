@@ -12,10 +12,30 @@ namespace Solvberget.Domain.DTO
     {
         protected override void FillProperties(string xml)
         {
+            base.FillProperties(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+
+
+
+            }
         }
 
         protected override void FillPropertiesLight(string xml)
         {
+            base.FillProperties(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+
+            }
         }
 
         public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
