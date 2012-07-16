@@ -86,7 +86,7 @@ namespace Solvberget.Domain.Implementation
         public UserInfo GetUserInformation( string userId, string verification )
         {
             
-            var user = new UserInfo();
+            var user = new UserInfo {BorrowerId = userId};
             AuthenticateUser(ref user, userId, verification);
 
             return user;

@@ -22,10 +22,20 @@
             if (groupKey === "group6") {
                 var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
                 searchPane.show();
-            }   else if (groupKey === "events") {
+            } else if (groupKey === "events") {
                 WinJS.Navigation.navigate("/pages/events/events.html", { groupKey: groupKey });
             } else if (groupKey === "lists") {
                 WinJS.Navigation.navigate("/pages/lists/libraryLists.html", { groupKey: groupKey });
+            }
+            else if (groupKey === "mypage") {
+                var loginDiv = document.getElementById("loginDiv");
+                WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
+                    var loginAnchor = document.querySelector(".win-container:nth-child(1)");
+
+                        var navigateToPageOnSuccess = "/pages/events/events.html";
+                        LoginFlyout.showLogin(loginAnchor, navigateToPageOnSuccess);                                      
+
+                });
             }
             else {
                 WinJS.Navigation.navigate("/pages/split/split.html", { groupKey: groupKey });

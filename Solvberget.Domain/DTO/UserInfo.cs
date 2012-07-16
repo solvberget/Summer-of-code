@@ -9,15 +9,7 @@ namespace Solvberget.Domain.DTO
     {
 
         public bool IsAuthorized { get; set; }
-
-
-        public bool Authenticate (string userId, string verification )
-        {
-
-
-
-            return IsAuthorized;
-        }
+        public string BorrowerId { get; set; }
 
     }
 }

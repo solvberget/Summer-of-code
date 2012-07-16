@@ -93,6 +93,9 @@
     </Content>
     <Content Include="default.html" />
     <Content Include="DocumentInfo.html" />
+    <Content Include="fragments\login\login.html" />
+    <Content Include="fragments\login\login.css" />
+    <Content Include="fragments\login\login.js" />
     <Content Include="images\ajax_loading.gif" />
     <Content Include="images\dummydata\davincikoden.jpeg" />
     <Content Include="images\dummydata\drageloperen.jpeg" />
