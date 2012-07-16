@@ -93,7 +93,8 @@
 
                 listView.forceLayout();
 
-            } else {
+            } else if(listView.layout != undefined){
+
                 listView.layout = new ui.GridLayout();
 
                 listView.forceLayout();
