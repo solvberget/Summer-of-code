@@ -78,6 +78,19 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        public void TestGetJournal()
+        {
+            const string documentNumberForJournal = "000175989"; //Newsweek
+            var journal = (Journal)_repository.GetDocument(documentNumberForJournal, false);
+            Assert.AreEqual("Journal", journal.GetType().Name);
+            Assert.AreEqual("Newsweek", journal.Title);
+            Assert.AreEqual("0163-7053", journal.Issn);
+            Assert.AreEqual("the international newsmagazine", journal.SubTitle);
+            Assert.AreEqual("Engelsk", journal.Language);
+            Assert.AreEqual("51 nummer pr. år", journal.JournalsPerYear);
+        }
+
+        [Test]
         public void TestGetNonExistingDoc()
         {
             const string documentNumberForBook = "abcdefg"; //Burde ikke funke
