@@ -82,6 +82,38 @@ namespace Solvberget.Domain.Implementation
             return (from docNumber in docNumbers let doc = GetDocument(docNumber, true) where doc != null select GetDocument(docNumber, true)).ToList();
         }
 
+
+        public UserInfo GetUserInformation( string userId, string verification )
+        {
+            
+            var user = new UserInfo {BorrowerId = userId};
+            AuthenticateUser(ref user, userId, verification);
+
+            return user;
+
+        }
+
+        private bool AuthenticateUser ( ref UserInfo user, string userId, string verification )
+        {
+
+            const Operation function = Operation.AuthenticateUser;
+            var options = new Dictionary<string, string> { { "bor_id", userId }, {"verification", verification} };
+
+            var url = GetUrl(function, options);
+            var authenticationDoc = RepositoryUtils.GetXmlFromStream(url);
+
+            if (authenticationDoc.Root != null)
+            {
+
+                var xElement = authenticationDoc.Root.DescendantsAndSelf("z303").FirstOrDefault();
+                user.IsAuthorized = xElement != null;
+ 
+            }
+
+            return user.IsAuthorized;
+        }
+
+
         private List<Document> GetSearchResults(dynamic result)
         {
             string setEntry = string.Format("0000000001-{0}", result.NumberOfRecords);
@@ -154,34 +186,33 @@ namespace Solvberget.Domain.Implementation
                     return "op=find&base=NOR01";
                 case 3:
                     return "op=find-doc&base=NOR01";
+                case 4:
+                    return "op=bor-auth&library=nor50";
                 default:
                     return null;
             }   
         }
 
-        private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument }
+        private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser }
 
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
-            foreach(string dtc in documentTypeCodes)
-            {
-                //Logic for determining DocumentType from combination of DocumentCodes
-                //TODO: Generally improve and add logic for CD, Journal and Sheet music
 
-                if (dtc.Equals("l"))
-                {
-                    return typeof(Book).FullName;
-                }
-                else if (dtc.StartsWith("e"))
-                {
-                    return typeof(Film).FullName;
-                }
-                else if (dtc.Equals("di"))
-                {
-                    return typeof(AudioBook).FullName;
-                }
-            }
-            
+            var dtc = new HashSet<string>(documentTypeCodes.Select(x => x.Trim()));
+
+            if (dtc.Contains("l"))
+                return typeof(Book).FullName;
+            else if (dtc.Any(x => x.StartsWith("e")))
+                return typeof(Film).FullName;
+            else if (dtc.Contains("dc") && dtc.Contains("dg"))
+                return typeof(CdPopular).FullName;
+            else if (dtc.Contains("di"))
+                return typeof(AudioBook).FullName;
+            else if (dtc.Contains("dh"))
+                return typeof (LanguageCourse).FullName;
+            else if (dtc.Contains("j"))
+                return typeof(Journal).FullName;
+
             return typeof(Document).FullName;
 
         }   

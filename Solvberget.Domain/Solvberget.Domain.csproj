@@ -96,7 +96,6 @@
     <Compile Include="DTO\CdClassical.cs" />
     <Compile Include="DTO\CdPopular.cs" />
     <Compile Include="DTO\BokBasenBook.cs" />
-    <Compile Include="DTO\Disc.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
     <Compile Include="DTO\LibraryList.cs" />
     <Compile Include="DTO\Event.cs" />
@@ -110,6 +109,7 @@
     <Compile Include="DTO\ExtensionHelpers.cs" />
     <Compile Include="DTO\Film.cs" />
     <Compile Include="DTO\SheetMusic.cs" />
+    <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />
     <Compile Include="Implementation\ImageRepository.cs" />

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Logg inn</title>
+    <link rel="stylesheet" href="login.css" />
+
+
+    <script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+    <div id="loginFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{Login flyout}">
+        <form onsubmit="return false;">
+        <p>
+            <label for="userId">
+                Lånernummer
+                    <br />
+            </label>
+            <input type="text" id="userId" />
+            <br />
+            <span id="userIdError" class="error"></span>
+
+        </p>
+        <p>
+            <label for="pin">
+                Pinkode<br />
+            </label>
+            <input type="password" id="pin" />
+            <br />
+            <span id="pinError" class="error"></span>
+
+        </p>
+        <button id="submitLoginButton">
+            Logg inn</button>
+            <br />
+            <span id="outputMsg" class="success"></span>
+            <div id="loginLoading"><progress class="win-ring"></progress></div>
+
+        </form>
+    </div>
+
+</body>
+</html>
+
