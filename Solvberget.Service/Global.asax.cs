@@ -30,6 +30,12 @@ namespace Solvberget.Service
                 "List/GetLists/{limit}", // URL with parameters
                 new { controller = "List", action = "GetLists", limit = UrlParameter.Optional} // Parameter defaults
             );
+
+            routes.MapRoute(
+                "GetUserInformation", // Route name
+                "User/GetUserInformation/{userId}/{verification}", // URL with parameters
+                new { controller = "User", action = "GetUserInformation", limit = UrlParameter.Optional } // Parameter defaults
+            );
             
             routes.MapRoute(
                 "GetDocumentThumbnailRoute", // Route name

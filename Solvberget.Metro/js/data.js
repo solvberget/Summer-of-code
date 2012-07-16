@@ -26,7 +26,7 @@
     var sampleGroups = [
         { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, description: libraryListsDescription },
         { key: "group2", title: "Musikk", subtitle: "Min musikk", backgroundImage: music, description: groupDescription },
-        { key: "group3", title: "Min Side", subtitle: "", backgroundImage: home, description: groupDescription },
+        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, description: groupDescription },
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, description: eventsDescription },
         { key: "group5", title: "Informasjon", subtitle: "Kontaktinfo og åpningstider", backgroundImage: info, description: groupDescription },
         { key: "group6", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, description: groupDescription }

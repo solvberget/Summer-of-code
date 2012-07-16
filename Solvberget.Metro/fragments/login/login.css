@@ -1,0 +1,27 @@
+﻿/* Flyout-login buttons */
+.win-flyout:not(.win-menu) button,
+.win-flyout:not(.win-menu) input[type="button"]
+{
+    margin-top: 16px;
+    margin-left: 20px;
+    float: right;
+}
+.error {
+    color: red;
+}
+ .success {
+    color: green;
+}
+#outputMsg {
+    display: block;
+    font-weight: bold;
+}
+#loginLoading {
+    float: left;
+    display: none;
+    visibility: hidden;
+}
+#loginFlyout {
+    margin-top: 40px;
+
+}
