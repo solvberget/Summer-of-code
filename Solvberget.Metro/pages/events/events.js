@@ -14,7 +14,7 @@
         //items: null,
         /// <field type="Object" />
         group: null,
-        itemSelectionIndex: -1,
+        itemSelectionIndex: 0,
 
         // This function checks if the list and details columns should be displayed
         // on separate pages instead of side-by-side.
@@ -28,6 +28,7 @@
         ready: function (element, options) {
 
             var listView = element.querySelector(".itemlist").winControl;
+            listView.layout = new ui.ListLayout();
 
             //Setup the EventDataSource
             var eventsDataSource = new DataSources.eventsDataSource();
@@ -40,12 +41,11 @@
 
             element.querySelector("header[role=banner] .pagetitle").textContent = this.group.title;
 
-
             // Set up the ListView.
             listView.itemDataSource = eventsDataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.onselectionchanged = this.selectionChanged.bind(this);
-            listView.layout = new ui.ListLayout();
+            
 
             this.updateVisibility();
             if (this.isSingleColumn()) {
@@ -68,31 +68,33 @@
 
         selectionChanged: function (args) {
             var listView = document.body.querySelector(".itemlist").winControl;
-            var details;
-            var that = this;
-            // By default, the selection is restriced to a single item.
-            listView.selection.getItems().done(function updateDetails(items) {
-                if (items.length > 0) {
-                    that.itemSelectionIndex = items[0].index;
-                    if (that.isSingleColumn()) {
-                        // If snapped or portrait, navigate to a new page containing the
-                        // selected item's details.
-                        nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
-                    } else {
-                        // If fullscreen or filled, update the details column with new data.
+            if (listView != null) {
+                var details;
+                var that = this;
+                // By default, the selection is restriced to a single item.
+                listView.selection.getItems().done(function updateDetails(items) {
+                    if (items.length > 0) {
+                        that.itemSelectionIndex = items[0].index;
+                        if (that.isSingleColumn()) {
+                            // If snapped or portrait, navigate to a new page containing the
+                            // selected item's details.
+                            nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
+                        } else {
+                            // If fullscreen or filled, update the details column with new data.
 
-                        details = document.querySelector(".articlesection");
-                        binding.processAll(details, items[0].data);
-                        details.scrollTop = 0;
+                            details = document.querySelector(".articlesection");
+                            binding.processAll(details, items[0].data);
+                            details.scrollTop = 0;
 
-                        // Fix for removing cached data, Windows error. 
-                        setTimeout(function () {
-                            window.focus();
-                        }, 0);
+                            // Fix for removing cached data, Windows error. 
+                            setTimeout(function () {
+                                window.focus();
+                            }, 0);
 
+                        }
                     }
-                }
-            });
+                });
+            }
         },
 
         unload: function () {
