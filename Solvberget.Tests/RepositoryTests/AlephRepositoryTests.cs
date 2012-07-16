@@ -101,7 +101,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void TestGetDocumentsLightCount()
         {
-            IEnumerable<string> books = new string[] { "000588841", "000588844", "000588843", "000598029", "000567325" };
+            IEnumerable<string> books = new string[] { "000588841", "000588844",
+                "000588843", "000598029", "000567325" };
             var result = _repository.GetDocumentsLight(books);
             Assert.AreEqual(5, result.Count);
         }
@@ -120,6 +121,33 @@ namespace Solvberget.Service.Tests.RepositoryTests
             IEnumerable<string> mixedIds = new string[] { "000588841", "abs2ls", "000588844", "000588843", "000123lkjsdf", "000598029", "000567325" };
             var result = _repository.GetDocumentsLight(mixedIds);
             Assert.AreEqual(5, result.Count);
+        }
+
+        [Test]
+        public void TestGetUserInformation()
+        {
+
+            const string userId = "159222";
+            const string userVerification = "0904";
+
+            const string wrongUserId = "sopp22";
+            const string wrongUserVerification = "9999";
+
+
+
+            var deniedUser = _repository.GetUserInformation(userId, wrongUserVerification);
+            Assert.NotNull(deniedUser);
+            Assert.False(deniedUser.IsAuthorized);
+
+            deniedUser = _repository.GetUserInformation(wrongUserId, wrongUserVerification);
+            Assert.NotNull(deniedUser);
+            Assert.False(deniedUser.IsAuthorized);
+
+            var authUser = _repository.GetUserInformation(userId, userVerification);
+            Assert.NotNull(authUser);
+
+            Assert.IsTrue(authUser.IsAuthorized);
+
         }
 
     }

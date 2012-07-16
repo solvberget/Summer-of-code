@@ -82,6 +82,38 @@ namespace Solvberget.Domain.Implementation
             return (from docNumber in docNumbers let doc = GetDocument(docNumber, true) where doc != null select GetDocument(docNumber, true)).ToList();
         }
 
+
+        public UserInfo GetUserInformation( string userId, string verification )
+        {
+            
+            var user = new UserInfo();
+            AuthenticateUser(ref user, userId, verification);
+
+            return user;
+
+        }
+
+        private bool AuthenticateUser ( ref UserInfo user, string userId, string verification )
+        {
+
+            const Operation function = Operation.AuthenticateUser;
+            var options = new Dictionary<string, string> { { "bor_id", userId }, {"verification", verification} };
+
+            var url = GetUrl(function, options);
+            var authenticationDoc = RepositoryUtils.GetXmlFromStream(url);
+
+            if (authenticationDoc.Root != null)
+            {
+
+                var xElement = authenticationDoc.Root.DescendantsAndSelf("z303").FirstOrDefault();
+                user.IsAuthorized = xElement != null;
+ 
+            }
+
+            return user.IsAuthorized;
+        }
+
+
         private List<Document> GetSearchResults(dynamic result)
         {
             string setEntry = string.Format("0000000001-{0}", result.NumberOfRecords);
@@ -154,12 +186,14 @@ namespace Solvberget.Domain.Implementation
                     return "op=find&base=NOR01";
                 case 3:
                     return "op=find-doc&base=NOR01";
+                case 4:
+                    return "op=bor-auth&library=nor50";
                 default:
                     return null;
             }   
         }
 
-        private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument }
+        private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser }
 
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
