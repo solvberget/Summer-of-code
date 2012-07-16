@@ -1,4 +1,4 @@
-﻿    .itemdetailpage .content {
+﻿ .itemdetailpage .content {
         -ms-grid-row: 2;
         display: block;
         height: 100%;
@@ -107,47 +107,49 @@
 
 @media screen and (-ms-view-state: snapped) {
     .itemdetailpage .content {
-        -ms-grid-rows: auto 60px;
-        overflow-x: hidden;
-        overflow-y: auto;
+        /* Define a single column, vertically scrolling article in snapped mode. */
+        width: 320px;
     }
 
         .itemdetailpage .content article {
             /* Define a single column, vertically scrolling article in snapped mode. */
-            
-            -ms-grid-row: 2;
-            display: -ms-grid;
-            height: 100px;
+            height: auto;
             margin-left: 20px;
-            width: 300px;
+            width: 220px;
+            vertical-align: top;
         }
 
             .itemdetailpage .content article #item-image {
-               
                 width: auto;
                 height: auto;
                 max-height: 140px;
                 max-width: 280px;
             }
 
-            .itemdetailpage .content article #openShare {
-                padding-bottom: 60px;
+            .itemdetailpage .content article #item-subtitle {
+                margin-bottom: 10px;
+                overflow: auto;
             }
 
-        .itemdetailpage .content .itemlist {
-            -ms-grid-row: 3;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-right: 5px;
-            width: calc(70% - 50px);
-            height: calc(100% - 50px);
+
+            .itemdetailpage .content article #openShare {
+                margin-bottom: 5px;
+            }
+
+
+        .itemdetailpage .content .itemlist .win-vertical.win-viewport .win-surface {
+            margin-left: 1px;
         }
 
-            .itemdetailpage .content .itemlist .item {
-                margin-bottom: 15px;
-                margin-right: 5px;
-                height: 100%;
-            }
+        .itemdetailpage .content .itemlist {
+            margin-top: 20px;
+            height: auto;
+            width: 300px;
+            vertical-align: bottom;
+            overflow: auto;
+        }
+
+
 
             .itemdetailpage .content .itemlist .win-container .win-selectioncheckmark {
                 display: none;
@@ -157,28 +159,35 @@
                 display: none;
             }
 
-            .itemdetailpage .content .itemlist .win-item {
-                height: 60px;
-                width: 500px;
-            }
+    .searchResults section[role=main] .resultslist .win-vertical.win-viewport .win-container {
+        margin-right: 27px;
+        margin-bottom: 22px;
+        margin-top: 4px;
+    }
 
-                .itemdetailpage .content .itemlist .win-item .item-info {
-                    -ms-grid-column: 2;
-                    margin-left: 10px;
-                    margin-right: 20px;
-                    overflow: auto;
-                }
+    .searchResults section[role=main] .resultslist .win-item {
+        height: 64px;
+        margin-top: 0;
+        width: 280px;
+    }
 
-                    .itemdetailpage .content .itemlist .win-item .item-info .item-title {
-                        margin-top: 4px;
-                        overflow: auto;
-                    }
+    .searchResults section[role=main] .resultslist .item {
+        /* Define a grid with columns for an icon, spacing and item details */
+        -ms-grid-columns: 42px 12px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+        height: 100%;
+        width: 100%;
+        overflow:auto;
+    }
 
-                    .itemdetailpage .content .itemlist .win-item .item-info .item-value {
-                        opacity: 1;
-                        overflow: auto;
-                    }
+        .searchResults section[role=main] .resultslist .item .item-title {
+            overflow:auto;
+        }
 
+        .searchResults section[role=main] .resultslist .item .item-value {
+            overflow:auto;
+        }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
