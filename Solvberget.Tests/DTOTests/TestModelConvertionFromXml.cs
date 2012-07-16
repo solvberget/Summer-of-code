@@ -380,6 +380,33 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("0163-7053", journal.Issn);
         }
 
+        [Test]
+        public void GetCdPopularFromXml()
+        {
+            var cd = CdPopular.GetObjectFromFindDocXmlBsMarc(getCdPopularMusicGroupXml());
+            Assert.AreEqual("Gje meg litt merr", cd.Title);
+            Assert.AreEqual("Mods", cd.MusicGroup);
+            Assert.IsNull(cd.ExplanatoryAddition);
+            Assert.AreEqual("1 kompaktplate", cd.TypeAndNumberOfDiscs);
+            Assert.AreEqual("Innhold: Gje meg litt merr ; Belinda ; Revansj ; Me to går alltid aleina ; Amerika ; Bare i nått ; Eg e så forelska ; Ett år e gått ; Tore Tang ; Fint at du vil ; Eg vil hjem ; Hjelp meg ; Militæret ; Alexander ; Eg kom ikkje inn ; Regn ; Meg må du hilsa på ; Ikkje plag meg ; Bli med oss ; Livets roulette ; Another day ; Bahama Mama", cd.DiscContent);
+            Assert.AreEqual("Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen", cd.Performers);
+            Assert.AreEqual(2, cd.Genre.Count());
+            Assert.AreEqual("Popmusikk", cd.Genre.ElementAt(0));
+            Assert.AreEqual("Rock", cd.Genre.ElementAt(1));
+            Assert.AreEqual(7, cd.InvolvedPersons.Count());
+            Assert.IsEmpty(cd.InvolvedMusicGroups);
+        }
+
+        [Test]
+        public void GetCdPopularLightFromXml()
+        {
+            var cd1 = CdPopular.GetObjectFromFindDocXmlBsMarcLight(getCdPopularMusicGroupXml());
+            Assert.AreEqual("Mods", cd1.MusicGroup);
+
+            var cd2 = CdPopular.GetObjectFromFindDocXmlBsMarcLight(getCdPopluarArtistXml());
+            Assert.AreEqual("Abel, Morten", cd2.Artist.Name);
+        }
+
         private string getBookXml()
         {
             return @"<find-doc>
@@ -1400,5 +1427,276 @@ namespace Solvberget.Service.Tests.DTOTests
     <session-id>EX5XBBIM7KKG2PTCXX4ALEYGF6125NDYG8AE7EXKAMUUPUS8E8</session-id>
 </find-doc>";
         }
+
+        private string getCdPopularMusicGroupXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<find-doc>
+    <record>
+        <metadata>
+            <oai_marc>
+                <fixfield id=""FMT"">MU</fixfield>
+                <fixfield id=""LDR"">^^^^^njm^^^^^^^^^1</fixfield>
+                <fixfield id=""007"">sc</fixfield>
+                <fixfield id=""008"">081004s2006^^^^^^^^^^^a^^^^^^^^^^^^nno^^</fixfield>
+                <varfield id=""019"" i1="" "" i2="" "">
+                    <subfield label=""b"">dc,dg</subfield>
+                </varfield>
+                <varfield id=""028"" i1=""0"" i2="" "">
+                    <subfield label=""a"">176 535-9</subfield>
+                    <subfield label=""b"">Universal</subfield>
+                </varfield>
+                <varfield id=""082"" i1="" "" i2="" "">
+                    <subfield label=""a"">781.64</subfield>
+                    <subfield label=""z"">h</subfield>
+                </varfield>
+                <varfield id=""090"" i1="" "" i2="" "">
+                    <subfield label=""d"">MOD</subfield>
+                </varfield>
+                <varfield id=""110"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Mods</subfield>
+                </varfield>
+                <varfield id=""245"" i1=""1"" i2=""0"">
+                    <subfield label=""a"">Gje meg litt merr</subfield>
+                    <subfield label=""h"">CD</subfield>
+                    <subfield label=""b"">de beste</subfield>
+                    <subfield label=""c"">Mods</subfield>
+                </varfield>
+                <varfield id=""260"" i1="" "" i2="" "">
+                    <subfield label=""a"">[Norge]</subfield>
+                    <subfield label=""b"">Universal</subfield>
+                    <subfield label=""c"">2006</subfield>
+                </varfield>
+                <varfield id=""300"" i1="" "" i2="" "">
+                    <subfield label=""a"">1 kompaktplate</subfield>
+                    <subfield label=""b"">digital, stereo</subfield>
+                    <subfield label=""c"">12 cm</subfield>
+                </varfield>
+                <varfield id=""505"" i1="" "" i2="" "">
+                    <subfield label=""a"">Innhold: Gje meg litt merr ; Belinda ; Revansj ; Me to går alltid aleina ; Amerika ; Bare i nått ; Eg e så forelska ; Ett år e gått ; Tore Tang ; Fint at du vil ; Eg vil hjem ; Hjelp meg ; Militæret ; Alexander ; Eg kom ikkje inn ; Regn ; Meg må du hilsa på ; Ikkje plag meg ; Bli med oss ; Livets roulette ; Another day ; Bahama Mama</subfield>
+                </varfield>
+                <varfield id=""511"" i1="" "" i2="" "">
+                    <subfield label=""a"">Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen</subfield>
+                </varfield>
+                <varfield id=""599"" i1="" "" i2="" "">
+                    <subfield label=""a"">179 kr</subfield>
+                </varfield>
+                <varfield id=""651"" i1="" "" i2="" "">
+                    <subfield label=""a"">Norge</subfield>
+                </varfield>
+                <varfield id=""651"" i1="" "" i2="" "">
+                    <subfield label=""a"">Rogaland</subfield>
+                </varfield>
+                <varfield id=""651"" i1="" "" i2="" "">
+                    <subfield label=""a"">Stavanger</subfield>
+                </varfield>
+                <varfield id=""652"" i1="" "" i2="" "">
+                    <subfield label=""a"">Popmusikk</subfield>
+                </varfield>
+                <varfield id=""652"" i1="" "" i2="" "">
+                    <subfield label=""a"">Rock</subfield>
+                </varfield>
+                <varfield id=""690"" i1="" "" i2="" "">
+                    <subfield label=""a"">Musikksamling Stavanger</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Olsen, Kurt Ø.</subfield>
+                    <subfield label=""d"">1961-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""e"">utøv.</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Hummervoll, Helge</subfield>
+                    <subfield label=""d"">1961-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""e"">utøv.</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Nilsen, Leif</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""q"">artist fra Stavanger</subfield>
+                    <subfield label=""e"">utøv.</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Abel, Morten</subfield>
+                    <subfield label=""d"">1964-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""e"">utøv.</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Viig, Torkild</subfield>
+                    <subfield label=""d"">1963-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""e"">utøv.</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Bjaalid, Rune</subfield>
+                    <subfield label=""d"">1961-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""e"">utøv.</subfield>
+                </varfield>
+                <varfield id=""700"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Syvertsen, Tor Øyvind</subfield>
+                    <subfield label=""d"">1962-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                    <subfield label=""e"">utøv.</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20081004</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1125</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20090821</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1621</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20101025</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1145</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20101025</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1147</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20101025</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1217</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20101025</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1220</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20101202</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1425</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">40</subfield>
+                    <subfield label=""c"">20110329</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1229</subfield>
+                </varfield>
+            </oai_marc>
+        </metadata>
+    </record>
+    <session-id>VL2J7DKSS61YBY1VQLEK539UCUVLRQ91TV33QX5CSC6RSXD4BD</session-id>
+</find-doc>";
+        }
+
+        private string getCdPopluarArtistXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<find-doc>
+    <record>
+        <metadata>
+            <oai_marc>
+                <fixfield id=""FMT"">MU</fixfield>
+                <fixfield id=""LDR"">^^^^^njm^^^^^^^^^1</fixfield>
+                <fixfield id=""007"">sc</fixfield>
+                <fixfield id=""008"">070327s2006^^^^^^^^^^^a^^^^^^^^^^^^eng^^</fixfield>
+                <varfield id=""019"" i1="" "" i2="" "">
+                    <subfield label=""b"">dc,dg</subfield>
+                </varfield>
+                <varfield id=""028"" i1=""0"" i2="" "">
+                    <subfield label=""a"">0094638067603</subfield>
+                    <subfield label=""b"">EMI</subfield>
+                </varfield>
+                <varfield id=""082"" i1="" "" i2="" "">
+                    <subfield label=""a"">781.64</subfield>
+                    <subfield label=""z"">h</subfield>
+                </varfield>
+                <varfield id=""090"" i1="" "" i2="" "">
+                    <subfield label=""d"">ABE</subfield>
+                </varfield>
+                <varfield id=""100"" i1="" "" i2=""0"">
+                    <subfield label=""a"">Abel, Morten</subfield>
+                    <subfield label=""d"">1964-</subfield>
+                    <subfield label=""j"">n.</subfield>
+                </varfield>
+                <varfield id=""245"" i1=""1"" i2=""0"">
+                    <subfield label=""a"">Some of us will make it</subfield>
+                    <subfield label=""h"">CD</subfield>
+                    <subfield label=""c"">Morten Abel</subfield>
+                </varfield>
+                <varfield id=""260"" i1="" "" i2="" "">
+                    <subfield label=""a"">London</subfield>
+                    <subfield label=""b"">Virgin</subfield>
+                    <subfield label=""c"">2006</subfield>
+                </varfield>
+                <varfield id=""300"" i1="" "" i2="" "">
+                    <subfield label=""a"">1 kompaktplate</subfield>
+                    <subfield label=""b"">digital, stereo</subfield>
+                    <subfield label=""c"">12 cm</subfield>
+                </varfield>
+                <varfield id=""505"" i1="" "" i2="" "">
+                    <subfield label=""a"">Innhold: Swim like a fish ; Big brother ; Rather be lonely ; River Phoenix ; Stars ; Such a pain ; Some of us will make it ; You can come ; Walk back home ; Down and out ; Waiting at the gate</subfield>
+                </varfield>
+                <varfield id=""599"" i1="" "" i2="" "">
+                    <subfield label=""a"">179 kr</subfield>
+                </varfield>
+                <varfield id=""651"" i1="" "" i2="" "">
+                    <subfield label=""a"">Norge</subfield>
+                </varfield>
+                <varfield id=""651"" i1="" "" i2="" "">
+                    <subfield label=""a"">Stavanger</subfield>
+                </varfield>
+                <varfield id=""651"" i1="" "" i2="" "">
+                    <subfield label=""a"">Rogaland</subfield>
+                </varfield>
+                <varfield id=""652"" i1="" "" i2="" "">
+                    <subfield label=""a"">Popmusikk</subfield>
+                </varfield>
+                <varfield id=""690"" i1="" "" i2="" "">
+                    <subfield label=""a"">Musikksamling Stavanger</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">KATALOG</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20070327</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">0754</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20090821</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1621</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH-UPD</subfield>
+                    <subfield label=""b"">30</subfield>
+                    <subfield label=""c"">20120215</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1347</subfield>
+                </varfield>
+            </oai_marc>
+        </metadata>
+    </record>
+    <session-id>Q6KEQY8GHVX1173QXERYX5PPSINEAA7NGEDCM3RB2QFCG17UDT</session-id>
+</find-doc>";
+        }
+
     }
 }

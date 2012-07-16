@@ -91,6 +91,24 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        public void TestGetCdPopular()
+        {
+            const string documentNumberForCdPopular = "000566205"; //Mods - Gje meg litt merr
+            var cd = (CdPopular)_repository.GetDocument(documentNumberForCdPopular, false);
+            Assert.AreEqual("Gje meg litt merr", cd.Title);
+            Assert.AreEqual("Mods", cd.MusicGroup);
+            Assert.IsNull(cd.ExplanatoryAddition);
+            Assert.AreEqual("1 kompaktplate", cd.TypeAndNumberOfDiscs);
+            Assert.AreEqual("Innhold: Gje meg litt merr ; Belinda ; Revansj ; Me to går alltid aleina ; Amerika ; Bare i nått ; Eg e så forelska ; Ett år e gått ; Tore Tang ; Fint at du vil ; Eg vil hjem ; Hjelp meg ; Militæret ; Alexander ; Eg kom ikkje inn ; Regn ; Meg må du hilsa på ; Ikkje plag meg ; Bli med oss ; Livets roulette ; Another day ; Bahama Mama", cd.DiscContent);
+            Assert.AreEqual("Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen", cd.Performers);
+            Assert.AreEqual(2, cd.Genre.Count());
+            Assert.AreEqual("Popmusikk", cd.Genre.ElementAt(0));
+            Assert.AreEqual("Rock", cd.Genre.ElementAt(1));
+            Assert.AreEqual(7, cd.InvolvedPersons.Count());
+            Assert.IsEmpty(cd.InvolvedMusicGroups);
+        }
+
+        [Test]
         public void TestGetNonExistingDoc()
         {
             const string documentNumberForBook = "abcdefg"; //Burde ikke funke
