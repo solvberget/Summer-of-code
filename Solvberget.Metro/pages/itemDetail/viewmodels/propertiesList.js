@@ -12,9 +12,7 @@
 
                     documentValue = eval("document." + property);
                     documentName = Solvberget.Localization.getString(property);
-                    if (documentName == "Forfatter") {
-                        console.log("debug");
-                    }
+
                     if (documentValue !== null) {
                         if (documentValue[0] != undefined) {
                             if (documentValue[0].Name != undefined)

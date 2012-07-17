@@ -314,6 +314,7 @@
     <Content Include="pages\itemDetail\itemDetail.js" />
     <Content Include="pages\itemDetail\viewmodels\audioBook.js" />
     <Content Include="pages\itemDetail\viewmodels\book.js" />
+    <Content Include="pages\itemDetail\viewmodels\cd.js" />
     <Content Include="pages\itemDetail\viewmodels\document.js" />
     <Content Include="pages\itemDetail\viewmodels\documentViewmodels.js" />
     <Content Include="pages\itemDetail\viewmodels\documentListAdapter.js">
@@ -325,7 +326,10 @@
       </IncludedFiles>
     </Content>
     <Content Include="pages\itemDetail\viewmodels\film.js" />
+    <Content Include="pages\itemDetail\viewmodels\journal.js" />
+    <Content Include="pages\itemDetail\viewmodels\languageCourse.js" />
     <Content Include="pages\itemDetail\viewmodels\propertiesList.js" />
+    <Content Include="pages\itemDetail\viewmodels\sheetMusic.js" />
     <Content Include="sass\default.css" />
     <Content Include="sass\ie.css" />
     <Content Include="sass\print.css" />

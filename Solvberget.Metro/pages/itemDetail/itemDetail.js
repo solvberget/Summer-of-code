@@ -31,6 +31,7 @@
                     that.viewModel = ViewModel.DocumentViewmodels.items[documentId];
                 }
                 else {
+                    //Create new viewmodel
                     that.setViewModel(that.itemModel);
 
                 }
