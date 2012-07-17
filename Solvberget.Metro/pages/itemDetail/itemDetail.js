@@ -26,15 +26,10 @@
                 var article = element.querySelector(".article");
                 var pageTitle = element.querySelector(".pagetitle");
                 var viewmodels = ViewModel.DocumentViewmodels.items;
-                if (viewmodels[that.documentId] != undefined) {
-                    //Use the viewmodel in memory;
-                    that.viewModel = ViewModel.DocumentViewmodels.items[documentId];
-                }
-                else {
-                    //Create new viewmodel
-                    that.setViewModel(that.itemModel);
 
-                }
+                //Create new viewmodel
+                that.setViewModel(that.itemModel);
+
                 WinJS.Binding.processAll(article, that.viewModel);
                 WinJS.Binding.processAll(pageTitle, that.viewModel);
             })();
@@ -99,13 +94,11 @@
             var listView = element.querySelector(".itemlist").winControl;
             if (this.isSingleColumn()) {
                 listView.layout = new ui.ListLayout();
-
                 listView.forceLayout();
 
             } else if (listView.layout != undefined) {
 
                 listView.layout = new ui.GridLayout();
-
                 listView.forceLayout();
 
 

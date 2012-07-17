@@ -7,10 +7,13 @@
             subtitle: undefined,
             image: undefined,
             propertiesList: [],
-            fillProperties: function (audioBookItem) {
-                this.title = audioBookItem.Title;
-                this.subtitle = "Lydbok gitt ut i " +audioBookItem.PublishedYear;
-                this.Author = audioBookItem.Author.Name;
+            fillProperties: function (item) {
+                this.title = item.Title;
+                this.subtitle = "Lydbok";
+                if (item.PublishedYear != undefined && item.PublishedYear != 0) {
+                    this.subtitle += " gitt ut i " + item.PublishedYear;
+                }
+               
                
             },
         }),

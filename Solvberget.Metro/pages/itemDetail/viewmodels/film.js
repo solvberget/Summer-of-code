@@ -7,9 +7,14 @@
             subtitle: undefined,
             image: undefined,
             propertiesList:[],
-            fillProperties: function (filmItem) {
-                this.title = filmItem.Title + " (" + filmItem.PublishedYear + ")";
-                this.subtitle = "Film gitt ut i " + filmItem.PublishedYear;
+            fillProperties: function (item) {
+                this.title = item.Title 
+                this.subtitle = "Film"
+
+                if (item.PublishedYear != undefined && item.PublishedYear != 0) {
+                    this.title += " (" + item.PublishedYear + ")";
+                    this.subtitle += " gitt ut i " + item.PublishedYear;
+                }
             },
         }),
     });

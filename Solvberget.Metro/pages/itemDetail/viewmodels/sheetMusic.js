@@ -9,7 +9,12 @@
             propertiesList: [],
             fillProperties: function (item) {
                 this.title = item.Title;
-                this.subtitle = "Noter gitt ut i " + item.PublishedYear;
+                this.subtitle = "Noter";
+
+                if (item.PublishedYear != undefined && item.PublishedYear != 0) {
+                    this.title += " (" + item.PublishedYear + ")";
+                    this.subtitle += " gitt ut i " + item.PublishedYear;
+                }
             },
         }),
     });

@@ -8,8 +8,14 @@
             image: undefined,
             propertiesList: [],
             fillProperties: function (item) {
-                this.title = item.Title + " (" + item.PublishedYear + ")";
-                this.subtitle = "Tidskrift gitt ut i " + item.PublishedYear;
+
+                this.title = item.Title;
+                this.subtitle = "Tidskrift";
+
+                if (item.PublishedYear != undefined && item.PublishedYear != 0) {
+                    this.title += " (" + item.PublishedYear + ")";
+                    this.subtitle += " gitt ut i " + item.PublishedYear;
+                }
             },
         }),
     });

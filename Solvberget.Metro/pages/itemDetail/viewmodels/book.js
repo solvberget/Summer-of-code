@@ -7,10 +7,13 @@
             subtitle: undefined,
             image: undefined,
             propertiesList: [],
-            fillProperties: function (bookItem) {
-                this.title = bookItem.Title;
-                this.subtitle = "Bok skrevet av " + bookItem.Author.Name;           
-                this.Author = bookItem.Author.Name;
+            fillProperties: function (item) {
+                this.title = item.Title;
+                this.subtitle = "Bok"
+                if (item.Author.Name != undefined) {
+                    this.subtitle +=  " skrevet av " + item.Author.Name;
+                }
+                this.Author = item.Author.Name;
                 
                 
             },
