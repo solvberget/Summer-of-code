@@ -35,6 +35,35 @@
             })();
 
 
+            var ajaxGetDocument = function (query) {
+                return $.getJSON("http://localhost:7089/Document/GetDocument/" + query);
+            };
+
+
+            $.when(ajaxGetDocument(this.documentId))
+                .then($.proxy(function (response) {
+                    this.viewModel.properties = ViewModel.propertiesList.documentToPropertiesList(response);
+                }, this))
+                .then($.proxy(function (response) {
+                    //Init list
+                    var listView = element.querySelector(".itemlist").winControl;
+
+                    //Setup the DataSource
+                    var documentDataSource = new WinJS.Binding.List(this.viewModel.properties);
+
+                    // Set up the ListView.
+                    listView.itemDataSource = documentDataSource.dataSource;
+                    listView.itemTemplate = element.querySelector(".itemtemplate");
+
+                    this.isSingleColumn ? listView.layout = new ui.GridLayout() :
+                        listView.layout = new ui.GridLayout();
+
+                    //Refresh list..
+                    listView.selection.set(0);
+                    listView.selection.clear();
+
+                  }, this))
+
             $.when(Solvberget.DocumentImage.get(this.documentId))
                .then($.proxy(function (response) {
                    if (response != undefined && response != "") {
@@ -45,31 +74,6 @@
                    }
                }, this));
 
-            //Init list
-            var listView = element.querySelector(".itemlist").winControl;
-
-            //Setup the EventDataSource
-            var list = ViewModel.propertiesList.documentToPropertiesList(this.itemModel);
-            var documentDataSource = new WinJS.Binding.List(list);
-
-            // Set up the ListView.
-            listView.itemDataSource = documentDataSource.dataSource;
-            listView.itemTemplate = element.querySelector(".itemtemplate");
-
-            if (this.isSingleColumn()) {
-                listView.layout = new ui.GridLayout();
-                listView.forceLayout();
-
-            } else {
-
-                listView.layout = new ui.GridLayout();
-                listView.forceLayout();
-
-            }
-
-            //Refresh list..
-            listView.selection.set(0);
-            listView.selection.clear();
 
 
             this.registerForShare();
