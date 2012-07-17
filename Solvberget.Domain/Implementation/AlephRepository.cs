@@ -77,12 +77,6 @@ namespace Solvberget.Domain.Implementation
             
         }
 
-        public List<Document> GetDocumentsLight(IEnumerable<string> docNumbers)
-        {
-            return (from docNumber in docNumbers let doc = GetDocument(docNumber, true) where doc != null select GetDocument(docNumber, true)).ToList();
-        }
-
-
         public UserInfo GetUserInformation( string userId, string verification )
         {
             
