@@ -1,0 +1,51 @@
+﻿body {
+}
+
+.titlecontainer {
+    border: none;
+}
+.myPage header[role=banner] .titlearea {
+    margin-top: 45px;
+}
+
+    .myPage header[role=banner] .titlearea .pagetitle {
+        display: inline;
+        padding: 0;
+        padding-right: 5px;
+    }
+
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+        
+    }
+
+    #mainContentSection {
+        margin-left: 45px;
+    }
+
+    .box {
+        margin: 10px;
+        border-color: white;
+        border-width: 1px;
+        border: solid;
+        width: auto;
+        height: auto;
+        padding: 10px;
+
+        width:150px;
+        overflow:hidden;
+        border-top-right-radius:10px;
+        border-top-left-radius:10px;
+        border-bottom-left-radius:10px;
+        resize:both;
+
+    }
+    .box span {
+        display:block;
+    }
+    .box .detail-title {
+        margin-bottom: 3px;
+    }
