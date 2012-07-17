@@ -49,16 +49,28 @@
             var listView = element.querySelector(".itemlist").winControl;
 
             //Setup the EventDataSource
-            var documentDataSource = new DataSources.documentDataSource(this.documentId);
+            var list = ViewModel.propertiesList.documentToPropertiesList(this.itemModel);
+            var documentDataSource = new WinJS.Binding.List(list);
 
             // Set up the ListView.
-            listView.itemDataSource = documentDataSource;
+            listView.itemDataSource = documentDataSource.dataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
-            listView.layout = new ui.GridLayout();
+
+            if (this.isSingleColumn()) {
+                listView.layout = new ui.GridLayout();
+                listView.forceLayout();
+
+            } else {
+
+                listView.layout = new ui.GridLayout();
+                listView.forceLayout();
+
+            }
 
             //Refresh list..
             listView.selection.set(0);
             listView.selection.clear();
+
 
             this.registerForShare();
 
@@ -67,10 +79,9 @@
 
         setViewModel: function (itemModel) {
             eval("this.viewModel = ViewModel." + itemModel.DocType);
-            if (this.viewModel !== undefined) {
-                this.viewModel.fillProperties(itemModel);
-                this.viewModel.image = undefined;
-            }
+            this.viewModel.fillProperties(itemModel);
+            this.viewModel.image = undefined;
+            this.viewModel.properties = undefined;
         },
 
         //Clean up
@@ -95,13 +106,10 @@
             if (this.isSingleColumn()) {
                 listView.layout = new ui.ListLayout();
                 listView.forceLayout();
-
-            } else if (listView.layout != undefined) {
+            } else {
 
                 listView.layout = new ui.GridLayout();
                 listView.forceLayout();
-
-
             }
         },
         registerForShare: function () {
