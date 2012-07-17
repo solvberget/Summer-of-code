@@ -20,18 +20,6 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<Organization> InvolvedOrganizations { get; set; }
         public IEnumerable<string> OtherTitles { get; set; }
 
-        protected override void FillPropertiesLight(string xml)
-        {
-
-            base.FillPropertiesLight(xml);
-            var xmlDoc = XDocument.Parse(xml);
-            if (xmlDoc.Root != null)
-            {
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
-                Issn = GetVarfield(nodes, "022", "a");
-            }
-        }
-
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
@@ -48,6 +36,18 @@ namespace Solvberget.Domain.DTO
                 OtherTitles = GetVarfieldAsList(nodes, "740", "a");
             }
 
+        }
+
+        protected override void FillPropertiesLight(string xml)
+        {
+
+            base.FillPropertiesLight(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                Issn = GetVarfield(nodes, "022", "a");
+            }
         }
 
         public new static Journal GetObjectFromFindDocXmlBsMarcLight(string xml)

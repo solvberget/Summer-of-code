@@ -94,20 +94,19 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetCdPopular()
         {
             const string documentNumberForCdPopular = "000566205"; //Mods - Gje meg litt merr
-            var cd = (CdPopular)_repository.GetDocument(documentNumberForCdPopular, false);
+            var cd = (Cd)_repository.GetDocument(documentNumberForCdPopular, false);
             Assert.AreEqual("Gje meg litt merr", cd.Title);
             Assert.AreEqual("Mods", cd.MusicGroup);
             Assert.IsNull(cd.ExplanatoryAddition);
             Assert.AreEqual("1 kompaktplate", cd.TypeAndNumberOfDiscs);
             Assert.AreEqual("Innhold: Gje meg litt merr ; Belinda ; Revansj ; Me to går alltid aleina ; Amerika ; Bare i nått ; Eg e så forelska ; Ett år e gått ; Tore Tang ; Fint at du vil ; Eg vil hjem ; Hjelp meg ; Militæret ; Alexander ; Eg kom ikkje inn ; Regn ; Meg må du hilsa på ; Ikkje plag meg ; Bli med oss ; Livets roulette ; Another day ; Bahama Mama", cd.DiscContent);
             Assert.AreEqual("Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen", cd.Performers);
-            Assert.AreEqual(2, cd.Genre.Count());
-            Assert.AreEqual("Popmusikk", cd.Genre.ElementAt(0));
-            Assert.AreEqual("Rock", cd.Genre.ElementAt(1));
+            Assert.AreEqual(2, cd.CompositionTypeOrGenre.Count());
+            Assert.AreEqual("Popmusikk", cd.CompositionTypeOrGenre.ElementAt(0));
+            Assert.AreEqual("Rock", cd.CompositionTypeOrGenre.ElementAt(1));
             Assert.AreEqual(7, cd.InvolvedPersons.Count());
             Assert.IsEmpty(cd.InvolvedMusicGroups);
         }
-
 
         [Test]
         public void TestGetLanguageCourse()
@@ -117,28 +116,31 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Ingnes, Nils", languageCourse.Author.Name);
             Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
             Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
-
             Assert.AreEqual("439.683", languageCourse.ClassificationNr);
-
             Assert.AreEqual(0, languageCourse.InvolvedOrganizations.Count());
-
             Assert.AreEqual(0, languageCourse.InvolvedPersons.Count());
-
             Assert.AreEqual("Engelsk", languageCourse.Language);
-
             Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
             Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
-
             Assert.AreEqual("Språkkurs", languageCourse.Subject.ElementAt(0));
             Assert.AreEqual("Norsk", languageCourse.Subject.ElementAt(1));
             Assert.AreEqual(2, languageCourse.Subject.Count());
-
             Assert.AreEqual(null, languageCourse.TitlesOtherWritingForms);
-
             Assert.AreEqual("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
-
             Assert.AreEqual("LanguageCourse", languageCourse.DocType);
+        }
 
+        [Test]
+        public void TestGetSheetMusic()
+        {
+            const string documentNumberForSheetMusic = "000117418"; //March (fanfare) for 3 trumpets and timpani
+            var sheetMusic = (SheetMusic)_repository.GetDocument(documentNumberForSheetMusic, false);
+            Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMusic.Composer.Name);
+            Assert.AreEqual("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
+            Assert.AreEqual("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
+            Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());
+            Assert.AreEqual("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
+            Assert.AreEqual("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
         }
 
         [Test]

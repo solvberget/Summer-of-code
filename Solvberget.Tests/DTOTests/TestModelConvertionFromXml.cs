@@ -383,16 +383,16 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetCdPopularFromXml()
         {
-            var cd = CdPopular.GetObjectFromFindDocXmlBsMarc(getCdPopularMusicGroupXml());
+            var cd = Cd.GetObjectFromFindDocXmlBsMarc(getCdPopularMusicGroupXml());
             Assert.AreEqual("Gje meg litt merr", cd.Title);
             Assert.AreEqual("Mods", cd.MusicGroup);
             Assert.IsNull(cd.ExplanatoryAddition);
             Assert.AreEqual("1 kompaktplate", cd.TypeAndNumberOfDiscs);
             Assert.AreEqual("Innhold: Gje meg litt merr ; Belinda ; Revansj ; Me to går alltid aleina ; Amerika ; Bare i nått ; Eg e så forelska ; Ett år e gått ; Tore Tang ; Fint at du vil ; Eg vil hjem ; Hjelp meg ; Militæret ; Alexander ; Eg kom ikkje inn ; Regn ; Meg må du hilsa på ; Ikkje plag meg ; Bli med oss ; Livets roulette ; Another day ; Bahama Mama", cd.DiscContent);
             Assert.AreEqual("Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen", cd.Performers);
-            Assert.AreEqual(2, cd.Genre.Count());
-            Assert.AreEqual("Popmusikk", cd.Genre.ElementAt(0));
-            Assert.AreEqual("Rock", cd.Genre.ElementAt(1));
+            Assert.AreEqual(2, cd.CompositionTypeOrGenre.Count());
+            Assert.AreEqual("Popmusikk", cd.CompositionTypeOrGenre.ElementAt(0));
+            Assert.AreEqual("Rock", cd.CompositionTypeOrGenre.ElementAt(1));
             Assert.AreEqual(7, cd.InvolvedPersons.Count());
             Assert.IsEmpty(cd.InvolvedMusicGroups);
         }
@@ -400,13 +400,12 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetCdPopularLightFromXml()
         {
-            var cd1 = CdPopular.GetObjectFromFindDocXmlBsMarcLight(getCdPopularMusicGroupXml());
+            var cd1 = Cd.GetObjectFromFindDocXmlBsMarcLight(getCdPopularMusicGroupXml());
             Assert.AreEqual("Mods", cd1.MusicGroup);
 
-            var cd2 = CdPopular.GetObjectFromFindDocXmlBsMarcLight(getCdPopluarArtistXml());
-            Assert.AreEqual("Abel, Morten", cd2.Artist.Name);
+            var cd2 = Cd.GetObjectFromFindDocXmlBsMarcLight(getCdPopluarArtistXml());
+            Assert.AreEqual("Abel, Morten", cd2.ArtistOrComposer.Name);
         }
-
 
         [Test]
         public void GetLanguageCourseFromXml()
@@ -497,6 +496,25 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             var languageCourse = LanguageCourse.GetObjectFromFindDocXmlBsMarcLight(getLanguageCourseWithIsbnXml());
             Assert.AreEqual("Simons, Margaretha Danbolt", languageCourse.Author.Name);
+        }
+
+        [Test]
+        public void GetSheetMusicFromXml()
+        {
+            var sheetMusic = SheetMusic.GetObjectFromFindDocXmlBsMarc(getSheetMusicXml());
+            Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMusic.Composer.Name);
+            Assert.AreEqual("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
+            Assert.AreEqual("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
+            Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());
+            Assert.AreEqual("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
+            Assert.AreEqual("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
+        }
+
+        [Test]
+        public void GetSheetMusicLightFromXml()
+        {
+            var sheetMuisc = SheetMusic.GetObjectFromFindDocXmlBsMarcLight(getSheetMusicXml());
+            Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMuisc.Composer.Name);
         }
 
         private string getLanguageCourseWithInvolvedPersonsXml()
@@ -2264,6 +2282,125 @@ namespace Solvberget.Service.Tests.DTOTests
         </metadata>
     </record>
     <session-id>Q6KEQY8GHVX1173QXERYX5PPSINEAA7NGEDCM3RB2QFCG17UDT</session-id>
+</find-doc>";
+        }
+
+        private string getSheetMusicXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<find-doc>
+    <record>
+        <metadata>
+            <oai_marc>
+                <fixfield id=""FMT"">MU</fixfield>
+                <fixfield id=""LDR"">00579ccm^^22002171^^45^^</fixfield>
+                <fixfield id=""BAS"">25</fixfield>
+                <fixfield id=""BAS"">30</fixfield>
+                <fixfield id=""008"">823112^^^^^^^^^^^^^^^^a^^^^^^^^^^0^^^^^^</fixfield>
+                <varfield id=""015"" i1="" "" i2="" "">
+                    <subfield label=""a"">0117418</subfield>
+                    <subfield label=""b"">media-f</subfield>
+                </varfield>
+                <varfield id=""019"" i1="" "" i2="" "">
+                    <subfield label=""b"">c</subfield>
+                </varfield>
+                <varfield id=""082"" i1="" "" i2="" "">
+                    <subfield label=""a"">785.5714</subfield>
+                    <subfield label=""z"">h</subfield>
+                </varfield>
+                <varfield id=""090"" i1="" "" i2="" "">
+                    <subfield label=""c"">785.5714</subfield>
+                    <subfield label=""d"">BAC</subfield>
+                </varfield>
+                <varfield id=""091"" i1="" "" i2="" "">
+                    <subfield label=""f"">0</subfield>
+                </varfield>
+                <varfield id=""100"" i1="" "" i2="" "">
+                    <subfield label=""a"">Bach, Carl Philipp Emanuel</subfield>
+                    <subfield label=""d"">1714-1788</subfield>
+                    <subfield label=""j"">t.</subfield>
+                </varfield>
+                <varfield id=""245"" i1="" "" i2="" "">
+                    <subfield label=""a"">March (fanfare) for 3 trumpets and timpani</subfield>
+                </varfield>
+                <varfield id=""260"" i1="" "" i2="" "">
+                    <subfield label=""a"">N.Y.</subfield>
+                    <subfield label=""b"">Marks Music</subfield>
+                    <subfield label=""c"">u.å.</subfield>
+                </varfield>
+                <varfield id=""300"" i1="" "" i2="" "">
+                    <subfield label=""a"">b. 4 st.</subfield>
+                </varfield>
+                <varfield id=""599"" i1="" "" i2="" "">
+                    <subfield label=""a"">0035</subfield>
+                </varfield>
+                <varfield id=""500"" i1="" "" i2="" "">
+                    <subfield label=""a"">MS 1310</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Kammermusikk</subfield>
+                </varfield>
+                <varfield id=""650"" i1="" "" i2="" "">
+                    <subfield label=""a"">Marsj</subfield>
+                </varfield>
+                <varfield id=""658"" i1="" "" i2="" "">
+                    <subfield label=""a"">Trompet 3</subfield>
+                    <subfield label=""a"">Pauker</subfield>
+                    <subfield label=""b"">04</subfield>
+                </varfield>
+                <varfield id=""850"" i1="" "" i2="" "">
+                    <subfield label=""a"">stavangb</subfield>
+                    <subfield label=""c"">785.5714 BAC</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20041103</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1514</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b""></subfield>
+                    <subfield label=""c"">19971213</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1740</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a""></subfield>
+                    <subfield label=""b""></subfield>
+                    <subfield label=""c"">19990531</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1428</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20010816</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1307</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20041104</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1244</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""a"">BATCH</subfield>
+                    <subfield label=""b"">00</subfield>
+                    <subfield label=""c"">20050531</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1341</subfield>
+                </varfield>
+                <varfield id=""CAT"" i1="" "" i2="" "">
+                    <subfield label=""c"">20060818</subfield>
+                    <subfield label=""l"">NOR01</subfield>
+                    <subfield label=""h"">1145</subfield>
+                </varfield>
+            </oai_marc>
+        </metadata>
+    </record>
+    <session-id>2AR541IJ3QERCVPA44B36DF71HYVT1MJAA78QF32DAP96T1651</session-id>
 </find-doc>";
         }
 

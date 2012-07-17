@@ -205,11 +205,13 @@ namespace Solvberget.Domain.Implementation
             else if (dtc.Any(x => x.StartsWith("e")))
                 return typeof(Film).FullName;
             else if (dtc.Contains("dc") && dtc.Contains("dg"))
-                return typeof(CdPopular).FullName;
+                return typeof(Cd).FullName;
             else if (dtc.Contains("di"))
                 return typeof(AudioBook).FullName;
+            else if (dtc.Contains("c"))
+                return typeof (SheetMusic).FullName;
             else if (dtc.Contains("dh"))
-                return typeof (LanguageCourse).FullName;
+                return typeof(LanguageCourse).FullName;
             else if (dtc.Contains("j"))
                 return typeof(Journal).FullName;
 
