@@ -35,6 +35,25 @@ namespace Solvberget.Service.Tests.DTOTests
 
         }
 
+        [Test]
+        public void FineTest()
+        {
+            const string userId = "159222";
+            var user = new UserInfo { BorrowerId = userId };
+            user.FillProperties(UserXml);
+
+            Assert.AreEqual("20070208", user.Fines.ElementAt(0).Date);
+            Assert.AreEqual("Not paid by/credited to patron", user.Fines.ElementAt(0).Status);
+            Assert.AreEqual('D', user.Fines.ElementAt(0).CreditDebit);
+            Assert.AreEqual(30.00 , user.Fines.ElementAt(0).Sum);
+            Assert.AreEqual("Nytt lånekort", user.Fines.ElementAt(0).Description);
+
+
+            Assert.AreEqual(2, user.Fines.Count());
+            Assert.AreEqual("20070319", user.Fines.ElementAt(1).Date);
+            Assert.AreEqual("Lånt 20070208 Forf. 20070308 Kat. 01 - 1-2 ukes forsink.:", user.Fines.ElementAt(1).Description);
+
+        }
 
 
 

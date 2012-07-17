@@ -424,9 +424,6 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Engelsk", languageCourse.Language);
 
-            Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
-            Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
-
             Assert.AreEqual("Språkkurs", languageCourse.Subject.ElementAt(0));
             Assert.AreEqual("Norsk", languageCourse.Subject.ElementAt(1));
             Assert.AreEqual(2, languageCourse.Subject.Count());
@@ -451,9 +448,6 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("978-1-444-10720-3", languageCourse2.Isbn);
 
             Assert.AreEqual("Engelsk", languageCourse.Language);
-
-            Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
-            Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
 
             Assert.AreEqual("Norsk", languageCourse2.Subject.ElementAt(0));
             Assert.AreEqual("Engelsk", languageCourse2.Subject.ElementAt(1));

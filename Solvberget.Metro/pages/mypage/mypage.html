@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Min side</title>
+
+    <link href="mypage.css" rel="stylesheet" />
+    <script src="mypage.js"></script>
+
+</head>
+<body>
+
+    <!-- Define the header menu -->
+    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
+
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
+        </button>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="myPage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back"></button>
+            <div class="titlearea win-type-ellipsis">
+                <button class="titlecontainer">
+                    <h1>
+                        <span class="pagetitle">Min side</span>
+                        <span class="chevron win-type-x-large">&#xe099</span>
+                    </h1>
+                </button>
+                <h2 class="pagesubtitle">Sindre Haaland</h2>
+            </div>
+        </header>
+
+        <section aria-label="Main content" id="mainContentSection" role="main">
+            <div class="box">
+                <h2><span class="detail-title">Addresse</span></h2>
+                <span id="addressPrefix">Sindre Haaland</span>
+                <span id="addressStreetName">Bakkesvingen 8</span>
+                <span id="addressCity">4019 Stavanger</span>
+            </div>
+
+            <div class="box">
+                <h2><span class="detail-title">Personalia</span></h2>
+                <span id="Span1">Sindre Haaland</span>
+                <span id="Span2">09.04.1989</span>
+                <span id="Span3">91562303</span>
+            </div>
+
+            <div class="box">
+                <h2><span class="detail-title">Addresse</span></h2>
+                <span id="Span4">Sindre Haaland</span>
+                <span id="Span5">Bakkesvingen 8</span>
+                <span id="Span6">4019 Stavanger</span>
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>
