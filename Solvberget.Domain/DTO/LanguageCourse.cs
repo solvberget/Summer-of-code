@@ -12,7 +12,6 @@ namespace Solvberget.Domain.DTO
     {
 
         public string Isbn { get; set; }
-        public string LearningAndTeachingLanguages { get; set; }
         public string ClassificationNr { get; set; }
         public Person Author { get; set; }
         public string TypeAndNumberOfDiscs { get; set; }
@@ -30,7 +29,6 @@ namespace Solvberget.Domain.DTO
                 FillPropertiesLight(xml);
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 Isbn = GetVarfield(nodes, "020", "a");
-                LearningAndTeachingLanguages = GetVarfield(nodes, "041", "a");
                 ClassificationNr = GetVarfield(nodes, "090", "c");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
                 Subject = GetVarfieldAsList(nodes, "650", "a");

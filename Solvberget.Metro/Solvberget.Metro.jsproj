@@ -294,19 +294,14 @@
     <Content Include="pages\itemDetail\viewmodels\cd.js" />
     <Content Include="pages\itemDetail\viewmodels\document.js" />
     <Content Include="pages\itemDetail\viewmodels\documentViewmodels.js" />
-    <Content Include="pages\itemDetail\viewmodels\documentListAdapter.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="pages\itemDetail\viewmodels\film.js" />
     <Content Include="pages\itemDetail\viewmodels\journal.js" />
     <Content Include="pages\itemDetail\viewmodels\languageCourse.js" />
     <Content Include="pages\itemDetail\viewmodels\propertiesList.js" />
     <Content Include="pages\itemDetail\viewmodels\sheetMusic.js" />
+    <Content Include="pages\mypage\mypage.css" />
+    <Content Include="pages\mypage\mypage.html" />
+    <Content Include="pages\mypage\mypage.js" />
     <Content Include="sass\default.css" />
     <Content Include="sass\searchResults.css" />
     <Content Include="sass\searchResults.scss">

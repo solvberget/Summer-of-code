@@ -4,65 +4,57 @@
         propertiesList: {
 
             documentToPropertiesList: function (document) {
-                var results = [], count;
+                var results = []
                 var i = 0;
                 for (var property in document) {
-                    var documentValue = null;
-                    var documentName = null;
+                    var propertyValue = null;
+                    var propertyName = null;
 
-                    documentValue = eval("document." + property);
-                    documentName = Solvberget.Localization.getString(property);
+                    propertyValue = eval("document." + property);
+                    propertyName = Solvberget.Localization.getString(property);
 
-                    if (documentValue !== null) {
-                        if (documentValue[0] != undefined) {
-                            if (documentValue[0].Name != undefined)
-                                documentValue = documentValue[0].Name + ",";
-                        } else if (documentValue.Name != undefined) {
-                            documentValue = documentValue.Name;
+                    if (propertyValue !== null) {
+                        if (propertyValue[0] != undefined) {
+                            if (propertyValue[0].Name != undefined)
+                                propertyValue = propertyValue[0].Name + ",";
+                        } else if (propertyValue.Name != undefined) {
+                            propertyValue = propertyValue.Name;
                         }
                     }
 
-                    if ((documentValue !== null) && (documentValue !== []) && (documentValue != "")) {
-                        var type = typeof (documentValue);
+                    if ((propertyValue !== null) && (propertyValue !== []) && (propertyValue != "")) {
+                        var type = typeof (propertyValue);
 
                         while (type !== "string" && type !== "integer") {
-                            documentValue = documentValue.toString();
-                            var documentValueTemp = "";
-                            for (var j = 0; j < documentValue.length; j++) {
-                                if (documentValue[j] == ",") {
+                            propertyValue = propertyValue.toString();
+                            var propertyValueTemp = "";
+                            for (var j = 0; j < propertyValue.length; j++) {
+                                if (propertyValue[j] == ",") {
 
-                                    documentValueTemp += ", ";
+                                    propertyValueTemp += ", ";
                                 } else {
-                                    documentValueTemp += documentValue[j];
+                                    propertyValueTemp += propertyValue[j];
                                 }
                             }
-                            documentValue = documentValueTemp;
+                            propertyValue = propertyValueTemp;
 
-                            type = typeof (documentValue);
+                            type = typeof (propertyValue);
                         }
                       
-                        results.push(
+                        results[i] =
                         {
-                            key: (i).toString(),
-                            data:
-                            {
-                                propertyName: documentName,
-                                propertyValue: documentValue,
-                            }
-                        });
+                                propertyName: propertyName,
+                                propertyValue: propertyValue,
+                         
+                        };
+                        i++
 
-                        i++;
                     }
                 }
 
-                // Get the count.
-                count = results.length;
+            
 
-                return {
-                   items: results, // The array of documents.      
-                    offset: 0,
-                    totalCount: count, // The total number of records.
-                };
+                return results;
 
             },
         },

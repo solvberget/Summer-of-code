@@ -10,12 +10,14 @@
 
     var menuItems = [
         { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, navigateTo : function () { WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
-        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { loginThenNavigateTo("/pages/events/events.html"); } },
+        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { loginThenNavigateTo("/pages/mypage/mypage.html"); } },
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { WinJS.Navigation.navigate("/pages/events/events.html"); } },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: function () { Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); } },
     ];
 
     var loginThenNavigateTo = function (page) {
+
+       // window.localStorage.setItem("BorrowerId", "");
 
         var loginDiv = document.getElementById("loginDiv");
 
@@ -28,11 +30,22 @@
 
     }
 
+    var itemByKey = function (key) {
+
+        for (var i = 0; i < menuItems.length; i++) {
+            if (key === menuItems[i].key)
+                return menuItems[i];
+        }
+
+
+    }
+
     var list = new WinJS.Binding.List(menuItems);
 
     WinJS.Namespace.define("Data", {
 
         items: list,
+        itemByKey : itemByKey,
         menuItems: menuItems,
 
     });
