@@ -7,7 +7,6 @@ namespace Solvberget.Domain.Abstract
     {
         List<Document> Search(string value);
         Document GetDocument(string documentNumber, bool isLight);
-        List<Document> GetDocumentsLight(IEnumerable<string> docNumbers);
         UserInfo GetUserInformation(string userId, string verification);
     }  
     

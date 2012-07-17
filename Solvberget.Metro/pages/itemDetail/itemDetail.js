@@ -13,29 +13,27 @@
         documentId: undefined,
         viewModel: undefined,
         itemSelectionIndex: -1,
+
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
-
-        isSingleColumn: function () {
-            var viewState = Windows.UI.ViewManagement.ApplicationView.value;
-            return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
-        },
-
         ready: function (element, options) {
             var that = this;
             this.itemModel = options.itemModel;
             this.documentId = options.key;
 
             //Init viewmodel
-            var initViewModel = function () {
+            (function () {
                 var article = element.querySelector(".article");
                 var pageTitle = element.querySelector(".pagetitle");
+                var viewmodels = ViewModel.DocumentViewmodels.items;
 
+                //Create new viewmodel
                 that.setViewModel(that.itemModel);
+
                 WinJS.Binding.processAll(article, that.viewModel);
                 WinJS.Binding.processAll(pageTitle, that.viewModel);
-            }
-            initViewModel();
+            })();
+
 
             $.when(Solvberget.DocumentImage.get(this.documentId))
                .then($.proxy(function (response) {
@@ -44,7 +42,6 @@
                        this.viewModel.image = response;
                        var imageDiv = document.querySelector(".item-image-container");
                        WinJS.Binding.processAll(imageDiv, this.viewModel);
-
                    }
                }, this));
 
@@ -69,16 +66,23 @@
         },
 
         setViewModel: function (itemModel) {
-
             eval("this.viewModel = ViewModel." + itemModel.DocType);
             if (this.viewModel !== undefined) {
                 this.viewModel.fillProperties(itemModel);
                 this.viewModel.image = undefined;
             }
         },
+
+        //Clean up
         unload: function () {
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
             dataTransferManager.removeEventListener("datarequested", this.shareHtmlHandler);
+        },
+
+        //Check if snapview or portrait
+        isSingleColumn: function () {
+            var viewState = Windows.UI.ViewManagement.ApplicationView.value;
+            return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
         },
 
         // This function updates the page layout in response to viewState changes.
@@ -90,13 +94,11 @@
             var listView = element.querySelector(".itemlist").winControl;
             if (this.isSingleColumn()) {
                 listView.layout = new ui.ListLayout();
-
                 listView.forceLayout();
 
-            } else if(listView.layout != undefined){
+            } else if (listView.layout != undefined) {
 
                 listView.layout = new ui.GridLayout();
-
                 listView.forceLayout();
 
 

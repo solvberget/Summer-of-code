@@ -2,7 +2,7 @@
 (function () {
     "use strict";
     WinJS.Namespace.define("ViewModel", {
-        DocumentList: WinJS.Binding.as({
+        DocumentViewmodels: WinJS.Binding.as({
             items: []
         })
     })
