@@ -9,7 +9,6 @@ namespace Solvberget.Domain.DTO
     {
 
         public string Isbn { get; set; }
-        public string LanguagesInBook { get; set; }
         public string ClassificationNr { get; set; }
         public Person Author { get; set; }
         public Organization Organization { get; set; }

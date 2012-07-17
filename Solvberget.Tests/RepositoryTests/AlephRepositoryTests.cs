@@ -120,8 +120,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(0, languageCourse.InvolvedOrganizations.Count());
             Assert.AreEqual(0, languageCourse.InvolvedPersons.Count());
             Assert.AreEqual("Engelsk", languageCourse.Language);
-            Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
-            Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
             Assert.AreEqual("Språkkurs", languageCourse.Subject.ElementAt(0));
             Assert.AreEqual("Norsk", languageCourse.Subject.ElementAt(1));
             Assert.AreEqual(2, languageCourse.Subject.Count());
