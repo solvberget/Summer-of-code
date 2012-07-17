@@ -314,6 +314,7 @@
     <Content Include="pages\itemDetail\itemDetail.js" />
     <Content Include="pages\itemDetail\viewmodels\audioBook.js" />
     <Content Include="pages\itemDetail\viewmodels\book.js" />
+    <Content Include="pages\itemDetail\viewmodels\document.js" />
     <Content Include="pages\itemDetail\viewmodels\documentViewmodels.js" />
     <Content Include="pages\itemDetail\viewmodels\documentListAdapter.js">
       <Compile>True</Compile>
