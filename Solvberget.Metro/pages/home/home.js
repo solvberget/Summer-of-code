@@ -19,36 +19,15 @@
 
         itemInvoked: function (args) {
 
+            Data.menuItems[args.detail.itemIndex].navigateTo();
 
-            var groupKey = Data.groups.getAt(args.detail.itemIndex).key;
-            if (groupKey === "group6") {
-                var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
-                searchPane.show();
-            } else if (groupKey === "events") {
-                WinJS.Navigation.navigate("/pages/events/events.html", { groupKey: groupKey });
-            } else if (groupKey === "lists") {
-                WinJS.Navigation.navigate("/pages/lists/libraryLists.html", { groupKey: groupKey });
-            }
-            else if (groupKey === "mypage") {
-                var loginDiv = document.getElementById("loginDiv");
-                WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
-                    var loginAnchor = document.querySelector(".win-container:nth-child(1)");
-
-                        var navigateToPageOnSuccess = "/pages/events/events.html";
-                        LoginFlyout.showLogin(loginAnchor, navigateToPageOnSuccess);                                      
-
-                });
-            }
-            else {
-
-            }
         },
 
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
             var listView = element.querySelector(".itemslist").winControl;
-            listView.itemDataSource = Data.groups.dataSource;
+            listView.itemDataSource = Data.items.dataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.oniteminvoked = this.itemInvoked.bind(this);
 
