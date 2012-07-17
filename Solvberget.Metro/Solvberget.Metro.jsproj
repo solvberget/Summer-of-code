@@ -286,6 +286,7 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
+    <Content Include="pages\itemDetail\images\imdb.png" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />

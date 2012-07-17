@@ -6,6 +6,7 @@
             title: undefined,
             subtitle: undefined,
             image: undefined,
+            imdbRating:undefined,
             propertiesList:[],
             fillProperties: function (item) {
                 this.title = item.Title 
