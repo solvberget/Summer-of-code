@@ -59,22 +59,6 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="css\ie.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="css\print.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="css\screen.css">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -93,16 +77,10 @@
     </Content>
     <Content Include="css\splitview.css" />
     <Content Include="default.html" />
-    <Content Include="DocumentInfo.html" />
     <Content Include="fragments\login\login.html" />
     <Content Include="fragments\login\login.css" />
     <Content Include="fragments\login\login.js" />
     <Content Include="images\ajax_loading.gif" />
-    <Content Include="images\dummydata\davincikoden.jpeg" />
-    <Content Include="images\dummydata\drageloperen.jpeg" />
-    <Content Include="images\dummydata\hp1.jpeg" />
-    <Content Include="images\dummydata\jentasomlektemedilden.jpeg" />
-    <Content Include="images\dummydata\mennsomhaterkvinner.jpeg" />
     <Content Include="images\icon\Icon Pack 1\ico\3d.ico" />
     <Content Include="images\icon\Icon Pack 1\ico\acr.ico" />
     <Content Include="images\icon\Icon Pack 1\ico\active.ico" />
@@ -287,7 +265,6 @@
     <Content Include="js\documentImage.js" />
     <Content Include="js\ListDataSource.js" />
     <Content Include="js\localizationHelper.js" />
-    <Content Include="js\converters.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
     <Content Include="js\EventDataSource.js" />
@@ -325,9 +302,6 @@
     <Content Include="pages\itemDetail\viewmodels\documentList.js" />
     <Content Include="pages\itemDetail\viewmodels\filmItem.js" />
     <Content Include="sass\default.css" />
-    <Content Include="sass\ie.css" />
-    <Content Include="sass\print.css" />
-    <Content Include="sass\screen.css" />
     <Content Include="sass\searchResults.css" />
     <Content Include="sass\searchResults.scss">
       <Compile>True</Compile>
@@ -364,10 +338,7 @@
     </Content>
     <Content Include="js\lib\spinn.min.js" />
     <Content Include="js\navigator.js" />
-    <Content Include="js\test\DocumentSearch.tests.js" />
-    <Content Include="js\test\Sample.tests.js" />
     <Content Include="js\utils.js" />
-    <Content Include="js\viewmodels\DocumentSearch.js" />
     <Content Include="js\lib\spinn.min.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -384,22 +355,6 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="js\test\DocumentSearch.tests.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="js\test\Sample.tests.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="js\utils.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -408,7 +363,7 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="js\viewmodels\DocumentSearch.js">
+    <Content Include="pages\home\home.css">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>
@@ -416,16 +371,8 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\items\items.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\items\items.html" />
-    <Content Include="pages\items\items.js">
+    <Content Include="pages\home\home.html" />
+    <Content Include="pages\home\home.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>
@@ -450,48 +397,7 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\split\split.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="pages\split\split.html" />
-    <Content Include="pages\split\split.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="sass\default.scss">
-      <Compile>True</Compile>
-      <Minify>True</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <CompileStyle>Nested</CompileStyle>
-      <DebugInfo>False</DebugInfo>
-    </Content>
-    <Content Include="sass\ie.scss">
-      <Compile>True</Compile>
-      <Minify>True</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <CompileStyle>Nested</CompileStyle>
-      <DebugInfo>False</DebugInfo>
-    </Content>
-    <Content Include="sass\print.scss">
-      <Compile>True</Compile>
-      <Minify>True</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <CompileStyle>Nested</CompileStyle>
-      <DebugInfo>False</DebugInfo>
-    </Content>
-    <Content Include="sass\screen.scss">
       <Compile>True</Compile>
       <Minify>True</Minify>
       <OutputFolder>

@@ -100,13 +100,16 @@
     var ajaxSearchDocuments = function (query) {
         return $.getJSON("http://localhost:7089/Document/Search/" + query);
     };
+
     var ajaxGetThumbnailDocumentImage = function (query, size) {
         var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
         return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
     };
+
     var lookupDict = function (query) {
         return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
     };
+
     var getImageQueue = {
         queue: [],
         working: false,
@@ -390,16 +393,13 @@
                     searchPane.show();
                     break;
                 case 2:
-                    WinJS.Navigation.navigate("/pages/split/split.html");
                     break;
                 case 3:
                     WinJS.Navigation.navigate("/pages/lists/libraryLists.html");
                     break;
                 case 4:
-                    WinJS.Navigation.navigate("/pages/split/split.html");
                     break;
                 case 5:
-                    WinJS.Navigation.navigate("/pages/split/split.html");
                     break;
             }
             WinJS.log && WinJS.log("You are viewing the #" + section + " section.", "sample", "status");

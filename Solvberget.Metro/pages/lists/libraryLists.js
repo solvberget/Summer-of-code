@@ -9,7 +9,6 @@
 
     ui.Pages.define("/pages/lists/libraryLists.html", {
 
-        group: null,
         itemSelectionIndex: 0,
 
         // This function checks if the list and details columns should be displayed
@@ -74,14 +73,11 @@
             //Setup the ListDataSource
             var listDataSource = new DataSources.List.ListDataSource();
 
-            // Store information about the group and selection that this page will
-            // display.
-            this.group = (options && options.groupKey) ? Data.resolveGroupReference(options.groupKey) : Data.groups.getAt(0);
-            //this.items = null;
+            // Set the header title
             this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
 
             //Set page header
-            element.querySelector("header[role=banner] .pagetitle").textContent = this.group.title;
+            element.querySelector("header[role=banner] .pagetitle").textContent = "Lister fra Biblioteket";
 
             // Set up the listViewForLists.
             listViewForLists.itemDataSource = listDataSource;
@@ -128,7 +124,7 @@
 
                             // If snapped or portrait, navigate to a new page containing the
                             // selected item's details.
-                            nav.navigate("/pages/lists/libraryLists.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
+                            nav.navigate("/pages/lists/libraryLists.html", { selectedIndex: that.itemSelectionIndex, item: items[0].data });
 
                         } else {
 
@@ -168,16 +164,7 @@
             if (this.isSingleColumn()) {
                 listViewForLists.selection.clear();
                 if (this.itemSelectionIndex >= 0) {
-                    // If the app has snapped into a single-column detail view,
-                    // add the single-column list view to the backstack.
-                    //nav.history.current.state = {
-                    //    groupKey: this.group.key,
-                    //    selectedIndex: this.itemSelectionIndex
-                    //};
-                    //nav.history.backStack.push({
-                    //    location: "/pages/lists/libraryLists.html",
-                    //    state: { groupKey: this.group.key }
-                    //});
+
                     element.querySelector(".articlesection").focus();
 
 
@@ -190,7 +177,7 @@
                 // If the app has unsnapped into the two-column view, remove any
                 // splitPage instances that got added to the backstack.
                 if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/lists/libraryLists.html") {
-                    nav.navigate("/pages/lists/libraryLists.html", { groupKey: this.group.key });
+                    nav.navigate("/pages/lists/libraryLists.html");
                     nav.history.backStack.pop();
                     return;
                 }
