@@ -9,7 +9,7 @@
             propertiesList: [],
             fillProperties: function (item) {
                 this.title = item.Title;
-                this.subtitle = "Språkkurs gitt ut i " + item.PublishedYear;
+                this.subtitle = "Språkkurs";
 
                 if (item.PublishedYear != undefined && item.PublishedYear != 0) {
                     this.title += " (" + item.PublishedYear + ")";

@@ -12,7 +12,7 @@
     "InvolvedPersons"       : "Involverte personer",
     "DocType"               : "Dokumenttype",
     "TargetGroup"           : "Målgruppe",
-    "IsFiction"             : "Er fiksjon",
+    "IsFiction"             : "Fiksjon eller fakta",
     "Language"              : "Språk",
     "Languages"             : "Språk",
     "DocumentType"          : "Dokumenttype",
@@ -29,14 +29,29 @@
     "DocumentNumber"        : "Dokument nummer",
     "ReferredPersons"       : "Omtalte personer",
     "ReferredOrganizations" : "Omtalte organisasjoner/grupper",
-    "ReferrencedPlaces"         : "Omtalte steder",
-    "ReferencedPlaces"         : "Omtalte steder",
+    "ReferrencedPlaces"     : "Omtalte steder",
+    "ReferencedPlaces"      : "Omtalte steder",
     "Subject"               : "Emne",
     "InvolvedOrganizations" : "Knyttet organisasjon/gruppe",
     "ResponsiblePersons"    : "Liste over ansvarlige personer",
     "ProductionYear"        : "Publikasjonsår",
     "Book"                  : "Bok",
     "Film"                  : "Film",
-    "AudioBook"             : "Lydbok"
+    "AudioBook"             : "Lydbok",
+    "Composer"              : "Komponist",
+    "NumberOfPagesAndNumberOfParts:" : "Sidetall, type note og antall stemmer",
+    "DiscContent"           : "Innhold i noten (sanger, komposisjoner)",
+    "ComposistionType"      : "Komposisjonstype",
+    "ArtistOrComposer"      : "Artist eller komponist",
+    "MusicGroup"            : "Musikkgruppe",
+    "CompositionTypeOrGenre"  :"Komposisjonstype eller sjanger",
+    "JournalsPerYear"        : "Antall nummer i året",
+    "InventoryInformation"  : "Informasjon om beholdning",
+    "Performers"            : "Utøvere",
+    "MusicalLineup"         : "Besetning",
+    "Involverte musikkgrupper" : "InvolvedMusicGroups",
+    "LearningAndTeachingLanguages"  :   "Lære- og læringsspråk"
+
+
 
 }
