@@ -152,44 +152,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
-        public void TestGetDocumentsLightCountAndContent()
-        {
-            IEnumerable<string> books = new string[] { "000588841", "000588844", "000588843", "000598029", "000567325" };
-            var result = _repository.GetDocumentsLight(books.Take(1));
-            var firstResult = (Film)result.ElementAt(0);
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual("Ringenes herre : Atter en konge", firstResult.Title);
-            Assert.AreEqual(2010, firstResult.PublishedYear);
-            Assert.AreEqual("The Lord of the rings", firstResult.OriginalTitle);
-
-        }
-
-        [Test]
-        public void TestGetDocumentsLightCount()
-        {
-            IEnumerable<string> books = new string[] { "000588841", "000588844",
-                "000588843", "000598029", "000567325" };
-            var result = _repository.GetDocumentsLight(books);
-            Assert.AreEqual(5, result.Count);
-        }
-
-        [Test]
-        public void TestGetDocumentsLightInvalidIds()
-        {
-            IEnumerable<string> invalidIds = new string[] { "abs2ls", "000123lkjsdf" };
-            var result = _repository.GetDocumentsLight(invalidIds);
-            Assert.AreEqual(0, result.Count);
-        }
-
-        [Test]
-        public void TestGetDocumentsLightMixOfValidAndInvalidIds()
-        {
-            IEnumerable<string> mixedIds = new string[] { "000588841", "abs2ls", "000588844", "000588843", "000123lkjsdf", "000598029", "000567325" };
-            var result = _repository.GetDocumentsLight(mixedIds);
-            Assert.AreEqual(5, result.Count);
-        }
-
-        [Test]
         public void TestGetUserInformation()
         {
 

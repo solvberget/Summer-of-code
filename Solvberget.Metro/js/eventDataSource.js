@@ -17,16 +17,6 @@
         // These methods will be called by vIListDataSource to fetch items, 
         // get the number of items, and so on.
         {
-            // This example only implements the itemsFromIndex and count methods
-
-            // The itemsFromIndex method is called by the IListDataSource 
-            // to retrieve items. 
-            // It will request a specific item and hints for a number of items before and after the
-            // requested item. 
-            // The implementation should return the requested item. You can choose how many
-            // additional items to send back. It can be more or less than those requested.
-            //
-            //   This funtion must return an object that implements IFetchResult. 
             itemsFromIndex: function (requestIndex, countBefore, countAfter) {
                 var that = this;
                 if (requestIndex >= that._maxCount) {
@@ -80,19 +70,17 @@
                                     data: {
                                         title: dataItem.Name,
                                         date: dataItem.Date,
-                                        start: "Starter kl. " + dataItem.Start,
-                                        stop: "Slutter kl. " + dataItem.Stop,
+                                        start: "Starter kl. " + that.trimTime(dataItem.Start),
+                                        stop: "Slutter kl. " + that.trimTime(dataItem.Stop),
                                         location: dataItem.Location,
                                         description: dataItem.Description,
-                                        //NB: Teaser er foreløpig dummydata, skal bindes mot dataItem.Teaser, men dette er vanligvis tomt.
-                                        teaser: "Dette blir veldig spennende, dere! (Dette er en teaser)",
                                         type: "Passer for: " + dataItem.TypeName,
                                         url: { l : dataItem.Link, t : "Link til arrangement" },
                                         address: dataItem.Address,
                                         city: dataItem.City + " " + dataItem.PostalCode,
                                         thumbImage: dataItem.ThumbUrl,
                                         backgroundImage: dataItem.PictureUrl,
-                                        dateAndTime: dataItem.Date + " " + dataItem.Start
+                                        dateAndTime: dataItem.Date + " " + that.trimTime(dataItem.Start)
                                     }
                                 });
                             }
@@ -126,13 +114,22 @@
                     .then(function () {
                         return self._count;
                     });
-            }
+            },
 
-            // setNotificationHandler: not implemented
-            // itemsFromStart: not implemented
-            // itemsFromEnd: not implemented
-            // itemsFromKey: not implemented
-            // itemsFromDescription: not implemented
+            trimTime: function (time) {
+                if (time != undefined) {
+                    var t = time.trim();
+                    if (t === "" || t === "null")
+                        return "Ukjent tidspunkt";
+                    else if (t.length > 7)
+                        return t.substring(0, 5);
+                    else
+                        return t;
+                }
+                else {
+                    return "Ukjent tidspunkt";
+                }
+            }
 
         }
         );
