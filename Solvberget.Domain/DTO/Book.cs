@@ -34,14 +34,9 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-                
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                
                 Isbn = GetVarfield(nodes, "020", "a");
                 ClassificationNr = GetVarfield(nodes, "090", "c");
-
-                FillPropertiesLight(xml);
-
                 StdOrOrgTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
                 PartTitle = GetVarfield(nodes, "245", "p");

@@ -52,7 +52,6 @@ namespace Solvberget.Domain.DTO
                 }
 
                 SubtitleLanguage = subtitles;
-                
                 OriginalTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
                 PartTitle = GetVarfield(nodes, "245", "p");
@@ -71,7 +70,6 @@ namespace Solvberget.Domain.DTO
                 Genre = GetVarfieldAsList(nodes, "655", "a");
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
-            
             }
         }
 
@@ -86,7 +84,6 @@ namespace Solvberget.Domain.DTO
                 ProductionYear = GetVarfield(nodes, "260", "g");
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
-
             }
         }
 

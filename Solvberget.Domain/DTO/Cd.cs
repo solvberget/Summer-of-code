@@ -20,6 +20,25 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<string> InvolvedMusicGroups { get; set; }
         public string SongTitlesOtherWritingForms { get; set; }
 
+        protected override void FillProperties(string xml)
+        {
+            base.FillProperties(xml);
+            var xmlDoc = XDocument.Parse(xml);
+            if (xmlDoc.Root != null)
+            {
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
+                DiscContent = GetVarfield(nodes, "505", "a");
+                Performers = GetVarfield(nodes, "511", "a");
+                CompositionTypeOrGenre = GetVarfieldAsList(nodes, "652", "a");
+                MusicalLineup = GetVarfield(nodes, "658", "a");
+                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
+                InvolvedMusicGroups = GetVarfieldAsList(nodes, "710", "a");
+                SongTitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
+            }
+
+        }
+
         protected override void FillPropertiesLight(string xml)
         {
             base.FillPropertiesLight(xml);
@@ -49,25 +68,6 @@ namespace Solvberget.Domain.DTO
                 }
 
             }
-        }
-
-        protected override void FillProperties(string xml)
-        {
-            base.FillProperties(xml);
-            var xmlDoc = XDocument.Parse(xml);
-            if (xmlDoc.Root != null)
-            {
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
-                TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
-                DiscContent = GetVarfield(nodes, "505", "a");
-                Performers = GetVarfield(nodes, "511", "a");
-                CompositionTypeOrGenre = GetVarfieldAsList(nodes, "652", "a");
-                MusicalLineup = GetVarfield(nodes, "658", "a");
-                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
-                InvolvedMusicGroups = GetVarfieldAsList(nodes, "710", "a");
-                SongTitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
-            }
-
         }
 
         public new static Cd GetObjectFromFindDocXmlBsMarc(string xml)
