@@ -309,7 +309,13 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\itemDetail\documentListDataSource.js">
+    <Content Include="pages\itemDetail\itemDetail.css" />
+    <Content Include="pages\itemDetail\itemDetail.html" />
+    <Content Include="pages\itemDetail\itemDetail.js" />
+    <Content Include="pages\itemDetail\viewmodels\audioBook.js" />
+    <Content Include="pages\itemDetail\viewmodels\book.js" />
+    <Content Include="pages\itemDetail\viewmodels\documentViewmodels.js" />
+    <Content Include="pages\itemDetail\viewmodels\documentListAdapter.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>
@@ -317,13 +323,8 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\itemDetail\itemDetail.css" />
-    <Content Include="pages\itemDetail\itemDetail.html" />
-    <Content Include="pages\itemDetail\itemDetail.js" />
-    <Content Include="pages\itemDetail\viewmodels\audioBookItem.js" />
-    <Content Include="pages\itemDetail\viewmodels\bookItem.js" />
-    <Content Include="pages\itemDetail\viewmodels\documentList.js" />
-    <Content Include="pages\itemDetail\viewmodels\filmItem.js" />
+    <Content Include="pages\itemDetail\viewmodels\film.js" />
+    <Content Include="pages\itemDetail\viewmodels\propertiesList.js" />
     <Content Include="sass\default.css" />
     <Content Include="sass\ie.css" />
     <Content Include="sass\print.css" />

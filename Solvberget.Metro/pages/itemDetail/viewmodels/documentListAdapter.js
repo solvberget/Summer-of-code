@@ -3,13 +3,7 @@
     // Define the IListDataAdapter.
     var documentDataAdapter = WinJS.Class.define(
         function (query) {
-            this._query = query;
-
-
-            // Constructor
-            this._minPageSize = 10;  // default
-            this._maxPageSize = 50;  // max
-            this._maxCount = 1000;   // limit
+            this._query = query; 
         },
 
         // IListDataDapter methods
@@ -49,77 +43,16 @@
                         // Use the JSON parser on the results (it's safer than using eval).
                         var obj = JSON.parse(request.responseText);
 
-                        // Verify that the service returned images.
+                        // Verify that the service returned 
                         if (obj !== undefined) {
-                            var item = obj;
+                            var document = obj;
                             //var items = [];
                             // Create an array of IItem objects:
                             // results =[{ key:i, data: propertyName1, propertyValue1}, {...}, ...];
-                            var i = 0;
-                            for (property in item) {
-                                var itemValue = null;
-                                var itemName = null;
-
-                                itemValue = eval("item." + property);
-                                itemName = Solvberget.Localization.getString(property);
-                                if(itemName == "Forfatter") {
-                                    console.log("debug");
-                                }
-                                if (itemValue !== null ) {
-                                    if (itemValue[0] != undefined ) {
-                                        if (itemValue[0].Name != undefined)
-                                            itemValue = itemValue[0].Name+",";
-                                    }else if(itemValue.Name != undefined) {
-                                        itemValue = itemValue.Name;
-                                    }
-                                }
-                                
-                                if ((itemValue !== null) && (itemValue !== []) && (itemValue !="")) {
-                                    var type = typeof (itemValue);
-                                    
-                                    while (type !== "string" && type !== "integer") {
-                                        itemValue = itemValue.toString();
-                                        var itemValueTemp="";
-                                        for (var j = 0; j < itemValue.length; j++) {
-                                            if (itemValue[j] == ",") {
-                                                
-                                                itemValueTemp += ", ";
-                                            }else {
-                                                itemValueTemp += itemValue[j];
-                                            }
-                                        }
-                                        itemValue = itemValueTemp;
-                                       
-                                        type = typeof (itemValue);     
-                                    }
-                                    
-
-                                    //items[i] = new Object();
-                                    //var temp = items[i];
-                                    //eval("temp." + itemName + "='" + itemValue + "'");
-
-                                    results.push(
-                                    {
-                                        key: (i).toString(),
-                                        data:
-                                        {
-                                            propertyName: itemName,
-                                            propertyValue: itemValue,
-                                        }
-                                    });
-
-                                    i++;
-                                }
-                            }
-
-                            // Get the count.
-                            count = results.length;
-
-                            return {
-                                items: results, // The array of items.      
-                                offset: requestIndex,
-                                totalCount: Math.min(count, that._maxCount), // The total number of records.
-                            };
+                            var properties = ViewModel.propertiesList.documentToPropertiesList(document);
+                            properties.offset = requestIndex;
+                            return properties;
+                          
                         } else {
                             return WinJS.UI.FetchError.doesNotExist;
                         }
@@ -148,7 +81,6 @@
                         for (property in item) {
                             var itemValue = eval("item." + property);
                             if (itemValue !== null) {
-
                                 i++;
                             }
                         }
