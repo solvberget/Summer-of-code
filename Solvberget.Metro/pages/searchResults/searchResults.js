@@ -165,6 +165,7 @@
             this.filters.push({ results: null, text: "CD", predicate: function (item) { return item.DocType == "Cd"; } });
             this.filters.push({ results: null, text: "Språkkurs", predicate: function (item) { return item.DocType == "LanguageCourse"; } });
             this.filters.push({ results: null, text: "Tidsskrift", predicate: function (item) { return item.DocType == "Journal"; } });
+            this.filters.push({ results: null, text: "Noter", predicate: function (item) { return item.DocType == "SheetMusic"; } });
             this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document"; } });
 
         },
