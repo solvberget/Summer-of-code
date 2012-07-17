@@ -6,7 +6,6 @@
     "use strict";
     var page = WinJS.UI.Pages.define("/fragments/login/login.html", {
         ready: function (element, options) {
-            //document.getElementById("loginButton").addEventListener("click", showLoginFlyout, false);
 
         }
     });
@@ -41,14 +40,6 @@
             WinJS.Navigation.navigate(navigateTo);
 
         }
-
-        
-
-
-
-
-
-            
 
 
     }

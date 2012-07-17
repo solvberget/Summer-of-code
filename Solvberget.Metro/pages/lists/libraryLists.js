@@ -19,16 +19,21 @@
         },
 
         listOfContentItemInvoked: function (eventInfo) {
-            var listViewForListContent = document.body.querySelector(".listOfListContent").winControl;
-            var details;
-            var that = this;
-            // By default, the selection is restriced to a single item.
-            listViewForListContent.selection.getItems().done(function updateDetails(items) {
-                if (items.length > 0) {
-                    that.itemSelectionIndex = items[0].index;
-                    nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: items[0].data, key: items[0].data.DocumentNumber });
-                }
-            });
+            var listViewForListContentElement = this.element.querySelector(".listOfListContent");
+            if (listViewForListContentElement) {
+
+                var listViewForListContent = listViewForListContentElement.winControl;
+                var details;
+                var that = this;
+                // By default, the selection is restriced to a single item.
+                listViewForListContent.selection.getItems().done(function updateDetails(items) {
+                    if (items.length > 0) {
+                        that.itemSelectionIndex = items[0].index;
+                        nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: items[0].data, key: items[0].data.DocumentNumber });
+                    }
+                });
+
+            }
 
         },
 
@@ -56,9 +61,12 @@
         },
 
         updateListViewForContentDataSoruce: function (itemData) {
-            var listViewForListContent = document.body.querySelector(".listOfListContent").winControl;
-            var docs = new WinJS.Binding.List(itemData.docs);
-            listViewForListContent.itemDataSource = docs.dataSource;
+            var listViewForListContentElement = this.element.querySelector(".listOfListContent");
+            if (listViewForListContentElement) {
+                var listViewForListContent = listViewForListContentElement.winControl;
+                var docs = new WinJS.Binding.List(itemData.docs);
+                listViewForListContent.itemDataSource = docs.dataSource;
+            }
         },
 
         // This function is called whenever a user navigates to this page. It
@@ -67,6 +75,8 @@
 
             var listViewForLists = element.querySelector(".listOfLists").winControl;
             var listViewForListContent = element.querySelector(".listOfListContent").winControl;
+
+
             listViewForLists.layout = new ui.ListLayout();
             listViewForListContent.layout = new ui.ListLayout();
 
@@ -87,7 +97,7 @@
             // Set up the listViewForLists.
             listViewForListContent.itemTemplate = this.itemTemplateFunction;
             listViewForListContent.oniteminvoked = this.listOfContentItemInvoked.bind(this);
-            
+
             this.updateVisibility();
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
@@ -112,7 +122,7 @@
         },
 
         listOfListsSelectionChanged: function (args) {
-            var listViewForLists = document.body.querySelector(".listOfLists").winControl;
+            var listViewForLists = this.element.querySelector(".listOfLists").winControl;
             if (listViewForLists != null) {
                 var details;
                 var that = this;
@@ -129,7 +139,7 @@
                         } else {
 
                             // If fullscreen or filled, update the details column with new data.
-                            details = document.querySelector(".article-title");
+                            details = that.element.querySelector(".article-title");
                             binding.processAll(details, items[0].data);
                             //details.scrollTop = 0;
 
@@ -195,22 +205,23 @@
         // This function toggles visibility of the two columns based on the current
         // view state and item selection.
         updateVisibility: function () {
-            var oldPrimary = document.querySelector(".primarycolumn");
+            var oldPrimary = this.element.querySelector(".primarycolumn");
             if (oldPrimary) {
                 utils.removeClass(oldPrimary, "primarycolumn");
             }
             if (this.isSingleColumn()) {
                 if (this.itemSelectionIndex >= 0) {
-                    utils.addClass(document.querySelector(".articlesection"), "primarycolumn");
-                    document.querySelector(".articlesection").focus();
+                    utils.addClass(this.element.querySelector(".articlesection"), "primarycolumn");
+                    this.element.querySelector(".articlesection").focus();
                 } else {
-                  utils.addClass(document.querySelector(".listOfListsSection"), "primarycolumn");
-                    document.querySelector(".listOfLists").focus();
+                    utils.addClass(this.element.querySelector(".listOfListsSection"), "primarycolumn");
+                    this.element.querySelector(".listOfLists").focus();
                 }
             } else {
-                document.querySelector(".listOfLists").focus();
+                this.element.querySelector(".listOfLists").focus();
             }
         }
 
     });
 })();
+
