@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Solvberget.Domain.DTO
@@ -23,6 +24,7 @@ namespace Solvberget.Domain.DTO
         public string CashLimit { get; set; }
         public string HomeLibrary { get; set; }
         public string Balance { get; set; }
+        public IEnumerable<Fine> Fines { get; set; }
 
         public void FillProperties(string xml)
         {
@@ -43,18 +45,11 @@ namespace Solvberget.Domain.DTO
             if (xElement == null) return;
             var xElementRecord = xElement.Element("z303");
             if (xElementRecord == null) return;
-
-
-
+            
             Id = GetXmlValue(xElementRecord, "z303-id");
             Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
 
-
-
             DateOfBirth = GetFormattedDateOfBirth(GetXmlValue(xElementRecord, "z303-birth-date"));
-
-
-
 
             HomeLibrary = GetXmlValue(xElementRecord, "z303-home-library");
 
@@ -79,6 +74,45 @@ namespace Solvberget.Domain.DTO
 
             Balance = xElementRecord.Value;
 
+
+            xElementRecord = xElement.Element("fine");
+            if (xElementRecord == null) return;
+            
+
+            var fines = new List<Fine>();
+
+            var varfields = xElement.Elements("fine").ToList();
+            foreach (var varfield in varfields)
+            {
+
+                var temp = varfield;
+
+                var xElementField = xElementRecord.Element("z31");
+                if (xElementField == null) return;
+
+                var sumAsString = GetXmlValue(varfield, "z31-sum");
+                double sum = 0;
+                if (sumAsString != null)
+                {
+                    //Format may be "[2009]" or "(30.00)", trim if so
+                    var regExp = new Regex(@"[a-zA-Z\[\]]*(\d+)[a-zA-Z\[\]]*");
+                    var foundValue = regExp.Match(sumAsString).Groups[1].ToString();
+                    if (!string.IsNullOrEmpty(foundValue))
+                    sum = double.Parse(foundValue);
+                }
+
+                var fine = new Fine()
+                               {
+                                   Date = GetXmlValue(varfield, "z31-date"),
+                                   Status = GetXmlValue(varfield, "z31-status"),
+                                   CreditDebit = Convert.ToChar(GetXmlValue(varfield, "z31-credit-debit")),
+                                   Sum = sum,
+                                   Description = GetXmlValue(varfield, "z31-description")
+                               };
+                fines.Add(fine);
+            }
+
+            Fines = fines;
         }
 
         private static string GetXmlValue(XElement node, string tag)
