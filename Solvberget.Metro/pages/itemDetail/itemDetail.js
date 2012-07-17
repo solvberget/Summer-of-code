@@ -25,7 +25,7 @@
             (function () {
                 var article = element.querySelector(".article");
                 var pageTitle = element.querySelector(".pagetitle");
-                var viewmodels = ViewModel.DocumentViewmodels.items;
+             
 
                 //Create new viewmodel
                 that.setViewModel(that.itemModel);
