@@ -108,7 +108,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.IsEmpty(cd.InvolvedMusicGroups);
         }
 
-
         [Test]
         public void TestGetLanguageCourse()
         {
@@ -117,28 +116,31 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Ingnes, Nils", languageCourse.Author.Name);
             Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
             Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
-
             Assert.AreEqual("439.683", languageCourse.ClassificationNr);
-
             Assert.AreEqual(0, languageCourse.InvolvedOrganizations.Count());
-
             Assert.AreEqual(0, languageCourse.InvolvedPersons.Count());
-
             Assert.AreEqual("Engelsk", languageCourse.Language);
-
             Assert.AreEqual("nob", languageCourse.LearningAndTeachingLanguages);
             Assert.AreEqual(3, languageCourse.LearningAndTeachingLanguages.Count());
-
             Assert.AreEqual("Språkkurs", languageCourse.Subject.ElementAt(0));
             Assert.AreEqual("Norsk", languageCourse.Subject.ElementAt(1));
             Assert.AreEqual(2, languageCourse.Subject.Count());
-
             Assert.AreEqual(null, languageCourse.TitlesOtherWritingForms);
-
             Assert.AreEqual("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
-
             Assert.AreEqual("LanguageCourse", languageCourse.DocType);
+        }
 
+        [Test]
+        public void TestGetSheetMusic()
+        {
+            const string documentNumberForSheetMusic = "000117418"; //March (fanfare) for 3 trumpets and timpani
+            var sheetMusic = (SheetMusic)_repository.GetDocument(documentNumberForSheetMusic, false);
+            Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMusic.Composer.Name);
+            Assert.AreEqual("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
+            Assert.AreEqual("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
+            Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());
+            Assert.AreEqual("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
+            Assert.AreEqual("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
         }
 
         [Test]

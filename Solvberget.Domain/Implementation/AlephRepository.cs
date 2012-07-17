@@ -208,8 +208,10 @@ namespace Solvberget.Domain.Implementation
                 return typeof(Cd).FullName;
             else if (dtc.Contains("di"))
                 return typeof(AudioBook).FullName;
+            else if (dtc.Contains("c"))
+                return typeof (SheetMusic).FullName;
             else if (dtc.Contains("dh"))
-                return typeof (LanguageCourse).FullName;
+                return typeof(LanguageCourse).FullName;
             else if (dtc.Contains("j"))
                 return typeof(Journal).FullName;
 
