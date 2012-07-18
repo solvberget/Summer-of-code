@@ -81,6 +81,10 @@
     <Content Include="fragments\login\login.css" />
     <Content Include="fragments\login\login.js" />
     <Content Include="images\ajax_loading.gif" />
+    <Content Include="images\externalSites\imdb\imdb-16x16.png" />
+    <Content Include="images\externalSites\imdb\imdb-24x24.png" />
+    <Content Include="images\externalSites\imdb\imdb-32x32.png" />
+    <Content Include="images\externalSites\imdb\imdb-48x48.png" />
     <Content Include="images\icon\Icon Pack 1\ico\3d.ico" />
     <Content Include="images\icon\Icon Pack 1\ico\acr.ico" />
     <Content Include="images\icon\Icon Pack 1\ico\active.ico" />
@@ -252,8 +256,12 @@
     <Content Include="images\logo.png" />
     <Content Include="images\placeholders\AudioBook.png" />
     <Content Include="images\placeholders\Book.png" />
+    <Content Include="images\placeholders\Cd.png" />
     <Content Include="images\placeholders\Document.png" />
     <Content Include="images\placeholders\Film.png" />
+    <Content Include="images\placeholders\Journal.png" />
+    <Content Include="images\placeholders\LanguageCourse.png" />
+    <Content Include="images\placeholders\SheetMusic.png" />
     <Content Include="images\placeholders\transp.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\solvberget150.png" />
@@ -286,7 +294,6 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\itemDetail\images\imdb.png" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />
@@ -412,6 +419,7 @@
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="images\externalSites\lastFm\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
