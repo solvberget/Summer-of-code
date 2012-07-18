@@ -89,6 +89,7 @@ namespace Solvberget.Domain.Utils
         public static string GetJsonFromStreamWithParam(string uri, string param)
         {
             var url = uri + param;
+            url = url.Replace(" ", "+");
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = WebRequestMethods.Http.Get;
             request.Accept = "application/json";
