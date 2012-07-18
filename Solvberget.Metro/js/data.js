@@ -19,7 +19,7 @@
 
     var loginThenNavigateTo = function (page) {
 
-       //window.localStorage.setItem("BorrowerId", "");
+       window.localStorage.setItem("BorrowerId", "");
 
         var loginDiv = document.getElementById("loginDiv");
 

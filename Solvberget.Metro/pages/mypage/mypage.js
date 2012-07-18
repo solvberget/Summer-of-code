@@ -60,6 +60,9 @@ var ajaxGetUserInformation = function () {
 
 var addFinesToDom = function (fines) {
 
+    if (fines == undefined)
+        return;
+
     var fineTemplate = new WinJS.Binding.Template(document.getElementById("fineTemplate"));
     var fineTemplateContainer = document.getElementById("fineTemplateHolder");
 
@@ -121,7 +124,7 @@ var getUserInformation = function () {
     WinJS.Namespace.define("MyPageConverters", {
 
         balanceConverter: WinJS.Binding.converter(function (balance) {
-            if (balance == undefined) return "";
+            if (balance == undefined) return "Du har ingen gebyrer! :-)";
 
             return balance == "" ? "" : "Balanse: " + balance + ",-";
         }),
