@@ -42,6 +42,12 @@ namespace Solvberget.Service.Controllers
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetDocumentLight(string id)
+        {
+            var result = _repository.GetDocument(id, true);
+            return this.Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetDocumentRating(string id)
         {
             var result = _ratingRepository.GetDocumentRating(id);

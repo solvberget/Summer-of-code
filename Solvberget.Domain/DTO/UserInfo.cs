@@ -49,7 +49,7 @@ namespace Solvberget.Domain.DTO
             Id = GetXmlValue(xElementRecord, "z303-id");
             Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
 
-            DateOfBirth = GetFormattedDateOfBirth(GetXmlValue(xElementRecord, "z303-birth-date"));
+            DateOfBirth = GetFormattedDate(GetXmlValue(xElementRecord, "z303-birth-date"));
 
             HomeLibrary = GetXmlValue(xElementRecord, "z303-home-library");
 
@@ -85,12 +85,13 @@ namespace Solvberget.Domain.DTO
             foreach (var varfield in varfields)
             {
 
-                var temp = varfield;
+                var temp = varfield.Elements().ToList();
 
                 var xElementField = xElementRecord.Element("z31");
                 if (xElementField == null) return;
 
-                var sumAsString = GetXmlValue(varfield, "z31-sum");
+                //Get a number from the data in Sum field
+                var sumAsString = GetXmlValue(temp.ElementAt(0), "z31-sum");
                 double sum = 0;
                 if (sumAsString != null)
                 {
@@ -101,13 +102,49 @@ namespace Solvberget.Domain.DTO
                     sum = double.Parse(foundValue);
                 }
 
+
+                //Get the title of the document mentioned in the fine based on the docnumber
+                string docId = "";
+                string docTitle = "";
+                string date = "";
+
+                date = GetFormattedDate(GetXmlValue(temp.ElementAt(0), "z31-date"));
+
+                var status = GetXmlValue(temp.ElementAt(0), "z31-status");
+
+                if (status == "Not paid by/credited to patron")
+                    status = "Ikke betalt ";
+
+                if(temp.Count > 1)
+                {
+                    //docId = temp.ElementAt(1).ToString().Substring(25, 6);
+
+
+
+                    var element = temp.ElementAt(1).ToString();
+
+                    var regExp = new Regex(@"(-doc-number>)(\d+)(</)");
+
+                    docId = regExp.Match(element).Groups[2].ToString();
+
+                    regExp = new Regex(@"(-title>)(\D+)(</)");
+                    docTitle = regExp.Match(element).Groups[2].ToString();
+
+                }
+                
+                
+
+
+
                 var fine = new Fine()
                                {
-                                   Date = GetXmlValue(varfield, "z31-date"),
-                                   Status = GetXmlValue(varfield, "z31-status"),
-                                   CreditDebit = Convert.ToChar(GetXmlValue(varfield, "z31-credit-debit")),
+                                   Date = date,
+                                   Status = status,
+                                   CreditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit")),
                                    Sum = sum,
-                                   Description = GetXmlValue(varfield, "z31-description")
+                                   Description = GetXmlValue(temp.ElementAt(0), "z31-description"),
+                                   DocumentNumber = docId,
+                                   DocumentTitle = docTitle
                                };
                 fines.Add(fine);
             }
@@ -140,7 +177,7 @@ namespace Solvberget.Domain.DTO
             return formattedName;
         }
 
-        private static string GetFormattedDateOfBirth(string dateOfBirth)
+        private static string GetFormattedDate(string dateOfBirth)
         {
             if (dateOfBirth.Length > 7)
             {
