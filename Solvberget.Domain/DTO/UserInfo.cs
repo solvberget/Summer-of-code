@@ -49,7 +49,7 @@ namespace Solvberget.Domain.DTO
             Id = GetXmlValue(xElementRecord, "z303-id");
             Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
 
-            DateOfBirth = GetFormattedDateOfBirth(GetXmlValue(xElementRecord, "z303-birth-date"));
+            DateOfBirth = GetFormattedDate(GetXmlValue(xElementRecord, "z303-birth-date"));
 
             HomeLibrary = GetXmlValue(xElementRecord, "z303-home-library");
 
@@ -106,6 +106,9 @@ namespace Solvberget.Domain.DTO
                 //Get the title of the document mentioned in the fine based on the docnumber
                 string docId = "";
                 string docTitle = "";
+                string date = "";
+
+                date = GetFormattedDate(GetXmlValue(temp.ElementAt(0), "z31-date"));
 
                 if(temp.Count > 1)
                 {
@@ -124,13 +127,13 @@ namespace Solvberget.Domain.DTO
 
                 }
                 
-
+                
 
 
 
                 var fine = new Fine()
                                {
-                                   Date = GetXmlValue(temp.ElementAt(0), "z31-date"),
+                                   Date = date,
                                    Status = GetXmlValue(temp.ElementAt(0), "z31-status"),
                                    CreditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit")),
                                    Sum = sum,
@@ -169,7 +172,7 @@ namespace Solvberget.Domain.DTO
             return formattedName;
         }
 
-        private static string GetFormattedDateOfBirth(string dateOfBirth)
+        private static string GetFormattedDate(string dateOfBirth)
         {
             if (dateOfBirth.Length > 7)
             {
