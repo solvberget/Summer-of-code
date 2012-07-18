@@ -11,7 +11,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
     {
 
         private RatingRepository _ratingRepository;
-        private readonly string _imageCache = "";
+        private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
 
 
       [SetUp]
