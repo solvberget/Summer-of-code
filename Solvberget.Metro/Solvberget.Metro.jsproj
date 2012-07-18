@@ -253,6 +253,9 @@
     <Content Include="images\icon\Icon Pack 1\png\wmp.png" />
     <Content Include="images\icon\Icon Pack 1\png\word.png" />
     <Content Include="images\icon\Icon Pack 1\png\youtbe.png" />
+    <Content Include="images\login\Login.png" />
+    <Content Include="images\login\Logout.png" />
+    <Content Include="images\login\User.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\placeholders\AudioBook.png" />
     <Content Include="images\placeholders\Book.png" />

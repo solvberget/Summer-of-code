@@ -88,12 +88,12 @@
 
                         setTimeout(function () {
                             document.getElementById("loginFlyout").winControl.hide();                                                  
-                        }, 1500);
+                        }, 1200);
 
                         setTimeout(function () {
-                            if (navigateToUrl != "")
+                            if (navigateToUrl && navigateToUrl != "")
                                 WinJS.Navigation.navigate(navigateToUrl);
-                        }, 1700);
+                        }, 1400);
 
                     }
                     else {
