@@ -66,8 +66,9 @@
                 .then($.proxy(function(response) {
                     //Init list
 
-                    var listView = element.querySelector(".itemlist").winControl;
+                    var listViewId = element.querySelector(".itemlist")
 
+                    var listView =listViewId.winControl;
                     //Setup the DataSource
                     var documentDataSource = new WinJS.Binding.List(this.viewModel.properties);
 

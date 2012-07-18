@@ -94,7 +94,6 @@
   <ItemGroup>
     <Compile Include="DTOTests\BokBasenBookTest.cs" />
     <Compile Include="DTOTests\UserInfoTest.cs" />
-    <Compile Include="RepositoryTests\ImdbRepositoyTests.cs" />
     <Compile Include="RepositoryTests\RatingRepositoyTests.cs" />
     <Compile Include="RepositoryTests\AlephRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
