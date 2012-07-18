@@ -13,29 +13,76 @@
         documentId: undefined,
         viewModel: undefined,
         itemSelectionIndex: -1,
+
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
-
-        isSingleColumn: function () {
-            var viewState = Windows.UI.ViewManagement.ApplicationView.value;
-            return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
-        },
-
         ready: function (element, options) {
             var that = this;
             this.itemModel = options.itemModel;
             this.documentId = options.key;
 
             //Init viewmodel
-            var initViewModel = function () {
+            (function () {
                 var article = element.querySelector(".article");
                 var pageTitle = element.querySelector(".pagetitle");
+             
 
+                //Create new viewmodel
                 that.setViewModel(that.itemModel);
+
                 WinJS.Binding.processAll(article, that.viewModel);
                 WinJS.Binding.processAll(pageTitle, that.viewModel);
-            }
-            initViewModel();
+            })();
+
+
+            var ajaxGetDocument = function (query) {
+                return $.getJSON("http://localhost:7089/Document/GetDocument/" + query);
+            };
+
+            var ajaxGetImdbRating = function (query) {
+                return $.getJSON("http://localhost:7089/Document/GetDocumentRating/?id=" + query);
+            };
+            
+
+            $.when(ajaxGetDocument(this.documentId))
+                .then($.proxy(function(response) {
+                    this.viewModel.properties = ViewModel.propertiesList.documentToPropertiesList(response);
+                }, this))
+                .then($.proxy(function(response) {
+                    if (response.DocType == "Film") {
+                        this.viewModel.imdbRating = "";
+                        $.when(ajaxGetImdbRating(this.documentId))
+                            .then($.proxy(function(response) {
+                                if (response != undefined && response != "") {
+                                    this.viewModel.imdbRating = response + "/10";
+                                    var imdbRating = element.querySelector("#imdbRating");
+                                    $("#imdbRatingDiv").toggle(true);
+
+                                    WinJS.Binding.processAll(imdbRating, this.viewModel);
+                                }
+                            }, this));
+                    }
+                }, this))
+                .then($.proxy(function(response) {
+                    //Init list
+
+                    var listView = element.querySelector(".itemlist").winControl;
+
+                    //Setup the DataSource
+                    var documentDataSource = new WinJS.Binding.List(this.viewModel.properties);
+
+                    // Set up the ListView.
+                    listView.itemDataSource = documentDataSource.dataSource;
+                    listView.itemTemplate = element.querySelector(".itemtemplate");
+
+                    this.isSingleColumn ? listView.layout = new ui.GridLayout() :
+                        listView.layout = new ui.GridLayout();
+
+                    //Refresh list..
+                    listView.selection.set(0);
+                    listView.selection.clear();
+
+                }, this));
 
             $.when(Solvberget.DocumentImage.get(this.documentId))
                .then($.proxy(function (response) {
@@ -44,24 +91,10 @@
                        this.viewModel.image = response;
                        var imageDiv = document.querySelector(".item-image-container");
                        WinJS.Binding.processAll(imageDiv, this.viewModel);
-
                    }
                }, this));
 
-            //Init list
-            var listView = element.querySelector(".itemlist").winControl;
 
-            //Setup the EventDataSource
-            var documentDataSource = new DataSources.documentDataSource(this.documentId);
-
-            // Set up the ListView.
-            listView.itemDataSource = documentDataSource;
-            listView.itemTemplate = element.querySelector(".itemtemplate");
-            listView.layout = new ui.GridLayout();
-
-            //Refresh list..
-            listView.selection.set(0);
-            listView.selection.clear();
 
             this.registerForShare();
 
@@ -69,16 +102,23 @@
         },
 
         setViewModel: function (itemModel) {
-
             eval("this.viewModel = ViewModel." + itemModel.DocType);
-            if (this.viewModel !== undefined) {
-                this.viewModel.fillProperties(itemModel);
-                this.viewModel.image = undefined;
-            }
+            this.viewModel.fillProperties(itemModel);
+            this.viewModel.image = undefined;
+            this.viewModel.properties = undefined;
+            this.viewModel.imdbRating = "";
         },
+
+        //Clean up
         unload: function () {
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
             dataTransferManager.removeEventListener("datarequested", this.shareHtmlHandler);
+        },
+
+        //Check if snapview or portrait
+        isSingleColumn: function () {
+            var viewState = Windows.UI.ViewManagement.ApplicationView.value;
+            return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
         },
 
         // This function updates the page layout in response to viewState changes.
@@ -90,16 +130,11 @@
             var listView = element.querySelector(".itemlist").winControl;
             if (this.isSingleColumn()) {
                 listView.layout = new ui.ListLayout();
-
                 listView.forceLayout();
-
-            } else if(listView.layout != undefined){
+            } else {
 
                 listView.layout = new ui.GridLayout();
-
                 listView.forceLayout();
-
-
             }
         },
         registerForShare: function () {

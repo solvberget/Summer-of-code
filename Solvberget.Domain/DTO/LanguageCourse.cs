@@ -12,23 +12,13 @@ namespace Solvberget.Domain.DTO
     {
 
         public string Isbn { get; set; }
-        public string LearningAndTeachingLanguages { get; set; }
         public string ClassificationNr { get; set; }
-
         public Person Author { get; set; }
-
         public string TypeAndNumberOfDiscs { get; set; }
-
-
-
-
         public IEnumerable<string> Subject { get; set; }
         public IEnumerable<Person> InvolvedPersons { get; set; }
         public IEnumerable<Organization> InvolvedOrganizations { get; set; }
-
         public string TitlesOtherWritingForms { get; set; }
-        
-
       
         protected override void FillProperties(string xml)
         {
@@ -36,30 +26,15 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-
-                var nodes = xmlDoc.Root.Descendants("oai_marc");
-
-                Isbn = GetVarfield(nodes, "020", "a");
-
-                LearningAndTeachingLanguages = GetVarfield(nodes, "041", "a");
-
-                ClassificationNr = GetVarfield(nodes, "090", "c");
-
                 FillPropertiesLight(xml);
-
+                var nodes = xmlDoc.Root.Descendants("oai_marc");
+                Isbn = GetVarfield(nodes, "020", "a");
+                ClassificationNr = GetVarfield(nodes, "090", "c");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
-
-
                 Subject = GetVarfieldAsList(nodes, "650", "a");
-
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
-
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
-
                 TitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
-
-              
-
             }
         }
 
@@ -69,7 +44,6 @@ namespace Solvberget.Domain.DTO
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
-
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 var nationality = GetVarfield(nodes, "100", "j");
                 string nationalityLookupValue = null;
@@ -109,5 +83,6 @@ namespace Solvberget.Domain.DTO
 
             return document;
         }
+
     }
 }

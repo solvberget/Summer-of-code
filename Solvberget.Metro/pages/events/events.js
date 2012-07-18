@@ -10,10 +10,6 @@
 
     ui.Pages.define("/pages/events/events.html", {
 
-        /// <field type="WinJS.Binding.List" />
-        //items: null,
-        /// <field type="Object" />
-        group: null,
         itemSelectionIndex: 0,
 
         // This function checks if the list and details columns should be displayed
@@ -33,13 +29,10 @@
             //Setup the EventDataSource
             var eventsDataSource = new DataSources.eventsDataSource();
 
-            // Store information about the group and selection that this page will
-            // display.
-            this.group = (options && options.groupKey) ? Data.resolveGroupReference(options.groupKey) : Data.groups.getAt(0);
-            //this.items = null;
+         
             this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
 
-            element.querySelector("header[role=banner] .pagetitle").textContent = this.group.title;
+            element.querySelector("header[role=banner] .pagetitle").textContent = "Arrangementer";
 
             // Set up the ListView.
             listView.itemDataSource = eventsDataSource;
@@ -78,7 +71,7 @@
                         if (that.isSingleColumn()) {
                             // If snapped or portrait, navigate to a new page containing the
                             // selected item's details.
-                            nav.navigate("/pages/events/events.html", { groupKey: that.group.key, selectedIndex: that.itemSelectionIndex, item: items[0].data });
+                            nav.navigate("/pages/events/events.html", { selectedIndex: that.itemSelectionIndex, item: items[0].data });
                         } else {
                             // If fullscreen or filled, update the details column with new data.
 
@@ -122,12 +115,11 @@
                     // If the app has snapped into a single-column detail view,
                     // add the single-column list view to the backstack.
                     nav.history.current.state = {
-                        groupKey: this.group.key,
                         selectedIndex: this.itemSelectionIndex
                     };
                     nav.history.backStack.push({
                         location: "/pages/events/events.html",
-                        state: { groupKey: this.group.key }
+                        state: {  }
                     });
                     element.querySelector(".articlesection").focus();
                 } else {

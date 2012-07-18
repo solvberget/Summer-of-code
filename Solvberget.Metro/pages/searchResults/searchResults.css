@@ -74,7 +74,7 @@
                 -ms-grid-row: 1;
                 height: 40px;
                 margin-top: 6px;
-                width: 40px;
+                width: auto;
             }
 
             .searchResults section[role=main] .resultslist .item .item-content {

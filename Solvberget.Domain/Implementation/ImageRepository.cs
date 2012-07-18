@@ -130,17 +130,17 @@ namespace Solvberget.Domain.Implementation
 
             // --------------------------- IMDB ---------------------------
 
-            var searchQuery = GetFilmSearchQuery(film);
+            var searchQuery = ImdbRepository.GetFilmSearchQuery(film);
 
-            var imdbObject = GetImdbObjectFromSeachQuery(searchQuery);
+            var imdbObject = ImdbRepository.GetImdbObjectFromSeachQuery(searchQuery);
 
-            if (IsFilmValidImdbMatch(film, imdbObject))
+            if (ImdbRepository.IsFilmValidImdbMatch(film, imdbObject))
                 return imdbObject.Poster;
 
             if(!string.IsNullOrEmpty(film.OriginalTitle))
-                imdbObject = GetImdbObjectFromSeachQuery(film.OriginalTitle);
-         
-            if (IsFilmValidImdbMatch(film, imdbObject))
+                imdbObject = ImdbRepository.GetImdbObjectFromSeachQuery(film.OriginalTitle);
+
+            if (ImdbRepository.IsFilmValidImdbMatch(film, imdbObject))
                 return imdbObject.Poster;
 
             // --------------------------- END IMDB ------------------------
@@ -152,55 +152,10 @@ namespace Solvberget.Domain.Implementation
         }
 
 
-        private static string GetFilmSearchQuery(Film film)
-        {
-            var searchTitle = film.SeriesTitle + " " + film.SeriesNumber + " " + film.Title + " " + film.SubTitle;
-            searchTitle = searchTitle.Replace("null", "").Trim();
-            return searchTitle;
-        }
+       
 
 
-        private static ImdbObject GetImdbObjectFromSeachQuery(string title)
-        {
-            var imdbObjectAsJson = RepositoryUtils.GetJsonFromStreamWithParam(Properties.Settings.Default.ImdbApiUrl, title);
-
-            return imdbObjectAsJson != null ? new JavaScriptSerializer().Deserialize<ImdbObject>(imdbObjectAsJson) : null;
-        }
-
-        private static bool IsFilmValidImdbMatch(Film film, ImdbObject imdbObject)
-        {
-
-            if (imdbObject == null)
-                return false;
-
-            if (string.IsNullOrEmpty(imdbObject.Poster) || imdbObject.Poster.Equals("N/A"))
-                return false;
-
-            foreach (var person in film.InvolvedPersons)
-            {
-                if ( string.IsNullOrEmpty(person.Name))
-                    continue;
-                
-                var personNames = person.Name.Split(',');
-                string personName;
-                if (personNames.Length > 1)
-                    personName = personNames[1] + " " + personNames[0];
-                else
-                    personName = personNames[0];
-
-                personName = personName.Trim();
-
-                if (imdbObject.Director.Split(',').Any(director => director.Trim().Equals(personName)))
-                    return true;
-
-                if (imdbObject.Writer.Split(',').Any(writer => writer.Trim().Equals(personName)))
-                    return true;
-
-            }
-
-            return false;
-        }
-
+        
         private string GetLocalImageUrl(string externalImageUrl, string id, bool isThumbnail)
         {
 

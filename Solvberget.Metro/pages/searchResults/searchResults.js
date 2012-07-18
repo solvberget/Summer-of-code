@@ -100,13 +100,16 @@
     var ajaxSearchDocuments = function (query) {
         return $.getJSON("http://localhost:7089/Document/Search/" + query);
     };
+
     var ajaxGetThumbnailDocumentImage = function (query, size) {
         var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
         return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
     };
+
     var lookupDict = function (query) {
         return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
     };
+
     var getImageQueue = {
         queue: [],
         working: false,
@@ -162,6 +165,10 @@
             this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
             this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film"; } });
             this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook"; } });
+            this.filters.push({ results: null, text: "CD", predicate: function (item) { return item.DocType == "Cd"; } });
+            this.filters.push({ results: null, text: "Språkkurs", predicate: function (item) { return item.DocType == "LanguageCourse"; } });
+            this.filters.push({ results: null, text: "Tidsskrift", predicate: function (item) { return item.DocType == "Journal"; } });
+            this.filters.push({ results: null, text: "Noter", predicate: function (item) { return item.DocType == "SheetMusic"; } });
             this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document"; } });
 
         },
@@ -358,12 +365,10 @@
             listView.element.focus();
 
             document.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
-            document.getElementById("eventsMenuItem").addEventListener("click", function () { self.goToSection(0); }, false);
-            document.getElementById("searchMenuItem").addEventListener("click", function () { self.goToSection(1); }, false);
-            document.getElementById("musicMenuItem").addEventListener("click", function () { self.goToSection(2); }, false);
-            document.getElementById("listsMenuItem").addEventListener("click", function () { self.goToSection(3); }, false);
-            document.getElementById("mypageMenuItem").addEventListener("click", function () { self.goToSection(4); }, false);
-            document.getElementById("infoMenuItem").addEventListener("click", function () { self.goToSection(5); }, false);
+            document.getElementById("section0").addEventListener("click", function () { self.goToSection(0); }, false);
+            document.getElementById("section1").addEventListener("click", function () { self.goToSection(1); }, false);
+            document.getElementById("section2").addEventListener("click", function () { self.goToSection(2); }, false);
+            document.getElementById("section3").addEventListener("click", function () { self.goToSection(3); }, false);
             document.getElementById("homeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
 
         },
@@ -380,33 +385,10 @@
 
         },
         goToSection: function (section) {
-            switch (section) {
-                case 0:
-                    WinJS.Navigation.navigate("/pages/events/events.html");
-                    break;
-                case 1:
-                    // searchPane
-                    var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
-                    searchPane.show();
-                    break;
-                case 2:
-                    WinJS.Navigation.navigate("/pages/split/split.html");
-                    break;
-                case 3:
-                    WinJS.Navigation.navigate("/pages/lists/libraryLists.html");
-                    break;
-                case 4:
-                    WinJS.Navigation.navigate("/pages/split/split.html");
-                    break;
-                case 5:
-                    WinJS.Navigation.navigate("/pages/split/split.html");
-                    break;
-            }
-            WinJS.log && WinJS.log("You are viewing the #" + section + " section.", "sample", "status");
-
+            Data.menuItems[section].navigateTo();
         },
         goHome: function () {
-            WinJS.Navigation.navigate("/pages/items/items.html");
+            WinJS.Navigation.navigate("/pages/home/home.html");
             WinJS.log && WinJS.log("You are home.", "sample", "status");
 
         },
