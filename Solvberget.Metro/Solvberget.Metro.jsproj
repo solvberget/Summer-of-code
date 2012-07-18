@@ -85,7 +85,6 @@
     <Content Include="images\externalSites\imdb\imdb-24x24.png" />
     <Content Include="images\externalSites\imdb\imdb-32x32.png" />
     <Content Include="images\externalSites\imdb\imdb-48x48.png" />
-    <Content Include="images\externalSites\imdb\imdb.png" />
     <Content Include="images\icon\Icon Pack 1\ico\3d.ico" />
     <Content Include="images\icon\Icon Pack 1\ico\acr.ico" />
     <Content Include="images\icon\Icon Pack 1\ico\active.ico" />
