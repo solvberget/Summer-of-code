@@ -8,6 +8,8 @@
     var home = "/images/icon/Icon Pack 1/png/home.png";
     var tasks = "/images/icon/Icon Pack 1/png/tasks.png";
 
+    var serverBaseUrl = "http://localhost:7089";
+
     var menuItems = [
         { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, navigateTo : function () { WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
         { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { loginThenNavigateTo("/pages/mypage/mypage.html"); } },
@@ -17,7 +19,7 @@
 
     var loginThenNavigateTo = function (page) {
 
-       // window.localStorage.setItem("BorrowerId", "");
+       window.localStorage.setItem("BorrowerId", "");
 
         var loginDiv = document.getElementById("loginDiv");
 
@@ -47,6 +49,6 @@
         items: list,
         itemByKey : itemByKey,
         menuItems: menuItems,
-
+        serverBaseUrl: serverBaseUrl,
     });
 })();

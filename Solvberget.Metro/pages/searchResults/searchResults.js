@@ -10,7 +10,7 @@
 
     var suggestionMethods = {
         suggestionList: [],
-        url: "http://localhost:7089/Document/SuggestionList/",
+        url: window.Data.serverBaseUrl + "/Document/SuggestionList/",
         populateSuggestionList: function (allData) {
             suggestionMethods.suggestionList = allData;
         },
@@ -98,16 +98,16 @@
 
 
     var ajaxSearchDocuments = function (query) {
-        return $.getJSON("http://localhost:7089/Document/Search/" + query);
+        return $.getJSON(window.Data.serverBaseUrl + "/Document/Search/" + query);
     };
 
     var ajaxGetThumbnailDocumentImage = function (query, size) {
-        var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
+        var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
         return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
     };
 
     var lookupDict = function (query) {
-        return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
+        return $.getJSON(window.Data.serverBaseUrl + "/Document/SpellingDictionaryLookup", { value: query });
     };
 
     var getImageQueue = {
