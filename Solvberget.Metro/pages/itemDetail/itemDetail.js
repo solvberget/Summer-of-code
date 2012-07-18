@@ -42,29 +42,30 @@
             var ajaxGetImdbRating = function (query) {
                 return $.getJSON("http://localhost:7089/Document/GetDocumentRating/?id=" + query);
             };
-
             
 
             $.when(ajaxGetDocument(this.documentId))
-                .then($.proxy(function (response) {
+                .then($.proxy(function(response) {
                     this.viewModel.properties = ViewModel.propertiesList.documentToPropertiesList(response);
                 }, this))
-                .then($.proxy(function (response) {
+                .then($.proxy(function(response) {
                     if (response.DocType == "Film") {
+                        this.viewModel.imdbRating = "";
                         $.when(ajaxGetImdbRating(this.documentId))
-                             .then($.proxy(function (response) {
-                                 if (response != undefined && response != "") {
-                                     this.viewModel.imdbRating = response + "/10";
-                                     var imdbRating = element.querySelector("#imdbRating");
-                                     $("#imdbRatingDiv").toggle(true)
+                            .then($.proxy(function(response) {
+                                if (response != undefined && response != "") {
+                                    this.viewModel.imdbRating = response + "/10";
+                                    var imdbRating = element.querySelector("#imdbRating");
+                                    $("#imdbRatingDiv").toggle(true);
 
-                                     WinJS.Binding.processAll(imdbRating, this.viewModel);
-                                 }
-                             }, this))
+                                    WinJS.Binding.processAll(imdbRating, this.viewModel);
+                                }
+                            }, this));
                     }
                 }, this))
-                .then($.proxy(function (response) {
+                .then($.proxy(function(response) {
                     //Init list
+
                     var listView = element.querySelector(".itemlist").winControl;
 
                     //Setup the DataSource
@@ -81,7 +82,7 @@
                     listView.selection.set(0);
                     listView.selection.clear();
 
-                  }, this))
+                }, this));
 
             $.when(Solvberget.DocumentImage.get(this.documentId))
                .then($.proxy(function (response) {
