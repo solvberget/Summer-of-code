@@ -22,12 +22,12 @@ namespace Solvberget.Domain.DTO
         public string Subject { get; set; }
 
         public IEnumerable<Person> ReferredPersons { get; set; }
-        public IEnumerable<Organization> ReferredOrganizations { get; set; } 
+        public IEnumerable<Organization> ReferredOrganizations { get; set; }
         public IEnumerable<Person> InvolvedPersons { get; set; }
         public IEnumerable<Organization> InvolvedOrganizations { get; set; }
         public IEnumerable<string> ReferencedPlaces { get; set; }
         public IEnumerable<string> Genre { get; set; }
-        
+
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
@@ -35,11 +35,7 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants();
-
                 ClassificationNumber = GetVarfield(nodes, "090", "c");
-
-               FillPropertiesLight(xml);
-
                 Numbering = GetVarfield(nodes, "245", "n");
                 PartTitle = GetVarfield(nodes, "245", "p");
                 Edition = GetVarfield(nodes, "250", "a");

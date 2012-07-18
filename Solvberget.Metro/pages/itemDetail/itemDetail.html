@@ -12,13 +12,22 @@
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/itemDetail/itemDetail.css" rel="stylesheet" />
     <script src="/pages/itemDetail/itemDetail.js"></script>
-    <script src="/pages/itemDetail/viewmodels/bookItem.js"></script>
-    <script src="/pages/itemDetail/viewmodels/filmItem.js"></script>
-    <script src="/pages/itemDetail/viewmodels/audioBookItem.js"></script>
-    <script src="/pages/itemDetail/documentListDataSource.js"></script>
+
+    <script src="/pages/itemDetail/viewmodels/audioBook.js"></script>
+    <script src="/pages/itemDetail/viewmodels/book.js"></script>
+    <script src="/pages/itemDetail/viewmodels/cd.js"></script>
+    <script src="/pages/itemDetail/viewmodels/document.js"></script>
+    <script src="/pages/itemDetail/viewmodels/film.js"></script>
+    <script src="/pages/itemDetail/viewmodels/journal.js"></script>
+    <script src="/pages/itemDetail/viewmodels/languageCourse.js"></script>
+    <script src="/pages/itemDetail/viewmodels/sheetMusic.js"></script>
+
+    <script src="/pages/itemDetail/viewmodels/propertiesList.js"></script>
+
+
     <script src="../../js/localizationHelper.js"></script>
     <script src="../../js/documentImage.js"></script>
-    <script src="../../js/converters.js"></script>
+
 
 </head>
 <body>
@@ -50,6 +59,8 @@
             <article>
                 <div>
                     <div id="openShare"><a href="#">Del med andre!</a></div>
+
+
                     <header>
                         <!-- <h2 id="item-title" class="win-type-ellipsis" data-win-bind="textContent: subtitle"></h2>-->
                         <h3 id="item-subtitle   " class="win-type-ellipsis" data-win-bind="textContent: subtitle"></h3>
@@ -59,12 +70,16 @@
                     <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                         <img id="item-image" src="#" data-win-bind="src: image; alt: title" />
                     </div>
+                    <div id="imdbRatingDiv">
+                        <img src="../../images/externalSites/imdb/imdb-48x48.png" alt="some_text" />
+                        <h2 id="imdbRating" data-win-bind="textContent: imdbRating"></h2>
+                    </div>
 
                 </div>
             </article>
 
-            
-            <div  class="itemlist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+
+            <div class="itemlist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
 
         </div>
     </div>

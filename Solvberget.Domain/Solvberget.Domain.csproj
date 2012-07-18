@@ -90,12 +90,13 @@
   <ItemGroup>
     <Compile Include="Abstract\IEventRepository.cs" />
     <Compile Include="Abstract\IImageRepository.cs" />
+    <Compile Include="Abstract\IRatingRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
     <Compile Include="DTO\Book.cs" />
-    <Compile Include="DTO\CdClassical.cs" />
-    <Compile Include="DTO\CdPopular.cs" />
+    <Compile Include="DTO\Cd.cs" />
     <Compile Include="DTO\BokBasenBook.cs" />
+    <Compile Include="DTO\Fine.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
     <Compile Include="DTO\LibraryList.cs" />
     <Compile Include="DTO\Event.cs" />
@@ -111,11 +112,13 @@
     <Compile Include="DTO\SheetMusic.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
+    <Compile Include="Implementation\ImdbRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />
     <Compile Include="Implementation\ImageRepository.cs" />
     <Compile Include="Implementation\LinticketRepository.cs" />
     <Compile Include="Implementation\LibraryListXmlRepository.cs" />
     <Compile Include="Implementation\LuceneRepository.cs" />
+    <Compile Include="Implementation\RatingRepository.cs" />
     <Compile Include="Utils\StorageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

@@ -43,7 +43,7 @@ namespace Solvberget.Domain.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.imdbapi.com/?t=")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.imdbapi.com/?i=&tomatoes=true&t=")]
         public string ImdbApiUrl {
             get {
                 return ((string)(this["ImdbApiUrl"]));

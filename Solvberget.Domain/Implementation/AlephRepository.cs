@@ -77,17 +77,19 @@ namespace Solvberget.Domain.Implementation
             
         }
 
-        public List<Document> GetDocumentsLight(IEnumerable<string> docNumbers)
-        {
-            return (from docNumber in docNumbers let doc = GetDocument(docNumber, true) where doc != null select GetDocument(docNumber, true)).ToList();
-        }
-
-
         public UserInfo GetUserInformation( string userId, string verification )
         {
             
             var user = new UserInfo {BorrowerId = userId};
             AuthenticateUser(ref user, userId, verification);
+
+            const Operation function = Operation.UserInformation;
+            var options = new Dictionary<string, string> { { "bor_id", userId }, { "verification", verification } };
+            var url = GetUrl(function, options);
+
+            var userXDoc = RepositoryUtils.GetXmlFromStream(url);
+
+            user.FillProperties(userXDoc.ToString());
 
             return user;
 
@@ -112,6 +114,8 @@ namespace Solvberget.Domain.Implementation
 
             return user.IsAuthorized;
         }
+
+
 
 
         private List<Document> GetSearchResults(dynamic result)
@@ -188,12 +192,14 @@ namespace Solvberget.Domain.Implementation
                     return "op=find-doc&base=NOR01";
                 case 4:
                     return "op=bor-auth&library=nor50";
+                case 5:
+                    return "op=bor-info&library=nor50";
                 default:
                     return null;
             }   
         }
 
-        private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser }
+        private enum Operation { ItemData, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser, UserInformation }
 
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
@@ -205,11 +211,13 @@ namespace Solvberget.Domain.Implementation
             else if (dtc.Any(x => x.StartsWith("e")))
                 return typeof(Film).FullName;
             else if (dtc.Contains("dc") && dtc.Contains("dg"))
-                return typeof(CdPopular).FullName;
+                return typeof(Cd).FullName;
             else if (dtc.Contains("di"))
                 return typeof(AudioBook).FullName;
+            else if (dtc.Contains("c"))
+                return typeof (SheetMusic).FullName;
             else if (dtc.Contains("dh"))
-                return typeof (LanguageCourse).FullName;
+                return typeof(LanguageCourse).FullName;
             else if (dtc.Contains("j"))
                 return typeof(Journal).FullName;
 

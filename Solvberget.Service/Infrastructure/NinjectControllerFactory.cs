@@ -31,6 +31,7 @@ namespace Solvberget.Service.Infrastructure
                 .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
 
             ninjectKernel.Bind<IEventRepository>().To<LinticketRepository>();
+            ninjectKernel.Bind<IRatingRepository>().To<RatingRepository>();
             ninjectKernel.Bind<IImageRepository>().To<ImageRepository>()
                  .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
             ninjectKernel.Bind<IListRepository>().To<LibraryListXmlRepository>()

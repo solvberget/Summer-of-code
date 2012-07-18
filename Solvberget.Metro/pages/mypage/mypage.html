@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Min side</title>
+
+    <link href="mypage.css" rel="stylesheet" />
+    <script src="mypage.js"></script>
+
+</head>
+<body>
+
+    <!-- Fine template -->
+    <div id="fineTemplate">
+        <hr />
+        <span class="fineTitle" data-win-bind="innerText: DocumentTitle"></span>
+        <span class="fineDate" data-win-bind="innerText: Date MyPageConverters.dateConverter"></span>
+        <span class="status" data-win-bind="innerText: Status MyPageConverters.statusConverter"></span>
+        <span class="sum" data-win-bind="innerText: Sum MyPageConverters.sumConverter"></span>
+        <br />
+        <span class="description" data-win-bind="innerText: Description"></span>
+    </div>
+
+    <!-- Define the header menu -->
+    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
+
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
+        </button>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="myPage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back"></button>
+            <div class="titlearea win-type-ellipsis">
+                <button class="titlecontainer">
+                    <h1>
+                        <span class="pagetitle">Min side</span>
+                        <span class="chevron win-type-x-large">&#xe099</span>
+                    </h1>
+                </button>
+                <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Name"></h2>
+            </div>
+        </header>
+
+        <section aria-label="Main content" id="mainContentSection" role="main">
+            <div id="mypageLoading">
+                <label class="progressRingText">
+                    <progress class="win-ring withText"></progress>Henter ...</label>
+            </div>
+
+            <div id="mypageData">
+
+                <div class="box">
+                    <h2><span class="detail-title">Personalia</span></h2>
+                    <span id="name" data-win-bind="innerText: Name"></span>
+                    <span id="dateOfBirth" data-win-bind="innerText: DateOfBirth"></span>
+                </div>
+
+                <div class="box">
+                    <h2><span class="detail-title">Addresse</span></h2>
+                    <span id="addressPrefix" data-win-bind="innerText: PrefixAddress"></span>
+                    <span id="addressStreetName" data-win-bind="innerText: StreetAddress"></span>
+                    <span id="addressCity" data-win-bind="innerText: CityAddress"></span>
+                </div>
+
+
+
+                <div class="box">
+                    <h2><span class="detail-title">Kontaktinformasjon</span></h2>
+                    <span id="email" data-win-bind="innerText: Email"></span>
+                    <span id="homePhone" data-win-bind="innerText: HomePhoneNumber"></span>
+                    <span id="cellPhone" data-win-bind="innerText: CellPhoneNumber"></span>
+                </div>
+
+                <div id="fines" class="box">
+                    <h2><span class="detail-title">Gebyrer</span></h2>
+                    <span id="balance" data-win-bind="innerText: Balance MyPageConverters.balanceConverter"></span>
+                    <div id="fineTemplateHolder">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
