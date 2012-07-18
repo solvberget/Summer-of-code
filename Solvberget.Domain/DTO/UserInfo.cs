@@ -110,6 +110,11 @@ namespace Solvberget.Domain.DTO
 
                 date = GetFormattedDate(GetXmlValue(temp.ElementAt(0), "z31-date"));
 
+                var status = GetXmlValue(temp.ElementAt(0), "z31-status");
+
+                if (status == "Not paid by/credited to patron")
+                    status = "Ikke betalt ";
+
                 if(temp.Count > 1)
                 {
                     //docId = temp.ElementAt(1).ToString().Substring(25, 6);
@@ -134,7 +139,7 @@ namespace Solvberget.Domain.DTO
                 var fine = new Fine()
                                {
                                    Date = date,
-                                   Status = GetXmlValue(temp.ElementAt(0), "z31-status"),
+                                   Status = status,
                                    CreditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit")),
                                    Sum = sum,
                                    Description = GetXmlValue(temp.ElementAt(0), "z31-description"),
