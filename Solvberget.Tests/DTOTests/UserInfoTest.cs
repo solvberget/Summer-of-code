@@ -43,7 +43,7 @@ namespace Solvberget.Service.Tests.DTOTests
             user.FillProperties(UserXml);
 
             Assert.AreEqual("08.02.2007", user.Fines.ElementAt(0).Date);
-            Assert.AreEqual("Not paid by/credited to patron", user.Fines.ElementAt(0).Status);
+            Assert.AreEqual("Ikke betalt ", user.Fines.ElementAt(0).Status);
             Assert.AreEqual('D', user.Fines.ElementAt(0).CreditDebit);
             Assert.AreEqual(30.00 , user.Fines.ElementAt(0).Sum);
             Assert.AreEqual("Nytt lånekort", user.Fines.ElementAt(0).Description);
