@@ -83,7 +83,7 @@ namespace Solvberget.Domain.Implementation
             var user = new UserInfo {BorrowerId = userId};
             AuthenticateUser(ref user, userId, verification);
 
-            const Operation function = Operation.AuthenticateUser;
+            const Operation function = Operation.UserInformation;
             var options = new Dictionary<string, string> { { "bor_id", userId }, { "verification", verification } };
             var url = GetUrl(function, options);
 

@@ -34,7 +34,7 @@ namespace Solvberget.Service
             routes.MapRoute(
                 "GetUserInformation", // Route name
                 "User/GetUserInformation/{userId}/{verification}", // URL with parameters
-                new { controller = "User", action = "GetUserInformation", limit = UrlParameter.Optional } // Parameter defaults
+                new { controller = "User", action = "GetUserInformation", verification = UrlParameter.Optional } // Parameter defaults
             );
             
             routes.MapRoute(

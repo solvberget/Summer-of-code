@@ -9,7 +9,7 @@
 
     var self;
     ui.Pages.define("/pages/mypage/mypage.html", {
-        
+
         ready: function (element, options) {
 
             self = this;
@@ -22,8 +22,15 @@
             var theMenu = document.getElementById("HeaderMenu");
             WinJS.UI.processAll(theMenu);
 
+            getUserInformation();
+
+            $(".box").draggable({ revert: "valid" });
+            $("#mypageData").droppable();
+            $(".box").droppable();
+
+
         },
-        
+
 
         showHeaderMenu: function () {
 
@@ -39,9 +46,60 @@
 
         goHome: function () {
             WinJS.Navigation.navigate("/pages/home/home.html");
-            WinJS.log && WinJS.log("You are home.", "sample", "status");
 
         },
     });
-    
+
 })();
+
+
+var ajaxGetUserInformation = function () {
+    var borrowerId = window.localStorage.getItem("BorrowerId");
+    if (borrowerId != undefined && borrowerId !== "")
+        return $.getJSON(window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId);
+};
+
+var getUserInformation = function () {
+
+    // Show progress-ring, hide content
+    $("#mypageData").css("display", "none").css("visibility", "none");
+    $("#mypageLoading").css("display", "block").css("visibility", "visible");
+
+    // Get the user information from server
+    $.when(ajaxGetUserInformation())
+        .then($.proxy(function (response) {
+            if (response != undefined && response !== "") {
+                // Extract fines from object
+                var fines = response.Fines;
+                // Delete fines from main object
+                delete response.Fines;
+
+                if (response.Name === response.PrefixAddress)
+                    response.PrefixAddress = "";
+
+                // Select HTML-section to process with the new binding lists
+                var contentDiv = document.getElementById("mypageData");
+                var finesDiv = document.getElementById("fines");
+                var titleNameDiv = document.getElementById("pageSubtitleName");
+                var balanceDiv = document.getElementById("balance");
+
+                // avoid processing null (if user navigates to fast away from page etc)
+                if (contentDiv != undefined && response != undefined)
+                    WinJS.Binding.processAll(contentDiv, response);
+                if (finesDiv != undefined && fines != undefined)
+                    WinJS.Binding.processAll(finesDiv, fines[0]);
+                if (titleNameDiv != undefined && response != undefined)
+                    WinJS.Binding.processAll(titleNameDiv, response);
+                if (balanceDiv != undefined && response != undefined)
+                    WinJS.Binding.processAll(balanceDiv, response);
+
+            }
+
+            // Hide progress-ring, show content
+            $("#mypageLoading").css("display", "none").css("visibility", "none");
+            $("#mypageData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
+
+        }, this)
+    );
+
+};

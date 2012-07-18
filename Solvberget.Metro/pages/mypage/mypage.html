@@ -32,32 +32,60 @@
                         <span class="chevron win-type-x-large">&#xe099</span>
                     </h1>
                 </button>
-                <h2 class="pagesubtitle">Sindre Haaland</h2>
+                <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Name"></h2>
             </div>
         </header>
 
         <section aria-label="Main content" id="mainContentSection" role="main">
-            <div class="box">
-                <h2><span class="detail-title">Addresse</span></h2>
-                <span id="addressPrefix">Sindre Haaland</span>
-                <span id="addressStreetName">Bakkesvingen 8</span>
-                <span id="addressCity">4019 Stavanger</span>
+            <div id="mypageLoading">
+                <label class="progressRingText">
+                    <progress class="win-ring withText"></progress>Henter ...</label>
             </div>
 
-            <div class="box">
-                <h2><span class="detail-title">Personalia</span></h2>
-                <span id="Span1">Sindre Haaland</span>
-                <span id="Span2">09.04.1989</span>
-                <span id="Span3">91562303</span>
-            </div>
+            <div id="mypageData">
 
-            <div class="box">
-                <h2><span class="detail-title">Addresse</span></h2>
-                <span id="Span4">Sindre Haaland</span>
-                <span id="Span5">Bakkesvingen 8</span>
-                <span id="Span6">4019 Stavanger</span>
-            </div>
+                <div class="box">
+                    <h2><span class="detail-title">Personalia</span></h2>
+                    <span id="name" data-win-bind="innerText: Name"></span>
+                    <span id="dateOfBirth" data-win-bind="innerText: DateOfBirth"></span>
+                </div>
 
+                <div class="box">
+                    <h2><span class="detail-title">Addresse</span></h2>
+                    <span id="addressPrefix" data-win-bind="innerText: PrefixAddress"></span>
+                    <span id="addressStreetName" data-win-bind="innerText: StreetAddress"></span>
+                    <span id="addressCity" data-win-bind="innerText: CityAddress"></span>
+                </div>
+
+
+
+                <div class="box">
+                    <h2><span class="detail-title">Kontaktinformasjon</span></h2>
+                    <span id="email" data-win-bind="innerText: Email"></span>
+                    <span id="homePhone" data-win-bind="innerText: HomePhoneNumber"></span>
+                    <span id="cellPhone" data-win-bind="innerText: CellPhoneNumber"></span>
+                </div>
+
+                <div id="fines" class="box">
+                    <h2><span class="detail-title">Gebyrer</span></h2>
+                    <span class="inline">Balanse: </span><span class="inline" id="balance" data-win-bind="innerText: Balance">60.00</span>
+                    <hr />
+                    <span class="fineTitle" data-win-bind="innerText: Title"></span>
+                    <span class="fineDate" data-win-bind="innerText: Date"></span>
+                    <span class="status" data-win-bind="innerText: Status"></span>
+                    <span class="sum" data-win-bind="innerText: Sum"></span>
+                    <br />
+                    <span class="description" data-win-bind="innerText: Description"></span>
+                    <hr />
+                    <span class="fineTitle">Gift</span>
+                    <span class="fineDate">19.09.1994</span>
+                    <span class="status">Not paid by/credited to patron</span>
+                    <span class="sum">65.00</span>
+                    <br />
+                    <span class="description">Levert LevertLevertLevertLeve rtLevertLevertLevertLevertLever tLevertLever tLevertLevert for sent</span>
+
+                </div>
+            </div>
         </section>
     </div>
 </body>
