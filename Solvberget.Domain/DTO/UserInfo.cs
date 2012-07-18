@@ -85,12 +85,13 @@ namespace Solvberget.Domain.DTO
             foreach (var varfield in varfields)
             {
 
-                var temp = varfield;
+                var temp = varfield.Elements().ToList();
 
                 var xElementField = xElementRecord.Element("z31");
                 if (xElementField == null) return;
 
-                var sumAsString = GetXmlValue(varfield, "z31-sum");
+                //Get a number from the data in Sum field
+                var sumAsString = GetXmlValue(temp.ElementAt(0), "z31-sum");
                 double sum = 0;
                 if (sumAsString != null)
                 {
@@ -101,13 +102,41 @@ namespace Solvberget.Domain.DTO
                     sum = double.Parse(foundValue);
                 }
 
+
+                //Get the title of the document mentioned in the fine based on the docnumber
+                string docId = "";
+                string docTitle = "";
+
+                if(temp.Count > 1)
+                {
+                    //docId = temp.ElementAt(1).ToString().Substring(25, 6);
+
+
+
+                    var element = temp.ElementAt(1).ToString();
+
+                    var regExp = new Regex(@"(-doc-number>)(\d+)(</)");
+
+                    docId = regExp.Match(element).Groups[2].ToString();
+
+                    regExp = new Regex(@"(-title>)(\D+)(</)");
+                    docTitle = regExp.Match(element).Groups[2].ToString();
+
+                }
+                
+
+
+
+
                 var fine = new Fine()
                                {
-                                   Date = GetXmlValue(varfield, "z31-date"),
-                                   Status = GetXmlValue(varfield, "z31-status"),
-                                   CreditDebit = Convert.ToChar(GetXmlValue(varfield, "z31-credit-debit")),
+                                   Date = GetXmlValue(temp.ElementAt(0), "z31-date"),
+                                   Status = GetXmlValue(temp.ElementAt(0), "z31-status"),
+                                   CreditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit")),
                                    Sum = sum,
-                                   Description = GetXmlValue(varfield, "z31-description")
+                                   Description = GetXmlValue(temp.ElementAt(0), "z31-description"),
+                                   DocumentNumber = docId,
+                                   DocumentTitle = docTitle
                                };
                 fines.Add(fine);
             }

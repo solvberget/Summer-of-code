@@ -52,6 +52,9 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual(2, user.Fines.Count());
             Assert.AreEqual("20070319", user.Fines.ElementAt(1).Date);
             Assert.AreEqual("Lånt 20070208 Forf. 20070308 Kat. 01 - 1-2 ukes forsink.:", user.Fines.ElementAt(1).Description);
+            Assert.AreEqual("230544", user.Fines.ElementAt(1).DocumentNumber);
+            Assert.AreEqual("Gift", user.Fines.ElementAt(1).DocumentTitle);
+
 
         }
 
