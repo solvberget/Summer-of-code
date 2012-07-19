@@ -131,8 +131,11 @@ namespace Solvberget.Domain.DTO
                     docTitle = regExp.Match(element).Groups[2].ToString();
 
                 }
-                
-                
+
+                var description = GetXmlValue(temp.ElementAt(0), "z31-type");
+                string descriptionLookupValue = null;
+                if (description != null)
+                    TypeDictionary.TryGetValue(description, out descriptionLookupValue);
 
 
 
@@ -142,7 +145,7 @@ namespace Solvberget.Domain.DTO
                                    Status = status,
                                    CreditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit")),
                                    Sum = sum,
-                                   Description = GetXmlValue(temp.ElementAt(0), "z31-description"),
+                                   Description = descriptionLookupValue ?? description,
                                    DocumentNumber = docId,
                                    DocumentTitle = docTitle
                                };
@@ -189,6 +192,32 @@ namespace Solvberget.Domain.DTO
 
             return string.Empty;
         }
-    }
 
+
+        protected static readonly Dictionary<string, string> TypeDictionary = new Dictionary<string, string>
+                                {
+                                    {"3", "For sent levert"},
+                                    {"6", "Legitimasjonslån"},
+                                    {"8", "Nytt lånekort"},
+                                    {"9", "Kopier"},
+                                    {"17", "Regningsgebyr voksen"},
+                                    {"18", "Ufullstendig innlevering barn"},
+                                    {"19", "Ufullstendig innelvering voksne"},
+                                    {"20", "Regningsgebyr barn"},
+                                    {"21", "Utskrift sort/hvit"},
+                                    {"22", "Utskrift farge"},
+                                    {"23", "Delbetaling"},
+                                    {"24", "Erstatning"},
+                                    {"25", "Diverse"},
+                                    {"40", "Materiell mistet, erstatningskrav er opprettet"},
+                                    {"41", "Materiell mistet, erstatningskrav er opprettet"},
+                                    {"42", "Materiell mistet, erstatningskrav er opprettet"},
+                                    {"80", "1. purring"},
+                                    {"81", "2. purring"},
+                                    {"82", "3. purring"},
+                                    {"83", "4. purring"},
+                                    {"1000", "Betalt"}
+
+                                };
+    }
 }
