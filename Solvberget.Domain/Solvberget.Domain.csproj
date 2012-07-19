@@ -91,6 +91,7 @@
     <Compile Include="Abstract\IEventRepository.cs" />
     <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\IRatingRepository.cs" />
+    <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
     <Compile Include="DTO\Book.cs" />
@@ -119,7 +120,7 @@
     <Compile Include="Implementation\LinticketRepository.cs" />
     <Compile Include="Implementation\LibraryListXmlRepository.cs" />
     <Compile Include="Implementation\LuceneRepository.cs" />
-    <Compile Include="Implementation\OmtaleRepository.cs" />
+    <Compile Include="Implementation\ReviewRepository.cs" />
     <Compile Include="Implementation\RatingRepository.cs" />
     <Compile Include="Utils\StorageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
