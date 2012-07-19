@@ -1,12 +1,12 @@
 ﻿(function () {
     "use strict";
 
-    var search = "/images/icon/Icon Pack 1/png/search.png";
-    var events = "/images/icon/Icon Pack 1/png/calend.png";
+    var search = "/images/home/Search.png";
+    var events = "/images/home/Events.png";
     var info = "/images/icon/Icon Pack 1/png/info.png";
     var music = "/images/icon/Icon Pack 1/png/music.png";
-    var home = "/images/icon/Icon Pack 1/png/home.png";
-    var tasks = "/images/icon/Icon Pack 1/png/tasks.png";
+    var home = "/images/home/MyPage.png";
+    var tasks = "/images/home/Lists.png";
 
     var serverBaseUrl = "http://localhost:7089";
 
