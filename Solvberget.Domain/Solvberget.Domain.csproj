@@ -102,6 +102,7 @@
     <Compile Include="DTO\Event.cs" />
     <Compile Include="DTO\Journal.cs" />
     <Compile Include="DTO\LanguageCourse.cs" />
+    <Compile Include="DTO\Loan.cs" />
     <Compile Include="DTO\Organization.cs" />
     <Compile Include="DTO\Person.cs" />
     <Compile Include="DTO\AudioBook.cs" />

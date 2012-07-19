@@ -24,14 +24,12 @@
     <!-- Loan template -->
     <div id="loanTemplate">
         <hr />
-        <span class="loanTitle" data-win-bind="innerText: LoanTitle"></span>
-        <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter"></span>
-        <span class="loanLibrary" data-win-bind="innerText: LoanCatalogerName MyPageConverters.loanCatalogerNameConverter"></span>
+        <span class="loanTitle" data-win-bind="innerText: LoanTitle">Gift</span>
+        <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter">BOOK</span>
+        <span class="loanLibrary" data-win-bind="innerText: LoanCatalogerName MyPageConverters.loanCatalogerNameConverter">STVGBIBL</span>
         <span class="loanDate" data-win-bind="innerText: Status MyPageConverters.loanDateConverter"></span>
         <span class="loanOriginalDueDate" data-win-bind="innerText: OriginalDueDate"></span>
         <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
-        <br />
-        <span class="loanDescription" data-win-bind="innerText: ItemStatus"></span>
     </div>
 
 
@@ -98,6 +96,15 @@
                     <div id="fineTemplateHolder">
                     </div>
                 </div>
+
+
+                <div id="loans" class="box">
+                    <h2><span class="detail-title">Lån</span></h2>
+                    <div id="loanTemplateHolder">
+                    </div>
+                </div>
+
+
             </div>
         </section>
     </div>
