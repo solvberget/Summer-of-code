@@ -1,4 +1,5 @@
 ﻿body {
+overflow:scroll;
 }
 
 .titlecontainer {
@@ -24,6 +25,7 @@
 
 #mainContentSection {
     margin-left: 45px;
+
 }
 
 .box {
@@ -41,6 +43,8 @@
     border-bottom-left-radius: 10px;
     resize: both;
     max-width: 350px;
+    min-width:175px;
+    min-height:120px;
 }
 
     .box span {
@@ -51,7 +55,7 @@
         margin-bottom: 3px;
     }
 
-    .box .fineTitle {
+    .box .documentTitle {
         font-weight: bold;
     }
 

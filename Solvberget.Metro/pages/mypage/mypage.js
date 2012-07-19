@@ -76,6 +76,26 @@ var addFinesToDom = function (fines) {
 
 }
 
+var addLoansToDom = function (loans) {
+
+    if (loans == undefined)
+        return;
+
+    var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
+    var loansTemplateContainer = document.getElementById("loanTemplateHolder");
+
+    loansTemplateContainer.innerHTML = "";
+
+    var i, loan;
+    for (i = 0; i < loans.length; i++) {
+        loan = loans[i];
+        loanTemplate.render(loan, loansTemplateContainer);
+    }
+
+}
+
+
+
 var getUserInformation = function () {
 
     // Show progress-ring, hide content
@@ -87,15 +107,20 @@ var getUserInformation = function () {
         .then($.proxy(function (response) {
             if (response != undefined && response !== "") {
                 // Extract fines from object
-                var fines = response.Fines;
+                var fines = response.ActiveFines;
                 // Delete fines from main object
-                delete response.Fines;
+                delete response.ActiveFines;
+
+                // Extract loans from object
+                var loans = response.Loans;
+                // Delete loans from main object
+                delete response.Loans;
 
                 if (response.Name === response.PrefixAddress)
                     response.PrefixAddress = "";
 
                 // Select HTML-section to process with the new binding lists
-                var contentDiv = document.getElementById("mypageData");
+                var contentDiv = document.getElementById("myPagePersonalInformation");
                 var titleNameDiv = document.getElementById("pageSubtitleName");
                 var balanceDiv = document.getElementById("balance");
 
@@ -111,6 +136,7 @@ var getUserInformation = function () {
                     WinJS.Binding.processAll(balanceDiv, response);
 
                 this.addFinesToDom(fines);
+                this.addLoansToDom(loans);
 
             }
 
@@ -139,9 +165,32 @@ var getUserInformation = function () {
         dateConverter: WinJS.Binding.converter(function (date) {
             if (date == undefined) return "";
             return date == "" ? "" : "Dato: " + date;
-        })
+        }),
+        loanMaterialConverter: WinJS.Binding.converter(function (loanMaterial) {
+            if (loanMaterial == undefined) return "";
+            return loanMaterial == "" ? "" : "Type: " + loanMaterial;
+        }),
+        loanCatalogerNameConverter: WinJS.Binding.converter(function (loanCataloger) {
+            if (loanCataloger == undefined) return "";
+            return loanCataloger == "" ? "" : "Utlåner: " + loanCataloger;
+        }),
+        loanDateConverter: WinJS.Binding.converter(function (loanDate) {
+            if (loanDate == undefined) return "";
+            return loanDate == "" ? "" : "Lånt: " + loanDate;
+        }),
+        dueDateConverter: WinJS.Binding.converter(function (dueDate) {
+            if (dueDate == undefined) return "";
+            return dueDate == "" ? "" : "Frist for innlevering: " + dueDate;
+        }),
+        originalDueDateConverter: WinJS.Binding.converter(function (originalDueDate) {
+            if (originalDueDate == undefined) return "";
+            return originalDueDate == "" ? "" : "Opprinnelig lånefrist: " + originalDueDate;
+        }),
+
 
     });
+
+
 
 
 
