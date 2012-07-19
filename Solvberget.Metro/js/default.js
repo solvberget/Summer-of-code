@@ -29,6 +29,9 @@
                     return nav.navigate(Application.navigator.home);
                 }
             }));
+
+            document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
+
         }
     };
 
@@ -44,3 +47,18 @@
 
     app.start();
 })();
+function doLogin() {
+
+    window.localStorage.setItem("BorrowerId", "");
+
+    var loginDiv = document.getElementById("loginFragmentHolder");
+    loginDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
+
+        var loginAnchor = document.querySelector("div"); 
+
+        LoginFlyout.showLogin(loginAnchor);
+
+    });
+
+}

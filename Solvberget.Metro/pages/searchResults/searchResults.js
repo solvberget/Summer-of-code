@@ -388,9 +388,7 @@
             Data.menuItems[section].navigateTo();
         },
         goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-            WinJS.log && WinJS.log("You are home.", "sample", "status");
-
+            window.Data.goHome();
         },
 
         unload: function () {
