@@ -16,10 +16,13 @@
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { WinJS.Navigation.navigate("/pages/events/events.html"); } },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: function () { Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); } },
     ];
+    
+    function goHome() {
+        return WinJS.Navigation.navigate("/pages/home/home.html");
+    };
 
     var loginThenNavigateTo = function (page) {
 
-       window.localStorage.setItem("BorrowerId", "");
 
         var loginDiv = document.getElementById("loginDiv");
 
@@ -50,5 +53,6 @@
         itemByKey : itemByKey,
         menuItems: menuItems,
         serverBaseUrl: serverBaseUrl,
+        goHome: goHome,
     });
 })();

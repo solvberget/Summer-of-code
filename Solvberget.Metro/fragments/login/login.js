@@ -23,7 +23,7 @@
         navigateToUrl = navigateTo;
         WinJS.log && WinJS.log("", "solvberget", "status", "status");
 
-        
+
         if (getLoggedInBorrowerId() == undefined || getLoggedInBorrowerId() == "") {
 
             var loginFlyout = document.getElementById("loginFlyout");
@@ -70,14 +70,23 @@
         if (!error) {
 
             $("#loginLoading").css("display", "block").css("visibility", "visible");
-            document.getElementById("outputMsg").innerHTML = "";
+
+            var outputMsg = document.getElementById("outputMsg");
+            if (this.outputMsg != undefined)
+
+                outputMsg.innerHTML = "";
 
             $.when(ajaxDoLogin($("#userId").val(), $("#pin").val()))
                 .then($.proxy(function (response) {
 
+                    var outputMsg = document.getElementById("outputMsg");
+
+
                     if (response.IsAuthorized) {
 
-                        document.getElementById("outputMsg").innerHTML = "Du er nå logget inn!";
+                        if (outputMsg != undefined) {
+                            outputMsg.innerHTML = "Du er nå logget inn!";
+                        }
                         $("#outputMsg").removeClass("error");
                         $("#outputMsg").addClass("success");
 
@@ -87,18 +96,21 @@
                         }
 
                         setTimeout(function () {
-                            document.getElementById("loginFlyout").winControl.hide();                                                  
-                        }, 1500);
+                            var flyout = document.getElementById("loginFlyout");
+                            if (flyout != undefined)
+                                flyout.winControl.hide();
+                            setTimeout(function () {
+                                if (navigateToUrl && navigateToUrl != "")
+                                    WinJS.Navigation.navigate(navigateToUrl);
+                            }, 200);
+                        }, 1200);
 
-                        setTimeout(function () {
-                            if (navigateToUrl != "")
-                                WinJS.Navigation.navigate(navigateToUrl);
-                        }, 1700);
+
 
                     }
                     else {
-
-                        document.getElementById("outputMsg").innerHTML = "Feil lånernummer/pin";
+                        if (outputMsg != undefined) 
+                         outputMsg.innerHTML = "Feil lånernummer/pin";
 
                         $("#outputMsg").removeClass("success");
                         $("#outputMsg").addClass("error");

@@ -24,8 +24,18 @@
 
 </head>
 <body>
-   
 
+       <!-- BEGINTEMPLATE: Template code for an app bar -->
+    <div id="appBar" data-win-control="WinJS.UI.AppBar" data-win-options="">
+
+        <button 
+            data-win-control="WinJS.UI.AppBarCommand" 
+            data-win-options="{id: 'cmdLoginFlyout', label:'Bytt bruker',icon:'otheruser',section:'global',tooltip:'Bytt bruker', type:'flyout'}">
+        </button>
+    
+    </div>
+    <!-- ENDTEMPLATE -->
+    <div id="loginFragmentHolder"></div>
     <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/home/home.html'}"></div>
 
 </body>

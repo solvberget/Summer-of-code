@@ -102,6 +102,7 @@
     <Compile Include="DTO\Event.cs" />
     <Compile Include="DTO\Journal.cs" />
     <Compile Include="DTO\LanguageCourse.cs" />
+    <Compile Include="DTO\Loan.cs" />
     <Compile Include="DTO\Organization.cs" />
     <Compile Include="DTO\Person.cs" />
     <Compile Include="DTO\AudioBook.cs" />
@@ -112,12 +113,14 @@
     <Compile Include="DTO\SheetMusic.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
+    <Compile Include="Implementation\BokbasenRepository.cs" />
     <Compile Include="Implementation\ImdbRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />
     <Compile Include="Implementation\ImageRepository.cs" />
     <Compile Include="Implementation\LinticketRepository.cs" />
     <Compile Include="Implementation\LibraryListXmlRepository.cs" />
     <Compile Include="Implementation\LuceneRepository.cs" />
+    <Compile Include="Implementation\OmtaleRepository.cs" />
     <Compile Include="Implementation\RatingRepository.cs" />
     <Compile Include="Utils\StorageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
