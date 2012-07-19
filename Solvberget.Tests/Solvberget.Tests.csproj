@@ -103,6 +103,7 @@
     <Compile Include="RepositoryTests\LibraryListsFromXmlRepositoryTest.cs" />
     <Compile Include="RepositoryTests\LinticketRepositoryTests.cs" />
     <Compile Include="RepositoryTests\LuceneRepositoryTest.cs" />
+    <Compile Include="RepositoryTests\ReviewRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
