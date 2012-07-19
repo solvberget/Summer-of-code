@@ -16,13 +16,15 @@ namespace Solvberget.Service.Controllers
         private readonly ISpellingDictionary _spellingRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IRatingRepository _ratingRepository;
+        private readonly IReviewRepository _reviewRepository;
 
-        public DocumentController(IRepository repository, ISpellingDictionary spellingRepository, IImageRepository imageRepository, IRatingRepository ratingRepository)
+        public DocumentController(IRepository repository, ISpellingDictionary spellingRepository, IImageRepository imageRepository, IRatingRepository ratingRepository, IReviewRepository reviewRepository)
         {
             _repository = repository;
             _spellingRepository = spellingRepository;
             _imageRepository = imageRepository;
             _ratingRepository = ratingRepository;
+            _reviewRepository = reviewRepository;
         }
 
         public ActionResult Index()
@@ -45,6 +47,12 @@ namespace Solvberget.Service.Controllers
         public JsonResult GetDocumentLight(string id)
         {
             var result = _repository.GetDocument(id, true);
+            return this.Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDocumentReview(string id)
+        {
+            var result = _reviewRepository.GetDocumentReview(id);
             return this.Json(result, JsonRequestBehavior.AllowGet);
         }
 
