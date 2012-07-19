@@ -47,7 +47,9 @@ namespace Solvberget.Domain.DTO
             if (xElement == null) return;
             var xElementRecord = xElement.Element("z303");
             if (xElementRecord == null) return;
-            
+
+            var xElementField = xElementRecord;
+
             Id = GetXmlValue(xElementRecord, "z303-id");
             Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
 
@@ -83,38 +85,45 @@ namespace Solvberget.Domain.DTO
             if (xElementRecord != null)
             {
 
+                var subLibrary = "";
+                var orgDueDate = "";
+                var loanDate = "";
+                var loanHour = "";
+                var dueDate = "";
+                var itemStatus = "";
+
                 var loans = new List<Loan>();
 
                 var loanVarfields = xElement.Elements("item-l").ToList();
 
                 foreach (var varfield in loanVarfields)
                 {
-                    var temp = varfield.Elements().ToList();
-
                     //Get information from table z36
-                    var xElementField = xElementRecord.Element("z36");
-                    if (xElementField == null) return;
+                    xElementField = varfield.Element("z36");
+                    if (xElementField != null){
 
-                    var subLibrary = GetXmlValue(xElementField, "z36-sub-library");
-                    if (subLibrary == "Hovedbibl.")
-                        subLibrary = "Hovedbiblioteket";
+                        subLibrary = GetXmlValue(xElementField, "z36-sub-library");
+                        if (subLibrary == "Hovedbibl.")
+                            subLibrary = "Hovedbiblioteket";
 
-                    var orgDueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-original-due-date"));
+                        orgDueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-original-due-date"));
 
-                    var loanDate = GetFormattedDate(GetXmlValue(xElementField, "z36-loan-date"));
+                        loanDate = GetFormattedDate(GetXmlValue(xElementField, "z36-loan-date"));
 
-                    var loanHour = GetXmlValue(xElementField, "z36-loan-hour");
+                        loanHour = GetXmlValue(xElementField, "z36-loan-hour");
 
-                    var dueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-due-date"));
-
+                        dueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-due-date"));
+                    }
+                    
                     //Get information from table z30
-                    xElementField = xElementRecord.Element("z30");
-                    if (xElementField == null) return;
-
-                    var itemStatus = GetXmlValue(xElementField, "z30-item-status");
+                    xElementField = varfield.Element("z30");
+                    if (xElementField != null)
+                    {
+                        itemStatus = GetXmlValue(xElementField, "z30-item-status");
+                    }
 
                     //Get information from table z13
-                    xElementField = xElementRecord.Element("z13");
+                    xElementField = varfield.Element("z13");
                     if (xElementField != null)
                     {
 
@@ -138,7 +147,6 @@ namespace Solvberget.Domain.DTO
                         loans.Add(loan);
                     }
                 }
-
                 Loans = loans;
             }
 
@@ -157,7 +165,7 @@ namespace Solvberget.Domain.DTO
                     var temp = varfield.Elements().ToList();
                     
                     //Get information from table z31
-                    var xElementField = xElementRecord.Element("z31");
+                    xElementField = xElementRecord.Element("z31");
                     if (xElementField == null) return;
 
                     //Get a number from the data in Sum field
@@ -186,19 +194,16 @@ namespace Solvberget.Domain.DTO
 
                     var creditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit"));
 
-                    //Get information from table z13
-
+                    //Get information from table z13, givent that there is more than one node in temp
                     var docId = "";
                     var docTitle = "";
-
-                    xElementField = xElementRecord.Element("z13");
-                    if (xElementField != null)
+                    if (temp.Count > 1)
                     {
+                        docId = GetXmlValue(temp.ElementAt(1), "z13-doc-number") ?? docId;
 
-                        docId = GetXmlValue(temp.ElementAt(0), "z13-doc-number") ?? "";
-
-                        docTitle = GetXmlValue(temp.ElementAt(0), "z13-title") ?? "";
+                        docTitle = GetXmlValue(temp.ElementAt(1), "z13-title") ?? docTitle;
                     }
+
                     var fine = new Fine()
                                    {
                                        Date = date,
