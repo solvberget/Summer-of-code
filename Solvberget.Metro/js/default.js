@@ -55,7 +55,8 @@ function doLogin() {
     loginDiv.innerHTML = "";
     WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
-        var loginAnchor = document.querySelector(".win-container");
+        var loginAnchor = document.querySelector("div"); 
+
         LoginFlyout.showLogin(loginAnchor);
 
     });

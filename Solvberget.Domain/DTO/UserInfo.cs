@@ -133,7 +133,7 @@ namespace Solvberget.Domain.DTO
                 }
                 
                 
-
+                
 
 
                 var fine = new Fine()
