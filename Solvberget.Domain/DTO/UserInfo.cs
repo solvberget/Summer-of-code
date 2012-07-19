@@ -187,13 +187,18 @@ namespace Solvberget.Domain.DTO
                     var creditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit"));
 
                     //Get information from table z13
+
+                    var docId = "";
+                    var docTitle = "";
+
                     xElementField = xElementRecord.Element("z13");
-                    if (xElementField == null) return;
+                    if (xElementField != null)
+                    {
 
-                    var docId = GetXmlValue(temp.ElementAt(0), "z13-doc-number") ?? "";
+                        docId = GetXmlValue(temp.ElementAt(0), "z13-doc-number") ?? "";
 
-                    var docTitle = GetXmlValue(temp.ElementAt(0), "z13-title") ?? "";
-
+                        docTitle = GetXmlValue(temp.ElementAt(0), "z13-title") ?? "";
+                    }
                     var fine = new Fine()
                                    {
                                        Date = date,
