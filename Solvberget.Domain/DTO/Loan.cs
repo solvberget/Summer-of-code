@@ -9,7 +9,9 @@ namespace Solvberget.Domain.DTO
 {
     public class Loan
     {
+
         public string DocumentNumber { get; set; }
+        public string LoanTitle { get; set;  }
         public string SubLibrary { get; set; }
         public string LoanCatalogerName { get; set; }
         public string OriginalDueDate { get; set; }
