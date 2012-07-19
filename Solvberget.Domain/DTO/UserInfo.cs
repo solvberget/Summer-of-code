@@ -137,8 +137,6 @@ namespace Solvberget.Domain.DTO
                 if (description != null)
                     TypeDictionary.TryGetValue(description, out descriptionLookupValue);
 
-
-
                 var fine = new Fine()
                                {
                                    Date = date,
