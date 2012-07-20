@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOTests\BokBasenBookTest.cs" />
+    <Compile Include="DTOTests\LoanTest.cs" />
     <Compile Include="DTOTests\UserInfoTest.cs" />
     <Compile Include="RepositoryTests\RatingRepositoyTests.cs" />
     <Compile Include="RepositoryTests\AlephRepositoryTests.cs" />

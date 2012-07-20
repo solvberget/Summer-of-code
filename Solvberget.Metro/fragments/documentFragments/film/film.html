@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Film</title>
+    <link rel="stylesheet" href="film.css" />
+    <script type="text/javascript" src="film.js"></script>
+</head>
+<body>
+    <div id="imdbTemplate" class="" data-win-control="WinJS.Binding.Template">
+        <img src="../../../images/externalSites/imdb/imdb-48x48.png" style="display:none" data-win-bind="style: ImdbRating DocumentDetailConverters.imdbStyleConverter"/>
+        <h2 data-win-bind="textContent: ImdbRating"></h2>
+    </div>
+
+
+    <section id="fragmentContent">
+        <article id="review">
+
+            <h2 id="reviewTitle">IMDB omtale</h2>
+
+            <div id="reviewContent">
+                Dette er en fin film!
+            </div>
+
+        </article>
+
+        <article id="details">
+            <div class="fact" data-win-bind="innerText: Author">
+            </div>
+            <div class="fact" data-win-bind="innerText: OriginalTitle">
+            </div>
+        </article>
+
+
+    </section>
+</body>
+</html>
+

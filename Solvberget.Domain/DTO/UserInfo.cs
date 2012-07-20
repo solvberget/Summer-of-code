@@ -25,6 +25,8 @@ namespace Solvberget.Domain.DTO
         public string HomeLibrary { get; set; }
         public string Balance { get; set; }
         public IEnumerable<Fine> Fines { get; set; }
+        public IEnumerable<Fine> ActiveFines { get; set; }
+        public IEnumerable<Loan> Loans { get; set; }
 
         public void FillProperties(string xml)
         {
@@ -45,7 +47,9 @@ namespace Solvberget.Domain.DTO
             if (xElement == null) return;
             var xElementRecord = xElement.Element("z303");
             if (xElementRecord == null) return;
-            
+
+            var xElementField = xElementRecord;
+
             Id = GetXmlValue(xElementRecord, "z303-id");
             Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
 
@@ -75,82 +79,150 @@ namespace Solvberget.Domain.DTO
             Balance = xElementRecord.Value;
 
 
-            xElementRecord = xElement.Element("fine");
-            if (xElementRecord == null) return;
-            
+            //Put all the loans for the borrower into a list of Loan objects
 
-            var fines = new List<Fine>();
-
-            var varfields = xElement.Elements("fine").ToList();
-            foreach (var varfield in varfields)
+            xElementRecord = xElement.Element("item-l");
+            if (xElementRecord != null)
             {
 
-                var temp = varfield.Elements().ToList();
+                var subLibrary = "";
+                var orgDueDate = "";
+                var loanDate = "";
+                var loanHour = "";
+                var dueDate = "";
+                var itemStatus = "";
 
-                var xElementField = xElementRecord.Element("z31");
-                if (xElementField == null) return;
+                var loans = new List<Loan>();
 
-                //Get a number from the data in Sum field
-                var sumAsString = GetXmlValue(temp.ElementAt(0), "z31-sum");
-                double sum = 0;
-                if (sumAsString != null)
+                var loanVarfields = xElement.Elements("item-l").ToList();
+
+                foreach (var varfield in loanVarfields)
                 {
-                    //Format may be "[2009]" or "(30.00)", trim if so
-                    var regExp = new Regex(@"[a-zA-Z\[\]]*(\d+)[a-zA-Z\[\]]*");
-                    var foundValue = regExp.Match(sumAsString).Groups[1].ToString();
-                    if (!string.IsNullOrEmpty(foundValue))
-                    sum = double.Parse(foundValue);
+                    //Get information from table z36
+                    xElementField = varfield.Element("z36");
+                    if (xElementField != null){
+
+                        subLibrary = GetXmlValue(xElementField, "z36-sub-library");
+                        if (subLibrary == "Hovedbibl.")
+                            subLibrary = "Hovedbiblioteket";
+
+                        orgDueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-original-due-date"));
+
+                        loanDate = GetFormattedDate(GetXmlValue(xElementField, "z36-loan-date"));
+
+                        loanHour = GetXmlValue(xElementField, "z36-loan-hour");
+
+                        dueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-due-date"));
+                    }
+                    
+                    //Get information from table z30
+                    xElementField = varfield.Element("z30");
+                    if (xElementField != null)
+                    {
+                        itemStatus = GetXmlValue(xElementField, "z30-item-status");
+                    }
+
+                    //Get information from table z13
+                    xElementField = varfield.Element("z13");
+                    if (xElementField != null)
+                    {
+
+                        var docNumber = GetXmlValue(xElementField, "z13-doc-number");
+
+                        var docTitle = GetXmlValue(xElementField, "z13-title");
+
+                        var loan = new Loan()
+                                       {
+                                           DocumentNumber = docNumber,
+                                           DocumentTitle = docTitle,
+                                           SubLibrary = subLibrary,
+                                           OriginalDueDate = orgDueDate,
+                                           ItemStatus = itemStatus,
+                                           LoanDate = loanDate,
+                                           LoanHour = loanHour,
+                                           Material = null,
+                                           DueDate = dueDate
+                                       };
+
+                        loans.Add(loan);
+                    }
                 }
-
-
-                //Get the title of the document mentioned in the fine based on the docnumber
-                string docId = "";
-                string docTitle = "";
-                string date = "";
-
-                date = GetFormattedDate(GetXmlValue(temp.ElementAt(0), "z31-date"));
-
-                var status = GetXmlValue(temp.ElementAt(0), "z31-status");
-
-                if (status == "Not paid by/credited to patron")
-                    status = "Ikke betalt ";
-
-                if(temp.Count > 1)
-                {
-                    //docId = temp.ElementAt(1).ToString().Substring(25, 6);
-
-
-
-                    var element = temp.ElementAt(1).ToString();
-
-                    var regExp = new Regex(@"(-doc-number>)(\d+)(</)");
-
-                    docId = regExp.Match(element).Groups[2].ToString();
-
-                    regExp = new Regex(@"(-title>)(\D+)(</)");
-                    docTitle = regExp.Match(element).Groups[2].ToString();
-
-                }
-
-                var description = GetXmlValue(temp.ElementAt(0), "z31-type");
-                string descriptionLookupValue = null;
-                if (description != null)
-                    TypeDictionary.TryGetValue(description, out descriptionLookupValue);
-
-                var fine = new Fine()
-                               {
-                                   Date = date,
-                                   Status = status,
-                                   CreditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit")),
-                                   Sum = sum,
-                                   Description = descriptionLookupValue ?? description,
-                                   DocumentNumber = docId,
-                                   DocumentTitle = docTitle
-                               };
-                fines.Add(fine);
+                Loans = loans;
             }
 
-            Fines = fines;
+
+            //Put all fines connected to the borrower in a list
+            xElementRecord = xElement.Element("fine");
+            if (xElementRecord != null)
+            {
+                var fines = new List<Fine>();
+                var activeFines = new List<Fine>();
+
+                var varfields = xElement.Elements("fine").ToList();
+                foreach (var varfield in varfields)
+                {
+
+                    var temp = varfield.Elements().ToList();
+                    
+                    //Get information from table z31
+                    xElementField = xElementRecord.Element("z31");
+                    if (xElementField == null) return;
+
+                    //Get a number from the data in Sum field
+                    var sumAsString = GetXmlValue(temp.ElementAt(0), "z31-sum");
+                    double sum = 0;
+                    if (sumAsString != null)
+                    {
+                        //Format may be "[2009]" or "(30.00)", trim if so
+                        var regExp = new Regex(@"[a-zA-Z\[\]]*(\d+)[a-zA-Z\[\]]*");
+                        var foundValue = regExp.Match(sumAsString).Groups[1].ToString();
+                        if (!string.IsNullOrEmpty(foundValue))
+                            sum = double.Parse(foundValue);
+                    }
+
+                    var date = GetFormattedDate(GetXmlValue(temp.ElementAt(0), "z31-date"));
+
+                    var status = GetXmlValue(temp.ElementAt(0), "z31-status");
+
+                    if (status == "Not paid by/credited to patron")
+                        status = "Ikke betalt ";
+                    
+                    var description = GetXmlValue(temp.ElementAt(0), "z31-type");
+                    string descriptionLookupValue = null;
+                    if (description != null)
+                        TypeOfFineDictionary.TryGetValue(description, out descriptionLookupValue);
+
+                    var creditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit"));
+
+                    //Get information from table z13, givent that there is more than one node in temp
+                    var docId = "";
+                    var docTitle = "";
+                    if (temp.Count > 1)
+                    {
+                        docId = GetXmlValue(temp.ElementAt(1), "z13-doc-number") ?? docId;
+
+                        docTitle = GetXmlValue(temp.ElementAt(1), "z13-title") ?? docTitle;
+                    }
+
+                    var fine = new Fine()
+                                   {
+                                       Date = date,
+                                       Status = status,
+                                       CreditDebit = creditDebit,
+                                       Sum = sum,
+                                       Description = descriptionLookupValue ?? description,
+                                       DocumentNumber = docId,
+                                       DocumentTitle = docTitle
+                                   };
+                    fines.Add(fine);
+                    
+                    if (fine.Status != "Cancelled" && fine.Status != "Paid")
+                        activeFines.Add(fine);
+                        
+                }
+                Fines = fines;
+                ActiveFines = activeFines;
+            }
         }
 
         private static string GetXmlValue(XElement node, string tag)
@@ -191,9 +263,9 @@ namespace Solvberget.Domain.DTO
             return string.Empty;
         }
 
-
-        protected static readonly Dictionary<string, string> TypeDictionary = new Dictionary<string, string>
+        protected static readonly Dictionary<string, string> TypeOfFineDictionary = new Dictionary<string, string>
                                 {
+                                    {"0", "Betalt"},
                                     {"3", "For sent levert"},
                                     {"6", "Legitimasjonslån"},
                                     {"8", "Nytt lånekort"},
