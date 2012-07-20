@@ -34,7 +34,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(0, documents.Count(x => x.GetType().Name.Equals("Document")));
         }
 
-        [Test]
+       [Test]
         public void TestGetBook()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
@@ -178,5 +178,50 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         }
 
+        [Test]
+        public void TestDocumentLocation()
+        {
+            const string documentNumberForBook = "000596743"; //Naiv. Super
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(2, book.AvailabilityInfo.Count());
+            Assert.AreEqual("Hovedbibl.", book.AvailabilityInfo.ElementAt(0).Branch);
+            Assert.AreEqual("Madla", book.AvailabilityInfo.ElementAt(1).Branch);
+            Assert.AreEqual("Kulturbiblioteket", book.AvailabilityInfo.ElementAt(0).Department);
+            Assert.AreEqual("Voksenavdelingen", book.AvailabilityInfo.ElementAt(1).Department);
+            Assert.AreEqual("Skjønnlitteratur", book.AvailabilityInfo.ElementAt(0).PlacementCode);
+            Assert.AreEqual("Skjønnlitteratur", book.AvailabilityInfo.ElementAt(1).PlacementCode);
+        }
+
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        public void TestDocumentAvailability()
+        {
+            const string documentNumberForBook = "000596743"; //Naiv. Super
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(2, book.AvailabilityInfo.ElementAt(0).AvailableCount);
+            Assert.AreEqual(4, book.AvailabilityInfo.ElementAt(0).TotalCount);
+            Assert.AreEqual(0, book.AvailabilityInfo.ElementAt(1).AvailableCount);
+            Assert.AreEqual(1, book.AvailabilityInfo.ElementAt(1).TotalCount);
+            Assert.NotNull(book.AvailabilityInfo.ElementAt(1).EarliestAvailableDateFormatted);
+        }
+
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        public void TestNonAvailableDocument()
+        {
+            const string documentNumberForBook = "000611217"; //Naiv. Super
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(0, book.AvailabilityInfo.ElementAt(0).AvailableCount);
+            Assert.AreEqual(3, book.AvailabilityInfo.ElementAt(0).TotalCount);
+            Assert.NotNull(book.AvailabilityInfo.ElementAt(0).EarliestAvailableDateFormatted);
+        }
+
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        public void TestDocumentShouldOnlyIncludeOneBranch()
+        {
+            const string documentNumberForBook = "000530871"; //Hur kär får man bli?
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(1, book.AvailabilityInfo.Count());
+        }
+
     }
+
 }
