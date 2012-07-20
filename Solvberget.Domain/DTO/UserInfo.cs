@@ -190,7 +190,7 @@ namespace Solvberget.Domain.DTO
                     var description = GetXmlValue(temp.ElementAt(0), "z31-type");
                     string descriptionLookupValue = null;
                     if (description != null)
-                        TypeDictionary.TryGetValue(description, out descriptionLookupValue);
+                        TypeOfFineDictionary.TryGetValue(description, out descriptionLookupValue);
 
                     var creditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit"));
 
@@ -263,7 +263,7 @@ namespace Solvberget.Domain.DTO
             return string.Empty;
         }
 
-        protected static readonly Dictionary<string, string> TypeDictionary = new Dictionary<string, string>
+        protected static readonly Dictionary<string, string> TypeOfFineDictionary = new Dictionary<string, string>
                                 {
                                     {"0", "Betalt"},
                                     {"3", "For sent levert"},
