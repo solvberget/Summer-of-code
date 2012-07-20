@@ -527,24 +527,24 @@ namespace Solvberget.Service.Tests.DTOTests
             var documentItem1 = documentItems.ElementAt(0);
             Assert.AreEqual("000611167000110", documentItem1.ItemKey);
             Assert.AreEqual("Hovedbibl.", documentItem1.Branch);
-            Assert.AreEqual("KULT", documentItem1.DepartmentCode);
+            Assert.AreEqual("Kulturbiblioteket", documentItem1.Department);
             Assert.AreEqual("04", documentItem1.ItemStatus);
             Assert.AreEqual("Skjønnlitteratur", documentItem1.PlacementCode);
             Assert.IsFalse(documentItem1.OnHold);
+            Assert.IsNull(documentItem1.LoanStatus);
             Assert.IsFalse(documentItem1.InTransit);
             Assert.IsNull(documentItem1.LoanDueDate);
-            Assert.IsNull(documentItem1.LoanDueHour);
 
             var documentItem2 = documentItems.ElementAt(3);
             Assert.AreEqual("000611167000180", documentItem2.ItemKey);
             Assert.AreEqual("Hovedbibl.", documentItem2.Branch);
-            Assert.AreEqual("KULT", documentItem2.DepartmentCode);
+            Assert.AreEqual("Kulturbiblioteket", documentItem2.Department);
             Assert.AreEqual("04", documentItem2.ItemStatus);
             Assert.AreEqual("Skjønnlitteratur", documentItem2.PlacementCode);
             Assert.IsFalse(documentItem2.OnHold);
+            Assert.AreEqual("A", documentItem2.LoanStatus);
             Assert.IsFalse(documentItem2.InTransit);
-            Assert.AreEqual("20120813", documentItem2.LoanDueDate);
-            Assert.AreEqual("2400", documentItem2.LoanDueHour);
+            Assert.AreEqual("13.08.2012 00:00:00", documentItem2.LoanDueDate.ToString());
         }
 
         private string getLanguageCourseWithInvolvedPersonsXml()
