@@ -12,12 +12,42 @@
 
 })();
 
+var documentModel;
+
+var fragmentReady = function (model) {
+
+    documentModel = model;
+
+    getImdbRating();
 
 
-var fragmentReady = function () {
+};
 
-    console.log("yeah film");
-}
+var ajaxGetImdbRating = function () {
+    return $.getJSON(window.Data.serverBaseUrl + "/Document/GetDocumentRating/" + documentModel.DocumentNumber);
+};
+
+var getImdbRating = function () {
+    
+
+    $.when(ajaxGetImdbRating())
+        .then($.proxy(function (response) {
+            if (response != undefined && response !== "") {
+
+                var data = { ImdbRating: response };
+
+                var imdbTemplate = new WinJS.Binding.Template(document.getElementById("imdbTemplate"));
+                var imdbTemplateContainer = document.getElementById("ratingContainer");
+
+                imdbTemplateContainer.innerHTML = "";
+                imdbTemplate.render(data, imdbTemplateContainer);
+                
+            }
+        }, this)
+    );
+
+};
+
 
 
 WinJS.Namespace.define("DocumentDetailFragment", {

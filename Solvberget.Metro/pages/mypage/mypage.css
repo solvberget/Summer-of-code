@@ -27,7 +27,9 @@ overflow:scroll;
     margin-left: 45px;
 
 }
-
+#templates {
+    display: none;
+}
 .box {
     margin: 10px;
     border-color: white;
