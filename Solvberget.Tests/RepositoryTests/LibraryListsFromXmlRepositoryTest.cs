@@ -59,8 +59,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var lists2 = _listRepository.GetLists(6);
             Assert.AreEqual(5, lists2.Count);
         }
-    
-
 
         [Test]
         public void TestListContent()
@@ -73,7 +71,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(2010, document.PublishedYear);
             Assert.AreEqual("Film", document.DocType);
         }
-
 
     }
 }
