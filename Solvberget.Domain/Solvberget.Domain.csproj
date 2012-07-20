@@ -92,6 +92,7 @@
     <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
+    <Compile Include="DTO\AvailabilityInformation.cs" />
     <Compile Include="DTO\Book.cs" />
     <Compile Include="DTO\Cd.cs" />
     <Compile Include="DTO\BokBasenBook.cs" />

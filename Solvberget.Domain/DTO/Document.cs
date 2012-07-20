@@ -27,6 +27,11 @@ namespace Solvberget.Domain.DTO
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
+        
+        //Location and availability info for each branch
+        public List<AvailabilityInformation> AvailabilityInfo{ get; private set; }
+
+        //Images
         public string ThumbnailUrl { get; set; }
         public string ImageUrl { get; set; }
 
@@ -124,7 +129,24 @@ namespace Solvberget.Domain.DTO
             return document;
         }
 
-        protected static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
+        public void GenerateLocationAndAvailabilityInfo(IEnumerable<DocumentItem> docItems)
+        {
+            
+            var items = docItems.ToList();
+            if (!items.Any()) return;
+            
+            AvailabilityInfo = new List<AvailabilityInformation>();
+            
+            foreach (var branch in from branch in AvailabilityInformation.BranchesToHandle 
+                                   let avilablilityInfo = AvailabilityInformation.GenerateInfoFor(this, branch, items) 
+                                   where avilablilityInfo != null select branch)
+            {
+                AvailabilityInfo.Add(AvailabilityInformation.GenerateInfoFor(this, branch, items));
+            }
+        
+        }
+
+        private static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
         {
             var fixfield = nodes.Elements("fixfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Select(x => x.Value).FirstOrDefault();
 
@@ -153,7 +175,7 @@ namespace Solvberget.Domain.DTO
                 varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
-        public static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
+        protected static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
                                                                string subfieldLabel)
         {
             var varfield =
@@ -161,7 +183,7 @@ namespace Solvberget.Domain.DTO
             return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value);
         }
 
-        public static string GetSubFieldValue(XElement varfield, string label)
+        private static string GetSubFieldValue(XElement varfield, string label)
         {
             return
                 varfield.Elements("subfield").Where(x => ((string)x.Attribute("label")).Equals(label)).Select(
