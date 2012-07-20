@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Xml.Linq;
 using NUnit.Framework;
 using Solvberget.Domain.DTO;
 
@@ -358,7 +359,7 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
-        public void GetJournalFromXml()
+        public void GetJournalFromXmlTest()
         {
             var journal = Journal.GetObjectFromFindDocXmlBsMarc(getJournalXml());
             Assert.AreEqual("0163-7053", journal.Issn);
@@ -374,14 +375,14 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
-        public void GetJournalLightFromXml()
+        public void GetJournalLightFromXmlTest()
         {
             var journal = Journal.GetObjectFromFindDocXmlBsMarcLight(getJournalXml());
             Assert.AreEqual("0163-7053", journal.Issn);
         }
 
         [Test]
-        public void GetCdPopularFromXml()
+        public void GetCdPopularFromXmlTest()
         {
             var cd = Cd.GetObjectFromFindDocXmlBsMarc(getCdPopularMusicGroupXml());
             Assert.AreEqual("Gje meg litt merr", cd.Title);
@@ -398,7 +399,7 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
-        public void GetCdPopularLightFromXml()
+        public void GetCdPopularLightFromXmlTest()
         {
             var cd1 = Cd.GetObjectFromFindDocXmlBsMarcLight(getCdPopularMusicGroupXml());
             Assert.AreEqual("Mods", cd1.MusicGroup);
@@ -408,7 +409,7 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
-        public void GetLanguageCourseFromXml()
+        public void GetLanguageCourseFromXmlTest()
         {
             var languageCourse = LanguageCourse.GetObjectFromFindDocXmlBsMarc(getLanguageCourseXml()); ;
 
@@ -486,14 +487,14 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
-        public void GetLanguageCourseLightFromXml()
+        public void GetLanguageCourseLightFromXmlTest()
         {
             var languageCourse = LanguageCourse.GetObjectFromFindDocXmlBsMarcLight(getLanguageCourseWithIsbnXml());
             Assert.AreEqual("Simons, Margaretha Danbolt", languageCourse.Author.Name);
         }
 
         [Test]
-        public void GetSheetMusicFromXml()
+        public void GetSheetMusicFromXmlTest()
         {
             var sheetMusic = SheetMusic.GetObjectFromFindDocXmlBsMarc(getSheetMusicXml());
             Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMusic.Composer.Name);
@@ -505,10 +506,39 @@ namespace Solvberget.Service.Tests.DTOTests
         }
 
         [Test]
-        public void GetSheetMusicLightFromXml()
+        public void GetSheetMusicLightFromXmlTest()
         {
             var sheetMuisc = SheetMusic.GetObjectFromFindDocXmlBsMarcLight(getSheetMusicXml());
             Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMuisc.Composer.Name);
+        }
+
+        [Test]
+        public void GetDocumentItemsFromXmlTest()
+        {
+            var documentItems = DocumentItem.GetDocumentItemsFromXml(getDocumentItemsXml()).ToList();
+            Assert.AreEqual(6, documentItems.Count());
+
+            var documentItem1 = documentItems.ElementAt(0);
+            Assert.AreEqual("000611167000110", documentItem1.ItemKey);
+            Assert.AreEqual("Hovedbibl.", documentItem1.Branch);
+            Assert.AreEqual("Kulturbiblioteket", documentItem1.Department);
+            Assert.AreEqual("04", documentItem1.ItemStatus);
+            Assert.AreEqual("Skjønnlitteratur", documentItem1.PlacementCode);
+            Assert.IsFalse(documentItem1.OnHold);
+            Assert.IsNull(documentItem1.LoanStatus);
+            Assert.IsFalse(documentItem1.InTransit);
+            Assert.IsNull(documentItem1.LoanDueDate);
+
+            var documentItem2 = documentItems.ElementAt(3);
+            Assert.AreEqual("000611167000180", documentItem2.ItemKey);
+            Assert.AreEqual("Hovedbibl.", documentItem2.Branch);
+            Assert.AreEqual("Kulturbiblioteket", documentItem2.Department);
+            Assert.AreEqual("04", documentItem2.ItemStatus);
+            Assert.AreEqual("Skjønnlitteratur", documentItem2.PlacementCode);
+            Assert.IsFalse(documentItem2.OnHold);
+            Assert.AreEqual("A", documentItem2.LoanStatus);
+            Assert.IsFalse(documentItem2.InTransit);
+            Assert.AreEqual("13.08.2012 00:00:00", documentItem2.LoanDueDate.ToString());
         }
 
         private string getLanguageCourseWithInvolvedPersonsXml()
@@ -2396,6 +2426,152 @@ namespace Solvberget.Service.Tests.DTOTests
     </record>
     <session-id>2AR541IJ3QERCVPA44B36DF71HYVT1MJAA78QF32DAP96T1651</session-id>
 </find-doc>";
+        }
+
+        private string getDocumentItemsXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<item-data>
+    <item>
+        <rec-key>000611167000110</rec-key>
+        <barcode>11031180135</barcode>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>KULT</collection>
+        <item-status>04</item-status>
+        <note></note>
+        <call-no-1>Skjønnlitteratur</call-no-1>
+        <call-no-2></call-no-2>
+        <description></description>
+        <chronological-i></chronological-i>
+        <chronological-j></chronological-j>
+        <chronological-k></chronological-k>
+        <enumeration-a></enumeration-a>
+        <enumeration-b></enumeration-b>
+        <enumeration-c></enumeration-c>
+        <library>NOR50</library>
+        <on-hold>N</on-hold>
+        <requested>N</requested>
+        <expected>N</expected>
+    </item>
+    <item>
+        <rec-key>000611167000160</rec-key>
+        <barcode>11031180136</barcode>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>KULT</collection>
+        <item-status>04</item-status>
+        <note></note>
+        <call-no-1>Skjønnlitteratur</call-no-1>
+        <call-no-2></call-no-2>
+        <description></description>
+        <chronological-i></chronological-i>
+        <chronological-j></chronological-j>
+        <chronological-k></chronological-k>
+        <enumeration-a></enumeration-a>
+        <enumeration-b></enumeration-b>
+        <enumeration-c></enumeration-c>
+        <library>NOR50</library>
+        <on-hold>N</on-hold>
+        <requested>N</requested>
+        <expected>N</expected>
+    </item>
+    <item>
+        <rec-key>000611167000170</rec-key>
+        <barcode>11031180133</barcode>
+        <sub-library>Stavanger fengsel</sub-library>
+        <collection>FENGS</collection>
+        <item-status>80</item-status>
+        <note></note>
+        <call-no-1>Skjønnlitteratur</call-no-1>
+        <call-no-2></call-no-2>
+        <description></description>
+        <chronological-i></chronological-i>
+        <chronological-j></chronological-j>
+        <chronological-k></chronological-k>
+        <enumeration-a></enumeration-a>
+        <enumeration-b></enumeration-b>
+        <enumeration-c></enumeration-c>
+        <library>NOR50</library>
+        <on-hold>N</on-hold>
+        <requested>N</requested>
+        <expected>N</expected>
+    </item>
+    <item>
+        <rec-key>000611167000180</rec-key>
+        <barcode>11031180134</barcode>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>KULT</collection>
+        <item-status>04</item-status>
+        <note></note>
+        <call-no-1>Skjønnlitteratur</call-no-1>
+        <call-no-2></call-no-2>
+        <description></description>
+        <chronological-i></chronological-i>
+        <chronological-j></chronological-j>
+        <chronological-k></chronological-k>
+        <enumeration-a></enumeration-a>
+        <enumeration-b></enumeration-b>
+        <enumeration-c></enumeration-c>
+        <library>NOR50</library>
+        <on-hold>N</on-hold>
+        <requested>N</requested>
+        <expected>N</expected>
+        <loan-status>A</loan-status>
+        <loan-in-transit>N</loan-in-transit>
+        <loan-due-date>20120813</loan-due-date>
+        <loan-due-hour>2400</loan-due-hour>
+    </item>
+    <item>
+        <rec-key>000611167000190</rec-key>
+        <barcode>11031180131</barcode>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>KULT</collection>
+        <item-status>04</item-status>
+        <note></note>
+        <call-no-1>Skjønnlitteratur</call-no-1>
+        <call-no-2></call-no-2>
+        <description></description>
+        <chronological-i></chronological-i>
+        <chronological-j></chronological-j>
+        <chronological-k></chronological-k>
+        <enumeration-a></enumeration-a>
+        <enumeration-b></enumeration-b>
+        <enumeration-c></enumeration-c>
+        <library>NOR50</library>
+        <on-hold>N</on-hold>
+        <requested>N</requested>
+        <expected>N</expected>
+        <loan-status>A</loan-status>
+        <loan-in-transit>N</loan-in-transit>
+        <loan-due-date>20120804</loan-due-date>
+        <loan-due-hour>2400</loan-due-hour>
+    </item>
+    <item>
+        <rec-key>000611167000200</rec-key>
+        <barcode>11031186112</barcode>
+        <sub-library>Madla</sub-library>
+        <collection>VOKS</collection>
+        <item-status>04</item-status>
+        <note></note>
+        <call-no-1>Skjønnlitteratur</call-no-1>
+        <call-no-2></call-no-2>
+        <description></description>
+        <chronological-i></chronological-i>
+        <chronological-j></chronological-j>
+        <chronological-k></chronological-k>
+        <enumeration-a></enumeration-a>
+        <enumeration-b></enumeration-b>
+        <enumeration-c></enumeration-c>
+        <library>NOR50</library>
+        <on-hold>N</on-hold>
+        <requested>N</requested>
+        <expected>N</expected>
+        <loan-status>A</loan-status>
+        <loan-in-transit>N</loan-in-transit>
+        <loan-due-date>20120808</loan-due-date>
+        <loan-due-hour>2400</loan-due-hour>
+    </item>
+    <session-id>CHJMYTFX3E2NUK4KMTSQ2J5KTEPSFJLGS4NMM1QF836MB7KRCD</session-id>
+</item-data>";
         }
 
     }

@@ -94,10 +94,12 @@
     <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
+    <Compile Include="DTO\AvailabilityInformation.cs" />
     <Compile Include="DTO\Book.cs" />
     <Compile Include="DTO\Cd.cs" />
     <Compile Include="DTO\BokBasenBook.cs" />
     <Compile Include="DTO\Fine.cs" />
+    <Compile Include="DTO\DocumentItem.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
     <Compile Include="DTO\LibraryList.cs" />
     <Compile Include="DTO\Event.cs" />
