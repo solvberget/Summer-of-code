@@ -10,7 +10,7 @@ namespace Solvberget.Domain.DTO
 {
     public class Journal : Document
     {
-
+        public new int StandardLoanTime { get { return 11; } }
         public string Issn { get; set; }
         public string JournalsPerYear { get; set; }
         public string InventoryInfomation { get; set; }

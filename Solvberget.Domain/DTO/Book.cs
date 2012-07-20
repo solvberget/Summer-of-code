@@ -7,7 +7,6 @@ namespace Solvberget.Domain.DTO
 {
     public class Book : Document
     {
-
         public string Isbn { get; set; }
         public string LanguagesInBook { get; set; }
         public string ClassificationNr { get; set; }

@@ -8,6 +8,9 @@ namespace Solvberget.Domain.DTO
 {
     public class Document
     {
+        
+        //Base properties
+        public int StandardLoanTime { get { return 32; } }
         public string DocType { get { return this.GetType().Name; } private set { } }
         public string DocumentNumber { get; set; }
         public string TargetGroup { get; set; }
