@@ -7,7 +7,7 @@ namespace Solvberget.Domain.DTO
 {
     public class Cd : Document
     {
-
+        public new int StandardLoanTime { get { return 18; } }
         public Person ArtistOrComposer { get; set; }
         public string MusicGroup { get; set; }
         public string ExplanatoryAddition { get; set; }

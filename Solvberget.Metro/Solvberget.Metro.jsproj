@@ -77,12 +77,27 @@
     </Content>
     <Content Include="css\splitview.css" />
     <Content Include="default.html" />
+    <Content Include="fragments\documentFragments\journal\journal.css" />
+    <Content Include="fragments\documentFragments\journal\journal.html" />
+    <Content Include="fragments\documentFragments\journal\journal.js" />
+    <Content Include="fragments\documentFragments\languageCourse\languageCourse.css" />
+    <Content Include="fragments\documentFragments\languageCourse\languageCourse.html" />
+    <Content Include="fragments\documentFragments\languageCourse\languageCourse.js" />
+    <Content Include="fragments\documentFragments\cd\cd.css" />
+    <Content Include="fragments\documentFragments\cd\cd.html" />
+    <Content Include="fragments\documentFragments\cd\cd.js" />
+    <Content Include="fragments\documentFragments\audioBook\audioBook.css" />
+    <Content Include="fragments\documentFragments\audioBook\audioBook.html" />
+    <Content Include="fragments\documentFragments\audioBook\audioBook.js" />
     <Content Include="fragments\documentFragments\book\book.css" />
     <Content Include="fragments\documentFragments\book\book.html" />
     <Content Include="fragments\documentFragments\book\book.js" />
     <Content Include="fragments\documentFragments\film\film.css" />
     <Content Include="fragments\documentFragments\film\film.html" />
     <Content Include="fragments\documentFragments\film\film.js" />
+    <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.css" />
+    <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.html" />
+    <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.js" />
     <Content Include="fragments\login\login.html" />
     <Content Include="fragments\login\login.css" />
     <Content Include="fragments\login\login.js" />
