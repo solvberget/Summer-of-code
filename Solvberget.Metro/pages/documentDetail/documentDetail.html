@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Detaljer</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+
+    <link href="documentDetail.css" rel="stylesheet" />
+    <script src="documentDetail.js"></script>
+
+</head>
+<body>
+
+
+    <div class="documentdetailpage">
+
+        <div id="documentDetailLoading">
+            <label class="progress-ring-text">
+                <progress class="win-ring withText"></progress>Henter ...</label>
+        </div>
+        <div id="documentDetailData" class="fragment">
+            <header aria-label="Header content" role="banner">
+                <button class="win-backbutton" aria-label="Back" disabled></button>
+                <h1 class="titlearea win-type-ellipsis">
+                    <span id="documentTitle" data-win-bind="textContent: Title">Informasjon</span>
+                </h1>
+                <h2 id="item-subtitle" class="win-type-ellipsis pagesubtitle" data-win-bind="textContent: SubTitle"></h2>
+
+            </header>
+
+            <div id="document-content" aria-label="Main content" role="main">
+
+                <article id="documentStaticInformation">
+                    <div>
+
+                        <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                            <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" />
+                        </div>
+                        <div id="documentButtonContainer">
+                        <button id="openShare" class="button">Del</button>
+                        <button id="reserve" class="button">Reserver</button>
+                            </div>
+                        <div id="rating-container">
+                        </div>
+
+                    </div>
+                </article>
+
+                <div id="documentFragmentHolder"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

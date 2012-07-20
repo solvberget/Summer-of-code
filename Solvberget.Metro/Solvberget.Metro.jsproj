@@ -77,6 +77,12 @@
     </Content>
     <Content Include="css\splitview.css" />
     <Content Include="default.html" />
+    <Content Include="fragments\documentFragments\book\book.css" />
+    <Content Include="fragments\documentFragments\book\book.html" />
+    <Content Include="fragments\documentFragments\book\book.js" />
+    <Content Include="fragments\documentFragments\film\film.css" />
+    <Content Include="fragments\documentFragments\film\film.html" />
+    <Content Include="fragments\documentFragments\film\film.js" />
     <Content Include="fragments\login\login.html" />
     <Content Include="fragments\login\login.css" />
     <Content Include="fragments\login\login.js" />
@@ -257,13 +263,18 @@
     <Content Include="images\login\Logout.png" />
     <Content Include="images\login\User.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\placeholders\AudioBook.pdn" />
     <Content Include="images\placeholders\AudioBook.png" />
     <Content Include="images\placeholders\Book.png" />
+    <Content Include="images\placeholders\Books.png" />
     <Content Include="images\placeholders\Cd.png" />
     <Content Include="images\placeholders\Document.png" />
+    <Content Include="images\placeholders\Documents Library.png" />
     <Content Include="images\placeholders\Film.png" />
     <Content Include="images\placeholders\Journal.png" />
     <Content Include="images\placeholders\LanguageCourse.png" />
+    <Content Include="images\placeholders\Music.png" />
+    <Content Include="images\placeholders\Musictop.png" />
     <Content Include="images\placeholders\SheetMusic.png" />
     <Content Include="images\placeholders\transp.png" />
     <Content Include="images\smalllogo.png" />
@@ -271,8 +282,12 @@
     <Content Include="images\solvberget30.png" />
     <Content Include="images\solvberget_splash.png" />
     <Content Include="images\solvberget_wide.png" />
+    <Content Include="images\splashscreen.pdn" />
     <Content Include="images\splashscreen.png" />
+    <Content Include="images\splashscreen_default.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="images\sølvberget_sort.jpg" />
+    <Content Include="images\sølvberget_sort.tif" />
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
     <Content Include="js\ListDataSource.js" />
@@ -298,18 +313,21 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\itemDetail\itemDetail.css" />
-    <Content Include="pages\itemDetail\itemDetail.html" />
-    <Content Include="pages\itemDetail\itemDetail.js" />
-    <Content Include="pages\itemDetail\viewmodels\audioBook.js" />
-    <Content Include="pages\itemDetail\viewmodels\book.js" />
-    <Content Include="pages\itemDetail\viewmodels\cd.js" />
-    <Content Include="pages\itemDetail\viewmodels\document.js" />
-    <Content Include="pages\itemDetail\viewmodels\film.js" />
-    <Content Include="pages\itemDetail\viewmodels\journal.js" />
-    <Content Include="pages\itemDetail\viewmodels\languageCourse.js" />
-    <Content Include="pages\itemDetail\viewmodels\propertiesList.js" />
-    <Content Include="pages\itemDetail\viewmodels\sheetMusic.js" />
+    <Content Include="pages\documentDetail\documentDetail.css" />
+    <Content Include="pages\documentDetail\documentDetail.html" />
+    <Content Include="pages\itemDetailbacup\itemDetail.css" />
+    <Content Include="pages\itemDetailbacup\itemDetail.html" />
+    <Content Include="pages\itemDetailbacup\viewmodels\audioBook.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\book.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\cd.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\document.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\film.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\journal.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\languageCourse.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\propertiesList.js" />
+    <Content Include="pages\itemDetailbacup\viewmodels\sheetMusic.js" />
+    <Content Include="pages\documentDetail\documentDetail.js" />
+    <Content Include="pages\lists\itemDetail.js" />
     <Content Include="pages\mypage\mypage.css" />
     <Content Include="pages\mypage\mypage.html" />
     <Content Include="pages\mypage\mypage.js" />
@@ -423,7 +441,7 @@
     <SDKReference Include="Microsoft.WinJS.1.0.RC, Version=1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\externalSites\lastFm\" />
+    <Folder Include="fragments\documentFragments\audiobook\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
