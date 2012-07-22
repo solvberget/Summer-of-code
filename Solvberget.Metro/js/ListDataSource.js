@@ -59,7 +59,7 @@
                         var obj = JSON.parse(request.responseText);
 
                         if (obj !== undefined) {
-                            var items = obj
+                            var items = obj.Lists
 
                             // Create an array of IItem objects:
                             // results =[{ key: key1, data : { field1: value, field2: value, ... }}, { key: key2, data : {...}}, ...];
@@ -82,7 +82,7 @@
                             return {
                                 items: results, // The array of items.
                                 offset: requestIndex - fetchIndex, // The index of the requested item in the items array.
-                                totalCount: Math.min(count, that._maxCount), // The total number of records. Bing will only return 1000, so we cap the value.
+                                totalCount: Math.min(count, that._maxCount), // The total number of records.
                             };
                         } else {
                             return WinJS.UI.FetchError.doesNotExist;

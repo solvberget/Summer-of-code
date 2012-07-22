@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,7 +22,10 @@ namespace Solvberget.Service.Controllers
         public JsonResult GetLists(int? limit)
         {
             var result = _xmlRepository.GetLists(limit);
-            return this.Json(result, JsonRequestBehavior.AllowGet);
+            var latestChange = _xmlRepository.GetTimestampForLatestChange();
+            var timestamp = latestChange != null ? latestChange.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
+            var response = new { Timestamp = timestamp, Lists = result };
+            return this.Json(response, JsonRequestBehavior.AllowGet);
         }
 
     }
