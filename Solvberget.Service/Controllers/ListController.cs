@@ -11,9 +11,9 @@ namespace Solvberget.Service.Controllers
     public class ListController : Controller
     {
 
-        private readonly IListRepository _xmlRepository;
+        private readonly IListRepositoryStatic _xmlRepository;
 
-        public ListController(IListRepository xmlRepository)
+        public ListController(IListRepositoryStatic xmlRepository)
         {
             _xmlRepository = xmlRepository;
         }
