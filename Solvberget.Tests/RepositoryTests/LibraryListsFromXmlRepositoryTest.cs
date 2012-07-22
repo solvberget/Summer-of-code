@@ -72,5 +72,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Film", document.DocType);
         }
 
+        [Test]
+        public void TestIfListRanked()
+        {
+            var result = _listRepository.GetLists();
+            Assert.IsFalse(result.ElementAt(0).IsRanked);
+            Assert.IsTrue(result.ElementAt(3).IsRanked);
+        }
+
     }
 }
