@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<librarylist name="Gladmat: De mest populære matbøkene" pri="4">
+<librarylist name="Gladmat: De mest populære matbøkene" pri="4" ranked="true">
   <!-- Rank is determined by top to bottom -->
   <docnumber>000609208</docnumber>
   <docnumber>000600455</docnumber>

@@ -10,8 +10,9 @@ namespace Solvberget.Domain.DTO
     {
         public string Name { get; private set; }
         public int Priority { get; private set; }
+        public bool IsRanked { get; private set; }
         public List<string> DocumentNumbers { get; private set; }
-        public List<Document> Documents { get; set; } 
+        public List<Document> Documents { get; private set; } 
 
         private LibraryList()
         {
@@ -33,21 +34,32 @@ namespace Solvberget.Domain.DTO
                 return;
             else
             {
-                Name = xmlDoc.Attribute("name").Value;
+                var name = xmlDoc.Attribute("name");
+                if (name != null) Name = name.Value;
 
-                var priAsString = xmlDoc.Attribute("pri").Value;
-                int priAsInt; 
-                if(int.TryParse(priAsString, out priAsInt))
+                var pri = xmlDoc.Attribute("pri");
+                if (pri != null)
                 {
-                    //Set a lowest priority if priority range is invalid (below 0 or above 10) 
-                    Priority = priAsInt < 1 || priAsInt > 10 ? 10 : priAsInt;
+                    var priAsString = pri.Value;
+                    int priAsInt; 
+                    if(int.TryParse(priAsString, out priAsInt))
+                    {
+                        //Set a lowest priority if priority range is invalid (below 0 or above 10) 
+                        Priority = priAsInt < 1 || priAsInt > 10 ? 10 : priAsInt;
+                    }
+                    else
+                    {
+                        //Set a lowest priority if null or wrong type
+                        Priority = 10;
+                    }
                 }
-                else
+
+                var isRanked = xmlDoc.Attribute("ranked");
+                if (isRanked != null)
                 {
-                    //Set a lowest priority if null or wrong type
-                    Priority = 10;
+                    IsRanked = isRanked.Value.Equals("true") ? true : false;
                 }
-                
+
                 xmlDoc.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => DocumentNumbers.Add(element.Value));
 
             }

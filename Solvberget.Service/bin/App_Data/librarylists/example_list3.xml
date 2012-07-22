@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<librarylist name="Bibliotekarene anbefaler" pri="3">
+<librarylist name="Bibliotekarene anbefaler" pri="3" ranked="false">
   <!-- Rank is determined by top to bottom -->
   <docnumber>000611838</docnumber>
   <docnumber>000403028</docnumber>
