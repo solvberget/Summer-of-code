@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IEventRepository.cs" />
     <Compile Include="Abstract\IImageRepository.cs" />
+    <Compile Include="Abstract\IListRepositoryStatic.cs" />
     <Compile Include="Abstract\IRatingRepository.cs" />
     <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
