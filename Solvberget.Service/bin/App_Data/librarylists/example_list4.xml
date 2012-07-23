@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<librarylist name="Eksempelliste 4" pri="4">
+<librarylist name="Gladmat: De mest populære matbøkene" pri="4" ranked="true">
   <!-- Rank is determined by top to bottom -->
-  <docnumber>000588841</docnumber>
-  <docnumber>000588844</docnumber>
-  <docnumber>000588843</docnumber>
-  <docnumber>000598029</docnumber>
-  <docnumber>000567325</docnumber>
+  <docnumber>000609208</docnumber>
+  <docnumber>000600455</docnumber>
+  <docnumber>000603561</docnumber>
+  <docnumber>000393596</docnumber>
+  <docnumber>000602887</docnumber>
 </librarylist>

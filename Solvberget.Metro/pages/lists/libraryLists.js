@@ -29,7 +29,7 @@
                 listViewForListContent.selection.getItems().done(function updateDetails(items) {
                     if (items.length > 0) {
                         that.itemSelectionIndex = items[0].index;
-                        nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: items[0].data, key: items[0].data.DocumentNumber });
+                        nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: items[0].data });
                     }
                 });
 

@@ -10,7 +10,7 @@ namespace Solvberget.Domain.DTO
 {
     public class LanguageCourse : Document
     {
-
+        public new int StandardLoanTime { get { return 60; } }
         public string Isbn { get; set; }
         public string ClassificationNr { get; set; }
         public Person Author { get; set; }

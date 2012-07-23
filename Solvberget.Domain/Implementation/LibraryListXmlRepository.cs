@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
+using Solvberget.Domain.Utils;
 
 namespace Solvberget.Domain.Implementation
 {
-    public class LibraryListXmlRepository : IListRepository
+    public class LibraryListXmlRepository : IListRepositoryStatic
     {
         private const string StdFolderPath = @"App_Data\librarylists\";
         private readonly string _folderPath;
@@ -35,6 +36,12 @@ namespace Solvberget.Domain.Implementation
             return limit != null 
                 ? lists.OrderBy(list => list.Priority).Take((int)limit).ToList() 
                 : lists.OrderBy(list => list.Priority).ToList();
+        }
+
+        public DateTime? GetTimestampForLatestChange()
+        {
+            var newestFile = FileUtils.GetNewestFile(new DirectoryInfo(_folderPath));
+            return newestFile != null ? (DateTime?)newestFile.LastWriteTimeUtc : null;
         }
 
         private void AddContentToList(LibraryList libraryList)

@@ -14,24 +14,6 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void PropertiesTest()
         {
-            const string userId = "164916";
-            var user = new UserInfo { BorrowerId = userId };
-            user.FillProperties(UserXml);
-            Assert.AreEqual(userId, user.BorrowerId);
-            Assert.AreEqual("STV000060009", user.Id);
-
-            Assert.AreEqual("60.00", user.Balance);
-            Assert.AreEqual("350.00", user.CashLimit);
-            Assert.AreEqual("91562303", user.CellPhoneNumber);
-            Assert.AreEqual("4019 STAVANGER", user.CityAddress);
-            Assert.AreEqual("09.04.1989", user.DateOfBirth);
-            Assert.AreEqual("haaland@gmail.com", user.Email);
-            Assert.AreEqual("Hovedbibl.", user.HomeLibrary);
-            Assert.AreEqual("51536695", user.HomePhoneNumber);
-            Assert.AreEqual("Sindre Haaland", user.Name);
-            Assert.AreEqual("Sindre Haaland", user.PrefixAddress);
-            Assert.AreEqual("Bakkesvingen 8", user.StreetAddress);
-            Assert.AreEqual("4019", user.Zip); 
 
         }
 

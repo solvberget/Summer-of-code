@@ -2,6 +2,7 @@
 //Språk norsk
 // æøå: Ã¦  Ã¸  Ã¥ ... Use replace all to change
 {
+    "Isbn"                  : "Isbn",
     "Author"                : "Forfatter",
     "OriginalTitle"         : "Original Tittel",
     "TypeAndNumberOfDiscs"  : "Type og nummer disker",

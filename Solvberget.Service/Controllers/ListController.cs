@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,17 +12,27 @@ namespace Solvberget.Service.Controllers
     public class ListController : Controller
     {
 
-        private readonly IListRepository _xmlRepository;
+        private readonly IListRepositoryStatic _xmlRepository;
 
-        public ListController(IListRepository xmlRepository)
+        public ListController(IListRepositoryStatic xmlRepository)
         {
             _xmlRepository = xmlRepository;
         }
 
-        public JsonResult GetLists(int? limit)
+        public JsonResult GetListsStatic(int? limit)
         {
             var result = _xmlRepository.GetLists(limit);
-            return this.Json(result, JsonRequestBehavior.AllowGet);
+            var latestChange = _xmlRepository.GetTimestampForLatestChange();
+            var timestamp = latestChange != null ? latestChange.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
+            var response = new { Timestamp = timestamp, Lists = result };
+            return this.Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetListsStaticLastModified()
+        {
+            var timestamp = _xmlRepository.GetTimestampForLatestChange();
+            var response = timestamp != null ? timestamp.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
+            return this.Json(response, JsonRequestBehavior.AllowGet);
         }
 
     }
