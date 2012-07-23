@@ -53,13 +53,14 @@ progress.withText {
     -ms-grid-columns: auto 1fr;
     -ms-grid-rows: 1fr;
     display: -ms-grid;
+    height:inherit;
 }
 
 #documentDetailData {
     display: none;
     visibility: hidden;
     width: 100%;
-    height: 100%;
+    height:inherit;
 }
 
 #documentFragmentHolder {
@@ -75,6 +76,9 @@ progress.withText {
     height: calc(100% - 117px - 30px - 10px);
     overflow: auto;
     padding-bottom:20px;
+}
+.documentdetailpage {
+    height:inherit;
 }
 
 #fragmentContent {
