@@ -19,12 +19,19 @@ namespace Solvberget.Service.Controllers
             _xmlRepository = xmlRepository;
         }
 
-        public JsonResult GetLists(int? limit)
+        public JsonResult GetListsStatic(int? limit)
         {
             var result = _xmlRepository.GetLists(limit);
             var latestChange = _xmlRepository.GetTimestampForLatestChange();
             var timestamp = latestChange != null ? latestChange.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
             var response = new { Timestamp = timestamp, Lists = result };
+            return this.Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetListsStaticLastModified()
+        {
+            var timestamp = _xmlRepository.GetTimestampForLatestChange();
+            var response = timestamp != null ? timestamp.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
             return this.Json(response, JsonRequestBehavior.AllowGet);
         }
 
