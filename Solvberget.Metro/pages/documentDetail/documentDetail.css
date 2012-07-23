@@ -1,5 +1,5 @@
 ﻿body {
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
 }
 
@@ -64,6 +64,16 @@ progress.withText {
 
 #documentFragmentHolder {
     -ms-grid-column: 2;
+    -ms-grid-row: 1;
+
+    -ms-hyphenate-limit-zone: 0%;
+    -ms-hyphens: manual;
+    column-fill: auto;
+    column-gap: normal;
+    column-rule: 0px solid gray;
+    columns: auto 16em;
+    height: calc(100% - 187px);
+    overflow: auto;
 }
 
 #fragmentContent {
@@ -71,6 +81,11 @@ progress.withText {
     -ms-grid-column: inherit;
 
 }
+
+#docLocAndAvail {
+
+}
+
 
 /** FRAGMENT CONTENT */
 
@@ -88,18 +103,15 @@ progress.withText {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     resize: both;
-    max-width: 100px;
     min-width: 160px;
     min-height: 40px;
 }
 
 
 .fact-name {
-
 }
 
 .fact-value {
-
 }
 
 /** HEADER **/
@@ -153,6 +165,7 @@ progress.withText {
 }
 
 
+
 @media screen and (-ms-view-state: snapped) {
     body {
         overflow-y: scroll;
@@ -204,10 +217,11 @@ progress.withText {
         min-height: 90px;
         -ms-grid-column: 1;
     }
+
     #documentTitle {
         margin: 0!important;
-        padding:0!important;
+        padding: 0!important;
         margin-left: 10px;
-        float:left;
+        float: left;
     }
 }

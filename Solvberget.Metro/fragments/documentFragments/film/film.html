@@ -6,13 +6,15 @@
     <script type="text/javascript" src="film.js"></script>
 </head>
 <body>
-    <div id="imdbTemplate" class="" data-win-control="WinJS.Binding.Template">
-        <img src="../../../images/externalSites/imdb/imdb-48x48.png" style="display: none" data-win-bind="style: ImdbRating DocumentDetailConverters.imdbStyleConverter" />
-        <h2 data-win-bind="textContent: ImdbRating"></h2>
+    <div class="templates">
+        <div id="imdbTemplate">
+            <img src="ms-appx:///images/externalSites/imdb/imdb-48x48.png" />
+            <h2 class="imdbRating" data-win-bind="textContent: ImdbRating"></h2>
+        </div>
+
     </div>
-
-
     <section id="fragmentContent">
+
         <article id="review">
 
             <h2 id="reviewTitle">IMDB omtale</h2>
@@ -118,10 +120,7 @@
                 <div class="fact-name" data-win-res="{textContent: 'TargetGroup'}"></div>
                 <div class="fact-value" data-win-bind="innerText:TargetGroup"></div>
             </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'IsFiction'}"></div>
-                <div class="fact-value" data-win-bind="innerText:IsFiction"></div>
-            </div>
+
             <div class="fact">
                 <div class="fact-name" data-win-res="{textContent: 'Language'}"></div>
                 <div class="fact-value" data-win-bind="innerText:Language"></div>
@@ -170,14 +169,8 @@
                 <div class="fact-name" data-win-res="{textContent: 'SeriesNumber'}"></div>
                 <div class="fact-value" data-win-bind="innerText:SeriesNumber"></div>
             </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'ThumbnailUrl'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ThumbnailUrl"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'ImageUrl'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ImageUrl"></div>
-            </div>
+
+
         </article>
 
 

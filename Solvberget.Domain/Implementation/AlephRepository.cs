@@ -66,8 +66,9 @@ namespace Solvberget.Domain.Implementation
                     //when getting the document it self from Aleph
                     docToReturn.DocumentNumber = documentNumber;
 
-                    //Add Alpeh location and availability information
-                    GenerateDocumentLocationAndAvailabilityInfo(docToReturn);
+                    //Add Alpeh location and availability information if not light
+                    if (!isLight)
+                        GenerateDocumentLocationAndAvailabilityInfo(docToReturn);
 
                     //Try to get ThumbnailUrl, and also ImageUrl if not light.
                     docToReturn.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(docToReturn.DocumentNumber, true);

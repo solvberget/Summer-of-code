@@ -34,10 +34,9 @@ var getImdbRating = function () {
 
                 var data = { documentReview: response };
 
-                var reviewTemplate = new WinJS.Binding.Template(document.getElementById("imdbTemplate"));
-                var reviewTemplateContainer = document.getElementById("ratingContainer");
+                var reviewTemplate = new WinJS.Binding.Template(document.getElementById("reviewTemplate"));
+                var reviewTemplateContainer = document.getElementById("reviewContainer");
 
-                reviewTemplateContainer.innerHTML = "";
                 reviewTemplate.render(data, reviewTemplateContainer);
 
             }
