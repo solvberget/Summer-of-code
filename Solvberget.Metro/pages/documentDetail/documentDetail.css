@@ -53,42 +53,59 @@ progress.withText {
     -ms-grid-columns: auto 1fr;
     -ms-grid-rows: 1fr;
     display: -ms-grid;
-    height:inherit;
+    height: inherit;
 }
 
 #documentDetailData {
     display: none;
     visibility: hidden;
     width: 100%;
-    height:inherit;
+    height: inherit;
 }
 
 #documentFragmentHolder {
     -ms-grid-column: 2;
     -ms-grid-row: 1;
-
     -ms-hyphenate-limit-zone: 0%;
     -ms-hyphens: manual;
     column-fill: auto;
     column-gap: normal;
     column-rule: 0px solid gray;
-    columns: auto 16em;
-    height: calc(100% - 117px - 30px - 10px);
+    columns: auto 19em;
+    height: calc(100% - 117px - 30px);
     overflow: auto;
-    padding-bottom:20px;
+    padding-bottom: 20px;
 }
+#availabilityHolder > section > span {
+    display:block;
+}
+#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count  {
+    display:inline;
+}
+.doc-loc-branch {
+    font-weight:600;
+}
+.availabilitySection {
+    margin-top:10px;
+}
+
 .documentdetailpage {
-    height:inherit;
+    height: inherit;
 }
 
 #fragmentContent {
     margin-left: 30px;
     -ms-grid-column: inherit;
-
 }
+    #fragmentContent > * {
+        padding-top: 15px;
+    }
+
+    #fragmentContent > *:first-child {
+        padding-top: 0;
+    }
 
 #docLocAndAvail {
-
 }
 
 
@@ -96,7 +113,7 @@ progress.withText {
 
 
 .fact {
-    margin-top: 15px;
+    margin-top:15px;
     border-color: white;
     border-width: 1px;
     border-style: dashed;
@@ -108,10 +125,13 @@ progress.withText {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     resize: both;
-    min-width: 160px;
-    min-height: 40px;
+    /*    min-width: 160px;
+    min-height: 40px;*/
 }
 
+.fact-name {
+    font-weight: 600;
+}
 
 .fact-name {
 }
@@ -133,7 +153,7 @@ progress.withText {
 /** LEFT BAR STATIC INFORMATION */
 #documentStaticInformation {
     -ms-grid-column: 1;
-    -ms-grid-row:1;
+    -ms-grid-row: 1;
 }
 
 
