@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var page = WinJS.UI.Pages.define("/fragments/documentFragments/audioBook/audioBook.html", {
+    var page = WinJS.UI.Pages.define("/fragments/documentFragments/document/document.html", {
         ready: function (element, options) {
 
 
@@ -13,7 +13,7 @@
 
 var fragmentReady = function() {
 
-    console.log("yeah");
+
 };
 
 

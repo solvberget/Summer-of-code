@@ -13,7 +13,7 @@
 
 var fragmentReady = function () {
 
-    console.log("yeah");
+
 }
 
 
