@@ -103,6 +103,15 @@ progress.withText {
     min-height: 40px;
 }
 
+
+.fact-name {
+
+}
+
+.fact-value {
+
+}
+
 /** HEADER **/
 .pagesubtitle {
     margin: 0;

@@ -39,12 +39,12 @@ var populateFragment = function (documentModel) {
     WinJS.UI.Fragments.renderCopy("/fragments/documentFragments/" + documentType + "/" + documentType + ".html", documentFragmentHolder).done(function () {
 
         var fragmentContent = document.getElementById("fragmentContent");
-        
+        var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
         if (fragmentContent != undefined && documentModel != undefined)
             WinJS.Binding.processAll(fragmentContent, documentModel);
 
         DocumentDetailFragment.ready(that.documentModel);
-
+        WinJS.Resources.processAll();
         // Hide progress-ring, show content
         $("#documentDetailLoading").css("display", "none").css("visibility", "none");
         $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
@@ -99,7 +99,7 @@ var getDocument = function (documentNumber) {
                     WinJS.Binding.processAll(documentImageDiv, response);
                 if (documentSubTitleDiv != undefined && response != undefined)
                     WinJS.Binding.processAll(documentSubTitleDiv, response);
-
+              
                 
             }
 

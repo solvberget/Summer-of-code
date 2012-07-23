@@ -19,7 +19,7 @@ var fragmentReady = function (model) {
     documentModel = model;
 
     getImdbRating();
-
+   
 
 };
 

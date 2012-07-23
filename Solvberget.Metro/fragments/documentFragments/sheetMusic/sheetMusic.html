@@ -1,111 +1,67 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Film</title>
-    <link rel="stylesheet" href="film.css" />
-    <script type="text/javascript" src="film.js"></script>
+
+    <title>Logg inn</title>
+    <link rel="stylesheet" href="sheetMusic.css" />
+    <script type="text/javascript" src="sheetMusic.js"></script>
+
 </head>
 <body>
-    <div id="imdbTemplate" class="" data-win-control="WinJS.Binding.Template">
-        <img src="../../../images/externalSites/imdb/imdb-48x48.png" style="display: none" data-win-bind="style: ImdbRating DocumentDetailConverters.imdbStyleConverter" />
-        <h2 data-win-bind="textContent: ImdbRating"></h2>
-    </div>
 
 
     <section id="fragmentContent">
-        
         <article id="review">
 
-            <h2 id="reviewTitle">IMDB omtale</h2>
+            <h2 id="reviewTitle">Bokbasens omtale</h2>
 
             <div id="reviewContent">
-                Dette er en fin film!
+                Dette er en fin bok!
             </div>
 
         </article>
 
         <article id="details">
 
-
             <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'Ean'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Ean"></div>
+                <div class="fact-name" data-win-res="{textContent: 'Composer'}"></div>
+                <div class="fact-value" data-win-bind="innerText:Composer"></div>
             </div>
             <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'OriginalTitle'}"></div>
-                <div class="fact-value" data-win-bind="innerText:OriginalTitle"></div>
+                <div class="fact-name" data-win-res="{textContent: 'StandardizedTitle'}"></div>
+                <div class="fact-value" data-win-bind="innerText:StandardizedTitle"></div>
             </div>
             <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'Numbering'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Numbering"></div>
+                <div class="fact-name" data-win-res="{textContent: 'NumberOfPagesAndNumberOfParts'}"></div>
+                <div class="fact-value" data-win-bind="innerText:NumberOfPagesAndNumberOfParts"></div>
             </div>
             <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'PartTitle'}"></div>
-                <div class="fact-value" data-win-bind="innerText:PartTitle"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'Edition'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Edition"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'ProductionYear'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ProductionYear"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'TypeAndNumberOfDiscs'}"></div>
-                <div class="fact-value" data-win-bind="innerText:TypeAndNumberOfDiscs"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'Contents'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Contents"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'Actors'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Actors"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'AgeLimit'}"></div>
-                <div class="fact-value" data-win-bind="innerText:AgeLimit"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'NorwegianTitle'}"></div>
-                <div class="fact-value" data-win-bind="innerText:NorwegianTitle"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'Subject'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Subject"></div>
+                <div class="fact-name" data-win-res="{textContent: 'DiscContent'}"></div>
+                <div class="fact-value" data-win-bind="innerText:DiscContent"></div>
             </div>
             <div class="fact">
                 <div class="fact-name" data-win-res="{textContent: 'CompositionType'}"></div>
                 <div class="fact-value" data-win-bind="innerText:CompositionType"></div>
             </div>
             <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'SubtitleLanguage'}"></div>
-                <div class="fact-value" data-win-bind="innerText:SubtitleLanguage"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'ReferencedPlaces'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ReferencedPlaces"></div>
-            </div>
-            <div class="fact">
                 <div class="fact-name" data-win-res="{textContent: 'Genre'}"></div>
                 <div class="fact-value" data-win-bind="innerText:Genre"></div>
             </div>
             <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'ReferredPersons'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ReferredPersons"></div>
-            </div>
-            <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'ReferredOrganizations'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ReferredOrganizations"></div>
+                <div class="fact-name" data-win-res="{textContent: 'MusicalLineup'}"></div>
+                <div class="fact-value" data-win-bind="innerText:MusicalLineup"></div>
             </div>
             <div class="fact">
                 <div class="fact-name" data-win-res="{textContent: 'InvolvedPersons'}"></div>
                 <div class="fact-value" data-win-bind="innerText:InvolvedPersons"></div>
             </div>
             <div class="fact">
-                <div class="fact-name" data-win-res="{textContent: 'InvolvedOrganizations'}"></div>
-                <div class="fact-value" data-win-bind="innerText:InvolvedOrganizations"></div>
+                <div class="fact-name" data-win-res="{textContent: 'TitlesOtherWritingForms'}"></div>
+                <div class="fact-value" data-win-bind="innerText:TitlesOtherWritingForms"></div>
+            </div>
+            <div class="fact">
+                <div class="fact-name" data-win-res="{textContent: 'StandardLoanTime'}"></div>
+                <div class="fact-value" data-win-bind="innerText:StandardLoanTime"></div>
             </div>
             <div class="fact">
                 <div class="fact-name" data-win-res="{textContent: 'DocType'}"></div>
@@ -170,6 +126,10 @@
             <div class="fact">
                 <div class="fact-name" data-win-res="{textContent: 'SeriesNumber'}"></div>
                 <div class="fact-value" data-win-bind="innerText:SeriesNumber"></div>
+            </div>
+            <div class="fact">
+                <div class="fact-name" data-win-res="{textContent: 'AvailabilityInfo'}"></div>
+                <div class="fact-value" data-win-bind="innerText:AvailabilityInfo"></div>
             </div>
             <div class="fact">
                 <div class="fact-name" data-win-res="{textContent: 'ThumbnailUrl'}"></div>
