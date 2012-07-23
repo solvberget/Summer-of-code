@@ -18,23 +18,39 @@
                 // Restore application state here.
             }
 
-            if (app.sessionState.history) {
-                nav.history = app.sessionState.history;
-            }
-            args.setPromise(WinJS.UI.processAll().then(function () {
-                if (nav.location) {
-                    nav.history.current.initialPlaceholder = true;
-                    return nav.navigate(nav.location, nav.state);
-                } else {
-                    return nav.navigate(Application.navigator.home);
-                }
-            }));
+            if (args.detail.arguments !== "") {
 
-            setAppbarButton()
+                if (app.sessionState.history) {
+                    nav.history = app.sessionState.history;
+                } else {
+                    nav.history.backStack.push({ location: "/pages/home/home.html" });
+
+                }
+
+                args.setPromise(WinJS.UI.processAll().done(function () {
+                    nav.navigate(args.detail.arguments);
+
+                }));
+
+            } else {
+
+                if (app.sessionState.history) {
+                    nav.history = app.sessionState.history;
+                }
+                args.setPromise(WinJS.UI.processAll().done(function () {
+                    if (nav.location) {
+                        nav.history.current.initialPlaceholder = true;
+                        nav.navigate(nav.location, nav.state);
+                    } else {
+                        nav.navigate(Application.navigator.home);
+                    }
+                }));
+            }
+            setAppbarButton();
 
             document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
             document.getElementById("cmdPin").addEventListener("click", pinToStart);
-
+            
         }
     };
 
@@ -75,7 +91,7 @@ function pinByElementAsync(element, newTileID, newTileShortName, newTileDisplayN
     var uriLogo = new Windows.Foundation.Uri("ms-appx:///images/solvberget150.png");
     var uriSmallLogo = new Windows.Foundation.Uri("ms-appx:///images/solvberget30.png");
     var currentTime = new Date();
-    var TileActivationArguments = "timeTileWasPinned=" + currentTime;
+    var TileActivationArguments = WinJS.Navigation.location;
     var tile = new Windows.UI.StartScreen.SecondaryTile(newTileID, newTileShortName, newTileDisplayName, TileActivationArguments, Windows.UI.StartScreen.TileOptions.showNameOnLogo, uriLogo);
     tile.foregroundText = Windows.UI.StartScreen.ForegroundText.light;
     tile.smallLogo = uriSmallLogo;

@@ -7,13 +7,14 @@
     var music = "/images/icon/Icon Pack 1/png/music.png";
     var home = "/images/home/MyPage.png";
     var tasks = "/images/home/Lists.png";
+    var activePage = "/pages/home/home.html";
 
     var serverBaseUrl = "http://localhost:7089";
 
     var menuItems = [
-        { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, navigateTo : function () { WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
-        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { loginThenNavigateTo("/pages/mypage/mypage.html"); } },
-        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { WinJS.Navigation.navigate("/pages/events/events.html"); } },
+        { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, navigateTo: function () { activePage = "/pages/lists/libraryLists.html"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
+        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { activePage = "/pages/mypage/mypage.html"; loginThenNavigateTo("/pages/mypage/mypage.html"); } },
+        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { activePage = "/pages/events/events.html"; WinJS.Navigation.navigate("/pages/events/events.html"); } },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: function () { Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); } },
     ];
     
@@ -54,5 +55,6 @@
         menuItems: menuItems,
         serverBaseUrl: serverBaseUrl,
         goHome: goHome,
+        activePage: activePage,
     });
 })();
