@@ -39,7 +39,8 @@ var populateFragment = function (documentModel) {
     WinJS.UI.Fragments.renderCopy("/fragments/documentFragments/" + documentType + "/" + documentType + ".html", documentFragmentHolder).done(function () {
 
         var fragmentContent = document.getElementById("fragmentContent");
-        var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
+        // generate code for documentdetailpage
+        //var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
         if (fragmentContent != undefined && documentModel != undefined)
             WinJS.Binding.processAll(fragmentContent, documentModel);
 
@@ -122,6 +123,12 @@ WinJS.Namespace.define("DocumentDetailConverters", {
        getDocumentImageUrl();
        return "/images/placeholders/" + documentModel.DocType + ".png";
 
+    }),
+    hideNullOrEmptyConverter: WinJS.Binding.converter(function (factSrc) {
+        if (factSrc == "" || factSrc === "null" || factSrc == undefined) {
+            return "none";
+        }
+        return "block";
     }),
 
 });
