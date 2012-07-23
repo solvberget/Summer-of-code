@@ -276,6 +276,7 @@
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
     <Content Include="js\ListDataSource.js" />
+    <Content Include="js\liveTile.js" />
     <Content Include="js\localizationHelper.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
