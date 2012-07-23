@@ -60,4 +60,10 @@ WinJS.Namespace.define("DocumentDetailConverters", {
     imdbStyleConverter: WinJS.Binding.converter(function (imdbSrc) {
         return "display:block";
     }),
+    nullStyleConverter : WinJS.Binding.converter(function (attr) {
+        if (attr == undefined || attr == "" || attr === "null")
+            return "display: none";
+        else
+            return "display:block";
+    }),
 });
