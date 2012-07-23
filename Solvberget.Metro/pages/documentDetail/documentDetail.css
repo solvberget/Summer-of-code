@@ -72,8 +72,9 @@ progress.withText {
     column-gap: normal;
     column-rule: 0px solid gray;
     columns: auto 16em;
-    height: calc(100% - 187px);
+    height: calc(100% - 117px - 30px - 10px);
     overflow: auto;
+    padding-bottom:20px;
 }
 
 #fragmentContent {
@@ -126,8 +127,8 @@ progress.withText {
 
 /** LEFT BAR STATIC INFORMATION */
 #documentStaticInformation {
-    height: 100%;
     -ms-grid-column: 1;
+    -ms-grid-row:1;
 }
 
 
