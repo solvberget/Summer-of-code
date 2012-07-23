@@ -11,10 +11,10 @@
 
 })();
 
-var fragmentReady = function () {
+var fragmentReady = function() {
 
-    console.log("yeah");
-}
+
+};
 
 
 WinJS.Namespace.define("DocumentDetailFragment", {
