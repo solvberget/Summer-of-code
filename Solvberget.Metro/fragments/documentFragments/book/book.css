@@ -1,1 +1,16 @@
-﻿
+﻿#fragmentContent {
+    -ms-grid-columns: auto 1fr;
+    -ms-grid-rows: 1fr;
+     display: -ms-grid;
+}
+#review {
+    -ms-grid-column: 1;
+    margin-left: 20px  
+}
+
+     
+#details {
+    -ms-grid-column: 2;
+    margin-left: 20px;
+    
+}
