@@ -46,11 +46,36 @@ var populateFragment = function (documentModel) {
 
         DocumentDetailFragment.ready(that.documentModel);
         WinJS.Resources.processAll();
+
+        populateAvailability();
+
         // Hide progress-ring, show content
         $("#documentDetailLoading").css("display", "none").css("visibility", "none");
         $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
+
     });
+
+};
+
+var populateAvailability = function () {
+
+    var availabilityTemplateDiv = document.getElementById("availabilityTemplate");
+    var availabilityTemplateHolder = document.getElementById("availabilityHolder");
+
+    var availabilityTemplate = undefined;
+    if (availabilityTemplateDiv)
+        availabilityTemplate = new WinJS.Binding.Template(availabilityTemplateDiv);
+
+    var model;
+
+    for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
+        model = documentModel.AvailabilityInfo[i];
+
+        if (availabilityTemplate && availabilityTemplateHolder && model)
+            availabilityTemplate.render(model, availabilityTemplateHolder);
+
+    }
 
 };
 
@@ -100,8 +125,8 @@ var getDocument = function (documentNumber) {
                     WinJS.Binding.processAll(documentImageDiv, response);
                 if (documentSubTitleDiv != undefined && response != undefined)
                     WinJS.Binding.processAll(documentSubTitleDiv, response);
-              
-                
+
+
             }
 
         }, this)
@@ -120,8 +145,8 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         if (imageUrl != "")
             return imageUrl;
 
-       getDocumentImageUrl();
-       return "/images/placeholders/" + documentModel.DocType + ".png";
+        getDocumentImageUrl();
+        return "/images/placeholders/" + documentModel.DocType + ".png";
 
     }),
     hideNullOrEmptyConverter: WinJS.Binding.converter(function (factSrc) {
@@ -129,6 +154,19 @@ WinJS.Namespace.define("DocumentDetailConverters", {
             return "none";
         }
         return "block";
+    }),
+    docAvailableStyle: WinJS.Binding.converter(function(numAvailable) {
+        return (!numAvailable || numAvailable < 1 || numAvailable == "0" || numAvailable == "null") ? "Red" : "Green";
+    }),
+    docAvailable: WinJS.Binding.converter(function (numAvailable) {
+        return numAvailable + " av";
+    }),
+    docTotalCount: WinJS.Binding.converter(function (totalCount) {
+        var pluralFix = totalCount  < 2 ? "eksemplar" : "eksemplarer";
+        return totalCount + " " + pluralFix + " tilgjengelig";
+    }),
+    docEarliestAvailableDate: WinJS.Binding.converter(function (date) {
+        return (date || date != "") ? "Estimert tilgjengelig: " + date : "";
     }),
 
 });

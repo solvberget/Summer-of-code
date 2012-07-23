@@ -35,7 +35,7 @@ namespace Solvberget.Service.Infrastructure
             ninjectKernel.Bind<IRatingRepository>().To<RatingRepository>();
             ninjectKernel.Bind<IImageRepository>().To<ImageRepository>()
                  .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
-            ninjectKernel.Bind<IListRepository>().To<LibraryListXmlRepository>()
+            ninjectKernel.Bind<IListRepositoryStatic>().To<LibraryListXmlRepository>()
                 .WithConstructorArgument("folderPath", EnvironmentHelper.GetXmlListPath());
             ninjectKernel.Bind<ISpellingDictionary>()
                 .To<LuceneRepository>()
