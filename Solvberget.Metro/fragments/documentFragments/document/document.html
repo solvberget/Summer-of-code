@@ -3,94 +3,23 @@
 <head>
 
     <title>Logg inn</title>
-    <link rel="stylesheet" href="audioBook.css" />
-    <script type="text/javascript" src="audioBook.js"></script>
+    <link rel="stylesheet" href="document.css" />
+    <script type="text/javascript" src="document.js"></script>
 
 </head>
 <body>
 
 
     <section id="fragmentContent">
-        <article id="review">
 
-            <h2 id="reviewTitle">Bokbasens omtale</h2>
-
-            <div id="reviewContent">
-                Dette er en fin bok!
-            </div>
-
-        </article>
         <article id="docLocAndAvail">
             <h2>Tilgjengelighet</h2>
             <div id="availabilityHolder"></div>
         </article>
         <article id="details">
 
-            <h2 id="H1">Fakta om lydboken</h2>
-            <div class="more-fact" style="display: none">
-                <div class="fact-name" data-win-res="{textContent: 'Isbn'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Isbn"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: ClassificationNumber DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'ClassificationNumber'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ClassificationNumber"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: Author DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'Author'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Author.Name"></div>
-            </div>
-            <div class="more-fact" style="display: none">
-                <div class="fact-name" data-win-res="{textContent: 'Organization'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Organization"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: StandarizedTitle DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'StandarizedTitle'}"></div>
-                <div class="fact-value" data-win-bind="innerText:StandarizedTitle"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: Numbering DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'Numbering'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Numbering"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: PartTitle DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'PartTitle'}"></div>
-                <div class="fact-value" data-win-bind="innerText:PartTitle"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: Edition DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'Edition'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Edition"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: TypeAndNumberOfDiscs DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'TypeAndNumberOfDiscs'}"></div>
-                <div class="fact-value" data-win-bind="innerText:TypeAndNumberOfDiscs"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: Subject DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'Subject'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Subject"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: ReferredPersons DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'ReferredPersons'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ReferredPersons"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: ReferredOrganizations DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'ReferredOrganizations'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ReferredOrganizations"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: InvolvedPersons DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'InvolvedPersons'}"></div>
-                <div class="fact-value" data-win-bind="innerText:InvolvedPersons"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: InvolvedOrganizations DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'InvolvedOrganizations'}"></div>
-                <div class="fact-value" data-win-bind="innerText:InvolvedOrganizations"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: ReferencedPlaces DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'ReferencedPlaces'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ReferencedPlaces"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: Genre DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'Genre'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Genre"></div>
-            </div>
+            <h2 id="H1">Fakta om dokumentet</h2>
+
             <div class="fact" data-win-bind="style.display: StandardLoanTime DocumentDetailConverters.hideNullOrEmptyConverter">
                 <div class="fact-name" data-win-res="{textContent: 'StandardLoanTime'}"></div>
                 <div class="fact-value" data-win-bind="innerText:StandardLoanTime"></div>
@@ -159,6 +88,10 @@
                 <div class="fact-name" data-win-res="{textContent: 'SeriesNumber'}"></div>
                 <div class="fact-value" data-win-bind="innerText:SeriesNumber"></div>
             </div>
+            <div class="fact" data-win-bind="style.display: AvailabilityInfo DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'AvailabilityInfo'}"></div>
+                <div class="fact-value" data-win-bind="innerText:AvailabilityInfo"></div>
+            </div>
             <div class="more-fact" style="display: none">
                 <div class="fact-name" data-win-res="{textContent: 'ThumbnailUrl'}"></div>
                 <div class="fact-value" data-win-bind="innerText:ThumbnailUrl"></div>
@@ -167,8 +100,6 @@
                 <div class="fact-name" data-win-res="{textContent: 'ImageUrl'}"></div>
                 <div class="fact-value" data-win-bind="innerText:ImageUrl"></div>
             </div>
-       
-
 
 
         </article>

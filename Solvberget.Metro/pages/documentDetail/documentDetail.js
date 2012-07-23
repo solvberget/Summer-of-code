@@ -40,7 +40,7 @@ var populateFragment = function (documentModel) {
 
         var fragmentContent = document.getElementById("fragmentContent");
         // generate code for documentdetailpage
-        //var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
+        var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
         if (fragmentContent != undefined && documentModel != undefined)
             WinJS.Binding.processAll(fragmentContent, documentModel);
 
