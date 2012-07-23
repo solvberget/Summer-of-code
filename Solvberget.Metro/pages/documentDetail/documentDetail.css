@@ -64,12 +64,23 @@ progress.withText {
 
 #documentFragmentHolder {
     -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    margin-top: 70px;
+
 }
 
 #fragmentContent {
     margin-left: 30px;
     -ms-grid-column: inherit;
 }
+
+#docLocAndAvail {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    margin-left:30px;
+
+}
+
 
 /** FRAGMENT CONTENT */
 
@@ -143,6 +154,7 @@ progress.withText {
 }
 
 
+
 @media screen and (-ms-view-state: snapped) {
     body {
         overflow-y: scroll;
@@ -194,10 +206,11 @@ progress.withText {
         min-height: 90px;
         -ms-grid-column: 1;
     }
+
     #documentTitle {
         margin: 0!important;
-        padding:0!important;
+        padding: 0!important;
         margin-left: 10px;
-        float:left;
+        float: left;
     }
 }
