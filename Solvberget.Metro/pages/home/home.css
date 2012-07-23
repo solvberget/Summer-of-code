@@ -19,6 +19,7 @@
         display: -ms-grid;
         height: 250px;
         width: 250px;
+        position:relative
     }
 
         .itemspage .itemslist .win-item .item-image {
@@ -27,9 +28,12 @@
 
         .itemspage .itemslist .win-item .item-overlay {
             -ms-grid-row: 2;
-            -ms-grid-rows: 1fr 21px;
+            
+            height:45px;
+            -ms-grid-rows: 1fr 25px;
             display: -ms-grid;
             padding: 6px 15px 2px 15px;
+            position:absolute; bottom:0;
         }
 
             .itemspage .itemslist .win-item .item-overlay .item-title {

@@ -1,0 +1,269 @@
+﻿body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.templates {
+    display: none;
+}
+
+/** PROGRESS RING */
+
+#documentDetailLoading {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 300px;
+}
+
+
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+    vertical-align: text-bottom; /* Makes the bottom of the control align with the bottom of its label */
+}
+
+progress.withText {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+/* Text style for a label for the progress ring */
+.progressRingText {
+    font-family: "Segoe UI";
+}
+
+/* Text style for a label for a default size progress ring */
+.progressRingText {
+    font-size: 20pt;
+    line-height: 25pt;
+}
+
+    /* The margin to separate the ring and its label */
+    .progressRingText progress {
+        margin-right: 5px;
+    }
+
+/** MAIN CONTENT */
+
+#document-content {
+    margin-left: 120px;
+    margin-top: 30px;
+    -ms-grid-columns: auto 1fr;
+    -ms-grid-rows: 1fr;
+    display: -ms-grid;
+    height: calc(100% - 200px);
+}
+
+#documentDetailData {
+    display: none;
+    visibility: hidden;
+    width: 100%;
+    height: inherit;
+}
+
+#documentFragmentHolder {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    -ms-hyphenate-limit-zone: 0%;
+    -ms-hyphens: manual;
+    column-fill: auto;
+    column-gap: normal;
+    column-rule: 0px solid gray;
+    columns: auto 19em;
+    height: calc(100% - 10px);
+    overflow: auto;
+    padding-bottom: 20px;
+}
+
+#availabilityHolder > section > span {
+    display: block;
+}
+
+#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
+    display: inline;
+}
+
+.doc-loc-branch {
+    font-weight: 600;
+}
+
+.availabilitySection {
+    margin-top: 10px;
+}
+
+.documentdetailpage {
+    height: inherit;
+}
+
+#fragmentContent {
+    margin-left: 30px;
+    -ms-grid-column: inherit;
+}
+
+    #fragmentContent > * {
+        padding-top: 15px;
+    }
+
+        #fragmentContent > *:first-child {
+            padding-top: 0;
+        }
+
+#docLocAndAvail {
+}
+
+
+/** FRAGMENT CONTENT */
+
+
+.fact {
+    margin-top: 15px;
+
+    width: auto;
+    height: auto;
+    padding: 10px;
+    overflow: hidden;
+    resize: both;
+}
+
+.fact-name {
+    font-weight: 600;
+}
+
+.fact-name {
+}
+
+.fact-value {
+}
+
+/** HEADER **/
+.pagesubtitle {
+    margin: 0;
+    padding: 0;
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+}
+
+
+
+
+/** LEFT BAR STATIC INFORMATION */
+#documentStaticInformation {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    margin-right:20px;
+}
+
+
+.document-image-container {
+    height: auto;
+    width: 240px;
+    max-height: 450px;
+    max-width: 240px;
+}
+
+#documentImage {
+    max-height: inherit;
+    max-width: inherit;
+}
+
+#documentButtonContainer {
+    text-align: center;
+}
+
+.button {
+    margin: 10px;
+}
+
+#ratingContainer {
+    margin-top: 15px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    overflow: hidden;
+    resize: both;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 90px;
+}
+
+
+
+@media screen and (-ms-view-state: snapped) {
+    body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .document-image-container {
+        height: auto;
+        width: 100px;
+        max-height: 450px;
+        max-width: 240px;
+        margin-left: 10px;
+        -ms-grid-row: 3;
+    }
+
+
+    #document-content {
+        margin-left: 0;
+        margin-top: 10px;
+        -ms-grid-columns: auto;
+        -ms-grid-rows: auto auto auto auto auto;
+        display: -ms-grid;
+        margin-left: 10px;
+    }
+
+    .pagesubtitle {
+        margin: 0;
+        padding: 0;
+        -ms-grid-column: 1;
+        -ms-grid-row: 2;
+        margin-left: 10px;
+    }
+
+
+    #documentFragmentHolder {
+        -ms-grid-column: 1;
+        -ms-grid-row: 1;
+        margin-left: 10px;
+        -ms-grid-row: 5;
+        -ms-hyphenate-limit-zone: 0%;
+        -ms-hyphens: manual;
+        column-fill: auto;
+        column-gap: normal;
+        column-rule: 0px solid gray;
+        columns: auto 19em;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+
+    #ratingContainer {
+        margin-left: 10px;
+        margin-top: 15px;
+        width: auto;
+        height: auto;
+        padding: 10px;
+        overflow: hidden;
+        resize: both;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 90px;
+        -ms-grid-row: 4;
+        -ms-grid-column: 1;
+    }
+
+    #documentTitle {
+        margin: 0!important;
+        padding: 0!important;
+        margin-left: 10px;
+        float: left;
+    }
+
+    #documentButtonContainer {
+        display: none;
+    }
+}

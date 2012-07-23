@@ -2,9 +2,10 @@
 //Spr�k norsk
 // ���: æ  ø  å ... Use replace all to change
 {
+    "Isbn"                  : "Isbn",
     "Author"                : "Forfatter",
     "OriginalTitle"         : "Original Tittel",
-    "TypeAndNumberOfDiscs"  : "Type og nummer disker",
+    "TypeAndNumberOfDiscs"  : "Type og antall disker",
     "Actors"                : "Skuespillere",
     "AgeLimit"              : "Aldersgrense",
     "SubtitleLanguage"      : "Undertekstspråk",
@@ -24,7 +25,7 @@
     "ClassificationNr"      : "Klassifikasjonsnummer",
     "NumberOfPages"         : "Antall sider",
     "LocationCode"          : "Lokasjonskode",
-    "SeriesTitle"           : "Serie tittel",
+    "SeriesTitle"           : "Serietittel",
     "SeriesNumber"          : "Serienummer",
     "DocumentNumber"        : "Dokument nummer",
     "ReferredPersons"       : "Omtalte personer",
@@ -49,9 +50,26 @@
     "InventoryInformation"  : "Informasjon om beholdning",
     "Performers"            : "Utøvere",
     "MusicalLineup"         : "Besetning",
-    "Involverte musikkgrupper" : "InvolvedMusicGroups",
-    "LearningAndTeachingLanguages"  :   "Lære- og læringsspråk"
-
-
-
+    "LearningAndTeachingLanguages"  :   "Lære- og læringsspråk",
+    "Organization"         :   "Organisasjon",
+    "ClassificationNumber" : "Klassifikasjonsnummer",
+    "Numbering"            : "Nummerering",
+    "PartTitle"            : "Tittel på del",
+    "Edition"              : "Utgave",
+    "Contents"             : "Innhold",
+    "NorwegianTitle"       : "Norsk tittel",
+    "CompositionType"      : "Komposisjonstype",
+    "StandardLoanTime"     : "Standard lånetid",
+    "AvailabilityInfo"     : "Informasjon om tilgjengelighet",
+    "StandarizedTitle"     : "Standaridsert tittel",
+    "StdOrOrgTitle"        : "Standardisert eller originaltittel",
+    "Content"        : "Innhold",
+    "ExplanatoryAddition" : "Forklarende tilføyelse",
+    "InvolvedMusicGroups" : "Involverte musikkgrupper",
+    "SongTitlesOtherWritingForms" : "Sangtitler(Andre skriveformer)",
+    "TitlesOtherWritingForms"   : "Titler(Andre skriveformer)",
+    "InventoryInfomation" : "Informasjon om beholdning",
+    "OtherTitles" : "Andre titler",
+    "StandardizedTitle": "Standardisert tittel",
+    "NumberOfPagesAndNumberOfParts": "Sidetall, type note og antall stemmer"
 }

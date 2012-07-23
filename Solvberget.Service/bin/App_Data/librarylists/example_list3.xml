@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<librarylist name="Kistoffers favoritter" pri="3">
+<librarylist name="Bibliotekarene anbefaler" pri="3" ranked="false">
   <!-- Rank is determined by top to bottom -->
-  <docnumber>000607915</docnumber>
-  <docnumber>000608502</docnumber>
-  <docnumber>000590395</docnumber>
-  <docnumber>000571689</docnumber>
-  <docnumber>000526228</docnumber>
+  <docnumber>000611838</docnumber>
+  <docnumber>000403028</docnumber>
+  <docnumber>000574105</docnumber>
+  <docnumber>000609601</docnumber>
+  <docnumber>000063562</docnumber>
 </librarylist>

@@ -31,10 +31,11 @@ namespace Solvberget.Service.Infrastructure
                 .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
 
             ninjectKernel.Bind<IEventRepository>().To<LinticketRepository>();
+            ninjectKernel.Bind<IReviewRepository>().To<ReviewRepository>();
             ninjectKernel.Bind<IRatingRepository>().To<RatingRepository>();
             ninjectKernel.Bind<IImageRepository>().To<ImageRepository>()
                  .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
-            ninjectKernel.Bind<IListRepository>().To<LibraryListXmlRepository>()
+            ninjectKernel.Bind<IListRepositoryStatic>().To<LibraryListXmlRepository>()
                 .WithConstructorArgument("folderPath", EnvironmentHelper.GetXmlListPath());
             ninjectKernel.Bind<ISpellingDictionary>()
                 .To<LuceneRepository>()
