@@ -84,6 +84,7 @@ progress.withText {
 #fragmentContent {
     margin-left: 30px;
     -ms-grid-column: inherit;
+
 }
 
 #docLocAndAvail {
