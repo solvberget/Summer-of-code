@@ -16,7 +16,7 @@ var documentModel;
 
 var fragmentReady = function(model) {
     documentModel = model;
-    getImdbRating();
+    getReview();
  
 };
 
@@ -25,7 +25,7 @@ var ajaxGetReview = function () {
 };
 
 
-var getImdbRating = function () {
+var getReview = function () {
 
 
     $.when(ajaxGetReview())
@@ -36,7 +36,7 @@ var getImdbRating = function () {
 
                 var reviewTemplate = new WinJS.Binding.Template(document.getElementById("reviewTemplate"));
                 var reviewTemplateContainer = document.getElementById("reviewContainer");
-
+                reviewTemplateContainer.innerHTML = ""
                 reviewTemplate.render(data, reviewTemplateContainer);
 
             }

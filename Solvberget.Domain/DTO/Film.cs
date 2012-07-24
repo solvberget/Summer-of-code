@@ -59,17 +59,29 @@ namespace Solvberget.Domain.DTO
                 ProductionYear = GetVarfield(nodes, "260", "g");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
                 Contents = GetVarfield(nodes, "505", "a");
-               
-               var actorsList = GetVarfield(nodes, "511", "a").Split(':')[1].Split(',');
-               var persons = new List<Person>();
-               for (var i = 0; i < actorsList.Length; i++ )
-               {
-                   Person p = new Person();
-                   p.Name = actorsList[i];
-                  persons.Add(p);
-               }
+
+                var actorsString = GetVarfield(nodes, "511", "a");
+                var persons = new List<Person>();
+
+                if (actorsString != null)
+                {
+                    var actorsList = actorsString.Split(':');
+                    if (actorsList.Length > 2)
+                    {
+                        actorsList = actorsList[1].Split(',');
+                    }
+
+
+                    foreach (string personName in actorsList)
+                    {
+                        var p = new Person();
+                        p.Name = personName;
+                        persons.Add(p);
+                    }
+                }
+
                 Actors = persons;
-                  
+
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 NorwegianTitle = GetVarfield(nodes, "572", "a");
                 ReferredPersons = GeneratePersonsFromXml(nodes, "600");
