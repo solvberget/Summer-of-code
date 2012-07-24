@@ -27,6 +27,8 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<Fine> Fines { get; set; }
         public IEnumerable<Fine> ActiveFines { get; set; }
         public IEnumerable<Loan> Loans { get; set; }
+        public IEnumerable<Reservation> Reservations { get; set; }
+
 
         public void FillProperties(string xml)
         {
@@ -77,6 +79,27 @@ namespace Solvberget.Domain.DTO
             if (xElementRecord == null) return;
 
             Balance = xElementRecord.Value;
+
+            
+            // Put all the reservations of the borrower into a list of Reservation objects
+            xElementRecord = xElement.Element("item-l");
+            if (xElementRecord != null)
+            {
+
+                var subLibrary = "";
+                var orgDueDate = "";
+                var loanDate = "";
+                var loanHour = "";
+                var dueDate = "";
+                var itemStatus = "";
+
+                var reservations = new List<Reservation>();
+
+
+
+
+                Reservations = reservations;
+            }
 
 
             //Put all the loans for the borrower into a list of Loan objects
