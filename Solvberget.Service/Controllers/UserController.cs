@@ -7,7 +7,7 @@ using Solvberget.Domain.Abstract;
 
 namespace Solvberget.Service.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
 
         private readonly IRepository _repository;
@@ -20,7 +20,7 @@ namespace Solvberget.Service.Controllers
         public JsonResult GetUserInformation(string userId, string verification)
         {
             var result = _repository.GetUserInformation(userId, verification);
-            return this.Json(result, JsonRequestBehavior.AllowGet);
+            return Json(result);
         }
 
     }

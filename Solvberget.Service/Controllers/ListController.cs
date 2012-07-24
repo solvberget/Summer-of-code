@@ -9,7 +9,7 @@ using Solvberget.Domain.Implementation;
 
 namespace Solvberget.Service.Controllers
 {
-    public class ListController : Controller
+    public class ListController : BaseController
     {
 
         private readonly IListRepositoryStatic _xmlRepository;
@@ -25,14 +25,14 @@ namespace Solvberget.Service.Controllers
             var latestChange = _xmlRepository.GetTimestampForLatestChange();
             var timestamp = latestChange != null ? latestChange.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
             var response = new { Timestamp = timestamp, Lists = result };
-            return this.Json(response, JsonRequestBehavior.AllowGet);
+            return Json(response);
         }
 
         public JsonResult GetListsStaticLastModified()
         {
             var timestamp = _xmlRepository.GetTimestampForLatestChange();
             var response = timestamp != null ? timestamp.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
-            return this.Json(response, JsonRequestBehavior.AllowGet);
+            return Json(response);
         }
 
     }
