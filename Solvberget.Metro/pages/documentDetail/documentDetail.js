@@ -117,7 +117,7 @@ var getDocument = function (documentNumber) {
                 var documentTitleDiv = document.getElementById("documentTitle");
                 var documentImageDiv = document.getElementById("documentImage");
                 var documentSubTitleDiv = document.getElementById("item-subtitle");
-
+                var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
                 // avoid processing null (if user navigates to fast away from page etc)
                 if (documentTitleDiv != undefined && response != undefined)
                     WinJS.Binding.processAll(documentTitleDiv, response);
@@ -125,6 +125,8 @@ var getDocument = function (documentNumber) {
                     WinJS.Binding.processAll(documentImageDiv, response);
                 if (documentSubTitleDiv != undefined && response != undefined)
                     WinJS.Binding.processAll(documentSubTitleDiv, response);
+                if (documentCompressedSubTitleDiv != undefined && response != undefined)
+                    WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
 
 
             }
@@ -149,8 +151,32 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         return "/images/placeholders/" + documentModel.DocType + ".png";
 
     }),
+    compressedSubtitle: WinJS.Binding.converter(function (DocType) {
+
+        var dokumentType = Solvberget.Localization.getString(DocType);
+        var temp=dokumentType+"";
+        if (documentModel.Author!=undefined) {
+            temp += ", " +documentModel.Author.Name;
+        }
+        if (documentModel.Composer != undefined) {
+            temp += ", " + documentModel.Composer.Name;
+        }
+        if (documentModel.ArtistOrComposer != undefined) {
+            temp += ", " + documentModel.ArtistOrComposer.Name;
+        }
+        if (DocType == "Film") {
+            temp += ", " + documentModel.Publisher;
+        }
+         
+        if(documentModel.PublishedYear !== undefined) {
+            temp += "(" + documentModel.PublishedYear + ")";
+        }
+        return temp;
+  
+    }),
+
     hideNullOrEmptyConverter: WinJS.Binding.converter(function (factSrc) {
-        if (factSrc == "" || factSrc === "null" || factSrc == undefined) {
+        if (factSrc == "" || factSrc == null || factSrc == undefined) {
             return "none";
         }
         return "block";

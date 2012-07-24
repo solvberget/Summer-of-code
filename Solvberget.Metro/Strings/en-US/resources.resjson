@@ -36,9 +36,6 @@
     "InvolvedOrganizations" : "Knyttet organisasjon/gruppe",
     "ResponsiblePersons"    : "Liste over ansvarlige personer",
     "ProductionYear"        : "Publikasjonsår",
-    "Book"                  : "Bok",
-    "Film"                  : "Film",
-    "AudioBook"             : "Lydbok",
     "Composer"              : "Komponist",
     "NumberOfPagesAndNumberOfParts:" : "Sidetall, type note og antall stemmer",
     "DiscContent"           : "Innhold i noten (sanger, komposisjoner)",
@@ -71,5 +68,13 @@
     "InventoryInfomation" : "Informasjon om beholdning",
     "OtherTitles" : "Andre titler",
     "StandardizedTitle": "Standardisert tittel",
-    "NumberOfPagesAndNumberOfParts": "Sidetall, type note og antall stemmer"
+    "NumberOfPagesAndNumberOfParts": "Sidetall, type note og antall stemmer",
+    "Book": "Bok",
+    "AudioBook": "Lydbok",
+    "Cd": "Cd",
+    "Document": "Dokument",
+    "Film": "Film",
+    "Journal": "Tidsskrift",
+    "LanguageCourse": "Språkkurs",
+     "SheetMusic": "Noter"
 }

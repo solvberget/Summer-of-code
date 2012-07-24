@@ -17,26 +17,12 @@
 </head>
 <body>
 
-    <div class="templates">
-        <div id="availabilityTemplate">
-            <section class="availabilitySection">
-                <span class="doc-loc-branch" data-win-bind="innerText: Branch"></span>
-                <span class="doc-loc-department" data-win-bind="innerText: Department"></span>
-                <span class="doc-loc-collection" data-win-bind="innerText: PlacementCode"></span>
-                <span class="doc-availability-count" data-win-bind="innerText: AvailableCount DocumentDetailConverters.docAvailable; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
-                <span class="doc-availability-tot" data-win-bind="innerText: TotalCount DocumentDetailConverters.docTotalCount; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
-                <span class="doc-estimated-wait" style="" data-win-bind="innerText: EarliestAvailableDateFormatted DocumentDetailConverters.docEarliestAvailableDate"></span>
-            </section>
-        </div>
-    </div>
-
 
     <div class="documentdetailpage">
 
         <div id="documentDetailLoading">
             <label class="progress-ring-text">
-                <progress class="win-ring withText"></progress>
-            </label>
+                <progress class="win-ring withText"></progress></label>
         </div>
         <div id="documentDetailData" class="fragment">
             <header aria-label="Header content" role="banner">
@@ -52,7 +38,8 @@
 
                 <article id="documentStaticInformation">
                     <div>
-
+                        
+                        <h3 id="document-compressedsubtitle-container"  data-win-bind="innerText: DocType DocumentDetailConverters.compressedSubtitle"></h3>
                         <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                             <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" />
                         </div>

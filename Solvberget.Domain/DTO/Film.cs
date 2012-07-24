@@ -18,7 +18,7 @@ namespace Solvberget.Domain.DTO
         public string ProductionYear { get; set; }
         public string TypeAndNumberOfDiscs { get; set; }
         public string Contents { get; set; }
-        public string Actors { get; set; }
+        public IEnumerable<Person> Actors { get; set; }
         public string AgeLimit { get; set; }
         public string NorwegianTitle { get; set; }
         public string Subject { get; set; }
@@ -59,7 +59,17 @@ namespace Solvberget.Domain.DTO
                 ProductionYear = GetVarfield(nodes, "260", "g");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
                 Contents = GetVarfield(nodes, "505", "a");
-                Actors = GetVarfield(nodes, "511", "a");
+               
+               var actorsList = GetVarfield(nodes, "511", "a").Split(':')[1].Split(',');
+               var persons = new List<Person>();
+               for (var i = 0; i < actorsList.Length; i++ )
+               {
+                   Person p = new Person();
+                   p.Name = actorsList[i];
+                  persons.Add(p);
+               }
+                Actors = persons;
+                  
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 NorwegianTitle = GetVarfield(nodes, "572", "a");
                 ReferredPersons = GeneratePersonsFromXml(nodes, "600");

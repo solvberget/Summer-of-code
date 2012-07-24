@@ -41,7 +41,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var book = (Book)_repository.GetDocument(documentNumberForBook, false);
             Assert.AreEqual("Book", book.GetType().Name);
             Assert.AreEqual("Naiv. Super", book.Title);
-            Assert.AreEqual("Loe, Erlend", book.Author.Name);
+            Assert.AreEqual("Erlend Loe", book.Author.Name);
             Assert.AreEqual("978-82-02-33225-9", book.Isbn);
             Assert.AreEqual("205 s.", book.NumberOfPages);
             Assert.AreEqual("LOE", book.LocationCode);
@@ -72,7 +72,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var audioBook = (AudioBook)_repository.GetDocument(documentNumberForAudioBook, false);
             Assert.AreEqual("AudioBook", audioBook.GetType().Name);
             Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
-            Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
+            Assert.AreEqual("J.K. Rowling", audioBook.Author.Name);
             Assert.AreEqual("Fiksjon", audioBook.IsFiction);
             Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
         }
@@ -113,7 +113,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             const string documentNumberForLanguageCourse = "000391825"; //Jeg snakker norsk språkkurs
             var languageCourse = (LanguageCourse)_repository.GetDocument(documentNumberForLanguageCourse, false);
-            Assert.AreEqual("Ingnes, Nils", languageCourse.Author.Name);
+            Assert.AreEqual("Nils Ingnes", languageCourse.Author.Name);
             Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
             Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
             Assert.AreEqual("439.683", languageCourse.ClassificationNr);
@@ -133,7 +133,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             const string documentNumberForSheetMusic = "000117418"; //March (fanfare) for 3 trumpets and timpani
             var sheetMusic = (SheetMusic)_repository.GetDocument(documentNumberForSheetMusic, false);
-            Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMusic.Composer.Name);
+            Assert.AreEqual("Carl Philipp Emanuel Bach", sheetMusic.Composer.Name);
             Assert.AreEqual("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
             Assert.AreEqual("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
             Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());

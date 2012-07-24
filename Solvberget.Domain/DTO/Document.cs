@@ -8,7 +8,7 @@ namespace Solvberget.Domain.DTO
 {
     public class Document
     {
-        
+
         //Base properties
         public int StandardLoanTime { get { return 32; } }
         public string DocType { get { return this.GetType().Name; } private set { } }
@@ -27,9 +27,9 @@ namespace Solvberget.Domain.DTO
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
-        
+
         //Location and availability info for each branch
-        public List<AvailabilityInformation> AvailabilityInfo{ get; private set; }
+        public List<AvailabilityInformation> AvailabilityInfo { get; private set; }
 
         //Images
         public string ThumbnailUrl { get; set; }
@@ -62,7 +62,7 @@ namespace Solvberget.Domain.DTO
                     }
                     Languages = languages;
                 }
-             
+
                 LocationCode = GetVarfield(nodes, "090", "d");
                 SubTitle = GetVarfield(nodes, "245", "b");
 
@@ -131,19 +131,20 @@ namespace Solvberget.Domain.DTO
 
         public void GenerateLocationAndAvailabilityInfo(IEnumerable<DocumentItem> docItems)
         {
-            
+
             var items = docItems.ToList();
             if (!items.Any()) return;
-            
+
             AvailabilityInfo = new List<AvailabilityInformation>();
-            
-            foreach (var branch in from branch in AvailabilityInformation.BranchesToHandle 
-                                   let avilablilityInfo = AvailabilityInformation.GenerateInfoFor(this, branch, items) 
-                                   where avilablilityInfo != null select branch)
+
+            foreach (var branch in from branch in AvailabilityInformation.BranchesToHandle
+                                   let avilablilityInfo = AvailabilityInformation.GenerateInfoFor(this, branch, items)
+                                   where avilablilityInfo != null
+                                   select branch)
             {
                 AvailabilityInfo.Add(AvailabilityInformation.GenerateInfoFor(this, branch, items));
             }
-        
+
         }
 
         private static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
@@ -210,7 +211,7 @@ namespace Solvberget.Domain.DTO
                     RoleDictionary.TryGetValue(role, out roleLookupValue);
 
                 var person = new Person()
-                                 {
+                                 { 
                                      Name = GetSubFieldValue(varfield, "a"),
                                      LivingYears = GetSubFieldValue(varfield, "d"),
                                      Nationality = nationalityLookupValue ?? nationality,
@@ -218,7 +219,10 @@ namespace Solvberget.Domain.DTO
                                      ReferredWork = GetSubFieldValue(varfield, "t")
                                  };
 
-
+                string tempName = GetSubFieldValue(varfield, "a");
+                if(tempName != null)
+                    person.SetName(tempName);
+                
 
                 persons.Add(person);
             }

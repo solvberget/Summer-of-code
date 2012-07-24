@@ -156,13 +156,18 @@ progress.withText {
     -ms-grid-row: 1;
 }
 
-
+.document-compressedsubtitle-container {
+    height: auto;
+    margin: 16px;
+}
 .document-image-container {
     height: auto;
     width: 240px;
     max-height: 450px;
     max-width: 240px;
 }
+
+
 
 #documentImage {
     max-height: inherit;
