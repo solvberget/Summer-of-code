@@ -1,0 +1,21 @@
+
+.titlecontainer {
+    border: none;
+}
+
+.myPage header[role=banner] .titlearea {
+    margin-top: 45px;
+}
+
+    .myPage header[role=banner] .titlearea .pagetitle {
+        display: inline;
+        padding: 0;
+        padding-right: 5px;
+    }
+
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+    }
