@@ -112,9 +112,9 @@ function unpinByElementAsync(element, unwantedTileID) {
 
 function pinToStart() {
     document.getElementById("appBar").winControl.sticky = true;
-
+    
     if (WinJS.UI.AppBarIcon.unpin === document.getElementById("cmdPin").winControl.icon) {
-        unpinByElementAsync(document.getElementById("cmdPin"), "SecondaryTile.appBarPinnedTile", "Appbar pinned secondary tile", "A secondary tile that was pinned by the user from the Appbar").then(function (isDeleted) {
+        unpinByElementAsync(document.getElementById("cmdPin"), Data.activePage).then(function (isDeleted) {
             if (isDeleted) {
                 setAppbarButton();
             } else {
@@ -123,7 +123,7 @@ function pinToStart() {
          
     } else {
 
-        pinByElementAsync(document.getElementById("cmdPin"), "SecondaryTile.appBarPinnedTile", "Appbar pinned secondary tile", "A secondary tile that was pinned by the user from the Appbar").then(function (isCreated) {
+        pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Appbar pinned secondary tile", "A secondary tile that was pinned by the user from the Appbar").then(function (isCreated) {
             if (isCreated) {
                 setAppbarButton();
             } else {
@@ -134,7 +134,7 @@ function pinToStart() {
 
 function setAppbarButton() {
 
-    if (Windows.UI.StartScreen.SecondaryTile.exists("SecondaryTile.appBarPinnedTile")) {
+    if (Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage)) {
         document.getElementById("cmdPin").winControl.label = "Fjern fra start";
         document.getElementById("cmdPin").winControl.icon = "unpin";
         document.getElementById("cmdPin").winControl.tooltip = "Fjern fra start";
