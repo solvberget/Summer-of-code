@@ -7,7 +7,7 @@ using Solvberget.Domain.Abstract;
 
 namespace Solvberget.Service.Controllers
 {
-    public class EventController : Controller
+    public class EventController : BaseController
     {
 
         private readonly IEventRepository _eventRepository;
@@ -20,7 +20,7 @@ namespace Solvberget.Service.Controllers
         public JsonResult GetEvents()
         {
             var result = _eventRepository.GetEvents();
-            return this.Json(result, JsonRequestBehavior.AllowGet);
+            return Json(result);
         }
 
     }
