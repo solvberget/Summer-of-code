@@ -10,6 +10,12 @@
 
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
+
+            var applicationData = Windows.Storage.ApplicationData.current;
+            applicationData.addEventListener("datachanged", roamingDataChangeHandler);
+
+         
+
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
@@ -54,6 +60,11 @@
         }
     };
 
+
+    function roamingDataChangeHandler(eventArgs) {
+        // TODO: Refresh your data
+    }
+
     app.oncheckpoint = function (args) {
         // TODO: This application is about to be suspended. Save any state
         // that needs to persist across suspensions here. You might use the
@@ -70,7 +81,11 @@
 function doLogin() {
 
     window.localStorage.setItem("BorrowerId", "");
+    var applicationData = Windows.Storage.ApplicationData.current;
+    var roamingSettings = applicationData.roamingSettings;
+    roamingSettings.values["BorrowerId"] = "";
 
+    // TODO: ROAMING
     var loginDiv = document.getElementById("loginFragmentHolder");
     loginDiv.innerHTML = "";
     WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
