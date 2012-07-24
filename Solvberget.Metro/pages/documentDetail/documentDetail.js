@@ -77,9 +77,13 @@
                 $("img").each(function (index, item) {
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
+
+                        if (path.indexOf("http") == -1 && path.indexOf("ms-appx://") == -1)
+                            path = "ms-appx://" + path;
+
                         var imageUri = new Windows.Foundation.Uri(path);
                         var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
-                        if (first) {
+                        if (path.indexOf("http") != -1) {
                             request.data.setBitmap(streamReference);
                             first = false;
                         }

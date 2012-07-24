@@ -91,8 +91,14 @@
         },
 
         selectionChanged: function (args) {
-            var listView = document.body.querySelector(".itemlist").winControl;
-            if (listView != null) {
+
+            var listViewDiv = document.body.querySelector(".itemlist");
+            var listView = undefined;
+            if (listViewDiv) {
+                listView = listViewDiv.winControl;
+            }
+            
+            if (listView) {
                 var details;
                 var that = this;
                 // By default, the selection is restriced to a single item.
