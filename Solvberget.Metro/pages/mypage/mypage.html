@@ -32,6 +32,16 @@
             <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
         </div>
 
+        <!-- Reservation template -->
+        <div id="reservationTemplate">
+            <hr />
+            <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+            <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
+            <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
+            <span class="holdRequestTo" data-win-bind="innerText: HoldRequestTo MyPageConverters.holdRequestToConverter"></span>
+        </div>
+
+
 
     </div>
 

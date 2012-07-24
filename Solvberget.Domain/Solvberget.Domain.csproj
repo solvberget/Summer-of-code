@@ -114,6 +114,7 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="DTO\ExtensionHelpers.cs" />
     <Compile Include="DTO\Film.cs" />
+    <Compile Include="DTO\Reservation.cs" />
     <Compile Include="DTO\SheetMusic.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />

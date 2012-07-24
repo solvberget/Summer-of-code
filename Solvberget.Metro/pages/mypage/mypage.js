@@ -97,15 +97,15 @@ var addReservationsToDom = function (reservations) {
     if (reservations == undefined)
         return;
 
-    var loanTemplate = new WinJS.Binding.Template(document.getElementById("reservationTemplate"));
+    var reservationTemplate = new WinJS.Binding.Template(document.getElementById("reservationTemplate"));
     var reservationsTemplateContainer = document.getElementById("reservationTemplateHolder");
 
     reservationsTemplateContainer.innerHTML = "";
 
-    var i, loan;
+    var i, reservation;
     for (i = 0; i < reservations.length; i++) {
-        loan = reservations[i];
-        loanTemplate.render(loan, reservationsTemplateContainer);
+        reservation = reservations[i];
+        reservationTemplate.render(reservation, reservationsTemplateContainer);
     }
 }
 
@@ -169,7 +169,7 @@ var getUserInformation = function () {
     WinJS.Namespace.define("MyPageConverters", {
 
         balanceConverter: WinJS.Binding.converter(function (balance) {
-            if (balance == undefined) return "Du har ingen gebyrer! :-)";
+            if (balance == undefined) return "Du har ingen gebyrer!";
 
             return balance == "" ? "" : "Balanse: " + balance + ",-";
         }),
@@ -204,6 +204,18 @@ var getUserInformation = function () {
         originalDueDateConverter: WinJS.Binding.converter(function (originalDueDate) {
             if (originalDueDate == undefined) return "";
             return originalDueDate == "" ? "" : "Opprinnelig lånefrist: " + originalDueDate;
+        }),
+        holdRequestFromConverter: WinJS.Binding.converter(function (holdRequestFrom) {
+            if (holdRequestFrom == undefined) return "";
+            return holdRequestFrom == "" ? "" : "Reservert fra: " + holdRequestFrom;
+        }),
+        holdRequestToConverter: WinJS.Binding.converter(function (holdRequestTo) {
+            if (holdRequestTo == undefined) return "";
+            return holdRequestTo == "" ? "" : "Reservert til: " + holdRequestTo;
+        }),
+        pickupLibraryConverter: WinJS.Binding.converter(function (pickupLibrary) {
+            if (pickupLibrary == undefined) return "";
+            return pickupLibrary == "" ? "" : "Hentes hos: " + pickupLibrary;
         }),
 
 
