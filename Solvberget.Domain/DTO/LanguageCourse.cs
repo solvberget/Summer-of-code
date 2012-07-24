@@ -57,10 +57,14 @@ namespace Solvberget.Domain.DTO
                     Role = "Author"
 
                 };
+                string tempName = GetVarfield(nodes, "100", "a");
+                if (tempName != null)
+                    Author.SetName(tempName);
                 //If N/A, check BSMARC field 110 for author
                 if (Author.Name == null)
-                {
-                    Author.Name = GetVarfield(nodes, "110", "a");
+                { 
+                   Author.Name = GetVarfield(nodes, "110", "a");
+                   
 
                 }
             }

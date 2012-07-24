@@ -59,6 +59,9 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "ArtistOrComposer"
                 };
+                string tempName = GetVarfield(nodes, "100", "a");
+                if (tempName != null)
+                    ArtistOrComposer.SetName(tempName);
 
                 //If no ArtistOrCompose, check BSMARC field 110 for MusicGroup
                 if (ArtistOrComposer.Name == null)

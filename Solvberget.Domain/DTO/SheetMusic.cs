@@ -59,6 +59,9 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "Composer"
                 };
+                string tempName = GetVarfield(nodes, "100", "a");
+                if (tempName != null)
+                    Composer.SetName(tempName);
 
             }
         }

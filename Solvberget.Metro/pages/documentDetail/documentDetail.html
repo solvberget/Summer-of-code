@@ -4,10 +4,6 @@
     <meta charset="utf-8" />
     <title>Detaljer</title>
 
-    <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
-    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
-    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
 
     <link href="documentDetail.css" rel="stylesheet" />
     <script src="documentDetail.js"></script>
@@ -70,7 +66,7 @@
                     <span class="chevron win-type-x-large">&#xe099</span>
 
                 </h1>
-                <h2 id="item-subtitle" class="win-type-ellipsis pagesubtitle" data-win-bind="textContent: SubTitle"></h2>
+                <h2 id="item-subtitle" class="win-type-ellipsis pagesubtitle" data-win-bind="textContent: SubTitle; style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter"></h2>
 
             </header>
 
@@ -78,7 +74,8 @@
 
                 <article id="documentStaticInformation">
                     <div>
-
+                        
+                        <h3 id="document-compressedsubtitle-container"  data-win-bind="innerText: DocType DocumentDetailConverters.compressedSubtitle"></h3>
                         <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                             <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" />
                         </div>
