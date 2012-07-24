@@ -8,14 +8,10 @@
 
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
-<<<<<<< HEAD
-=======
 
             var applicationData = Windows.Storage.ApplicationData.current;
             applicationData.addEventListener("datachanged", roamingDataChangeHandler);
-
-         
-
+    
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
@@ -23,7 +19,6 @@
                 // TODO: This application has been reactivated from suspension.
                 // Restore application state here.
             }
->>>>>>> 06b1342409d51ff02847b6d9782bc260918157fe
 
             if (args.detail.arguments !== "") {
 

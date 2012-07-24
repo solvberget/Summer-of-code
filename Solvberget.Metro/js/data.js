@@ -12,21 +12,9 @@
     var serverBaseUrl = "http://localhost:7089";
 
     var menuItems = [
-<<<<<<< HEAD
         { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, navigateTo: function () { activePage = "lists"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
         { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html"); } },
-        {
-            key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events,
-            navigateTo: function () {
-                activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html"
-                    );
-            }
-        },
-=======
-        { key: "lists", title: "Nyheter og anbefalinger", subtitle: "Topplister, nyheter og anbefalinger", backgroundImage: tasks, navigateTo: function () { activePage = "/pages/lists/libraryLists.html"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
-        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { activePage = "/pages/mypage/mypage.html"; loginThenNavigateTo("/pages/mypage/mypage.html"); } },
-        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { activePage = "/pages/events/events.html"; WinJS.Navigation.navigate("/pages/events/events.html"); } },
->>>>>>> 06b1342409d51ff02847b6d9782bc260918157fe
+        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events,navigateTo: function () { activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html" );} },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: function () { Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); } },
     ];
 
@@ -54,8 +42,6 @@
             if (key === menuItems[i].key)
                 return menuItems[i];
         }
-
-
     }
 
     var list = new WinJS.Binding.List(menuItems);
