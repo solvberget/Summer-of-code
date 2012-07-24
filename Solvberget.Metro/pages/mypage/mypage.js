@@ -73,7 +73,6 @@ var addFinesToDom = function (fines) {
         fine = fines[i];
         fineTemplate.render(fine, fineTemplateContainer);
     }
-
 }
 
 var addLoansToDom = function (loans) {
@@ -91,10 +90,24 @@ var addLoansToDom = function (loans) {
         loan = loans[i];
         loanTemplate.render(loan, loansTemplateContainer);
     }
-
 }
 
+var addReservationsToDom = function (reservations) {
 
+    if (reservations == undefined)
+        return;
+
+    var loanTemplate = new WinJS.Binding.Template(document.getElementById("reservationTemplate"));
+    var reservationsTemplateContainer = document.getElementById("reservationTemplateHolder");
+
+    reservationsTemplateContainer.innerHTML = "";
+
+    var i, loan;
+    for (i = 0; i < reservations.length; i++) {
+        loan = reservations[i];
+        loanTemplate.render(loan, reservationsTemplateContainer);
+    }
+}
 
 var getUserInformation = function () {
 
@@ -115,6 +128,11 @@ var getUserInformation = function () {
                 var loans = response.Loans;
                 // Delete loans from main object
                 delete response.Loans;
+
+                // Extract reservations from object
+                var reservations = response.Reservations;
+                // Delete reservations from main object
+                delete response.Reservations;
 
                 if (response.Name === response.PrefixAddress)
                     response.PrefixAddress = "";
@@ -137,6 +155,7 @@ var getUserInformation = function () {
 
                 this.addFinesToDom(fines);
                 this.addLoansToDom(loans);
+                this.addReservationsToDom(reservations);
 
             }
 

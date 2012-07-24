@@ -45,7 +45,16 @@
     }
 
     function getLoggedInBorrowerId() {
-        var borrowerId = window.localStorage.getItem("BorrowerId");
+
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+        if (roamingSettings)
+            var borrowerId = roamingSettings.values["BorrowerId"];
+
+        if (borrowerId == undefined || borrowerId == "")
+            borrowerId = window.localStorage.getItem("BorrowerId");
         return borrowerId != undefined ? borrowerId : "";
     }
 
@@ -92,6 +101,15 @@
 
                         var borrowerId = response.BorrowerId;
                         if (borrowerId != undefined) {
+
+                            var applicationData = Windows.Storage.ApplicationData.current;
+
+                            if (applicationData)
+                                var roamingSettings = applicationData.roamingSettings;
+
+                            if (roamingSettings)
+                                roamingSettings.values["BorrowerId"] = borrowerId;
+
                             window.localStorage.setItem("BorrowerId", borrowerId);
                         }
 
@@ -109,8 +127,8 @@
 
                     }
                     else {
-                        if (outputMsg != undefined) 
-                         outputMsg.innerHTML = "Feil lånernummer/pin";
+                        if (outputMsg != undefined)
+                            outputMsg.innerHTML = "Feil lånernummer/pin";
 
                         $("#outputMsg").removeClass("success");
                         $("#outputMsg").addClass("error");
@@ -133,6 +151,9 @@
         document.getElementById("pinError").innerHTML = "";
         document.getElementById("outputMsg").innerHTML = "";
 
+        var loginDivHolder = document.getElementById("loginDiv");
+        if (loginDivHolder)
+            loginDivHolder.innerHTML = "";
 
         if (!loggedIn) {
             WinJS.log && WinJS.log("Du er ikke logget inn.", "solvberget", "status");

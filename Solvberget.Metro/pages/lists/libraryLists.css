@@ -15,181 +15,201 @@
 
 
 
+.titlecontainer {
+    border: none;
+}
 
+.myPage header[role=banner] .titlearea {
+    margin-top: 45px;
+}
 
-
-
-    /* LIST OF LISTS */
-    .listpage .listOfLists .win-vertical.win-viewport .win-surface {
-        margin-bottom: 60px;
+    .myPage header[role=banner] .titlearea .pagetitle {
+        display: inline;
+        padding: 0;
+        padding-right: 5px;
     }
 
-    .listpage .listOfListsSection {
-        -ms-grid-row: 2;
-        margin-left: 106px;
-    }
-
-        .listpage .listOfListsSection .listOfLists {
-            height: 100%;
-            position: relative;
-            width: 100%;
-            z-index: 0;
-        }
-
-    .listpage .listOfLists .win-vertical.win-viewport .win-container {
-        margin-bottom: 15px;
-        margin-right: 42px;
-        padding: 7px;
-    }
-
-    .listpage .listOfListsSection .listOfLists .win-container .win-selectioncheckmark {
-        display: none;
-    }
-
-    .listpage .listOfListsSection .listOfLists .win-container .win-selectioncheckmarkbackground {
-        display: none;
-    }
-
-    .listpage .listOfListsSection .listOfLists .win-item {
-        /*-ms-grid-columns: 110px 1fr;*/
-        -ms-grid-rows: 1fr;
-        display: -ms-grid;
-        height: 110px;
-        width: 500px;
-    }
-
-        .listpage .listOfListsSection .listOfLists .win-item .list-info {
-            /*-ms-grid-column: 2;*/
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-            .listpage .listOfListsSection .listOfLists .win-item .list-info .item-title {
-                margin-top: 4px;
-                overflow: hidden;
-            }
-
-    .listpage .listOfListsSection .listOfLists .item .list-info .item-subtitle {
-        opacity: 0.6;
-    }
-
-    .listpage .listOfListsSection .listOfLists .win-item .list-info .item-description {
-        max-height: 60px;
-        overflow: hidden;
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
     }
 
 
 
 
+/* LIST OF LISTS */
+.listpage .listOfLists .win-vertical.win-viewport .win-surface {
+    margin-bottom: 60px;
+}
 
+.listpage .listOfListsSection {
+    -ms-grid-row: 2;
+    margin-left: 106px;
+}
 
-
-
-
-
-    /* LIST CONTENT */
-    .listpage .articlesection .listOfListContent .win-vertical.win-viewport .win-surface {
-        margin-bottom: 60px;
-    }
-
-    .listpage .articlesection .listOfListContentSection {
-        /*-ms-grid-row: 2;*/
-        margin-left: 0px;             /*Org. 106px*/
-    }
-
-        .listpage .articlesection .listOfListContentSection .listOfListContent {
-            height: 100%;
-            position: relative;
-            width: 100%;
-            z-index: 0;
-        }
-
-    .listpage .articlesection .listOfListContent .win-vertical.win-viewport .win-container {
-        margin-bottom: 15px;
-        margin-right: 42px;
-        padding: 7px;
-    }
-
-    .listpage .articlesection .listOfListContentSection .listOfListContent .win-container .win-selectioncheckmark {
-        display: none;
-    }
-
-    .listpage .articlesection .listOfListContentSection .listOfListContent .win-container .win-selectioncheckmarkbackground {
-        display: none;
-    }
-
-    .listpage .articlesection .listOfListContentSection .listOfListContent .win-item {
-        -ms-grid-columns: 110px 1fr;
-        -ms-grid-rows: 1fr;
-        display: -ms-grid;
-        height: 110px;
-        width: auto;
-    }
-
-        .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info {
-            -ms-grid-column: 2;
-            margin-left: 10px;
-            margin-right: 10px;
-            overflow: hidden;
-        }
-
-            .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info .item-title {
-                margin-top: 4px;
-            }
-
-    .listpage .articlesection .listOfListContentSection .listOfListContent .item .item-info .item-subtitle {
-        opacity: 0.6;
-    }
-
-    .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info .item-description {
-        max-height: 60px;
-        overflow: hidden;
-    }
-
-
-
-
-
-
-
-
-
-
-    /* ARTICLE SECTION (ONLY LIST TITLE) */
-    .listpage .articlesection {
-        -ms-grid-column: 2;
-        -ms-grid-row-span: 2;
-        -ms-grid-row: 1;
-        margin-left: 70px;
-        overflow-y: auto;
-        padding-right: 120px;
+    .listpage .listOfListsSection .listOfLists {
+        height: 100%;
         position: relative;
+        width: 100%;
         z-index: 0;
     }
 
-        .listpage .articlesection header {
-            -ms-grid-columns: 1fr;
-            -ms-grid-rows: 100px;
-            display: -ms-grid;
-            margin-bottom: 6px;
-            margin-top: 0px;
+.listpage .listOfLists .win-vertical.win-viewport .win-container {
+    margin-bottom: 15px;
+    margin-right: 42px;
+    padding: 7px;
+}
+
+.listpage .listOfListsSection .listOfLists .win-container .win-selectioncheckmark {
+    display: none;
+}
+
+.listpage .listOfListsSection .listOfLists .win-container .win-selectioncheckmarkbackground {
+    display: none;
+}
+
+.listpage .listOfListsSection .listOfLists .win-item {
+    /*-ms-grid-columns: 110px 1fr;*/
+    -ms-grid-rows: 1fr;
+    display: -ms-grid;
+    height: 110px;
+    width: 500px;
+}
+
+    .listpage .listOfListsSection .listOfLists .win-item .list-info {
+        /*-ms-grid-column: 2;*/
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+        .listpage .listOfListsSection .listOfLists .win-item .list-info .item-title {
+            margin-top: 4px;
+            overflow: hidden;
         }
 
-            .listpage .articlesection header .text {
-                -ms-grid-column: 1;
-            }
+.listpage .listOfListsSection .listOfLists .item .list-info .item-subtitle {
+    opacity: 0.6;
+}
 
-        .listpage .articlesection .article-box {
-            margin-top: 37px;
-        }
-      
-        .listpage .articlesection .article-content {
-            overflow-y: auto;
+.listpage .listOfListsSection .listOfLists .win-item .list-info .item-description {
+    max-height: 60px;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+/* LIST CONTENT */
+.listpage .articlesection .listOfListContent .win-vertical.win-viewport .win-surface {
+    margin-bottom: 60px;
+}
+
+.listpage .articlesection .listOfListContentSection {
+    /*-ms-grid-row: 2;*/
+    margin-left: 0px; /*Org. 106px*/
+}
+
+    .listpage .articlesection .listOfListContentSection .listOfListContent {
+        height: 100%;
+        position: relative;
+        width: 100%;
+        z-index: 0;
+    }
+
+.listpage .articlesection .listOfListContent .win-vertical.win-viewport .win-container {
+    margin-bottom: 15px;
+    margin-right: 42px;
+    padding: 7px;
+}
+
+.listpage .articlesection .listOfListContentSection .listOfListContent .win-container .win-selectioncheckmark {
+    display: none;
+}
+
+.listpage .articlesection .listOfListContentSection .listOfListContent .win-container .win-selectioncheckmarkbackground {
+    display: none;
+}
+
+.listpage .articlesection .listOfListContentSection .listOfListContent .win-item {
+    -ms-grid-columns: 110px 1fr;
+    -ms-grid-rows: 1fr;
+    display: -ms-grid;
+    height: 110px;
+    width: auto;
+}
+
+    .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info {
+        -ms-grid-column: 2;
+        margin-left: 10px;
+        margin-right: 10px;
+        overflow: hidden;
+    }
+
+        .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info .item-title {
+            margin-top: 4px;
         }
 
-            .listpage .articlesection .article-content p {
-                margin-bottom: 16pt;
-            }
+.listpage .articlesection .listOfListContentSection .listOfListContent .item .item-info .item-subtitle {
+    opacity: 0.6;
+}
+
+.listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info .item-description {
+    max-height: 60px;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+/* ARTICLE SECTION (ONLY LIST TITLE) */
+.listpage .articlesection {
+    -ms-grid-column: 2;
+    -ms-grid-row-span: 2;
+    -ms-grid-row: 1;
+    margin-left: 70px;
+    overflow-y: auto;
+    padding-right: 120px;
+    position: relative;
+    z-index: 0;
+}
+
+    .listpage .articlesection header {
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 100px;
+        display: -ms-grid;
+        margin-bottom: 6px;
+        margin-top: 0px;
+    }
+
+        .listpage .articlesection header .text {
+            -ms-grid-column: 1;
+        }
+
+    .listpage .articlesection .article-box {
+        margin-top: 37px;
+    }
+
+    .listpage .articlesection .article-content {
+        overflow-y: auto;
+    }
+
+        .listpage .articlesection .article-content p {
+            margin-bottom: 16pt;
+        }
 
 
 
@@ -206,7 +226,7 @@
         -ms-grid-columns: 420px 1fr;
     }
 
-        
+
 
 
 
@@ -227,42 +247,41 @@
                 margin-top: 0px;
                 max-height: 40px;
                 overflow: hidden;
-                text-overflow: ellipsis; 
-           }
+                text-overflow: ellipsis;
+            }
 
             .listpage .listOfListsSection .listOfLists .win-item .list-info .list-description {
                 display: none;
             }
 
         /* LIST OF CONTENT */
-            .listpage .articlesection .listOfListContentSection .listOfListContent .win-item {
-                -ms-grid-columns: 60px 1fr;
+        .listpage .articlesection .listOfListContentSection .listOfListContent .win-item {
+            -ms-grid-columns: 60px 1fr;
+            height: 60px;
+            margin-bottom: 0;
+            width: 600px;
+        }
+
+
+            .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-image {
+                width: auto;
                 height: 60px;
-                margin-bottom: 0;
-                width: 600px;
             }
 
+            .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .list-info .item-title {
+                margin-top: 0px;
+                max-height: 40px;
+                overflow: hidden;
+            }
 
-                .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-image {
-                    width: auto;
-                    height: 60px;
-                }
-
-                .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .list-info .item-title {
-                    margin-top: 0px;
-                    max-height: 40px;
-                    overflow: hidden;
-                }
-
-                .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .list-info .item-description {
-                    display: none;
-                }
+            .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .list-info .item-description {
+                display: none;
+            }
 
 
         .listpage .articlesection {
             padding-right: 66px;
         }
-
 }
 
 
