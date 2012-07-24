@@ -151,6 +151,9 @@
         document.getElementById("pinError").innerHTML = "";
         document.getElementById("outputMsg").innerHTML = "";
 
+        var loginDivHolder = document.getElementById("loginDiv");
+        if (loginDivHolder)
+            loginDivHolder.innerHTML = "";
 
         if (!loggedIn) {
             WinJS.log && WinJS.log("Du er ikke logget inn.", "solvberget", "status");

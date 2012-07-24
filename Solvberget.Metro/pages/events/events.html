@@ -8,13 +8,25 @@
     <!-- Common references -->
 
     <!-- Split references -->
-    <link href="../../css/splitview.css" rel="stylesheet" />  
+    <link href="../../css/splitview.css" rel="stylesheet" />
     <link href="events.css" rel="stylesheet" />
     <script src="events.js"></script>
     <script src="../../js/EventDataSource.js"></script>
 
 </head>
 <body>
+
+    <!-- Define the header menu -->
+    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuMyPage',label:'Min side'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
+
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
+        </button>
+    </div>
+
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
@@ -34,21 +46,22 @@
             <button class="win-backbutton" aria-label="Back" disabled></button>
             <h1 class="titlearea win-type-ellipsis">
                 <span class="pagetitle"></span>
+                <span class="chevron win-type-x-large">&#xe099</span>
 
             </h1>
         </header>
 
-      
+
         <div class="itemlistsection" aria-label="List column">
-              
+
             <div class="itemlist" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
-        	
+
         </div>
         <div class="articlesection" aria-atomic="true" aria-label="Item detail column" aria-live="assertive">
             <article class="article-box">
                 <header class="header">
-                    <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h1>
-                    <div class="text">                        
+                    <h2 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
+                    <div class="text">
                         <h3 class="article-subtitle" data-win-bind="textContent: date"></h3>
                         <h3 class="article-subtitle" data-win-bind="textContent: start"></h3>
                         <h3 class="article-subtitle" data-win-bind="textContent: stop"></h3>
@@ -70,6 +83,6 @@
             </article>
         </div>
     </div>
-    
+
 </body>
 </html>

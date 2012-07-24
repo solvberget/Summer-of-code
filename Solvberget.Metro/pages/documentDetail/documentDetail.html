@@ -39,7 +39,18 @@
             </div>
         </div>
     </div>
+    
+    <!-- Define the header menu -->
+    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuMyPage',label:'Min side'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
 
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
+        </button>
+    </div>
 
     <div class="documentdetailpage">
 
@@ -52,7 +63,9 @@
             <header aria-label="Header content" role="banner">
                 <button class="win-backbutton" aria-label="Back" disabled></button>
                 <h1 class="titlearea win-type-ellipsis">
-                    <span id="documentTitle" data-win-bind="textContent: Title">Informasjon</span>
+                    <span id="documentTitle" data-win-bind="textContent: Title">Dokumentinformasjon</span>
+                    <span class="chevron win-type-x-large">&#xe099</span>
+
                 </h1>
                 <h2 id="item-subtitle" class="win-type-ellipsis pagesubtitle" data-win-bind="textContent: SubTitle"></h2>
 
