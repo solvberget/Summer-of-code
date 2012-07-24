@@ -12,6 +12,8 @@
     <!-- Common references -->
     <link rel="stylesheet" href="/css/default.css" />
 
+
+    <script type="text/javascript" src="/js/liveTile.js"></script>
     <script type="text/javascript" src="/js/lib/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom.min.js"></script>
    
@@ -32,7 +34,13 @@
             data-win-control="WinJS.UI.AppBarCommand" 
             data-win-options="{id: 'cmdLoginFlyout', label:'Bytt bruker',icon:'otheruser',section:'global',tooltip:'Bytt bruker', type:'flyout'}">
         </button>
+        
+        <button 
+            data-win-control="WinJS.UI.AppBarCommand" 
+            data-win-options="{id: 'cmdPin',section:'global'}">
+        </button>
     
+
     </div>
     <!-- ENDTEMPLATE -->
     <div id="loginFragmentHolder"></div>

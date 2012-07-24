@@ -2,58 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-    <title>Språkkurs</title>
-    <link rel="stylesheet" href="languageCourse.css" />
-    <script type="text/javascript" src="languageCourse.js"></script>
+    <title>Dokument</title>
+    <link rel="stylesheet" href="document.css" />
+    <script type="text/javascript" src="document.js"></script>
 
 </head>
 <body>
 
 
     <section id="fragmentContent">
+
         <article id="docLocAndAvail">
             <h2>Tilgjengelighet</h2>
             <div id="availabilityHolder"></div>
         </article>
-
         <article id="details">
 
-            <h2 id="H1">Fakta om språkkurset</h2>
+            <h2 id="H1">Fakta om dokumentet</h2>
+
             <div class="fact" data-win-bind="style.display: StandardLoanTime DocumentDetailConverters.hideNullOrEmptyConverter">
                 <div class="fact-name" data-win-res="{textContent: 'StandardLoanTime'}"></div>
                 <div class="fact-value" data-win-bind="innerText:StandardLoanTime"></div>
-            </div>
-            <div class="more-fact" style="display: none">
-                <div class="fact-name" data-win-res="{textContent: 'Isbn'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Isbn"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: ClassificationNr DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'ClassificationNr'}"></div>
-                <div class="fact-value" data-win-bind="innerText:ClassificationNr"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: Author DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'Author'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Author"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: TypeAndNumberOfDiscs DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'TypeAndNumberOfDiscs'}"></div>
-                <div class="fact-value" data-win-bind="innerText:TypeAndNumberOfDiscs"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: Subject DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'Subject'}"></div>
-                <div class="fact-value" data-win-bind="innerText:Subject"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: InvolvedPersons DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'InvolvedPersons'}"></div>
-                <div class="fact-value" data-win-bind="innerText:InvolvedPersons"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: InvolvedOrganizations DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'InvolvedOrganizations'}"></div>
-                <div class="fact-value" data-win-bind="innerText:InvolvedOrganizations"></div>
-            </div>
-            <div class="fact" data-win-bind="style.display: TitlesOtherWritingForms DocumentDetailConverters.hideNullOrEmptyConverter">
-                <div class="fact-name" data-win-res="{textContent: 'TitlesOtherWritingForms'}"></div>
-                <div class="fact-value" data-win-bind="innerText:TitlesOtherWritingForms"></div>
             </div>
             <div class="more-fact" style="display: none">
                 <div class="fact-name" data-win-res="{textContent: 'DocType'}"></div>
@@ -118,6 +87,10 @@
             <div class="fact" data-win-bind="style.display: SeriesNumber DocumentDetailConverters.hideNullOrEmptyConverter">
                 <div class="fact-name" data-win-res="{textContent: 'SeriesNumber'}"></div>
                 <div class="fact-value" data-win-bind="innerText:SeriesNumber"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: AvailabilityInfo DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'AvailabilityInfo'}"></div>
+                <div class="fact-value" data-win-bind="innerText:AvailabilityInfo"></div>
             </div>
             <div class="more-fact" style="display: none">
                 <div class="fact-name" data-win-res="{textContent: 'ThumbnailUrl'}"></div>

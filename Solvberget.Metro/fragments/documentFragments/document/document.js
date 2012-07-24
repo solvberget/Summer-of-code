@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var page = WinJS.UI.Pages.define("/fragments/documentFragments/journal/journal.html", {
+    var page = WinJS.UI.Pages.define("/fragments/documentFragments/document/document.html", {
         ready: function (element, options) {
 
 
@@ -11,10 +11,10 @@
 
 })();
 
-var fragmentReady = function () {
+var fragmentReady = function() {
 
- 
-}
+
+};
 
 
 WinJS.Namespace.define("DocumentDetailFragment", {

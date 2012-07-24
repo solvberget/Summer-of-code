@@ -13,7 +13,7 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    margin-top: 22%;
+    margin-top: 300px;
 }
 
 
@@ -53,7 +53,7 @@ progress.withText {
     -ms-grid-columns: auto 1fr;
     -ms-grid-rows: 1fr;
     display: -ms-grid;
-    height: inherit;
+    height: calc(100% - 200px);
 }
 
 #documentDetailData {
@@ -72,21 +72,25 @@ progress.withText {
     column-gap: normal;
     column-rule: 0px solid gray;
     columns: auto 19em;
-    height: calc(100% - 117px - 30px);
+    height: calc(100% - 10px);
     overflow: auto;
     padding-bottom: 20px;
 }
+
 #availabilityHolder > section > span {
-    display:block;
+    display: block;
 }
-#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count  {
-    display:inline;
+
+#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
+    display: inline;
 }
+
 .doc-loc-branch {
-    font-weight:600;
+    font-weight: 600;
 }
+
 .availabilitySection {
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 .documentdetailpage {
@@ -97,13 +101,14 @@ progress.withText {
     margin-left: 30px;
     -ms-grid-column: inherit;
 }
+
     #fragmentContent > * {
         padding-top: 15px;
     }
 
-    #fragmentContent > *:first-child {
-        padding-top: 0;
-    }
+        #fragmentContent > *:first-child {
+            padding-top: 0;
+        }
 
 #docLocAndAvail {
 }
@@ -113,20 +118,13 @@ progress.withText {
 
 
 .fact {
-    margin-top:15px;
-    border-color: white;
-    border-width: 1px;
-    border-style: dashed;
+    margin-top: 15px;
+
     width: auto;
     height: auto;
     padding: 10px;
     overflow: hidden;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
     resize: both;
-    /*    min-width: 160px;
-    min-height: 40px;*/
 }
 
 .fact-name {
@@ -154,6 +152,7 @@ progress.withText {
 #documentStaticInformation {
     -ms-grid-column: 1;
     -ms-grid-row: 1;
+    margin-right:20px;
 }
 
 
@@ -203,14 +202,15 @@ progress.withText {
         max-height: 450px;
         max-width: 240px;
         margin-left: 10px;
+        -ms-grid-row: 3;
     }
 
 
     #document-content {
         margin-left: 0;
         margin-top: 10px;
-        -ms-grid-columns: auto 1fr;
-        -ms-grid-rows: 1fr;
+        -ms-grid-columns: auto;
+        -ms-grid-rows: auto auto auto auto auto;
         display: -ms-grid;
         margin-left: 10px;
     }
@@ -223,10 +223,22 @@ progress.withText {
         margin-left: 10px;
     }
 
+
     #documentFragmentHolder {
         -ms-grid-column: 1;
-        -ms-grid-row: 2;
+        -ms-grid-row: 1;
         margin-left: 10px;
+        -ms-grid-row: 5;
+        -ms-hyphenate-limit-zone: 0%;
+        -ms-hyphens: manual;
+        column-fill: auto;
+        column-gap: normal;
+        column-rule: 0px solid gray;
+        columns: auto 19em;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-bottom: 20px;
     }
 
     #ratingContainer {
@@ -240,6 +252,7 @@ progress.withText {
         max-width: 100%;
         min-width: 100%;
         min-height: 90px;
+        -ms-grid-row: 4;
         -ms-grid-column: 1;
     }
 
@@ -248,5 +261,9 @@ progress.withText {
         padding: 0!important;
         margin-left: 10px;
         float: left;
+    }
+
+    #documentButtonContainer {
+        display: none;
     }
 }

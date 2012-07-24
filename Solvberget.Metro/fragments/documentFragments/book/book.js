@@ -52,8 +52,5 @@ WinJS.Namespace.define("DocumentDetailFragment", {
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {
-    // Title converter
-    // Subtitle converter
-    // BackgroundImage converter (empty ==> dummy)
-    // 
+   
 });
