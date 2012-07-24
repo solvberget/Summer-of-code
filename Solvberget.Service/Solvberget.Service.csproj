@@ -149,11 +149,12 @@
     <Compile Include="Util\ExcludeNullPropertiesConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\App_Data\librarylists\example_list1.xml" />
-    <Content Include="bin\App_Data\librarylists\example_list2.xml" />
-    <Content Include="bin\App_Data\librarylists\example_list3.xml" />
-    <Content Include="bin\App_Data\librarylists\example_list4.xml" />
-    <Content Include="bin\App_Data\librarylists\example_list5.xml" />
+    <Content Include="bin\App_Data\librarylists\dynamic\dynamiclists.xml" />
+    <Content Include="bin\App_Data\librarylists\static\example_list1.xml" />
+    <Content Include="bin\App_Data\librarylists\static\example_list2.xml" />
+    <Content Include="bin\App_Data\librarylists\static\example_list3.xml" />
+    <Content Include="bin\App_Data\librarylists\static\example_list4.xml" />
+    <Content Include="bin\App_Data\librarylists\static\example_list5.xml" />
     <Content Include="bin\App_Data\ordlister\ord_bm.txt" />
     <Content Include="bin\App_Data\ordlister\stopwords.txt" />
     <Content Include="bin\Contrib.Regex.dll" />

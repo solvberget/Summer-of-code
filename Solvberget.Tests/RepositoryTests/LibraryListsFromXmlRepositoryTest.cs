@@ -11,7 +11,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
     [TestFixture]
     internal class LibraryListsFromXmlRepositoryTest
     {
-        private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\";
+        private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\static";
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
 
         private LibraryListXmlRepository _listRepository;
