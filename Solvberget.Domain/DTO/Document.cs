@@ -180,7 +180,7 @@ namespace Solvberget.Domain.DTO
         {
             var varfield =
                 nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Elements("subfield");
-            return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value);
+            return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).ToList();
         }
 
         private static string GetSubFieldValue(XElement varfield, string label)
