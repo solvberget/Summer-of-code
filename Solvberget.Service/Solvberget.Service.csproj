@@ -149,7 +149,8 @@
     <Compile Include="Util\ExcludeNullPropertiesConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\App_Data\librarylists\dynamic\dynamiclists.xml" />
+    <Content Include="bin\App_Data\librarylists\dynamic\example_list2.xml" />
+    <Content Include="bin\App_Data\librarylists\dynamic\example_list1.xml" />
     <Content Include="bin\App_Data\librarylists\static\example_list1.xml" />
     <Content Include="bin\App_Data\librarylists\static\example_list2.xml" />
     <Content Include="bin\App_Data\librarylists\static\example_list3.xml" />

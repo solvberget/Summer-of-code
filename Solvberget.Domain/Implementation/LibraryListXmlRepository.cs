@@ -29,7 +29,7 @@ namespace Solvberget.Domain.Implementation
         {
             var lists = new ConcurrentBag<LibraryList>();
 
-            Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(LibraryList.GetLibraryListFromXml(file)));
+            Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(LibraryList.GetLibraryListFromXmlFile(file)));
 
             lists.ToList().ForEach(liblist => { if (liblist != null) AddContentToList(liblist); });
 
