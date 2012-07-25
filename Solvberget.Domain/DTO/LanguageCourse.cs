@@ -35,6 +35,7 @@ namespace Solvberget.Domain.DTO
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
                 TitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
+               
             }
         }
 
@@ -68,6 +69,30 @@ namespace Solvberget.Domain.DTO
 
                 }
             }
+        
+        }
+
+
+        public override string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (Author.Name != null)
+            {
+                temp += ", " + Author.Name;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
+
         }
 
         public new static LanguageCourse GetObjectFromFindDocXmlBsMarc(string xml)

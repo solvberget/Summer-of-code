@@ -59,17 +59,29 @@ namespace Solvberget.Domain.DTO
                 ProductionYear = GetVarfield(nodes, "260", "g");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
                 Contents = GetVarfield(nodes, "505", "a");
-               
-               var actorsList = GetVarfield(nodes, "511", "a").Split(':')[1].Split(',');
-               var persons = new List<Person>();
-               for (var i = 0; i < actorsList.Length; i++ )
-               {
-                   Person p = new Person();
-                   p.Name = actorsList[i];
-                  persons.Add(p);
-               }
+
+                var actorsString = GetVarfield(nodes, "511", "a");
+                var persons = new List<Person>();
+
+                if (actorsString != null)
+                {
+                    var actorsList = actorsString.Split(':');
+                    if (actorsList.Length > 1)
+                    {
+                        actorsList = actorsList[1].Split(',');
+                    }
+
+
+                    foreach (string personName in actorsList)
+                    {
+                        var p = new Person();
+                        p.Name = personName.Trim();
+                        persons.Add(p);
+                    }
+                }
+
                 Actors = persons;
-                  
+
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 NorwegianTitle = GetVarfield(nodes, "572", "a");
                 ReferredPersons = GeneratePersonsFromXml(nodes, "600");
@@ -95,6 +107,28 @@ namespace Solvberget.Domain.DTO
                 Genre = GetVarfieldAsList(nodes, "655", "a");
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
             }
+        }
+
+        public override string GetCompressedString()
+        {
+
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (Publisher != null)
+            {
+                temp += ", " +Publisher;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
         }
 
         public new static Film GetObjectFromFindDocXmlBsMarc(string xml)

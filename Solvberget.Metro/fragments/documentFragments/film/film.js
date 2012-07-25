@@ -39,7 +39,7 @@ var getImdbRating = function () {
                 var imdbTemplate = new WinJS.Binding.Template(document.getElementById("imdbTemplate"));
                 var imdbTemplateContainer = document.getElementById("ratingContainer");
 
-                    imdbTemplateContainer.innerHTML = "";
+                    imdbTemplate.outerHTML = "";
                     imdbTemplate.render(data, imdbTemplateContainer);
                
               

@@ -12,14 +12,10 @@ namespace Solvberget.Domain.DTO
 
         public string DocumentNumber { get; set; }
         public string DocumentTitle { get; set;  }
-        public string SubLibrary { get; set; }
-        public string OriginalDueDate { get; set; }
-        public string ItemStatus { get; set; }
-        public string LoanDate { get; set; }
-        public string LoanHour { get; set; }
-        public string Material { get; set; }
-        public string DueDate { get; set; }
-
+        public string PickupLocation { get; set; }
+        public string HoldRequestFrom { get; set; }
+        public string HoldRequestTo { get; set; }
+        public string Status { get; set; }
     }
 
 }

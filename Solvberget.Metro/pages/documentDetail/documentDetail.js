@@ -43,7 +43,7 @@
             WinJS.Navigation.navigate("/pages/home/home.html");
 
         },
-      
+
         registerForShare: function () {
 
             // Register/listen to share requests
@@ -140,7 +140,7 @@ var populateFragment = function (documentModel) {
 
         var fragmentContent = document.getElementById("fragmentContent");
         // generate code for documentdetailpage
-        var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
+        //var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
         if (fragmentContent != undefined && documentModel != undefined)
             WinJS.Binding.processAll(fragmentContent, documentModel);
 
@@ -169,13 +169,20 @@ var populateAvailability = function () {
 
     var model;
 
-    for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
-        model = documentModel.AvailabilityInfo[i];
+    if (documentModel.AvailabilityInfo) {
+        for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
+            model = documentModel.AvailabilityInfo[i];
 
-        if (availabilityTemplate && availabilityTemplateHolder && model)
-            availabilityTemplate.render(model, availabilityTemplateHolder);
+            if (availabilityTemplate && availabilityTemplateHolder && model)
+                availabilityTemplate.render(model, availabilityTemplateHolder);
 
+        }
     }
+    else {
+        var holdRequestButton = document.getElementById("reserve");
+        $(holdRequestButton).attr("disabled", "true");
+    }
+    
 
 };
 
@@ -229,8 +236,15 @@ var getDocument = function (documentNumber) {
                     WinJS.Binding.processAll(documentImageDiv, response);
                 if (documentSubTitleDiv != undefined && response != undefined)
                     WinJS.Binding.processAll(documentSubTitleDiv, response);
-                if (documentCompressedSubTitleDiv != undefined && response != undefined)
+
+
+                var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
+                if (documentCompressedSubTitleDiv != undefined && response != undefined) {  
+                    
                     WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
+                }
+
+
                 if (documentShareContent != undefined && response != undefined)
                     WinJS.Binding.processAll(documentShareContent, response);
 
@@ -257,29 +271,7 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         return "/images/placeholders/" + documentModel.DocType + ".png";
 
     }),
-    compressedSubtitle: WinJS.Binding.converter(function (DocType) {
 
-        var dokumentType = Solvberget.Localization.getString(DocType);
-        var temp=dokumentType+"";
-        if (documentModel.Author!=undefined) {
-            temp += ", " +documentModel.Author.Name;
-        }
-        if (documentModel.Composer != undefined) {
-            temp += ", " + documentModel.Composer.Name;
-        }
-        if (documentModel.ArtistOrComposer != undefined) {
-            temp += ", " + documentModel.ArtistOrComposer.Name;
-        }
-        if (DocType == "Film") {
-            temp += ", " + documentModel.Publisher;
-        }
-         
-        if(documentModel.PublishedYear !== undefined) {
-            temp += "(" + documentModel.PublishedYear + ")";
-        }
-        return temp;
-  
-    }),
 
     hideNullOrEmptyConverter: WinJS.Binding.converter(function (factSrc) {
         if (factSrc == "" || factSrc == null || factSrc == undefined) {

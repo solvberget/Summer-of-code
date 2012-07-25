@@ -209,7 +209,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
             Assert.AreEqual("Innhold: Lily's theme ; Statues ; Neville the hero ; Courtyard apocalypse ; Severus and Lily ; Harry's sacrifice ; The resurrection stone ; A new beginning ; Lily's lullaby", film.Contents);
 
-            Assert.AreEqual("Rolleliste: Aksel Hennie, Nicolai Cleve Broch, Christian Rubeck, Knut Joner, Mats Eldøen, Pål Sverre Valheim, Agnes Kittelsen, Viktoria Winge, Kyrre Haugen Sydness, Jakob Oftebro, Petter Næss", film.Actors);
+            Assert.AreEqual("Aksel Hennie", film.Actors.ToList()[0].Name);
 
             Assert.AreEqual("Aldersgrense: 15 år", film.AgeLimit);
 

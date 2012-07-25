@@ -43,7 +43,7 @@ namespace Solvberget.Domain.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.imdbapi.com/?i=&tomatoes=true&t=")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.imdbapi.com/?t=")]
         public string ImdbApiUrl {
             get {
                 return ((string)(this["ImdbApiUrl"]));
@@ -83,6 +83,16 @@ namespace Solvberget.Domain.Properties {
         public string BokBasenSystem {
             get {
                 return ((string)(this["BokBasenSystem"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=8fd5cf4bb0a76818d2" +
+            "16097e37c6a097&")]
+        public string LastFmApiUrl {
+            get {
+                return ((string)(this["LastFmApiUrl"]));
             }
         }
     }

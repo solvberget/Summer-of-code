@@ -35,6 +35,7 @@ namespace Solvberget.Domain.DTO
                 MusicalLineup = GetVarfieldAsList(nodes, "658", "a");
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 TitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
+               
             }
         }
 
@@ -64,6 +65,29 @@ namespace Solvberget.Domain.DTO
                     Composer.SetName(tempName);
 
             }
+            
+        }
+
+        public override string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (Composer.Name != null)
+            {
+                temp += ", " + Composer.Name;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
+
         }
 
         public new static SheetMusic GetObjectFromFindDocXmlBsMarc(string xml)
