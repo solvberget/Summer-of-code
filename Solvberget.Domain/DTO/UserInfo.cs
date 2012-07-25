@@ -82,18 +82,54 @@ namespace Solvberget.Domain.DTO
 
             
             // Put all the reservations of the borrower into a list of Reservation objects
-            xElementRecord = xElement.Element("item-l");
+            xElementRecord = xElement.Element("item-h");
             if (xElementRecord != null)
             {
 
-                var subLibrary = "";
-                var orgDueDate = "";
-                var loanDate = "";
-                var loanHour = "";
-                var dueDate = "";
-                var itemStatus = "";
-
+                var pickupLocation = "";
+                var holdRequestFrom = "";
+                var holdRequestTo = "";
                 var reservations = new List<Reservation>();
+
+                var reservationVarfields = xElement.Elements("item-h").ToList();
+
+                foreach (var varfield in reservationVarfields)
+                {
+
+                    //Get information from table z37
+                    xElementField = varfield.Element("z37");
+                    if (xElementField != null)
+                    {
+                        pickupLocation = GetXmlValue(xElementField, "z37-pickup-location");
+                        if (pickupLocation == "Hovedbibl.")
+                            pickupLocation = "Hovedbiblioteket";
+
+                        holdRequestFrom = GetFormattedDate(GetXmlValue(xElementField, "z37-request-date"));
+
+                        holdRequestTo = GetFormattedDate(GetXmlValue(xElementField, "z37-end-request-date"));
+
+                    }
+                    
+                    //Get information from table z13
+                    xElementField = varfield.Element("z13");
+                    if (xElementField != null)
+                    {
+                        var docNumber = GetXmlValue(xElementField, "z13-doc-number");
+
+                        var docTitle = GetXmlValue(xElementField, "z13-title");
+
+                        var reservation = new Reservation()
+                        {
+                            DocumentNumber = docNumber,
+                            DocumentTitle = docTitle,
+                            PickupLocation = pickupLocation,
+                            HoldRequestFrom = holdRequestFrom,
+                            HoldRequestTo = holdRequestTo,
+                        };
+
+                        reservations.Add(reservation);
+                    }
+                }
 
 
 
