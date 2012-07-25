@@ -75,13 +75,10 @@ namespace Solvberget.Domain.Implementation
                     if (!isLight)
                         docToReturn.ImageUrl = _storageHelper.GetLocalImageFileCacheUrl(docToReturn.DocumentNumber, false);
                     
-                    return docToReturn;
-                
+                    return docToReturn;                
                 }
             }
-
-            return null;
-            
+            return null;    
         }
 
         public UserInfo GetUserInformation( string userId, string verification )

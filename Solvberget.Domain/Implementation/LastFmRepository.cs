@@ -17,11 +17,8 @@ namespace Solvberget.Domain.Implementation
             {
                 var trimmedTitle = cd.Title.Split(';').ToList()[0].Trim();
 
-                string searchString;
-                if (cd.ArtistOrComposer != null)
-                    searchString = "artist=" + cd.ArtistOrComposer.Name + "&album=" + trimmedTitle;
-                else
-                    searchString = "artist=" + cd.MusicGroup + "&album=" + trimmedTitle;
+                var searchString = "autocorrect=1&artist=" + cd.ArtistOrGroupName + "&album=" + trimmedTitle;
+
 
                 return searchString;
             }

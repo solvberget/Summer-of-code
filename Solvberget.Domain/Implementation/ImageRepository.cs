@@ -84,7 +84,6 @@ namespace Solvberget.Domain.Implementation
                 var posterUrl = GetExternalFilmImageUri(doc as Film);
                 posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "60.jpg");
                 return GetLocalImageUrl(posterUrl, size != null ? id + "-" + size : id, true);
-
             }
            
             if (Equals(doc.DocType, typeof(Book).Name))
@@ -94,8 +93,10 @@ namespace Solvberget.Domain.Implementation
                 return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 60), id, true);
 
             if (Equals(doc.DocType, typeof(Cd).Name))
-                return GetLocalImageUrl(GetExternalCdImageUri(doc as Cd, true), size != null ? id + "-" + size : id, true);
-
+            {
+                var test = GetLocalImageUrl(GetExternalCdImageUri(doc as Cd, true), size != null ? id + "-" + size : id, true);
+                return test;
+            }
             return string.Empty;
         }
 
