@@ -36,7 +36,7 @@ var getReview = function () {
 
                 var reviewTemplate = new WinJS.Binding.Template(document.getElementById("reviewTemplate"));
                 var reviewTemplateContainer = document.getElementById("reviewContainer");
-                reviewTemplateContainer.innerHTML = ""
+                reviewTemplate.outerHTML = ""
                 reviewTemplate.render(data, reviewTemplateContainer);
 
             }

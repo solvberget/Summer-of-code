@@ -45,7 +45,7 @@
                 }
 
                 // Create the request string for the lists (no query parameters) 
-                var requestStr = "http://localhost:7089/List/GetListsStatic";
+                var requestStr = "http://localhost:7089/List/GetListsStaticAndDynamic";
 
                 // Return the promise from making an XMLHttpRequest to the server.
                 return WinJS.xhr({ url: requestStr }).then(

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
 
 namespace Solvberget.Service.Tests.RepositoryTests
@@ -11,10 +12,10 @@ namespace Solvberget.Service.Tests.RepositoryTests
     [TestFixture]
     internal class LibraryListsFromXmlRepositoryTest
     {
-        private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\";
+        private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\static";
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
 
-        private LibraryListXmlRepository _listRepository;
+        private IListRepositoryStatic _listRepository;
 
         [TestFixtureSetUp]
         public void Init()

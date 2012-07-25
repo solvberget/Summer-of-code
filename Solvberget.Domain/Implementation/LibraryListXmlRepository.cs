@@ -13,7 +13,7 @@ namespace Solvberget.Domain.Implementation
 {
     public class LibraryListXmlRepository : IListRepositoryStatic
     {
-        private const string StdFolderPath = @"App_Data\librarylists\";
+        private const string StdFolderPath = @"App_Data\librarylists\static\";
         private readonly string _folderPath;
         private readonly IRepository _repository;
         private readonly IImageRepository _imageRepository;
@@ -29,7 +29,7 @@ namespace Solvberget.Domain.Implementation
         {
             var lists = new ConcurrentBag<LibraryList>();
 
-            Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(LibraryList.GetLibraryListFromXml(file)));
+            Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(LibraryList.GetLibraryListFromXmlFile(file)));
 
             lists.ToList().ForEach(liblist => { if (liblist != null) AddContentToList(liblist); });
 
@@ -48,7 +48,7 @@ namespace Solvberget.Domain.Implementation
         {
             foreach(var docnr in libraryList.DocumentNumbers)
             {
-                Document document = (_repository.GetDocument(docnr, true));
+                var document = (_repository.GetDocument(docnr, true));
                 //We want to add the thumbnail url to the document in this case
                 //Check if already cached
                 if (string.IsNullOrEmpty(document.ThumbnailUrl))

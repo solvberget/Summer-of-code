@@ -38,6 +38,8 @@ namespace Solvberget.Domain.DTO
 
         }
 
+       
+
         protected override void FillPropertiesLight(string xml)
         {
 
@@ -48,6 +50,28 @@ namespace Solvberget.Domain.DTO
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 Issn = GetVarfield(nodes, "022", "a");
             }
+        }
+
+        public override string GetCompressedString()
+        {
+
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (Publisher != null)
+            {
+                temp += ", " + Publisher;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
         }
 
         public new static Journal GetObjectFromFindDocXmlBsMarcLight(string xml)

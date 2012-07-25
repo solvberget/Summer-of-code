@@ -7,8 +7,9 @@
 
     <link href="documentDetail.css" rel="stylesheet" />
     <script src="documentDetail.js"></script>
-    <script src="../../js/codeGenerator.js"></script>
+    <!--script src="../../js/codeGenerator.js"></!--script-->
     <script src="../../js/localizationHelper.js"></script>
+
 
 </head>
 <body>
@@ -75,7 +76,7 @@
                 <article id="documentStaticInformation">
                     <div>
                         
-                        <h3 id="document-compressedsubtitle-container"  data-win-bind="innerText: DocType DocumentDetailConverters.compressedSubtitle"></h3>
+                        <h3 id="document-compressedsubtitle-container"  data-win-bind="innerText: CompressedSubTitle"></h3>
                         <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                             <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" />
                         </div>
