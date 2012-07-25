@@ -19,6 +19,8 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<Person> InvolvedPersons { get; set; }
         public IEnumerable<string> InvolvedMusicGroups { get; set; }
         public string SongTitlesOtherWritingForms { get; set; }
+        public string ArtistOrGroupName { get { return ArtistOrComposer.Name ?? MusicGroup; } }
+        
 
         protected override void FillProperties(string xml)
         {

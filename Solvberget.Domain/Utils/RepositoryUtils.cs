@@ -32,6 +32,15 @@ namespace Solvberget.Domain.Utils
             return XDocument.Parse(xml);
         }
 
+        public static XDocument GetXmlFromStreamWithParam(string uri, string param)
+        {
+            var url = uri + param;
+            url = url.Replace(" ", "+");
+
+            return GetXmlFromStream(url);
+        }
+
+
         public static string GetJsonFromStream(string url)
         {
             var request = WebRequest.Create(url);

@@ -111,6 +111,7 @@
     <Compile Include="DTO\Cd.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DTO\LastFmAlbum.cs" />
     <Compile Include="DTO\Document.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -162,6 +163,7 @@
     <Compile Include="Implementation\ImdbRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />
     <Compile Include="Implementation\ImageRepository.cs" />
+    <Compile Include="Implementation\LastFmRepository.cs" />
     <Compile Include="Implementation\LinticketRepository.cs" />
     <Compile Include="Implementation\LibraryListXmlRepository.cs" />
     <Compile Include="Implementation\LuceneRepository.cs" />

@@ -146,6 +146,10 @@
     width: auto;
 }
 
+    .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-image-container .item-image{
+        max-width: 110px;
+    }
+
     .listpage .articlesection .listOfListContentSection .listOfListContent .win-item .item-info {
         -ms-grid-column: 2;
         margin-left: 10px;
