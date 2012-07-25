@@ -43,5 +43,10 @@ namespace Solvberget.Service.Infrastructure
         {
             return Path.Combine(ApplicationAppDataPath, @"librarylists");
         }
+
+        public static string GetRulesPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"rules\");
+        }
     }
 }

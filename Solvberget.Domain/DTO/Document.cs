@@ -136,13 +136,10 @@ namespace Solvberget.Domain.DTO
             if (!items.Any()) return;
 
             AvailabilityInfo = new List<AvailabilityInformation>();
-
-            foreach (var branch in from branch in AvailabilityInformation.BranchesToHandle
-                                   let avilablilityInfo = AvailabilityInformation.GenerateInfoFor(this, branch, items)
-                                   where avilablilityInfo != null
-                                   select branch)
+            
+            foreach (var availabilityInfo in AvailabilityInformation.BranchesToHandle.Select(branch => AvailabilityInformation.GenerateInfoFor(this, branch, items)).Where(availabilityInfo => availabilityInfo != null))
             {
-                AvailabilityInfo.Add(AvailabilityInformation.GenerateInfoFor(this, branch, items));
+                AvailabilityInfo.Add(availabilityInfo);
             }
 
         }

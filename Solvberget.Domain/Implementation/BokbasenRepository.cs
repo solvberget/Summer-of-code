@@ -40,7 +40,7 @@ namespace Solvberget.Domain.Implementation
 
         public BokBasenBook GetExternalBokbasenBook(string id)
         {
-            var doc = _documentRepository.GetDocument(id, false);
+            var doc = _documentRepository.GetDocument(id, true);
             
              if (Equals(doc.DocType, typeof(Book).Name))
              {

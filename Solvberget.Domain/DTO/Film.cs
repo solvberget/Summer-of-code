@@ -78,7 +78,6 @@ namespace Solvberget.Domain.DTO
                 ReferencedPlaces = GetVarfieldAsList(nodes, "651", "a");
                 CompositionType = GetVarfield(nodes, "652", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
-                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
             }
         }
@@ -94,6 +93,7 @@ namespace Solvberget.Domain.DTO
                 ProductionYear = GetVarfield(nodes, "260", "g");
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
+                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
             }
         }
 

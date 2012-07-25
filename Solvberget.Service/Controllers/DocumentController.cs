@@ -10,20 +10,22 @@ namespace Solvberget.Service.Controllers
 {
     public class DocumentController : BaseController
     {
-        private readonly IRepository _repository;
+        private readonly IRepository _documentRepository;
         private readonly ISpellingDictionary _spellingRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IRatingRepository _ratingRepository;
         private readonly IReviewRepository _reviewRepository;
 
-        public DocumentController(IRepository repository, ISpellingDictionary spellingRepository, IImageRepository imageRepository, IRatingRepository ratingRepository, IReviewRepository reviewRepository)
+        public DocumentController(IRepository documentRepository, ISpellingDictionary spellingRepository, IImageRepository imageRepository, IRatingRepository ratingRepository, IReviewRepository reviewRepository)
         {
-            _repository = repository;
+            _documentRepository = documentRepository;
             _spellingRepository = spellingRepository;
             _imageRepository = imageRepository;
             _ratingRepository = ratingRepository;
             _reviewRepository = reviewRepository;
         }
+
+
 
         
         public ActionResult Index()
@@ -33,25 +35,31 @@ namespace Solvberget.Service.Controllers
 
         public JsonResult Search(string id)
         {
-            var result = _repository.Search(id);
+            var result = _documentRepository.Search(id);
             return Json(result);
         }
 
         public JsonResult GetDocument(string id)
         {
-            var result = _repository.GetDocument(id, false);
+            var result = _documentRepository.GetDocument(id, false);
             return Json(result);
         }
 
         public JsonResult GetDocumentLight(string id)
         {
-            var result = _repository.GetDocument(id, true);
+            var result = _documentRepository.GetDocument(id, true);
             return Json(result);
         }
 
         public JsonResult GetDocumentReview(string id)
         {
             var result = _reviewRepository.GetDocumentReview(id);
+            return Json(result);
+        }
+
+        public JsonResult RequestReservation(string documentid, string userId, string branch)
+        {
+            var result = _documentRepository.RequestReservation(documentid, userId, branch);
             return Json(result);
         }
 

@@ -47,7 +47,7 @@ namespace Solvberget.Domain.Implementation
             if (!string.IsNullOrEmpty(cacheUrl))
                 return cacheUrl;
 
-            var doc = _documentRepository.GetDocument(id, false);
+            var doc = _documentRepository.GetDocument(id, true);
             if (doc == null)
                 return string.Empty;
 
@@ -71,7 +71,7 @@ namespace Solvberget.Domain.Implementation
             if (!string.IsNullOrEmpty(cacheUrl))
                 return cacheUrl;
 
-            var doc = _documentRepository.GetDocument(id, false);
+            var doc = _documentRepository.GetDocument(id, true);
 
             if (doc == null)
                 return string.Empty;
