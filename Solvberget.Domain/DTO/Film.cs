@@ -66,7 +66,7 @@ namespace Solvberget.Domain.DTO
                 if (actorsString != null)
                 {
                     var actorsList = actorsString.Split(':');
-                    if (actorsList.Length > 2)
+                    if (actorsList.Length > 1)
                     {
                         actorsList = actorsList[1].Split(',');
                     }
@@ -75,7 +75,7 @@ namespace Solvberget.Domain.DTO
                     foreach (string personName in actorsList)
                     {
                         var p = new Person();
-                        p.Name = personName;
+                        p.Name = personName.Trim();
                         persons.Add(p);
                     }
                 }
@@ -107,6 +107,28 @@ namespace Solvberget.Domain.DTO
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
             }
+        }
+
+        public override string GetCompressedString()
+        {
+
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (Publisher != null)
+            {
+                temp += ", " +Publisher;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
         }
 
         public new static Film GetObjectFromFindDocXmlBsMarc(string xml)

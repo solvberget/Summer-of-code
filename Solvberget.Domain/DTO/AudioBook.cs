@@ -50,6 +50,7 @@ namespace Solvberget.Domain.DTO
             }
         }
 
+
         protected override void FillPropertiesLight(string xml)
         {
             base.FillPropertiesLight(xml);
@@ -92,6 +93,30 @@ namespace Solvberget.Domain.DTO
 
             }
         }
+
+        public override string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);  
+            }
+                  
+            var temp = docTypeLookupValue ?? DocType;
+
+              if (Author.Name != null)
+            {
+                temp += ", " + Author.Name;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
+
+        }
+
 
         public new static AudioBook GetObjectFromFindDocXmlBsMarc(string xml)
         {

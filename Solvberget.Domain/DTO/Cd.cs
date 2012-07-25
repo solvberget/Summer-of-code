@@ -73,6 +73,29 @@ namespace Solvberget.Domain.DTO
             }
         }
 
+        public override string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (ArtistOrComposer.Name != null)
+            {
+                temp += ", " + ArtistOrComposer.Name;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
+
+        }
+
+
         public new static Cd GetObjectFromFindDocXmlBsMarc(string xml)
         {
             var document = new Cd();

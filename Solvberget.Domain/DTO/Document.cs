@@ -11,7 +11,7 @@ namespace Solvberget.Domain.DTO
 
         //Base properties
         public int StandardLoanTime { get { return 32; } }
-        public string DocType { get { return this.GetType().Name; } private set { } }
+        public string DocType { get { return GetType().Name; } private set { } }
         public string DocumentNumber { get; set; }
         public string TargetGroup { get; set; }
         public string IsFiction { get; set; }
@@ -27,7 +27,7 @@ namespace Solvberget.Domain.DTO
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
-
+        public string CompressedSubTitle { get { return GetCompressedString(); } set { } }
         //Location and availability info for each branch
         public List<AvailabilityInformation> AvailabilityInfo { get; private set; }
 
@@ -112,7 +112,23 @@ namespace Solvberget.Domain.DTO
                         PublishedYear = int.Parse(foundValue);
                 }
 
+
             }
+        }
+
+        public virtual string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (PublishedYear != 0)
+                temp += " (" + PublishedYear + ")";
+            return temp;
+
         }
 
         public static Document GetObjectFromFindDocXmlBsMarc(string xml)
@@ -211,7 +227,7 @@ namespace Solvberget.Domain.DTO
                     RoleDictionary.TryGetValue(role, out roleLookupValue);
 
                 var person = new Person()
-                                 { 
+                                 {
                                      Name = GetSubFieldValue(varfield, "a"),
                                      LivingYears = GetSubFieldValue(varfield, "d"),
                                      Nationality = nationalityLookupValue ?? nationality,
@@ -220,9 +236,9 @@ namespace Solvberget.Domain.DTO
                                  };
 
                 string tempName = GetSubFieldValue(varfield, "a");
-                if(tempName != null)
+                if (tempName != null)
                     person.SetName(tempName);
-                
+
 
                 persons.Add(person);
             }
@@ -256,6 +272,19 @@ namespace Solvberget.Domain.DTO
             return organizations;
 
         }
+
+        protected static readonly Dictionary<string, string> DocumentDictionary = new Dictionary<string, string>
+                                {
+                                    {"^^^", "Dokumenttype er ikke registrert"},
+                                     {typeof(Document).Name, "Annet"},
+                                    {typeof(AudioBook).Name, "Lydbok"},
+                                    {typeof(Book).Name, "Bok"},                       
+                                    {typeof(Cd).Name, "Cd"},
+                                     {typeof(Film).Name, "Film"},
+                                    {typeof(Journal).Name, "Tidsskrift"},
+                                    {typeof(LanguageCourse).Name, "Språkkurs"},
+                                    {typeof(SheetMusic).Name, "Note"}
+                                };
 
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>
                                 {
