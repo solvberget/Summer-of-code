@@ -32,18 +32,28 @@
             <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
         </div>
 
-
-
-        <!-- Define the header menu -->
-        <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
-            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
-            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
-            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
-
-            <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
-            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
-            </button>
+        <!-- Reservation template -->
+        <div id="reservationTemplate">
+            <hr />
+            <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+            <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
+            <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
+            <span class="holdRequestTo" data-win-bind="innerText: HoldRequestTo MyPageConverters.holdRequestToConverter"></span>
         </div>
+
+
+
+    </div>
+
+    <!-- Define the header menu -->
+    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
+
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
+        </button>
     </div>
 
     <!-- The content that will be loaded and displayed. -->
@@ -105,6 +115,13 @@
                     <div id="loanTemplateHolder">
                     </div>
                 </div>
+
+                <div id="reservations" class="box">
+                    <h2><span class="detail-title">Reserveringer</span></h2>
+                    <div id="reservationTemplateHolder">
+                    </div>
+                </div>
+
             </div>
         </section>
     </div>

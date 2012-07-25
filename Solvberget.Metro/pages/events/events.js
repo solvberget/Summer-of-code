@@ -29,7 +29,7 @@
             //Setup the EventDataSource
             var eventsDataSource = new DataSources.eventsDataSource();
 
-         
+
             this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
 
             element.querySelector("header[role=banner] .pagetitle").textContent = "Arrangementer";
@@ -38,7 +38,7 @@
             listView.itemDataSource = eventsDataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.onselectionchanged = this.selectionChanged.bind(this);
-            
+
 
             this.updateVisibility();
             if (this.isSingleColumn()) {
@@ -57,11 +57,48 @@
                 // appear in the ListView.
                 listView.selection.set(Math.max(this.itemSelectionIndex, 0));
             }
+
+            var self = this;
+            element.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
+            document.getElementById("headerMenuLists").addEventListener("click", function () { window.Data.itemByKey("lists").navigateTo(); }, false);
+            document.getElementById("headerMenuMyPage").addEventListener("click", function () { window.Data.itemByKey("mypage").navigateTo(); }, false);
+            document.getElementById("headerMenuSearch").addEventListener("click", function () { window.Data.itemByKey("search").navigateTo(); }, false);
+            document.getElementById("headerMenuHomeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
+
+            var theMenu = document.getElementById("HeaderMenu");
+            WinJS.UI.processAll(theMenu);
+
+        },
+
+
+
+
+        showHeaderMenu: function () {
+
+            var title = document.querySelector("header .titlearea");
+            var menu = document.getElementById("HeaderMenu").winControl;
+            menu.anchor = title;
+            menu.placement = "bottom";
+            menu.alignment = "left";
+
+            menu.show();
+
+        },
+
+        goHome: function () {
+            WinJS.Navigation.navigate("/pages/home/home.html");
+
         },
 
         selectionChanged: function (args) {
-            var listView = document.body.querySelector(".itemlist").winControl;
-            if (listView != null) {
+
+            var listViewDiv = document.body.querySelector(".itemlist");
+            var listView = undefined;
+            if (listViewDiv) {
+                listView = listViewDiv.winControl;
+            }
+            
+            if (listView) {
                 var details;
                 var that = this;
                 // By default, the selection is restriced to a single item.
@@ -119,7 +156,7 @@
                     };
                     nav.history.backStack.push({
                         location: "/pages/events/events.html",
-                        state: {  }
+                        state: {}
                     });
                     element.querySelector(".articlesection").focus();
                 } else {

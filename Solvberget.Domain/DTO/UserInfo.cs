@@ -27,6 +27,8 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<Fine> Fines { get; set; }
         public IEnumerable<Fine> ActiveFines { get; set; }
         public IEnumerable<Loan> Loans { get; set; }
+        public IEnumerable<Reservation> Reservations { get; set; }
+
 
         public void FillProperties(string xml)
         {
@@ -77,6 +79,63 @@ namespace Solvberget.Domain.DTO
             if (xElementRecord == null) return;
 
             Balance = xElementRecord.Value;
+
+            
+            // Put all the reservations of the borrower into a list of Reservation objects
+            xElementRecord = xElement.Element("item-h");
+            if (xElementRecord != null)
+            {
+
+                var pickupLocation = "";
+                var holdRequestFrom = "";
+                var holdRequestTo = "";
+                var reservations = new List<Reservation>();
+
+                var reservationVarfields = xElement.Elements("item-h").ToList();
+
+                foreach (var varfield in reservationVarfields)
+                {
+
+                    //Get information from table z37
+                    xElementField = varfield.Element("z37");
+                    if (xElementField != null)
+                    {
+                        pickupLocation = GetXmlValue(xElementField, "z37-pickup-location");
+                        if (pickupLocation == "Hovedbibl.")
+                            pickupLocation = "Hovedbiblioteket";
+
+                        holdRequestFrom = GetFormattedDate(GetXmlValue(xElementField, "z37-request-date"));
+
+                        holdRequestTo = GetFormattedDate(GetXmlValue(xElementField, "z37-end-request-date"));
+
+                    }
+                    
+                    //Get information from table z13
+                    xElementField = varfield.Element("z13");
+                    if (xElementField != null)
+                    {
+                        var docNumber = GetXmlValue(xElementField, "z13-doc-number");
+
+                        var docTitle = GetXmlValue(xElementField, "z13-title");
+
+                        var reservation = new Reservation()
+                        {
+                            DocumentNumber = docNumber,
+                            DocumentTitle = docTitle,
+                            PickupLocation = pickupLocation,
+                            HoldRequestFrom = holdRequestFrom,
+                            HoldRequestTo = holdRequestTo,
+                        };
+
+                        reservations.Add(reservation);
+                    }
+                }
+
+
+
+
+                Reservations = reservations;
+            }
 
 
             //Put all the loans for the borrower into a list of Loan objects

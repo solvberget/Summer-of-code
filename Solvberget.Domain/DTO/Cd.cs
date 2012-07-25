@@ -59,6 +59,9 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "ArtistOrComposer"
                 };
+                string tempName = GetVarfield(nodes, "100", "a");
+                if (tempName != null)
+                    ArtistOrComposer.SetName(tempName);
 
                 //If no ArtistOrCompose, check BSMARC field 110 for MusicGroup
                 if (ArtistOrComposer.Name == null)
@@ -69,6 +72,29 @@ namespace Solvberget.Domain.DTO
 
             }
         }
+
+        public override string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (ArtistOrComposer.Name != null)
+            {
+                temp += ", " + ArtistOrComposer.Name;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
+
+        }
+
 
         public new static Cd GetObjectFromFindDocXmlBsMarc(string xml)
         {

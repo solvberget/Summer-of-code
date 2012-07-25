@@ -35,6 +35,7 @@ namespace Solvberget.Domain.DTO
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
                 TitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
+               
             }
         }
 
@@ -57,13 +58,41 @@ namespace Solvberget.Domain.DTO
                     Role = "Author"
 
                 };
+                string tempName = GetVarfield(nodes, "100", "a");
+                if (tempName != null)
+                    Author.SetName(tempName);
                 //If N/A, check BSMARC field 110 for author
                 if (Author.Name == null)
-                {
-                    Author.Name = GetVarfield(nodes, "110", "a");
+                { 
+                   Author.Name = GetVarfield(nodes, "110", "a");
+                   
 
                 }
             }
+        
+        }
+
+
+        public override string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (Author.Name != null)
+            {
+                temp += ", " + Author.Name;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " (" + PublishedYear + ")";
+            }
+            return temp;
+
+
         }
 
         public new static LanguageCourse GetObjectFromFindDocXmlBsMarc(string xml)
