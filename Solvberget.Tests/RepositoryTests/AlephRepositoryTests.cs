@@ -192,7 +192,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void RequestReservationTest()
         {
-
+            /**
             string userId = "159222";
             string docNumber = "000178569";
             string branch = "Hovedbibl";
@@ -205,7 +205,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             userId = "STV000060009";
             returnMessage = _repository.RequestReservation(docNumber, userId, branch);
             Assert.AreEqual("ok", returnMessage);
-
+            */
 
         }
 
