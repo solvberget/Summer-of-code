@@ -169,13 +169,20 @@ var populateAvailability = function () {
 
     var model;
 
-    for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
-        model = documentModel.AvailabilityInfo[i];
+    if (documentModel.AvailabilityInfo) {
+        for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
+            model = documentModel.AvailabilityInfo[i];
 
-        if (availabilityTemplate && availabilityTemplateHolder && model)
-            availabilityTemplate.render(model, availabilityTemplateHolder);
+            if (availabilityTemplate && availabilityTemplateHolder && model)
+                availabilityTemplate.render(model, availabilityTemplateHolder);
 
+        }
     }
+    else {
+        var holdRequestButton = document.getElementById("reserve");
+        $(holdRequestButton).attr("disabled", "true");
+    }
+    
 
 };
 
