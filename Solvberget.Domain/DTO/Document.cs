@@ -11,7 +11,7 @@ namespace Solvberget.Domain.DTO
 
         //Base properties
         public int StandardLoanTime { get { return 32; } }
-        public string DocType { get { return this.GetType().Name; } private set { } }
+        public string DocType { get { return GetType().Name; } }
         public string DocumentNumber { get; set; }
         public string TargetGroup { get; set; }
         public string IsFiction { get; set; }
