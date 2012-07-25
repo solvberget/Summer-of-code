@@ -30,6 +30,12 @@ namespace Solvberget.Service.Controllers
             return Json(response);
         }
 
+        public JsonResult GetListsDynamic(int? limit)
+        {
+            var resultDynamic = _dynamicRepository.GetLists(limit);
+            return Json(resultDynamic);
+        } 
+
         public JsonResult GetListsStaticLastModified()
         {
             var timestamp = _staticRepository.GetTimestampForLatestChange();
