@@ -28,6 +28,9 @@
             $("#mypageData").droppable();
             $(".box").droppable();
 
+
+
+
         },
 
 
@@ -57,6 +60,23 @@ var ajaxGetUserInformation = function () {
     if (borrowerId != undefined && borrowerId !== "")
         return $.getJSON(window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId);
 };
+
+
+
+var renewLoan = function (loan) {
+
+    var renewalDiv = document.getElementById("loanRenewalFragmentHolder");
+    renewalDiv.innerHTML = "";
+
+    WinJS.UI.Fragments.renderCopy("/fragments/loanRenewal/loanRenewal.html", renewalDiv).done(function () {
+
+        var renewalAnchor = document.getElementById("loanTemplateHolder");
+
+        LoanRenewal.showFlyout(renewalAnchor, null, loan);
+    });
+
+    
+}
 
 var addFinesToDom = function (fines) {
 
@@ -88,7 +108,15 @@ var addLoansToDom = function (loans) {
     var i, loan;
     for (i = 0; i < loans.length; i++) {
         loan = loans[i];
-        loanTemplate.render(loan, loansTemplateContainer);
+
+        loanTemplate.render(loan, loansTemplateContainer).done(function (element) {
+            $(element).find(".renewLoanButton:last").attr("index", i);
+            $(element).find(".renewLoanButton:last").click(function () {
+                var index = $(this).attr("index");
+
+                renewLoan(loans[index]);
+            });
+        });
     }
 }
 
@@ -156,6 +184,7 @@ var getUserInformation = function () {
                 this.addFinesToDom(fines);
                 this.addLoansToDom(loans);
                 this.addReservationsToDom(reservations);
+
 
             }
 

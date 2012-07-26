@@ -63,6 +63,12 @@ namespace Solvberget.Service.Controllers
             return Json(result);
         }
 
+        public JsonResult RequestLoanRenewal (string documentNumber, string itemSecq, string barcode, string libraryUserId)
+        {
+            var result = _documentRepository.RequestRenewalOfLoan(documentNumber, itemSecq, barcode, libraryUserId);
+            return Json(result);
+        }
+
         public JsonResult GetDocumentRating(string id)
         {
             var result = _ratingRepository.GetDocumentRating(id);

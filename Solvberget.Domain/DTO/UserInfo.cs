@@ -150,6 +150,9 @@ namespace Solvberget.Domain.DTO
                 var loanHour = "";
                 var dueDate = "";
                 var itemStatus = "";
+                var barcode = "";
+                var docNumber = "";
+
 
                 var loans = new List<Loan>();
 
@@ -162,7 +165,7 @@ namespace Solvberget.Domain.DTO
                     if (xElementField != null)
                     {
 
-                        itemSequence = GetXmlValue(xElementField, "z36-item-sequence");
+                        
 
                         subLibrary = GetXmlValue(xElementField, "z36-sub-library");
                         if (subLibrary == "Hovedbibl.")
@@ -181,22 +184,27 @@ namespace Solvberget.Domain.DTO
                     xElementField = varfield.Element("z30");
                     if (xElementField != null)
                     {
+                        docNumber = GetXmlValue(xElementField, "z30-doc-number");
+
+                        itemSequence = GetXmlValue(xElementField, "z30-item-sequence");
+
                         itemStatus = GetXmlValue(xElementField, "z30-item-status");
+
+                        barcode = GetXmlValue(xElementField, "z30-barcode");
+
                     }
 
                     //Get information from table z13
                     xElementField = varfield.Element("z13");
                     if (xElementField != null)
                     {
-
-                        var docNumber = GetXmlValue(xElementField, "z13-doc-number");
-
                         var docTitle = GetXmlValue(xElementField, "z13-title");
 
                         var loan = new Loan()
                                        {
                                            DocumentNumber = docNumber,
                                            ItemSequence = itemSequence,
+                                           Barcode = barcode,
                                            DocumentTitle = docTitle,
                                            SubLibrary = subLibrary,
                                            OriginalDueDate = orgDueDate,

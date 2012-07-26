@@ -106,7 +106,7 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-        public ReservationReply RequestReservation(string documentNumber, string userId, string branch)
+        public RequestReply RequestReservation(string documentNumber, string userId, string branch)
         {
             if (branch.Equals("Hovedbibl"))
                 branch = "Hovedbibl.";
@@ -118,11 +118,11 @@ namespace Solvberget.Domain.Implementation
                 var alephReturnMessage = GetReserveRequest(docItem.ItemAdmKey, docItem.ItemKeySequence, userId);
                 if (alephReturnMessage.Equals("ok"))
                 {
-                    return new ReservationReply { Success = true, Reply = "Din reservasjon var vellykket!" };
+                    return new RequestReply { Success = true, Reply = "Reservasjonen var vellykket!" };
                 }
-                return new ReservationReply { Success = false, Reply = alephReturnMessage };
+                return new RequestReply { Success = false, Reply = alephReturnMessage };
             }
-            return new ReservationReply { Success = false, Reply = "Feil: Dokumentene er for tiden ikke tilgjengelig for reservering." };
+            return new RequestReply { Success = false, Reply = "Feil: Dokumentene er for tiden ikke tilgjengelig for reservering." };
         }
 
         private string GetReserveRequest(string documentAdm, string itemSequence, string userId)
@@ -140,6 +140,40 @@ namespace Solvberget.Domain.Implementation
             }
             return "Feil: Klarte ikke å hente ut ønsket informasjon fra returnert xml-ark.";
         }
+
+        public RequestReply RequestRenewalOfLoan (string documentNumber, string itemSecq, string barcode, string libraryUserId)
+        {
+            var renewalRequest = GetLoanRenewalRequest(documentNumber, itemSecq, barcode, libraryUserId);
+
+
+            if (renewalRequest != null)
+            {
+                if (renewalRequest.Equals("ok"))
+                {
+                    return new RequestReply {Success = true, Reply = "Lånetiden er utvidet"};
+                }
+                return new RequestReply {Success = false, Reply = renewalRequest};
+            }
+            return new RequestReply { Success = false, Reply = "Feil: Dokumentet er for tiden ikke tilgjengelig for utviding av lånetid" };
+        }
+
+        private string GetLoanRenewalRequest(string documentNr, string itemSequence, string itemBarcode, string libraryUserId)
+        {
+            const Operation function = Operation.RenewLoan;
+            var options = new Dictionary<string, string> { { "doc_number", documentNr }, { "item_sequence", itemSequence }, { "bor_id", libraryUserId }, {"item_barcode", itemBarcode} };
+            var url = GetUrl(function, options);
+            var docItemsXml = RepositoryUtils.GetXmlFromStream(url);
+
+            if (docItemsXml != null && docItemsXml.Root != null)
+            {
+                var item = docItemsXml.Root.Element("reply") ?? docItemsXml.Root.Element("error");
+                if (item != null)
+                    return item.Value;
+            }
+
+            return "Feil: Klarte ikke å hente ut ønsket informasjon fra returnert xml-ark.";
+        }
+
 
         private void GenerateDocumentLocationAndAvailabilityInfo(Document document)
         {
@@ -262,12 +296,14 @@ namespace Solvberget.Domain.Implementation
                     return "op=hold-req&library=NOR50";
                 case 7:
                     return "op=circ-status&library=NOR01";
+                case 8:
+                    return "op=renew&library=NOR50";
                 default:
                     return null;
             }
         }
 
-        private enum Operation { DocumentItems, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser, UserInformation, ReserveDocument, CircStatus }
+        private enum Operation { DocumentItems, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser, UserInformation, ReserveDocument, CircStatus, RenewLoan }
 
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {

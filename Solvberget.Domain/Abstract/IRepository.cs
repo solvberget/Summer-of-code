@@ -8,7 +8,8 @@ namespace Solvberget.Domain.Abstract
         List<Document> Search(string value);
         Document GetDocument(string documentNumber, bool isLight);
         UserInfo GetUserInformation(string userId, string verification);
-        ReservationReply RequestReservation(string documentNumber, string userId, string branch);
+        RequestReply RequestReservation(string documentNumber, string userId, string branch);
+        RequestReply RequestRenewalOfLoan(string documentNumber, string itemSecq, string barcode, string libraryUserId);
     }  
     
 }
