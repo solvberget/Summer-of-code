@@ -36,6 +36,9 @@
     <Reference Include="Contrib.Regex">
       <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Contrib.Regex.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
@@ -111,6 +114,12 @@
     <Compile Include="DTO\Cd.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DTO\ContactInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\ContactWebPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DTO\Document.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -144,17 +153,28 @@
     <Compile Include="DTO\Loan.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DTO\OpeningHoursInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\OpeningHoursWebPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DTO\Organization.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DTO\Person.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DTO\Reservation.cs" />
+    <Compile Include="DTO\Reservation.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DTO\SheetMusic.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DTO\UserInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Webpage.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Implementation\AlephRepository.cs" />
@@ -219,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
