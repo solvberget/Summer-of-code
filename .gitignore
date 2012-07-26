@@ -4,6 +4,9 @@
 *.userprefs
 *.pidb
 
+#SASS
+.sass-cache*/
+
 #Ordliste files
 ordlister_index*/
 
