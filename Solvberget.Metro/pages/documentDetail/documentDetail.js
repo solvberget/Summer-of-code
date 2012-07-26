@@ -23,7 +23,7 @@
             var theMenu = document.getElementById("HeaderMenu");
             WinJS.UI.processAll(theMenu);
 
-
+            document.getElementById("sendHoldRequestButton").addEventListener("click", registerHoldRequest);
         },
 
 
@@ -255,6 +255,22 @@ var getDocument = function (documentNumber) {
     );
 
 };
+
+function registerHoldRequest() {
+
+
+
+
+    var holdRequestDiv = document.getElementById("holdRequestFragmentHolder");
+    holdRequestDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/holdRequest/holdRequest.html", holdRequestDiv).done(function () {
+
+        var holdRequestAnchor = document.getElementById("sendHoldRequestButton");
+
+        HoldRequest.showFlyout(holdRequestAnchor);
+    });
+};
+
 
 WinJS.Namespace.define("DocumentDetail", {
     model: documentModel,
