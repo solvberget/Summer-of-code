@@ -167,6 +167,9 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
+    <Content Include="pages\lists-v2\libraryLists.css" />
+    <Content Include="pages\lists-v2\libraryLists.html" />
+    <Content Include="pages\lists-v2\libraryLists.js" />
     <Content Include="pages\mypage\mypage.css" />
     <Content Include="pages\mypage\mypage.html" />
     <Content Include="pages\mypage\mypage.js" />
