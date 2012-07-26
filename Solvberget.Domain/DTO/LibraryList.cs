@@ -11,8 +11,8 @@ namespace Solvberget.Domain.DTO
         public string Name { get; private set; }
         public int Priority { get; private set; }
         public bool IsRanked { get; private set; }
-        public List<string> DocumentNumbers { get; private set; }
-        public List<Document> Documents { get; private set; } 
+        public List<string> DocumentNumbers { get; set; }
+        public List<Document> Documents { get; set; } 
 
         private LibraryList()
         {
@@ -20,24 +20,32 @@ namespace Solvberget.Domain.DTO
             Documents = new List<Document>();
         }
 
-        public static LibraryList GetLibraryListFromXml(string xmlFilePath)
+        public static LibraryList GetLibraryListFromXmlFile(string xmlFilePath)
         {
+            var xmlDoc = XElement.Load(xmlFilePath);
             var libraryList = new LibraryList();
-            libraryList.FillProperties(xmlFilePath);
+            libraryList.FillProperties(xmlDoc);
             return libraryList;
         }
 
-        private void FillProperties(string xmlFilePath)
+        public static LibraryList GetLibraryListFromXml(XElement xml)
         {
-            var xmlDoc = XElement.Load(xmlFilePath);
-            if (xmlDoc.Attribute("name") == null)
+            var libraryList = new LibraryList();
+            libraryList.FillProperties(xml);
+            return libraryList;
+        }
+
+        private void FillProperties(XElement xml)
+        {
+            
+            if (xml.Attribute("name") == null)
                 return;
             else
             {
-                var name = xmlDoc.Attribute("name");
+                var name = xml.Attribute("name");
                 if (name != null) Name = name.Value;
 
-                var pri = xmlDoc.Attribute("pri");
+                var pri = xml.Attribute("pri");
                 if (pri != null)
                 {
                     var priAsString = pri.Value;
@@ -54,13 +62,13 @@ namespace Solvberget.Domain.DTO
                     }
                 }
 
-                var isRanked = xmlDoc.Attribute("ranked");
+                var isRanked = xml.Attribute("ranked");
                 if (isRanked != null)
                 {
                     IsRanked = isRanked.Value.Equals("true") ? true : false;
                 }
 
-                xmlDoc.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => DocumentNumbers.Add(element.Value));
+                xml.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => DocumentNumbers.Add(element.Value));
 
             }
         }

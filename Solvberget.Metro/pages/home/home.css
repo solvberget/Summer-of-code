@@ -13,13 +13,16 @@
     z-index: 0;
 }
 
+
+
     .itemspage .itemslist .win-item {
         -ms-grid-columns: 1fr;
         -ms-grid-rows: 1fr 90px;
         display: -ms-grid;
         height: 250px;
         width: 250px;
-        position:relative
+        position: relative;
+
     }
 
         .itemspage .itemslist .win-item .item-image {
@@ -48,9 +51,6 @@
             }
 
 @media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
-    .itemspage .itemslist .win-item .item-overlay {
-        background: rgba(0,0,0,0.65);
-    }
 
         .itemspage .itemslist .win-item .item-overlay .item-title {
             color: rgba(255,255,255,0.87);

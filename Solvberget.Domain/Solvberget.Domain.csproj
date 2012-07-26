@@ -93,18 +93,17 @@
     <Compile Include="Abstract\IListRepositoryStatic.cs" />
     <Compile Include="Abstract\IRatingRepository.cs" />
     <Compile Include="Abstract\IReviewRepository.cs" />
+    <Compile Include="Abstract\IRulesRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
     <Compile Include="DTO\AvailabilityInformation.cs" />
     <Compile Include="DTO\Book.cs" />
     <Compile Include="DTO\Cd.cs" />
     <Compile Include="DTO\BokBasenBook.cs" />
-    <Compile Include="DTO\Fine.cs" />
+    <Compile Include="DTO\ItemRule.cs" />
     <Compile Include="DTO\DocumentItem.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
-    <Compile Include="DTO\LibraryList.cs" />
     <Compile Include="DTO\Event.cs" />
-    <Compile Include="DTO\Journal.cs" />
     <Compile Include="DTO\LanguageCourse.cs" />
     <Compile Include="DTO\Loan.cs" />
     <Compile Include="DTO\Organization.cs" />
@@ -114,13 +113,30 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="DTO\ExtensionHelpers.cs" />
     <Compile Include="DTO\Film.cs" />
-    <Compile Include="DTO\SheetMusic.cs" />
+    <Compile Include="DTO\ReservationReply.cs" />
     <Compile Include="DTO\UserInfo.cs" />
+    <Compile Include="DTO\LastFmAlbum.cs" />
+    <Compile Include="DTO\Fine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Journal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\LibraryList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Reservation.cs" />
+    <Compile Include="DTO\SheetMusic.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\BokbasenRepository.cs" />
+    <Compile Include="Implementation\RulesRepository.cs" />
     <Compile Include="Implementation\ImdbRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />
     <Compile Include="Implementation\ImageRepository.cs" />
+    <Compile Include="Implementation\LastFmRepository.cs" />
+    <Compile Include="Implementation\LibraryListDynamicRepository.cs" />
     <Compile Include="Implementation\LinticketRepository.cs" />
     <Compile Include="Implementation\LibraryListXmlRepository.cs" />
     <Compile Include="Implementation\LuceneRepository.cs" />

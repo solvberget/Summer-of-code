@@ -10,29 +10,40 @@
 </head>
 <body>
     <div id="templates">
-    <!-- Fine template -->
-    <div id="fineTemplate">
-        <hr />
-        <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
-        <span class="fineDate" data-win-bind="innerText: Date MyPageConverters.dateConverter"></span>
-        <span class="status" data-win-bind="innerText: Status MyPageConverters.statusConverter"></span>
-        <span class="sum" data-win-bind="innerText: Sum MyPageConverters.sumConverter"></span>
-        <br />
-        <span class="description" data-win-bind="innerText: Description"></span>
+        <!-- Fine template -->
+        <div id="fineTemplate">
+            <hr />
+            <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+            <span class="fineDate" data-win-bind="innerText: Date MyPageConverters.dateConverter"></span>
+            <span class="status" data-win-bind="innerText: Status MyPageConverters.statusConverter"></span>
+            <span class="sum" data-win-bind="innerText: Sum MyPageConverters.sumConverter"></span>
+            <br />
+            <span class="description" data-win-bind="innerText: Description"></span>
+        </div>
+
+        <!-- Loan template -->
+        <div id="loanTemplate">
+            <hr />
+            <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+            <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter"></span>
+            <span class="loanLibrary" data-win-bind="innerText: SubLibrary MyPageConverters.loanCatalogerNameConverter"></span>
+            <span class="loanDate" data-win-bind="innerText: LoanDate MyPageConverters.loanDateConverter"></span>
+            <span class="loanOriginalDueDate" data-win-bind="innerText: OriginalDueDate MyPageConverters.originalDueDateConverter"></span>
+            <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
+        </div>
+
+        <!-- Reservation template -->
+        <div id="reservationTemplate">
+            <hr />
+            <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+            <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
+            <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
+            <span class="holdRequestTo" data-win-bind="innerText: HoldRequestTo MyPageConverters.holdRequestToConverter"></span>
+        </div>
+
+
+
     </div>
-
-    <!-- Loan template -->
-    <div id="loanTemplate">
-        <hr />
-        <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
-        <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter"></span>
-        <span class="loanLibrary" data-win-bind="innerText: SubLibrary MyPageConverters.loanCatalogerNameConverter"></span>
-        <span class="loanDate" data-win-bind="innerText: LoanDate MyPageConverters.loanDateConverter"></span>
-        <span class="loanOriginalDueDate" data-win-bind="innerText: OriginalDueDate MyPageConverters.originalDueDateConverter"></span>
-        <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
-    </div>
-
-
 
     <!-- Define the header menu -->
     <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
@@ -44,7 +55,6 @@
         <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
         </button>
     </div>
-        </div>
 
     <!-- The content that will be loaded and displayed. -->
     <div class="myPage fragment">
@@ -64,7 +74,7 @@
             aria-label="Main content" id="mainContentSection" role="main">
             <div id="mypageLoading">
                 <label class="progressRingText">
-                    <progress class="win-ring withText"></progress>Henter ...</label>
+                    <progress class="win-ring withText"></progress></label>
             </div>
 
             <div id="mypageData">
@@ -105,6 +115,13 @@
                     <div id="loanTemplateHolder">
                     </div>
                 </div>
+
+                <div id="reservations" class="box">
+                    <h2><span class="detail-title">Reserveringer</span></h2>
+                    <div id="reservationTemplateHolder">
+                    </div>
+                </div>
+
             </div>
         </section>
     </div>

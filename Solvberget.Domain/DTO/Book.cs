@@ -33,7 +33,6 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                Isbn = GetVarfield(nodes, "020", "a");
                 ClassificationNr = GetVarfield(nodes, "090", "c");
                 StdOrOrgTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
@@ -59,6 +58,8 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
 
+                Isbn = GetVarfield(nodes, "020", "a");
+
                 //Author, check BSMARC field 100 for author
                 var nationality = GetVarfield(nodes, "100", "j");
                 string nationalityLookupValue = null;
@@ -71,12 +72,16 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "Author"
                 };
+                string tempName = GetVarfield(nodes, "100", "a");
+                if(tempName != null)
+                Author.SetName(tempName);
 
                 //If N/A, check BSMARC field 110 for author
                 if (Author.Name == null)
                 {
-                    Author.Name = GetVarfield(nodes, "110", "a");
 
+                    Author.Name = GetVarfield(nodes, "110", "a");
+                    
                     //Organization (110abq)
                     Organization = GenerateOrganizationsFromXml(nodes, "110").FirstOrDefault();
 
@@ -88,6 +93,30 @@ namespace Solvberget.Domain.DTO
 
             }
         }
+
+
+                public override string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (Author.Name != null)
+            {
+                temp += ", " + Author.Name;
+            }
+            if (PublishedYear != 0)
+            {
+                temp += " ("+PublishedYear+")";
+            }
+            return temp;
+
+           
+        }
+
 
         public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
         {

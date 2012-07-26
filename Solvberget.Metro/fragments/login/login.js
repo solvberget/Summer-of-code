@@ -24,7 +24,7 @@
         WinJS.log && WinJS.log("", "solvberget", "status", "status");
 
 
-        if (getLoggedInBorrowerId() == undefined || getLoggedInBorrowerId() == "") {
+        if (LoginFlyout.getLoggedInBorrowerId() == undefined || LoginFlyout.getLoggedInBorrowerId() == "") {
 
             var loginFlyout = document.getElementById("loginFlyout");
             WinJS.UI.processAll(loginFlyout);
@@ -44,10 +44,6 @@
 
     }
 
-    function getLoggedInBorrowerId() {
-        var borrowerId = window.localStorage.getItem("BorrowerId");
-        return borrowerId != undefined ? borrowerId : "";
-    }
 
     // Show errors if any of the text fields are not filled out when the Login button is clicked
     function submitLogin() {
@@ -91,8 +87,22 @@
                         $("#outputMsg").addClass("success");
 
                         var borrowerId = response.BorrowerId;
-                        if (borrowerId != undefined) {
+                        var libraryId = response.Id;
+
+                        if (borrowerId != undefined && libraryId != undefined) {
+
+                            var applicationData = Windows.Storage.ApplicationData.current;
+
+                            if (applicationData)
+                                var roamingSettings = applicationData.roamingSettings;
+
+                            if (roamingSettings) {
+                                roamingSettings.values["BorrowerId"] = borrowerId;
+                                roamingSettings.values["LibraryUserId"] = libraryId;
+                            }
+
                             window.localStorage.setItem("BorrowerId", borrowerId);
+                            window.localStorage.setItem("LibraryUserId", libraryId);
                         }
 
                         setTimeout(function () {
@@ -109,8 +119,8 @@
 
                     }
                     else {
-                        if (outputMsg != undefined) 
-                         outputMsg.innerHTML = "Feil lånernummer/pin";
+                        if (outputMsg != undefined)
+                            outputMsg.innerHTML = "Feil lånernummer/pin";
 
                         $("#outputMsg").removeClass("success");
                         $("#outputMsg").addClass("error");
@@ -133,6 +143,9 @@
         document.getElementById("pinError").innerHTML = "";
         document.getElementById("outputMsg").innerHTML = "";
 
+        var loginDivHolder = document.getElementById("loginDiv");
+        if (loginDivHolder)
+            loginDivHolder.innerHTML = "";
 
         if (!loggedIn) {
             WinJS.log && WinJS.log("Du er ikke logget inn.", "solvberget", "status");
@@ -141,7 +154,7 @@
 
     WinJS.Namespace.define("LoginFlyout", {
         showLogin: showLoginFlyout,
-        getLoggedInBorrowerId: getLoggedInBorrowerId
+
     });
 
 })();

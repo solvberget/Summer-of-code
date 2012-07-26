@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
+using Solvberget.Domain.Abstract;
 
 namespace Solvberget.Domain.DTO
 {
@@ -18,24 +18,28 @@ namespace Solvberget.Domain.DTO
         public bool OnHold { get; private set; }
         public bool InTransit { get; private set; }
         public string LoanStatus { get; private set; }
+        public string ItemAdmKey { get; private set; }
+        public string ItemKeySequence { get; set; }
+        public string ItemProcessStatusText { get; set; }
+        public string Barcode { get; set; }
+        public bool IsReservable { get; set; }
+
         public DateTime? LoanDueDate { get; private set; }
 
-        public static IEnumerable<DocumentItem> GetDocumentItemsFromXml(string itemDataXml)
+
+        public static IEnumerable<DocumentItem> GetDocumentItemsFromXml(string itemDataXml, string itemCircDataXml, IRulesRepository rulesRepository)
         {
+            var documentItems = new List<DocumentItem>();
 
             var xmlDoc = XDocument.Parse(itemDataXml);
-
             if (xmlDoc.Root != null)
             {
-               
-                var documentItems = new List<DocumentItem>();
 
                 var items = xmlDoc.Root.Descendants("item");
-                
-                foreach(var item in items)
+
+                foreach (var item in items)
                 {
                     var docItem = new DocumentItem();
-                    docItem.ItemKey = GetValueFromXElement(item, "rec-key");
                     docItem.ItemKey = GetValueFromXElement(item, "rec-key");
                     docItem.Branch = GetValueFromXElement(item, "sub-library");
                     string dep = string.Empty;
@@ -43,20 +47,92 @@ namespace Solvberget.Domain.DTO
                     docItem.Department = dep;
                     docItem.ItemStatus = GetValueFromXElement(item, "item-status");
                     docItem.PlacementCode = GetValueFromXElement(item, "call-no-1");
-                    docItem.OnHold = "Y".Equals(GetValueFromXElement(item, "on-hold")) ? true : false;
-                    docItem.InTransit = "Y".Equals(GetValueFromXElement(item, "loan-in-transit")) ? true : false;
+                    docItem.OnHold = "Y".Equals(GetValueFromXElement(item, "on-hold"));
+                    docItem.InTransit = "Y".Equals(GetValueFromXElement(item, "loan-in-transit"));
                     docItem.LoanStatus = GetValueFromXElement(item, "loan-status");
+                    docItem.Barcode = GetValueFromXElement(item, "barcode");
                     var loanDueDateAsString = GetValueFromXElement(item, "loan-due-date");
                     if (loanDueDateAsString != null)
                         docItem.LoanDueDate = ParseLoanDate(loanDueDateAsString);
+
+                    docItem.ItemAdmKey = docItem.ItemKey.Substring(0, 9);
+                    docItem.ItemKeySequence = docItem.ItemKey.Substring(9, 6);
+
                     documentItems.Add(docItem);
                 }
 
-                return documentItems;
-            
             }
 
-            return new List<DocumentItem>();
+            xmlDoc = XDocument.Parse(itemCircDataXml);
+            if (xmlDoc.Root != null)
+            {
+
+                var items = xmlDoc.Root.Descendants("item-data");
+
+                foreach (var item in items)
+                {
+                    var barcode = GetValueFromXElement(item, "barcode");
+
+                    var itemStatusText = GetValueFromXElement(item, "loan-status");
+                    var dueDateText = GetValueFromXElement(item, "due-date");
+
+                    var processText = itemStatusText ?? dueDateText;
+
+                    var docItem =
+                        documentItems.Where(x => x.Barcode.Equals(barcode)).Select(x => x).ToList().FirstOrDefault();
+                    if (docItem != null)
+                        docItem.ItemProcessStatusText = processText;
+                }
+            }
+            foreach (var documentItem in documentItems)
+            {
+                documentItem.IsReservable = IsReservableItem(documentItem, rulesRepository);
+            }
+            return documentItems;
+
+        }
+
+        private static bool IsReservableItem(DocumentItem docItem, IRulesRepository rulesRepository)
+        {
+
+            var processText = docItem.ItemProcessStatusText;
+            var itemStatusCode = docItem.ItemStatus;
+            var rules = rulesRepository.GetItemRules();
+
+            // No rules, no reservations
+            if (rules == null)
+                return false;
+
+            // Nothing to get rules from, no reservation
+            if (itemStatusCode == null && processText == null)
+                return false;
+
+            // Check rule for matching item status
+            var itemStatusCodeRule = rules.Where(x => x.ItemStatus.Equals(itemStatusCode)).Select(x => x).ToList().FirstOrDefault();
+
+            if (itemStatusCode != null && itemStatusCodeRule != null && !itemStatusCodeRule.CanReserve)
+                return false;
+
+            // Check rule for matching processText
+            ItemRule ruleFromProcessText = null;
+            if (processText != null)
+                ruleFromProcessText = rules.Where(x => x.ProcessStatusText.Equals(processText)).Select(x => x).ToList().FirstOrDefault();
+
+            if (processText != null && ruleFromProcessText != null && !ruleFromProcessText.CanReserve)
+                return false;
+
+            // Check if processTextCode is legal if any
+            if (ruleFromProcessText != null)
+            {
+                var processTextCode = ruleFromProcessText.ProcessStatusCode;
+
+                string[] legalCodes = { "##", "EN", "NA", "NB", "UL", "IU" };
+                if (!legalCodes.Contains(processTextCode))
+                    return false;
+            }
+
+            // Legal!
+            return true;
 
         }
 

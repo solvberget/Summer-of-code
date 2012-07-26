@@ -14,12 +14,12 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         private AlephRepository _repository;
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
+        private readonly string _pathToRulesFolder = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data\rules\");
 
         [SetUp]
         public void InitRepository()
         {
-
-            _repository = new AlephRepository(_imageCache);
+            _repository = new AlephRepository(_imageCache, _pathToRulesFolder);
         }
 
         [Test]
@@ -34,19 +34,21 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(0, documents.Count(x => x.GetType().Name.Equals("Document")));
         }
 
-       [Test]
+        [Test]
         public void TestGetBook()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
             var book = (Book)_repository.GetDocument(documentNumberForBook, false);
             Assert.AreEqual("Book", book.GetType().Name);
             Assert.AreEqual("Naiv. Super", book.Title);
-            Assert.AreEqual("Loe, Erlend", book.Author.Name);
+            Assert.AreEqual("Erlend Loe", book.Author.Name);
             Assert.AreEqual("978-82-02-33225-9", book.Isbn);
             Assert.AreEqual("205 s.", book.NumberOfPages);
             Assert.AreEqual("LOE", book.LocationCode);
             Assert.AreEqual(2010, book.PublishedYear);
             Assert.AreEqual("[Oslo]", book.PlacePublished);
+            Assert.AreEqual("Bok, Erlend Loe (2010)", book.CompressedSubTitle);
+
         }
 
         [Test]
@@ -63,6 +65,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(2, film.Languages.Count());
             Assert.AreEqual("Engelsk", film.Languages.ElementAt(0));
             Assert.AreEqual("Tysk", film.Languages.ElementAt(1));
+            Assert.AreEqual("Film, Warner Bros. Entertainment (2004)", film.CompressedSubTitle);
         }
 
         [Test]
@@ -72,9 +75,11 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var audioBook = (AudioBook)_repository.GetDocument(documentNumberForAudioBook, false);
             Assert.AreEqual("AudioBook", audioBook.GetType().Name);
             Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
-            Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
+            Assert.AreEqual("J.K. Rowling", audioBook.Author.Name);
             Assert.AreEqual("Fiksjon", audioBook.IsFiction);
             Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
+            Assert.AreEqual("Lydbok, J.K. Rowling (2008)", audioBook.CompressedSubTitle);
+
         }
 
         [Test]
@@ -88,6 +93,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("the international newsmagazine", journal.SubTitle);
             Assert.AreEqual("Engelsk", journal.Language);
             Assert.AreEqual("51 nummer pr. år", journal.JournalsPerYear);
+            Assert.AreEqual("Tidsskrift, Newsweek (19)", journal.CompressedSubTitle);
+
         }
 
         [Test]
@@ -106,6 +113,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Rock", cd.CompositionTypeOrGenre.ElementAt(1));
             Assert.AreEqual(7, cd.InvolvedPersons.Count());
             Assert.IsEmpty(cd.InvolvedMusicGroups);
+            Assert.AreEqual("Cd (2006)", cd.CompressedSubTitle);
+
         }
 
         [Test]
@@ -113,7 +122,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             const string documentNumberForLanguageCourse = "000391825"; //Jeg snakker norsk språkkurs
             var languageCourse = (LanguageCourse)_repository.GetDocument(documentNumberForLanguageCourse, false);
-            Assert.AreEqual("Ingnes, Nils", languageCourse.Author.Name);
+            Assert.AreEqual("Nils Ingnes", languageCourse.Author.Name);
             Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
             Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
             Assert.AreEqual("439.683", languageCourse.ClassificationNr);
@@ -126,6 +135,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(null, languageCourse.TitlesOtherWritingForms);
             Assert.AreEqual("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
             Assert.AreEqual("LanguageCourse", languageCourse.DocType);
+            Assert.AreEqual("Språkkurs, Nils Ingnes (1999)", languageCourse.CompressedSubTitle);
+
         }
 
         [Test]
@@ -133,12 +144,14 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             const string documentNumberForSheetMusic = "000117418"; //March (fanfare) for 3 trumpets and timpani
             var sheetMusic = (SheetMusic)_repository.GetDocument(documentNumberForSheetMusic, false);
-            Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMusic.Composer.Name);
+            Assert.AreEqual("Carl Philipp Emanuel Bach", sheetMusic.Composer.Name);
             Assert.AreEqual("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
             Assert.AreEqual("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
             Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());
             Assert.AreEqual("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
             Assert.AreEqual("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
+            Assert.AreEqual("Note, Carl Philipp Emanuel Bach", sheetMusic.CompressedSubTitle);
+
         }
 
         [Test]
@@ -173,6 +186,19 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.NotNull(authUser);
 
             Assert.IsTrue(authUser.IsAuthorized);
+
+        }
+
+        [Test]
+        public void RequestReservationTest()
+        {
+            
+            const string userId = "159222";
+            const string docNumber = "000178569";
+            const string branch = "Hovedbibl";
+
+            var returnMessage = _repository.RequestReservation(docNumber, userId, branch);
+            Assert.IsFalse(returnMessage.Success);
 
         }
 
