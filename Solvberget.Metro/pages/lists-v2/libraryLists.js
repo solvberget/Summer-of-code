@@ -22,7 +22,6 @@
     ui.Pages.define("/pages/lists-v2/libraryLists.html", {
 
         ready: function (element, options) {
-
             continueToGetDocuments = true;
 
             //HeaderMenu
@@ -62,16 +61,25 @@
 
                 console.log("ListView selection changed");
 
-                var listContent;
                 var that = this;
                 listViewForLists.selection.getItems().done(function updateDetails(items) {
                     if (items.length > 0) {
                         listSelectionIndex = items[0].index;
-                        listContent = that.element.querySelector(".listContentSection");
+                        var listContent = that.element.querySelector(".listContentSection");
                         binding.processAll(listContent, items[0].data);
-                        document.getElementById("documentsHolder").innerHTML = "";
-                        renderListContent(items[0].data);
+                        that.renderListContent(items[0].data);
                         listContent.scrollTop = 0;
+
+                        var documentNumbers = items[0].data.DocumentNumbers;
+                        var doneLoading = true;
+                        for (var doc in documentNumbers) {
+                            if (!documentNumbers[doc]) {
+                                doneLoading = false;
+                            }
+                        }
+                        if (doneLoading) {
+                            $(".headerProgress").hide();
+                        }
                     }
                 });
             }
@@ -96,9 +104,7 @@
                         $("#listsLoading").css("display", "none").css("visibility", "none");
                         $("#listViewId").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
-                        processRemainingDocuments().then(function () {
-                            //alert("hei");
-                        });
+                        that.processRemainingDocuments();
 
                     } else {
                         //Error handling   
@@ -127,97 +133,81 @@
         isSingleColumn: function () {
             var viewState = Windows.UI.ViewManagement.ApplicationView.value;
             return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
+        },
+
+        renderListContent: function (listModel) {
+            var that = this;
+
+            var documentTemplateDiv = document.getElementById("documentTemplate");
+            var documentTemplateHolder = document.getElementById("documentsHolder");
+            documentTemplateHolder.innerHTML = "";
+
+            var documentTemplate = undefined;
+            if (documentTemplateDiv)
+                documentTemplate = new WinJS.Binding.Template(documentTemplateDiv);
+            var model;
+
+            if (listModel.Documents) {
+                for (var i = 0; i < listModel.Documents.length; i++) {
+                    model = listModel.Documents[i];
+                    if (documentTemplate && documentTemplateHolder && model) {
+                        documentTemplate.render(model, documentTemplateHolder);
+                    }
+                }
+            }
+        },
+
+        processRemainingDocuments: function () {
+            var that = this;
+            return new WinJS.Promise(function () {
+                for (var i = 0; i < lists.length; i++) {
+                    var listItem = lists[i];
+                    var documentNumbers = listItem.DocumentNumbers;
+                    for (var document in documentNumbers) {
+                        if (!documentNumbers[document]) {
+                            if (!listItem.Documents) {
+                                listItem.Documents = new Array();
+                            }
+                            var reqStr = docReqStrBase + document;
+                            var jsonContext = new Object();
+                            jsonContext.listItem = listItem;
+                            jsonContext.document = document;
+                            $.getJSON(reqStr).then($.proxy(function (data) {
+                                this.listItem.Documents.push(data);
+                                this.listItem.DocumentNumbers[this.document] = true;
+                                that.listViewSelectionChanged();
+                                that.processRemainingThumbnails();
+                            }, jsonContext));
+                        }
+                    }
+                }
+            });
+        },
+
+        processRemainingThumbnails: function () {
+            var that = this;
+            return new WinJS.Promise(function () {
+                for (var i = 0; i < lists.length; i++) {
+                    var listItem = lists[i];
+                    var documents = listItem.Documents;
+                    for (var j = 0; j < documents.length; j++) {
+                        var doc = documents[j];
+                        if (doc.ThumbnailUrl === undefined || doc.ThumbnailUrl == "") {
+                            //var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
+                            //$.getJSON(url + doc.DocumentNumber + "/" + 60).then($.proxy(function (data) {
+                            //    this.ThumbnailUrl = data;
+                            //    that.listViewSelectionChanged();
+                            //}, doc));
+                        }
+                    }
+                }
+            });
         }
 
     });
 
-    var renderListContent = function (listModel) {
-
-        var documentTemplateDiv = document.getElementById("documentTemplate");
-        var documentTemplateHolder = document.getElementById("documentsHolder");
-
-        var documentTemplate = undefined;
-        if (documentTemplateDiv)
-            documentTemplate = new WinJS.Binding.Template(documentTemplateDiv);
-        var model;
-
-        if (listModel.Documents) {
-            for (var i = 0; i < listModel.Documents.length; i++) {
-
-                model = listModel.Documents[i];
-
-                if (documentTemplate && documentTemplateHolder && model) {
-                    var test = documentTemplate.render(model, documentTemplateHolder);
-                }
-
-            }
-        }
-    };
-
-    var addListContent = function (documentModel) {
-
-        var documentTemplateDiv = document.getElementById("documentTemplate");
-        var documentTemplateHolder = document.getElementById("documentsHolder");
-
-        var documentTemplate = undefined;
-        if (documentTemplateDiv)
-            documentTemplate = new WinJS.Binding.Template(documentTemplateDiv);
-        
-        if (documentTemplate && documentTemplateHolder && documentModel) {
-            documentTemplate.renderItem(documentModel);
-        }
-    };
-
-    var processRemainingDocuments = function () {
-        return new WinJS.Promise(function () {
-            
-            for (var i = 0; i < lists.length; i++) {
-                var listItem = lists[i];
-                var documentNumbers = listItem.DocumentNumbers;
-                for (var document in documentNumbers) {
-                    if (!documentNumbers[document]) {
-                        if (!listItem.Documents) {
-                            listItem.Documents = new Array();
-                        }
-                        $.when(getDocumentLight(document)).then($.proxy(function (data) {
-                            this.Documents.push(data);
-                            //addListContent(data);
-                            
-                        }, listItem));
-                    }
-                }
-            }
-        });
-    };
 
 
-    var cancelRemainingDocuments = function () {
-
-    };
-
-    var downloadRemaningDocuments = function () {
-
-    };
-
-    var getDocumentLight = function (docnr) {
-
-        var reqStr = docReqStrBase + docnr;
-
-        return $.getJSON(reqStr);
-
-        //return WinJS.xhr({ url: reqStr }).done(
-        //    function (request) {
-        //        var obj = JSON.parse(request.responseText);
-        //        if (obj !== undefined) {
-        //            return obj;
-        //        } else {
-        //            //Error handling
-        //        }
-        //    },
-        //    function (request) {
-        //        //Error handling
-        //    });
-    };
 
 })();
 

@@ -66,41 +66,45 @@
     <!----------------------- THE PAGE ---------------------->
     <div class="listpage fragment">
 
+        <div id="listsLoading">
+            <label class="progress-ring-text">
+                <progress class="win-ring withText"></progress>
+            </label>
+        </div>
+
         <!-- HEADER -->
-        <header aria-label="Header content" role="banner">
-            <button class="win-backbutton" aria-label="Back" disabled></button>
-            <h1 class="titlearea win-type-ellipsis">
-                <span class="pagetitle"></span>
-                <span class="chevron win-type-x-large">&#xe099</span>
-            </h1>
-        </header>
+       <!-- <div class="wrapper">-->
+            <header aria-label="Header content" role="banner">
+                <button class="win-backbutton" aria-label="Back" disabled></button>
+                <h1 class="titlearea win-type-ellipsis">
+                    <span class="pagetitle"></span>
+                    <span class="chevron win-type-x-large">&#xe099</span>
+                </h1>
+            </header>
 
-        <!-- ListView for Lists -->
-        <div class="listViewSection" aria-label="List column">
 
-            <div id="listsLoading">
-                <label class="progress-ring-text">
-                    <progress class="win-ring withText"></progress>
-                </label>
+
+            <!-- ListView for Lists -->
+
+            <div class="listViewSection" aria-label="List column">
+
+                <div id="listViewId" class="listView" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+
             </div>
 
-            <div id="listViewId" class="listView" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+            <!-- ListContent -->
+            <div class="listContentSection" aria-atomic="true" aria-label="List Content Column" aria-live="assertive">
+                <article>
+                    <header>
+                        <h2 style="float: left" class="listTitle win-type-ellipsis" data-win-bind="textContent: Name">Laster..</h2>
+                        <label class="progress-ring-text headerProgress"><progress class="win-ring header"></progress></label>
+                    </header>
+                    <div style="clear: both"></div>
+                    <div id="documentsHolder"></div>
 
+                </article>
+            </div>
         </div>
-
-        <!-- ListContent -->
-        <div class="listContentSection" aria-atomic="true" aria-label="List Content Column" aria-live="assertive">
-            <article>
-                <header>
-                    <h2 class="listTitle win-type-ellipsis" data-win-bind="textContent: Name">Laster..</h2>
-                </header>
-
-                <div id="documentsHolder"></div>
-
-            </article>
-        </div>
-
-    </div>
 
 </body>
 
