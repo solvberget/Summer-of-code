@@ -17,7 +17,7 @@ namespace Solvberget.Domain.DTO
         public int AvailableCount { get; private set; }
         private DateTime? EarliestAvailableDate { get; set; }
         public string EarliestAvailableDateFormatted { get; private set; }
-        public string AdmNumberIfAvailable { get; private set; } //For later use with reservartion
+        public string RecKeyIfAvailable { get; private set; } //For later use with reservartion
 
         public static AvailabilityInformation GenerateInfoFor(Document doc, string branch, IEnumerable<DocumentItem> docItems)
         {
@@ -29,7 +29,7 @@ namespace Solvberget.Domain.DTO
         private void FillProperties(Document doc, string branch, IEnumerable<DocumentItem> docItems)
         {
 
-            var items = docItems.Select(x => x).Where(x => x.Branch.Equals(branch)).ToList();
+            var items = docItems.Select(x => x).Where(x => x.Branch.Equals(branch) && x.IsReservable).ToList();
 
             if (items.Any())
             {

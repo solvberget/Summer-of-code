@@ -50,12 +50,37 @@
         var applicationData = Windows.Storage.ApplicationData.current;
         if (applicationData)
             var roamingSettings = applicationData.roamingSettings;
-        if (roamingSettings)
-            var borrowerId = roamingSettings.values["BorrowerId"];
 
+        var borrowerId = undefined;
+        if (roamingSettings) {
+            borrowerId = roamingSettings.values["BorrowerId"];
+        }
         if (borrowerId == undefined || borrowerId == "")
             borrowerId = window.localStorage.getItem("BorrowerId");
+
+
+
         return borrowerId != undefined ? borrowerId : "";
+    }
+
+    function getLoggedInLibraryUserId() {
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+
+        var libraryUserId = undefined;
+        if (roamingSettings) {
+            libraryUserId = roamingSettings.values["LibraryUserId"];
+        }
+
+
+        if (libraryUserId == undefined || libraryUserId == "")
+            libraryUserId = window.localStorage.getItem("LibraryUserId");
+
+        return libraryUserId != undefined ? libraryUserId : "";
+
+
     }
 
     // Show errors if any of the text fields are not filled out when the Login button is clicked
@@ -100,17 +125,22 @@
                         $("#outputMsg").addClass("success");
 
                         var borrowerId = response.BorrowerId;
-                        if (borrowerId != undefined) {
+                        var libraryId = response.Id;
+
+                        if (borrowerId != undefined && libraryId != undefined) {
 
                             var applicationData = Windows.Storage.ApplicationData.current;
 
                             if (applicationData)
                                 var roamingSettings = applicationData.roamingSettings;
 
-                            if (roamingSettings)
+                            if (roamingSettings) {
                                 roamingSettings.values["BorrowerId"] = borrowerId;
+                                roamingSettings.values["LibraryUserId"] = libraryId;
+                            }
 
                             window.localStorage.setItem("BorrowerId", borrowerId);
+                            window.localStorage.setItem("LibraryUserId", libraryId);
                         }
 
                         setTimeout(function () {
@@ -162,7 +192,8 @@
 
     WinJS.Namespace.define("LoginFlyout", {
         showLogin: showLoginFlyout,
-        getLoggedInBorrowerId: getLoggedInBorrowerId
+        getLoggedInBorrowerId: getLoggedInBorrowerId,
+        getLoggedInLibraryUserId: getLoggedInLibraryUserId,
     });
 
 })();

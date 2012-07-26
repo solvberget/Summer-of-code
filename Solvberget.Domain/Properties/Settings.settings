@@ -23,5 +23,8 @@
     <Setting Name="BokBasenSystem" Type="System.String" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="LastFmApiUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://ws.audioscrobbler.com/2.0/?method=album.getinfo&amp;api_key=8fd5cf4bb0a76818d216097e37c6a097&amp;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

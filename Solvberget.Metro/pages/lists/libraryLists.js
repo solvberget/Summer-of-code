@@ -52,6 +52,9 @@
                 else if (item.data.DocType === "AudioBook") {
                     itemTemplate = document.getElementById("audioBookTemplate");
                 }
+                else if (item.data.DocType === "Cd") {
+                    itemTemplate = document.getElementById("cdTemplate");
+                }
 
                 // Render selected template to DIV container
                 var container = document.createElement("div");

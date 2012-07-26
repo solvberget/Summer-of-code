@@ -89,6 +89,18 @@
         </div>
     </div>
 
+    <!-- CD -->
+    <div id="cdTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h5 class="item-subtitle win-type-ellipsis">Musikk</h5>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: ArtistOrGroupName"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
 
 
 

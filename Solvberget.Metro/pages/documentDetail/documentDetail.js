@@ -23,7 +23,7 @@
             var theMenu = document.getElementById("HeaderMenu");
             WinJS.UI.processAll(theMenu);
 
-
+            document.getElementById("sendHoldRequestButton").addEventListener("click", registerHoldRequest);
         },
 
 
@@ -169,13 +169,20 @@ var populateAvailability = function () {
 
     var model;
 
-    for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
-        model = documentModel.AvailabilityInfo[i];
+    if (documentModel.AvailabilityInfo) {
+        for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
+            model = documentModel.AvailabilityInfo[i];
 
-        if (availabilityTemplate && availabilityTemplateHolder && model)
-            availabilityTemplate.render(model, availabilityTemplateHolder);
+            if (availabilityTemplate && availabilityTemplateHolder && model)
+                availabilityTemplate.render(model, availabilityTemplateHolder);
 
+        }
     }
+    else {
+        var holdRequestButton = document.getElementById("reserve");
+        $(holdRequestButton).attr("disabled", "true");
+    }
+    
 
 };
 
@@ -248,6 +255,22 @@ var getDocument = function (documentNumber) {
     );
 
 };
+
+function registerHoldRequest() {
+
+
+
+
+    var holdRequestDiv = document.getElementById("holdRequestFragmentHolder");
+    holdRequestDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/holdRequest/holdRequest.html", holdRequestDiv).done(function () {
+
+        var holdRequestAnchor = document.getElementById("sendHoldRequestButton");
+
+        HoldRequest.showFlyout(holdRequestAnchor);
+    });
+};
+
 
 WinJS.Namespace.define("DocumentDetail", {
     model: documentModel,

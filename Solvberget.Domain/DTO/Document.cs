@@ -11,7 +11,7 @@ namespace Solvberget.Domain.DTO
 
         //Base properties
         public int StandardLoanTime { get { return 32; } }
-        public string DocType { get { return GetType().Name; } private set { } }
+        public string DocType { get { return GetType().Name; } }
         public string DocumentNumber { get; set; }
         public string TargetGroup { get; set; }
         public string IsFiction { get; set; }
@@ -152,13 +152,10 @@ namespace Solvberget.Domain.DTO
             if (!items.Any()) return;
 
             AvailabilityInfo = new List<AvailabilityInformation>();
-
-            foreach (var branch in from branch in AvailabilityInformation.BranchesToHandle
-                                   let avilablilityInfo = AvailabilityInformation.GenerateInfoFor(this, branch, items)
-                                   where avilablilityInfo != null
-                                   select branch)
+            
+            foreach (var availabilityInfo in AvailabilityInformation.BranchesToHandle.Select(branch => AvailabilityInformation.GenerateInfoFor(this, branch, items)).Where(availabilityInfo => availabilityInfo != null))
             {
-                AvailabilityInfo.Add(AvailabilityInformation.GenerateInfoFor(this, branch, items));
+                AvailabilityInfo.Add(availabilityInfo);
             }
 
         }

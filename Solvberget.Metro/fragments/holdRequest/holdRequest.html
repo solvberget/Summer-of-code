@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Reserver</title>
+    <link rel="stylesheet" href="holdRequest.css" />
+
+
+    <script type="text/javascript" src="holdRequest.js"></script>
+</head>
+<body>
+    <div id="holdRequestFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{holdRequest flyout}">
+        <form onsubmit="return false;">
+
+            <div>Hvor ønsker du å reservere?</div>
+
+            <button id="submitRequestButtonMain">Reserver på hovedbiblioteket</button>
+            <button id="submitRequestButtonMadla">Reserver på Madla</button>
+
+            <span id="outputMsgHoldRequest" class="success"></span>
+            <div id="holdRequestLoading"><progress class="win-ring"></progress></div>
+        </form>
+    </div>
+</body>
+</html>
+
