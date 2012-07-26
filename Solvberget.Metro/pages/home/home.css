@@ -21,7 +21,8 @@
         display: -ms-grid;
         height: 250px;
         width: 250px;
-        position:relative
+        position: relative;
+
     }
 
         .itemspage .itemslist .win-item .item-image {

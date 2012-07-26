@@ -115,6 +115,9 @@ var getUserInformation = function () {
     $("#mypageData").css("display", "none").css("visibility", "none");
     $("#mypageLoading").css("display", "block").css("visibility", "visible");
 
+    // Prevent caching of this request
+    $.ajaxSetup({ cache: false });
+
     // Get the user information from server
     $.when(ajaxGetUserInformation())
         .then($.proxy(function (response) {
