@@ -103,6 +103,9 @@
     <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.js" />
     <Content Include="fragments\holdRequest\holdRequest.css" />
     <Content Include="fragments\holdRequest\holdRequest.html" />
+    <Content Include="fragments\cancelReservation\cancelReservation.css" />
+    <Content Include="fragments\cancelReservation\cancelReservation.html" />
+    <Content Include="fragments\cancelReservation\cancelReservation.js" />
     <Content Include="fragments\loanRenewal\loanRenewal.css" />
     <Content Include="fragments\loanRenewal\loanRenewal.html" />
     <Content Include="fragments\loanRenewal\loanRenewal.js" />

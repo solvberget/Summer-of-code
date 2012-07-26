@@ -63,6 +63,22 @@ var ajaxGetUserInformation = function () {
 
 
 
+var cancelReservation = function (reservation, element) {
+
+    var cancelReservationDiv = document.getElementById("requestReservationFragmentHolder");
+    cancelReservationDiv.innerHTML = "";
+
+    WinJS.UI.Fragments.renderCopy("/fragments/cancelReservation/cancelReservation.html", cancelReservationDiv).done(function () {
+
+        var reservationAnchor = document.getElementById("reservationTemplateHolder");
+
+        CancelReservation.showFlyout(reservationAnchor, reservation, element);
+    });
+
+
+}
+
+
 var renewLoan = function (loan) {
 
     var renewalDiv = document.getElementById("loanRenewalFragmentHolder");
@@ -97,9 +113,9 @@ var addFinesToDom = function (fines) {
 
 var addLoansToDom = function (loans) {
 
-    if (loans == undefined)
+    if (loans == undefined) 
         return;
-
+    
     var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
     var loansTemplateContainer = document.getElementById("loanTemplateHolder");
 
@@ -133,7 +149,13 @@ var addReservationsToDom = function (reservations) {
     var i, reservation;
     for (i = 0; i < reservations.length; i++) {
         reservation = reservations[i];
-        reservationTemplate.render(reservation, reservationsTemplateContainer);
+        reservationTemplate.render(reservation, reservationsTemplateContainer).done(function (element) {
+            $(element).find(".cancelReservationButton:last").attr("index", i);
+            $(element).find(".cancelReservationButton:last").click(function () {
+                var index = $(this).attr("index");
+                cancelReservation(reservations[index], element);
+            });
+        });
     }
 }
 
@@ -202,7 +224,6 @@ var getUserInformation = function () {
 
         balanceConverter: WinJS.Binding.converter(function (balance) {
             if (balance == undefined) return "Du har ingen gebyrer!";
-
             return balance == "" ? "" : "Balanse: " + balance + ",-";
         }),
         sumConverter: WinJS.Binding.converter(function (sum) {
@@ -249,7 +270,6 @@ var getUserInformation = function () {
             if (pickupLibrary == undefined) return "";
             return pickupLibrary == "" ? "" : "Hentes hos: " + pickupLibrary;
         }),
-
 
     });
 

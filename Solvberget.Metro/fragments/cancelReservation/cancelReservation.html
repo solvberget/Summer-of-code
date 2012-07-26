@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bekreftelse</title>
+    <link rel="stylesheet" href="cancelReservation.css" />
+
+
+    <script type="text/javascript" src="cancelReservation.js"></script>
+</head>
+<body>
+    <div id="cancelReservationFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{Cancel Reservation flyout}">
+        <form onsubmit="return false;">
+
+        <div id="cancelReservationMessage">Er du sikker på at du vil slette reservasjonen?</div>
+
+        <div id="cancelReservationLoading"><progress class="win-ring"></progress></div>
+        <br />
+        <br />
+        <div id="cancelReservationButtons">
+            <button id="submitCancelReservationButton">Slett reservering</button>
+            <button id="cancelCancelReservationButton">Abryt</button>
+        </div>
+        <br />
+        <br />
+        <br />
+        <span id="cancelReservationOutputMsg"></span>
+
+
+        </form>
+    </div>
+
+</body>
+</html>
+

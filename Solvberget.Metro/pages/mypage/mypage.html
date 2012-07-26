@@ -40,6 +40,8 @@
             <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
             <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
             <span class="holdRequestTo" data-win-bind="innerText: HoldRequestTo MyPageConverters.holdRequestToConverter"></span>
+            <br />
+            <button class="cancelReservationButton" data-win-bind="">Fjern reservasjon</button>
         </div>
 
 
@@ -75,7 +77,8 @@
             aria-label="Main content" id="mainContentSection" role="main">
             <div id="mypageLoading">
                 <label class="progressRingText">
-                    <progress class="win-ring withText"></progress></label>
+                    <progress class="win-ring withText"></progress>
+                </label>
             </div>
 
             <div id="mypageData">
@@ -127,8 +130,8 @@
         </section>
     </div>
 
-        <div id="loanRenewalFragmentHolder"></div>
-
+    <div id="loanRenewalFragmentHolder"></div>
+    <div id="requestReservationFragmentHolder"></div>
 
 </body>
 </html>
