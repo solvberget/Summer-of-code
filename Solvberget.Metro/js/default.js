@@ -75,9 +75,15 @@
 function doLogin() {
 
     window.localStorage.setItem("BorrowerId", "");
+    window.localStorage.setItem("LibraryUserId", "");
+
     var applicationData = Windows.Storage.ApplicationData.current;
     var roamingSettings = applicationData.roamingSettings;
+
     roamingSettings.values["BorrowerId"] = "";
+    roamingSettings.values["LibraryUserId"] = "";
+
+
 
     // TODO: ROAMING
     var loginDiv = document.getElementById("loginFragmentHolder");

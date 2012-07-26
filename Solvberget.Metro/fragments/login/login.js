@@ -24,7 +24,7 @@
         WinJS.log && WinJS.log("", "solvberget", "status", "status");
 
 
-        if (getLoggedInBorrowerId() == undefined || getLoggedInBorrowerId() == "") {
+        if (LoginFlyout.getLoggedInBorrowerId() == undefined || LoginFlyout.getLoggedInBorrowerId() == "") {
 
             var loginFlyout = document.getElementById("loginFlyout");
             WinJS.UI.processAll(loginFlyout);
@@ -44,44 +44,6 @@
 
     }
 
-    function getLoggedInBorrowerId() {
-
-
-        var applicationData = Windows.Storage.ApplicationData.current;
-        if (applicationData)
-            var roamingSettings = applicationData.roamingSettings;
-
-        var borrowerId = undefined;
-        if (roamingSettings) {
-            borrowerId = roamingSettings.values["BorrowerId"];
-        }
-        if (borrowerId == undefined || borrowerId == "")
-            borrowerId = window.localStorage.getItem("BorrowerId");
-
-
-
-        return borrowerId != undefined ? borrowerId : "";
-    }
-
-    function getLoggedInLibraryUserId() {
-
-        var applicationData = Windows.Storage.ApplicationData.current;
-        if (applicationData)
-            var roamingSettings = applicationData.roamingSettings;
-
-        var libraryUserId = undefined;
-        if (roamingSettings) {
-            libraryUserId = roamingSettings.values["LibraryUserId"];
-        }
-
-
-        if (libraryUserId == undefined || libraryUserId == "")
-            libraryUserId = window.localStorage.getItem("LibraryUserId");
-
-        return libraryUserId != undefined ? libraryUserId : "";
-
-
-    }
 
     // Show errors if any of the text fields are not filled out when the Login button is clicked
     function submitLogin() {
@@ -192,8 +154,7 @@
 
     WinJS.Namespace.define("LoginFlyout", {
         showLogin: showLoginFlyout,
-        getLoggedInBorrowerId: getLoggedInBorrowerId,
-        getLoggedInLibraryUserId: getLoggedInLibraryUserId,
+
     });
 
 })();

@@ -56,7 +56,7 @@
 
 
 var ajaxGetUserInformation = function () {
-    var borrowerId = window.localStorage.getItem("BorrowerId");
+    var borrowerId = LoginFlyout.getLoggedInBorrowerId();
     if (borrowerId != undefined && borrowerId !== "")
         return $.getJSON(window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId);
 };
@@ -142,6 +142,9 @@ var getUserInformation = function () {
     // Show progress-ring, hide content
     $("#mypageData").css("display", "none").css("visibility", "none");
     $("#mypageLoading").css("display", "block").css("visibility", "visible");
+
+    // Prevent caching of this request
+    $.ajaxSetup({ cache: false });
 
     // Get the user information from server
     $.when(ajaxGetUserInformation())

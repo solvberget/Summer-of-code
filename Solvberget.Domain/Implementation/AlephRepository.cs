@@ -106,8 +106,29 @@ namespace Solvberget.Domain.Implementation
 
         }
 
+        public RequestReply CancelReservation(string documentItemNumber, string documentItemSequence, string cancellationSequence)
+        {
+            const Operation function = Operation.CancelReservation;
+            var options = new Dictionary<string, string> { { "doc_number", documentItemNumber }, { "item_sequence", documentItemSequence }, { "sequence", cancellationSequence } };
+            var url = GetUrl(function, options);
+            var reservationReplyXml = RepositoryUtils.GetXmlFromStream(url);
+            if (reservationReplyXml != null && reservationReplyXml.Root != null)
+            {
+
+                var item = reservationReplyXml.Root.Element("reply") ?? reservationReplyXml.Root.Element("error");
+                if (item != null)
+                    return item.Value.Equals("ok") ? new RequestReply { Success = true, Reply = "Reservasjonen ble fjernet!" } : new RequestReply { Success = false, Reply = item.Value };
+            }
+            return new RequestReply { Success = false, Reply = "Feil: Kan ikke fjerne valgt dokument akkurat nå." };
+        }
+
         public RequestReply RequestReservation(string documentNumber, string userId, string branch)
         {
+
+            if (documentNumber == null || userId == null || branch == null)
+                return new RequestReply { Success = false, Reply = "Feil: Operasjonen mangler parametre." };
+
+
             if (branch.Equals("Hovedbibl"))
                 branch = "Hovedbibl.";
             var docItems = GetDocumentItems(documentNumber).ToList();
@@ -298,12 +319,14 @@ namespace Solvberget.Domain.Implementation
                     return "op=circ-status&library=NOR01";
                 case 8:
                     return "op=renew&library=NOR50";
+                case 9:
+                    return "op=hold-req-cancel&library=NOR50";
                 default:
                     return null;
             }
         }
 
-        private enum Operation { DocumentItems, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser, UserInformation, ReserveDocument, CircStatus, RenewLoan }
+        private enum Operation { DocumentItems, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser, UserInformation, ReserveDocument, CircStatus, RenewLoan, CancelReservation }
 
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
