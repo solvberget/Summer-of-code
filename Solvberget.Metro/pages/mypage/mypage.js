@@ -113,9 +113,9 @@ var addFinesToDom = function (fines) {
 
 var addLoansToDom = function (loans) {
 
-    if (loans == undefined)
+    if (loans == undefined) 
         return;
-
+    
     var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
     var loansTemplateContainer = document.getElementById("loanTemplateHolder");
 
@@ -224,7 +224,6 @@ var getUserInformation = function () {
 
         balanceConverter: WinJS.Binding.converter(function (balance) {
             if (balance == undefined) return "Du har ingen gebyrer!";
-
             return balance == "" ? "" : "Balanse: " + balance + ",-";
         }),
         sumConverter: WinJS.Binding.converter(function (sum) {
@@ -271,7 +270,6 @@ var getUserInformation = function () {
             if (pickupLibrary == undefined) return "";
             return pickupLibrary == "" ? "" : "Hentes hos: " + pickupLibrary;
         }),
-
 
     });
 

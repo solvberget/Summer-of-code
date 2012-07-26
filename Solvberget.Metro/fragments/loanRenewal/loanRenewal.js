@@ -5,7 +5,7 @@
         WinJS.UI.processAll(renewalFlyout);
 
         document.getElementById("submitRenewalButton").addEventListener("click", function () {
-            submitRenewal(loan.DocumentNumber, loan.ItemSequence, loan.Barcode, window.localStorage.getItem("LibraryUserId"));
+            submitRenewal(loan.DocumentNumber, loan.ItemSequence, loan.Barcode, LoginFlyout.getLoggedInLibraryUserId());
         }, false);
         document.getElementById("cancelRenewalButton").addEventListener("click", cancel, false);
         document.getElementById("renewalFlyout").addEventListener("afterhide", onDismiss, false);
@@ -15,7 +15,7 @@
     }
     
     var ajaxRequestLoanRenewal = function (documentNumber, itemSecq, barcode, libraryUserId) {
-        var borrowerId = window.localStorage.getItem("LibraryUserId");
+        var borrowerId = LoginFlyout.getLoggedInLibraryUserId();
         if (borrowerId != undefined && borrowerId !== "")
             var requestString = "?documentNumber=" + documentNumber + "&itemSecq=" + itemSecq + "&barcode=" + barcode + "&libraryUserId=" + libraryUserId;
         var requestUrl = window.Data.serverBaseUrl + "/Document/RequestLoanRenewal/" + requestString;
