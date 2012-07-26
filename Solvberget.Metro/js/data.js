@@ -16,7 +16,7 @@
         { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html"); } },
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html"); } },
         { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen", backgroundImage: openingHours, navigateTo: function () { activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html"); } },
-         { key: "contact", title: "Kontakt oss", subtitle: "For spørsmål", backgroundImage: contact, navigateTo: function () { activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html"); } },
+         { key: "contact", title: "Kontaktinformasjon", subtitle: "For spørsmål", backgroundImage: contact, navigateTo: function () { activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html"); } },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: function () { Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); } },
     ];
 
