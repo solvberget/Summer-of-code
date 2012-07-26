@@ -90,6 +90,7 @@ progress.withText {
 #contactData {
     display: none;
     visibility: hidden;
+        display: inline;
 }
 
 .inline {

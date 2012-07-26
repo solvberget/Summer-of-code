@@ -87,9 +87,10 @@ progress.withText {
         margin-right: 5px;
     }
 
-#contactData {
+#openingHoursData {
     display: none;
     visibility: hidden;
+        display: inline;
 }
 
 .inline {

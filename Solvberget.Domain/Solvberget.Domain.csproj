@@ -91,6 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IInformationRepository.cs" />
     <Compile Include="Abstract\IEventRepository.cs" />
     <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\IListRepositoryStatic.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Abstract\IRulesRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
+    <Compile Include="DTO\Information.cs" />
     <Compile Include="DTO\ItemRule.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
     <Compile Include="DTO\LanguageCourse.cs" />
@@ -180,6 +182,7 @@
     </Compile>
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\BokbasenRepository.cs" />
+    <Compile Include="Implementation\InformationRepository.cs" />
     <Compile Include="Implementation\RulesRepository.cs" />
     <Compile Include="Implementation\ImdbRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />

@@ -9,7 +9,7 @@ namespace Solvberget.Domain.DTO
 {
     public sealed class ContactWebPage : WebPage
     {
-        public List<ContactInformation> ContactInformationList { get; set; }
+        public List<Information> ContactInformationList { get; set; }
      
         public ContactWebPage()
         {
@@ -18,6 +18,8 @@ namespace Solvberget.Domain.DTO
 
         public void FillProperties()
         {
+
+            ContactInformationList = new List<Information>();
             var html = GetHtml();
             var node = GetDiv(html, "attribute-long");
             //var attributes = StripHtmlTags("attribute-long");
@@ -45,8 +47,9 @@ namespace Solvberget.Domain.DTO
             
             for (var i = 0; i < iteratorList.Count; i++)
             {
-                var contactInformation = new ContactInformation();
-                contactInformation.Department = h3List[i];
+                var contactInformation = new Information {InformationTitle = h3List[i], InformationValue = ullist[i]+","};
+
+                ContactInformationList.Add(contactInformation);
             }
 
 
