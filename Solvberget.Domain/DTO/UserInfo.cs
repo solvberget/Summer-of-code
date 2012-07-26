@@ -89,6 +89,10 @@ namespace Solvberget.Domain.DTO
                 var pickupLocation = "";
                 var holdRequestFrom = "";
                 var holdRequestTo = "";
+                var cancellationSequence = "";
+                var itemSeq = "";
+                var itemDocNumber = "";
+
                 var reservations = new List<Reservation>();
 
                 var reservationVarfields = xElement.Elements("item-h").ToList();
@@ -107,7 +111,9 @@ namespace Solvberget.Domain.DTO
                         holdRequestFrom = GetFormattedDate(GetXmlValue(xElementField, "z37-request-date"));
 
                         holdRequestTo = GetFormattedDate(GetXmlValue(xElementField, "z37-end-request-date"));
-
+                        cancellationSequence = GetXmlValue(xElementField, "z37-sequence");
+                        itemSeq = GetXmlValue(xElementField, "z37-item-sequence");
+                        itemDocNumber = GetXmlValue(xElementField, "z37-doc-number");
                     }
                     
                     //Get information from table z13
@@ -118,6 +124,7 @@ namespace Solvberget.Domain.DTO
 
                         var docTitle = GetXmlValue(xElementField, "z13-title");
 
+
                         var reservation = new Reservation()
                         {
                             DocumentNumber = docNumber,
@@ -125,6 +132,9 @@ namespace Solvberget.Domain.DTO
                             PickupLocation = pickupLocation,
                             HoldRequestFrom = holdRequestFrom,
                             HoldRequestTo = holdRequestTo,
+                            CancellationSequence = cancellationSequence,
+                            ItemSeq = itemSeq,
+                            ItemDocumentNumber = itemDocNumber,
                         };
 
                         reservations.Add(reservation);
