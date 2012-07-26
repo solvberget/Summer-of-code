@@ -140,6 +140,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DTO\ReservationReply.cs" />
+    <Compile Include="DTO\ExtensionHelpers.cs" />
+    <Compile Include="DTO\Film.cs" />
+    <Compile Include="DTO\RequestReply.cs" />
+    <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\LastFmAlbum.cs" />
     <Compile Include="DTO\Fine.cs">
       <SubType>Code</SubType>

@@ -179,8 +179,7 @@ var populateAvailability = function () {
         }
     }
     else {
-        var holdRequestButton = document.getElementById("reserve");
-        $(holdRequestButton).attr("disabled", "true");
+        $("#sendHoldRequestButton").attr("disabled", "disabled");
     }
     
 
@@ -258,16 +257,14 @@ var getDocument = function (documentNumber) {
 
 function registerHoldRequest() {
 
-
-
-
+    var that = this;
     var holdRequestDiv = document.getElementById("holdRequestFragmentHolder");
     holdRequestDiv.innerHTML = "";
     WinJS.UI.Fragments.renderCopy("/fragments/holdRequest/holdRequest.html", holdRequestDiv).done(function () {
 
         var holdRequestAnchor = document.getElementById("sendHoldRequestButton");
 
-        HoldRequest.showFlyout(holdRequestAnchor);
+        HoldRequest.showFlyout(holdRequestAnchor, documentModel);
     });
 };
 

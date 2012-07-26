@@ -1,0 +1,87 @@
+﻿! 1   2  3  4        5                       6 7 8 9 1 1 1 1 1 1  1 1
+!                                                    0 1 2 3 4 5  6 7
+!!!!!-!!-!!-!-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-!-!-!-!-!-!-!-!-!-!!-!-!
+NOR50 ## OI L Ordre initiert                 N N N N N N N N N 00 N
+NOR50 ## LO L Tapt eks.                      N N N N N N N N N 00 N
+NOR50 ## OR L Bestilt                        N N N N N N N N N 00 N
+NOR50 ## FE L Stavanger fengsel              N N N N N N N N N 00 N
+NOR50 ## BD L Innbinding                     N N N N N N N N N 00 N
+NOR50 ## AV L AV-Skolebibstr.                N N N N N N N N N 00 N
+NOR50 ## SB L Skolebib.sentr.                N N N N N N N N N 00 N
+NOR50 ## SB L Sendt til indb.                N N N N N N N N N 00 N
+NOR50 ## EN L 1 ukes lån                     Y N N N Y Y N N N 00 N
+NOR50 ## IP L I prosess                      N N Y N N N N N N 00 N
+NOR50 ## CT L Katalogisering                 N N N N Y N N N N 00 N
+NOR50 ## NA L Ikke mottatt                   N N T N Y N N N N 00 N
+NOR50 ## NB L Mottatt                        N N T N Y N N N N 00 N
+NOR50 ## BF L Bestilling fjernet             N N N N N N N N N 00 N
+NOR50 ## PP L Ikke på plass                  N N T N N N N N N 00 N
+NOR50 ## PB L St. Svithun pasienthotell      N N N N N N N N N 00 N
+NOR50 ## MB L Minibibliotek                  N N N N N N N N N 00 N
+NOR50 ## UL L Ufullstendig levert            N N Y N Y N N N N 00 N
+NOR50 ## CL L Purret                         N N Y N N N N N N 00 N
+NOR50 ## MI L Savnet                         N N N N N N N N N 00 N
+NOR50 ## NP L Ikke utkommet                  N N Y N N N N N N 00 N
+NOR50 ## SL L Slettet                        N N N N N N N N N 00 N
+NOR50 ## IU L Ikke til utlån                 N N N N Y N N N N 00 N
+NOR50 ## TU L Teknisk utstyr                 N N N N N N N N N 00 N
+NOR50 ## NM L Nærmagasin barn                Y Y N N N N N N N 00 N
+NOR50 ## OM L Nedpakket magasin              N N N N N N N N N 00 N
+NOR50 11 IL L Fjernlån                       Y N N N N N N N N 00 N
+NOR50 01 ## L 1 uke                          Y Y Y N Y N N N N 00 N
+NOR50 02 ## L 2 uker                         Y Y Y N Y N N N N 00 N
+NOR50 04 ## L 4 uker                         Y Y Y N Y N N N N 00 N
+NOR50 05 ## L Noter m.l.st.                  Y Y Y N Y N N N N 00 N
+NOR50 07 ## L Kompaktpl.4u                   Y Y Y N Y N N N N 00 N
+NOR50 08 ## L Tegneserier, v.                Y Y Y N Y N N N N 00 N
+NOR50 09 ## L 9 uker                         Y Y Y N Y N N N N 00 N
+NOR50 10 ## L Tegneserier, b.                Y Y Y N Y N N N N 00 N
+NOR50 11 ## L Fjernlån                       Y N N N N N N N N 00 N
+NOR50 12 ## L Mus.kassett                    Y Y Y N Y N N N N 00 N
+NOR50 13 ## L Kompaktpl.                     Y Y Y N Y N N N N 00 N
+NOR50 14 ## L 4 uker, tss.mag                Y Y Y N Y N N N N 00 N
+NOR50 15 ## L Underveis (15)                 Y Y Y N Y N N N N 00 N
+NOR50 16 ## L Mottatt (16)                   Y Y Y N Y N N N N 00 N
+NOR50 17 ## L CD-ROM                         Y Y Y N Y N N N N 00 N
+NOR50 18 ## L Korttids lån                   Y N N N Y N N N N 00 N
+NOR50 19 ## L Språkkurs                      Y Y Y N Y N N N N 00 N
+NOR50 20 ## L Ikke hjemlån                   N N N N Y N N N N 00 N
+NOR50 21 ## L Ikke hjemlån                   N N N N Y N N N N 00 N
+NOR50 22 ## L Ikke hjemlån                   N N N N Y N N N N 00 N
+NOR50 23 ## L Grammofonpl.                   Y Y Y N Y N N N N 00 N
+NOR50 24 ## L Innbinding                     N N N N Y N N N N 00 N
+NOR50 25 ## L 1 uke, tidsskr.                Y Y Y N Y N N N N 00 N
+NOR50 27 ## L 2 uker tidsskr.                Y Y Y N Y N N N N 00 N
+NOR50 28 ## L Dataspill                      Y N N N Y N N N N 00 N
+NOR50 29 ## L Video,18årsgr.                 Y Y Y N Y N N N N 00 N
+NOR50 30 ## L Video,1 uke                    Y Y Y N Y N N N N 00 N
+NOR50 31 ## L Video,2 uker                   Y Y Y N Y N N N N 00 N
+NOR50 32 ## L Lydbøker                       Y Y Y N Y N N N N 00 N
+NOR50 33 ## L 1 ukes lån                     Y N N N N Y N N N 00 N
+NOR50 37 ## L Dataspill, 18årsgr.            Y N N N Y N N N N 00 N
+NOR50 35 ## L TV-serier                      Y Y Y N Y N N N N 00 N
+NOR50 36 ## L TV-serier, 18-årsgr.           Y Y Y N Y N N N N 00 N
+NOR50 40 ## L AV-Skolebibstr.                Y Y N N N N N N N 00 N
+NOR50 41 ## L Skolebib.sentr.                Y Y N N N N N N N 00 N
+NOR50 42 ## L Oppsøkende                     Y Y N N N N N N N 00 N
+NOR50 44 ## L Videreg.skoler                 Y Y Y C Y N N N N 00 N
+NOR50 45 ## L Grunnskoler                    Y Y Y N Y N N N N 00 N
+NOR50 46 ## L St. Svithun pasienthotell      Y Y N N N N N N N 00 N
+NOR50 50 ## L Best.fjernet                   N N N N N N N N N 00 N
+NOR50 52 ## L Best.purret                    N N N N N N N N N 00 N
+NOR50 53 ## L Ikke på plass                  N N N N N N N N N 00 N
+NOR50 54 ## L Tapt eks.                      N N N N N N N N N 00 N
+NOR50 55 ## L Tapt (svinn)                   N N N N N N N N N 00 N
+NOR50 56 ## L Pocket                         Y Y N N Y N N N N 00 N
+NOR50 57 ## L Til reparasjon                 N N N N N N N N N 00 N
+NOR50 58 ## L Ufullstendig levert            N N N N N N N N N 00 N
+NOR50 59 ## L Teknisk utstyr                 Y N N N Y N N N N 00 N
+NOR50 60 ## L Ønsket                         N N N N N N N N N 00 N
+NOR50 70 ## L Slettet                        N N N N N N N N N 00 N
+NOR50 75 ## L Minibibliotek                  Y Y N N N N N N N 00 N
+NOR50 76 ## L CD                             Y Y Y N Y N N N N 00 N
+NOR50 77 ## L Nye tidskrift 1uke             N N N N N N N N N 00 N
+NOR50 78 ## L Nye tidskrift 2uker            N N N N N N N N N 00 N
+NOR50 80 ## L Stavanger fengsel              Y Y N N N N N N N 00 N
+FENGS 15 ## L Bestilt                        N N N N N N N N N 00 N
+FENGS 16 ## L Mottatt                        N N N N N N N N N 00 N

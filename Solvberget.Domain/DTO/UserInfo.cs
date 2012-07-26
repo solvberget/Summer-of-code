@@ -89,6 +89,10 @@ namespace Solvberget.Domain.DTO
                 var pickupLocation = "";
                 var holdRequestFrom = "";
                 var holdRequestTo = "";
+                var cancellationSequence = "";
+                var itemSeq = "";
+                var itemDocNumber = "";
+
                 var reservations = new List<Reservation>();
 
                 var reservationVarfields = xElement.Elements("item-h").ToList();
@@ -107,7 +111,9 @@ namespace Solvberget.Domain.DTO
                         holdRequestFrom = GetFormattedDate(GetXmlValue(xElementField, "z37-request-date"));
 
                         holdRequestTo = GetFormattedDate(GetXmlValue(xElementField, "z37-end-request-date"));
-
+                        cancellationSequence = GetXmlValue(xElementField, "z37-sequence");
+                        itemSeq = GetXmlValue(xElementField, "z37-item-sequence");
+                        itemDocNumber = GetXmlValue(xElementField, "z37-doc-number");
                     }
                     
                     //Get information from table z13
@@ -118,6 +124,7 @@ namespace Solvberget.Domain.DTO
 
                         var docTitle = GetXmlValue(xElementField, "z13-title");
 
+
                         var reservation = new Reservation()
                         {
                             DocumentNumber = docNumber,
@@ -125,6 +132,9 @@ namespace Solvberget.Domain.DTO
                             PickupLocation = pickupLocation,
                             HoldRequestFrom = holdRequestFrom,
                             HoldRequestTo = holdRequestTo,
+                            CancellationSequence = cancellationSequence,
+                            ItemSeq = itemSeq,
+                            ItemDocumentNumber = itemDocNumber,
                         };
 
                         reservations.Add(reservation);
@@ -143,13 +153,16 @@ namespace Solvberget.Domain.DTO
             xElementRecord = xElement.Element("item-l");
             if (xElementRecord != null)
             {
-
+                var itemSequence = "";
                 var subLibrary = "";
                 var orgDueDate = "";
                 var loanDate = "";
                 var loanHour = "";
                 var dueDate = "";
                 var itemStatus = "";
+                var barcode = "";
+                var docNumber = "";
+
 
                 var loans = new List<Loan>();
 
@@ -159,7 +172,10 @@ namespace Solvberget.Domain.DTO
                 {
                     //Get information from table z36
                     xElementField = varfield.Element("z36");
-                    if (xElementField != null){
+                    if (xElementField != null)
+                    {
+
+                        
 
                         subLibrary = GetXmlValue(xElementField, "z36-sub-library");
                         if (subLibrary == "Hovedbibl.")
@@ -178,21 +194,27 @@ namespace Solvberget.Domain.DTO
                     xElementField = varfield.Element("z30");
                     if (xElementField != null)
                     {
+                        docNumber = GetXmlValue(xElementField, "z30-doc-number");
+
+                        itemSequence = GetXmlValue(xElementField, "z30-item-sequence");
+
                         itemStatus = GetXmlValue(xElementField, "z30-item-status");
+
+                        barcode = GetXmlValue(xElementField, "z30-barcode");
+
                     }
 
                     //Get information from table z13
                     xElementField = varfield.Element("z13");
                     if (xElementField != null)
                     {
-
-                        var docNumber = GetXmlValue(xElementField, "z13-doc-number");
-
                         var docTitle = GetXmlValue(xElementField, "z13-title");
 
                         var loan = new Loan()
                                        {
                                            DocumentNumber = docNumber,
+                                           ItemSequence = itemSequence,
+                                           Barcode = barcode,
                                            DocumentTitle = docTitle,
                                            SubLibrary = subLibrary,
                                            OriginalDueDate = orgDueDate,

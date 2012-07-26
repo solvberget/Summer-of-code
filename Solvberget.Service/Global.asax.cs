@@ -44,9 +44,16 @@ namespace Solvberget.Service
             );
 
             routes.MapRoute(
+                "CancelReservation", // Route name
+                "Document/CancelReservation/{documentItemNumber}/{documentItemSequence}/{cancellationSequence}", // URL with parameters
+                new { controller = "Document", action = "CancelReservation" } // Parameter defaults
+            );
+
+
+            routes.MapRoute(
                 "RequestReservation", // Route name
-                "{controller}/{action}/{documentid}/{userId}/{branch}", // URL with parameters
-                new { controller = "Document", action = "Index", id = UrlParameter.Optional, size = UrlParameter.Optional } // Parameter defaults
+                "Document/RequestReservation/{documentid}/{userId}/{branch}", // URL with parameters
+                new { controller = "Document", action = "RequestReservation" } // Parameter defaults
             );
 
 

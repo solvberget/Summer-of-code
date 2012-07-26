@@ -40,3 +40,51 @@
         styleNullToHiddenConverter: styleNullToHiddenConverter
     });
 })();
+
+(function () {
+
+
+    function getLoggedInBorrowerId() {
+
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+
+        var borrowerId = undefined;
+        if (roamingSettings) {
+            borrowerId = roamingSettings.values["BorrowerId"];
+        }
+        if (borrowerId == undefined || borrowerId == "")
+            borrowerId = window.localStorage.getItem("BorrowerId");
+
+
+
+        return borrowerId != undefined ? borrowerId : "";
+    }
+
+    function getLoggedInLibraryUserId() {
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+
+        var libraryUserId = undefined;
+        if (roamingSettings) {
+            libraryUserId = roamingSettings.values["LibraryUserId"];
+        }
+
+
+        if (libraryUserId == undefined || libraryUserId == "")
+            libraryUserId = window.localStorage.getItem("LibraryUserId");
+
+        return libraryUserId != undefined ? libraryUserId : "";
+    }
+
+
+    WinJS.Namespace.define("LoginFlyout", {
+        getLoggedInBorrowerId: getLoggedInBorrowerId,
+        getLoggedInLibraryUserId: getLoggedInLibraryUserId,
+    });
+
+})();
