@@ -53,7 +53,7 @@
 
 
 var ajaxGetUserInformation = function () {
-    var borrowerId = window.localStorage.getItem("BorrowerId");
+    var borrowerId = LoginFlyout.getLoggedInBorrowerId();
     if (borrowerId != undefined && borrowerId !== "")
         return $.getJSON(window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId);
 };
