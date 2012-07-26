@@ -19,7 +19,7 @@ namespace Solvberget.Domain.Implementation
 
         public string GetDocumentRating(string id)
         {
-            var doc = _documentRepository.GetDocument(id, false);
+            var doc = _documentRepository.GetDocument(id, true);
             if (doc == null)
                 return string.Empty;
 

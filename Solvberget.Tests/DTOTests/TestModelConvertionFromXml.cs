@@ -1,13 +1,28 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
+using Solvberget.Domain.Implementation;
 
 namespace Solvberget.Service.Tests.DTOTests
 {
     [TestFixture]
     public class TestModelConvertionFromXml
     {
+
+        private readonly string _pathToRulesFolder = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data\rules\");
+        private IRulesRepository _repository;
+
+        [SetUp]
+        public void InitRepository()
+        {
+            _repository = new RulesRepository(_pathToRulesFolder);
+        }
+
+
         [Test]
         public void GetDocumentFromXmlTest()
         {
@@ -515,7 +530,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Test]
         public void GetDocumentItemsFromXmlTest()
         {
-            var documentItems = DocumentItem.GetDocumentItemsFromXml(getDocumentItemsXml()).ToList();
+            var documentItems = DocumentItem.GetDocumentItemsFromXml(getDocumentItemsXml(), getDocumentCircItemsXml(), _repository).ToList();
             Assert.AreEqual(6, documentItems.Count());
 
             var documentItem1 = documentItems.ElementAt(0);
@@ -2426,6 +2441,99 @@ namespace Solvberget.Service.Tests.DTOTests
     </record>
     <session-id>2AR541IJ3QERCVPA44B36DF71HYVT1MJAA78QF32DAP96T1651</session-id>
 </find-doc>";
+        }
+
+        private string getDocumentCircItemsXml()
+        {
+            return @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
+<circ-status>
+    <item-data>
+        <z30-description></z30-description>
+        <loan-status>4 uker</loan-status>
+        <due-date>08/08/12</due-date>
+        <due-hour>24:00</due-hour>
+        <sub-library>Madla</sub-library>
+        <collection>VOKS</collection>
+        <location>Skjønnlitteratur</location>
+        <pages></pages>
+        <no-requests></no-requests>
+        <location-2></location-2>
+        <barcode>11031186112</barcode>
+        <opac-note></opac-note>
+    </item-data>
+    <item-data>
+        <z30-description></z30-description>
+        <loan-status>4 uker</loan-status>
+        <due-date>On Shelf</due-date>
+        <due-hour>24:00</due-hour>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>Kulturavdelingen</collection>
+        <location>Skjønnlitteratur</location>
+        <pages></pages>
+        <no-requests></no-requests>
+        <location-2></location-2>
+        <barcode>11031180135</barcode>
+        <opac-note></opac-note>
+    </item-data>
+    <item-data>
+        <z30-description></z30-description>
+        <loan-status>4 uker</loan-status>
+        <due-date>On Shelf</due-date>
+        <due-hour>24:00</due-hour>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>Kulturavdelingen</collection>
+        <location>Skjønnlitteratur</location>
+        <pages></pages>
+        <no-requests></no-requests>
+        <location-2></location-2>
+        <barcode>11031180136</barcode>
+        <opac-note></opac-note>
+    </item-data>
+    <item-data>
+        <z30-description></z30-description>
+        <loan-status>4 uker</loan-status>
+        <due-date>13/08/12</due-date>
+        <due-hour>24:00</due-hour>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>Kulturavdelingen</collection>
+        <location>Skjønnlitteratur</location>
+        <pages></pages>
+        <no-requests></no-requests>
+        <location-2></location-2>
+        <barcode>11031180134</barcode>
+        <opac-note></opac-note>
+    </item-data>
+    <item-data>
+        <z30-description></z30-description>
+        <loan-status>4 uker</loan-status>
+        <due-date>04/08/12</due-date>
+        <due-hour>24:00</due-hour>
+        <sub-library>Hovedbibl.</sub-library>
+        <collection>Kulturavdelingen</collection>
+        <location>Skjønnlitteratur</location>
+        <pages></pages>
+        <no-requests></no-requests>
+        <location-2></location-2>
+        <barcode>11031180131</barcode>
+        <opac-note></opac-note>
+    </item-data>
+    <item-data>
+        <z30-description></z30-description>
+        <loan-status>Stavanger fengsel</loan-status>
+        <due-date>Stavanger fengsel</due-date>
+        <due-hour>24:00</due-hour>
+        <sub-library>Stavanger fengsel</sub-library>
+        <collection>FENGS</collection>
+        <location>Skjønnlitteratur</location>
+        <pages></pages>
+        <no-requests></no-requests>
+        <location-2></location-2>
+        <barcode>11031180133</barcode>
+        <opac-note></opac-note>
+    </item-data>
+    <session-id>IDEQKF24FAEP5FQRAC4P2TCYCIRAMY4K16E185AUE2UYPKA81K</session-id>
+</circ-status>
+ ";
         }
 
         private string getDocumentItemsXml()

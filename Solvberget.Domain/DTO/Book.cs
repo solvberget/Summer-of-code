@@ -33,7 +33,6 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                Isbn = GetVarfield(nodes, "020", "a");
                 ClassificationNr = GetVarfield(nodes, "090", "c");
                 StdOrOrgTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
@@ -58,6 +57,8 @@ namespace Solvberget.Domain.DTO
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
+
+                Isbn = GetVarfield(nodes, "020", "a");
 
                 //Author, check BSMARC field 100 for author
                 var nationality = GetVarfield(nodes, "100", "j");

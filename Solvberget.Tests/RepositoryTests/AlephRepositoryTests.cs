@@ -14,12 +14,12 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         private AlephRepository _repository;
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
+        private readonly string _pathToRulesFolder = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data\rules\");
 
         [SetUp]
         public void InitRepository()
         {
-
-            _repository = new AlephRepository(_imageCache);
+            _repository = new AlephRepository(_imageCache, _pathToRulesFolder);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(0, documents.Count(x => x.GetType().Name.Equals("Document")));
         }
 
-       [Test]
+        [Test]
         public void TestGetBook()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
@@ -186,6 +186,26 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.NotNull(authUser);
 
             Assert.IsTrue(authUser.IsAuthorized);
+
+        }
+
+        [Test]
+        public void RequestReservationTest()
+        {
+            /**
+            string userId = "159222";
+            string docNumber = "000178569";
+            string branch = "Hovedbibl";
+
+            var returnMessage = _repository.RequestReservation(docNumber, userId, branch);
+            Assert.AreNotEqual("ok", returnMessage);
+
+            docNumber = "000596743";
+            branch = "Hovedbibl";
+            userId = "STV000060009";
+            returnMessage = _repository.RequestReservation(docNumber, userId, branch);
+            Assert.AreEqual("ok", returnMessage);
+            */
 
         }
 

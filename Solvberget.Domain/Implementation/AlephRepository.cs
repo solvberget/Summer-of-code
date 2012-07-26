@@ -19,10 +19,14 @@ namespace Solvberget.Domain.Implementation
     {
 
         private readonly StorageHelper _storageHelper;
+        private readonly RulesRepository _rulesRepository;
 
-        public AlephRepository(string pathToImageCache)
+        public AlephRepository(string pathToImageCache, string pathToRulesFolder = null)
         {
             _storageHelper = new StorageHelper(pathToImageCache);
+            if (pathToRulesFolder != null)
+                _rulesRepository = new RulesRepository(pathToRulesFolder);
+
         }
 
         public List<Document> Search(string value)
@@ -34,11 +38,11 @@ namespace Solvberget.Domain.Implementation
             var url = GetUrl(function, options);
 
             var doc = RepositoryUtils.GetXmlFromStream(url);
-               
+
             if (doc.Root != null)
             {
                 result.SetNumber = doc.Root.Elements("set_number").Select(x => x.Value).FirstOrDefault();
-                result.NumberOfRecords = doc.Root.Elements("no_records").Select(x =>  x.Value).FirstOrDefault();
+                result.NumberOfRecords = doc.Root.Elements("no_records").Select(x => x.Value).FirstOrDefault();
             }
 
             return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
@@ -47,7 +51,7 @@ namespace Solvberget.Domain.Implementation
         public Document GetDocument(string documentNumber, bool isLight)
         {
             const Operation function = Operation.FindDocument;
-            var options = new Dictionary<string, string> { { "doc_number", documentNumber} };
+            var options = new Dictionary<string, string> { { "doc_number", documentNumber } };
 
             var url = GetUrl(function, options);
 
@@ -58,10 +62,10 @@ namespace Solvberget.Domain.Implementation
                 var xmlResult = doc.Root.Elements("record").Select(x => x).FirstOrDefault();
                 if (xmlResult != null)
                 {
-                    
+
                     //Add Aleph document information
                     var docToReturn = PopulateDocument(xmlResult, isLight);
-                    
+
                     //We add the docnumber here because it is not in the result 
                     //when getting the document it self from Aleph
                     docToReturn.DocumentNumber = documentNumber;
@@ -74,17 +78,20 @@ namespace Solvberget.Domain.Implementation
                     docToReturn.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(docToReturn.DocumentNumber, true);
                     if (!isLight)
                         docToReturn.ImageUrl = _storageHelper.GetLocalImageFileCacheUrl(docToReturn.DocumentNumber, false);
-                    
-                    return docToReturn;                
+
+                    return docToReturn;
+
                 }
             }
-            return null;    
+
+            return null;
+
         }
 
-        public UserInfo GetUserInformation( string userId, string verification )
+        public UserInfo GetUserInformation(string userId, string verification)
         {
-            
-            var user = new UserInfo {BorrowerId = userId};
+
+            var user = new UserInfo { BorrowerId = userId };
             AuthenticateUser(ref user, userId, verification);
 
             const Operation function = Operation.UserInformation;
@@ -99,6 +106,41 @@ namespace Solvberget.Domain.Implementation
 
         }
 
+        public ReservationReply RequestReservation(string documentNumber, string userId, string branch)
+        {
+            if (branch.Equals("Hovedbibl"))
+                branch = "Hovedbibl.";
+            var docItems = GetDocumentItems(documentNumber).ToList();
+
+            var docItem = docItems.FirstOrDefault(documentItem => documentItem.Branch.Equals(branch) && documentItem.IsReservable);
+            if (docItem != null)
+            {
+                var alephReturnMessage = GetReserveRequest(docItem.ItemAdmKey, docItem.ItemKeySequence, userId);
+                if (alephReturnMessage.Equals("ok"))
+                {
+                    return new ReservationReply { Success = true, Reply = "Din reservasjon var vellykket!" };
+                }
+                return new ReservationReply { Success = false, Reply = alephReturnMessage };
+            }
+            return new ReservationReply { Success = false, Reply = "Feil: Dokumentene er for tiden ikke tilgjengelig for reservering." };
+        }
+
+        private string GetReserveRequest(string documentAdm, string itemSequence, string userId)
+        {
+            const Operation function = Operation.ReserveDocument;
+            var options = new Dictionary<string, string> { { "doc_number", documentAdm }, { "item_sequence", itemSequence }, { "bor_id", userId } };
+            var url = GetUrl(function, options);
+            var docItemsXml = RepositoryUtils.GetXmlFromStream(url);
+
+            if (docItemsXml != null && docItemsXml.Root != null)
+            {
+                var item = docItemsXml.Root.Element("reply") ?? docItemsXml.Root.Element("error");
+                if (item != null)
+                    return item.Value;
+            }
+            return "Feil: Klarte ikke å hente ut ønsket informasjon fra returnert xml-ark.";
+        }
+
         private void GenerateDocumentLocationAndAvailabilityInfo(Document document)
         {
             var documentItems = GetDocumentItems(document.DocumentNumber);
@@ -107,18 +149,24 @@ namespace Solvberget.Domain.Implementation
 
         private IEnumerable<DocumentItem> GetDocumentItems(string documentNumber)
         {
-            const Operation function = Operation.DocumentItems; ;
-            var options = new Dictionary<string, string> {{"doc_number", documentNumber} };
+            var function = Operation.DocumentItems;
+            var options = new Dictionary<string, string> { { "doc_number", documentNumber } };
             var url = GetUrl(function, options);
             var docItemsXml = RepositoryUtils.GetXmlFromStream(url);
-            return DocumentItem.GetDocumentItemsFromXml(docItemsXml.ToString());
+
+            function = Operation.CircStatus;
+            options = new Dictionary<string, string> { { "sys_no", documentNumber } };
+            url = GetUrl(function, options);
+            var docCircItemXml = RepositoryUtils.GetXmlFromStream(url);
+
+            return DocumentItem.GetDocumentItemsFromXml(docItemsXml.ToString(), docCircItemXml.ToString(), _rulesRepository);
         }
 
-        private bool AuthenticateUser (ref UserInfo user, string userId, string verification)
+        private bool AuthenticateUser(ref UserInfo user, string userId, string verification)
         {
 
             const Operation function = Operation.AuthenticateUser;
-            var options = new Dictionary<string, string> { { "bor_id", userId }, {"verification", verification} };
+            var options = new Dictionary<string, string> { { "bor_id", userId }, { "verification", verification } };
 
             var url = GetUrl(function, options);
             var authenticationDoc = RepositoryUtils.GetXmlFromStream(url);
@@ -128,7 +176,7 @@ namespace Solvberget.Domain.Implementation
 
                 var xElement = authenticationDoc.Root.DescendantsAndSelf("z303").FirstOrDefault();
                 user.IsAuthorized = xElement != null;
- 
+
             }
 
             return user.IsAuthorized;
@@ -153,7 +201,7 @@ namespace Solvberget.Domain.Implementation
             }
             documents.RemoveAll(x => x.Title == null);
             documents.ForEach(d => d.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(d.DocumentNumber, true));
-            
+
             return documents;
         }
 
@@ -166,7 +214,7 @@ namespace Solvberget.Domain.Implementation
 
             if (docTypeString != null)
             {
-                var className =  GetDocumentType(docTypeString.Split(','));
+                var className = GetDocumentType(docTypeString.Split(','));
 
                 var type = Type.GetType(className);
 
@@ -177,9 +225,9 @@ namespace Solvberget.Domain.Implementation
             }
             else
             {
-               return Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
+                return Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
             }
-            
+
         }
 
         private string GetUrl(Operation function, Dictionary<string, string> options)
@@ -193,7 +241,7 @@ namespace Solvberget.Domain.Implementation
             }
             return sb.ToString();
         }
-        
+
         private static string GetOperationPrefix(Operation op)
         {
             switch ((int)op)
@@ -210,12 +258,16 @@ namespace Solvberget.Domain.Implementation
                     return "op=bor-auth&library=nor50";
                 case 5:
                     return "op=bor-info&library=nor50";
+                case 6:
+                    return "op=hold-req&library=NOR50";
+                case 7:
+                    return "op=circ-status&library=NOR01";
                 default:
                     return null;
-            }   
+            }
         }
 
-        private enum Operation { DocumentItems, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser, UserInformation }
+        private enum Operation { DocumentItems, PresentSetNumber, KeywordSearch, FindDocument, AuthenticateUser, UserInformation, ReserveDocument, CircStatus }
 
         private static string GetDocumentType(IEnumerable<string> documentTypeCodes)
         {
@@ -231,7 +283,7 @@ namespace Solvberget.Domain.Implementation
             else if (dtc.Contains("di"))
                 return typeof(AudioBook).FullName;
             else if (dtc.Contains("c"))
-                return typeof (SheetMusic).FullName;
+                return typeof(SheetMusic).FullName;
             else if (dtc.Contains("dh"))
                 return typeof(LanguageCourse).FullName;
             else if (dtc.Contains("j"))
@@ -239,7 +291,7 @@ namespace Solvberget.Domain.Implementation
 
             return typeof(Document).FullName;
 
-        }   
+        }
 
     }
 
