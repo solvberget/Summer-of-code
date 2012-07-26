@@ -63,6 +63,22 @@ var ajaxGetUserInformation = function () {
 
 
 
+var cancelReservation = function (reservation, element) {
+
+    var cancelReservationDiv = document.getElementById("requestReservationFragmentHolder");
+    cancelReservationDiv.innerHTML = "";
+
+    WinJS.UI.Fragments.renderCopy("/fragments/cancelReservation/cancelReservation.html", cancelReservationDiv).done(function () {
+
+        var reservationAnchor = document.getElementById("reservationTemplateHolder");
+
+        CancelReservation.showFlyout(reservationAnchor, reservation, element);
+    });
+
+
+}
+
+
 var renewLoan = function (loan) {
 
     var renewalDiv = document.getElementById("loanRenewalFragmentHolder");
@@ -133,7 +149,13 @@ var addReservationsToDom = function (reservations) {
     var i, reservation;
     for (i = 0; i < reservations.length; i++) {
         reservation = reservations[i];
-        reservationTemplate.render(reservation, reservationsTemplateContainer);
+        reservationTemplate.render(reservation, reservationsTemplateContainer).done(function (element) {
+            $(element).find(".cancelReservationButton:last").attr("index", i);
+            $(element).find(".cancelReservationButton:last").click(function () {
+                var index = $(this).attr("index");
+                cancelReservation(reservations[index], element);
+            });
+        });
     }
 }
 
