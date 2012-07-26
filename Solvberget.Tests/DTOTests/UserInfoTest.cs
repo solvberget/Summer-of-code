@@ -67,7 +67,7 @@ namespace Solvberget.Service.Tests.DTOTests
             user.FillProperties(getUserLoansXml());
 
             Assert.AreEqual("ellenwiig@gmail.com", user.Email);
-            Assert.AreEqual("524340", user.Loans.ElementAt(0).DocumentNumber);
+            Assert.AreEqual("530185", user.Loans.ElementAt(0).DocumentNumber);
             Assert.AreEqual("1001 filmer du må se før du dør", user.Loans.ElementAt(0).DocumentTitle);
             Assert.AreEqual("Hovedbiblioteket", user.Loans.ElementAt(0).SubLibrary);
             Assert.AreEqual("15.08.2012", user.Loans.ElementAt(0).OriginalDueDate);
