@@ -143,7 +143,7 @@ namespace Solvberget.Domain.DTO
             xElementRecord = xElement.Element("item-l");
             if (xElementRecord != null)
             {
-
+                var itemSequence = "";
                 var subLibrary = "";
                 var orgDueDate = "";
                 var loanDate = "";
@@ -159,7 +159,10 @@ namespace Solvberget.Domain.DTO
                 {
                     //Get information from table z36
                     xElementField = varfield.Element("z36");
-                    if (xElementField != null){
+                    if (xElementField != null)
+                    {
+
+                        itemSequence = GetXmlValue(xElementField, "z36-item-sequence");
 
                         subLibrary = GetXmlValue(xElementField, "z36-sub-library");
                         if (subLibrary == "Hovedbibl.")
@@ -193,6 +196,7 @@ namespace Solvberget.Domain.DTO
                         var loan = new Loan()
                                        {
                                            DocumentNumber = docNumber,
+                                           ItemSequence = itemSequence,
                                            DocumentTitle = docTitle,
                                            SubLibrary = subLibrary,
                                            OriginalDueDate = orgDueDate,

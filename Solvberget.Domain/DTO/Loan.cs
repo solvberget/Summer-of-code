@@ -11,6 +11,7 @@ namespace Solvberget.Domain.DTO
     {
 
         public string DocumentNumber { get; set; }
+        public string ItemSequence { get; set; }
         public string DocumentTitle { get; set;  }
         public string SubLibrary { get; set; }
         public string OriginalDueDate { get; set; }
