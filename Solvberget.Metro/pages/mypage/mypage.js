@@ -116,7 +116,7 @@ var addLoansToDom = function (loans) {
     
     var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
     var loansTemplateContainer = document.getElementById("loanTemplateHolder");
-
+    
     loansTemplateContainer.innerHTML = "";
 
     var i, loan;
@@ -132,6 +132,15 @@ var addLoansToDom = function (loans) {
             });
         });
     }
+
+    $(".renewAllButton").click(function () {
+        var index = $(this).attr("index");
+        
+        for (i = 0; i < loans.length; i++) {
+            renewLoan(loans[i]);
+        }
+    });
+
 };
 var addReservationsToDom = function (reservations) {
 
