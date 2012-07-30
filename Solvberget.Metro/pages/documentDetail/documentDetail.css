@@ -126,7 +126,8 @@ progress.withText {
     margin-top: 15px;
     width: auto;
     height: auto;
-    padding: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
     overflow: hidden;
     resize: both;
 }
