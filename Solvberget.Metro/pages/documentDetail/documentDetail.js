@@ -322,9 +322,21 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         if (!persons) return "";
         var output = "";
         for (var x in persons) {
-            output += persons[x];
+            output += persons[x] + "\r\n";
         }
 
         return output;
+    }),
+
+    listConverter: WinJS.Binding.converter(function (list) {
+        if (!list) return "";
+        var output = "";
+
+        for (var x in list) {
+            output += list[x] + "\r\n";
+        }
+
+        return output;
+
     }),
 });
