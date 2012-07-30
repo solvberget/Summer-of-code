@@ -111,8 +111,11 @@ var addFinesToDom = function (fines) {
 };
 var addLoansToDom = function (loans) {
 
-    if (loans == undefined) 
+    if (loans == undefined) {
+        $(".renewAllButton").css("display", "none");
+        $("#loanTemplateHolder").text("Du har ingen lån");  
         return;
+    }
     
     var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
     var loansTemplateContainer = document.getElementById("loanTemplateHolder");
@@ -144,9 +147,10 @@ var addLoansToDom = function (loans) {
 };
 var addReservationsToDom = function (reservations) {
 
-    if (reservations == undefined)
+    if (reservations == undefined) {
+        $("#reservationTemplateHolder").text("Du har ingen reserveringer");
         return;
-
+    }
     var reservationTemplate = new WinJS.Binding.Template(document.getElementById("reservationTemplate"));
     var reservationsTemplateContainer = document.getElementById("reservationTemplateHolder");
 
@@ -269,7 +273,7 @@ var getUserInformation = function () {
         }),
         holdRequestEndConverter: WinJS.Binding.converter(function (holdRequestEnd) {
             if (holdRequestEnd == undefined) return "";
-            return holdRequestTo == "" ? "" : "Hentefrist: " + holdRequestEnd;
+            return holdRequestEnd == "" ? "" : "Hentefrist: " + holdRequestEnd;
         }),
         pickupLibraryConverter: WinJS.Binding.converter(function (pickupLibrary) {
             if (pickupLibrary == undefined) return "";
