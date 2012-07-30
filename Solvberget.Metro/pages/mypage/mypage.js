@@ -285,6 +285,10 @@ var getUserInformation = function () {
             if (pickupLibrary == undefined) return "";
             return pickupLibrary == "" ? "" : "Hentes hos: " + pickupLibrary;
         }),
+        holdRequestReadyTextConverter: WinJS.Binding.converter(function (holdRequestEnd) {
+            return holdRequestEnd == undefined || holdRequestEnd == "" ? "Klar til henting: Nei" : "Klar til henting: Ja";
+        }),
+
 
     });
 
