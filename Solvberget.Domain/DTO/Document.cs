@@ -22,11 +22,13 @@ namespace Solvberget.Domain.DTO
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public IEnumerable<string> ResponsiblePersons { get; set; }
+        public object MainResponsible { get; set; }
         public string PlacePublished { get; set; }
         public string Publisher { get; set; }
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
+        
         public string CompressedSubTitle { get { return GetCompressedString(); } set { } }
         //Location and availability info for each branch
         public List<AvailabilityInformation> AvailabilityInfo { get; private set; }
@@ -112,9 +114,10 @@ namespace Solvberget.Domain.DTO
                         PublishedYear = int.Parse(foundValue);
                 }
 
-
+                MainResponsible = ResponsiblePersons;
             }
         }
+
 
         public virtual string GetCompressedString()
         {
@@ -234,7 +237,7 @@ namespace Solvberget.Domain.DTO
 
                 string tempName = GetSubFieldValue(varfield, "a");
                 if (tempName != null)
-                    person.SetName(tempName);
+                    person.InvertName(tempName);
 
 
                 persons.Add(person);

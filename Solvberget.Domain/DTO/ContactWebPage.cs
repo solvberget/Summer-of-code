@@ -13,7 +13,7 @@ namespace Solvberget.Domain.DTO
      
         public ContactWebPage()
         {
-            Link = "http://www.stavanger-kulturhus.no/kontakt_oss";
+            Link = Properties.Settings.Default.ContactWebPage;
         }
 
         public void FillProperties()

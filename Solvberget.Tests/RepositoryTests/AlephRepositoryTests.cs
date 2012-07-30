@@ -221,7 +221,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
             var book = (Book)_repository.GetDocument(documentNumberForBook, false);
-            Assert.AreEqual(2, book.AvailabilityInfo.ElementAt(0).AvailableCount);
+            Assert.AreEqual(1, book.AvailabilityInfo.ElementAt(0).AvailableCount);
             Assert.AreEqual(4, book.AvailabilityInfo.ElementAt(0).TotalCount);
             Assert.AreEqual(0, book.AvailabilityInfo.ElementAt(1).AvailableCount);
             Assert.AreEqual(1, book.AvailabilityInfo.ElementAt(1).TotalCount);
