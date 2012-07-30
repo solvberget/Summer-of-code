@@ -47,7 +47,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("LOE", book.LocationCode);
             Assert.AreEqual(2010, book.PublishedYear);
             Assert.AreEqual("[Oslo]", book.PlacePublished);
-            Assert.AreEqual("Bok, Erlend Loe (2010)", book.CompressedSubTitle);
+            Assert.AreEqual("Bok (2010)", book.CompressedSubTitle);
 
         }
 
@@ -65,7 +65,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(2, film.Languages.Count());
             Assert.AreEqual("Engelsk", film.Languages.ElementAt(0));
             Assert.AreEqual("Tysk", film.Languages.ElementAt(1));
-            Assert.AreEqual("Film, Warner Bros. Entertainment (2004)", film.CompressedSubTitle);
+            Assert.AreEqual("Film (2004)", film.CompressedSubTitle);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("J.K. Rowling", audioBook.Author.Name);
             Assert.AreEqual("Fiksjon", audioBook.IsFiction);
             Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
-            Assert.AreEqual("Lydbok, J.K. Rowling (2008)", audioBook.CompressedSubTitle);
+            Assert.AreEqual("Lydbok (2008)", audioBook.CompressedSubTitle);
 
         }
 
@@ -93,7 +93,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("the international newsmagazine", journal.SubTitle);
             Assert.AreEqual("Engelsk", journal.Language);
             Assert.AreEqual("51 nummer pr. år", journal.JournalsPerYear);
-            Assert.AreEqual("Tidsskrift, Newsweek (19)", journal.CompressedSubTitle);
+            Assert.AreEqual("Tidsskrift (19)", journal.CompressedSubTitle);
 
         }
 
@@ -150,7 +150,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());
             Assert.AreEqual("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
             Assert.AreEqual("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
-            Assert.AreEqual("Note, Carl Philipp Emanuel Bach", sheetMusic.CompressedSubTitle);
+            Assert.AreEqual("Note", sheetMusic.CompressedSubTitle);
 
         }
 
@@ -221,7 +221,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
             var book = (Book)_repository.GetDocument(documentNumberForBook, false);
-            Assert.AreEqual(2, book.AvailabilityInfo.ElementAt(0).AvailableCount);
+            Assert.AreEqual(1, book.AvailabilityInfo.ElementAt(0).AvailableCount);
             Assert.AreEqual(4, book.AvailabilityInfo.ElementAt(0).TotalCount);
             Assert.AreEqual(0, book.AvailabilityInfo.ElementAt(1).AvailableCount);
             Assert.AreEqual(1, book.AvailabilityInfo.ElementAt(1).TotalCount);

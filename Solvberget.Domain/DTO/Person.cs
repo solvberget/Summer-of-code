@@ -21,7 +21,7 @@ namespace Solvberget.Domain.DTO
 
         }
 
-        public void SetName(string Name)
+        public void InvertName(string Name)
         {
             if (Name != null)
             {

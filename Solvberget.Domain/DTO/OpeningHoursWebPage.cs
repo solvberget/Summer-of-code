@@ -11,7 +11,7 @@ namespace Solvberget.Domain.DTO
 
         public OpeningHoursWebPage()
         {
-            Link = "http://www.stavanger-kulturhus.no/aapningstider_paa_soelvberget";
+            Link = Properties.Settings.Default.OpeningHoursWebpage;
         }
 
 
