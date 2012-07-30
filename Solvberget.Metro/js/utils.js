@@ -80,11 +80,41 @@
 
         return libraryUserId != undefined ? libraryUserId : "";
     }
+    function updateAppBarButton() {
+
+        if (document.getElementById("cmdLoginFlyout")) {
+            var user = LoginFlyout.getLoggedInBorrowerId();
+            if (user && user != "") {
+                document.getElementById("cmdLoginFlyout").winControl.label = "Logg ut";
+                document.getElementById("cmdLoginFlyout").winControl.tooltip = "Logg ut";
+            }
+            else {
+                document.getElementById("cmdLoginFlyout").winControl.label = "Logg inn";
+                document.getElementById("cmdLoginFlyout").winControl.tooltip = "Logg inn";
+            }
+        }
+
+    }
+    function logout() {
+
+        window.localStorage.setItem("BorrowerId", "");
+        window.localStorage.setItem("LibraryUserId", "");
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        var roamingSettings = applicationData.roamingSettings;
+
+        roamingSettings.values["BorrowerId"] = "";
+        roamingSettings.values["LibraryUserId"] = "";
+
+        updateAppBarButton();
+    }
 
 
     WinJS.Namespace.define("LoginFlyout", {
         getLoggedInBorrowerId: getLoggedInBorrowerId,
         getLoggedInLibraryUserId: getLoggedInLibraryUserId,
+        updateAppBarButton: updateAppBarButton,
+        logout : logout,
     });
 
 })();
