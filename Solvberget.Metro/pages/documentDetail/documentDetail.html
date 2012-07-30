@@ -18,7 +18,7 @@
         <div id="availabilityTemplate">
             <section class="availabilitySection">
                 <span class="doc-loc-branch" data-win-bind="innerText: Branch"></span>
-                <span class="doc-loc-department" data-win-bind="innerText: Department"></span>
+                <span class="doc-loc-department" data-win-bind="innerText: Department DocumentDetailConverters.departmentConverter;"></span>
                 <span class="doc-loc-collection" data-win-bind="innerText: PlacementCode"></span>
                 <span class="doc-availability-count" data-win-bind="innerText: AvailableCount DocumentDetailConverters.docAvailable; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
                 <span class="doc-availability-tot" data-win-bind="innerText: TotalCount DocumentDetailConverters.docTotalCount; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
