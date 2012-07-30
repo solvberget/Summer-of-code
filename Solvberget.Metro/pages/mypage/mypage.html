@@ -26,9 +26,7 @@
             <hr />
             <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
             <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter"></span>
-            <span class="loanLibrary" data-win-bind="innerText: SubLibrary MyPageConverters.loanCatalogerNameConverter"></span>
             <span class="loanDate" data-win-bind="innerText: LoanDate MyPageConverters.loanDateConverter"></span>
-            <span class="loanOriginalDueDate" data-win-bind="innerText: OriginalDueDate MyPageConverters.originalDueDateConverter"></span>
             <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
             <button class="renewLoanButton" data-win-bind="">Utvid lånetid</button>
         </div>
@@ -39,8 +37,7 @@
             <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
             <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
             <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
-            <span class="holdRequestTo" data-win-bind="innerText: HoldRequestTo MyPageConverters.holdRequestToConverter"></span>
-            <br />
+            <span class="holdRequestEnd" data-win-bind="innerText: HoldRequestEnd MyPageConverters.holdRequestEndConverter"></span>
             <button class="cancelReservationButton" data-win-bind="">Fjern reservasjon</button>
         </div>
 
@@ -115,7 +112,10 @@
 
 
                 <div id="loans" class="box">
-                    <h2><span class="detail-title">Lån</span></h2>
+                    <div id="loanHeader">
+                        <h2 class="detail-h2-title"><span class="detail-title">Lån</span></h2>
+                        <button class="renewAllButton">Utvid alle lån</button>
+                    </div>
                     <div id="loanTemplateHolder">
                     </div>
                 </div>
