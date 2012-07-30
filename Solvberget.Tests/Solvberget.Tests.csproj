@@ -97,6 +97,7 @@
     <Compile Include="DTOTests\InfomationTest.cs" />
     <Compile Include="DTOTests\LoanTest.cs" />
     <Compile Include="DTOTests\UserInfoTest.cs" />
+    <Compile Include="RepositoryTests\InformationRepositoryTest.cs" />
     <Compile Include="RepositoryTests\RulesRepositoryTests.cs" />
     <Compile Include="RepositoryTests\LibraryListsFromDynamicRepositoryTest.cs" />
     <Compile Include="RepositoryTests\RatingRepositoyTests.cs" />
@@ -135,7 +136,6 @@
       <Name>Solvberget.Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
