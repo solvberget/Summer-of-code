@@ -55,6 +55,7 @@ namespace Solvberget.Domain.DTO
                 //Only get languages (041a) if language in base equals "Flerspråklig" 
                 if (Language.Equals("Flerspråklig"))
                 {
+
                     var languages = GetVarfield(nodes, "041", "a").SplitByLength(3).ToList();
                     for (var i = 0; i < languages.Count(); i++)
                     {
