@@ -1,0 +1,116 @@
+﻿body {
+overflow:scroll;
+}
+
+.titlecontainer {
+    border: none;
+}
+
+.contact header[role=banner] .titlearea {
+    margin-top: 45px;
+}
+
+    .contact header[role=banner] .titlearea .pagetitle {
+        display: inline;
+        padding: 0;
+        padding-right: 5px;
+    }
+
+    .contact header[role=banner] .titlearea .pagesubtitle {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+    }
+
+#mainContentSection {
+    margin-left: 45px;
+
+}
+#templates {
+    display: none;
+}
+.box {
+    margin: 10px;
+    border-color: white;
+    border-width: 1px;
+    border: solid;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    float: left;
+    overflow: hidden;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    resize: both;
+    max-width: 350px;
+    min-width:175px;
+    min-height:120px;
+}
+
+    .box span {
+        display: block;
+    }
+
+    .box .detail-title {
+        margin-bottom: 3px;
+    }
+
+    .box .documentTitle {
+        font-weight: bold;
+    }
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+    vertical-align: text-bottom; /* Makes the bottom of the control align with the bottom of its label */
+}
+
+progress.withText {
+    width: 50px;
+    height: 50px;
+}
+
+/* Text style for a label for the progress ring */
+.progressRingText {
+    font-family: "Segoe UI";
+}
+
+/* Text style for a label for a default size progress ring */
+.progressRingText {
+    font-size: 20pt;
+    line-height: 25pt;
+}
+
+    /* The margin to separate the ring and its label */
+    .progressRingText progress {
+        margin-right: 5px;
+    }
+
+#openingHoursData {
+    display: none;
+    visibility: hidden;
+        display: inline;
+}
+
+.inline {
+
+    display: inline;
+}
+
+
+@media screen and (-ms-view-state: snapped) {
+    .box {
+        float: none;
+        margin-left: 0;
+        max-width: 220px;
+    }
+
+    .contact header[role=banner] .titlearea .pagesubtitle {
+        display: block;
+    }
+
+    .win-backbutton {
+        margin-top: 60px!important;
+    }
+}

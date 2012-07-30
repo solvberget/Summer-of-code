@@ -3,18 +3,20 @@
 
     var search = "/images/home/Search.png";
     var events = "/images/home/Events.png";
-    var info = "/images/icon/Icon Pack 1/png/info.png";
-    var music = "/images/icon/Icon Pack 1/png/music.png";
     var home = "/images/home/MyPage.png";
+    var contact = "/images/home/Contact.png";
+    var openingHours = "/images/home/OpeningHours.png";
     var tasks = "/images/home/Lists.png";
     var activePage = "home";
 
     var serverBaseUrl = "http://localhost:7089";
 
     var menuItems = [
-        { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, navigateTo: function () { activePage = "lists"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
+        { key: "lists", title: "Nyheter og anbefalinger", subtitle: "Nyheter, anbefalinger og topplister", backgroundImage: tasks, navigateTo: function () { activePage = "lists"; WinJS.Navigation.navigate("/pages/lists-v2/libraryLists.html"); } },
         { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html"); } },
-        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events,navigateTo: function () { activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html" );} },
+        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html"); } },
+        { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen", backgroundImage: openingHours, navigateTo: function () { activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html"); } },
+         { key: "contact", title: "Kontaktinformasjon", subtitle: "For spørsmål", backgroundImage: contact, navigateTo: function () { activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html"); } },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: function () { Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); } },
     ];
 

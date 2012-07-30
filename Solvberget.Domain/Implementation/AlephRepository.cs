@@ -39,13 +39,14 @@ namespace Solvberget.Domain.Implementation
 
             var doc = RepositoryUtils.GetXmlFromStream(url);
 
-            if (doc.Root != null)
+            if (doc != null && doc.Root != null)
             {
                 result.SetNumber = doc.Root.Elements("set_number").Select(x => x.Value).FirstOrDefault();
                 result.NumberOfRecords = doc.Root.Elements("no_records").Select(x => x.Value).FirstOrDefault();
-            }
+                return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
 
-            return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
+            }
+            return new List<Document>();
         }
 
         public Document GetDocument(string documentNumber, bool isLight)

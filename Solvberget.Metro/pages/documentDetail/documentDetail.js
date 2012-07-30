@@ -153,7 +153,6 @@ var populateFragment = function (documentModel) {
         $("#documentDetailLoading").css("display", "none").css("visibility", "none");
         $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
-
     });
 
 };
@@ -305,5 +304,24 @@ WinJS.Namespace.define("DocumentDetailConverters", {
     docEarliestAvailableDate: WinJS.Binding.converter(function (date) {
         return (date || date != "") ? "Estimert tilgjengelig: " + date : "";
     }),
+    personConverter: WinJS.Binding.converter(function (persons) {
+        if (!persons) return "";
+        var output = "";
+        for ( var x in persons ) {
+            output += persons[x].Name;
+            if( persons[x].Role ) output += " (" + persons[x].Role + ")";
+            output += "\r\n";
+        }
 
+        return output;
+    }),
+    responsiblePersonConverter: WinJS.Binding.converter(function (persons) {
+        if (!persons) return "";
+        var output = "";
+        for (var x in persons) {
+            output += persons[x];
+        }
+
+        return output;
+    }),
 });

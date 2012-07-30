@@ -11,12 +11,13 @@ namespace Solvberget.Domain.DTO
         public string Name { get; private set; }
         public int Priority { get; private set; }
         public bool IsRanked { get; private set; }
-        public List<string> DocumentNumbers { get; set; }
+        public Dictionary<string, bool> DocumentNumbers { get; set; }
+        //public List<string> DocumentNumbers { get; set; }
         public List<Document> Documents { get; set; } 
 
         private LibraryList()
         {
-            DocumentNumbers = new List<string>();
+            DocumentNumbers = new Dictionary<string, bool>();
             Documents = new List<Document>();
         }
 
@@ -68,7 +69,7 @@ namespace Solvberget.Domain.DTO
                     IsRanked = isRanked.Value.Equals("true") ? true : false;
                 }
 
-                xml.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => DocumentNumbers.Add(element.Value));
+                xml.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => DocumentNumbers.Add(element.Value, false));
 
             }
         }
