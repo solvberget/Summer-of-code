@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOTests\AvailabilityInformationTest.cs" />
     <Compile Include="DTOTests\BokBasenBookTest.cs" />
     <Compile Include="DTOTests\InfomationTest.cs" />
     <Compile Include="DTOTests\LoanTest.cs" />
