@@ -1,5 +1,5 @@
 ﻿body {
-overflow:auto;
+    overflow: auto;
 }
 
 .titlecontainer {
@@ -25,11 +25,27 @@ overflow:auto;
 
 #mainContentSection {
     margin-left: 45px;
-
 }
+
 #templates {
     display: none;
 }
+
+.renewLoanButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.cancelReservationButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.renewAllButton {
+    float: right;
+    display: inline;
+}
+
 .box {
     margin: 10px;
     border-color: white;
@@ -45,17 +61,23 @@ overflow:auto;
     border-bottom-left-radius: 10px;
     resize: both;
     max-width: 350px;
-    min-width:175px;
-    min-height:120px;
+    min-width: 175px;
+    min-height: 120px;
 }
 
     .box span {
         display: block;
     }
 
+    .box .detail-h2-title {
+        display: inline;
+    }
+
     .box .detail-title {
         margin-bottom: 3px;
-    }
+            display: inline;
+
+        }
 
     .box .documentTitle {
         font-weight: bold;
@@ -90,7 +112,6 @@ progress.withText {
 }
 
 .inline {
-
     display: inline;
 }
 

@@ -40,7 +40,6 @@
             <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
             <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
             <span class="holdRequestTo" data-win-bind="innerText: HoldRequestTo MyPageConverters.holdRequestToConverter"></span>
-            <br />
             <button class="cancelReservationButton" data-win-bind="">Fjern reservasjon</button>
         </div>
 
@@ -115,7 +114,10 @@
 
 
                 <div id="loans" class="box">
-                    <h2><span class="detail-title">Lån</span></h2>
+                    <div id="loanHeader">
+                        <h2 class="detail-h2-title"><span class="detail-title">Lån</span></h2>
+                        <button class="renewAllButton">Utvid alle lån</button>
+                    </div>
                     <div id="loanTemplateHolder">
                     </div>
                 </div>
