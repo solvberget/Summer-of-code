@@ -60,34 +60,12 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "Composer"
                 };
-                string tempName = GetVarfield(nodes, "100", "a");
-                if (tempName != null)
-                    Composer.SetName(tempName);
-
+                
+                if (Composer.Name != null)
+                    Composer.InvertName(Composer.Name);
+                MainResponsible = Composer;
             }
             
-        }
-
-        public override string GetCompressedString()
-        {
-            string docTypeLookupValue = null;
-            if (DocType != null)
-            {
-                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
-            }
-
-            var temp = docTypeLookupValue ?? DocType;
-            if (Composer.Name != null)
-            {
-                temp += ", " + Composer.Name;
-            }
-            if (PublishedYear != 0)
-            {
-                temp += " (" + PublishedYear + ")";
-            }
-            return temp;
-
-
         }
 
         public new static SheetMusic GetObjectFromFindDocXmlBsMarc(string xml)

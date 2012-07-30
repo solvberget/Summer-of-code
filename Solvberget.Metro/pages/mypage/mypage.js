@@ -63,7 +63,7 @@ var ajaxGetUserInformation = function () {
 
 
 
-var cancelReservation = function (reservation, element) {
+var cancelReservation = function (reservations, index, element) {
     
     var cancelReservationDiv = document.getElementById("requestReservationFragmentHolder");
     cancelReservationDiv.innerHTML = "";
@@ -72,7 +72,7 @@ var cancelReservation = function (reservation, element) {
 
         var reservationAnchor = document.getElementById("reservationTemplateHolder");
 
-        CancelReservation.showFlyout(reservationAnchor, reservation, element);
+        CancelReservation.showFlyout(reservationAnchor, reservations, index, element);
     });
 
 
@@ -111,12 +111,15 @@ var addFinesToDom = function (fines) {
 };
 var addLoansToDom = function (loans) {
 
-    if (loans == undefined) 
+    if (loans == undefined) {
+        $(".renewAllButton").css("display", "none");
+        $("#loanTemplateHolder").text("Du har ingen lån");  
         return;
+    }
     
     var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
     var loansTemplateContainer = document.getElementById("loanTemplateHolder");
-
+    
     loansTemplateContainer.innerHTML = "";
 
     var i, loan;
@@ -132,12 +135,22 @@ var addLoansToDom = function (loans) {
             });
         });
     }
+
+    $(".renewAllButton").click(function () {
+        var index = $(this).attr("index");
+        
+        for (i = 0; i < loans.length; i++) {
+            renewLoan(loans[i]);
+        }
+    });
+
 };
 var addReservationsToDom = function (reservations) {
 
-    if (reservations == undefined)
+    if (reservations == undefined) {
+        $("#reservationTemplateHolder").text("Du har ingen reserveringer");
         return;
-
+    }
     var reservationTemplate = new WinJS.Binding.Template(document.getElementById("reservationTemplate"));
     var reservationsTemplateContainer = document.getElementById("reservationTemplateHolder");
 
@@ -146,15 +159,17 @@ var addReservationsToDom = function (reservations) {
     var i, reservation;
     for (i = 0; i < reservations.length; i++) {
         reservation = reservations[i];
+        if (!reservation) continue;
         reservationTemplate.render(reservation, reservationsTemplateContainer).done(function (element) {
             $(element).find(".cancelReservationButton:last").attr("index", i);
             $(element).find(".cancelReservationButton:last").click(function () {
                 var index = $(this).attr("index");
-                cancelReservation(reservations[index], $(this));
+                cancelReservation(reservations, index, $(this));
             });
         });
     }
 };
+
 var getUserInformation = function () {
 
     // Show progress-ring, hide content
@@ -215,6 +230,10 @@ var getUserInformation = function () {
 
         }, this)
     );
+    
+    WinJS.Namespace.define("MyPage", {
+        addReservationsToDom: addReservationsToDom,
+    });
 
     WinJS.Namespace.define("MyPageConverters", {
 
@@ -256,11 +275,11 @@ var getUserInformation = function () {
         }),
         holdRequestFromConverter: WinJS.Binding.converter(function (holdRequestFrom) {
             if (holdRequestFrom == undefined) return "";
-            return holdRequestFrom == "" ? "" : "Reservert fra: " + holdRequestFrom;
+            return holdRequestFrom == "" ? "" : "Reservert: " + holdRequestFrom;
         }),
-        holdRequestToConverter: WinJS.Binding.converter(function (holdRequestTo) {
-            if (holdRequestTo == undefined) return "";
-            return holdRequestTo == "" ? "" : "Reservert til: " + holdRequestTo;
+        holdRequestEndConverter: WinJS.Binding.converter(function (holdRequestEnd) {
+            if (holdRequestEnd == undefined) return "";
+            return holdRequestEnd == "" ? "" : "Hentefrist: " + holdRequestEnd;
         }),
         pickupLibraryConverter: WinJS.Binding.converter(function (pickupLibrary) {
             if (pickupLibrary == undefined) return "";

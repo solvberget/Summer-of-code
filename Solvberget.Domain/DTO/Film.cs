@@ -76,6 +76,7 @@ namespace Solvberget.Domain.DTO
                     {
                         var p = new Person();
                         p.Name = personName.Trim();
+                        p.InvertName(p.Name);
                         persons.Add(p);
                     }
                 }
@@ -91,6 +92,7 @@ namespace Solvberget.Domain.DTO
                 CompositionType = GetVarfield(nodes, "652", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
+                MainResponsible = ResponsiblePersons;
             }
         }
 
@@ -106,30 +108,11 @@ namespace Solvberget.Domain.DTO
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
+                MainResponsible = ResponsiblePersons;
             }
         }
 
-        public override string GetCompressedString()
-        {
-
-            string docTypeLookupValue = null;
-            if (DocType != null)
-            {
-                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
-            }
-
-            var temp = docTypeLookupValue ?? DocType;
-            if (Publisher != null)
-            {
-                temp += ", " +Publisher;
-            }
-            if (PublishedYear != 0)
-            {
-                temp += " (" + PublishedYear + ")";
-            }
-            return temp;
-
-        }
+    
 
         public new static Film GetObjectFromFindDocXmlBsMarc(string xml)
         {

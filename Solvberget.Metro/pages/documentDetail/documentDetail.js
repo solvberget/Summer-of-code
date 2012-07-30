@@ -14,6 +14,7 @@
             this.registerForShare();
             var self = this;
             element.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
+           
             document.getElementById("headerMenuLists").addEventListener("click", function () { window.Data.itemByKey("lists").navigateTo(); }, false);
             document.getElementById("headerMenuEvents").addEventListener("click", function () { window.Data.itemByKey("events").navigateTo(); }, false);
             document.getElementById("headerMenuMyPage").addEventListener("click", function () { window.Data.itemByKey("mypage").navigateTo(); }, false);
@@ -210,7 +211,7 @@ var getDocument = function (documentNumber) {
     $("#documentDetailLoading").css("display", "block").css("visibility", "visible");
 
     $.when(ajaxGetDocument(documentNumber))
-        .then($.proxy(function (response) {
+        .then($.proxy(function(response) {
             if (response != undefined && response !== "") {
 
 
@@ -236,21 +237,23 @@ var getDocument = function (documentNumber) {
                     WinJS.Binding.processAll(documentSubTitleDiv, response);
 
 
-                var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
-                if (documentCompressedSubTitleDiv != undefined && response != undefined) {  
-                    
-                    WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
+                if (documentCompressedSubTitleDiv != undefined && response != undefined) {
+                    if (response.MainResponsible != undefined) {
+
+                        if (response.MainResponsible.Name != undefined) {
+                            response.CompressedSubTitle = response.MainResponsible.Name + ", " + response.CompressedSubTitle;
+                        }
+                    }
                 }
-
-
-                if (documentShareContent != undefined && response != undefined)
-                    WinJS.Binding.processAll(documentShareContent, response);
-
-
+                WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
             }
 
-        }, this)
-    );
+
+            if (documentShareContent != undefined && response != undefined) {
+                WinJS.Binding.processAll(documentShareContent, response);
+            }
+
+        }), this);
 
 };
 

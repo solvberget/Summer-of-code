@@ -19,6 +19,7 @@ namespace Solvberget.Domain.DTO
         public string ItemSeq { get; set; }
         public string ItemDocumentNumber { get; set; }
         public string Status { get; set; }
+        public string HoldRequestEnd { get; set; }
     }
 
 }

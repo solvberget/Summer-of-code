@@ -106,7 +106,9 @@ progress.withText {
                 .searchResults section[role=main] .resultslist .item .item-content .item-subtitle, .searchResults section[role=main] .resultslist .item .item-content .item-description {
                     opacity: 0.6;
                 }
-
+                 .searchResults section[role=main] .resultslist .item .item-content .item-main-person, .searchResults section[role=main] .resultslist .item .item-content .item-description {
+                    opacity: 0.6;
+                }
 .searchResults header[role=banner] .titlearea {
     -ms-grid-column: 2;
     margin-top: 45px;

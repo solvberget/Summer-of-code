@@ -29,6 +29,7 @@ namespace Solvberget.Domain.DTO
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
+           
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
@@ -72,9 +73,7 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "Author"
                 };
-                string tempName = GetVarfield(nodes, "100", "a");
-                if(tempName != null)
-                Author.SetName(tempName);
+               
 
                 //If N/A, check BSMARC field 110 for author
                 if (Author.Name == null)
@@ -91,31 +90,14 @@ namespace Solvberget.Domain.DTO
                 if (Author.Name == null)
                     StandarizedTitle = GetVarfield(nodes, "130", "a");
 
+                if (Author.Name != null)
+                    Author.InvertName(Author.Name);
+                MainResponsible = Author;
+
             }
         }
 
 
-                public override string GetCompressedString()
-        {
-            string docTypeLookupValue = null;
-            if (DocType != null)
-            {
-                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
-            }
-
-            var temp = docTypeLookupValue ?? DocType;
-            if (Author.Name != null)
-            {
-                temp += ", " + Author.Name;
-            }
-            if (PublishedYear != 0)
-            {
-                temp += " ("+PublishedYear+")";
-            }
-            return temp;
-
-           
-        }
 
 
         public new static Book GetObjectFromFindDocXmlBsMarc(string xml)

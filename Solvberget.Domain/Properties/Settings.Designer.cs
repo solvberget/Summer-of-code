@@ -95,5 +95,23 @@ namespace Solvberget.Domain.Properties {
                 return ((string)(this["LastFmApiUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.stavanger-kulturhus.no/aapningstider_paa_soelvberget")]
+        public string OpeningHoursWebpage {
+            get {
+                return ((string)(this["OpeningHoursWebpage"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.stavanger-kulturhus.no/kontakt_oss")]
+        public string ContactWebPage {
+            get {
+                return ((string)(this["ContactWebPage"]));
+            }
+        }
     }
 }
