@@ -68,29 +68,39 @@ var getOpeningHoursInformation = function () {
             if (response != undefined && response !== "") {
                 // Select HTML-section to process with the new binding lists
                 var contentDiv = document.getElementById("openingHoursData");
-                
+
                 // avoid processing null (if user navigates to fast away from page etc)
                 if (contentDiv != undefined && response != undefined) {
                     var data = {
-                        InformationValue: response[0].InformationValue
+                        InformationList: response
+                       
                     };
                     WinJS.Binding.processAll(contentDiv, data);
                 }
-                    
+
             }
 
             // Hide progress-ring, show content
             $("#openingHoursData").css("display", "block").css("visibility", "visible");
             $("#openingHoursLoading").css("display", "none").css("visibility", "none");
-            
+
 
         }, this)
     );
 
 
+    WinJS.Namespace.define("InformationConverters", {
+        openingHoursConverter: WinJS.Binding.converter(function (openingHours) {
+            if (!openingHours) return "";
+            var output = "";
+            for (var x in openingHours) {
+                output += openingHours[x].InformationTitle  + "\r\n";
+                if (openingHours[x].InformationValue) output += openingHours[x].InformationValue;
+                output += "\r\n";
+            }
 
+            return output;
+        }),
+    });
 
-
-
-
-};
+}

@@ -72,7 +72,8 @@ var getContactInformation = function () {
                 // avoid processing null (if user navigates to fast away from page etc)
                 if (contentDiv != undefined && response != undefined) {
                     var data = {
-                        InformationValue: response[0].InformationValue
+                        InformationList: response
+
                     };
                     WinJS.Binding.processAll(contentDiv, data);
                 }
@@ -90,7 +91,19 @@ var getContactInformation = function () {
 
 
 
+    WinJS.Namespace.define("InformationConverters", {
+        contactsConverter: WinJS.Binding.converter(function (contacts) {
+            if (!contacts) return "";
+            var output = "";
+            for (var x in contacts) {
+                output += contacts[x].InformationTitle + "\r\n";
+                if (contacts[x].InformationValue) output += contacts[x].InformationValue;
+                output += "\r\n";
+            }
 
+            return output;
+        }),
+    });
 
 
 };
