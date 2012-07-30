@@ -285,7 +285,7 @@ namespace Solvberget.Domain.DTO
                     //Get information from table z13, givent that there is more than one node in temp
                     var docId = "";
                     var docTitle = "";
-                    if (temp.Count > 1)
+                    if (temp.Count > 2)
                     {
                         docId = GetXmlValue(temp.ElementAt(2), "z13-doc-number") ?? docId;
 

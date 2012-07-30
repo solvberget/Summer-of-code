@@ -8,18 +8,17 @@
 
 </head>
 <body>
+        <div class="templates">
+        <div id="reviewTemplate">
+            <h2 id="reviewTitle">Bokbasens omtale</h2>
+            <div id="reviewContent" data-win-bind="innerText: documentReview">
+            </div>
+        </div>
 
+    </div>
 
     <section id="fragmentContent">
-        <article id="review">
-
-            <h2 id="reviewTitle">Bokbasens omtale</h2>
-
-            <div id="reviewContent">
-                Dette er en fin bok!
-            </div>
-
-        </article>
+        <article id="reviewContainer"></article>
         <article id="docLocAndAvail">
             <h2>Tilgjengelighet</h2>
             <div id="availabilityHolder"></div>

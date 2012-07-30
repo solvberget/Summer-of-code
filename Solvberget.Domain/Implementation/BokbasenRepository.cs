@@ -46,19 +46,39 @@ namespace Solvberget.Domain.Implementation
              {
                 return GetExternalBokbasenBook(doc as Book);
              }
+             if (Equals(doc.DocType, typeof(AudioBook).Name))
+             {
+                 return GetExternalBokbasenBook(doc as AudioBook);
+             }
             return null;
         }
 
        
 
-        public BokBasenBook GetExternalBokbasenBook(Book book)
+        public BokBasenBook GetExternalBokbasenBook(Document doc)
         {
-            var isbn = book.Isbn;
-            var xmlBook = new BokBasenBook();
 
-            xmlBook.FillProperties(_xmluri + "&ISBN=" + isbn);
+            if (Equals(doc.DocType, typeof(Book).Name))
+            {
+                var book = doc as Book;
+                var isbn = book.Isbn;
+                var xmlBook = new BokBasenBook();
 
-            return xmlBook;
+                xmlBook.FillProperties(_xmluri + "&ISBN=" + isbn);
+
+                return xmlBook;
+            }
+            if (Equals(doc.DocType, typeof(AudioBook).Name))
+            {
+                var book = doc as AudioBook;
+                var isbn = book.Isbn;
+                var xmlBook = new BokBasenBook();
+
+                xmlBook.FillProperties(_xmluri + "&ISBN=" + isbn);
+                return xmlBook;
+            }
+
+            return null;
 
         }
 
