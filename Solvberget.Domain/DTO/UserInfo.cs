@@ -241,6 +241,13 @@ namespace Solvberget.Domain.DTO
 
             //Put all fines connected to the borrower in a list
             xElementRecord = xElement.Element("fine");
+            double sum = 0;
+            var date = "";
+            var status = "";
+            char creditDebit = new char();
+            var description = "";
+            string descriptionLookupValue = null;
+
             if (xElementRecord != null)
             {
                 var fines = new List<Fine>();
@@ -248,50 +255,47 @@ namespace Solvberget.Domain.DTO
 
                 var varfields = xElement.Elements("fine").ToList();
                 foreach (var varfield in varfields)
-                {
-
-                    var temp = varfield.Elements().ToList();
-                    
+                {                    
                     //Get information from table z31
-                    xElementField = xElementRecord.Element("z31");
-                    if (xElementField == null) return;
-
-                    //Get a number from the data in Sum field
-                    var sumAsString = GetXmlValue(temp.ElementAt(0), "z31-sum");
-                    double sum = 0;
-                    if (sumAsString != null)
+                    xElementField = varfield.Element("z31");
+                    if (xElementField != null)
                     {
-                        //Format may be "[2009]" or "(30.00)", trim if so
-                        var regExp = new Regex(@"[a-zA-Z\[\]]*(\d+)[a-zA-Z\[\]]*");
-                        var foundValue = regExp.Match(sumAsString).Groups[1].ToString();
-                        if (!string.IsNullOrEmpty(foundValue))
-                            sum = double.Parse(foundValue);
+
+                        //Get a number from the data in Sum field
+                        var sumAsString = GetXmlValue(xElementField, "z31-sum");
+                        if (sumAsString != null)
+                        {
+                            //Format may be "[2009]" or "(30.00)", trim if so
+                            var regExp = new Regex(@"[a-zA-Z\[\]]*(\d+)[a-zA-Z\[\]]*");
+                            var foundValue = regExp.Match(sumAsString).Groups[1].ToString();
+                            if (!string.IsNullOrEmpty(foundValue))
+                                sum = double.Parse(foundValue);
+                        }
+
+                        date = GetFormattedDate(GetXmlValue(xElementField, "z31-date"));
+
+                        status = GetXmlValue(xElementField, "z31-status");
+
+                        if (status == "Not paid by/credited to patron")
+                            status = "Ikke betalt ";
+
+                        description = GetXmlValue(xElementField, "z31-type");
+                        if (description != null)
+                            TypeOfFineDictionary.TryGetValue(description, out descriptionLookupValue);
+
+                        creditDebit = Convert.ToChar(GetXmlValue(xElementField, "z31-credit-debit"));
                     }
 
-                    var date = GetFormattedDate(GetXmlValue(temp.ElementAt(0), "z31-date"));
-
-                    var status = GetXmlValue(temp.ElementAt(0), "z31-status");
-
-                    if (status == "Not paid by/credited to patron")
-                        status = "Ikke betalt ";
-                    
-                    var description = GetXmlValue(temp.ElementAt(0), "z31-type");
-                    string descriptionLookupValue = null;
-                    if (description != null)
-                        TypeOfFineDictionary.TryGetValue(description, out descriptionLookupValue);
-
-                    var creditDebit = Convert.ToChar(GetXmlValue(temp.ElementAt(0), "z31-credit-debit"));
-
                     //Get information from table z13, givent that there is more than one node in temp
+                    xElementField = varfield.Element("z13");
                     var docId = "";
                     var docTitle = "";
-                    if (temp.Count > 2)
-                    {
-                        docId = GetXmlValue(temp.ElementAt(2), "z13-doc-number") ?? docId;
 
-                        if (GetXmlValue(temp.ElementAt(2), "z13-title") != null)
-                            docTitle = GetXmlValue(temp.ElementAt(2), "z13-title");
-                    
+                    if (xElementField != null)
+                    {
+                        docId = GetXmlValue(xElementField, "z13-doc-number") ?? docId;
+
+                        docTitle = GetXmlValue(xElementField, "z13-title");
                     }
 
                     var fine = new Fine()
