@@ -349,11 +349,11 @@
             listView.element.focus();
 
             document.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
-            document.getElementById("section0").addEventListener("click", function () { Data.menuItems[0].navigateTo(); }, false);
-            document.getElementById("section1").addEventListener("click", function () { self.goToSection(1); }, false);
-            document.getElementById("section2").addEventListener("click", function () { self.goToSection(2); }, false);
-            document.getElementById("section3").addEventListener("click", function () { self.goToSection(3); }, false);
-            document.getElementById("homeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
+            document.getElementById("lists").addEventListener("click", function () { window.Data.itemByKey("lists").navigateTo(); }, false);
+            document.getElementById("mypage").addEventListener("click", function () { window.Data.itemByKey("mypage").navigateTo(); }, false);
+            document.getElementById("events").addEventListener("click", function () { window.Data.itemByKey("events").navigateTo(); }, false);
+            document.getElementById("search").addEventListener("click", function () { window.Data.itemByKey("search").navigateTo(); }, false);
+            document.getElementById("homeMenuItem").addEventListener("click", function () { window.Data.goHome(); }, false);
 
         },
 
@@ -368,13 +368,7 @@
             menu.show();
 
         },
-        goToSection: function (section) {
-            Data.menuItems[section].navigateTo();
-        },
-        goHome: function () {
-            window.Data.goHome();
-        },
-
+ 
         unload: function () {
 
             getImageQueue.inSearchPage = false;

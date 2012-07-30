@@ -153,6 +153,7 @@ namespace Solvberget.Domain.DTO
             xElementRecord = xElement.Element("item-l");
             if (xElementRecord != null)
             {
+                var docNumber = "";
                 var itemSequence = "";
                 var subLibrary = "";
                 var orgDueDate = "";
@@ -161,7 +162,8 @@ namespace Solvberget.Domain.DTO
                 var dueDate = "";
                 var itemStatus = "";
                 var barcode = "";
-                var docNumber = "";
+                var adminDocNumber = "";
+                var docTitle = "";
 
 
                 var loans = new List<Loan>();
@@ -194,7 +196,7 @@ namespace Solvberget.Domain.DTO
                     xElementField = varfield.Element("z30");
                     if (xElementField != null)
                     {
-                        docNumber = GetXmlValue(xElementField, "z30-doc-number");
+                        adminDocNumber = GetXmlValue(xElementField, "z30-doc-number");
 
                         itemSequence = GetXmlValue(xElementField, "z30-item-sequence");
 
@@ -208,11 +210,14 @@ namespace Solvberget.Domain.DTO
                     xElementField = varfield.Element("z13");
                     if (xElementField != null)
                     {
-                        var docTitle = GetXmlValue(xElementField, "z13-title");
+                        docNumber = GetXmlValue(xElementField, "z13-doc-number");
 
+                        docTitle = GetXmlValue(xElementField, "z13-title");
+                    }
                         var loan = new Loan()
                                        {
                                            DocumentNumber = docNumber,
+                                           AdminisrtativeDocumentNumber = adminDocNumber,
                                            ItemSequence = itemSequence,
                                            Barcode = barcode,
                                            DocumentTitle = docTitle,
@@ -226,7 +231,7 @@ namespace Solvberget.Domain.DTO
                                        };
 
                         loans.Add(loan);
-                    }
+
                 }
                 Loans = loans;
             }

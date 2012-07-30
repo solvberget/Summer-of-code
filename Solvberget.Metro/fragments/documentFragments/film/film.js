@@ -68,4 +68,7 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         else
             return "display:block";
     }),
+    imdbRatingConverter : WinJS.Binding.converter(function (rating) {
+        return rating + "/10";
+    }),
 });

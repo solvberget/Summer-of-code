@@ -64,7 +64,7 @@ var ajaxGetUserInformation = function () {
 
 
 var cancelReservation = function (reservation, element) {
-
+    
     var cancelReservationDiv = document.getElementById("requestReservationFragmentHolder");
     cancelReservationDiv.innerHTML = "";
 
@@ -76,8 +76,7 @@ var cancelReservation = function (reservation, element) {
     });
 
 
-}
-
+};
 
 var renewLoan = function (loan) {
 
@@ -92,8 +91,7 @@ var renewLoan = function (loan) {
     });
 
     
-}
-
+};
 var addFinesToDom = function (fines) {
 
     if (fines == undefined)
@@ -101,16 +99,16 @@ var addFinesToDom = function (fines) {
 
     var fineTemplate = new WinJS.Binding.Template(document.getElementById("fineTemplate"));
     var fineTemplateContainer = document.getElementById("fineTemplateHolder");
+    if (fineTemplateContainer) {
+        fineTemplateContainer.innerHTML = "";
 
-    fineTemplateContainer.innerHTML = "";
-
-    var i, fine;
-    for (i = 0; i < fines.length; i++) {
-        fine = fines[i];
-        fineTemplate.render(fine, fineTemplateContainer);
+        var i, fine;
+        for (i = 0; i < fines.length; i++) {
+            fine = fines[i];
+            fineTemplate.render(fine, fineTemplateContainer);
+        }
     }
-}
-
+};
 var addLoansToDom = function (loans) {
 
     if (loans == undefined) 
@@ -134,8 +132,7 @@ var addLoansToDom = function (loans) {
             });
         });
     }
-}
-
+};
 var addReservationsToDom = function (reservations) {
 
     if (reservations == undefined)
@@ -153,12 +150,11 @@ var addReservationsToDom = function (reservations) {
             $(element).find(".cancelReservationButton:last").attr("index", i);
             $(element).find(".cancelReservationButton:last").click(function () {
                 var index = $(this).attr("index");
-                cancelReservation(reservations[index], element);
+                cancelReservation(reservations[index], $(this));
             });
         });
     }
-}
-
+};
 var getUserInformation = function () {
 
     // Show progress-ring, hide content

@@ -49,7 +49,7 @@
                             flyout = document.getElementById("cancelReservationFlyout");
                             if (flyout != undefined)
                                 flyout.winControl.hide();
-                            $(reservationElement).remove();
+                            $(reservationElement).parents().css("display", "none");
                         }, 2000);
                     }
                     
@@ -65,10 +65,15 @@
 
     function onDismiss() {
         // Clear fields on dismiss
-        document.getElementById("submitCancelReservationButton").value = "";
-        document.getElementById("cancelCancelReservationButton").value = "";
-        document.getElementById("cancelReservationOutputMsg").value = "";
+        var subCancelBtn = document.getElementById("submitCancelReservationButton");
+        if (subCancelBtn) {
+            
 
+            document.getElementById("submitCancelReservationButton").value = "";
+            document.getElementById("cancelCancelReservationButton").value = "";
+            document.getElementById("cancelReservationOutputMsg").value = "";
+
+        }
     }
 
     WinJS.Namespace.define("CancelReservation", {
