@@ -212,7 +212,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         }
 
-        [Test]
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
         public void TestDocumentLocation()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
