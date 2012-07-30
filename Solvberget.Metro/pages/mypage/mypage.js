@@ -256,11 +256,11 @@ var getUserInformation = function () {
         }),
         holdRequestFromConverter: WinJS.Binding.converter(function (holdRequestFrom) {
             if (holdRequestFrom == undefined) return "";
-            return holdRequestFrom == "" ? "" : "Reservert fra: " + holdRequestFrom;
+            return holdRequestFrom == "" ? "" : "Reservert: " + holdRequestFrom;
         }),
-        holdRequestToConverter: WinJS.Binding.converter(function (holdRequestTo) {
-            if (holdRequestTo == undefined) return "";
-            return holdRequestTo == "" ? "" : "Reservert til: " + holdRequestTo;
+        holdRequestEndConverter: WinJS.Binding.converter(function (holdRequestEnd) {
+            if (holdRequestEnd == undefined) return "";
+            return holdRequestTo == "" ? "" : "Hentefrist: " + holdRequestEnd;
         }),
         pickupLibraryConverter: WinJS.Binding.converter(function (pickupLibrary) {
             if (pickupLibrary == undefined) return "";
