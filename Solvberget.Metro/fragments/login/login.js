@@ -103,6 +103,9 @@
 
                             window.localStorage.setItem("BorrowerId", borrowerId);
                             window.localStorage.setItem("LibraryUserId", libraryId);
+
+                            LoginFlyout.updateAppBarButton();
+
                         }
 
                         setTimeout(function () {
