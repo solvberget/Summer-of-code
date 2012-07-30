@@ -50,15 +50,16 @@
 
 
         <div id="documentTemplate">
-
-            <div class="documentImageContainer" data-win-control="Solvberget.Utils.DelayImageLoader">
-                <img class="documentImage" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+            <div style="margin-top: 10px;" class="document">
+                <div style="float:left; max-width: 60px; " class="documentImageContainer imageLoader">
+                    <img class="documentImage" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+                </div>
+                <div style="margin-left: 75px;" class="listElementSection">
+                    <h3 class="listItemTitle" data-win-bind="innerText: Title"></h3>
+                    <h4 class="listItemSubTitle" data-win-bind="innerText: CompressedSubTitle"></h4>
+                </div>
             </div>
-
-            <div class="listElementSection">
-                <h3 class="listItemTitle" data-win-bind="innerText: Title"></h3>
-                <h4 class="listItemSubTitle" data-win-bind="innerText: CompressedSubTitle"></h4>
-            </div>
+            <div style="clear:both"></div>
         </div>
     </div>
 
@@ -100,6 +101,7 @@
                         <label class="progress-ring-text headerProgress"><progress class="win-ring header"></progress></label>
                     </header>
                     <div style="clear: both"></div>
+
                     <div id="documentsHolder"></div>
 
                 </article>
