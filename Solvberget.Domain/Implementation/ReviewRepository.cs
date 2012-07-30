@@ -23,11 +23,11 @@ namespace Solvberget.Domain.Implementation
 
         public string GetDocumentReview(string id)
         {
-            var bokbasenBok = _bokbasenRepository.GetExternalBokbasenBook(id);
+            var bokbasenBook = _bokbasenRepository.GetExternalBokbasenBook(id);
             string review = null;
-            if (bokbasenBok != null)
+            if (bokbasenBook != null)
             {
-                review = bokbasenBok.Fsreview;
+                review = bokbasenBook.Fsreview;
                 //The text is saved in URL format, so we decode it
                 review = HttpUtility.UrlDecode(review, System.Text.Encoding.GetEncoding("ISO-8859-1"));
                         }
