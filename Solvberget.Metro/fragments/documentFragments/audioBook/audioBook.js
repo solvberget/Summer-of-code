@@ -11,9 +11,37 @@
 
 })();
 
-var fragmentReady = function() {
+var documentModel;
+
+var fragmentReady = function (model) {
+    documentModel = model;
+    getReview();
+
+};
+
+var ajaxGetReview = function () {
+    var uri = "http://localhost:7089/Document/GetDocumentReview/" + documentModel.DocumentNumber;
+    return $.getJSON(uri);
+};
 
 
+var getReview = function () {
+
+
+    $.when(ajaxGetReview())
+        .then($.proxy(function (response) {
+            if (response != undefined && response !== "") {
+
+                var data = { documentReview: response };
+
+                var reviewTemplate = new WinJS.Binding.Template(document.getElementById("reviewTemplate"));
+                var reviewTemplateContainer = document.getElementById("reviewContainer");
+                reviewTemplate.outerHTML = ""
+                reviewTemplate.render(data, reviewTemplateContainer);
+
+            }
+        }, this)
+        );
 };
 
 

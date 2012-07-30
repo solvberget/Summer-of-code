@@ -39,11 +39,16 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Musikk+Filmbiblioteket anbefaler: Film", list.Name);
             Assert.AreEqual(1, list.Priority);
             Assert.AreEqual(5, list.DocumentNumbers.Count);
-            Assert.AreEqual("000609967", list.DocumentNumbers.ElementAt(0));
-            Assert.AreEqual("000600109", list.DocumentNumbers.ElementAt(1));
-            Assert.AreEqual("000611985", list.DocumentNumbers.ElementAt(2));
-            Assert.AreEqual("000539501", list.DocumentNumbers.ElementAt(3));
-            Assert.AreEqual("000609384", list.DocumentNumbers.ElementAt(4));
+            Assert.AreEqual("000609967", list.DocumentNumbers.ElementAt(0).Key);
+            Assert.AreEqual("000600109", list.DocumentNumbers.ElementAt(1).Key);
+            Assert.AreEqual("000611985", list.DocumentNumbers.ElementAt(2).Key);
+            Assert.AreEqual("000539501", list.DocumentNumbers.ElementAt(3).Key);
+            Assert.AreEqual("000609384", list.DocumentNumbers.ElementAt(4).Key);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(0).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(1).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(2).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(3).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(4).Value);
         }
 
         [Test]
@@ -59,18 +64,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
             //Case where limit is higher than file conunt in folder
             var lists2 = _listRepository.GetLists(6);
             Assert.AreEqual(5, lists2.Count);
-        }
-
-        [Test]
-        public void TestListContent()
-        {
-            var list = _listRepository.GetLists().First();
-            var document = list.Documents.ElementAt(0);
-            Assert.AreEqual(5, list.Documents.Count());
-            Assert.AreEqual("Musikk+Filmbiblioteket anbefaler: Film", list.Name);
-            Assert.AreEqual("Apejentene", document.Title);
-            Assert.AreEqual(2012, document.PublishedYear);
-            Assert.AreEqual("Film", document.DocType);
         }
 
         [Test]

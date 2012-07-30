@@ -170,6 +170,7 @@ var populateAvailability = function () {
     var model;
 
     if (documentModel.AvailabilityInfo) {
+
         for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
             model = documentModel.AvailabilityInfo[i];
 
@@ -180,8 +181,8 @@ var populateAvailability = function () {
     }
     else {
         $("#sendHoldRequestButton").attr("disabled", "disabled");
+        $("#docLocAndAvail").css("display", "none");
     }
-    
 
 };
 
