@@ -233,9 +233,9 @@ namespace Solvberget.Domain.DTO
                         loans.Add(loan);
 
                 }
+                loans = loans.OrderBy(x => x.DueDate).ToList();
                 Loans = loans;
             }
-
 
             //Put all fines connected to the borrower in a list
             xElementRecord = xElement.Element("fine");

@@ -124,7 +124,6 @@ progress.withText {
 
 .fact {
     margin-top: 15px;
-
     width: auto;
     height: auto;
     padding: 10px;
@@ -157,23 +156,28 @@ progress.withText {
 #documentStaticInformation {
     -ms-grid-column: 1;
     -ms-grid-row: 1;
-    margin-right:20px;
+    margin-right: 20px;
 }
 
 .document-compressedsubtitle-container {
     height: auto;
     margin: 16px;
 }
+
 .document-image-container {
     height: auto;
     width: 240px;
     max-height: 450px;
     max-width: 240px;
+    margin-top:10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 
 #documentImage {
+    max-width: inherit;
     max-height: inherit;
 }
 
@@ -195,7 +199,7 @@ progress.withText {
     max-width: 100%;
     min-width: 100%;
     min-height: 90px;
-    text-align:center;
+    text-align: center;
 }
 
 
@@ -211,7 +215,8 @@ progress.withText {
         width: 100px;
         max-height: 450px;
         max-width: 240px;
-        margin-left: 10px;
+        margin-left: auto;
+        margin-right: auto;
         -ms-grid-row: 3;
     }
 
