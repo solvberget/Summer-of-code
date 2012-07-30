@@ -63,7 +63,7 @@ var ajaxGetUserInformation = function () {
 
 
 
-var cancelReservation = function (reservation, element) {
+var cancelReservation = function (reservations, index, element) {
     
     var cancelReservationDiv = document.getElementById("requestReservationFragmentHolder");
     cancelReservationDiv.innerHTML = "";
@@ -72,7 +72,7 @@ var cancelReservation = function (reservation, element) {
 
         var reservationAnchor = document.getElementById("reservationTemplateHolder");
 
-        CancelReservation.showFlyout(reservationAnchor, reservation, element);
+        CancelReservation.showFlyout(reservationAnchor, reservations, index, element);
     });
 
 
@@ -150,15 +150,17 @@ var addReservationsToDom = function (reservations) {
     var i, reservation;
     for (i = 0; i < reservations.length; i++) {
         reservation = reservations[i];
+        if (!reservation) continue;
         reservationTemplate.render(reservation, reservationsTemplateContainer).done(function (element) {
             $(element).find(".cancelReservationButton:last").attr("index", i);
             $(element).find(".cancelReservationButton:last").click(function () {
                 var index = $(this).attr("index");
-                cancelReservation(reservations[index], $(this));
+                cancelReservation(reservations, index, $(this));
             });
         });
     }
 };
+
 var getUserInformation = function () {
 
     // Show progress-ring, hide content
@@ -219,6 +221,10 @@ var getUserInformation = function () {
 
         }, this)
     );
+    
+    WinJS.Namespace.define("MyPage", {
+        addReservationsToDom: addReservationsToDom,
+    });
 
     WinJS.Namespace.define("MyPageConverters", {
 
