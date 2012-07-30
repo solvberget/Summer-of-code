@@ -92,6 +92,7 @@ namespace Solvberget.Domain.DTO
                 var cancellationSequence = "";
                 var itemSeq = "";
                 var itemDocNumber = "";
+                var holdRequestEnd = "";
 
                 var reservations = new List<Reservation>();
 
@@ -109,11 +110,11 @@ namespace Solvberget.Domain.DTO
                             pickupLocation = "Hovedbiblioteket";
 
                         holdRequestFrom = GetFormattedDate(GetXmlValue(xElementField, "z37-request-date"));
-
                         holdRequestTo = GetFormattedDate(GetXmlValue(xElementField, "z37-end-request-date"));
                         cancellationSequence = GetXmlValue(xElementField, "z37-sequence");
                         itemSeq = GetXmlValue(xElementField, "z37-item-sequence");
                         itemDocNumber = GetXmlValue(xElementField, "z37-doc-number");
+                        holdRequestEnd = GetFormattedDate(GetXmlValue(xElementField, "z37-end-hold-date"));
                     }
                     
                     //Get information from table z13
@@ -135,6 +136,7 @@ namespace Solvberget.Domain.DTO
                             CancellationSequence = cancellationSequence,
                             ItemSeq = itemSeq,
                             ItemDocumentNumber = itemDocNumber,
+                            HoldRequestEnd = holdRequestEnd,
                         };
 
                         reservations.Add(reservation);
@@ -143,7 +145,7 @@ namespace Solvberget.Domain.DTO
 
 
 
-
+                reservations = reservations.OrderBy(x => x.HoldRequestTo).ToList();
                 Reservations = reservations;
             }
 
@@ -336,13 +338,13 @@ namespace Solvberget.Domain.DTO
             return formattedName;
         }
 
-        private static string GetFormattedDate(string dateOfBirth)
+        private static string GetFormattedDate(string date)
         {
-            if (dateOfBirth.Length > 7)
+            if (date.Length > 7)
             {
-                var year = dateOfBirth.Substring(0,4);
-                var month = dateOfBirth.Substring(4, 2);
-                var day = dateOfBirth.Substring(6, 2);
+                var year = date.Substring(0,4);
+                var month = date.Substring(4, 2);
+                var day = date.Substring(6, 2);
                 return day + "." + month + "." + year;
             }
 

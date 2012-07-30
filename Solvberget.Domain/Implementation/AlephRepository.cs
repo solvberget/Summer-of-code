@@ -138,11 +138,7 @@ namespace Solvberget.Domain.Implementation
             if (docItem != null)
             {
                 var alephReturnMessage = GetReserveRequest(docItem.ItemAdmKey, docItem.ItemKeySequence, userId);
-                if (alephReturnMessage.Equals("ok"))
-                {
-                    return new RequestReply { Success = true, Reply = "Reservasjonen var vellykket!" };
-                }
-                return new RequestReply { Success = false, Reply = alephReturnMessage };
+                return alephReturnMessage.Equals("ok") ? new RequestReply { Success = true, Reply = "Reservasjonen var vellykket!" } : new RequestReply { Success = false, Reply = alephReturnMessage };
             }
             return new RequestReply { Success = false, Reply = "Feil: Dokumentene er for tiden ikke tilgjengelig for reservering." };
         }
