@@ -33,19 +33,8 @@
         WinJS.UI.processAll(holdRequestFlyout);
 
 
-
-        var showBranch = branchExists("Hovedbibl.");
-
-        if (showBranch)
-            document.getElementById("submitRequestButtonMain").addEventListener("click", submitRequestMain, false);
-        else
-            $("#submitRequestButtonMain").attr("disabled", "disabled");
-
-        showBranch = branchExists("Madla");
-        if (showBranch)
-            document.getElementById("submitRequestButtonMadla").addEventListener("click", submitRequestMadla, false);
-        else
-            $("#submitRequestButtonMadla").attr("disabled", "disabled");
+        document.getElementById("submitRequestButtonMain").addEventListener("click", submitRequestMain, false);
+        document.getElementById("submitRequestButtonCancel").addEventListener("click", submitRequestCancel, false);
 
         document.getElementById("holdRequestFlyout").addEventListener("afterhide", onDismiss, false);
         holdRequestFlyout.winControl.show(element, "right");
@@ -53,8 +42,17 @@
     }
 
     function submitRequestMain() {
-        var branch = "Hovedbibl";
-        doReservation(documentNumber, internalLibraryUserId, branch);
+
+        var existsAtBranch = branchExists("Hovedbibl.");
+        if (existsAtBranch) {
+            doReservation(documentNumber, internalLibraryUserId, "Hovedbibl");
+            return;
+        }
+        existsAtBranch = branchExists("Madla");
+        if (existsAtBranch) {
+            doReservation(documentNumber, internalLibraryUserId, "Madla");
+            return;
+        }
     }
 
     function branchExists(branch) {
@@ -69,9 +67,8 @@
         return false;
     }
 
-    function submitRequestMadla() {
-        var branch = "Madla";
-        doReservation(documentNumber, internalLibraryUserId, branch);
+    function submitRequestCancel() {
+        dismiss();
     }
 
     function doReservation(docId, userId, branch) {
@@ -126,7 +123,7 @@
     function onDismiss() {
         // Clear fields on dismiss
         document.getElementById("submitRequestButtonMain").value = "";
-        document.getElementById("submitRequestButtonMadla").value = "";
+        document.getElementById("submitRequestButtonCancel").value = "";
         document.getElementById("outputMsgHoldRequest").value = "";
 
     }
