@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <title>Lister fra Biblioteket</title>
+
+    <!-- Common references -->
+    <script src="../../js/data.js"></script>
+
+    <!-- Split references -->
+    <link href="../../css/default.css" rel="stylesheet" />
+    <link href="libraryLists.css" rel="stylesheet" />
+    <script src="libraryLists.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+
+    <!----------------------- HEADER MENU ---------------------->
+    <!-- Define the header menu -->
+
+    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuMyPage',label:'Min side'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
+
+        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
+        </button>
+    </div>
+
+
+
+
+
+
+    <!----------------------- TEMPLATES ---------------------->
+    <div class="templates">
+        <!-- ItemTemplate for Listview -->
+        <div id="listViewTemplateId" class="listViewTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="list-info">
+                <h2 data-win-bind="textContent: Name"></h2>
+            </div>
+        </div>
+
+
+        <div id="documentTemplate">
+
+            <div class="documentImageContainer" data-win-control="Solvberget.Utils.DelayImageLoader">
+                <img class="documentImage" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+            </div>
+
+            <div class="listElementSection">
+                <h3 class="listItemTitle" data-win-bind="innerText: Title"></h3>
+                <h4 class="listItemSubTitle" data-win-bind="innerText: CompressedSubTitle"></h4>
+            </div>
+        </div>
+    </div>
+
+
+    <!----------------------- THE PAGE ---------------------->
+    <div class="listpage fragment">
+
+        <div id="listsLoading">
+            <label class="progress-ring-text">
+                <progress class="win-ring withText"></progress>
+            </label>
+        </div>
+
+        <!-- HEADER -->
+       <!-- <div class="wrapper">-->
+            <header aria-label="Header content" role="banner">
+                <button class="win-backbutton" aria-label="Back" disabled></button>
+                <h1 class="titlearea win-type-ellipsis">
+                    <span class="pagetitle"></span>
+                    <span class="chevron win-type-x-large">&#xe099</span>
+                </h1>
+            </header>
+
+
+
+            <!-- ListView for Lists -->
+
+            <div class="listViewSection" aria-label="List column">
+
+                <div id="listViewId" class="listView" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
+
+            </div>
+
+            <!-- ListContent -->
+            <div class="listContentSection" aria-atomic="true" aria-label="List Content Column" aria-live="assertive">
+                <article>
+                    <header>
+                        <h2 style="float: left" class="listTitle win-type-ellipsis" data-win-bind="textContent: Name">Laster..</h2>
+                        <label class="progress-ring-text headerProgress"><progress class="win-ring header"></progress></label>
+                    </header>
+                    <div style="clear: both"></div>
+                    <div id="documentsHolder"></div>
+
+                </article>
+            </div>
+        </div>
+
+</body>
+
+</html>

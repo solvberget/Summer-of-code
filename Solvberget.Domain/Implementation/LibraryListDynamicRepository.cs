@@ -51,13 +51,13 @@ namespace Solvberget.Domain.Implementation
 
                 if (docsForList.Count <= 0) return null;
                 dynamicList.Documents = docsForList.Take(LimitNumberOfElementsPerList).ToList();
-                dynamicList.DocumentNumbers = dynamicList.Documents.Select(x => x.DocumentNumber).ToList();
+                dynamicList.Documents.ForEach(x => dynamicList.DocumentNumbers.Add(x.DocumentNumber, true));
 
                 //Add thumbs to each document
-                foreach (var document in docsForList.Where(document => string.IsNullOrEmpty(document.ThumbnailUrl)))
-                {
-                    document.ThumbnailUrl = _imageRepository.GetDocumentThumbnailImage(document.DocumentNumber, "60");
-                }
+                //foreach (var document in docsForList.Where(document => string.IsNullOrEmpty(document.ThumbnailUrl)))
+                //{
+                //    document.ThumbnailUrl = _imageRepository.GetDocumentThumbnailImage(document.DocumentNumber, "60");
+                //}
 
                 return dynamicList;
 

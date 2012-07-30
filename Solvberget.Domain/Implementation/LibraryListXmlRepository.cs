@@ -31,7 +31,7 @@ namespace Solvberget.Domain.Implementation
 
             Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(LibraryList.GetLibraryListFromXmlFile(file)));
 
-            lists.ToList().ForEach(liblist => { if (liblist != null) AddContentToList(liblist); });
+            //lists.ToList().ForEach(liblist => { if (liblist != null) AddContentToList(liblist); });
 
             return limit != null 
                 ? lists.OrderBy(list => list.Priority).Take((int)limit).ToList() 
@@ -44,18 +44,18 @@ namespace Solvberget.Domain.Implementation
             return newestFile != null ? (DateTime?)newestFile.LastWriteTimeUtc : null;
         }
 
-        private void AddContentToList(LibraryList libraryList)
-        {
-            foreach(var docnr in libraryList.DocumentNumbers)
-            {
-                var document = (_repository.GetDocument(docnr, true));
-                //We want to add the thumbnail url to the document in this case
-                //Check if already cached
-                if (string.IsNullOrEmpty(document.ThumbnailUrl))
-                    document.ThumbnailUrl = _imageRepository.GetDocumentThumbnailImage(docnr, "60");
-                libraryList.Documents.Add(document);
-            }
-        }
+        //private void AddContentToList(LibraryList libraryList)
+        //{
+        //    foreach(var docnr in libraryList.DocumentNumbers)
+        //    {
+        //        var document = (_repository.GetDocument(docnr, true));
+        //        //We want to add the thumbnail url to the document in this case
+        //        //Check if already cached
+        //        if (string.IsNullOrEmpty(document.ThumbnailUrl))
+        //            document.ThumbnailUrl = _imageRepository.GetDocumentThumbnailImage(docnr, "60");
+        //        libraryList.Documents.Add(document);
+        //    }
+        //}
 
     }
 }

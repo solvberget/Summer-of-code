@@ -153,7 +153,6 @@ var populateFragment = function (documentModel) {
         $("#documentDetailLoading").css("display", "none").css("visibility", "none");
         $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
-
     });
 
 };
