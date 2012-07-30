@@ -92,7 +92,6 @@ namespace Solvberget.Domain.DTO
                 CompositionType = GetVarfield(nodes, "652", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
-                MainResponsible = ResponsiblePersons;
             }
         }
 

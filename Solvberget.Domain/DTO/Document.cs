@@ -114,12 +114,11 @@ namespace Solvberget.Domain.DTO
                         PublishedYear = int.Parse(foundValue);
                 }
 
-                MainResponsible = ResponsiblePersons;
             }
         }
 
 
-        public virtual string GetCompressedString()
+        protected virtual string GetCompressedString()
         {
             string docTypeLookupValue = null;
             if (DocType != null)
