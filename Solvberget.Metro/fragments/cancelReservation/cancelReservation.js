@@ -1,13 +1,18 @@
 ﻿(function () {
 
     var reservationElement;
-    function showCancelReservationFlyout(element, reservation, el) {
+    var allReservations;
+    var reservationIndex;
+    function showCancelReservationFlyout(element, reservations, index, el) {
         reservationElement = el;
+        reservationIndex = index;
+        allReservations = reservations;
+
         var flyout = document.getElementById("cancelReservationFlyout");
         WinJS.UI.processAll(flyout);
 
         document.getElementById("submitCancelReservationButton").addEventListener("click", function () {
-            cancelReservation(reservation.ItemDocumentNumber, reservation.ItemSeq, reservation.CancellationSequence);
+            cancelReservation(reservations[index].ItemDocumentNumber, reservations[index].ItemSeq, reservations[index].CancellationSequence);
         }, false);
         document.getElementById("cancelCancelReservationButton").addEventListener("click", cancel, false);
 
@@ -24,7 +29,7 @@
     function cancelReservation(documentItemNumber, itemSeq, itemCancellationCode) {
 
         $("#cancelReservationLoading").css("display", "block").css("visibility", "visible");
-        
+
         $.when(ajaxCancelReservation(documentItemNumber, itemSeq, itemCancellationCode))
             .then($.proxy(function (response) {
                 if (response != undefined && response !== "") {
@@ -32,6 +37,9 @@
                     var flyout = document.getElementById("cancelReservationFlyout");
 
                     var outputMsg = document.getElementById("cancelReservationOutputMsg");
+                    if (!outputMsg)
+                        return;
+
                     outputMsg.innerHTML = "";
 
                     if (response.Success) {
@@ -49,10 +57,13 @@
                             flyout = document.getElementById("cancelReservationFlyout");
                             if (flyout != undefined)
                                 flyout.winControl.hide();
-                            $(reservationElement).parents().css("display", "none");
+
+                            allReservations[reservationIndex] = undefined;
+                            MyPage.addReservationsToDom(allReservations);
+
                         }, 2000);
                     }
-                    
+
                 }
             }, this));
     }
@@ -67,7 +78,7 @@
         // Clear fields on dismiss
         var subCancelBtn = document.getElementById("submitCancelReservationButton");
         if (subCancelBtn) {
-            
+
 
             document.getElementById("submitCancelReservationButton").value = "";
             document.getElementById("cancelCancelReservationButton").value = "";

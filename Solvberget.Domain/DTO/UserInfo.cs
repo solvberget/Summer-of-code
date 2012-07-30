@@ -287,9 +287,11 @@ namespace Solvberget.Domain.DTO
                     var docTitle = "";
                     if (temp.Count > 1)
                     {
-                        docId = GetXmlValue(temp.ElementAt(1), "z13-doc-number") ?? docId;
+                        docId = GetXmlValue(temp.ElementAt(2), "z13-doc-number") ?? docId;
 
-                        docTitle = GetXmlValue(temp.ElementAt(1), "z13-title") ?? docTitle;
+                        if (GetXmlValue(temp.ElementAt(2), "z13-title") != null)
+                            docTitle = GetXmlValue(temp.ElementAt(2), "z13-title");
+                    
                     }
 
                     var fine = new Fine()
