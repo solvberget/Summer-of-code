@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
@@ -38,6 +39,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetBook()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
+
+
             var book = (Book)_repository.GetDocument(documentNumberForBook, false);
             Assert.AreEqual("Book", book.GetType().Name);
             Assert.AreEqual("Naiv. Super", book.Title);
@@ -52,6 +55,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetFilm()
         {
             const string documentNumberForFilm = "000604643"; //The Matrix
@@ -69,6 +73,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetAudioBook()
         {
             const string documentNumberForAudioBook = "000599186"; //Harry Potter og dødtalismanene
@@ -83,6 +88,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetJournal()
         {
             const string documentNumberForJournal = "000175989"; //Newsweek
@@ -98,6 +104,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetCdPopular()
         {
             const string documentNumberForCdPopular = "000566205"; //Mods - Gje meg litt merr
@@ -118,6 +125,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetLanguageCourse()
         {
             const string documentNumberForLanguageCourse = "000391825"; //Jeg snakker norsk språkkurs
@@ -140,6 +148,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetSheetMusic()
         {
             const string documentNumberForSheetMusic = "000117418"; //March (fanfare) for 3 trumpets and timpani
@@ -155,6 +164,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetNonExistingDoc()
         {
             const string documentNumberForBook = "abcdefg"; //Burde ikke funke
@@ -217,6 +227,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
         public void TestDocumentAvailability()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
@@ -229,6 +240,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
         public void TestNonAvailableDocument()
         {
             const string documentNumberForBook = "000611217"; //Naiv. Super
@@ -239,6 +251,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         }
 
         [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
         public void TestDocumentShouldOnlyIncludeOneBranch()
         {
             const string documentNumberForBook = "000530871"; //Hur kär får man bli?
