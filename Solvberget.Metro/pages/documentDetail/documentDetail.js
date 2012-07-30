@@ -319,16 +319,24 @@ WinJS.Namespace.define("DocumentDetailConverters", {
 
         return output;
     }),
-    responsiblePersonConverter: WinJS.Binding.converter(function (persons) {
+
+	responsiblePersonConverter: WinJS.Binding.converter(function (persons) {
         if (!persons) return "";
         var output = "";
         for (var x in persons) {
             output += persons[x] + "\r\n";
         }
+        return output;
+    }),
+	departmentConverter: WinJS.Binding.converter(function (departments) {
+        if (!departments) return "";
+        var output = "";
+        for (var x in departments) {
+            output += departments[x] + "\r\n";
+        }
 
         return output;
     }),
-
     listConverter: WinJS.Binding.converter(function (list) {
         if (!list) return "";
         var output = "";
