@@ -1,0 +1,197 @@
+﻿/* LIST PAGE */
+.listpage {
+    -ms-grid-columns: 550px 1fr;
+    display: -ms-grid;
+    height: 100%;
+    width: 100%;
+}
+
+    .listpage header[role=banner] .pagetitle {
+        -ms-grid-column: 2;
+        overflow: hidden;
+        width: calc(100% - 20px);
+    }
+
+.templates {
+    display: none;
+}
+
+
+
+/* LISTVIEW */
+.listpage .listView .win-vertical.win-viewport .win-surface {
+    margin-bottom: 60px;
+}
+
+.listpage .listViewSection {
+    -ms-grid-row: 2;
+    margin-left: 106px;
+}
+
+    .listpage .listViewSection .listView {
+        height: 100%;
+        position: relative;
+        width: 100%;
+        z-index: 0;
+    }
+
+#listViewId {
+     display: none;
+}
+
+.listpage .listView .win-vertical.win-viewport .win-container {
+    margin-bottom: 15px;
+    margin-right: 42px;
+    padding: 7px;
+}
+
+.listpage .listViewSection .listView .win-container .win-selectioncheckmark {
+    display: none;
+}
+
+.listpage .listViewSection .listView .win-container .win-selectioncheckmarkbackground {
+    display: none;
+}
+
+.listpage .listViewSection .listView .win-item {
+    /*-ms-grid-columns: 110px 1fr;*/
+    -ms-grid-rows: 1fr;
+    display: -ms-grid;
+    height: 90px;
+    width: 412px;
+}
+
+    .listpage .listViewSection .listView .win-item .list-info {
+        /*-ms-grid-column: 2;*/
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+        .listpage .listViewSection .listView .win-item .list-info .item-title {
+            margin-top: 4px;
+            overflow: hidden;
+        }
+
+.listpage .listViewSection .listView .item .list-info .item-subtitle {
+    opacity: 0.6;
+}
+
+.listpage .listViewSection .listOfLists .win-item .list-info .item-description {
+    max-height: 60px;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+/* LIST CONTENT */
+.listpage .listContentSection {
+  -ms-grid-column: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-row: 1;
+  margin-left: 70px;
+  overflow-y: auto;
+  padding-right: 120px;
+  position: relative;
+  z-index: 0;
+  margin-top: 37px;
+  margin-bottom: 50px;
+}
+
+.listpage .listContentSection header {
+  margin-bottom: 6px;
+  margin-top: 6px;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+/* HEADER MENU */
+.titlecontainer {
+    border: none;
+}
+
+.myPage header[role=banner] .titlearea {
+    margin-top: 45px;
+}
+
+    .myPage header[role=banner] .titlearea .pagetitle {
+        display: inline;
+        padding: 0;
+        padding-right: 5px;
+    }
+
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+/* PROGRESS RING */
+#listsLoading {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 350px;
+}
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+}
+
+progress.withText {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+progress.header {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (-ms-view-state: filled) {
+    
+}
+
+@media screen and (-ms-view-state: snapped) {
+    
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    
+}

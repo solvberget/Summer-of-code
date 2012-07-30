@@ -39,6 +39,8 @@ namespace Solvberget.Service.Util
             //{
             //    return !string.IsNullOrEmpty((string)value);
             //}
+            if (value is List<Document>)
+                return true;
             if (value is IList)
             {
                 return ((IList)value).Count > 0;
