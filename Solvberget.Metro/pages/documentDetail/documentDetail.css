@@ -175,7 +175,6 @@ progress.withText {
 
 #documentImage {
     max-height: inherit;
-    max-width: inherit;
 }
 
 #documentButtonContainer {
@@ -196,6 +195,7 @@ progress.withText {
     max-width: 100%;
     min-width: 100%;
     min-height: 90px;
+    text-align:center;
 }
 
 

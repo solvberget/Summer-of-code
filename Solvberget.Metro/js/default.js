@@ -74,26 +74,23 @@
 
 function doLogin() {
 
-    window.localStorage.setItem("BorrowerId", "");
-    window.localStorage.setItem("LibraryUserId", "");
+    // Get active user
+    var user = LoginFlyout.getLoggedInBorrowerId();
+    LoginFlyout.logout();
 
-    var applicationData = Windows.Storage.ApplicationData.current;
-    var roamingSettings = applicationData.roamingSettings;
+    // If user was not logging out, user was logging in, so show login
+    if (!user || user == "") {
 
-    roamingSettings.values["BorrowerId"] = "";
-    roamingSettings.values["LibraryUserId"] = "";
+        // TODO: ROAMING
+        var loginDiv = document.getElementById("loginFragmentHolder");
+        loginDiv.innerHTML = "";
+        WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
+            var loginAnchor = document.querySelector("div");
 
-
-    // TODO: ROAMING
-    var loginDiv = document.getElementById("loginFragmentHolder");
-    loginDiv.innerHTML = "";
-    WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
-
-        var loginAnchor = document.querySelector("div"); 
-
-        LoginFlyout.showLogin(loginAnchor);
-    });
+            LoginFlyout.showLogin(loginAnchor);
+        });
+    }
 }
 
 function pinByElementAsync(element, newTileID, newTileShortName, newTileDisplayName) {
@@ -159,6 +156,8 @@ function pinToStart() {
 }
 
 function setAppbarButton() {
+
+    LoginFlyout.updateAppBarButton();
 
     if (Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage)) {
         document.getElementById("cmdPin").winControl.label = "Fjern fra start";
