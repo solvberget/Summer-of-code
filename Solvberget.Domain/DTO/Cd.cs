@@ -36,7 +36,7 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
-                DiscContent = RemoveFirstCharIfSpace(GetVarfield(nodes, "505", "a").Split(';').ToList());
+                DiscContent = TrimContentList(GetVarfield(nodes, "505", "a").Split(';').ToList());
                 Performers = GetVarfield(nodes, "511", "a");
                 CompositionTypeOrGenre = GetVarfieldAsList(nodes, "652", "a");
                 MusicalLineup = GetVarfield(nodes, "658", "a");

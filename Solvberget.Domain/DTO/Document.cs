@@ -193,10 +193,13 @@ namespace Solvberget.Domain.DTO
                 varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
-        public static IEnumerable<string> RemoveFirstCharIfSpace(List<string> list)
+        public static IEnumerable<string> TrimContentList(List<string> list)
         {
             var temp = new List<string>();
-            for (int i = 0; i < list.Count(); i++)
+            if (list.ElementAt(0).Substring(0, 9) == "Innhold: ")
+                temp.Insert(0, list.ElementAt(0).Substring(9));
+            
+            for (int i = 1; i < list.Count(); i++)
             {
                 if (list.ElementAt(i)[0] == ' ')
                     temp.Insert(i, list.ElementAt(i).Substring(1));
