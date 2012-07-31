@@ -30,20 +30,18 @@
        <!-- BEGINTEMPLATE: Template code for an app bar -->
     <div id="appBar" data-win-control="WinJS.UI.AppBar" data-win-options="">
 
-        <button 
-            data-win-control="WinJS.UI.AppBarCommand" 
-            data-win-options="{id: 'cmdLoginFlyout', label:'Logg ut',icon:'otheruser',section:'global',tooltip:'Logg ut', type:'flyout'}">
-        </button>
-        
-        <button 
-            data-win-control="WinJS.UI.AppBarCommand" 
-            data-win-options="{id: 'cmdPin',section:'global'}">
-        </button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'cmdLoginFlyout', label:'Logg ut',icon:'otheruser',section:'selection',tooltip:'Logg ut', type:'flyout'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'cmdPin',section:'selection'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toListsButton', label:'Nyheter og anbefalinger',section:'global',tooltip:'Gå til nyheter og anbefalinger', icon:'url(/images/home/Lists.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toMyPageButton', label:'Min side',section:'global',tooltip:'Gå til Min side',icon:'url(/images/home/MyPage.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toEventsButton', label:'Arrangementer',section:'global',tooltip:'Gå til arrangementer',icon:'url(/images/home/Events.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toOpeningHoursButton', label:'Åpningstider',section:'global',tooltip:'Gå til åpningstider',icon:'url(/images/home/OpeningHours.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toContactButton', label:'Kontakt',section:'global',tooltip:'Gå til kontaktinformasjon',icon:'url(/images/home/Contact.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toSearchButton', label:'Søk',section:'global',tooltip:'Søk i biblioteket',icon:'url(/images/home/Search.png)'}"></button>
     </div>
     <!-- ENDTEMPLATE -->
 
     <div id="loginFragmentHolder"></div>
     <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/home/home.html'}"></div>
-
 </body>
 </html>
