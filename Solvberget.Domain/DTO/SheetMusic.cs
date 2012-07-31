@@ -35,7 +35,9 @@ namespace Solvberget.Domain.DTO
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 TitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
 
-                Content = RemoveFirstCharIfSpace(GetVarfield(nodes, "505", "a").Split(';').ToList());
+                var content = GetVarfield(nodes, "505", "a");
+
+                if (content != null) Content = RemoveFirstCharIfSpace(content.Split(';').ToList());
             }
         }
 
