@@ -64,7 +64,7 @@ var ajaxGetUserInformation = function () {
 
 
 var cancelReservation = function (reservations, index, element) {
-    
+
     var cancelReservationDiv = document.getElementById("requestReservationFragmentHolder");
     cancelReservationDiv.innerHTML = "";
 
@@ -90,7 +90,7 @@ var renewLoan = function (loan) {
         LoanRenewal.showFlyout(renewalAnchor, null, loan);
     });
 
-    
+
 };
 var addFinesToDom = function (fines) {
 
@@ -113,13 +113,13 @@ var addLoansToDom = function (loans) {
 
     if (loans == undefined) {
         $(".renewAllButton").css("display", "none");
-        $("#loanTemplateHolder").text("Du har ingen lån");  
+        $("#loanTemplateHolder").text("Du har ingen lån");
         return;
     }
-    
+
     var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
     var loansTemplateContainer = document.getElementById("loanTemplateHolder");
-    
+
     loansTemplateContainer.innerHTML = "";
 
     var i, loan;
@@ -138,7 +138,7 @@ var addLoansToDom = function (loans) {
 
     $(".renewAllButton").click(function () {
         var index = $(this).attr("index");
-        
+
         for (i = 0; i < loans.length; i++) {
             renewLoan(loans[i]);
         }
@@ -230,7 +230,7 @@ var getUserInformation = function () {
 
         }, this)
     );
-    
+
     WinJS.Namespace.define("MyPage", {
         addReservationsToDom: addReservationsToDom,
     });

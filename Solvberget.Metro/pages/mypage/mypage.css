@@ -53,7 +53,6 @@
     width: auto;
     height: auto;
     padding: 10px;
-    float: left;
     overflow: hidden;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -74,9 +73,8 @@
 
     .box .detail-title {
         margin-bottom: 3px;
-            display: inline;
-
-        }
+        display: inline;
+    }
 
     .box .documentTitle {
         font-weight: bold;
@@ -108,10 +106,28 @@ progress.withText {
 #mypageData {
     display: none;
     visibility: hidden;
+    max-height: calc(100% - 20px);
+}
+#mypageData > div {
+    float: left;
+}
+
+.float-item {
+    float: left;
+    min-width: 220px;
+    max-width: 220px;
+    margin: 10px;
 }
 
 .inline {
     display: inline;
+}
+
+#fines, #loans, #reservations {
+    max-width: 750px;
+    max-height: 500px;
+    overflow: auto;
+
 }
 
 
