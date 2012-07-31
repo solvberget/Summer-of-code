@@ -125,7 +125,7 @@ progress.withText {
 
 #fines, #loans, #reservations {
     max-width: 750px;
-    max-height: 500px;
+    max-height: 600px;
     overflow: auto;
 
 }
@@ -136,6 +136,11 @@ progress.withText {
         float: none;
         margin-left: 0;
         max-width: 220px;
+    }
+
+    #fines, #loans, #reservations {
+        max-height: none;
+        max-width: 210px;
     }
 
     .myPage header[role=banner] .titlearea .pagesubtitle {

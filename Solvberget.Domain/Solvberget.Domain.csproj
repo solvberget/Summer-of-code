@@ -100,6 +100,8 @@
     <Compile Include="Abstract\IRulesRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
+    <Compile Include="DTO\Blog.cs" />
+    <Compile Include="DTO\BlogItem.cs" />
     <Compile Include="DTO\Information.cs" />
     <Compile Include="DTO\ItemRule.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
