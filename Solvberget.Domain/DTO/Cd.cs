@@ -12,7 +12,7 @@ namespace Solvberget.Domain.DTO
         public string MusicGroup { get; set; }
         public string ExplanatoryAddition { get; set; }
         public string TypeAndNumberOfDiscs { get; set; }
-        public string DiscContent { get; set; }
+        public IEnumerable<string> DiscContent { get; set; }
         public string Performers { get; set; }
         public IEnumerable<string> CompositionTypeOrGenre { get; set; }
         public string MusicalLineup { get; set; }
@@ -36,7 +36,7 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
-                DiscContent = GetVarfield(nodes, "505", "a");
+                DiscContent = RemoveFirstCharIfSpace(GetVarfield(nodes, "505", "a").Split(';').ToList());
                 Performers = GetVarfield(nodes, "511", "a");
                 CompositionTypeOrGenre = GetVarfieldAsList(nodes, "652", "a");
                 MusicalLineup = GetVarfield(nodes, "658", "a");
