@@ -94,9 +94,11 @@
   <ItemGroup>
     <Compile Include="DTOTests\AvailabilityInformationTest.cs" />
     <Compile Include="DTOTests\BokBasenBookTest.cs" />
+    <Compile Include="DTOTests\BlogTest.cs" />
     <Compile Include="DTOTests\InfomationTest.cs" />
     <Compile Include="DTOTests\LoanTest.cs" />
     <Compile Include="DTOTests\UserInfoTest.cs" />
+    <Compile Include="RepositoryTests\BlogRepositoryTests.cs" />
     <Compile Include="RepositoryTests\InformationRepositoryTest.cs" />
     <Compile Include="RepositoryTests\RulesRepositoryTests.cs" />
     <Compile Include="RepositoryTests\LibraryListsFromDynamicRepositoryTest.cs" />
