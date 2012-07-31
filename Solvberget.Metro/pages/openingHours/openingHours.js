@@ -42,46 +42,35 @@
 
         goHome: function () {
             WinJS.Navigation.navigate("/pages/home/home.html");
-
         },
     });
 
 })();
-
 
 var ajaxGetOpeningHoursInformation = function () {
 
     return $.getJSON(window.Data.serverBaseUrl + "/Document/GetOpeningHoursInformation");
 };
 
-
-
 var getOpeningHoursInformation = function () {
 
     // Show progress-ring, hide content
-    $("#openingHoursData").css("display", "none").css("visibility", "none");
+    $("#openingHoursContent").css("display", "none").css("visibility", "none");
     $("#openingHoursLoading").css("display", "block").css("visibility", "visible");
 
     // Get the user information from server
     $.when(ajaxGetOpeningHoursInformation())
         .then($.proxy(function (response) {
-            if (response != undefined && response !== "") {
-                // Select HTML-section to process with the new binding lists
-                var contentDiv = document.getElementById("openingHoursData");
+     
 
                 // avoid processing null (if user navigates to fast away from page etc)
-                if (contentDiv != undefined && response != undefined) {
-                    var data = {
-                        InformationList: response
-                       
-                    };
-                    WinJS.Binding.processAll(contentDiv, data);
+                if (response != undefined && response !== "") {
+                   
+                    populateOpeningHours(response);
                 }
 
-            }
-
             // Hide progress-ring, show content
-            $("#openingHoursData").css("display", "block").css("visibility", "visible");
+            $("#openingHoursContent").css("display", "block").css("visibility", "visible");
             $("#openingHoursLoading").css("display", "none").css("visibility", "none");
 
 
@@ -89,18 +78,27 @@ var getOpeningHoursInformation = function () {
     );
 
 
-    WinJS.Namespace.define("InformationConverters", {
-        openingHoursConverter: WinJS.Binding.converter(function (openingHours) {
-            if (!openingHours) return "";
-            var output = "";
-            for (var x in openingHours) {
-                output += openingHours[x].InformationTitle  + "\r\n";
-                if (openingHours[x].InformationValue) output += openingHours[x].InformationValue;
-                output += "\r\n";
+    var populateOpeningHours = function (response) {
+
+        var openingHoursTemplateDiv = document.getElementById("openingHoursInformationTemplate");
+        var openingHoursTemplateHolder = document.getElementById("openingHoursInformationTemplateHolder");
+
+        var openingHoursTemplate = undefined;
+        if (openingHoursTemplateDiv)
+            openingHoursTemplate = new WinJS.Binding.Template(openingHoursTemplateDiv);
+
+        var model;
+
+        if (response) {
+
+            for (var i = 0; i < response.length; i++) {
+                model = response[i];
+
+                if (openingHoursTemplate && openingHoursTemplateHolder && model)
+                    openingHoursTemplate.render(model, openingHoursTemplateHolder);
+
             }
+        }
 
-            return output;
-        }),
-    });
-
+    };
 }

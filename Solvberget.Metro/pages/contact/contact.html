@@ -10,6 +10,16 @@
 </head>
 <body>
 
+    <div class="templates">
+        <section class="contactSection">
+            <div id="contactInformationTemplate">
+                <h2 class="contactInformationTitle" data-win-bind="innerText: InformationTitle"></h2>
+                <span class="contactInformationValue" data-win-bind="innerText: InformationValue"></span>
+            </div>
+        </section>
+    </div>
+
+
     <!-- Define the header menu -->
     <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
         <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
@@ -42,9 +52,14 @@
                     <progress class="win-ring withText"></progress>
                 </label>
             </div>
-            <div id="contactData" data-win-bind="innerText: InformationList InformationConverters.contactsConverter"></div>
+            <div class="content" id="contactContent" aria-label="Main content" role="main">
+                <article>
+                    <div>
+                        <div id="contactInformationTemplateHolder"></div>
+                    </div>
+                </article>
         </section>
-        
+
     </div>
 </body>
 </html>
