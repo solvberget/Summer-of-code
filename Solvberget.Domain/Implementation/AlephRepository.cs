@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Dynamic;
 using System.Globalization;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Solvberget.Domain.Abstract;
@@ -20,10 +22,12 @@ namespace Solvberget.Domain.Implementation
 
         private readonly StorageHelper _storageHelper;
         private readonly RulesRepository _rulesRepository;
+        private readonly ImageRepository _imageRepository;
 
         public AlephRepository(string pathToImageCache, string pathToRulesFolder = null)
         {
             _storageHelper = new StorageHelper(pathToImageCache);
+            _imageRepository = new ImageRepository(null, pathToImageCache);
             if (pathToRulesFolder != null)
                 _rulesRepository = new RulesRepository(pathToRulesFolder);
 
@@ -254,15 +258,18 @@ namespace Solvberget.Domain.Implementation
             documents.RemoveAll(x => x.Title == null);
             documents.ForEach(d => d.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(d.DocumentNumber, true));
 
+
             return documents;
         }
 
-        private static Document PopulateDocument(XElement record, bool populateLight)
+        private Document PopulateDocument(XElement record, bool populateLight)
         {
             var xmlDoc = XDocument.Parse(record.ToString());
             var nodes = xmlDoc.Root.Descendants("oai_marc");
 
             var docTypeString = Document.GetVarfield(nodes, "019", "b");
+
+            Document returnDocument;
 
             if (docTypeString != null)
             {
@@ -272,14 +279,16 @@ namespace Solvberget.Domain.Implementation
 
                 var methodInfo = type.GetMethod(populateLight ? "GetObjectFromFindDocXmlBsMarcLight" : "GetObjectFromFindDocXmlBsMarc");
 
-                return (Document)methodInfo.Invoke(type, BindingFlags.InvokeMethod | BindingFlags.Default, null, new object[] { record.ToString() }, CultureInfo.CurrentCulture);
+                returnDocument = (Document)methodInfo.Invoke(type, BindingFlags.InvokeMethod | BindingFlags.Default, null, new object[] { record.ToString() }, CultureInfo.CurrentCulture);
 
             }
             else
             {
-                return Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
+                returnDocument = Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
             }
-
+            new Thread(() => _imageRepository.GetDocumentImage(returnDocument.DocumentNumber, null, returnDocument,
+                                                               true)).Start();
+            return returnDocument;
         }
 
         private string GetUrl(Operation function, Dictionary<string, string> options)
