@@ -95,11 +95,14 @@
     <Compile Include="Abstract\IEventRepository.cs" />
     <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\IListRepositoryStatic.cs" />
+    <Compile Include="Abstract\IBlogRepository.cs" />
     <Compile Include="Abstract\IRatingRepository.cs" />
     <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\IRulesRepository.cs" />
     <Compile Include="Abstract\ISpellingDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
+    <Compile Include="DTO\Blog.cs" />
+    <Compile Include="DTO\BlogEntry.cs" />
     <Compile Include="DTO\Information.cs" />
     <Compile Include="DTO\ItemRule.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
@@ -181,6 +184,7 @@
     </Compile>
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\BokbasenRepository.cs" />
+    <Compile Include="Implementation\BlogRepository.cs" />
     <Compile Include="Implementation\InformationRepository.cs" />
     <Compile Include="Implementation\RulesRepository.cs" />
     <Compile Include="Implementation\ImdbRepository.cs" />

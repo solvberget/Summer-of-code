@@ -11,7 +11,7 @@
 
             var applicationData = Windows.Storage.ApplicationData.current;
             applicationData.addEventListener("datachanged", roamingDataChangeHandler);
-    
+
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
@@ -48,12 +48,17 @@
             }
             setAppbarButton();
 
+            //Add functionality to the appbar buttons
             document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
             document.getElementById("cmdPin").addEventListener("click", pinToStart);
-            
+            document.getElementById("toListsButton").addEventListener("click", Data.navigateToLists);
+            document.getElementById("toMyPageButton").addEventListener("click", Data.navigateToMypage);
+            document.getElementById("toEventsButton").addEventListener("click", Data.navigateToEvents);
+            document.getElementById("toOpeningHoursButton").addEventListener("click", Data.navigateToOpeningHours);
+            document.getElementById("toContactButton").addEventListener("click", Data.navigateToContact);
+            document.getElementById("toSearchButton").addEventListener("click", Data.navigateToSearch);
         }
     };
-
 
     function roamingDataChangeHandler(eventArgs) {
         // TODO: Refresh your data
@@ -135,7 +140,7 @@ function unpinByElementAsync(element, unwantedTileID) {
 
 function pinToStart() {
     document.getElementById("appBar").winControl.sticky = true;
-    
+
     if (WinJS.UI.AppBarIcon.unpin === document.getElementById("cmdPin").winControl.icon) {
         unpinByElementAsync(document.getElementById("cmdPin"), Data.activePage).then(function (isDeleted) {
             if (isDeleted) {
@@ -143,7 +148,7 @@ function pinToStart() {
             } else {
             }
         });
-         
+
     } else {
 
         pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Appbar pinned secondary tile", "A secondary tile that was pinned by the user from the Appbar").then(function (isCreated) {
@@ -168,6 +173,4 @@ function setAppbarButton() {
         document.getElementById("cmdPin").winControl.icon = "pin";
         document.getElementById("cmdPin").winControl.tooltip = "Pin til start";
     }
-
-    document.getElementById("appBar").winControl.sticky = false;
 }

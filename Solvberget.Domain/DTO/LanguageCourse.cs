@@ -73,7 +73,7 @@ namespace Solvberget.Domain.DTO
         }
 
 
-        public override string GetCompressedString()
+        protected override string GetCompressedString()
         {
             string docTypeLookupValue = null;
             if (DocType != null)

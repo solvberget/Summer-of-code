@@ -86,8 +86,16 @@ progress.withText {
     display: block;
 }
 
-#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
+#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count  {
     display: inline;
+}
+
+#availabilityHolder .doc-loc-code, #availabilityHolder .doc-loc-classification {
+    display: inline;
+}
+
+.doc-loc-hyllesign {
+    display: block;
 }
 
 .doc-loc-branch {
@@ -104,7 +112,7 @@ progress.withText {
 
 #fragmentContent {
     margin-left: 30px;
-    -ms-grid-column: inherit;
+      -ms-grid-column: inherit;
 }
 
     #fragmentContent > * {
@@ -121,6 +129,9 @@ progress.withText {
 
 /** FRAGMENT CONTENT */
 
+#details {
+margin-top:50px;
+}
 
 .fact {
     margin-top: 15px;
@@ -170,7 +181,7 @@ progress.withText {
     width: 240px;
     max-height: 450px;
     max-width: 240px;
-    margin-top:10px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -55,6 +56,7 @@ namespace Solvberget.Domain.DTO
                 //Only get languages (041a) if language in base equals "Flerspråklig" 
                 if (Language.Equals("Flerspråklig"))
                 {
+
                     var languages = GetVarfield(nodes, "041", "a").SplitByLength(3).ToList();
                     for (var i = 0; i < languages.Count(); i++)
                     {
@@ -114,12 +116,11 @@ namespace Solvberget.Domain.DTO
                         PublishedYear = int.Parse(foundValue);
                 }
 
-                MainResponsible = ResponsiblePersons;
             }
         }
 
 
-        public virtual string GetCompressedString()
+        protected virtual string GetCompressedString()
         {
             string docTypeLookupValue = null;
             if (DocType != null)
@@ -192,6 +193,22 @@ namespace Solvberget.Domain.DTO
                 varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
+        public static IEnumerable<string> TrimContentList(List<string> list)
+        {
+            var temp = new List<string>();
+            if (list.ElementAt(0).Substring(0, 9) == "Innhold: ")
+                temp.Insert(0, list.ElementAt(0).Substring(9));
+            
+            for (int i = 1; i < list.Count(); i++)
+            {
+                if (list.ElementAt(i)[0] == ' ')
+                    temp.Insert(i, list.ElementAt(i).Substring(1));
+                else
+                    temp.Insert(i, list.ElementAt(i));
+            }
+            return temp;
+        } 
+
         protected static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
                                                                string subfieldLabel)
         {
@@ -239,8 +256,11 @@ namespace Solvberget.Domain.DTO
                 if (tempName != null)
                     person.InvertName(tempName);
 
+                if (!persons.Any(x => x.Name.Equals(person.Name)))
+                {
+                    persons.Add(person);
+                }
 
-                persons.Add(person);
             }
 
             return persons;
@@ -276,11 +296,11 @@ namespace Solvberget.Domain.DTO
         protected static readonly Dictionary<string, string> DocumentDictionary = new Dictionary<string, string>
                                 {
                                     {"^^^", "Dokumenttype er ikke registrert"},
-                                     {typeof(Document).Name, "Annet"},
+                                    {typeof(Document).Name, "Annet"},
                                     {typeof(AudioBook).Name, "Lydbok"},
                                     {typeof(Book).Name, "Bok"},                       
                                     {typeof(Cd).Name, "Cd"},
-                                     {typeof(Film).Name, "Film"},
+                                    {typeof(Film).Name, "Film"},
                                     {typeof(Journal).Name, "Tidsskrift"},
                                     {typeof(LanguageCourse).Name, "Språkkurs"},
                                     {typeof(SheetMusic).Name, "Note"}
@@ -288,8 +308,8 @@ namespace Solvberget.Domain.DTO
 
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>
                                 {
-                                    {"^^^", "Språk er ikke registrert"},
-                                    {"ing", "Språk er ikke registrert"},
+                                    {"^^^", ""},
+                                    {"ing", ""},
                                     {"ace", "Aceh"},
                                     {"afr", "Afrikaans"},
                                     {"akk", "Akkadisk"},

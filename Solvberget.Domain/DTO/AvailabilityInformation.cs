@@ -11,7 +11,7 @@ namespace Solvberget.Domain.DTO
         public static readonly IEnumerable<string> BranchesToHandle = new List<string> { "Hovedbibl.", "Madla" };
 
         public string Branch { get; private set; }
-        public string Department { get; private set; }
+        public IEnumerable<string> Department { get; private set; }
         public string PlacementCode { get; private set; }
         public int TotalCount { get; private set; }
         public int AvailableCount { get; private set; }
@@ -34,7 +34,7 @@ namespace Solvberget.Domain.DTO
             if (items.Any())
             {
                 Branch = branch;
-                Department = items.FirstOrDefault().Department;
+                Department = items.Where(x => x.Department != null).Select(x => x.Department).Distinct();
                 PlacementCode = items.FirstOrDefault().PlacementCode;
 
                 TotalCount = items.Count();

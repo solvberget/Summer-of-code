@@ -31,6 +31,27 @@ html {
   width: 100%;
 }
 
+.appBar {
+    -ms-grid-columns: auto auto;
+}
+
+
+#navigation .win-command{
+    float: left;
+}
+
+#command .win-command{
+    -ms-grid-coulumn: 2;
+}
+
+.win-commandimage {
+    background-size: 40px 40px;
+}
+
+button:hover .win-label, button:active .win-label {
+    color: rgb(200, 200, 200);
+}
+
 /* line 45, ../sass/default.scss */
 .fragment {
   /* Define a grid with rows for a banner and a body */

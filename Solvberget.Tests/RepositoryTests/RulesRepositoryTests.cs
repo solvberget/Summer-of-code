@@ -13,20 +13,19 @@ namespace Solvberget.Service.Tests.RepositoryTests
     {
 
         private RulesRepository _rulesRepository;
-        private readonly string _pathToRulesFolder = Path.Combine(Environment.CurrentDirectory, @"..\..\TestData\rules\");
-
+        private const string PathToRulesFolder = @"..\..\..\Solvberget.Service\bin\App_Data\rules\";
 
         [SetUp]
         public void InitRepository()
         { 
-            _rulesRepository = new RulesRepository(_pathToRulesFolder);
+            _rulesRepository = new RulesRepository(PathToRulesFolder);
         }
 
         [Test]
         public void TestGetRules()
         {
 
-            var rules = _rulesRepository.GetItemRules();
+            var rules = _rulesRepository.GetItemRules().ToList();
             Assert.NotNull(rules);
 
             // There should be 84 rules in total
