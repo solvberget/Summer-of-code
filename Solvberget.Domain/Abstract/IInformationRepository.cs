@@ -8,7 +8,7 @@ namespace Solvberget.Domain.Abstract
 {
     public interface IInformationRepository
     {
-        List<Information> GetOpeningHoursInformation();
-        List<Information> GetContactInformation();
+        List<OpeningHoursInformation> GetOpeningHoursInformation();
+        List<ContactInformation> GetContactInformation();
     }
 }
