@@ -173,6 +173,8 @@ var populateAvailability = function () {
 
         for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
             model = documentModel.AvailabilityInfo[i];
+            model.LocationCode = documentModel.LocationCode;
+            model.ClassificationNr = documentModel.ClassificationNr;
 
             if (availabilityTemplate && availabilityTemplateHolder && model)
                 availabilityTemplate.render(model, availabilityTemplateHolder);
@@ -319,33 +321,21 @@ WinJS.Namespace.define("DocumentDetailConverters", {
 
         return output;
     }),
-
-	responsiblePersonConverter: WinJS.Binding.converter(function (persons) {
-        if (!persons) return "";
-        var output = "";
-        for (var x in persons) {
-            output += persons[x] + "\r\n";
-        }
-        return output;
-    }),
-	departmentConverter: WinJS.Binding.converter(function (departments) {
-        if (!departments) return "";
-        var output = "";
-        for (var x in departments) {
-            output += departments[x] + "\r\n";
-        }
-
-        return output;
-    }),
     listConverter: WinJS.Binding.converter(function (list) {
-        if (!list) return "";
+        if (!list || list.length == 0) return "";
         var output = "";
-
         for (var x in list) {
             output += list[x] + "\r\n";
         }
-
         return output;
-
     }),
+    locationCodeConverter: WinJS.Binding.converter(function (locCode) {
+        if (!locCode) return "";
+        return "Hyllesign: " + locCode;
+    }),
+    nullToEmptyStringConverter: WinJS.Binding.converter(function (prop) {
+        if (!prop) return "";
+        return prop;
+    }),
+
 });

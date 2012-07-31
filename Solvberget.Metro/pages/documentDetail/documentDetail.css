@@ -86,8 +86,16 @@ progress.withText {
     display: block;
 }
 
-#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
+#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count  {
     display: inline;
+}
+
+#availabilityHolder .doc-loc-code, #availabilityHolder .doc-loc-classification {
+    display: inline;
+}
+
+.doc-loc-hyllesign {
+    display: block;
 }
 
 .doc-loc-branch {

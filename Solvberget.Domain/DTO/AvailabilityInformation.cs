@@ -34,7 +34,7 @@ namespace Solvberget.Domain.DTO
             if (items.Any())
             {
                 Branch = branch;
-                Department = items.Select(x => x.Department).Distinct();
+                Department = items.Where(x => x.Department != null).Select(x => x.Department).Distinct();
                 PlacementCode = items.FirstOrDefault().PlacementCode;
 
                 TotalCount = items.Count();
