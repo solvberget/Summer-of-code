@@ -404,7 +404,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("Mods", cd.MusicGroup);
             Assert.IsNull(cd.ExplanatoryAddition);
             Assert.AreEqual("1 kompaktplate", cd.TypeAndNumberOfDiscs);
-            Assert.AreEqual("Innhold: Gje meg litt merr ", cd.DiscContent.ElementAt(0));
+            Assert.AreEqual("Gje meg litt merr ", cd.DiscContent.ElementAt(0));
             Assert.AreEqual("Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen", cd.Performers);
             Assert.AreEqual(2, cd.CompositionTypeOrGenre.Count());
             Assert.AreEqual("Popmusikk", cd.CompositionTypeOrGenre.ElementAt(0));
