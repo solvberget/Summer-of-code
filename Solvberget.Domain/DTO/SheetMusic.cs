@@ -13,7 +13,7 @@ namespace Solvberget.Domain.DTO
         public Person Composer { get; set; }
         public string StandardizedTitle { get; set; }
         public string NumberOfPagesAndNumberOfParts { get; set; }
-        public string DiscContent { get; set; }
+        public IEnumerable<string> Content { get; set; }
         public string CompositionType { get; set; }
         public string Genre { get; set; }
         public IEnumerable<string> MusicalLineup { get; set; }
@@ -29,13 +29,15 @@ namespace Solvberget.Domain.DTO
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 StandardizedTitle = GetVarfield(nodes, "240", "a");
                 NumberOfPagesAndNumberOfParts = GetVarfield(nodes, "300", "a");
-                DiscContent = GetVarfield(nodes, "505", "a");
                 CompositionType = GetVarfield(nodes, "652", "a");
                 Genre = GetVarfield(nodes, "655", "a");
                 MusicalLineup = GetVarfieldAsList(nodes, "658", "a");
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 TitlesOtherWritingForms = GetVarfield(nodes, "740", "a");
-               
+
+                var content = GetVarfield(nodes, "505", "a");
+
+                if (content != null) Content = TrimContentList(content.Split(';').ToList());
             }
         }
 

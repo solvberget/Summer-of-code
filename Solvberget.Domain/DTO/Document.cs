@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -192,6 +193,22 @@ namespace Solvberget.Domain.DTO
                 varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
+        public static IEnumerable<string> TrimContentList(List<string> list)
+        {
+            var temp = new List<string>();
+            if (list.ElementAt(0).Substring(0, 9) == "Innhold: ")
+                temp.Insert(0, list.ElementAt(0).Substring(9));
+            
+            for (int i = 1; i < list.Count(); i++)
+            {
+                if (list.ElementAt(i)[0] == ' ')
+                    temp.Insert(i, list.ElementAt(i).Substring(1));
+                else
+                    temp.Insert(i, list.ElementAt(i));
+            }
+            return temp;
+        } 
+
         protected static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
                                                                string subfieldLabel)
         {
@@ -276,11 +293,11 @@ namespace Solvberget.Domain.DTO
         protected static readonly Dictionary<string, string> DocumentDictionary = new Dictionary<string, string>
                                 {
                                     {"^^^", "Dokumenttype er ikke registrert"},
-                                     {typeof(Document).Name, "Annet"},
+                                    {typeof(Document).Name, "Annet"},
                                     {typeof(AudioBook).Name, "Lydbok"},
                                     {typeof(Book).Name, "Bok"},                       
                                     {typeof(Cd).Name, "Cd"},
-                                     {typeof(Film).Name, "Film"},
+                                    {typeof(Film).Name, "Film"},
                                     {typeof(Journal).Name, "Tidsskrift"},
                                     {typeof(LanguageCourse).Name, "Språkkurs"},
                                     {typeof(SheetMusic).Name, "Note"}
@@ -288,8 +305,8 @@ namespace Solvberget.Domain.DTO
 
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>
                                 {
-                                    {"^^^", "Språk er ikke registrert"},
-                                    {"ing", "Språk er ikke registrert"},
+                                    {"^^^", ""},
+                                    {"ing", ""},
                                     {"ace", "Aceh"},
                                     {"afr", "Afrikaans"},
                                     {"akk", "Akkadisk"},

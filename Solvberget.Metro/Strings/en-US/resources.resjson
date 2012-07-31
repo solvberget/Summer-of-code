@@ -38,7 +38,7 @@
     "ProductionYear"        : "Publikasjonsår",
     "Composer"              : "Komponist",
     "NumberOfPagesAndNumberOfParts:" : "Sidetall, type note og antall stemmer",
-    "DiscContent"           : "Innhold i noten (sanger, komposisjoner)",
+    "DiscContent"           : "Innhold (sanger, komposisjoner)",
     "ComposistionType"      : "Komposisjonstype",
     "ArtistOrComposer"      : "Artist eller komponist",
     "MusicGroup"            : "Musikkgruppe",
