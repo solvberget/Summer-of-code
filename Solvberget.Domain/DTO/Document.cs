@@ -256,8 +256,11 @@ namespace Solvberget.Domain.DTO
                 if (tempName != null)
                     person.InvertName(tempName);
 
+                if (!persons.Any(x => x.Name.Equals(person.Name)))
+                {
+                    persons.Add(person);
+                }
 
-                persons.Add(person);
             }
 
             return persons;
