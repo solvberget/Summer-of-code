@@ -59,38 +59,54 @@ var ajaxGetContactInformation = function () {
 var getContactInformation = function () {
 
     // Show progress-ring, hide content
-    $("#contactData").css("display", "none").css("visibility", "none");
+    $("#contactContent").css("display", "none").css("visibility", "none");
     $("#contactLoading").css("display", "block").css("visibility", "visible");
 
     // Get the user information from server
     $.when(ajaxGetContactInformation())
         .then($.proxy(function (response) {
             if (response != undefined && response !== "") {
-                // Select HTML-section to process with the new binding lists
-                var contentDiv = document.getElementById("contactData");
-                
-                // avoid processing null (if user navigates to fast away from page etc)
-                if (contentDiv != undefined && response != undefined) {
-                    var data = {
-                        InformationValue: response[0].InformationValue
-                    };
-                    WinJS.Binding.processAll(contentDiv, data);
+
+               
+                    populateContact(response);
                 }
                     
-            }
+
 
             // Hide progress-ring, show content
-            $("#contactData").css("display", "block").css("visibility", "visible");
+            $("#contactContent").css("display", "block").css("visibility", "visible");
             $("#contactLoading").css("display", "none").css("visibility", "none");
             
 
         }, this)
     );
+    
+
+    var populateContact = function (response) {
+
+        var contactTemplateDiv = document.getElementById("contactInformationTemplate");
+        var contactTemplateHolder = document.getElementById("contactInformationTemplateHolder");
+
+        var contactTemplate = undefined;
+        if (contactTemplateDiv)
+            contactTemplate = new WinJS.Binding.Template(contactTemplateDiv);
+
+        var model;
+
+        if (response) {
+
+            for (var i = 0; i < response.length; i++) {
+                model = response[i];
+
+                if (contactTemplate && contactTemplateHolder && model)
+                    contactTemplate.render(model, contactTemplateHolder);
+
+            }
+        }
+
+    };
 
 
-
-
-
-
+   
 
 };

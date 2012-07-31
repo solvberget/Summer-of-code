@@ -1,6 +1,23 @@
-﻿body {
-overflow:scroll;
+﻿.content {
+    -ms-grid-row: 2;
+    display: block;
+    height: 100%;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    z-index: 0;
 }
+
+  .content article {
+        /* Define a multi-column, horizontally scrolling article by default. */
+        column-fill: auto;
+        column-gap: 80px;
+        column-width: 480px;
+        height: calc(100% - 50px);
+        margin-left: 120px;
+        margin-top: 5px;
+        width: 480px;
+    }
 
 .titlecontainer {
     border: none;
@@ -24,42 +41,14 @@ overflow:scroll;
     }
 
 #mainContentSection {
-    margin-left: 45px;
-
+    margin-left: 0px;
 }
+
+
+
 #templates {
     display: none;
 }
-.box {
-    margin: 10px;
-    border-color: white;
-    border-width: 1px;
-    border: solid;
-    width: auto;
-    height: auto;
-    padding: 10px;
-    float: left;
-    overflow: hidden;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    resize: both;
-    max-width: 350px;
-    min-width:175px;
-    min-height:120px;
-}
-
-    .box span {
-        display: block;
-    }
-
-    .box .detail-title {
-        margin-bottom: 3px;
-    }
-
-    .box .documentTitle {
-        font-weight: bold;
-    }
 
 progress.withText {
     color: inherit; /* Uses the same text color as the page */
@@ -90,27 +79,45 @@ progress.withText {
 #contactData {
     display: none;
     visibility: hidden;
-        display: inline;
+    display: inline;
 }
 
 .inline {
-
     display: inline;
 }
 
 
+
+
 @media screen and (-ms-view-state: snapped) {
-    .box {
-        float: none;
-        margin-left: 0;
-        max-width: 220px;
+    .content article {
+            /* Define a single column, vertically scrolling article in snapped mode. */
+            -ms-grid-columns: 300px 1fr;
+            -ms-grid-row: 2;
+            -ms-grid-rows: auto 60px;
+            display: -ms-grid;
+            height: 100%;
+            margin-left: 5px;
+            width: 300px;
+        }
+
+             .content article .item-image {
+                height: 140px;
+                width: 280px;
+            }
+
+             .content article .item-content {
+                padding-bottom: 60px;
+            }
+    
+    
+    #openingHoursContent {
+        margin-left: 5px;
+        -ms-grid-column: inherit;
     }
 
-    .contact header[role=banner] .titlearea .pagesubtitle {
-        display: block;
-    }
+    #mainContentSection {
+    margin-left: 10px;
 
-    .win-backbutton {
-        margin-top: 60px!important;
-    }
+}
 }

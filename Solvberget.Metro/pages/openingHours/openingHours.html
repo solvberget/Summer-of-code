@@ -9,6 +9,15 @@
 
 </head>
 <body>
+    <div class="templates">
+        <section class="openingHoursSection">
+            <div id="openingHoursInformationTemplate">
+                <h2 class="openingHoursInformationTitle" data-win-bind="innerText: InformationTitle"></h2>
+                <span class="openingHoursInformationValue" data-win-bind="innerText: InformationValue"></span>
+            </div>
+        </section>
+    </div>
+
 
     <!-- Define the header menu -->
     <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
@@ -42,9 +51,15 @@
                     <progress class="win-ring withText"></progress>
                 </label>
             </div>
-            <div id="openingHoursData" data-win-bind="innerText: InformationValue"></div>
+            <div class="content" id="openingHoursContent" aria-label="Main content" role="main">
+                <article>
+                    <div>
+                        <div id="openingHoursInformationTemplateHolder"></div>
+                    </div>
+                </article>
+            </div>
         </section>
-        
+
     </div>
 </body>
 </html>
