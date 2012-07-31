@@ -87,35 +87,27 @@
         },
 
         getLists: function (requestStr, listView) {
-
             var that = this;
-
             WinJS.xhr({ url: requestStr }).then(
-
                 function (request) {
+                    if (!continueToGetDocuments) return;
                     var obj = JSON.parse(request.responseText);
                     if (obj.Lists !== undefined) {
-
                         lists = obj.Lists;
                         listsBinding = new WinJS.Binding.List(lists);
                         listView.itemDataSource = listsBinding.dataSource;
                         listView.selection.set(listSelectionIndex);
-
                         // Hide progress-ring, show content
                         $("#listsLoading").hide();
                         $("#listViewId").fadeIn();
-
                         that.processRemainingDocuments();
-
                     } else {
                         //Error handling   
                     }
                 },
-
                 function (request) {
                     //Error handling
                 });
-
         },
 
         showHeaderMenu: function () {
@@ -145,7 +137,6 @@
             var documentTemplate = undefined;
             if (documentTemplateDiv)
                 documentTemplate = new WinJS.Binding.Template(documentTemplateDiv);
-
             if (listModel.Documents) {
                 for (var i = 0; i < listModel.Documents.length; i++) {
                     var doc = listModel.Documents[i];
@@ -256,13 +247,13 @@
                             else {
                                 checkDoc.TriedFetchingThumbnail = true;
                             }
+                            that.populateDocElement(checkDoc);
                         }
-                        that.populateDocElement(doc);
                     }
                 }
                 
             });
-        }
+        },
     });
 })();
 
