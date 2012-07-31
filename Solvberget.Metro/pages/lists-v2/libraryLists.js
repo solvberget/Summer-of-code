@@ -8,8 +8,8 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
 
-    var requestUrl = "http://localhost:7089/List/GetListsStaticAndDynamic";
-    var docReqStrBase = "http://localhost:7089/Document/GetDocumentLight/";
+    var listRequestUrl = Data.serverBaseUrl + "/List/GetListsStaticAndDynamic";
+    var docRequestUrl  = Data.serverBaseUrl + "/Document/GetDocumentLight/";
 
     //var promise = new WinJS.Promise(processRemainingDocuments, cancelRemainingDocuments);
 
@@ -46,7 +46,7 @@
             }
 
             //Get the lists
-            this.getLists(requestUrl, listView);
+            this.getLists(listRequestUrl, listView);
 
         },
 
@@ -86,35 +86,27 @@
         },
 
         getLists: function (requestStr, listView) {
-
             var that = this;
-
             WinJS.xhr({ url: requestStr }).then(
-
                 function (request) {
+                    //
                     var obj = JSON.parse(request.responseText);
                     if (obj.Lists !== undefined) {
-
                         lists = obj.Lists;
                         listsBinding = new WinJS.Binding.List(lists);
                         listView.itemDataSource = listsBinding.dataSource;
                         listView.selection.set(listSelectionIndex);
-
                         // Hide progress-ring, show content
                         $("#listsLoading").css("display", "none").css("visibility", "none");
                         $("#listViewId").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
-
                         that.processRemainingDocuments();
-
                     } else {
                         //Error handling   
                     }
                 },
-
                 function (request) {
                     //Error handling
                 });
-
         },
 
         showHeaderMenu: function () {
@@ -168,7 +160,7 @@
                             if (!listItem.Documents) {
                                 listItem.Documents = new Array();
                             }
-                            var reqStr = docReqStrBase + document;
+                            var reqStr = docRequestUrl + document;
                             var jsonContext = new Object();
                             jsonContext.listItem = listItem;
                             jsonContext.document = document;

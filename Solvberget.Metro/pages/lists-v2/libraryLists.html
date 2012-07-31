@@ -41,36 +41,42 @@
 
     <!----------------------- TEMPLATES ---------------------->
     <div class="templates">
-        <!-- ItemTemplate for Listview -->
+       
+         <!-- ItemTemplate for Listview -->
         <div id="listViewTemplateId" class="listViewTemplate" data-win-control="WinJS.Binding.Template">
             <div class="list-info">
                 <h2 data-win-bind="textContent: Name"></h2>
             </div>
         </div>
 
-
+        <!-- DocumentTemplate for each item in a list -->
         <div id="documentTemplate">
-
             <div class="documentImageContainer" data-win-control="Solvberget.Utils.DelayImageLoader">
                 <img class="documentImage" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
             </div>
-
             <div class="listElementSection">
                 <h3 class="listItemTitle" data-win-bind="innerText: Title"></h3>
                 <h4 class="listItemSubTitle" data-win-bind="innerText: CompressedSubTitle"></h4>
             </div>
         </div>
+
     </div>
 
 
     <!----------------------- THE PAGE ---------------------->
     <div class="listpage fragment">
 
+
+
+        <!-- List loading wheel -->
         <div id="listsLoading">
             <label class="progress-ring-text">
                 <progress class="win-ring withText"></progress>
             </label>
         </div>
+
+
+
 
         <!-- HEADER -->
        <!-- <div class="wrapper">-->
@@ -85,12 +91,11 @@
 
 
             <!-- ListView for Lists -->
-
             <div class="listViewSection" aria-label="List column">
-
                 <div id="listViewId" class="listView" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
-
             </div>
+
+
 
             <!-- ListContent -->
             <div class="listContentSection" aria-atomic="true" aria-label="List Content Column" aria-live="assertive">
@@ -104,6 +109,9 @@
 
                 </article>
             </div>
+
+
+
         </div>
 
 </body>
