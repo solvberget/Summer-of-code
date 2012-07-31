@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<blogfeeds>
+  
+  <feed>
+    <url>http://mfblogg.no/feed/</url>
+    <priority>1</priority>
+    <type>rss</type>
+    <title>MFblogg.no</title>
+    <description>Musikk- og filmbiblioteket anbefaler</description>
+    <categories>
+      <category>Musikk</category>
+      <category>Film</category>
+      <category>Litteratur</category>
+      <category>Bibliotek</category>
+    </categories>
+  </feed>
+
+  <feed>
+    <url>http://bibliotekareneanbefaler.blogspot.com/feeds/posts/default</url>
+    <priority>2</priority>
+    <type>atom</type>
+    <title>Bibliotakerene anbefaler</title>
+    <description>Går du deg vill i bokjungelen? Her er hjelp å få. Bibliotekarene ved Stavanger, Randaberg, Sola, Gjesdal og Hå bibliotek skriver om bøker, nye som gamle, lange som korte. Dette er en blogg for deg som liker å lese, med tips om gjemte og glemte perler.</description>
+    <categories>
+      <category>Bøker</category>
+      <category>Bibliotek</category>
+    </categories>
+  </feed>
+
+  <feed>
+    <url>http://laschgsinblogg.blogspot.com/feeds/posts/default</url>
+    <priority>3</priority>
+    <type>atom</type>
+    <title>Tegneserier en må lese fordi sånn er det bare</title>
+    <description></description>
+    <categories>
+      <category>Tegneserier</category>
+      <category>Bibliotek</category>
+    </categories>
+  </feed>
+
+  <feed>
+    <url>http://solvbergetspillblogg.wordpress.com/feed/</url>
+    <priority>4</priority>
+    <type>rss</type>
+    <title>Helges spillblogg</title>
+    <description></description>
+    <categories>
+      <category>Spill</category>
+      <category>Bibliotek</category>
+    </categories>
+  </feed>
+
+</blogfeeds>
