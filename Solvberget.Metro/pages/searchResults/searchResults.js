@@ -353,25 +353,6 @@
             this.handleQuery(element, options);
             listView.element.focus();
 
-            document.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
-            document.getElementById("lists").addEventListener("click", function () { window.Data.itemByKey("lists").navigateTo(); }, false);
-            document.getElementById("mypage").addEventListener("click", function () { window.Data.itemByKey("mypage").navigateTo(); }, false);
-            document.getElementById("events").addEventListener("click", function () { window.Data.itemByKey("events").navigateTo(); }, false);
-            document.getElementById("search").addEventListener("click", function () { window.Data.itemByKey("search").navigateTo(); }, false);
-            document.getElementById("homeMenuItem").addEventListener("click", function () { window.Data.goHome(); }, false);
-
-        },
-
-        showHeaderMenu: function () {
-
-            var title = document.querySelector("header .titlearea");
-            var menu = document.getElementById("headerMenu").winControl;
-            menu.anchor = title;
-            menu.placement = "bottom";
-            menu.alignment = "left";
-
-            menu.show();
-
         },
  
         unload: function () {

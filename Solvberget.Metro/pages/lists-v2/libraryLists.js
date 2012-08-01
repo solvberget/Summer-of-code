@@ -20,7 +20,6 @@
 
         ready: function (element, options) {
             continueToGetDocuments = true;
-
             //Set page header
             element.querySelector("header[role=banner] .pagetitle").textContent = "Anbefalinger";
 
@@ -98,15 +97,6 @@
                 function (request) {
                     //Error handling
                 });
-        },
-
-        showHeaderMenu: function () {
-            var title = document.querySelector("header .titlearea");
-            var menu = document.getElementById("HeaderMenu").winControl;
-            menu.anchor = title;
-            menu.placement = "bottom";
-            menu.alignment = "left";
-            menu.show();
         },
 
         goHome: function () {
