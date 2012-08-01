@@ -15,8 +15,8 @@
         { key: "lists", title: "Nyheter og anbefalinger", subtitle: "Nyheter, anbefalinger og topplister", backgroundImage: tasks, navigateTo: navigateToLists },
         { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: navigateToMypage },
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: navigateToEvents },
-        { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen", backgroundImage: openingHours, navigateTo: navigateToOpeningHours },
-         { key: "contact", title: "Kontaktinformasjon", subtitle: "For spørsmål", backgroundImage: contact, navigateTo: navigateToContact },
+        { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen inn", backgroundImage: openingHours, navigateTo: navigateToOpeningHours },
+         { key: "contact", title: "Kontakt oss", subtitle: "Kontaktinformasjon", backgroundImage: contact, navigateTo: navigateToContact },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
     ];
 

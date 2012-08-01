@@ -17,29 +17,13 @@
         margin-left: 120px;
         margin-top: 5px;
         width: 480px;
+      
     }
 
 
 .titlecontainer {
     border: none;
 }
-
-.contact header[role=banner] .titlearea {
-    margin-top: 45px;
-}
-
-    .contact header[role=banner] .titlearea .pagetitle {
-        display: inline;
-        padding: 0;
-        padding-right: 5px;
-    }
-
-    .contact header[role=banner] .titlearea .pagesubtitle {
-        display: inline;
-        margin: 0;
-        padding: 0;
-        padding-left: 10px;
-    }
 
 .contactInformationTitle {
     margin-top: 20px;
@@ -89,16 +73,6 @@ progress.withText {
             margin-left: 5px;
             width: 300px;
         }
-
-             .content article .item-image {
-                height: 140px;
-                width: 280px;
-            }
-
-             .content article .item-content {
-                padding-bottom: 60px;
-            }
-    
     
     #openingHoursContent {
         margin-left: 5px;

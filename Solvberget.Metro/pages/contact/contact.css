@@ -8,7 +8,7 @@
     z-index: 0;
 }
 
-  .content article {
+    .content article {
         /* Define a multi-column, horizontally scrolling article by default. */
         column-fill: auto;
         column-gap: 80px;
@@ -22,29 +22,6 @@
 .titlecontainer {
     border: none;
 }
-
-.contact header[role=banner] .titlearea {
-    margin-top: 45px;
-}
-
-    .contact header[role=banner] .titlearea .pagetitle {
-        display: inline;
-        padding: 0;
-        padding-right: 5px;
-    }
-
-    .contact header[role=banner] .titlearea .pagesubtitle {
-        display: inline;
-        margin: 0;
-        padding: 0;
-        padding-left: 10px;
-    }
-
-#mainContentSection {
-    margin-left: 0px;
-}
-
-
 
 #templates {
     display: none;
@@ -79,42 +56,30 @@ progress.withText {
     display: inline;
 }
 
-.inline {
-    display: inline;
-}
-
-
 
 
 @media screen and (-ms-view-state: snapped) {
     .content article {
-            /* Define a single column, vertically scrolling article in snapped mode. */
-            -ms-grid-columns: 300px 1fr;
-            -ms-grid-row: 2;
-            -ms-grid-rows: auto 60px;
-            display: -ms-grid;
-            height: 100%;
-            margin-left: 5px;
-            width: 300px;
-        }
+        /* Define a single column, vertically scrolling article in snapped mode. */
+        -ms-grid-columns: 300px 1fr;
+        -ms-grid-row: 2;
+        -ms-grid-rows: auto 60px;
+        display: -ms-grid;
+        height: 100%;
+        margin-left: 5px;
+        width: 300px;
+    }
 
-             .content article .item-image {
-                height: 140px;
-                width: 280px;
-            }
-
-             .content article .item-content {
-                padding-bottom: 60px;
-            }
-    
-    
-    #openingHoursContent {
+    #contactContent {
         margin-left: 5px;
         -ms-grid-column: inherit;
     }
 
     #mainContentSection {
-    margin-left: 10px;
+        margin-left: 10px;
+    }
 
-}
+    .openingHoursInformationTitle {
+        margin-top: 10px;
+    }
 }
