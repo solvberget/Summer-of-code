@@ -8,13 +8,11 @@ namespace Solvberget.Domain.DTO
 
         public List<OpeningHoursInformation> OpeningHoursInformationList { get; set; }
      
-
         public OpeningHoursWebPage()
         {
             Link = Properties.Settings.Default.OpeningHoursWebpage;
         }
-
-
+        
         public void FillProperties()
         {
             OpeningHoursInformationList = new List<OpeningHoursInformation>();
@@ -33,28 +31,20 @@ namespace Solvberget.Domain.DTO
             {
                 h3List.Insert(0, pList[0]);
                 pList.RemoveAt(0);
-
-
             }
+
             for (var i = 0; i < iteratorList.Count; i++)
             {
                 tableList[i] = tableList[i] + "\n";
             }
-
-
-           
+            
             for (var i = 0; i < iteratorList.Count; i++)
             {
                 var openingHoursInformation = new OpeningHoursInformation { InformationTitle = h3List[i], InformationValue = tableList[i] };
                 //openingHoursInformation.FillProperties();
                 OpeningHoursInformationList.Add(openingHoursInformation);
             }
-
-
         }
-
-
-
     }
 }
 

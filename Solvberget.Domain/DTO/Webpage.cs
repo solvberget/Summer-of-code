@@ -35,17 +35,14 @@ namespace Solvberget.Domain.DTO
         {
 
             var expression = "//div[@class='"+divName+"']";
-            HtmlDocument htmlDoc = new HtmlDocument();
+            var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(strHtml);
             if (htmlDoc.DocumentNode != null)
             {
-                HtmlNode node = htmlDoc.DocumentNode.SelectSingleNode(expression);
+                var node = htmlDoc.DocumentNode.SelectSingleNode(expression);
 
                 if (node != null)
-                {
-                    // Do something with bodyNode
                     return node;
-                }
             }
             return null;
         }
@@ -56,48 +53,33 @@ namespace Solvberget.Domain.DTO
             //Fix \n
             var cleanedHtml = strHtml.Replace("\n", "");
             cleanedHtml = cleanedHtml.Replace("\t", " ");
-
             
-            
-             cleanedHtml = cleanedHtml.Replace("<li>", "\n");
-             //cleanedHtml = cleanedHtml.Replace("</tr>", "\n");
-             cleanedHtml = cleanedHtml.Replace("&nbsp;", " ");
-
+            cleanedHtml = cleanedHtml.Replace("<li>", "\n");
+            //cleanedHtml = cleanedHtml.Replace("</tr>", "\n");
+            cleanedHtml = cleanedHtml.Replace("&nbsp;", " ");
             
             //Remove html tags
             cleanedHtml = StripHtmlTags(cleanedHtml);
-
-
+            
             //Remove information
             cleanedHtml = cleanedHtml.Replace("Hvor er vi? Se kart på Google maps", "");
             cleanedHtml = cleanedHtml.Replace("» ", "\n");
             cleanedHtml = cleanedHtml.Replace("►", "");
             
             cleanedHtml = cleanedHtml.Replace(",", "");
-           
-
-            //Add \n on uppercase letters..quickfix
-            cleanedHtml = cleanedHtml.Replace("STAVANGER", "Stavanger");
-            cleanedHtml = cleanedHtml.Replace("AMFI", "Amfi");
-            cleanedHtml = cleanedHtml.Replace("SF Kino", "sfkino");
-            //cleanedHtml= Regex.Replace(cleanedHtml, @"(?<!_)([A-Z])", "\n$1");
-            cleanedHtml = cleanedHtml.Replace("sfkino", "SF Kino");
-
-
-
+          
             //Remove multipe whitespaces
             RegexOptions options = RegexOptions.None;
             Regex regex = new Regex(@"[ ]{2,}", options);
             cleanedHtml = regex.Replace(cleanedHtml, @" ");
           
-
             return cleanedHtml;
         }
 
         public static List<String> GetValue(HtmlNode node, string div)
         {
             var nodes = node.Descendants().Where(n => n.Name.StartsWith(div));
-           var list = nodes.Select(nodex => nodex.InnerHtml).Select(CleanHtml).ToList();
+            var list = nodes.Select(nodex => nodex.InnerHtml).Select(CleanHtml).ToList();
             return list;
         }
 
