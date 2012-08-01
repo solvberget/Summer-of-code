@@ -231,10 +231,11 @@
                             var checkDoc = documents[j];
                             if (checkDoc.ThumbnailUrl === undefined || checkDoc.ThumbnailUrl == "") {
                                 if (checkDoc.TriedFetchingThumbnail === undefined) {
+                                    checkDoc.ThumbnailUrl = "/images/placeholders/" + checkDoc.DocType + ".png";
                                     checkDoc.TriedFetchingThumbnail = true;
                                     var url = thumbRequestUrl;
                                     $.getJSON(url + checkDoc.DocumentNumber).then($.proxy(function (data) {
-                                        this.ThumbnailUrl = data;
+                                        if (data !== "") this.ThumbnailUrl = data;
                                         checkDoc.element = undefined;
                                         that.populateDocElement(checkDoc);
                                     }, checkDoc)).then(function () {
