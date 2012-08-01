@@ -18,6 +18,7 @@ namespace Solvberget.Domain.DTO
         public string Edition { get; set; }
         public string NumberOfPages { get; set; }
         public string Content { get; set; }
+        public string TitleAndPartTitle { get; set; }
         public IEnumerable<Person> ReferredPersons { get; set; }
         public IEnumerable<Organization> ReferredOrganizations { get; set; } 
         public IEnumerable<string> ReferencedPlaces { get; set; } 
@@ -37,7 +38,6 @@ namespace Solvberget.Domain.DTO
                 ClassificationNr = GetVarfield(nodes, "090", "c");
                 StdOrOrgTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
-                PartTitle = GetVarfield(nodes, "245", "p");
                 Edition = GetVarfield(nodes, "250", "a");
                 NumberOfPages = GetVarfield(nodes, "300", "a");
                 Content = GetVarfield(nodes, "505", "a");
@@ -94,6 +94,16 @@ namespace Solvberget.Domain.DTO
                     Author.InvertName(Author.Name);
                 MainResponsible = Author;
 
+
+                PartTitle = GetVarfield(nodes, "245", "p");
+
+
+                if (Title != null && PartTitle != null)
+                {
+                    TitleAndPartTitle = Title + " : " + PartTitle;
+
+                    Title = TitleAndPartTitle;
+                }
             }
         }
 
