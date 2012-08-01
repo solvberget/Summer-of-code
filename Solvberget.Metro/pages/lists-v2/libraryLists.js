@@ -21,18 +21,8 @@
         ready: function (element, options) {
             continueToGetDocuments = true;
 
-            //HeaderMenu
-            var self = this;
-            element.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
-            document.getElementById("headerMenuMyPage").addEventListener("click", function () { window.Data.itemByKey("mypage").navigateTo(); }, false);
-            document.getElementById("headerMenuEvents").addEventListener("click", function () { window.Data.itemByKey("events").navigateTo(); }, false);
-            document.getElementById("headerMenuSearch").addEventListener("click", function () { window.Data.itemByKey("search").navigateTo(); }, false);
-            document.getElementById("headerMenuHomeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
-            var theMenu = document.getElementById("HeaderMenu");
-            WinJS.UI.processAll(theMenu);
-
             //Set page header
-            element.querySelector("header[role=banner] .pagetitle").textContent = "Lister";
+            element.querySelector("header[role=banner] .pagetitle").textContent = "Anbefalinger";
 
             //Init ListView
             var listView = element.querySelector(".listView").winControl;
@@ -254,6 +244,11 @@
                 
             });
         },
+
+        clickHandler: function (ev) {
+
+        },
+
     });
 })();
 
