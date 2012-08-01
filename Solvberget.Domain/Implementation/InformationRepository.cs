@@ -10,14 +10,14 @@ namespace Solvberget.Domain.Implementation
     public class InformationRepository : IInformationRepository
     {
 
-        public List<Information> GetOpeningHoursInformation()
+        public List<OpeningHoursInformation> GetOpeningHoursInformation()
         {
             var webpage = new OpeningHoursWebPage();
             webpage.FillProperties();
             return webpage.OpeningHoursInformationList;
         }
 
-        public List<Information> GetContactInformation()
+        public List<ContactInformation> GetContactInformation()
         {
             var webpage = new ContactWebPage();
             webpage.FillProperties();

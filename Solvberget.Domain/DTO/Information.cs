@@ -9,5 +9,6 @@ namespace Solvberget.Domain.DTO
     {
         public string InformationTitle { get; set; }
         public string InformationValue { get; set; }
+        public string OtherInformation { get; set; }
     }
 }

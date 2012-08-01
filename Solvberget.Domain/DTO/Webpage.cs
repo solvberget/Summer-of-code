@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.XPath;
 using HtmlAgilityPack;
@@ -18,6 +19,7 @@ namespace Solvberget.Domain.DTO
 
         public string GetHtml()
         {
+            client.Encoding = Encoding.UTF8;
             string html = client.DownloadString(Link);
             //html = html.Replace("\n", "");
             html = html.Replace("\\", "");
@@ -50,26 +52,45 @@ namespace Solvberget.Domain.DTO
 
         public static string CleanHtml(string strHtml)
         {
-            var strippedTagsHtml = StripHtmlTags(strHtml);
-            var cleanedHtml = strippedTagsHtml.Replace("\n", " ");
 
-            cleanedHtml = cleanedHtml.Replace("–", "");
-            cleanedHtml = cleanedHtml.Replace("å", "�");
-            cleanedHtml = cleanedHtml.Replace("Å", "�");
-            cleanedHtml = cleanedHtml.Replace("ø", "�");
-            cleanedHtml = cleanedHtml.Replace("Ø", "�");
-            cleanedHtml = cleanedHtml.Replace("é", "�");
-            cleanedHtml = cleanedHtml.Replace("» ", "");
-            cleanedHtml = cleanedHtml.Replace("» ", "");
-            cleanedHtml = cleanedHtml.Replace("► ", "");
+            //Fix \n
+            var cleanedHtml = strHtml.Replace("\n", "");
+            cleanedHtml = cleanedHtml.Replace("\t", " ");
+
+            
+            
+             cleanedHtml = cleanedHtml.Replace("<li>", "\n");
+             //cleanedHtml = cleanedHtml.Replace("</tr>", "\n");
+             cleanedHtml = cleanedHtml.Replace("&nbsp;", " ");
+
+            
+            //Remove html tags
+            cleanedHtml = StripHtmlTags(cleanedHtml);
+
+
+            //Remove information
+            cleanedHtml = cleanedHtml.Replace("Hvor er vi? Se kart på Google maps", "");
+            cleanedHtml = cleanedHtml.Replace("» ", "\n");
             cleanedHtml = cleanedHtml.Replace("►", "");
-            cleanedHtml = cleanedHtml.Replace("►O", "O");
-            cleanedHtml = cleanedHtml.Replace("&nbsp;", " ");
- 
-
+            
+            cleanedHtml = cleanedHtml.Replace(",", "");
            
-            cleanedHtml = cleanedHtml.Replace("Hvor er vi?  Se kart p� Google maps", "");
-            cleanedHtml = cleanedHtml.Trim();
+
+            //Add \n on uppercase letters..quickfix
+            cleanedHtml = cleanedHtml.Replace("STAVANGER", "Stavanger");
+            cleanedHtml = cleanedHtml.Replace("AMFI", "Amfi");
+            cleanedHtml = cleanedHtml.Replace("SF Kino", "sfkino");
+            //cleanedHtml= Regex.Replace(cleanedHtml, @"(?<!_)([A-Z])", "\n$1");
+            cleanedHtml = cleanedHtml.Replace("sfkino", "SF Kino");
+
+
+
+            //Remove multipe whitespaces
+            RegexOptions options = RegexOptions.None;
+            Regex regex = new Regex(@"[ ]{2,}", options);
+            cleanedHtml = regex.Replace(cleanedHtml, @" ");
+          
+
             return cleanedHtml;
         }
 
