@@ -255,8 +255,8 @@ namespace Solvberget.Domain.DTO
                 string tempName = GetSubFieldValue(varfield, "a");
                 if (tempName != null)
                     person.InvertName(tempName);
-
-                if (!persons.Any(x => x.Name.Equals(person.Name)))
+                
+                if (!string.IsNullOrEmpty(person.Name) && !persons.Any(x => x.Name.Equals(person.Name)))
                 {
                     persons.Add(person);
                 }
