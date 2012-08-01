@@ -6,9 +6,11 @@
     var binding = WinJS.Binding;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
+    var nav = WinJS.Navigation;
 
     var listRequestUrl = Data.serverBaseUrl + "/List/GetListsStaticAndDynamic";
-    var docRequestUrl  = Data.serverBaseUrl + "/Document/GetDocumentLight/";
+    var docRequestUrl = Data.serverBaseUrl + "/Document/GetDocumentLight/";
+    var thumbRequestUrl = Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
 
     var lists = new Array();
     var listsBinding;
@@ -19,7 +21,9 @@
     ui.Pages.define("/pages/lists-v2/libraryLists.html", {
 
         ready: function (element, options) {
+
             continueToGetDocuments = true;
+
             //Set page header
             element.querySelector("header[role=banner] .pagetitle").textContent = "Anbefalinger";
 
@@ -99,10 +103,6 @@
                 });
         },
 
-        goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-        },
-
         isSingleColumn: function () {
             var viewState = Windows.UI.ViewManagement.ApplicationView.value;
             return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
@@ -110,7 +110,6 @@
 
         renderListContent: function (listModel) {
             var that = this;
-
             var documentTemplateHolder = document.getElementById("documentsHolder");
             documentTemplateHolder.innerHTML = "";
             var documentTemplateDiv = document.getElementById("documentTemplate");
@@ -120,13 +119,31 @@
             if (listModel.Documents) {
                 for (var i = 0; i < listModel.Documents.length; i++) {
                     var doc = listModel.Documents[i];
-
                     if (documentTemplate && documentTemplateHolder && doc) {
                         that.populateDocElement(doc);
-                        documentTemplateHolder.innerHTML += doc.element.innerHTML;
+                        documentTemplateHolder.innerHTML += window.toStaticHTML(doc.element.innerHTML);
+
+                        $('#' + doc.DocumentNumber).die('click').live('click', function () {
+                            var model = { DocumentNumber: $(this).attr("id") };
+                            //nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: that.resolveDocumentFromDocumentNumber(documentNumber) });
+                            nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
+                        });
                     }
                 }
+            }
+        },
 
+        resolveDocumentFromDocumentNumber: function (documentNumber) {
+            if (documentNumber) {
+                for (var i = 0; i < lists.length; i++) {
+                    var listItem = lists[i];
+                    for (var j = 0; j < listItem.Documents.length; j++) {
+                        var document = listItem.Documents[j];
+                        if (document.DocumentNumber == documentNumber) {
+                            return document;
+                        }
+                    }
+                }
             }
         },
 
@@ -159,6 +176,7 @@
                         var documentTemplate = new WinJS.Binding.Template(documentTemplateDiv);
                         documentTemplate.renderItem(WinJS.Promise.wrap(item), true).renderComplete.then(function (renderedElement) {
                             doc.element = renderedElement;
+                            doc.element.firstElementChild.id = doc.DocumentNumber;
                             if (doc.ThumbnailUrl !== undefined && doc.ThumbnailUrl != "") {
                                 WinJS.Utilities.query("img", doc.element).forEach(function (img) {
                                     img.addEventListener("load", function () {
@@ -202,7 +220,7 @@
                 }
             });
         },
-        
+
         processThumbnailOnDoc: function (doc) {
             var that = this;
             return new WinJS.Promise(function (complete, error, progress) {
@@ -214,7 +232,7 @@
                             if (checkDoc.ThumbnailUrl === undefined || checkDoc.ThumbnailUrl == "") {
                                 if (checkDoc.TriedFetchingThumbnail === undefined) {
                                     checkDoc.TriedFetchingThumbnail = true;
-                                    var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
+                                    var url = thumbRequestUrl;
                                     $.getJSON(url + checkDoc.DocumentNumber).then($.proxy(function (data) {
                                         this.ThumbnailUrl = data;
                                         checkDoc.element = undefined;
@@ -231,13 +249,10 @@
                         }
                     }
                 }
-                
+
             });
         },
 
-        clickHandler: function (ev) {
-
-        },
 
     });
 })();
