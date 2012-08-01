@@ -29,13 +29,11 @@ namespace Solvberget.Domain.DTO
             var ullist = GetValue(node, "ul");
             var iteratorList = ullist;
             
-            
             //This is to sort the current HTML
             if (h3List.Count < ullist.Count)
             {
                 h3List.Insert(5, pList[5]);
                 pList.RemoveAt(5);
-
             }
 
             for (var i = 0; i < iteratorList.Count; i++)
@@ -49,10 +47,6 @@ namespace Solvberget.Domain.DTO
                 //contactInformation.FillProperties();
                 ContactInformationList.Add(contactInformation);
             }
-
-
         }
-
-
     }
 }

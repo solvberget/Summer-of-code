@@ -27,9 +27,6 @@ namespace Solvberget.Service.Controllers
             _informationRepository= informationRepository;
         }
 
-
-
-        
         public ActionResult Index()
         {
             return View();

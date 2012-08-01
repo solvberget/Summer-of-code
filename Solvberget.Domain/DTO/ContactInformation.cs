@@ -18,9 +18,6 @@ namespace Solvberget.Domain.DTO
         public string VisitorAddress { get; set; }
         public Uri MapLink { get; set; }
         public IEnumerable<Person> ContactPersons { get; set; }
-
-
-       
-
+     
     }
 }
