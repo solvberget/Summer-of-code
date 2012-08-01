@@ -21,6 +21,7 @@
 
     <!----------------------- TEMPLATES ---------------------->
     <div class="templates">
+
         <!-- ItemTemplate for Listview -->
         <div id="listViewTemplateId" class="listViewTemplate" data-win-control="WinJS.Binding.Template">
             <div class="list-info">
@@ -28,63 +29,73 @@
             </div>
         </div>
 
-
+        <!-- DocumentTemplate for each item in a list -->
         <div id="documentTemplate">
-
-            <div class="documentImageContainer" data-win-control="Solvberget.Utils.DelayImageLoader">
-                <img class="documentImage" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+            <div class="documentHolder">
+                <div class="documentImageContainer" data-win-control="Solvberget.Utils.DelayImageLoader">
+                    <img class="documentImage" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+                </div>
+                <div class="documentSection">
+                    <h2 class="documentTitle" data-win-bind="innerText: Title"></h2>
+                    <h3 class="documentSubTitle" data-win-bind="innerText: CompressedSubTitle"></h3>
+                </div>
             </div>
-
-            <div class="listElementSection">
-                <h3 class="listItemTitle" data-win-bind="innerText: Title"></h3>
-                <h4 class="listItemSubTitle" data-win-bind="innerText: CompressedSubTitle"></h4>
-            </div>
+            <div class="clearFloat"></div>
         </div>
+
     </div>
 
 
     <!----------------------- THE PAGE ---------------------->
     <div class="listpage fragment">
 
+
+
+        <!-- List loading wheel -->
         <div id="listsLoading">
             <label class="progress-ring-text">
                 <progress class="win-ring withText"></progress>
             </label>
         </div>
 
+
+
+
         <!-- HEADER -->
-       <!-- <div class="wrapper">-->
-            <header aria-label="Header content" role="banner">
-                <button class="win-backbutton" aria-label="Back" disabled></button>
-                <h1 class="titlearea win-type-ellipsis">
-                    <span class="pagetitle"></span>
-                    <span class="chevron win-type-x-large">&#xe099</span>
-                </h1>
-            </header>
+        <!-- <div class="wrapper">-->
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle"></span>
+            </h1>
+        </header>
 
 
 
-            <!-- ListView for Lists -->
-
-            <div class="listViewSection" aria-label="List column">
-
-                <div id="listViewId" class="listView" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
-
-            </div>
-
-            <!-- ListContent -->
-            <div class="listContentSection" aria-atomic="true" aria-label="List Content Column" aria-live="assertive">
-                <article>
-                    <header>
-                        <h2 style="float: left" class="listTitle win-type-ellipsis" data-win-bind="textContent: Name">Laster..</h2>
-                        <label class="progress-ring-text headerProgress"><progress class="win-ring header"></progress></label>
-                    </header>
-                    <div style="clear: both"></div>
-                    <div id="documentsHolder"></div>
-
-                </article>
-            </div>
+        <!-- ListView for Lists -->
+        <div class="listViewSection" aria-label="List column">
+            <div id="listViewId" class="listView" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
         </div>
+
+
+
+        <!-- ListContent -->
+        <div class="listContentSection" aria-atomic="true" aria-label="List Content Column" aria-live="assertive">
+            <article>
+                <header>
+                    <div class="listTitle" data-win-bind="textContent: Name">Laster..</div>
+                    <label class="progress-ring-text headerProgress"><progress class="win-ring header"></progress></label>
+                </header>
+                <div class="clearFloat"></div>
+                <hr />                
+
+                <div id="documentsHolder"></div>
+            </article>
+        </div>
+
+
+
+    </div>
 
 </body>
 
