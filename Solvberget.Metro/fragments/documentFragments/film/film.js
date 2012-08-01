@@ -38,9 +38,14 @@ var getImdbRating = function () {
 
                 var imdbTemplate = new WinJS.Binding.Template(document.getElementById("imdbTemplate"));
                 var imdbTemplateContainer = document.getElementById("ratingContainer");
+                //Render for sharing with facebook etc.
+                var imdbTemplateContainerShared = document.getElementById("ratingContainerShared");
+
 
                     imdbTemplate.outerHTML = "";
                     imdbTemplate.render(data, imdbTemplateContainer);
+                    imdbTemplate.render(data, imdbTemplateContainerShared);
+
                
               
                 

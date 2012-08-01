@@ -9,8 +9,7 @@
 }
 
     .content article {
-        /* Define a multi-column, horizontally scrolling article by default. */
-        column-fill: auto;
+        /* Define a multi-column, horizontally scrolling article by default. */ 
         column-gap: 80px;
         column-width: 480px;
         height: calc(100% - 50px);

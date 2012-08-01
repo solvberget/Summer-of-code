@@ -287,7 +287,7 @@ namespace Solvberget.Domain.Implementation
                 returnDocument = Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
             }
             new Thread(() => _imageRepository.GetDocumentImage(returnDocument.DocumentNumber, null, returnDocument,
-                                                               true)).Start();
+                                                               false)).Start();
             return returnDocument;
         }
 
