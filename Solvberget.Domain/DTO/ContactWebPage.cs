@@ -9,7 +9,7 @@ namespace Solvberget.Domain.DTO
 {
     public sealed class ContactWebPage : WebPage
     {
-        public List<Information> ContactInformationList { get; set; }
+        public List<ContactInformation> ContactInformationList { get; set; }
      
         public ContactWebPage()
         {
@@ -19,7 +19,7 @@ namespace Solvberget.Domain.DTO
         public void FillProperties()
         {
 
-            ContactInformationList = new List<Information>();
+            ContactInformationList = new List<ContactInformation>();
             var html = GetHtml();
             var node = GetDiv(html, "attribute-long");
             //var attributes = StripHtmlTags("attribute-long");
@@ -27,34 +27,26 @@ namespace Solvberget.Domain.DTO
             var h3List   = GetValue(node, "h3");
             var pList = GetValue(node, "p");
             var ullist = GetValue(node, "ul");
-            var iteratorList = h3List;
+            var iteratorList = ullist;
             
-            
-            //This if to sort the current HTML
+            //This is to sort the current HTML
             if (h3List.Count < ullist.Count)
             {
-                iteratorList = ullist;
-                for (var i = 0; i < iteratorList.Count; i++)
-                {
-                    var pH3 = pList[i];
-                    if(pH3 != "")
-                    {
-                        h3List.Insert(i, pH3);
-                        pList.RemoveAt(i);
-                    }
-                }
+                h3List.Insert(5, pList[5]);
+                pList.RemoveAt(5);
             }
-            
+
             for (var i = 0; i < iteratorList.Count; i++)
             {
-                var contactInformation = new Information {InformationTitle = h3List[i], InformationValue = ullist[i]+","};
-
-                ContactInformationList.Add(contactInformation);
+                ullist[i] = ullist[i] + "\n";
             }
 
-
+            for (var i = 0; i < iteratorList.Count; i++)
+            {
+                var contactInformation = new ContactInformation {InformationTitle = h3List[i], InformationValue = ullist[i]};
+                //contactInformation.FillProperties();
+                ContactInformationList.Add(contactInformation);
+            }
         }
-
-
     }
 }

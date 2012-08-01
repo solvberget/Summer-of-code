@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Solvberget.Domain.DTO
 {
-    public sealed class ContactInformation
+    public sealed class ContactInformation : Information
     {
         // Same property names as XML-doc
         // ReSharper disable InconsistentNaming
+        public string Title { get; set; }
         public string Department { get; set; }
         public string Phone { get; set; }
         public string PhoneOpeningHours { get; set; }
@@ -16,8 +18,6 @@ namespace Solvberget.Domain.DTO
         public string VisitorAddress { get; set; }
         public Uri MapLink { get; set; }
         public IEnumerable<Person> ContactPersons { get; set; }
-        public string OtherInformation { get; set; }
-        // ReSharper restore InconsistentNaming
-
+     
     }
 }

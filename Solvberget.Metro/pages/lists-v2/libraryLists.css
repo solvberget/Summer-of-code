@@ -12,9 +12,9 @@
         width: calc(100% - 20px);
     }
 
-.templates {
-    display: none;
-}
+    .listpage .templates {
+        display: none;
+    }
 
 
 
@@ -109,10 +109,45 @@
   display: block;
 }
 
+    .listpage .listContentSection .listTitle {
+        float: left;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        font-size: 24pt;
+        font-weight: 200;
+        line-height: 1.2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
 
 
 
+
+
+
+
+/* DOCUMENT IN LIST */
+.listpage .documentsHolder {
+    margin-top: 20px;
+}
+
+.listpage .documentHolder {
+    margin-top: 20px;
+}
+
+.listpage .documentHolder .documentSection {
+    margin-left: 75px;
+}
+
+.listpage .documentHolder .documentImageContainer {
+    float: left;
+    max-width: 60px;
+}
+
+.listpage .clearFloat {
+    clear: both;
+}
 
 
 

@@ -10,15 +10,13 @@
 </head>
 <body>
 
-    <!-- Define the header menu -->
-    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
-
-        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
-        </button>
+    <div class="templates">
+        <section class="contactSection">
+            <div id="contactInformationTemplate">
+                <h2 class="contactInformationTitle" data-win-bind="innerText: InformationTitle"></h2>
+                <span class="contactInformationValue" data-win-bind="innerText: InformationValue"></span>
+            </div>
+        </section>
     </div>
 
     <!-- The content that will be loaded and displayed. -->
@@ -26,12 +24,7 @@
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
-                <button class="titlecontainer">
-                    <h1>
-                        <span class="pagetitle">Kontaktinformasjon</span>
-                        <span class="chevron win-type-x-large">&#xe099</span>
-                    </h1>
-                </button>
+                <h1 class="pagetitle">Kontaktinformasjon</h1>
                 <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Name"></h2>
             </div>
         </header>
@@ -42,9 +35,14 @@
                     <progress class="win-ring withText"></progress>
                 </label>
             </div>
-            <div id="contactData" data-win-bind="innerText: InformationValue"></div>
+            <div class="content" id="contactContent" aria-label="Main content" role="main">
+                <article>
+                    <div>
+                        <div id="contactInformationTemplateHolder"></div>
+                    </div>
+                </article>
         </section>
-        
+
     </div>
 </body>
 </html>
