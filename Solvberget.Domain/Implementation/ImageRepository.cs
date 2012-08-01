@@ -72,19 +72,21 @@ namespace Solvberget.Domain.Implementation
             if (Equals(doc.DocType, typeof (Film).Name))
             {
                 var posterUrl = GetExternalFilmImageUri(doc as Film);
-                posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "60.jpg");
+                if (isThumbnail)
+                    posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "60.jpg");
+
                 return GetLocalImageUrl(posterUrl, size != null ? documentNumber + "-" + size : documentNumber, isThumbnail);
             }
 
             if (Equals(doc.DocType, typeof (Book).Name))
-                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, size == null || int.Parse(size) <= 60), documentNumber, isThumbnail);
+                return GetLocalImageUrl(GetExternalBookImageUri(doc as Book, isThumbnail), documentNumber, isThumbnail);
 
             if (Equals(doc.DocType, typeof (AudioBook).Name))
-                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, size == null || int.Parse(size) <= 60),
+                return GetLocalImageUrl(GetExternalAudioBookImageUri(doc as AudioBook, isThumbnail),
                                         documentNumber, isThumbnail);
 
             if (Equals(doc.DocType, typeof (Cd).Name))
-                return GetLocalImageUrl(GetExternalCdImageUri(doc as Cd, true), size != null ? documentNumber + "-" + size : documentNumber, isThumbnail);
+                return GetLocalImageUrl(GetExternalCdImageUri(doc as Cd, isThumbnail),  documentNumber, isThumbnail);
             return string.Empty;
         }
 
