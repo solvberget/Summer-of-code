@@ -153,7 +153,6 @@
     <Content Include="js\localizationHelper.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
-    <Content Include="js\EventDataSource.js" />
     <Content Include="pages\contact\contact.css" />
     <Content Include="pages\contact\contact.html" />
     <Content Include="pages\contact\contact.js" />
@@ -161,14 +160,6 @@
     <Content Include="pages\documentDetail\documentDetail.html" />
     <Content Include="pages\documentDetail\documentDetail.js" />
     <Content Include="pages\events\events.css" />
-    <Content Include="js\EventDataSource.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="pages\events\events.html" />
     <Content Include="pages\events\events.js">
       <Compile>True</Compile>
