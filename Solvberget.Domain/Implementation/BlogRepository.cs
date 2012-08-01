@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
@@ -20,11 +21,18 @@ namespace Solvberget.Domain.Implementation
 
         public List<Blog> GetBlogs()
         {
-            // TODO: Open xml file with blogs, parse it
-            // TODO: Fo
-            var blogs = GetBlogsFromFile(_folderPath + BlogFeedsFile);
+            return GetBlogsFromFile(_folderPath + BlogFeedsFile);
+        }
 
-            return blogs;
+        public Blog GetBlogWithEntries(int blogId)
+        {
+            var blogs = GetBlogsFromFile(_folderPath + BlogFeedsFile);
+            var blog = blogs.ElementAt(blogId);
+            var xml = XDocument.Load(blog.Url, LoadOptions.PreserveWhitespace).ToString();
+
+            blog.Entries = blog.ContentType.Equals("atom") ? BlogEntry.FillEntriesFromAtom(xml) : BlogEntry.FillEntriesFromRss(xml);
+
+            return blog;
         }
 
         private static List<Blog> GetBlogsFromFile(string blogFeedsXmlFile)

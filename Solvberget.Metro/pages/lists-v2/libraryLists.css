@@ -142,6 +142,9 @@
 
 .listpage .documentHolder .documentImageContainer {
     float: left;
+}
+
+.listpage .documentHolder .documentImageContainer .documentImage {
     max-width: 60px;
 }
 

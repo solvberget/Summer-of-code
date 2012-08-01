@@ -38,6 +38,10 @@
                 <div class="fact-name" data-win-res="{textContent: 'SubTitle'}"></div>
                 <div class="fact-value" data-win-bind="innerText:SubTitle"></div>
             </div>
+            <div class="fact" data-win-bind="style.display: Publisher DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-bind="innerText:PublisherType"></div>
+                <div class="fact-value" data-win-bind="innerText:Publisher"></div>
+            </div>
             <div class="fact" data-win-bind="style.display: PublishedYear DocumentDetailConverters.hideNullOrEmptyConverter">
                 <div class="fact-name" data-win-res="{textContent: 'PublishedYear'}"></div>
                 <div class="fact-value" data-win-bind="innerText:PublishedYear"></div>

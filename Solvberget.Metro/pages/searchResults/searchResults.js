@@ -146,10 +146,10 @@
             this.filters = [];
 
             this.filters.push({ results: null, text: "Alle", predicate: function (item) { return true; } });
-            this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
-            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film"; } });
-            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook"; } });
-            this.filters.push({ results: null, text: "CD", predicate: function (item) { return item.DocType == "Cd"; } });
+            this.filters.push({ results: null, text: "Bøker", predicate: function (item) { return item.DocType == "Book"; } });
+            this.filters.push({ results: null, text: "Filmer", predicate: function (item) { return item.DocType == "Film"; } });
+            this.filters.push({ results: null, text: "Lydbøker", predicate: function (item) { return item.DocType == "AudioBook"; } });
+            this.filters.push({ results: null, text: "CDer", predicate: function (item) { return item.DocType == "Cd"; } });
             this.filters.push({ results: null, text: "Språkkurs", predicate: function (item) { return item.DocType == "LanguageCourse"; } });
             this.filters.push({ results: null, text: "Tidsskrift", predicate: function (item) { return item.DocType == "Journal"; } });
             this.filters.push({ results: null, text: "Noter", predicate: function (item) { return item.DocType == "SheetMusic"; } });

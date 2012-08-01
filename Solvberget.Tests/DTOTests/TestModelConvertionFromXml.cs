@@ -21,8 +21,7 @@ namespace Solvberget.Service.Tests.DTOTests
         {
             _repository = new RulesRepository(_pathToRulesFolder);
         }
-
-
+        
         [Test]
         public void GetDocumentFromXmlTest()
         {
@@ -140,6 +139,8 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual("Forlag", book.InvolvedOrganizations.ElementAt(0).Role);
 
             Assert.AreEqual("Book", book.DocType);
+
+            Assert.AreEqual("Cappelen Damm", book.Publisher);
         }
 
         [Test]
