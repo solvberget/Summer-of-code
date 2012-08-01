@@ -53,5 +53,10 @@ namespace Solvberget.Service.Infrastructure
         {
             return Path.Combine(ApplicationAppDataPath, @"rules\");
         }
+        public static string GetBlogFeedPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"blogs\");
+        }
+
     }
 }

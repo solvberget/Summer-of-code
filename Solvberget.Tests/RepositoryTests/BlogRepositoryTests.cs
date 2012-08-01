@@ -31,6 +31,20 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.IsTrue(blogs.Count > 0);
 
         }
-   
+        [Test]
+
+        public void GetBlogWithEntriesTest()
+        {
+
+            var blogs = _repository.GetBlogs();
+            for (var i = 0; i < blogs.Count(); i++)
+            {
+                var blog = _repository.GetBlogWithEntries(i);
+                Assert.NotNull(blog.Entries);
+                Assert.IsNotEmpty(blog.Entries);
+            }
+            Assert.Pass();
+        }
+
     }
 }
