@@ -39,7 +39,7 @@ namespace Solvberget.Service
 
             routes.MapRoute(
                 "GetDocumentThumbnailRoute", // Route name
-                "{controller}/{action}/{id}/{size}", // URL with parameters
+                "Document/GetDocumentThumbnailRoute/{id}/{size}", // URL with parameters
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional, size = UrlParameter.Optional } // Parameter defaults
             );
 
@@ -58,10 +58,18 @@ namespace Solvberget.Service
 
 
             routes.MapRoute(
+                "GetBlogWithEntries", // Route name
+                "Blog/GetBlogWithEntries/{blogId}", // URL with parameters
+                new { controller = "Blog", action = "GetBlogWithEntries" } // Parameter defaults
+            );
+
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+
 
         }
 

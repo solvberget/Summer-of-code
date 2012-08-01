@@ -16,6 +16,8 @@ namespace Solvberget.Domain.DTO
         public string Description { get; set; }
         public string ContentType { get; set; }
         public IEnumerable<string> Categories { get; set; }
+        public IEnumerable<BlogEntry> Entries { get; set; }
+
 
         public static Blog FillBlog(string xml)
         {
