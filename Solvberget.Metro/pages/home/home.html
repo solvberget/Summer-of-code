@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <title>itemsPage</title>
-    
+
     <!-- WinJS references -->
 
-     <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
+    <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/home/home.css" rel="stylesheet" />
-        <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
+    <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
 
 
     <script src="/js/data.js"></script>
@@ -27,16 +27,10 @@
 
     <!-- The content that will be loaded and displayed. -->
     <div class="itemspage fragment">
-        <header aria-label="Header content" role="banner">
-            <button class="win-backbutton" aria-label="Back" disabled></button>
-            <h1 class="titlearea win-type-ellipsis">
-                <span class="pagetitle">Sølvberget</span>
-            </h1>
-        </header>
-        <section aria-label="Main content" role="main">
-            <div class="itemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }" style="left: 0px; top: 0px;"></div>
-            <div id="loginDiv"></div>
-        </section>
+        <div class="content">
+            <div class="itemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+        </div>
+        <div id="loginDiv"></div>
     </div>
 </body>
 </html>
