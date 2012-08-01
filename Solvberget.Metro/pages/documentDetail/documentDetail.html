@@ -30,19 +30,45 @@
             </section>
         </div>
         <div id="documentShareContent" style="background-color: #f2f2f2; padding: 1px 15px 20px 15px; margin-bottom: 40px; font-family: 'Segoe UI Semilight'">
+            
+              <h2 data-win-bind= "innerText: Title"> </h2>
+            <br />
             <img src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" />
-            <div>
-                Denne her tror jeg kan være noe for deg.
-                <br />
-                <br />
-                Du finner den på biblioteket! :-)
+             <br />
+                         <h3 data-win-bind="style.display: Title DocumentDetailConverters.hideNullOrEmptyConverter">Tittel</h3>
+                         <p data-win-bind= "innerText: Title"> </p>
+           
+                         <h3 data-win-bind="style.display: Author.Name DocumentDetailConverters.hideNullOrEmptyConverter">Forfatter</h3>
+                         <p data-win-bind="textContent: Author.Name; style.display: Author.Name DocumentDetailConverters.hideNullOrEmptyConverter"></p>
+                         <h3 data-win-bind="style.display: ArtistOrComposer.Name DocumentDetailConverters.hideNullOrEmptyConverter">Artist eller komponist</h3>
+                         <p data-win-bind="textContent: ArtistOrComposer.Name; style.display: ArtistOrComposer.Name DocumentDetailConverters.hideNullOrEmptyConverter"></p>
+                         <h3 data-win-bind="style.display: Composer.Name DocumentDetailConverters.hideNullOrEmptyConverter">Komponist</h3>
+                         <p data-win-bind="textContent:Composer.Name; style.display: Composer.Name DocumentDetailConverters.hideNullOrEmptyConverter"></p>
+                            
+                         <h3 data-win-bind="style.display: PublishedYear DocumentDetailConverters.hideNullOrEmptyConverter">Publikasjonsår</h3>
+                         <p data-win-bind= "innerText: PublishedYear"> </p>
 
+                         <div id="ratingContainerShared"></div>
+
+                          <h3>Tilgjengelighet</h3>
+                          <div id="availabilityHolderShared"></div>
+                        
+                          
+               
+                <div style="margin-top: 10px">
+                <img src="ms-appx:///images/solvberget_wide.png" />
+                </div>
+                 <p>Jeg har funnet denne boken med  <a href="url">Sølvberget folkebiblioteks Windows 8 Metro app</a> </p>
+                </>
+                 
+                    
+               
             </div>
             <div style="margin-top: 10px">
                 <img src="ms-appx:///images/solvberget_wide.png" />
             </div>
         </div>
-    </div>
+
 
     <div class="documentdetailpage">
 
