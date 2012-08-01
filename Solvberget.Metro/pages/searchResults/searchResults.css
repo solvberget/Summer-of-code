@@ -80,7 +80,7 @@ progress.withText {
 
         .searchResults section[role=main] .resultslist .item {
             /* Define a grid with columns for an icon, spacing and item details */
-            -ms-grid-columns: 40px 10px 1fr;
+            -ms-grid-columns: 60px 10px 1fr;
             -ms-grid-rows: 1fr;
             display: -ms-grid;
             height: 64px;
@@ -93,8 +93,9 @@ progress.withText {
             .searchResults section[role=main] .resultslist .item .item-image {
                 -ms-grid-column: 1;
                 -ms-grid-row: 1;
-                height: 40px;
-                margin-top: 6px;
+                height: 56px;
+                margin-top: 4px;
+                margin-bottom: 4px;
                 width: auto;
             }
 

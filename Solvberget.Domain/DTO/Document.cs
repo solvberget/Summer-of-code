@@ -26,6 +26,7 @@ namespace Solvberget.Domain.DTO
         public object MainResponsible { get; set; }
         public string PlacePublished { get; set; }
         public string Publisher { get; set; }
+        public string PublisherType { get; set; }
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
@@ -78,6 +79,12 @@ namespace Solvberget.Domain.DTO
 
                 PlacePublished = GetVarfield(nodes, "260", "a");
                 Publisher = GetVarfield(nodes, "260", "b");
+
+                var publisherType = DocType;
+                string publisherTypeLookup = null;
+                if (publisherType != null) PublisherTypeDictionary.TryGetValue(publisherType, out publisherTypeLookup);
+
+                PublisherType = publisherTypeLookup ?? publisherType;
 
                 SeriesTitle = GetVarfield(nodes, "440", "a");
                 SeriesNumber = GetVarfield(nodes, "440", "v");
@@ -198,6 +205,9 @@ namespace Solvberget.Domain.DTO
             var temp = new List<string>();
             if (list.ElementAt(0).Substring(0, 9) == "Innhold: ")
                 temp.Insert(0, list.ElementAt(0).Substring(9));
+            else
+                temp.Insert(0, list.ElementAt(0));
+            
             
             for (int i = 1; i < list.Count(); i++)
             {
@@ -292,6 +302,18 @@ namespace Solvberget.Domain.DTO
             return organizations;
 
         }
+
+        protected static readonly Dictionary<string, string> PublisherTypeDictionary = new Dictionary<string, string>
+                                {
+                                    {"Document", "Utgiver"},
+                                    {"Book", "Forlag"},
+                                    {"Film", "Utgiver"},
+                                    {"AudioBook", "Forlag"},
+                                    {"Cd", "Label/utgiver"},
+                                    {"SheetMusic", "Forlag"},
+                                    {"Journal", "Forlag"},
+                                    {"LanguageCourse", "Forlag"}
+                                }; 
 
         protected static readonly Dictionary<string, string> DocumentDictionary = new Dictionary<string, string>
                                 {

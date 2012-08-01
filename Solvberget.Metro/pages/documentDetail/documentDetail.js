@@ -56,16 +56,18 @@
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
 
-                        if (path.indexOf("http") == -1 && path.indexOf("ms-appx://") == -1)
-                            path = "ms-appx://" + path;
+                        if (path.indexOf("ms-appx://") == 1){
+                            path = "";
 
-                        var imageUri = new Windows.Foundation.Uri(path);
-                        var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
-                        if (path.indexOf("http") != -1) {
-                            request.data.setBitmap(streamReference);
-                            first = false;
+                        }else{
+                            var imageUri = new Windows.Foundation.Uri(path);
+                            var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
+                            if (path.indexOf("http") != -1) {
+                                request.data.setBitmap(streamReference);
+                                first = false;
+                            }
+                            request.data.resourceMap[path] = streamReference;
                         }
-                        request.data.resourceMap[path] = streamReference;
                     }
                 });
 
@@ -102,7 +104,7 @@ var ajaxGetDocument = function (documentNumber) {
 };
 
 var ajaxGetDocumentImage = function () {
-    return $.getJSON(window.Data.serverBaseUrl + "/Document/GetDocumentImage/" + documentModel.DocumentNumber);
+    return $.getJSON(window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/" + documentModel.DocumentNumber);
 };
 
 var populateFragment = function (documentModel) {
@@ -139,6 +141,7 @@ var populateAvailability = function () {
 
     var availabilityTemplateDiv = document.getElementById("availabilityTemplate");
     var availabilityTemplateHolder = document.getElementById("availabilityHolder");
+    var availabilityTemplateHolderShared = document.getElementById("availabilityHolderShared");
 
     var availabilityTemplate = undefined;
     if (availabilityTemplateDiv)
@@ -155,6 +158,7 @@ var populateAvailability = function () {
 
             if (availabilityTemplate && availabilityTemplateHolder && model)
                 availabilityTemplate.render(model, availabilityTemplateHolder);
+            availabilityTemplate.render(model, availabilityTemplateHolderShared);
 
         }
     }
@@ -191,7 +195,7 @@ var getDocument = function (documentNumber) {
     $("#documentDetailLoading").css("display", "block").css("visibility", "visible");
 
     $.when(ajaxGetDocument(documentNumber))
-        .then($.proxy(function(response) {
+        .then($.proxy(function (response) {
             if (response != undefined && response !== "") {
 
 
@@ -290,9 +294,9 @@ WinJS.Namespace.define("DocumentDetailConverters", {
     personConverter: WinJS.Binding.converter(function (persons) {
         if (!persons) return "";
         var output = "";
-        for ( var x in persons ) {
+        for (var x in persons) {
             output += persons[x].Name;
-            if( persons[x].Role ) output += " (" + persons[x].Role + ")";
+            if (persons[x].Role) output += " (" + persons[x].Role + ")";
             output += "\r\n";
         }
 
