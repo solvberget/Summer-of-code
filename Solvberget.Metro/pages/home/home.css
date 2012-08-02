@@ -116,15 +116,11 @@
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 
-.itemspage .homeContent {
-    -ms-grid-row-span: 3;
-    height: 900px;
-    width: 525px;
-    margin: auto;
-}
-
-
-    .itemspage .itemslist .win-horizontal.win-viewport .win-surface {
-        margin-left: 100px;
+    .itemspage .homeContent .itemslist {
+        width: 550px;
+        height: 1000px;
+        margin: auto;
+        margin-top: 20%;
     }
+    
 }

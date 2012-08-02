@@ -101,36 +101,37 @@
         numInProgress: 0,
         fireFinished: function () {
 
-            getImageQueue.working = false;
-            getImageQueue.numInProgress = getImageQueue.numInProgress - 1;
-            getImageQueue.startWorking();
+            this.working = false;
+            this.numInProgress = this.numInProgress - 1;
+                this.startWorking();
 
         },
         addToQueue: function (item, index) {
 
-            getImageQueue.queue.push({ item: item, index: index });
-            getImageQueue.startWorking();
+            this.queue.push({ item: item, index: index });
+                this.startWorking();
 
         },
         startWorking: function () {
-            if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
-                if (getImageQueue.numInProgress == 10)
-                    getImageQueue.working = true;
+            if (!this.working && this.inSearchPage && this.queue[0] !== undefined) {
+                if (this.numInProgress == 5) {
+                    this.working = true;
+                }
 
-                getImageQueue.numInProgress = getImageQueue.numInProgress + 1;
+                this.numInProgress = this.numInProgress + 1;
 
 
-                var itemIndexObj = getImageQueue.queue[0];
-                getImageQueue.queue.shift();
+                var itemIndexObj = this.queue[0];
+                this.queue.shift();
                 if (itemIndexObj != undefined)
                     self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
             }
             else {
-                if (getImageQueue.numInProgress < 1) {
-                    getImageQueue.working = false;
-                    getImageQueue.startWorking();
+                if (this.numInProgress < 1) {
+                    this.working = false;
+                    //if (this.inSearchPage)
+                    //    this.startWorking();
                 }
-
             }
         }
     };
@@ -158,11 +159,17 @@
         },
 
         itemInvoked: function (args) {
-            args.detail.itemPromise.done(function itemInvoked(item) {
 
-                var itemObject = args.detail.itemPromise._value.data;
-                nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: itemObject });
-            });
+            var itemIndex = args.detail.itemIndex;
+            var listView = document.body.querySelector(".resultslist").winControl;
+            if (listView) {
+                args.detail.itemPromise.done(function itemInvoked(item) {
+                    var model = item.data;
+                    nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
+
+                });
+
+            }
         },
 
 
@@ -228,7 +235,7 @@
                    loadingWheel.stop();
 
                    for (var x in response) {
-                       if (response[x].ThumbnailUrl === "")
+                       if (!response[x].ThumbnailUrl || response[x].ThumbnailUrl == "")
                            getImageQueue.addToQueue(originalResults.getItem(x), x);
                    }
 
@@ -241,21 +248,28 @@
             $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
             .then($.proxy(function (response) {
 
-                if (response != undefined && response != "") {
+                if (response && response != "") {
                     // Set the new value in the model of this item                   
                     item.data.BackgroundImage = response;
 
                     // Get the live DOM-object of this item
                     var section = document.getElementById("searchResultSection");
-                    if (section != undefined) {
+                    if (section) {
                         var listView = section.querySelector(".resultslist").winControl;
                         var htmlItem = listView.elementFromIndex(index);
                         if (htmlItem != null)
                             WinJS.Binding.processAll(htmlItem, item.data);
-                        getImageQueue.fireFinished();
                     }
                 }
-            }, this));
+                if (getImageQueue.inSearchPage)
+                    getImageQueue.fireFinished();
+
+
+            }, this),
+            function () {
+                if (getImageQueue.inSearchPage)
+                    getImageQueue.fireFinished();
+            })
 
 
         },
@@ -288,7 +302,7 @@
                     if (text.Name != undefined) {
                         var regex = new RegExp(this.lastSearch, "gi");
                         dest[destProperties[0]] = text.Name.replace(regex, "<mark>$&</mark>");
-                    } else if (text.Name == undefined && text.Role == undefined && text.LivingYears == undefined && text.Nationality == undefined && text.ReferredWork==undefined) {
+                    } else if (text.Name == undefined && text.Role == undefined && text.LivingYears == undefined && text.Nationality == undefined && text.ReferredWork == undefined) {
                         var regex = new RegExp(this.lastSearch, "gi");
                         dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
                     }
@@ -354,13 +368,13 @@
             listView.element.focus();
 
         },
- 
+
         unload: function () {
 
             getImageQueue.inSearchPage = false;
             getImageQueue.queue = [];
             getImageQueue.numInProgress = 0;
-
+            getImageQueue.working = false;
 
         },
 

@@ -43,6 +43,10 @@ namespace Solvberget.Domain.Implementation
 
         public string GetDocumentImage(string id)
         {
+
+            if (string.IsNullOrEmpty(id))
+                return string.Empty;
+
             var cacheUrl = _storageHelper.GetLocalImageFileCacheUrl(id, false);
             if (!string.IsNullOrEmpty(cacheUrl))
                 return cacheUrl;
@@ -73,7 +77,7 @@ namespace Solvberget.Domain.Implementation
             {
                 var posterUrl = GetExternalFilmImageUri(doc as Film);
                 if (isThumbnail)
-                    posterUrl = posterUrl.Replace("640.jpg", size != null ? size + ".jpg" : "60.jpg");
+                    posterUrl = posterUrl.Replace("640.jpg", string.IsNullOrEmpty(size) ? size + ".jpg" : "60.jpg");
 
                 return GetLocalImageUrl(posterUrl, size != null ? documentNumber + "-" + size : documentNumber, isThumbnail);
             }

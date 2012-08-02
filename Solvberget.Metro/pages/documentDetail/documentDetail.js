@@ -220,7 +220,7 @@ var getDocument = function (documentNumber) {
                 if (documentSubTitleDiv != undefined && response != undefined)
                     WinJS.Binding.processAll(documentSubTitleDiv, response);
 
-
+                
                 if (documentCompressedSubTitleDiv != undefined && response != undefined) {
                     if (response.MainResponsible != undefined) {
 
@@ -230,6 +230,7 @@ var getDocument = function (documentNumber) {
                     }
                 }
                 WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
+                
             }
 
 

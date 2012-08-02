@@ -60,6 +60,7 @@
 
 
         var loginDiv = document.getElementById("loginDiv");
+      
 
         WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
