@@ -93,6 +93,10 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetDocImage()
         {
 
+            // Delete cache folder if it exists
+            if (Directory.Exists(_imageCache))
+                Directory.Delete(_imageCache, true);
+
             Assert.IsNullOrEmpty(_imageRepository.GetDocumentImage(""));
             Assert.IsNullOrEmpty(_imageRepository.GetDocumentImage("asdsadasd"));
 

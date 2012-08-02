@@ -43,6 +43,10 @@ namespace Solvberget.Domain.Implementation
 
         public string GetDocumentImage(string id)
         {
+
+            if (string.IsNullOrEmpty(id))
+                return string.Empty;
+
             var cacheUrl = _storageHelper.GetLocalImageFileCacheUrl(id, false);
             if (!string.IsNullOrEmpty(cacheUrl))
                 return cacheUrl;
