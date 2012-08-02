@@ -20,11 +20,16 @@
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
     ];
 
-    function goHome() {
+    function navigateToHome() {
         return WinJS.Navigation.navigate("/pages/home/home.html");
     };
 
     var list = new WinJS.Binding.List(menuItems);
+
+    function navigateToHome() {
+        activePage = "home"; WinJS.Navigation.navigate("/pages/home/home.html");
+    }
+
 
     function navigateToLists() 
     { 
@@ -85,8 +90,8 @@
         itemByKey: itemByKey,
         menuItems: menuItems,
         serverBaseUrl: serverBaseUrl,
-        goHome: goHome,
         activePage: activePage,
+        navigateToHome: navigateToHome,
         navigateToLists: navigateToLists,
         navigateToMypage: navigateToMypage,
         navigateToEvents: navigateToEvents,

@@ -57,6 +57,7 @@
             document.getElementById("toOpeningHoursButton").addEventListener("click", Data.navigateToOpeningHours);
             document.getElementById("toContactButton").addEventListener("click", Data.navigateToContact);
             document.getElementById("toSearchButton").addEventListener("click", Data.navigateToSearch);
+            document.getElementById("toHomeButton").addEventListener("click", Data.navigateToHome);
         }
     };
 
