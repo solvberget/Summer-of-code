@@ -32,5 +32,8 @@
     <Setting Name="ContactWebPage" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://www.stavanger-kulturhus.no/kontakt_oss</Value>
     </Setting>
+    <Setting Name="BokElskereServerUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://bokelskere.no/api/1.0/boker/info/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
