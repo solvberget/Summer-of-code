@@ -48,7 +48,8 @@
         listViewSelectionChanged: function (args) {
             if (!continueToGetDocuments) return;
             var that = this;
-            var listViewForLists = this.element.querySelector(".listView").winControl;
+            var listViewForListsElement = this.element.querySelector(".listView");
+            var listViewForLists = listViewForListsElement.winControl;
             if (listViewForLists) {
                 listViewForLists.selection.getItems().done(function updateDetails(items) {
                     if (items.length > 0) {
