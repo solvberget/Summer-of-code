@@ -110,19 +110,24 @@ namespace Solvberget.Domain.Utils
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = WebRequestMethods.Http.Get;
             request.Accept = "application/json";
-
-            var response = request.GetResponse();
-
-            string json = string.Empty;
-            using (var stream = response.GetResponseStream())
+            try
             {
+                var response = request.GetResponse();
 
-                var readStream = new StreamReader(stream, Encoding.UTF8);
-                json = readStream.ReadToEnd();
+                string json = string.Empty;
+                using (var stream = response.GetResponseStream())
+                {
 
+                    var readStream = new StreamReader(stream, Encoding.UTF8);
+                    json = readStream.ReadToEnd();
+
+                }
+                return json;
+
+            } catch(Exception)
+            {
+                return string.Empty;
             }
-
-            return json;
 
         }
 
