@@ -114,6 +114,7 @@
     <Content Include="fragments\holdRequest\holdRequest.js" />
     <Content Include="fragments\login\login.js" />
     <Content Include="images\ajax_loading.gif" />
+    <Content Include="images\externalSites\bokelskere\bokelskere.png" />
     <Content Include="images\externalSites\imdb\imdb-16x16.png" />
     <Content Include="images\externalSites\imdb\imdb-24x24.png" />
     <Content Include="images\externalSites\imdb\imdb-32x32.png" />
