@@ -18,7 +18,7 @@ namespace Solvberget.Domain.DTO
         public string ProductionYear { get; set; }
         public string TypeAndNumberOfDiscs { get; set; }
         public string Contents { get; set; }
-        public string Actors { get; set; }
+        public IEnumerable<Person> Actors { get; set; }
         public string AgeLimit { get; set; }
         public string NorwegianTitle { get; set; }
         public string Subject { get; set; }
@@ -59,7 +59,30 @@ namespace Solvberget.Domain.DTO
                 ProductionYear = GetVarfield(nodes, "260", "g");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
                 Contents = GetVarfield(nodes, "505", "a");
-                Actors = GetVarfield(nodes, "511", "a");
+
+                var actorsString = GetVarfield(nodes, "511", "a");
+                var persons = new List<Person>();
+
+                if (actorsString != null)
+                {
+                    var actorsList = actorsString.Split(':');
+                    if (actorsList.Length > 1)
+                    {
+                        actorsList = actorsList[1].Split(',');
+                    }
+
+
+                    foreach (string personName in actorsList)
+                    {
+                        var p = new Person();
+                        p.Name = personName.Trim();
+                        p.InvertName(p.Name);
+                        persons.Add(p);
+                    }
+                }
+
+                Actors = persons;
+
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 NorwegianTitle = GetVarfield(nodes, "572", "a");
                 ReferredPersons = GeneratePersonsFromXml(nodes, "600");
@@ -68,7 +91,6 @@ namespace Solvberget.Domain.DTO
                 ReferencedPlaces = GetVarfieldAsList(nodes, "651", "a");
                 CompositionType = GetVarfield(nodes, "652", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
-                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
             }
         }
@@ -84,8 +106,12 @@ namespace Solvberget.Domain.DTO
                 ProductionYear = GetVarfield(nodes, "260", "g");
                 AgeLimit = GetVarfield(nodes, "521", "a");
                 Genre = GetVarfieldAsList(nodes, "655", "a");
+                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
+                MainResponsible = ResponsiblePersons;
             }
         }
+
+    
 
         public new static Film GetObjectFromFindDocXmlBsMarc(string xml)
         {

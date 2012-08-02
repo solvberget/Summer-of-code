@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
@@ -14,12 +15,12 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         private AlephRepository _repository;
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
+        private readonly string _pathToRulesFolder = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data\rules\");
 
         [SetUp]
         public void InitRepository()
         {
-
-            _repository = new AlephRepository(_imageCache);
+            _repository = new AlephRepository(_imageCache, _pathToRulesFolder);
         }
 
         [Test]
@@ -38,18 +39,23 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestGetBook()
         {
             const string documentNumberForBook = "000596743"; //Naiv. Super
+
+
             var book = (Book)_repository.GetDocument(documentNumberForBook, false);
             Assert.AreEqual("Book", book.GetType().Name);
             Assert.AreEqual("Naiv. Super", book.Title);
-            Assert.AreEqual("Loe, Erlend", book.Author.Name);
+            Assert.AreEqual("Erlend Loe", book.Author.Name);
             Assert.AreEqual("978-82-02-33225-9", book.Isbn);
             Assert.AreEqual("205 s.", book.NumberOfPages);
             Assert.AreEqual("LOE", book.LocationCode);
             Assert.AreEqual(2010, book.PublishedYear);
             Assert.AreEqual("[Oslo]", book.PlacePublished);
+            Assert.AreEqual("Bok (2010)", book.CompressedSubTitle);
+
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetFilm()
         {
             const string documentNumberForFilm = "000604643"; //The Matrix
@@ -63,21 +69,26 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(2, film.Languages.Count());
             Assert.AreEqual("Engelsk", film.Languages.ElementAt(0));
             Assert.AreEqual("Tysk", film.Languages.ElementAt(1));
+            Assert.AreEqual("Film (2004)", film.CompressedSubTitle);
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetAudioBook()
         {
             const string documentNumberForAudioBook = "000599186"; //Harry Potter og dødtalismanene
             var audioBook = (AudioBook)_repository.GetDocument(documentNumberForAudioBook, false);
             Assert.AreEqual("AudioBook", audioBook.GetType().Name);
             Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
-            Assert.AreEqual("Rowling, J.K.", audioBook.Author.Name);
+            Assert.AreEqual("J.K. Rowling", audioBook.Author.Name);
             Assert.AreEqual("Fiksjon", audioBook.IsFiction);
             Assert.AreEqual("Harry Potter", audioBook.SeriesTitle);
+            Assert.AreEqual("Lydbok (2008)", audioBook.CompressedSubTitle);
+
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetJournal()
         {
             const string documentNumberForJournal = "000175989"; //Newsweek
@@ -88,9 +99,12 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("the international newsmagazine", journal.SubTitle);
             Assert.AreEqual("Engelsk", journal.Language);
             Assert.AreEqual("51 nummer pr. år", journal.JournalsPerYear);
+            Assert.AreEqual("Tidsskrift (19)", journal.CompressedSubTitle);
+
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetCdPopular()
         {
             const string documentNumberForCdPopular = "000566205"; //Mods - Gje meg litt merr
@@ -106,14 +120,17 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Rock", cd.CompositionTypeOrGenre.ElementAt(1));
             Assert.AreEqual(7, cd.InvolvedPersons.Count());
             Assert.IsEmpty(cd.InvolvedMusicGroups);
+            Assert.AreEqual("Cd (2006)", cd.CompressedSubTitle);
+
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetLanguageCourse()
         {
             const string documentNumberForLanguageCourse = "000391825"; //Jeg snakker norsk språkkurs
             var languageCourse = (LanguageCourse)_repository.GetDocument(documentNumberForLanguageCourse, false);
-            Assert.AreEqual("Ingnes, Nils", languageCourse.Author.Name);
+            Assert.AreEqual("Nils Ingnes", languageCourse.Author.Name);
             Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
             Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
             Assert.AreEqual("439.683", languageCourse.ClassificationNr);
@@ -126,22 +143,28 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual(null, languageCourse.TitlesOtherWritingForms);
             Assert.AreEqual("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
             Assert.AreEqual("LanguageCourse", languageCourse.DocType);
+            Assert.AreEqual("Språkkurs, Nils Ingnes (1999)", languageCourse.CompressedSubTitle);
+
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetSheetMusic()
         {
             const string documentNumberForSheetMusic = "000117418"; //March (fanfare) for 3 trumpets and timpani
             var sheetMusic = (SheetMusic)_repository.GetDocument(documentNumberForSheetMusic, false);
-            Assert.AreEqual("Bach, Carl Philipp Emanuel", sheetMusic.Composer.Name);
+            Assert.AreEqual("Carl Philipp Emanuel Bach", sheetMusic.Composer.Name);
             Assert.AreEqual("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
             Assert.AreEqual("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
             Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());
             Assert.AreEqual("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
             Assert.AreEqual("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
+            Assert.AreEqual("Note", sheetMusic.CompressedSubTitle);
+
         }
 
         [Test]
+        [Ignore("Unnecessary integration test")]
         public void TestGetNonExistingDoc()
         {
             const string documentNumberForBook = "abcdefg"; //Burde ikke funke
@@ -176,5 +199,67 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         }
 
+        [Test]
+        public void RequestReservationTest()
+        {
+            
+            const string userId = "159222";
+            const string docNumber = "000178569";
+            const string branch = "Hovedbibl";
+
+            var returnMessage = _repository.RequestReservation(docNumber, userId, branch);
+            Assert.IsFalse(returnMessage.Success);
+
+        }
+
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
+        public void TestDocumentLocation()
+        {
+            const string documentNumberForBook = "000596743"; //Naiv. Super
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(2, book.AvailabilityInfo.Count());
+            Assert.AreEqual("Hovedbibl.", book.AvailabilityInfo.ElementAt(0).Branch);
+            Assert.AreEqual("Madla", book.AvailabilityInfo.ElementAt(1).Branch);
+            Assert.AreEqual("Kulturbiblioteket", book.AvailabilityInfo.ElementAt(0).Department);
+            Assert.AreEqual("Voksenavdelingen", book.AvailabilityInfo.ElementAt(1).Department);
+            Assert.AreEqual("Skjønnlitteratur", book.AvailabilityInfo.ElementAt(0).PlacementCode);
+            Assert.AreEqual("Skjønnlitteratur", book.AvailabilityInfo.ElementAt(1).PlacementCode);
+        }
+
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
+        public void TestDocumentAvailability()
+        {
+            const string documentNumberForBook = "000596743"; //Naiv. Super
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(1, book.AvailabilityInfo.ElementAt(0).AvailableCount);
+            Assert.AreEqual(4, book.AvailabilityInfo.ElementAt(0).TotalCount);
+            Assert.AreEqual(0, book.AvailabilityInfo.ElementAt(1).AvailableCount);
+            Assert.AreEqual(1, book.AvailabilityInfo.ElementAt(1).TotalCount);
+            Assert.NotNull(book.AvailabilityInfo.ElementAt(1).EarliestAvailableDateFormatted);
+        }
+
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
+        public void TestNonAvailableDocument()
+        {
+            const string documentNumberForBook = "000611217"; //Naiv. Super
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(0, book.AvailabilityInfo.ElementAt(0).AvailableCount);
+            Assert.AreEqual(3, book.AvailabilityInfo.ElementAt(0).TotalCount);
+            Assert.NotNull(book.AvailabilityInfo.ElementAt(0).EarliestAvailableDateFormatted);
+        }
+
+        [Test(Description = "This is an integration test and it may fail if the document loan status changes")]
+        [Ignore("Don't test dynamic data in Aleph")]
+        public void TestDocumentShouldOnlyIncludeOneBranch()
+        {
+            const string documentNumberForBook = "000530871"; //Hur kär får man bli?
+            var book = (Book)_repository.GetDocument(documentNumberForBook, false);
+            Assert.AreEqual(1, book.AvailabilityInfo.Count());
+        }
+
     }
+
 }

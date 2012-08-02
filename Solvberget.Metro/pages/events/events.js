@@ -29,7 +29,7 @@
             //Setup the EventDataSource
             var eventsDataSource = new DataSources.eventsDataSource();
 
-         
+
             this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
 
             element.querySelector("header[role=banner] .pagetitle").textContent = "Arrangementer";
@@ -38,7 +38,7 @@
             listView.itemDataSource = eventsDataSource;
             listView.itemTemplate = element.querySelector(".itemtemplate");
             listView.onselectionchanged = this.selectionChanged.bind(this);
-            
+
 
             this.updateVisibility();
             if (this.isSingleColumn()) {
@@ -57,11 +57,24 @@
                 // appear in the ListView.
                 listView.selection.set(Math.max(this.itemSelectionIndex, 0));
             }
+
+            var self = this;
+        },
+
+        goHome: function () {
+            WinJS.Navigation.navigate("/pages/home/home.html");
+
         },
 
         selectionChanged: function (args) {
-            var listView = document.body.querySelector(".itemlist").winControl;
-            if (listView != null) {
+
+            var listViewDiv = document.body.querySelector(".itemlist");
+            var listView = undefined;
+            if (listViewDiv) {
+                listView = listViewDiv.winControl;
+            }
+            
+            if (listView) {
                 var details;
                 var that = this;
                 // By default, the selection is restriced to a single item.
@@ -119,7 +132,7 @@
                     };
                     nav.history.backStack.push({
                         location: "/pages/events/events.html",
-                        state: {  }
+                        state: {}
                     });
                     element.querySelector(".articlesection").focus();
                 } else {

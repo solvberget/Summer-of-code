@@ -4,11 +4,6 @@
     <meta charset="utf-8" />
     <title>Lister fra Biblioteket</title>
 
-    <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
-    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
-    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
-
     <!-- Common references -->
     <script src="../../js/data.js"></script>
 
@@ -31,10 +26,6 @@
             <h2 class="list-title" data-win-bind="textContent: listtitle"></h2>
         </div>
     </div>
-
-
-
-
 
     <!-- ItemTemplates for each "List of content" -->
     <!-- DOCUMENT -->
@@ -85,6 +76,18 @@
         </div>
     </div>
 
+    <!-- CD -->
+    <div id="cdTemplate" class="listContentTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+            <img class="item-image" src="#" data-win-bind="src: ThumbnailUrl; alt: Title" />
+        </div>
+        <div class="item-info">
+            <h2 class="item-title win-type-ellipsis" data-win-bind="textContent: Title"></h2>
+            <h5 class="item-subtitle win-type-ellipsis">Musikk</h5>
+            <h3 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: ArtistOrGroupName"></h3>
+            <h4 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: PublishedYear"></h4>
+        </div>
+    </div>
 
 
 
@@ -95,6 +98,8 @@
             <button class="win-backbutton" aria-label="Back" disabled></button>
             <h1 class="titlearea win-type-ellipsis">
                 <span class="pagetitle"></span>
+                <span class="chevron win-type-x-large">&#xe099</span>
+
             </h1>
         </header>
 

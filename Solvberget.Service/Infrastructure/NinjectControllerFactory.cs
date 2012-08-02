@@ -22,20 +22,28 @@ namespace Solvberget.Service.Infrastructure
 
         protected override IController GetControllerInstance(System.Web.Routing.RequestContext requestContext, Type controllerType)
         {
-            return controllerType == null ? null : (IController) ninjectKernel.Get(controllerType);
+            return controllerType == null ? null : (IController)ninjectKernel.Get(controllerType);
         }
 
         private void AddBindings()
         {
+            ninjectKernel.Bind<IInformationRepository>().To<InformationRepository>();
             ninjectKernel.Bind<IRepository>().To<AlephRepository>()
-                .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
+                .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath())
+                .WithConstructorArgument("pathToRulesFolder", EnvironmentHelper.GetRulesPath());
+
+            ninjectKernel.Bind<IBlogRepository>().To<BlogRepository>()
+                .WithConstructorArgument("folderPath", EnvironmentHelper.GetBlogFeedPath());
 
             ninjectKernel.Bind<IEventRepository>().To<LinticketRepository>();
+            ninjectKernel.Bind<IReviewRepository>().To<ReviewRepository>();
             ninjectKernel.Bind<IRatingRepository>().To<RatingRepository>();
             ninjectKernel.Bind<IImageRepository>().To<ImageRepository>()
                  .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath());
-            ninjectKernel.Bind<IListRepository>().To<LibraryListXmlRepository>()
+            ninjectKernel.Bind<IListRepositoryStatic>().To<LibraryListXmlRepository>()
                 .WithConstructorArgument("folderPath", EnvironmentHelper.GetXmlListPath());
+            ninjectKernel.Bind<IListRepository>().To<LibraryListDynamicRepository>()
+                .WithConstructorArgument("xmlFilePath", EnvironmentHelper.GetXmlFilePath());
             ninjectKernel.Bind<ISpellingDictionary>()
                 .To<LuceneRepository>()
                 .WithConstructorArgument("pathToDictionary", EnvironmentHelper.GetDictionaryPath())

@@ -10,7 +10,7 @@ namespace Solvberget.Domain.DTO
 {
     public class Journal : Document
     {
-
+        public new int StandardLoanTime { get { return 11; } }
         public string Issn { get; set; }
         public string JournalsPerYear { get; set; }
         public string InventoryInfomation { get; set; }
@@ -38,6 +38,8 @@ namespace Solvberget.Domain.DTO
 
         }
 
+       
+
         protected override void FillPropertiesLight(string xml)
         {
 
@@ -47,8 +49,12 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 Issn = GetVarfield(nodes, "022", "a");
+                InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
+                MainResponsible = Publisher;
             }
+            
         }
+
 
         public new static Journal GetObjectFromFindDocXmlBsMarcLight(string xml)
         {

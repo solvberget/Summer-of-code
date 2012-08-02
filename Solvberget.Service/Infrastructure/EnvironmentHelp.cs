@@ -3,7 +3,7 @@ using System.Web.Hosting;
 
 namespace Solvberget.Service.Infrastructure
 {
-    public class EnvironmentHelper
+    public static class EnvironmentHelper
     {
         private static readonly string ApplicationAppDataPath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"bin\App_Data");
         private static readonly string ApplicationContentDataPath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"Content");
@@ -41,7 +41,22 @@ namespace Solvberget.Service.Infrastructure
 
         public static string GetXmlListPath()
         {
-            return Path.Combine(ApplicationAppDataPath, @"librarylists");
+            return Path.Combine(ApplicationAppDataPath, @"librarylists\static");
         }
+
+        public static string GetXmlFilePath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"librarylists\dynamic");
+        }
+
+        public static string GetRulesPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"rules\");
+        }
+        public static string GetBlogFeedPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"blogs\");
+        }
+
     }
 }

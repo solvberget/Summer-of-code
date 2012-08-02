@@ -1,24 +1,33 @@
 ﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
    to .win-surface. */
-.itemspage .itemslist .win-horizontal.win-viewport .win-surface {
-    margin-bottom: 60px;
-    margin-left: 115px;
-    margin-top: 7px;
+.itemspage {
 }
 
-.itemspage .itemslist {
-    height: 123.52%;
-    position: relative;
-    width: 99.92%;
-    z-index: 0;
+.itemspage .homeContent .itemslist {
+    
+    height: 100%;
 }
 
-    .itemspage .itemslist .win-item {
+.itemspage .homeContent .itemslist .win-surface {
+    margin: auto;
+    margin-top: 10%;
+}
+.itemspage .homeContent {
+    -ms-grid-row-span: 3;
+}
+
+    .itemspage .homeContent .itemslist .win-item {
         -ms-grid-columns: 1fr;
         -ms-grid-rows: 1fr 90px;
         display: -ms-grid;
-        height: 250px;
+        height:250px;
         width: 250px;
+        position: relative;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+
     }
 
         .itemspage .itemslist .win-item .item-image {
@@ -27,9 +36,11 @@
 
         .itemspage .itemslist .win-item .item-overlay {
             -ms-grid-row: 2;
-            -ms-grid-rows: 1fr 21px;
+            height:45px;
+            -ms-grid-rows: 1fr 25px;
             display: -ms-grid;
             padding: 6px 15px 2px 15px;
+            position:absolute; bottom:0;
         }
 
             .itemspage .itemslist .win-item .item-overlay .item-title {
@@ -44,9 +55,6 @@
             }
 
 @media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
-    .itemspage .itemslist .win-item .item-overlay {
-        background: rgba(0,0,0,0.65);
-    }
 
         .itemspage .itemslist .win-item .item-overlay .item-title {
             color: rgba(255,255,255,0.87);
@@ -107,7 +115,12 @@
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
-    .itemspage .itemslist .win-horizontal.win-viewport .win-surface {
-        margin-left: 100px;
+
+    .itemspage .homeContent .itemslist {
+        width: 550px;
+        height: 1000px;
+        margin: auto;
+        margin-top: 20%;
     }
+    
 }

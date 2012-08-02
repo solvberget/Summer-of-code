@@ -1,9 +1,11 @@
 ﻿body {
+    overflow: auto;
 }
 
 .titlecontainer {
     border: none;
 }
+
 .myPage header[role=banner] .titlearea {
     margin-top: 45px;
 }
@@ -19,33 +21,133 @@
         margin: 0;
         padding: 0;
         padding-left: 10px;
-        
     }
 
-    #mainContentSection {
-        margin-left: 45px;
-    }
+#mainContentSection {
+    margin-left: 45px;
+}
 
-    .box {
-        margin: 10px;
-        border-color: white;
-        border-width: 1px;
-        border: solid;
-        width: auto;
-        height: auto;
-        padding: 10px;
+#templates {
+    display: none;
+}
 
-        width:150px;
-        overflow:hidden;
-        border-top-right-radius:10px;
-        border-top-left-radius:10px;
-        border-bottom-left-radius:10px;
-        resize:both;
+.renewLoanButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
 
-    }
+.cancelReservationButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.renewAllButton {
+    float: right;
+}
+
+.box {
+    margin: 10px;
+    border-color: white;
+    border-width: 1px;
+    border: solid;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    overflow: hidden;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    resize: both;
+    max-width: 350px;
+    min-width: 175px;
+    min-height: 120px;
+}
+
     .box span {
-        display:block;
+        display: block;
     }
+
+    .box .detail-h2-title {
+        display: inline;
+    }
+
     .box .detail-title {
         margin-bottom: 3px;
+        display: inline;
     }
+
+    .box .documentTitle {
+        font-weight: bold;
+    }
+
+#mypageLoading {
+    width: auto;
+    height: auto;
+    text-align: center;
+    margin-top: 250px;
+}
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+}
+
+progress.withText {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+/* Text style for a label for a default size progress ring */
+.progressRingText {
+    font-size: 20pt;
+    line-height: 25pt;
+}
+
+#mypageData {
+    display: none;
+    visibility: hidden;
+    max-height: calc(100% - 20px);
+}
+#mypageData > div {
+    float: left;
+}
+
+.float-item {
+    float: left;
+    min-width: 220px;
+    max-width: 220px;
+    margin: 10px;
+}
+
+.inline {
+    display: inline;
+}
+
+#fines, #loans, #reservations {
+    max-width: 750px;
+    max-height: 600px;
+    overflow: auto;
+
+}
+
+
+@media screen and (-ms-view-state: snapped) {
+    .box {
+        float: none;
+        margin-left: 0;
+        max-width: 220px;
+    }
+
+    #fines, #loans, #reservations {
+        max-height: none;
+        max-width: 210px;
+    }
+
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        display: block;
+    }
+
+    .win-backbutton {
+        margin-top: 60px!important;
+    }
+}

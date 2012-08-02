@@ -1,25 +1,66 @@
 ﻿(function () {
     "use strict";
 
-    var search = "/images/icon/Icon Pack 1/png/search.png";
-    var events = "/images/icon/Icon Pack 1/png/calend.png";
-    var info = "/images/icon/Icon Pack 1/png/info.png";
-    var music = "/images/icon/Icon Pack 1/png/music.png";
-    var home = "/images/icon/Icon Pack 1/png/home.png";
-    var tasks = "/images/icon/Icon Pack 1/png/tasks.png";
+    var search = "/images/home/Search.png";
+    var events = "/images/home/Events.png";
+    var home = "/images/home/MyPage.png";
+    var contact = "/images/home/Contact.png";
+    var openingHours = "/images/home/OpeningHours.png";
+    var tasks = "/images/home/Lists.png";
+    var activePage = "home";
+
+    var serverBaseUrl = "http://localhost:7089";
 
     var menuItems = [
-        { key: "lists", title: "Lister fra Biblioteket", subtitle: "Mest lest, nyheter etc.", backgroundImage: tasks, navigateTo : function () { WinJS.Navigation.navigate("/pages/lists/libraryLists.html"); } },
-        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: function () { loginThenNavigateTo("/pages/mypage/mypage.html"); } },
-        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: function () { WinJS.Navigation.navigate("/pages/events/events.html"); } },
-        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: function () { Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); } },
+        { key: "lists", title: "Nyheter og anbefalinger", subtitle: "Nyheter, anbefalinger og topplister", backgroundImage: tasks, navigateTo: navigateToLists },
+        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: navigateToMypage },
+        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: navigateToEvents },
+        { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen inn", backgroundImage: openingHours, navigateTo: navigateToOpeningHours },
+        { key: "contact", title: "Kontakt oss", subtitle: "Kontaktinformasjon", backgroundImage: contact, navigateTo: navigateToContact },
+        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
     ];
+
+    function goHome() {
+        return WinJS.Navigation.navigate("/pages/home/home.html");
+    };
+
+    var list = new WinJS.Binding.List(menuItems);
+
+    function navigateToLists() 
+    { 
+        activePage = "lists"; WinJS.Navigation.navigate("/pages/lists-v2/libraryLists.html"); 
+    }
+
+    function navigateToMypage() 
+    { 
+        activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html"); 
+    }
+
+    function navigateToEvents() 
+    { 
+        activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html"); 
+    }
+
+    function navigateToOpeningHours() 
+    { 
+        activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html"); 
+    }
+
+    function navigateToContact() 
+    { 
+        activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html");
+    } 
+
+    function navigateToSearch() 
+    { 
+        Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); 
+    }
 
     var loginThenNavigateTo = function (page) {
 
-       // window.localStorage.setItem("BorrowerId", "");
 
         var loginDiv = document.getElementById("loginDiv");
+      
 
         WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
@@ -36,17 +77,21 @@
             if (key === menuItems[i].key)
                 return menuItems[i];
         }
-
-
     }
-
-    var list = new WinJS.Binding.List(menuItems);
 
     WinJS.Namespace.define("Data", {
 
         items: list,
-        itemByKey : itemByKey,
+        itemByKey: itemByKey,
         menuItems: menuItems,
-
+        serverBaseUrl: serverBaseUrl,
+        goHome: goHome,
+        activePage: activePage,
+        navigateToLists: navigateToLists,
+        navigateToMypage: navigateToMypage,
+        navigateToEvents: navigateToEvents,
+        navigateToOpeningHours: navigateToOpeningHours,
+        navigateToContact: navigateToContact,
+        navigateToSearch: navigateToSearch,
     });
 })();

@@ -7,18 +7,26 @@ namespace Solvberget.Domain.DTO
 {
     public class Cd : Document
     {
-
+        public new int StandardLoanTime { get { return 18; } }
         public Person ArtistOrComposer { get; set; }
         public string MusicGroup { get; set; }
         public string ExplanatoryAddition { get; set; }
         public string TypeAndNumberOfDiscs { get; set; }
-        public string DiscContent { get; set; }
+        public IEnumerable<string> DiscContent { get; set; }
         public string Performers { get; set; }
         public IEnumerable<string> CompositionTypeOrGenre { get; set; }
         public string MusicalLineup { get; set; }
         public IEnumerable<Person> InvolvedPersons { get; set; }
         public IEnumerable<string> InvolvedMusicGroups { get; set; }
         public string SongTitlesOtherWritingForms { get; set; }
+        public string ArtistOrGroupName { get 
+            {
+                if (ArtistOrComposer != null && ArtistOrComposer.Name != null) return ArtistOrComposer.Name;
+
+                return MusicGroup ?? "Ukjent artist";
+            } 
+        }
+        
 
         protected override void FillProperties(string xml)
         {
@@ -28,7 +36,7 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
-                DiscContent = GetVarfield(nodes, "505", "a");
+                DiscContent = TrimContentList(GetVarfield(nodes, "505", "a").Split(';').ToList());
                 Performers = GetVarfield(nodes, "511", "a");
                 CompositionTypeOrGenre = GetVarfieldAsList(nodes, "652", "a");
                 MusicalLineup = GetVarfield(nodes, "658", "a");
@@ -60,15 +68,27 @@ namespace Solvberget.Domain.DTO
                     Role = "ArtistOrComposer"
                 };
 
+
+                MainResponsible = ArtistOrComposer;
+
+
                 //If no ArtistOrCompose, check BSMARC field 110 for MusicGroup
                 if (ArtistOrComposer.Name == null)
                 {
                     MusicGroup = GetVarfield(nodes, "110", "a");
                     ExplanatoryAddition = GetVarfield(nodes, "110", "q");
+                    MainResponsible = MusicGroup;
                 }
+               
+                if (ArtistOrComposer.Name != null)
+                    ArtistOrComposer.InvertName(ArtistOrComposer.Name);
+
 
             }
         }
+
+     
+
 
         public new static Cd GetObjectFromFindDocXmlBsMarc(string xml)
         {

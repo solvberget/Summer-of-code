@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,7 +9,10 @@ namespace Solvberget.Domain.DTO
 {
     public class Document
     {
-        public string DocType { get { return this.GetType().Name; } private set { } }
+
+        //Base properties
+        public int StandardLoanTime { get { return 32; } }
+        public string DocType { get { return GetType().Name; } }
         public string DocumentNumber { get; set; }
         public string TargetGroup { get; set; }
         public string IsFiction { get; set; }
@@ -19,11 +23,19 @@ namespace Solvberget.Domain.DTO
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public IEnumerable<string> ResponsiblePersons { get; set; }
+        public object MainResponsible { get; set; }
         public string PlacePublished { get; set; }
         public string Publisher { get; set; }
+        public string PublisherType { get; set; }
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
+        
+        public string CompressedSubTitle { get { return GetCompressedString(); } set { } }
+        //Location and availability info for each branch
+        public List<AvailabilityInformation> AvailabilityInfo { get; private set; }
+
+        //Images
         public string ThumbnailUrl { get; set; }
         public string ImageUrl { get; set; }
 
@@ -45,6 +57,7 @@ namespace Solvberget.Domain.DTO
                 //Only get languages (041a) if language in base equals "Flerspråklig" 
                 if (Language.Equals("Flerspråklig"))
                 {
+
                     var languages = GetVarfield(nodes, "041", "a").SplitByLength(3).ToList();
                     for (var i = 0; i < languages.Count(); i++)
                     {
@@ -54,7 +67,7 @@ namespace Solvberget.Domain.DTO
                     }
                     Languages = languages;
                 }
-             
+
                 LocationCode = GetVarfield(nodes, "090", "d");
                 SubTitle = GetVarfield(nodes, "245", "b");
 
@@ -66,6 +79,12 @@ namespace Solvberget.Domain.DTO
 
                 PlacePublished = GetVarfield(nodes, "260", "a");
                 Publisher = GetVarfield(nodes, "260", "b");
+
+                var publisherType = DocType;
+                string publisherTypeLookup = null;
+                if (publisherType != null) PublisherTypeDictionary.TryGetValue(publisherType, out publisherTypeLookup);
+
+                PublisherType = publisherTypeLookup ?? publisherType;
 
                 SeriesTitle = GetVarfield(nodes, "440", "a");
                 SeriesNumber = GetVarfield(nodes, "440", "v");
@@ -107,6 +126,22 @@ namespace Solvberget.Domain.DTO
             }
         }
 
+
+        protected virtual string GetCompressedString()
+        {
+            string docTypeLookupValue = null;
+            if (DocType != null)
+            {
+                DocumentDictionary.TryGetValue(DocType, out docTypeLookupValue);
+            }
+
+            var temp = docTypeLookupValue ?? DocType;
+            if (PublishedYear != 0)
+                temp += " (" + PublishedYear + ")";
+            return temp;
+
+        }
+
         public static Document GetObjectFromFindDocXmlBsMarc(string xml)
         {
             var document = new Document();
@@ -121,7 +156,22 @@ namespace Solvberget.Domain.DTO
             return document;
         }
 
-        protected static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
+        public void GenerateLocationAndAvailabilityInfo(IEnumerable<DocumentItem> docItems)
+        {
+
+            var items = docItems.ToList();
+            if (!items.Any()) return;
+
+            AvailabilityInfo = new List<AvailabilityInformation>();
+            
+            foreach (var availabilityInfo in AvailabilityInformation.BranchesToHandle.Select(branch => AvailabilityInformation.GenerateInfoFor(this, branch, items)).Where(availabilityInfo => availabilityInfo != null))
+            {
+                AvailabilityInfo.Add(availabilityInfo);
+            }
+
+        }
+
+        private static string GetFixfield(IEnumerable<XElement> nodes, string id, int fromPos, int toPos)
         {
             var fixfield = nodes.Elements("fixfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Select(x => x.Value).FirstOrDefault();
 
@@ -150,15 +200,34 @@ namespace Solvberget.Domain.DTO
                 varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
-        public static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
+        public static IEnumerable<string> TrimContentList(List<string> list)
+        {
+            var temp = new List<string>();
+            if (list.ElementAt(0).Substring(0, 9) == "Innhold: ")
+                temp.Insert(0, list.ElementAt(0).Substring(9));
+            else
+                temp.Insert(0, list.ElementAt(0));
+            
+            
+            for (int i = 1; i < list.Count(); i++)
+            {
+                if (list.ElementAt(i)[0] == ' ')
+                    temp.Insert(i, list.ElementAt(i).Substring(1));
+                else
+                    temp.Insert(i, list.ElementAt(i));
+            }
+            return temp;
+        } 
+
+        protected static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
                                                                string subfieldLabel)
         {
             var varfield =
                 nodes.Elements("varfield").Where(x => ((string)x.Attribute("id")).Equals(id)).Elements("subfield");
-            return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value);
+            return varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).ToList();
         }
 
-        public static string GetSubFieldValue(XElement varfield, string label)
+        private static string GetSubFieldValue(XElement varfield, string label)
         {
             return
                 varfield.Elements("subfield").Where(x => ((string)x.Attribute("label")).Equals(label)).Select(
@@ -193,9 +262,15 @@ namespace Solvberget.Domain.DTO
                                      ReferredWork = GetSubFieldValue(varfield, "t")
                                  };
 
+                string tempName = GetSubFieldValue(varfield, "a");
+                if (tempName != null)
+                    person.InvertName(tempName);
+                
+                if (!string.IsNullOrEmpty(person.Name) && !persons.Any(x => x.Name.Equals(person.Name)))
+                {
+                    persons.Add(person);
+                }
 
-
-                persons.Add(person);
             }
 
             return persons;
@@ -228,9 +303,35 @@ namespace Solvberget.Domain.DTO
 
         }
 
+        protected static readonly Dictionary<string, string> PublisherTypeDictionary = new Dictionary<string, string>
+                                {
+                                    {"Document", "Utgiver"},
+                                    {"Book", "Forlag"},
+                                    {"Film", "Utgiver"},
+                                    {"AudioBook", "Forlag"},
+                                    {"Cd", "Label/utgiver"},
+                                    {"SheetMusic", "Forlag"},
+                                    {"Journal", "Forlag"},
+                                    {"LanguageCourse", "Forlag"}
+                                }; 
+
+        protected static readonly Dictionary<string, string> DocumentDictionary = new Dictionary<string, string>
+                                {
+                                    {"^^^", "Dokumenttype er ikke registrert"},
+                                    {typeof(Document).Name, "Annet"},
+                                    {typeof(AudioBook).Name, "Lydbok"},
+                                    {typeof(Book).Name, "Bok"},                       
+                                    {typeof(Cd).Name, "Cd"},
+                                    {typeof(Film).Name, "Film"},
+                                    {typeof(Journal).Name, "Tidsskrift"},
+                                    {typeof(LanguageCourse).Name, "Språkkurs"},
+                                    {typeof(SheetMusic).Name, "Note"}
+                                };
+
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>
                                 {
-                                    {"^^^", "Språk er ikke registrert"},
+                                    {"^^^", ""},
+                                    {"ing", ""},
                                     {"ace", "Aceh"},
                                     {"afr", "Afrikaans"},
                                     {"akk", "Akkadisk"},

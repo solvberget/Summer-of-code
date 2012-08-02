@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bekreftelse</title>
+    <link rel="stylesheet" href="loanRenewal.css" />
+
+
+    <script type="text/javascript" src="loanRenewal.js"></script>
+</head>
+<body>
+    <div id="renewalFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{Login flyout}">
+        <form onsubmit="return false;">
+            
+            <div id="loanRenewalMessage">Er du sikker på at du vil utvide lånetiden?</div>        
+            
+            <div id="renewalButtons">
+                <button id="submitRenewalButton">Utvid lånetid</button>
+                <button id="cancelRenewalButton">Abryt</button>
+            </div>
+   
+            <span id="renewalOutputMsg" class="success"></span>
+           
+            <div id="renewalLoading"><progress class="win-ring"></progress></div>
+
+        </form>
+    </div>
+
+</body>
+</html>
+

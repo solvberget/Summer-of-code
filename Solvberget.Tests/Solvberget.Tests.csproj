@@ -92,8 +92,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOTests\AvailabilityInformationTest.cs" />
     <Compile Include="DTOTests\BokBasenBookTest.cs" />
+    <Compile Include="DTOTests\BlogTest.cs" />
+    <Compile Include="DTOTests\InfomationTest.cs" />
+    <Compile Include="DTOTests\LoanTest.cs" />
     <Compile Include="DTOTests\UserInfoTest.cs" />
+    <Compile Include="RepositoryTests\BlogRepositoryTests.cs" />
+    <Compile Include="RepositoryTests\InformationRepositoryTest.cs" />
+    <Compile Include="RepositoryTests\RulesRepositoryTests.cs" />
+    <Compile Include="RepositoryTests\LibraryListsFromDynamicRepositoryTest.cs" />
     <Compile Include="RepositoryTests\RatingRepositoyTests.cs" />
     <Compile Include="RepositoryTests\AlephRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +111,7 @@
     <Compile Include="RepositoryTests\LibraryListsFromXmlRepositoryTest.cs" />
     <Compile Include="RepositoryTests\LinticketRepositoryTests.cs" />
     <Compile Include="RepositoryTests\LuceneRepositoryTest.cs" />
+    <Compile Include="RepositoryTests\ReviewRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -110,6 +119,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestData\rules\itemrules.txt" />
     <Content Include="XML eksempel\Find-doc.xml">
       <SubType>Designer</SubType>
     </Content>

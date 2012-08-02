@@ -85,5 +85,42 @@ namespace Solvberget.Domain.Properties {
                 return ((string)(this["BokBasenSystem"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=8fd5cf4bb0a76818d2" +
+            "16097e37c6a097&")]
+        public string LastFmApiUrl {
+            get {
+                return ((string)(this["LastFmApiUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.stavanger-kulturhus.no/aapningstider_paa_soelvberget")]
+        public string OpeningHoursWebpage {
+            get {
+                return ((string)(this["OpeningHoursWebpage"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.stavanger-kulturhus.no/kontakt_oss")]
+        public string ContactWebPage {
+            get {
+                return ((string)(this["ContactWebPage"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://bokelskere.no/api/1.0/boker/info/")]
+        public string BokElskereServerUrl {
+            get {
+                return ((string)(this["BokElskereServerUrl"]));
+            }
+        }
     }
 }

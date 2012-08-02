@@ -8,13 +8,14 @@
     <!-- Common references -->
 
     <!-- Split references -->
-    <link href="../../css/splitview.css" rel="stylesheet" />  
+    <link href="../../css/splitview.css" rel="stylesheet" />
     <link href="events.css" rel="stylesheet" />
     <script src="events.js"></script>
     <script src="../../js/EventDataSource.js"></script>
 
 </head>
 <body>
+
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
@@ -34,21 +35,20 @@
             <button class="win-backbutton" aria-label="Back" disabled></button>
             <h1 class="titlearea win-type-ellipsis">
                 <span class="pagetitle"></span>
-
             </h1>
         </header>
 
-      
+
         <div class="itemlistsection" aria-label="List column">
-              
+
             <div class="itemlist" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'single', tapBehavior: 'toggleSelect' }"></div>
-        	
+
         </div>
         <div class="articlesection" aria-atomic="true" aria-label="Item detail column" aria-live="assertive">
             <article class="article-box">
                 <header class="header">
-                    <h1 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h1>
-                    <div class="text">                        
+                    <h2 class="article-title win-type-ellipsis" data-win-bind="textContent: title"></h2>
+                    <div class="text">
                         <h3 class="article-subtitle" data-win-bind="textContent: date"></h3>
                         <h3 class="article-subtitle" data-win-bind="textContent: start"></h3>
                         <h3 class="article-subtitle" data-win-bind="textContent: stop"></h3>
@@ -61,9 +61,6 @@
 
                 </header>
                 <br />
-                <!-- Denne skal bindes til teaser. Den er tom, så vi bruker dummydata for å få det pent-->
-                <div class="article-content" data-win-bind="innerHTML: teaser"></div> 
-                <br />
                 <div class="article-content" data-win-bind="innerHTML: description"></div>
                 <br />
                 <div class="article-content" data-win-bind="innerHTML: type"></div>
@@ -73,6 +70,6 @@
             </article>
         </div>
     </div>
-    
+
 </body>
 </html>

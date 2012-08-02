@@ -37,6 +37,7 @@ namespace Solvberget.Domain.DTO
                 var nodes = xmlDoc.Root.Descendants();
                 ClassificationNumber = GetVarfield(nodes, "090", "c");
                 Numbering = GetVarfield(nodes, "245", "n");
+                
                 PartTitle = GetVarfield(nodes, "245", "p");
                 Edition = GetVarfield(nodes, "250", "a");
                 TypeAndNumberOfDiscs = GetVarfield(nodes, "300", "a");
@@ -49,6 +50,7 @@ namespace Solvberget.Domain.DTO
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
             }
         }
+
 
         protected override void FillPropertiesLight(string xml)
         {
@@ -72,12 +74,13 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "Author"
                 };
+               
 
                 //If N/A, check BSMARC field 110 for author
                 if (Author.Name == null)
                 {
                     Author.Name = GetVarfield(nodes, "110", "a");
-
+                    
                     //Organization (110abq)
                     Organization = GenerateOrganizationsFromXml(nodes, "110").FirstOrDefault();
 
@@ -86,11 +89,15 @@ namespace Solvberget.Domain.DTO
                 //If still N/A, check BSMARC field 130 for title when title is main scheme word
                 if (Author.Name == null)
                     StandarizedTitle = GetVarfield(nodes, "130", "a");
-
+                if (Author.Name != null)
+                    Author.InvertName(Author.Name);
+                MainResponsible = Author;
             }
         }
 
-        public static AudioBook GetObjectFromFindDocXmlBsMarc(string xml)
+
+
+        public new static AudioBook GetObjectFromFindDocXmlBsMarc(string xml)
         {
             var audioBook = new AudioBook();
 

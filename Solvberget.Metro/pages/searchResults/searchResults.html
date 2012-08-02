@@ -29,29 +29,15 @@
          below. -->
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item">
-            <!--<img class="item-image" src="/images/dummydata/hp1.jpeg" data-win-bind="alt: Title" />-->
             <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                 <img class="item-image" src="#" data-win-bind="src: BackgroundImage; alt: Title;" />
             </div>
             <div class="item-content">
                 <h3 class="item-title win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: Title searchResults.markText"></h3>
-                <h4 class="item-subtitle win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: DocType searchResults.markText"></h4>
-                <!-- <h4 class="item-description win-type-x-small win-type-ellipsis" data-win-bind=""></h4> -->
+                <h4 class="item-main-person win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: MainResponsible.Name searchResults.markText"></h4>
+                <h4 class="item-subtitle win-type-x-small win-type-ellipsis" data-win-bind="innerHTML: CompressedSubTitle searchResults.markText"></h4>
             </div>
         </div>
-    </div>
-
-
-    <!-- Define the header menu -->
-    <div id="headerMenu" data-win-control="WinJS.UI.Menu">
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'section0',label:'Lister'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'section1',label:'Min side'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'section2',label:'Arrangementer'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'section3',label:'Søk'}"></button>
-
-        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'homeMenuItem',label:'Hjem'}">
-        </button>
     </div>
 
     <!-- The content that will be loaded and displayed. -->
@@ -60,12 +46,7 @@
             <button class="win-backbutton" aria-label="Back">
             </button>
             <div class="titlearea win-type-ellipsis">
-                <button class="titlecontainer">
-                    <h1>
-                        <span class="pagetitle">Søk</span>
-                        <span class="chevron win-type-x-large">&#xe099</span>
-                    </h1>
-                </button>
+                <h1 class="pagetitle">Søk</h1>
                 <h2 class="pagesubtitle"></h2>
             </div>
         </header>
@@ -77,6 +58,9 @@
                 <a href="#" id="hrefDidYouMean"><span data-win-bind="innerText: didYouMean;" id="spanDidYouMean"></span></a>
             </div>
             <div id="search-loading-wheel">
+                <label class="progressRingText">
+                    <progress class="win-ring withText"></progress>
+                </label>
             </div>
             <div class="resultslist" aria-label="Search results" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }">
             </div>

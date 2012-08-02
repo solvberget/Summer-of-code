@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Cd</title>
+    <link rel="stylesheet" href="cd.css" />
+    <script type="text/javascript" src="cd.js"></script>
+
+</head>
+<body>
+
+    <section id="fragmentContent">
+        <article id="docLocAndAvail">
+            <h2>Tilgjengelighet</h2>
+            <div id="availabilityHolder"></div>
+        </article>
+
+        <article id="details">
+                        <h2 id="H1">Fakta om CDen</h2>
+
+            <div class="fact" data-win-bind="style.display: ArtistOrComposer.Name DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'ArtistOrComposer'}"></div>
+                <div class="fact-value" data-win-bind="innerText:ArtistOrComposer.Name"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: MusicGroup DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'MusicGroup'}"></div>
+                <div class="fact-value" data-win-bind="innerText:MusicGroup"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: TypeAndNumberOfDiscs DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'TypeAndNumberOfDiscs'}"></div>
+                <div class="fact-value" data-win-bind="innerText:TypeAndNumberOfDiscs"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: DiscContent DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'DiscContent'}"></div>
+                <div class="fact-value" data-win-bind="innerText:DiscContent DocumentDetailConverters.listConverter"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: CompositionTypeOrGenre DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'CompositionTypeOrGenre'}"></div>
+                <div class="fact-value" data-win-bind="innerText:CompositionTypeOrGenre"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: MusicalLineup DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'MusicalLineup'}"></div>
+                <div class="fact-value" data-win-bind="innerText:MusicalLineup"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: InvolvedPersons DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'InvolvedPersons'}"></div>
+                <div class="fact-value" data-win-bind="innerText:InvolvedPersons DocumentDetailConverters.personConverter"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: InvolvedMusicGroups DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'InvolvedMusicGroups'}"></div>
+                <div class="fact-value" data-win-bind="innerText:InvolvedMusicGroups"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: Language DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'Language'}"></div>
+                <div class="fact-value" data-win-bind="innerText:Language"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: Languages DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'Languages'}"></div>
+                <div class="fact-value" data-win-bind="innerText:Languages"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'SubTitle'}"></div>
+                <div class="fact-value" data-win-bind="innerText:SubTitle"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: Publisher DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-bind="innerText:PublisherType"></div>
+                <div class="fact-value" data-win-bind="innerText:Publisher"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: PublishedYear DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'PublishedYear'}"></div>
+                <div class="fact-value" data-win-bind="innerText:PublishedYear"></div>
+            </div>
+
+        </article>
+
+    </section>
+</body>
+</html>
+

@@ -25,6 +25,10 @@ namespace Solvberget.Domain.DTO
         public string HomeLibrary { get; set; }
         public string Balance { get; set; }
         public IEnumerable<Fine> Fines { get; set; }
+        public IEnumerable<Fine> ActiveFines { get; set; }
+        public IEnumerable<Loan> Loans { get; set; }
+        public IEnumerable<Reservation> Reservations { get; set; }
+
 
         public void FillProperties(string xml)
         {
@@ -45,11 +49,13 @@ namespace Solvberget.Domain.DTO
             if (xElement == null) return;
             var xElementRecord = xElement.Element("z303");
             if (xElementRecord == null) return;
-            
+
+            var xElementField = xElementRecord;
+
             Id = GetXmlValue(xElementRecord, "z303-id");
             Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
 
-            DateOfBirth = GetFormattedDateOfBirth(GetXmlValue(xElementRecord, "z303-birth-date"));
+            DateOfBirth = GetFormattedDate(GetXmlValue(xElementRecord, "z303-birth-date"));
 
             HomeLibrary = GetXmlValue(xElementRecord, "z303-home-library");
 
@@ -74,45 +80,243 @@ namespace Solvberget.Domain.DTO
 
             Balance = xElementRecord.Value;
 
-
-            xElementRecord = xElement.Element("fine");
-            if (xElementRecord == null) return;
             
-
-            var fines = new List<Fine>();
-
-            var varfields = xElement.Elements("fine").ToList();
-            foreach (var varfield in varfields)
+            // Put all the reservations of the borrower into a list of Reservation objects
+            xElementRecord = xElement.Element("item-h");
+            if (xElementRecord != null)
             {
 
-                var temp = varfield;
+                var pickupLocation = "";
+                var holdRequestFrom = "";
+                var holdRequestTo = "";
+                var cancellationSequence = "";
+                var itemSeq = "";
+                var itemDocNumber = "";
+                var holdRequestEnd = "";
 
-                var xElementField = xElementRecord.Element("z31");
-                if (xElementField == null) return;
+                var reservations = new List<Reservation>();
 
-                var sumAsString = GetXmlValue(varfield, "z31-sum");
-                double sum = 0;
-                if (sumAsString != null)
+                var reservationVarfields = xElement.Elements("item-h").ToList();
+
+                foreach (var varfield in reservationVarfields)
                 {
-                    //Format may be "[2009]" or "(30.00)", trim if so
-                    var regExp = new Regex(@"[a-zA-Z\[\]]*(\d+)[a-zA-Z\[\]]*");
-                    var foundValue = regExp.Match(sumAsString).Groups[1].ToString();
-                    if (!string.IsNullOrEmpty(foundValue))
-                    sum = double.Parse(foundValue);
+
+                    //Get information from table z37
+                    xElementField = varfield.Element("z37");
+                    if (xElementField != null)
+                    {
+                        pickupLocation = GetXmlValue(xElementField, "z37-pickup-location");
+                        if (pickupLocation == "Hovedbibl.")
+                            pickupLocation = "Hovedbiblioteket";
+
+                        holdRequestFrom = GetFormattedDate(GetXmlValue(xElementField, "z37-request-date"));
+                        holdRequestTo = GetFormattedDate(GetXmlValue(xElementField, "z37-end-request-date"));
+                        cancellationSequence = GetXmlValue(xElementField, "z37-sequence");
+                        itemSeq = GetXmlValue(xElementField, "z37-item-sequence");
+                        itemDocNumber = GetXmlValue(xElementField, "z37-doc-number");
+                        holdRequestEnd = GetFormattedDate(GetXmlValue(xElementField, "z37-end-hold-date"));
+                    }
+                    
+                    //Get information from table z13
+                    xElementField = varfield.Element("z13");
+                    if (xElementField != null)
+                    {
+                        var docNumber = GetXmlValue(xElementField, "z13-doc-number");
+
+                        var docTitle = GetXmlValue(xElementField, "z13-title");
+
+
+                        var reservation = new Reservation()
+                        {
+                            DocumentNumber = docNumber,
+                            DocumentTitle = docTitle,
+                            PickupLocation = pickupLocation,
+                            HoldRequestFrom = holdRequestFrom,
+                            HoldRequestTo = holdRequestTo,
+                            CancellationSequence = cancellationSequence,
+                            ItemSeq = itemSeq,
+                            ItemDocumentNumber = itemDocNumber,
+                            HoldRequestEnd = holdRequestEnd,
+                        };
+
+                        reservations.Add(reservation);
+                    }
                 }
 
-                var fine = new Fine()
-                               {
-                                   Date = GetXmlValue(varfield, "z31-date"),
-                                   Status = GetXmlValue(varfield, "z31-status"),
-                                   CreditDebit = Convert.ToChar(GetXmlValue(varfield, "z31-credit-debit")),
-                                   Sum = sum,
-                                   Description = GetXmlValue(varfield, "z31-description")
-                               };
-                fines.Add(fine);
+
+
+                reservations = reservations.OrderBy(x => x.HoldRequestTo).ToList();
+                Reservations = reservations;
             }
 
-            Fines = fines;
+
+            //Put all the loans for the borrower into a list of Loan objects
+
+            xElementRecord = xElement.Element("item-l");
+            if (xElementRecord != null)
+            {
+                var docNumber = "";
+                var itemSequence = "";
+                var subLibrary = "";
+                var orgDueDate = "";
+                var loanDate = "";
+                var loanHour = "";
+                var dueDate = "";
+                var itemStatus = "";
+                var barcode = "";
+                var adminDocNumber = "";
+                var docTitle = "";
+
+
+                var loans = new List<Loan>();
+
+                var loanVarfields = xElement.Elements("item-l").ToList();
+
+                foreach (var varfield in loanVarfields)
+                {
+                    //Get information from table z36
+                    xElementField = varfield.Element("z36");
+                    if (xElementField != null)
+                    {
+
+                        
+
+                        subLibrary = GetXmlValue(xElementField, "z36-sub-library");
+                        if (subLibrary == "Hovedbibl.")
+                            subLibrary = "Hovedbiblioteket";
+
+                        orgDueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-original-due-date"));
+
+                        loanDate = GetFormattedDate(GetXmlValue(xElementField, "z36-loan-date"));
+
+                        loanHour = GetXmlValue(xElementField, "z36-loan-hour");
+
+                        dueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-due-date"));
+                    }
+                    
+                    //Get information from table z30
+                    xElementField = varfield.Element("z30");
+                    if (xElementField != null)
+                    {
+                        adminDocNumber = GetXmlValue(xElementField, "z30-doc-number");
+
+                        itemSequence = GetXmlValue(xElementField, "z30-item-sequence");
+
+                        itemStatus = GetXmlValue(xElementField, "z30-item-status");
+
+                        barcode = GetXmlValue(xElementField, "z30-barcode");
+
+                    }
+
+                    //Get information from table z13
+                    xElementField = varfield.Element("z13");
+                    if (xElementField != null)
+                    {
+                        docNumber = GetXmlValue(xElementField, "z13-doc-number");
+
+                        docTitle = GetXmlValue(xElementField, "z13-title");
+                    }
+                        var loan = new Loan()
+                                       {
+                                           DocumentNumber = docNumber,
+                                           AdminisrtativeDocumentNumber = adminDocNumber,
+                                           ItemSequence = itemSequence,
+                                           Barcode = barcode,
+                                           DocumentTitle = docTitle,
+                                           SubLibrary = subLibrary,
+                                           OriginalDueDate = orgDueDate,
+                                           ItemStatus = itemStatus,
+                                           LoanDate = loanDate,
+                                           LoanHour = loanHour,
+                                           Material = null,
+                                           DueDate = dueDate
+                                       };
+
+                        loans.Add(loan);
+
+                }
+                loans = loans.OrderBy(x => x.DueDate).ToList();
+                Loans = loans;
+            }
+
+            //Put all fines connected to the borrower in a list
+            xElementRecord = xElement.Element("fine");
+            double sum = 0;
+            var date = "";
+            var status = "";
+            char creditDebit = new char();
+            var description = "";
+            string descriptionLookupValue = null;
+
+            if (xElementRecord != null)
+            {
+                var fines = new List<Fine>();
+                var activeFines = new List<Fine>();
+
+                var varfields = xElement.Elements("fine").ToList();
+                foreach (var varfield in varfields)
+                {                    
+                    //Get information from table z31
+                    xElementField = varfield.Element("z31");
+                    if (xElementField != null)
+                    {
+
+                        //Get a number from the data in Sum field
+                        var sumAsString = GetXmlValue(xElementField, "z31-sum");
+                        if (sumAsString != null)
+                        {
+                            //Format may be "[2009]" or "(30.00)", trim if so
+                            var regExp = new Regex(@"[a-zA-Z\[\]]*(\d+)[a-zA-Z\[\]]*");
+                            var foundValue = regExp.Match(sumAsString).Groups[1].ToString();
+                            if (!string.IsNullOrEmpty(foundValue))
+                                sum = double.Parse(foundValue);
+                        }
+
+                        date = GetFormattedDate(GetXmlValue(xElementField, "z31-date"));
+
+                        status = GetXmlValue(xElementField, "z31-status");
+
+                        if (status == "Not paid by/credited to patron")
+                            status = "Ikke betalt ";
+
+                        description = GetXmlValue(xElementField, "z31-type");
+                        if (description != null)
+                            TypeOfFineDictionary.TryGetValue(description, out descriptionLookupValue);
+
+                        creditDebit = Convert.ToChar(GetXmlValue(xElementField, "z31-credit-debit"));
+                    }
+
+                    //Get information from table z13, givent that there is more than one node in temp
+                    xElementField = varfield.Element("z13");
+                    var docId = "";
+                    var docTitle = "";
+
+                    if (xElementField != null)
+                    {
+                        docId = GetXmlValue(xElementField, "z13-doc-number") ?? docId;
+
+                        docTitle = GetXmlValue(xElementField, "z13-title");
+                    }
+
+                    var fine = new Fine()
+                                   {
+                                       Date = date,
+                                       Status = status,
+                                       CreditDebit = creditDebit,
+                                       Sum = sum,
+                                       Description = descriptionLookupValue ?? description,
+                                       DocumentNumber = docId,
+                                       DocumentTitle = docTitle
+                                   };
+                    fines.Add(fine);
+                    
+                    if (fine.Status != "Cancelled" && fine.Status != "Paid")
+                        activeFines.Add(fine);
+                        
+                }
+                Fines = fines;
+                ActiveFines = activeFines;
+            }
         }
 
         private static string GetXmlValue(XElement node, string tag)
@@ -140,18 +344,44 @@ namespace Solvberget.Domain.DTO
             return formattedName;
         }
 
-        private static string GetFormattedDateOfBirth(string dateOfBirth)
+        private static string GetFormattedDate(string date)
         {
-            if (dateOfBirth.Length > 7)
+            if (date.Length > 7)
             {
-                var year = dateOfBirth.Substring(0,4);
-                var month = dateOfBirth.Substring(4, 2);
-                var day = dateOfBirth.Substring(6, 2);
+                var year = date.Substring(0,4);
+                var month = date.Substring(4, 2);
+                var day = date.Substring(6, 2);
                 return day + "." + month + "." + year;
             }
 
             return string.Empty;
         }
-    }
 
+        protected static readonly Dictionary<string, string> TypeOfFineDictionary = new Dictionary<string, string>
+                                {
+                                    {"0", "Betalt"},
+                                    {"3", "For sent levert"},
+                                    {"6", "Legitimasjonslån"},
+                                    {"8", "Nytt lånekort"},
+                                    {"9", "Kopier"},
+                                    {"17", "Regningsgebyr voksen"},
+                                    {"18", "Ufullstendig innlevering barn"},
+                                    {"19", "Ufullstendig innelvering voksne"},
+                                    {"20", "Regningsgebyr barn"},
+                                    {"21", "Utskrift sort/hvit"},
+                                    {"22", "Utskrift farge"},
+                                    {"23", "Delbetaling"},
+                                    {"24", "Erstatning"},
+                                    {"25", "Diverse"},
+                                    {"40", "Materiell mistet, erstatningskrav er opprettet"},
+                                    {"41", "Materiell mistet, erstatningskrav er opprettet"},
+                                    {"42", "Materiell mistet, erstatningskrav er opprettet"},
+                                    {"80", "1. purring"},
+                                    {"81", "2. purring"},
+                                    {"82", "3. purring"},
+                                    {"83", "4. purring"},
+                                    {"1000", "Betalt"}
+
+                                };
+    }
 }

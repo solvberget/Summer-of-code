@@ -9,17 +9,18 @@ namespace Solvberget.Domain.Implementation
 {
     public class RatingRepository : IRatingRepository
     {
-
+        private readonly BokelskereRepository _bokelskereRepository;
         private readonly IRepository _documentRepository;
 
         public RatingRepository(IRepository documentRepository)
         {
             _documentRepository = documentRepository;
+            _bokelskereRepository = new BokelskereRepository(_documentRepository);
         }
 
         public string GetDocumentRating(string id)
         {
-            var doc = _documentRepository.GetDocument(id, false);
+            var doc = _documentRepository.GetDocument(id, true);
             if (doc == null)
                 return string.Empty;
 
@@ -29,8 +30,24 @@ namespace Solvberget.Domain.Implementation
                 return rating;
             }
 
+            if (Equals(doc.DocType, typeof(Book).Name))
+            {
+                string rating = GetExternalBookElskereRating(doc as Book);
+                return rating;
+            }
+
             return string.Empty;
         }
+
+       
+
+        private string GetExternalBookElskereRating(Book book)
+        {
+           BokElskereBook bokElskereBook= _bokelskereRepository.GetExternalBokelskereBook(book.DocumentNumber);
+            return bokElskereBook.gjennomsnittelig_terningkast;
+        }
+
+
 
         private static string GetExternalFilmImdbRating(Film film)
         {

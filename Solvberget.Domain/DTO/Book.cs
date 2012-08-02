@@ -7,7 +7,6 @@ namespace Solvberget.Domain.DTO
 {
     public class Book : Document
     {
-
         public string Isbn { get; set; }
         public string ClassificationNr { get; set; }
         public Person Author { get; set; }
@@ -19,6 +18,7 @@ namespace Solvberget.Domain.DTO
         public string Edition { get; set; }
         public string NumberOfPages { get; set; }
         public string Content { get; set; }
+        public string TitleAndPartTitle { get; set; }
         public IEnumerable<Person> ReferredPersons { get; set; }
         public IEnumerable<Organization> ReferredOrganizations { get; set; } 
         public IEnumerable<string> ReferencedPlaces { get; set; } 
@@ -30,15 +30,14 @@ namespace Solvberget.Domain.DTO
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
+           
             var xmlDoc = XDocument.Parse(xml);
             if (xmlDoc.Root != null)
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
-                Isbn = GetVarfield(nodes, "020", "a");
                 ClassificationNr = GetVarfield(nodes, "090", "c");
                 StdOrOrgTitle = GetVarfield(nodes, "240", "a");
                 Numbering = GetVarfield(nodes, "245", "n");
-                PartTitle = GetVarfield(nodes, "245", "p");
                 Edition = GetVarfield(nodes, "250", "a");
                 NumberOfPages = GetVarfield(nodes, "300", "a");
                 Content = GetVarfield(nodes, "505", "a");
@@ -60,6 +59,8 @@ namespace Solvberget.Domain.DTO
             {
                 var nodes = xmlDoc.Root.Descendants("oai_marc");
 
+                Isbn = GetVarfield(nodes, "020", "a");
+
                 //Author, check BSMARC field 100 for author
                 var nationality = GetVarfield(nodes, "100", "j");
                 string nationalityLookupValue = null;
@@ -72,12 +73,14 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "Author"
                 };
+               
 
                 //If N/A, check BSMARC field 110 for author
                 if (Author.Name == null)
                 {
-                    Author.Name = GetVarfield(nodes, "110", "a");
 
+                    Author.Name = GetVarfield(nodes, "110", "a");
+                    
                     //Organization (110abq)
                     Organization = GenerateOrganizationsFromXml(nodes, "110").FirstOrDefault();
 
@@ -87,8 +90,25 @@ namespace Solvberget.Domain.DTO
                 if (Author.Name == null)
                     StandarizedTitle = GetVarfield(nodes, "130", "a");
 
+                if (Author.Name != null)
+                    Author.InvertName(Author.Name);
+                MainResponsible = Author;
+
+
+                PartTitle = GetVarfield(nodes, "245", "p");
+
+
+                if (Title != null && PartTitle != null)
+                {
+                    TitleAndPartTitle = Title + " : " + PartTitle;
+
+                    Title = TitleAndPartTitle;
+                }
             }
         }
+
+
+
 
         public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
         {

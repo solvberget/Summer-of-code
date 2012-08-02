@@ -28,26 +28,48 @@ namespace Solvberget.Service
             routes.MapRoute(
                 "GetList", // Route name
                 "List/GetLists/{limit}", // URL with parameters
-                new { controller = "List", action = "GetLists", limit = UrlParameter.Optional} // Parameter defaults
+                new { controller = "List", action = "GetLists", limit = UrlParameter.Optional } // Parameter defaults
             );
 
             routes.MapRoute(
                 "GetUserInformation", // Route name
                 "User/GetUserInformation/{userId}/{verification}", // URL with parameters
-                new { controller = "User", action = "GetUserInformation", limit = UrlParameter.Optional } // Parameter defaults
+                new { controller = "User", action = "GetUserInformation", verification = UrlParameter.Optional } // Parameter defaults
             );
-            
+
             routes.MapRoute(
                 "GetDocumentThumbnailRoute", // Route name
-                "{controller}/{action}/{id}/{size}", // URL with parameters
+                "Document/GetDocumentThumbnailRoute/{id}/{size}", // URL with parameters
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional, size = UrlParameter.Optional } // Parameter defaults
             );
+
+            routes.MapRoute(
+                "CancelReservation", // Route name
+                "Document/CancelReservation/{documentItemNumber}/{documentItemSequence}/{cancellationSequence}", // URL with parameters
+                new { controller = "Document", action = "CancelReservation" } // Parameter defaults
+            );
+
+
+            routes.MapRoute(
+                "RequestReservation", // Route name
+                "Document/RequestReservation/{documentid}/{userId}/{branch}", // URL with parameters
+                new { controller = "Document", action = "RequestReservation" } // Parameter defaults
+            );
+
+
+            routes.MapRoute(
+                "GetBlogWithEntries", // Route name
+                "Blog/GetBlogWithEntries/{blogId}", // URL with parameters
+                new { controller = "Blog", action = "GetBlogWithEntries" } // Parameter defaults
+            );
+
 
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+
 
         }
 

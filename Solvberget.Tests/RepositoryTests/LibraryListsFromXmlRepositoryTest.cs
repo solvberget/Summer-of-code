@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
 
 namespace Solvberget.Service.Tests.RepositoryTests
@@ -11,10 +12,10 @@ namespace Solvberget.Service.Tests.RepositoryTests
     [TestFixture]
     internal class LibraryListsFromXmlRepositoryTest
     {
-        private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\";
+        private const string PathString = @"..\..\..\Solvberget.Service\bin\App_Data\librarylists\static";
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
 
-        private LibraryListXmlRepository _listRepository;
+        private IListRepositoryStatic _listRepository;
 
         [TestFixtureSetUp]
         public void Init()
@@ -35,14 +36,19 @@ namespace Solvberget.Service.Tests.RepositoryTests
         public void TestListNameAndDocumentNumbers()
         {
             var list = _listRepository.GetLists().First();
-            Assert.AreEqual("Sindres anbefalinger", list.Name);
+            Assert.AreEqual("Musikk+Filmbiblioteket anbefaler: Film", list.Name);
             Assert.AreEqual(1, list.Priority);
             Assert.AreEqual(5, list.DocumentNumbers.Count);
-            Assert.AreEqual("000588841", list.DocumentNumbers.ElementAt(0));
-            Assert.AreEqual("000588844", list.DocumentNumbers.ElementAt(1));
-            Assert.AreEqual("000588843", list.DocumentNumbers.ElementAt(2));
-            Assert.AreEqual("000598029", list.DocumentNumbers.ElementAt(3));
-            Assert.AreEqual("000567325", list.DocumentNumbers.ElementAt(4));
+            Assert.AreEqual("000609967", list.DocumentNumbers.ElementAt(0).Key);
+            Assert.AreEqual("000600109", list.DocumentNumbers.ElementAt(1).Key);
+            Assert.AreEqual("000611985", list.DocumentNumbers.ElementAt(2).Key);
+            Assert.AreEqual("000539501", list.DocumentNumbers.ElementAt(3).Key);
+            Assert.AreEqual("000609384", list.DocumentNumbers.ElementAt(4).Key);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(0).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(1).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(2).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(3).Value);
+            Assert.IsFalse(list.DocumentNumbers.ElementAt(4).Value);
         }
 
         [Test]
@@ -50,7 +56,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
             var lists1 = _listRepository.GetLists(2);
             Assert.AreEqual(2, lists1.Count);
-            Assert.AreEqual("Sindres anbefalinger", lists1.ElementAt(0).Name);
+            Assert.AreEqual("Musikk+Filmbiblioteket anbefaler: Film", lists1.ElementAt(0).Name);
             Assert.AreEqual(1, lists1.ElementAt(0).Priority);
             Assert.AreEqual("Ferske lesetips fra Sølvbergets ansatte - Skjønnlitteratur", lists1.ElementAt(1).Name);
             Assert.AreEqual(2, lists1.ElementAt(1).Priority);
@@ -59,21 +65,14 @@ namespace Solvberget.Service.Tests.RepositoryTests
             var lists2 = _listRepository.GetLists(6);
             Assert.AreEqual(5, lists2.Count);
         }
-    
-
 
         [Test]
-        public void TestListContent()
+        public void TestIfListRanked()
         {
-            var list = _listRepository.GetLists().First();
-            var document = list.Documents.ElementAt(0);
-            Assert.AreEqual(5, list.Documents.Count());
-            Assert.AreEqual("Sindres anbefalinger", list.Name);
-            Assert.AreEqual("Ringenes herre : Atter en konge", document.Title);
-            Assert.AreEqual(2010, document.PublishedYear);
-            Assert.AreEqual("Film", document.DocType);
+            var result = _listRepository.GetLists();
+            Assert.IsFalse(result.ElementAt(0).IsRanked);
+            Assert.IsTrue(result.ElementAt(3).IsRanked);
         }
-
 
     }
 }

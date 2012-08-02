@@ -10,7 +10,7 @@
 
     var suggestionMethods = {
         suggestionList: [],
-        url: "http://localhost:7089/Document/SuggestionList/",
+        url: window.Data.serverBaseUrl + "/Document/SuggestionList/",
         populateSuggestionList: function (allData) {
             suggestionMethods.suggestionList = allData;
         },
@@ -64,50 +64,34 @@
     };
 
     var loadingWheel = {
-        opts: {
-            lines: 17, // The number of lines to draw
-            length: 23, // The length of each line
-            width: 5, // The line thickness
-            radius: 40, // The radius of the inner circle
-            rotate: 13, // The rotation offset
-            color: '#FFF', // #rgb or #rrggbb
-            speed: 1.1, // Rounds per second
-            trail: 86, // Afterglow percentage
-            shadow: true, // Whether to render a shadow
-            hwaccel: false, // Whether to use hardware acceleration
-            className: 'spinner', // The CSS class to assign to the spinner
-            zIndex: -1, // The z-index (defaults to 2000000000)
-            top: 'auto', // Top position relative to parent in px
-            left: 'auto' // Left position relative to parent in px
-        },
-        spinner: null,
+
         spin: function () {
 
-            var target = document.getElementById('search-loading-wheel');
-            loadingWheel.spinner = new Spinner(loadingWheel.opts).spin();
-            target.appendChild(loadingWheel.spinner.el);
-            loadingWheel.initialized = true;
+            $("#search-loading-wheel").css("visibility", "visible");
+
 
         },
         stop: function () {
 
-            loadingWheel.spinner.stop();
+            $("#search-loading-wheel").css("display", "none").css("visibility", "none");
+            $("#resultslist").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
+
 
         },
     };
 
 
     var ajaxSearchDocuments = function (query) {
-        return $.getJSON("http://localhost:7089/Document/Search/" + query);
+        return $.getJSON(window.Data.serverBaseUrl + "/Document/Search/" + query);
     };
 
     var ajaxGetThumbnailDocumentImage = function (query, size) {
-        var url = "http://localhost:7089/Document/GetDocumentThumbnailImage/";
+        var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
         return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
     };
 
     var lookupDict = function (query) {
-        return $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query });
+        return $.getJSON(window.Data.serverBaseUrl + "/Document/SpellingDictionaryLookup", { value: query });
     };
 
     var getImageQueue = {
@@ -117,36 +101,37 @@
         numInProgress: 0,
         fireFinished: function () {
 
-            getImageQueue.working = false;
-            getImageQueue.numInProgress = getImageQueue.numInProgress - 1;
-            getImageQueue.startWorking();
+            this.working = false;
+            this.numInProgress = this.numInProgress - 1;
+                this.startWorking();
 
         },
         addToQueue: function (item, index) {
 
-            getImageQueue.queue.push({ item: item, index: index });
-            getImageQueue.startWorking();
+            this.queue.push({ item: item, index: index });
+                this.startWorking();
 
         },
         startWorking: function () {
-            if (!getImageQueue.working && getImageQueue.inSearchPage && getImageQueue.queue[0] !== undefined) {
-                if (getImageQueue.numInProgress == 10)
-                    getImageQueue.working = true;
+            if (!this.working && this.inSearchPage && this.queue[0] !== undefined) {
+                if (this.numInProgress == 5) {
+                    this.working = true;
+                }
 
-                getImageQueue.numInProgress = getImageQueue.numInProgress + 1;
+                this.numInProgress = this.numInProgress + 1;
 
 
-                var itemIndexObj = getImageQueue.queue[0];
-                getImageQueue.queue.shift();
+                var itemIndexObj = this.queue[0];
+                this.queue.shift();
                 if (itemIndexObj != undefined)
                     self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
             }
             else {
-                if (getImageQueue.numInProgress < 1) {
-                    getImageQueue.working = false;
-                    getImageQueue.startWorking();
+                if (this.numInProgress < 1) {
+                    this.working = false;
+                    //if (this.inSearchPage)
+                    //    this.startWorking();
                 }
-
             }
         }
     };
@@ -162,10 +147,10 @@
             this.filters = [];
 
             this.filters.push({ results: null, text: "Alle", predicate: function (item) { return true; } });
-            this.filters.push({ results: null, text: "Bok", predicate: function (item) { return item.DocType == "Book"; } });
-            this.filters.push({ results: null, text: "Film", predicate: function (item) { return item.DocType == "Film"; } });
-            this.filters.push({ results: null, text: "Lydbok", predicate: function (item) { return item.DocType == "AudioBook"; } });
-            this.filters.push({ results: null, text: "CD", predicate: function (item) { return item.DocType == "Cd"; } });
+            this.filters.push({ results: null, text: "Bøker", predicate: function (item) { return item.DocType == "Book"; } });
+            this.filters.push({ results: null, text: "Filmer", predicate: function (item) { return item.DocType == "Film"; } });
+            this.filters.push({ results: null, text: "Lydbøker", predicate: function (item) { return item.DocType == "AudioBook"; } });
+            this.filters.push({ results: null, text: "CDer", predicate: function (item) { return item.DocType == "Cd"; } });
             this.filters.push({ results: null, text: "Språkkurs", predicate: function (item) { return item.DocType == "LanguageCourse"; } });
             this.filters.push({ results: null, text: "Tidsskrift", predicate: function (item) { return item.DocType == "Journal"; } });
             this.filters.push({ results: null, text: "Noter", predicate: function (item) { return item.DocType == "SheetMusic"; } });
@@ -174,11 +159,17 @@
         },
 
         itemInvoked: function (args) {
-            args.detail.itemPromise.done(function itemInvoked(item) {
 
-                var itemObject = args.detail.itemPromise._value.data;
-                nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: itemObject, key: itemObject.DocumentNumber });
-            });
+            var itemIndex = args.detail.itemIndex;
+            var listView = document.body.querySelector(".resultslist").winControl;
+            if (listView) {
+                args.detail.itemPromise.done(function itemInvoked(item) {
+                    var model = item.data;
+                    nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
+
+                });
+
+            }
         },
 
 
@@ -244,7 +235,7 @@
                    loadingWheel.stop();
 
                    for (var x in response) {
-                       if (response[x].ThumbnailUrl === "")
+                       if (!response[x].ThumbnailUrl || response[x].ThumbnailUrl == "")
                            getImageQueue.addToQueue(originalResults.getItem(x), x);
                    }
 
@@ -257,21 +248,28 @@
             $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
             .then($.proxy(function (response) {
 
-                if (response != undefined && response != "") {
+                if (response && response != "") {
                     // Set the new value in the model of this item                   
                     item.data.BackgroundImage = response;
 
                     // Get the live DOM-object of this item
                     var section = document.getElementById("searchResultSection");
-                    if (section != undefined) {
+                    if (section) {
                         var listView = section.querySelector(".resultslist").winControl;
                         var htmlItem = listView.elementFromIndex(index);
                         if (htmlItem != null)
                             WinJS.Binding.processAll(htmlItem, item.data);
-                        getImageQueue.fireFinished();
                     }
                 }
-            }, this));
+                if (getImageQueue.inSearchPage)
+                    getImageQueue.fireFinished();
+
+
+            }, this),
+            function () {
+                if (getImageQueue.inSearchPage)
+                    getImageQueue.fireFinished();
+            })
 
 
         },
@@ -297,14 +295,19 @@
         // as part of the ListView item templates.
         markText: function (source, sourceProperties, dest, destProperties) {
 
-            if (source.DocType != undefined && sourceProperties[0] == "DocType") {
-
+            if (source.DocType != undefined && sourceProperties[0] == "MainResponsible") {
                 var text = source[sourceProperties[0]];
-                var regex = new RegExp(this.lastSearch, "gi");
-                dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
 
-            }
-            else if (sourceProperties[0] != "DocType") {
+                if (text != undefined) {
+                    if (text.Name != undefined) {
+                        var regex = new RegExp(this.lastSearch, "gi");
+                        dest[destProperties[0]] = text.Name.replace(regex, "<mark>$&</mark>");
+                    } else if (text.Name == undefined && text.Role == undefined && text.LivingYears == undefined && text.Nationality == undefined && text.ReferredWork == undefined) {
+                        var regex = new RegExp(this.lastSearch, "gi");
+                        dest[destProperties[0]] = text.replace(regex, "<mark>$&</mark>");
+                    }
+                }
+            } else {
                 var text = source[sourceProperties[0]];
                 if (text != undefined) {
                     var regex = new RegExp(this.lastSearch, "gi");
@@ -364,33 +367,6 @@
             this.handleQuery(element, options);
             listView.element.focus();
 
-            document.querySelector(".titlearea").addEventListener("click", this.showHeaderMenu, false);
-            document.getElementById("section0").addEventListener("click", function () { self.goToSection(0); }, false);
-            document.getElementById("section1").addEventListener("click", function () { self.goToSection(1); }, false);
-            document.getElementById("section2").addEventListener("click", function () { self.goToSection(2); }, false);
-            document.getElementById("section3").addEventListener("click", function () { self.goToSection(3); }, false);
-            document.getElementById("homeMenuItem").addEventListener("click", function () { self.goHome(); }, false);
-
-        },
-
-        showHeaderMenu: function () {
-
-            var title = document.querySelector("header .titlearea");
-            var menu = document.getElementById("headerMenu").winControl;
-            menu.anchor = title;
-            menu.placement = "bottom";
-            menu.alignment = "left";
-
-            menu.show();
-
-        },
-        goToSection: function (section) {
-            Data.menuItems[section].navigateTo();
-        },
-        goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-            WinJS.log && WinJS.log("You are home.", "sample", "status");
-
         },
 
         unload: function () {
@@ -398,7 +374,7 @@
             getImageQueue.inSearchPage = false;
             getImageQueue.queue = [];
             getImageQueue.numInProgress = 0;
-
+            getImageQueue.working = false;
 
         },
 

@@ -8,7 +8,7 @@
     <script type="text/javascript" src="login.js"></script>
 </head>
 <body>
-    <div id="loginFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{Login flyout}">
+    <div id="loginFlyout" style="display:none" data-win-control="WinJS.UI.Flyout" aria-label="{Login flyout}">
         <form onsubmit="return false;">
         <p>
             <label for="userId">
@@ -31,9 +31,9 @@
         </p>
         <button id="submitLoginButton">
             Logg inn</button>
-            <br />
-            <span id="outputMsg" class="success"></span>
-            <div id="loginLoading"><progress class="win-ring"></progress></div>
+        <br />
+        <span id="outputMsg" class="success"></span>
+        <div id="loginLoading"><progress class="win-ring"></progress></div>
 
         </form>
     </div>

@@ -29,7 +29,7 @@
                 listViewForListContent.selection.getItems().done(function updateDetails(items) {
                     if (items.length > 0) {
                         that.itemSelectionIndex = items[0].index;
-                        nav.navigate("/pages/itemDetail/itemDetail.html", { itemModel: items[0].data, key: items[0].data.DocumentNumber });
+                        nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: items[0].data });
                     }
                 });
 
@@ -51,6 +51,9 @@
                 }
                 else if (item.data.DocType === "AudioBook") {
                     itemTemplate = document.getElementById("audioBookTemplate");
+                }
+                else if (item.data.DocType === "Cd") {
+                    itemTemplate = document.getElementById("cdTemplate");
                 }
 
                 // Render selected template to DIV container
@@ -119,109 +122,115 @@
                 listViewForLists.selection.set(Math.max(this.itemSelectionIndex, 0));
             }
 
-        },
+           var self = this;
 
-        listOfListsSelectionChanged: function (args) {
-            var listViewForLists = this.element.querySelector(".listOfLists").winControl;
-            if (listViewForLists != null) {
-                var details;
-                var that = this;
-                // By default, the selection is restriced to a single item.
-                listViewForLists.selection.getItems().done(function updateDetails(items) {
-                    if (items.length > 0) {
-                        that.itemSelectionIndex = items[0].index;
-                        if (that.isSingleColumn()) {
+    },
+       
+    goHome: function () {
+        WinJS.Navigation.navigate("/pages/home/home.html");
 
-                            // If snapped or portrait, navigate to a new page containing the
-                            // selected item's details.
-                            nav.navigate("/pages/lists/libraryLists.html", { selectedIndex: that.itemSelectionIndex, item: items[0].data });
+    },
+    listOfListsSelectionChanged: function (args) {
+        var listViewForLists = this.element.querySelector(".listOfLists").winControl;
+        if (listViewForLists != null) {
+            var details;
+            var that = this;
+            // By default, the selection is restriced to a single item.
+            listViewForLists.selection.getItems().done(function updateDetails(items) {
+                if (items.length > 0) {
+                    that.itemSelectionIndex = items[0].index;
+                    if (that.isSingleColumn()) {
 
-                        } else {
+                        // If snapped or portrait, navigate to a new page containing the
+                        // selected item's details.
+                        nav.navigate("/pages/lists/libraryLists.html", { selectedIndex: that.itemSelectionIndex, item: items[0].data });
 
-                            // If fullscreen or filled, update the details column with new data.
-                            details = that.element.querySelector(".article-title");
-                            binding.processAll(details, items[0].data);
-                            //details.scrollTop = 0;
+                    } else {
 
-                            //Update list content
-                            setImmediate(that.updateListViewForContentDataSoruce(items[0].data));
+                        // If fullscreen or filled, update the details column with new data.
+                        details = that.element.querySelector(".article-title");
+                        binding.processAll(details, items[0].data);
+                        //details.scrollTop = 0;
 
-                        }
+                        //Update list content
+                        setImmediate(that.updateListViewForContentDataSoruce(items[0].data));
+
                     }
-                });
-            }
-        },
+                }
+            });
+        }
+    },
 
-        unload: function () {
+    unload: function () {
             //this.items.dispose();
-        },
+    },
 
-        // This function updates the page layout in response to viewState changes.
-        updateLayout: function (element, viewState, lastViewState) {
+    // This function updates the page layout in response to viewState changes.
+    updateLayout: function (element, viewState, lastViewState) {
             /// <param name="element" domElement="true" />
             /// <param name="viewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
             /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
 
-            var listViewForLists = element.querySelector(".listOfLists").winControl;
-            //var firstVisible = listViewForLists.indexOfFirstVisible;
-            this.updateVisibility();
+        var listViewForLists = element.querySelector(".listOfLists").winControl;
+        //var firstVisible = listViewForLists.indexOfFirstVisible;
+        this.updateVisibility();
 
-            //var handler = function (e) {
-            //    listViewForLists.removeEventListener("contentanimating", handler, false);
-            //    e.preventDefault();
-            //}
+        //var handler = function (e) {
+        //    listViewForLists.removeEventListener("contentanimating", handler, false);
+        //    e.preventDefault();
+        //}
 
-            if (this.isSingleColumn()) {
-                listViewForLists.selection.clear();
-                if (this.itemSelectionIndex >= 0) {
+        if (this.isSingleColumn()) {
+            listViewForLists.selection.clear();
+            if (this.itemSelectionIndex >= 0) {
 
-                    element.querySelector(".articlesection").focus();
+                element.querySelector(".articlesection").focus();
 
 
-                } else {
-                    listViewForLists.addEventListener("contentanimating", handler, false);
-                    //listViewForLists.indexOfFirstVisible = firstVisible;
-                    listViewForLists.forceLayout();
-                }
             } else {
-                // If the app has unsnapped into the two-column view, remove any
-                // splitPage instances that got added to the backstack.
-                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/lists/libraryLists.html") {
-                    nav.navigate("/pages/lists/libraryLists.html");
-                    nav.history.backStack.pop();
-                    return;
-                }
-                if (viewState !== lastViewState) {
-                    listViewForLists.addEventListener("contentanimating", handler, false);
-                    //listViewForLists.indexOfFirstVisible = firstVisible;
-                    listViewForLists.forceLayout();
-                }
-
-                //listViewForLists.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
-
+                listViewForLists.addEventListener("contentanimating", handler, false);
+                //listViewForLists.indexOfFirstVisible = firstVisible;
+                listViewForLists.forceLayout();
             }
-        },
-
-        // This function toggles visibility of the two columns based on the current
-        // view state and item selection.
-        updateVisibility: function () {
-            var oldPrimary = this.element.querySelector(".primarycolumn");
-            if (oldPrimary) {
-                utils.removeClass(oldPrimary, "primarycolumn");
+        } else {
+            // If the app has unsnapped into the two-column view, remove any
+            // splitPage instances that got added to the backstack.
+            if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/lists/libraryLists.html") {
+                nav.navigate("/pages/lists/libraryLists.html");
+                nav.history.backStack.pop();
+                return;
             }
-            if (this.isSingleColumn()) {
-                if (this.itemSelectionIndex >= 0) {
-                    utils.addClass(this.element.querySelector(".articlesection"), "primarycolumn");
-                    this.element.querySelector(".articlesection").focus();
-                } else {
-                    utils.addClass(this.element.querySelector(".listOfListsSection"), "primarycolumn");
-                    this.element.querySelector(".listOfLists").focus();
-                }
+            if (viewState !== lastViewState) {
+                listViewForLists.addEventListener("contentanimating", handler, false);
+                //listViewForLists.indexOfFirstVisible = firstVisible;
+                listViewForLists.forceLayout();
+            }
+
+            //listViewForLists.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
+
+        }
+    },
+
+    // This function toggles visibility of the two columns based on the current
+    // view state and item selection.
+    updateVisibility: function () {
+        var oldPrimary = this.element.querySelector(".primarycolumn");
+        if (oldPrimary) {
+            utils.removeClass(oldPrimary, "primarycolumn");
+        }
+        if (this.isSingleColumn()) {
+            if (this.itemSelectionIndex >= 0) {
+                utils.addClass(this.element.querySelector(".articlesection"), "primarycolumn");
+                this.element.querySelector(".articlesection").focus();
             } else {
+                utils.addClass(this.element.querySelector(".listOfListsSection"), "primarycolumn");
                 this.element.querySelector(".listOfLists").focus();
             }
+        } else {
+            this.element.querySelector(".listOfLists").focus();
         }
+    }
 
-    });
+});
 })();
 

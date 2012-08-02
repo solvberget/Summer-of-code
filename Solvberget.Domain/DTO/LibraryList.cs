@@ -10,45 +10,66 @@ namespace Solvberget.Domain.DTO
     {
         public string Name { get; private set; }
         public int Priority { get; private set; }
-        public List<string> DocumentNumbers { get; private set; }
+        public bool IsRanked { get; private set; }
+        public Dictionary<string, bool> DocumentNumbers { get; set; }
+        //public List<string> DocumentNumbers { get; set; }
         public List<Document> Documents { get; set; } 
 
         private LibraryList()
         {
-            DocumentNumbers = new List<string>();
+            DocumentNumbers = new Dictionary<string, bool>();
             Documents = new List<Document>();
         }
 
-        public static LibraryList GetLibraryListFromXml(string xmlFilePath)
+        public static LibraryList GetLibraryListFromXmlFile(string xmlFilePath)
         {
+            var xmlDoc = XElement.Load(xmlFilePath);
             var libraryList = new LibraryList();
-            libraryList.FillProperties(xmlFilePath);
+            libraryList.FillProperties(xmlDoc);
             return libraryList;
         }
 
-        private void FillProperties(string xmlFilePath)
+        public static LibraryList GetLibraryListFromXml(XElement xml)
         {
-            var xmlDoc = XElement.Load(xmlFilePath);
-            if (xmlDoc.Attribute("name") == null)
+            var libraryList = new LibraryList();
+            libraryList.FillProperties(xml);
+            return libraryList;
+        }
+
+        private void FillProperties(XElement xml)
+        {
+            
+            if (xml.Attribute("name") == null)
                 return;
             else
             {
-                Name = xmlDoc.Attribute("name").Value;
+                var name = xml.Attribute("name");
+                if (name != null) Name = name.Value;
 
-                var priAsString = xmlDoc.Attribute("pri").Value;
-                int priAsInt; 
-                if(int.TryParse(priAsString, out priAsInt))
+                var pri = xml.Attribute("pri");
+                if (pri != null)
                 {
-                    //Set a lowest priority if priority range is invalid (below 0 or above 10) 
-                    Priority = priAsInt < 1 || priAsInt > 10 ? 10 : priAsInt;
+                    var priAsString = pri.Value;
+                    int priAsInt; 
+                    if(int.TryParse(priAsString, out priAsInt))
+                    {
+                        //Set a lowest priority if priority range is invalid (below 0 or above 10) 
+                        Priority = priAsInt < 1 || priAsInt > 10 ? 10 : priAsInt;
+                    }
+                    else
+                    {
+                        //Set a lowest priority if null or wrong type
+                        Priority = 10;
+                    }
                 }
-                else
+
+                var isRanked = xml.Attribute("ranked");
+                if (isRanked != null)
                 {
-                    //Set a lowest priority if null or wrong type
-                    Priority = 10;
+                    IsRanked = isRanked.Value.Equals("true") ? true : false;
                 }
-                
-                xmlDoc.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => DocumentNumbers.Add(element.Value));
+
+                xml.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => DocumentNumbers.Add(element.Value, false));
 
             }
         }

@@ -9,16 +9,47 @@
 
 </head>
 <body>
+    <div id="templates">
+        <!-- Fine template -->
+        <div id="fineTemplate">
+            <div class="float-item">
 
-    <!-- Define the header menu -->
-    <div id="HeaderMenu" data-win-control="WinJS.UI.Menu">
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuLists',label:'Lister'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuEvents',label:'Arrangementer'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuSearch',label:'Søk'}"></button>
+                <hr />
+                <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+                <span class="fineDate" data-win-bind="innerText: Date MyPageConverters.dateConverter"></span>
+                <span class="status" data-win-bind="innerText: Status MyPageConverters.statusConverter"></span>
+                <span class="sum" data-win-bind="innerText: Sum MyPageConverters.sumConverter"></span>
+                <br />
+                <span class="description" data-win-bind="innerText: Description"></span>
+            </div>
+        </div>
 
-        <hr data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'separator',type:'separator'}" />
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'headerMenuHomeMenuItem',label:'Hjem'}">
-        </button>
+        <!-- Loan template -->
+        <div id="loanTemplate">
+            <div class="float-item">
+
+                <hr />
+                <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+                <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter"></span>
+                <span class="loanDate" data-win-bind="innerText: LoanDate MyPageConverters.loanDateConverter"></span>
+                <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
+                <button class="renewLoanButton" data-win-bind="">Utvid lånetid</button>
+            </div>
+
+        </div>
+
+        <!-- Reservation template -->
+        <div id="reservationTemplate">
+            <div class="float-item">
+                <hr />
+                <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+                <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
+                <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
+                <span class="holdRequestReady" data-win-bind="innerText: HoldRequestEnd MyPageConverters.holdRequestReadyTextConverter"></span>
+                <span class="holdRequestEnd" data-win-bind="innerText: HoldRequestEnd MyPageConverters.holdRequestEndConverter"></span>
+                <button class="cancelReservationButton" data-win-bind="">Fjern reservasjon</button>
+            </div>
+        </div>
     </div>
 
     <!-- The content that will be loaded and displayed. -->
@@ -26,39 +57,71 @@
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
-                <button class="titlecontainer">
-                    <h1>
-                        <span class="pagetitle">Min side</span>
-                        <span class="chevron win-type-x-large">&#xe099</span>
-                    </h1>
-                </button>
-                <h2 class="pagesubtitle">Sindre Haaland</h2>
+                <h1 class="pagetitle">Min side</h1>
+                <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Name"></h2>
             </div>
         </header>
-
-        <section aria-label="Main content" id="mainContentSection" role="main">
-            <div class="box">
-                <h2><span class="detail-title">Addresse</span></h2>
-                <span id="addressPrefix">Sindre Haaland</span>
-                <span id="addressStreetName">Bakkesvingen 8</span>
-                <span id="addressCity">4019 Stavanger</span>
+        <section
+            aria-label="Main content" id="mainContentSection" role="main">
+            <div id="mypageLoading">
+                <label class="progressRingText">
+                    <progress class="win-ring withText"></progress>
+                </label>
             </div>
+            <article id="mypageData">
+                <div id="myPagePersonalInformation">
+                    <div class="box">
+                        <h2><span class="detail-title">Personalia</span></h2>
+                        <span id="name" data-win-bind="innerText: Name"></span>
+                        <span id="dateOfBirth" data-win-bind="innerText: DateOfBirth"></span>
+                    </div>
 
-            <div class="box">
-                <h2><span class="detail-title">Personalia</span></h2>
-                <span id="Span1">Sindre Haaland</span>
-                <span id="Span2">09.04.1989</span>
-                <span id="Span3">91562303</span>
-            </div>
+                    <div class="box">
+                        <h2><span class="detail-title">Adresse</span></h2>
+                        <span id="addressPrefix" data-win-bind="innerText: PrefixAddress"></span>
+                        <span id="addressStreetName" data-win-bind="innerText: StreetAddress"></span>
+                        <span id="addressCity" data-win-bind="innerText: CityAddress"></span>
+                    </div>
 
-            <div class="box">
-                <h2><span class="detail-title">Addresse</span></h2>
-                <span id="Span4">Sindre Haaland</span>
-                <span id="Span5">Bakkesvingen 8</span>
-                <span id="Span6">4019 Stavanger</span>
-            </div>
 
+
+                    <div class="box">
+                        <h2><span class="detail-title">Kontaktinformasjon</span></h2>
+                        <span id="email" data-win-bind="innerText: Email"></span>
+                        <span id="homePhone" data-win-bind="innerText: HomePhoneNumber"></span>
+                        <span id="cellPhone" data-win-bind="innerText: CellPhoneNumber"></span>
+                    </div>
+                </div>
+
+                <div id="fines" class="box">
+                    <h2><span class="detail-title">Gebyrer</span></h2>
+                    <span id="balance" data-win-bind="innerText: Balance MyPageConverters.balanceConverter"></span>
+                    <div id="fineTemplateHolder">
+                    </div>
+                </div>
+
+
+                <div id="loans" class="box">
+                    <div id="loanHeader">
+                        <h2 class="detail-h2-title"><span class="detail-title">Lån</span></h2>
+                        <button class="renewAllButton">Utvid alle lån</button>
+                    </div>
+                    <div id="loanTemplateHolder">
+                    </div>
+                </div>
+
+                <div id="reservations" class="box">
+                    <h2><span class="detail-title">Reserveringer</span></h2>
+                    <div id="reservationTemplateHolder">
+                    </div>
+                </div>
+
+            </article>
         </section>
     </div>
+
+    <div id="loanRenewalFragmentHolder"></div>
+    <div id="requestReservationFragmentHolder"></div>
+
 </body>
 </html>

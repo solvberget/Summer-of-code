@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Reserver</title>
+    <link rel="stylesheet" href="holdRequest.css" />
+
+
+    <script type="text/javascript" src="holdRequest.js"></script>
+</head>
+<body>
+    <div id="holdRequestFlyout" data-win-control="WinJS.UI.Flyout" aria-label="{holdRequest flyout}">
+        <div id="holdRequestFlyoutLoggedInError">
+            <p class="error">Feil: Du må være logget inn for å reservere bøker!</p>
+            <p>Velg "bytt bruker" fra bunnmenyen eller gå til "Min side"</p>
+        </div>
+        <div id="holdRequestFlyoutLoggedInSuccess">
+            <form onsubmit="return false;">
+
+            <div>Bekreft reservering</div>
+            <div id="holdRequestLoading"><progress class="win-ring"></progress></div>
+            <br />
+            <br />
+
+            <button type="button" class="button" id="submitRequestButtonCancel">Avbryt</button>
+            <button type="button" class="button" id="submitRequestButtonMain">Reserver</button>
+
+            <br />
+            <br />
+            <br />
+            <span id="outputMsgHoldRequest" class="success"></span>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+
