@@ -43,7 +43,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
                 Assert.NotNull(blog.Entries);
                 Assert.IsNotEmpty(blog.Entries);
             }
-            Assert.Pass();
         }
 
     }
