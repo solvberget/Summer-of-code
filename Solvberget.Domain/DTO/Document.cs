@@ -69,7 +69,6 @@ namespace Solvberget.Domain.DTO
                 }
 
                 LocationCode = GetVarfield(nodes, "090", "d");
-                SubTitle = GetVarfield(nodes, "245", "b");
 
                 var involvedPersonsAsString = GetVarfield(nodes, "245", "c");
                 if (involvedPersonsAsString != null)
@@ -113,6 +112,8 @@ namespace Solvberget.Domain.DTO
                     DocumentType = docTypeString.Split(';');
 
                 Title = GetVarfield(nodes, "245", "a");
+                SubTitle = GetVarfield(nodes, "245", "b");
+
                 var publishedYearString = GetVarfield(nodes, "260", "c");
                 if (publishedYearString != null)
                 {

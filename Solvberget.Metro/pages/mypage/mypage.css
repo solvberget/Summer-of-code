@@ -47,7 +47,6 @@
 
 .box {
     margin: 10px;
-    border-color: white;
     border-width: 1px;
     border: solid;
     width: auto;
@@ -61,6 +60,7 @@
     max-width: 350px;
     min-width: 175px;
     min-height: 120px;
+    border-color: #666666;
 }
 
     .box span {
@@ -80,28 +80,21 @@
         font-weight: bold;
     }
 
+
+/* Progress ring*/
+
 #mypageLoading {
-    width: auto;
-    height: auto;
     text-align: center;
     margin-top: 250px;
 }
 
 progress.withText {
     color: inherit; /* Uses the same text color as the page */
-}
-
-progress.withText {
     width: 100px;
     height: 100px;
-    text-align: center;
 }
 
-/* Text style for a label for a default size progress ring */
-.progressRingText {
-    font-size: 20pt;
-    line-height: 25pt;
-}
+/*Progress ring*/
 
 #mypageData {
     display: none;
