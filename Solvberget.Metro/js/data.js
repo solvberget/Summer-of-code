@@ -7,6 +7,7 @@
     var contact = "/images/home/Contact.png";
     var openingHours = "/images/home/OpeningHours.png";
     var tasks = "/images/home/Lists.png";
+    var blogs = "/images/home/Lists.png";
     var activePage = "home";
 
     var serverBaseUrl = "http://localhost:7089";
@@ -17,6 +18,7 @@
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: navigateToEvents },
         { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen inn", backgroundImage: openingHours, navigateTo: navigateToOpeningHours },
         { key: "contact", title: "Kontakt oss", subtitle: "Kontaktinformasjon", backgroundImage: contact, navigateTo: navigateToContact },
+        { key: "blogs", title: "Blogger", subtitle: "Utvalgte blogger", backgroundImage: blogs, navigateTo: navigateToBlogs },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
     ];
 
@@ -54,6 +56,10 @@
     function navigateToSearch() 
     { 
         Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); 
+    }
+    function navigateToBlogs()
+    {
+        activePage = "blogs"; WinJS.Navigation.navigate("/pages/blogs/main/blogs.html");
     }
 
     var loginThenNavigateTo = function (page) {
@@ -93,5 +99,6 @@
         navigateToOpeningHours: navigateToOpeningHours,
         navigateToContact: navigateToContact,
         navigateToSearch: navigateToSearch,
+        navigateToBlogs: navigateToBlogs,
     });
 })();
