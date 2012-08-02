@@ -9,13 +9,17 @@
     /*width: 830px;*/
 }
 
+.win-viewport {
+    height: 825px;
+    width: 550px;
+}
+
 .win-surface {
-    height: 550px;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 .itemspage .homeContent {
-    height: 800px;
+    -ms-grid-row: 2;
 }
 
     .itemspage .homeContent .itemslist .win-item {
@@ -118,11 +122,13 @@
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 
-    .win-surface {
-        height: 550px;
-        margin: auto;
-        margin-top: 10%;
-    }
+.itemspage .homeContent {
+    -ms-grid-row: 2;
+    height: 900px;
+    width: 560px;
+    margin: auto;
+}
+
 
     .itemspage .itemslist .win-horizontal.win-viewport .win-surface {
         margin-left: 100px;
