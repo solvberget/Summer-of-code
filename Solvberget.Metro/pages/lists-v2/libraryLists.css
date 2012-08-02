@@ -18,25 +18,25 @@
 
 
 
-/* LISTVIEW */
-.listpage .listView .win-vertical.win-viewport .win-surface {
-    margin-bottom: 60px;
-}
-
-.listpage .listViewSection {
-    -ms-grid-row: 2;
-    margin-left: 106px;
-}
-
-    .listpage .listViewSection .listView {
-        height: 100%;
-        position: relative;
-        width: 100%;
-        z-index: 0;
+    /* LISTVIEW */
+    .listpage .listView .win-vertical.win-viewport .win-surface {
+        margin-bottom: 40px;
     }
 
+    .listpage .listViewSection {
+        -ms-grid-row: 2;
+        margin-left: 106px;
+    }
+
+        .listpage .listViewSection .listView {
+            height: 100%;
+            position: relative;
+            width: 100%;
+            z-index: 0;
+        }
+
 #listViewId {
-     display: none;
+    display: none;
 }
 
 .listpage .listView .win-vertical.win-viewport .win-container {
@@ -91,23 +91,23 @@
 
 /* LIST CONTENT */
 .listpage .listContentSection {
-  -ms-grid-column: 2;
-  -ms-grid-row-span: 2;
-  -ms-grid-row: 1;
-  margin-left: 70px;
-  overflow-y: auto;
-  padding-right: 120px;
-  position: relative;
-  z-index: 0;
-  margin-top: 37px;
-  margin-bottom: 50px;
+    -ms-grid-column: 2;
+    -ms-grid-row-span: 2;
+    -ms-grid-row: 1;
+    margin-left: 70px;
+    overflow-y: auto;
+    padding-right: 120px;
+    position: relative;
+    z-index: 0;
+    margin-top: 37px;
+    margin-bottom: 50px;
 }
 
-.listpage .listContentSection header {
-  margin-bottom: 6px;
-  margin-top: 6px;
-  display: block;
-}
+    .listpage .listContentSection header {
+        margin-bottom: 6px;
+        margin-top: 6px;
+        display: block;
+    }
 
     .listpage .listContentSection .listTitle {
         float: left;
@@ -136,47 +136,22 @@
     margin-top: 20px;
 }
 
-.listpage .documentHolder .documentSection {
-    margin-left: 75px;
-}
+    .listpage .documentHolder .documentSection {
+        margin-left: 75px;
+    }
 
-.listpage .documentHolder .documentImageContainer {
-    float: left;
-}
+    .listpage .documentHolder .documentImageContainer {
+        float: left;
+    }
 
-.listpage .documentHolder .documentImageContainer .documentImage {
-    max-width: 60px;
-}
+        .listpage .documentHolder .documentImageContainer .documentImage {
+            max-width: 60px;
+        }
 
 .listpage .clearFloat {
     clear: both;
 }
 
-
-
-
-
-/* HEADER MENU */
-.titlecontainer {
-    border: none;
-}
-
-.myPage header[role=banner] .titlearea {
-    margin-top: 45px;
-}
-
-    .myPage header[role=banner] .titlearea .pagetitle {
-        display: inline;
-        padding: 0;
-        padding-right: 5px;
-    }
-
-    .myPage header[role=banner] .titlearea .pagesubtitle {
-        display: inline;
-        margin: 0;
-        padding: 0;
-        padding-left: 10px;
-    }
 
 
 
@@ -223,13 +198,56 @@ progress.header {
 
 
 @media screen and (-ms-view-state: filled) {
-    
 }
 
 @media screen and (-ms-view-state: snapped) {
-    
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
-    
+
+    .listpage {
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 10% 40% 50%;
+        display: -ms-grid;
+        height: 100%;
+        width: 100%;
+    }
+
+        .listpage header[role=banner] .pagetitle {
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            overflow: hidden;
+            width: calc(100% - 128px - 70px);
+        }
+
+        .listpage .listViewSection {
+            -ms-grid-column: 1;
+            -ms-grid-row: 2;
+            margin-left: 50px;
+            width: calc(100% - 85px - 70px);
+        }
+
+        .listpage .listContentSection {
+            -ms-grid-column: 1;
+            -ms-grid-row: 3;
+            margin-left: 70px;
+            padding-right: 120px;
+            position: relative;
+            z-index: 0;
+            margin-top: 35px;
+            margin-bottom: 50px;
+            width: calc(100% - 105px - 70px);
+            height: 100%;
+            -ms-grid-row-span: 1;
+        }
+
+        .listpage .listContentSection #listContent-article {
+            height: 90%;
+            overflow: auto;
+        }
+
+        .listpage .listContentSection #documentsHolder {
+            height: 80%;
+        }
+
 }

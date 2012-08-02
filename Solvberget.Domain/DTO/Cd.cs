@@ -67,9 +67,9 @@ namespace Solvberget.Domain.DTO
                     Nationality = nationalityLookupValue ?? nationality,
                     Role = "ArtistOrComposer"
                 };
-               
-               
 
+
+                MainResponsible = ArtistOrComposer;
 
 
                 //If no ArtistOrCompose, check BSMARC field 110 for MusicGroup
@@ -83,7 +83,7 @@ namespace Solvberget.Domain.DTO
                 if (ArtistOrComposer.Name != null)
                     ArtistOrComposer.InvertName(ArtistOrComposer.Name);
 
-                MainResponsible = ArtistOrComposer;
+
             }
         }
 

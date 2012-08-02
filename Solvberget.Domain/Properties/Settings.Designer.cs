@@ -113,5 +113,14 @@ namespace Solvberget.Domain.Properties {
                 return ((string)(this["ContactWebPage"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://bokelskere.no/api/1.0/boker/info/")]
+        public string BokElskereServerUrl {
+            get {
+                return ((string)(this["BokElskereServerUrl"]));
+            }
+        }
     }
 }
