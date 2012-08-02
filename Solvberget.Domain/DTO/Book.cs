@@ -97,13 +97,21 @@ namespace Solvberget.Domain.DTO
 
                 PartTitle = GetVarfield(nodes, "245", "p");
 
+                TitleAndPartTitle = Title;
 
-                if (Title != null && PartTitle != null)
+                if (Title != null)
                 {
-                    TitleAndPartTitle = Title + " : " + PartTitle;
-
+                    if (PartTitle != null)
+                        TitleAndPartTitle = Title + " : " + PartTitle;
+                    
+                    else if (SubTitle != null)
+                        TitleAndPartTitle = Title + " : " + SubTitle;
+                    
                     Title = TitleAndPartTitle;
                 }
+
+
+
             }
         }
 
