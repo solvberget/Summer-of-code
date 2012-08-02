@@ -1,0 +1,85 @@
+﻿.content {
+    -ms-grid-row: 2;
+    display: block;
+    height: 100%;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+    .content article {
+        /* Define a multi-column, horizontally scrolling article by default. */ 
+        column-gap: 80px;
+        column-width: 480px;
+        height: calc(100% - 50px);
+        margin-left: 120px;
+        margin-top: 5px;
+        width: 480px;
+    }
+
+.titlecontainer {
+    border: none;
+}
+
+#templates {
+    display: none;
+}
+
+#entryLoading {
+    width: auto;
+    height: auto;
+    text-align: center;
+    margin-top: 250px;
+}
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+}
+
+progress.withText {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+/* Text style for a label for a default size progress ring */
+.progressRingText {
+    font-size: 20pt;
+    line-height: 25pt;
+}
+
+#entryContent {
+    display: none;
+    visibility: hidden;
+    display: inline;
+}
+
+.titlearea {
+
+    overflow: visible;
+
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .content article {
+        /* Define a single column, vertically scrolling article in snapped mode. */
+        -ms-grid-columns: 300px 1fr;
+        -ms-grid-row: 2;
+        -ms-grid-rows: auto 60px;
+        display: -ms-grid;
+        height: 100%;
+        margin-left: 5px;
+        width: 300px;
+    }
+
+    #entryContent {
+        margin-left: 5px;
+        -ms-grid-column: inherit;
+    }
+
+    #mainEntryContentSection {
+        margin-left: 10px;
+    }
+
+}

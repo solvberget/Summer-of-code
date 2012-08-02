@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Kontakt oss</title>
+
+    <link href="entries.css" rel="stylesheet" />
+    <script src="entries.js"></script>
+
+</head>
+<body>
+
+    <div class="templates">
+        <section class="entriesSection">
+            <div id="entryTemplate">
+                <h2 class="entryTitle" data-win-bind="innerText: Title"></h2>
+                <span class="entriesite" data-win-bind="innerText: Site"></span>
+                <span class="entryDescription" data-win-bind="innerText: Description"></span>
+            </div>
+        </section>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back"></button>
+            <div class="titlearea win-type-ellipsis">
+                <h1 class="pagetitle">Innlegg</h1>
+                <h2 id="pageSubtitleName" class="pagesubtitle">De siste innleggene fra denne bloggen</h2>
+            </div>
+        </header>
+        <section
+            aria-label="Main content" id="mainEntriesContentSection" role="main">
+            <div id="entriesLoading">
+                <label class="progressRingText">
+                    <progress class="win-ring withText"></progress>
+                </label>
+            </div>
+            <div class="content" id="entriesContent" aria-label="Main content" role="main">
+                <article>
+                    <div>
+                        
+                        <div id="entriesTemplateHolder"></div>
+
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
