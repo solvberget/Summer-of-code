@@ -310,9 +310,10 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         }
         return output;
     }),
-    locationCodeConverter: WinJS.Binding.converter(function (locCode) {
-        if (!locCode) return "";
-        return "Hyllesign: " + locCode;
+    classificationCodeConverter: WinJS.Binding.converter(function (locCode) {
+        if (!locCode)
+            return "Finnes på hylle: ";
+        return "Finnes på hylle: " + locCode;
     }),
     nullToEmptyStringConverter: WinJS.Binding.converter(function (prop) {
         if (!prop) return "";
