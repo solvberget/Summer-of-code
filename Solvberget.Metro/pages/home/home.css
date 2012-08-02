@@ -6,16 +6,14 @@
 .itemspage .homeContent .itemslist {
     
     height: 100%;
-    /*width: 830px;*/
 }
 
-.win-surface {
-    height: 550px;
+.itemspage .homeContent .itemslist .win-surface {
     margin: auto;
     margin-top: 10%;
 }
 .itemspage .homeContent {
-    height: 800px;
+    -ms-grid-row-span: 3;
 }
 
     .itemspage .homeContent .itemslist .win-item {
@@ -25,10 +23,10 @@
         height:250px;
         width: 250px;
         position: relative;
-        margin-left: 7px;
-        margin-right: 7px;
-        margin-bottom: 7px;
-        margin-top: 7px;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-top: 5px;
 
     }
 
@@ -118,11 +116,13 @@
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 
-    .win-surface {
-        height: 550px;
-        margin: auto;
-        margin-top: 10%;
-    }
+.itemspage .homeContent {
+    -ms-grid-row-span: 3;
+    height: 900px;
+    width: 525px;
+    margin: auto;
+}
+
 
     .itemspage .itemslist .win-horizontal.win-viewport .win-surface {
         margin-left: 100px;
