@@ -1,27 +1,34 @@
 ﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
    to .win-surface. */
-.itemspage .itemslist .win-horizontal.win-viewport .win-surface {
-    margin-bottom: 60px;
-    margin-left: 115px;
-    margin-top: 7px;
+.itemspage {
 }
 
-.itemspage .itemslist {
-    height: 123.52%;
-    position: relative;
-    width: 99.92%;
-    z-index: 0;
+.itemspage .homeContent .itemslist {
+    
+    height: 100%;
+    /*width: 830px;*/
 }
 
+.win-surface {
+    height: 550px;
+    margin: auto;
+    margin-top: 10%;
+}
+.itemspage .homeContent {
+    height: 800px;
+}
 
-
-    .itemspage .itemslist .win-item {
+    .itemspage .homeContent .itemslist .win-item {
         -ms-grid-columns: 1fr;
         -ms-grid-rows: 1fr 90px;
         display: -ms-grid;
-        height: 250px;
+        height:250px;
         width: 250px;
         position: relative;
+        margin-left: 7px;
+        margin-right: 7px;
+        margin-bottom: 7px;
+        margin-top: 7px;
 
     }
 
@@ -31,7 +38,6 @@
 
         .itemspage .itemslist .win-item .item-overlay {
             -ms-grid-row: 2;
-            
             height:45px;
             -ms-grid-rows: 1fr 25px;
             display: -ms-grid;
@@ -111,6 +117,13 @@
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
+
+    .win-surface {
+        height: 550px;
+        margin: auto;
+        margin-top: 10%;
+    }
+
     .itemspage .itemslist .win-horizontal.win-viewport .win-surface {
         margin-left: 100px;
     }

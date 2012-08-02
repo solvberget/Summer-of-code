@@ -240,24 +240,43 @@ namespace Solvberget.Domain.Implementation
 
         private List<Document> GetSearchResults(dynamic result)
         {
-            string setEntry = string.Format("0000000001-{0}", result.NumberOfRecords);
-            const Operation function = Operation.PresentSetNumber;
-            var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", setEntry } };
-
-            var url = GetUrl(function, options);
-
-            var doc = RepositoryUtils.GetXmlFromStream(url);
 
             var documents = new List<Document>();
-            if (doc.Root != null)
+            var numberOfRecords = int.Parse(result.NumberOfRecords);
+            for (var i = 1; i <= numberOfRecords; i += 99)
             {
-                var xmlResult = doc.Root.Elements("record").Select(x => x).ToList();
-                //Populate list with light documents of correct type
-                xmlResult.ForEach(x => documents.Add(PopulateDocument(x, true)));
-            }
-            documents.RemoveAll(x => x.Title == null);
-            documents.ForEach(d => d.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(d.DocumentNumber, true));
+                var start = i;
+                var end = numberOfRecords - i > 99 ? i+98 : numberOfRecords;
+                var startString = "" + start;
+                var endString = "" + end;
+                var numOfZerosToAdd = 9 - startString.Length;
 
+
+                for (var j = 0; j < numOfZerosToAdd; j++)
+                    startString = "0" + startString;
+
+                numOfZerosToAdd = 9 - endString.Length;
+                for (var j = 0; j < numOfZerosToAdd; j++)
+                    endString = "0" + endString;
+
+                string setEntry = startString + "-" + endString;
+                const Operation function = Operation.PresentSetNumber;
+                var options = new Dictionary<string, string> {{"set_number", result.SetNumber}, {"set_entry", setEntry}};
+
+                var url = GetUrl(function, options);
+
+                var doc = RepositoryUtils.GetXmlFromStream(url);
+
+                if (doc.Root != null)
+                {
+                    var xmlResult = doc.Root.Elements("record").Select(x => x).ToList();
+                    //Populate list with light documents of correct type
+                    xmlResult.ForEach(x => documents.Add(PopulateDocument(x, true)));
+                }
+                documents.RemoveAll(x => x.Title == null);
+                documents.ForEach(d => d.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(d.DocumentNumber, true));
+                if (i > 1000) break;
+            }
 
             return documents;
         }
