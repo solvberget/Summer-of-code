@@ -23,5 +23,11 @@ namespace Solvberget.Service.Controllers
             return Json(result);
         }
 
+        public JsonResult RequestPinCodeToSms(string userId)
+        {
+            var result = _repository.RequestPinCodeToSms(userId);
+            return Json(result);
+        }
+
     }
 }

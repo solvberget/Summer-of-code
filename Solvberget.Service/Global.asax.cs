@@ -63,6 +63,11 @@ namespace Solvberget.Service
                 new { controller = "Blog", action = "GetBlogWithEntries" } // Parameter defaults
             );
 
+            routes.MapRoute(
+                "RequestPinCodeToSms", // Route name
+                "User/RequestPinCodeToSms/{userId}", // URL with parameters
+                new { controller = "User", action = "RequestPinCodeToSms", verification = UrlParameter.Optional } // Parameter defaults
+            );
 
             routes.MapRoute(
                 "Default", // Route name
@@ -70,6 +75,7 @@ namespace Solvberget.Service
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+            
 
         }
 
