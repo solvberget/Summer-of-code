@@ -1,13 +1,9 @@
 ﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
    to .win-surface. */
-.fragment {
-    
-    margin: auto;
-    height: 100%;
-
+.itemspage {
 }
 
-.itemspage .itemslist {
+.itemspage .homeContent .itemslist {
     
     height: 100%;
     /*width: 830px;*/
@@ -18,11 +14,11 @@
     margin: auto;
     margin-top: 10%;
 }
-.content {
+.itemspage .homeContent {
     height: 800px;
 }
 
-    .itemspage .itemslist .win-item {
+    .itemspage .homeContent .itemslist .win-item {
         -ms-grid-columns: 1fr;
         -ms-grid-rows: 1fr 90px;
         display: -ms-grid;
@@ -121,6 +117,13 @@
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
+
+    .win-surface {
+        height: 550px;
+        margin: auto;
+        margin-top: 10%;
+    }
+
     .itemspage .itemslist .win-horizontal.win-viewport .win-surface {
         margin-left: 100px;
     }
