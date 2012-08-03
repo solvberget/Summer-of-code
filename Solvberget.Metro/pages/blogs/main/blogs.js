@@ -1,0 +1,86 @@
+﻿(function () {
+    "use strict";
+
+    var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
+    var binding = WinJS.Binding;
+    var nav = WinJS.Navigation;
+    var utils = WinJS.Utilities;
+    var ui = WinJS.UI;
+
+    var self;
+    ui.Pages.define("/pages/blogs/main/blogs.html", {
+
+        ready: function (element, options) {
+
+            self = this;
+            getBlogs();
+
+        },
+
+        goHome: function () {
+            WinJS.Navigation.navigate("/pages/home/home.html");
+
+        },
+    });
+
+})();
+
+
+var ajaxGetBlogs = function () {
+    return $.getJSON(window.Data.serverBaseUrl + "/Blog/GetBlogs");
+};
+
+
+
+var getBlogs = function () {
+
+    // Show progress-ring, hide content
+    $("#blogsContent").css("display", "none").css("visibility", "none");
+    $("#blogsLoading").css("display", "block").css("visibility", "visible");
+
+    // Get the user information from server
+    $.when(ajaxGetBlogs())
+        .then($.proxy(function (response) {
+            if (response != undefined && response !== "") {
+                populateBlogs(response);
+            }
+
+
+
+            // Hide progress-ring, show content
+            $("#blogsContent").css("display", "block").css("visibility", "visible");
+            $("#blogsLoading").css("display", "none").css("visibility", "none");
+
+
+        }, this)
+    );
+
+
+    var populateBlogs = function (response) {
+
+        var blogsTemplateDiv = document.getElementById("blogTemplate");
+        var blogsTemplateHolder = document.getElementById("blogsTemplateHolder");
+
+        var blogTemplate = undefined;
+        if (blogsTemplateDiv)
+            blogTemplate = new WinJS.Binding.Template(blogsTemplateDiv);
+
+        var model;
+
+        if (response) {
+
+            for (var i = 0; i < response.length; i++) {
+                model = response[i];
+
+                if (blogTemplate && blogsTemplateHolder && model)
+                    blogTemplate.render(model, blogsTemplateHolder);
+
+            }
+        }
+
+    };
+
+
+
+
+};

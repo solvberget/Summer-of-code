@@ -78,7 +78,7 @@ namespace Solvberget.Domain.Utils
 
             try
             {
-                var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(imageUrl);
+                var webRequest = (System.Net.HttpWebRequest)WebRequest.Create(imageUrl);
                 webRequest.AllowWriteStreamBuffering = true;
                 webRequest.Timeout = 30000;
 
@@ -88,19 +88,15 @@ namespace Solvberget.Domain.Utils
 
                 image = System.Drawing.Image.FromStream(stream);
 
-
                 webResponse.Close();
+
+                image.Save(fileName);
             }
             catch (Exception)
             {
-                return;
+                //Todo add logging here
             }
 
-            try
-            {
-                image.Save(fileName);
-            }
-            catch (Exception) { }
         }
 
         public static string GetJsonFromStreamWithParam(string uri, string param)
@@ -126,10 +122,11 @@ namespace Solvberget.Domain.Utils
 
             } catch(Exception)
             {
+                //Todo add logging here
                 return string.Empty;
             }
-
         }
 
     }
 }
+

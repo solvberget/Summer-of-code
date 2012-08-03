@@ -92,12 +92,13 @@ namespace Solvberget.Domain.DTO
                                     Url = GetXmlValue(rawEntry, "link"),
                                     Content =
                                         HttpUtility.HtmlDecode(GetXmlValueFromNamespace(rawEntry,
-                                                                                        contentNamespace + "encoded")),
+                                                                                        contentNamespace.GetName(
+                                                                                            "encoded"))),
                                     PublishedDate = DateTime.Parse(GetXmlValue(rawEntry, "pubDate")),
                                     Description = GetXmlValue(rawEntry, "description"),
-                                    
+                                    AuthorName = GetXmlValueFromNamespace(rawEntry, author.GetName("creator")),
+
                                 };
-                entry.AuthorName = GetXmlValueFromNamespace(rawEntry, author.GetName("creator"));
                 //thumbnail
                 var imageElements = rawEntry.Elements(media.GetName("content"));
                 var imageContent = imageElements.Attributes("url").FirstOrDefault(x => !string.IsNullOrEmpty(x.Value));

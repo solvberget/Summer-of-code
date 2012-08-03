@@ -92,6 +92,7 @@
                 if (response.Success) {
                     jqueryOutputMsg.addClass("success");
                     jqueryOutputMsg.removeClass("error");
+                    $("#sendHoldRequestButton").attr("disabled", "disabled");
                     setTimeout(function () {
                         dismiss();
                     }, 2000);

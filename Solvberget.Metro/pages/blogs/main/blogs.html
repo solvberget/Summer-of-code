@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Kontakt oss</title>
+
+    <link href="blogs.css" rel="stylesheet" />
+    <script src="blogs.js"></script>
+
+</head>
+<body>
+
+    <div class="templates">
+        <section class="blogsSection">
+            <div id="blogTemplate">
+                <div class="blog">
+                    <h2 class="blogTitle" data-win-bind="innerText: Title"></h2>
+                    <span class="blogSite" data-win-bind="innerText: Site"></span>
+                    <span class="blogDescription" data-win-bind="innerText: Description"></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back"></button>
+            <div class="titlearea win-type-ellipsis">
+                <h1 class="pagetitle">Blogger</h1>
+                <h2 id="pageSubtitleName" class="pagesubtitle">Utvalgte blogger fra Stavanger Bibliotek</h2>
+            </div>
+        </header>
+        <section
+            aria-label="Main content" id="mainBlogsContentSection" role="main">
+            <div id="blogsLoading">
+                <label class="progressRingText">
+                    <progress class="win-ring withText"></progress>
+                </label>
+            </div>
+            <div class="content" id="blogsContent" aria-label="Main content" role="main">
+                <article>
+                    <div>
+
+                        <div id="blogsTemplateHolder"></div>
+
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
