@@ -109,6 +109,9 @@
     <Content Include="fragments\loanRenewal\loanRenewal.css" />
     <Content Include="fragments\loanRenewal\loanRenewal.html" />
     <Content Include="fragments\loanRenewal\loanRenewal.js" />
+    <Content Include="fragments\pinRequest\pinRequest.css" />
+    <Content Include="fragments\pinRequest\pinRequest.html" />
+    <Content Include="fragments\pinRequest\pinRequest.js" />
     <Content Include="fragments\login\login.html" />
     <Content Include="fragments\login\login.css" />
     <Content Include="fragments\holdRequest\holdRequest.js" />

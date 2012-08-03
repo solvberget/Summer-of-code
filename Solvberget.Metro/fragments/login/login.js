@@ -31,6 +31,7 @@
 
             document.getElementById("submitLoginButton").addEventListener("click", submitLogin, false);
             document.getElementById("loginFlyout").addEventListener("afterhide", onDismiss, false);
+            document.getElementById("outputMsg").addEventListener("click", showPinRrequestFlyout, false);
 
             loginFlyout.winControl.show(element, "right");
 
@@ -41,15 +42,16 @@
 
         }
 
-
     }
-
 
     // Show errors if any of the text fields are not filled out when the Login button is clicked
     function submitLogin() {
         var error = false;
+        $("#submitLoginButton").attr("disabled", "disabled");
+
         if (document.getElementById("pin").value.trim() === "") {
             document.getElementById("pinError").innerHTML = "Pinkoden kan ikke være tom";
+            $("#submitLoginButton").removeAttr("disabled");
             document.getElementById("pin").focus();
             error = true;
         } else {
@@ -57,6 +59,7 @@
         }
         if (document.getElementById("userId").value.trim() === "") {
             document.getElementById("userIdError").innerHTML = "Lånekortnummer må fylles inn";
+            $("#submitLoginButton").removeAttr("disabled");
             document.getElementById("userId").focus();
             error = true;
         } else {
@@ -65,24 +68,19 @@
 
         if (!error) {
 
+            $("#outputMsg").html("");
+
             $("#loginLoading").css("display", "block").css("visibility", "visible");
-
-            var outputMsg = document.getElementById("outputMsg");
-            if (this.outputMsg != undefined)
-
-                outputMsg.innerHTML = "";
 
             $.when(ajaxDoLogin($("#userId").val(), $("#pin").val()))
                 .then($.proxy(function (response) {
-
-                    var outputMsg = document.getElementById("outputMsg");
-
 
                     if (response.IsAuthorized) {
 
                         if (outputMsg != undefined) {
                             outputMsg.innerHTML = "Du er nå logget inn!";
                         }
+                        $("#outputMsg").removeClass("normal");
                         $("#outputMsg").removeClass("error");
                         $("#outputMsg").addClass("success");
 
@@ -125,8 +123,10 @@
                         if (outputMsg != undefined)
                             outputMsg.innerHTML = "Feil lånernummer/pin";
 
+                        $("#outputMsg").removeClass("normal");
                         $("#outputMsg").removeClass("success");
                         $("#outputMsg").addClass("error");
+                        $("#submitLoginButton").removeAttr("disabled");
 
                     }
                     $("#loginLoading").css("display", "none").css("visibility", "hidden");
@@ -144,7 +144,12 @@
         document.getElementById("userIdError").innerHTML = "";
         document.getElementById("pin").value = "";
         document.getElementById("pinError").innerHTML = "";
-        document.getElementById("outputMsg").innerHTML = "";
+        document.getElementById("outputMsg").innerHTML = "Glemt pin-kode?";
+
+        $("#outputMsg").removeClass("error");
+        $("#outputMsg").removeClass("success");
+        $("#outputMsg").addClass("normal");
+        $("#submitLoginButton").removeAttr("disabled");
 
         var loginDivHolder = document.getElementById("loginDiv");
         if (loginDivHolder)
@@ -153,6 +158,22 @@
         if (!loggedIn) {
             WinJS.log && WinJS.log("Du er ikke logget inn.", "solvberget", "status");
         }
+    }
+
+    function showPinRrequestFlyout() {
+
+        var flyout = document.getElementById("loginFlyout");
+        if (flyout != undefined)
+            flyout.winControl.hide();
+
+        var pinRequestDiv = document.getElementById("pinRequestFragmentHolder");
+        pinRequestDiv.innerHTML = "";
+
+        WinJS.UI.Fragments.renderCopy("/fragments/pinRequest/pinRequest.html", pinRequestDiv).done(function () {
+            var pinRequestAnchor = document.querySelector("div");
+            PinRequestFlyout.showPinRequestFlyout(pinRequestAnchor, null);
+        });
+
     }
 
     WinJS.Namespace.define("LoginFlyout", {

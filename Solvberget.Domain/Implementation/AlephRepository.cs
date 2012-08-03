@@ -191,7 +191,7 @@ namespace Solvberget.Domain.Implementation
             var request = WebRequest.Create(Properties.Settings.Default.PinToSmsUrl);
             request.Method = "POST";
             var postData = "bor_id=" + userId;
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            var byteArray = Encoding.UTF8.GetBytes(postData);
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = byteArray.Length;
             using (var dataStream = request.GetRequestStream())

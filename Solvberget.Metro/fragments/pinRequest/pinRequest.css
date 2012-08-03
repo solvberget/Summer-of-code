@@ -14,25 +14,17 @@
     color: green;
 }
 
-.normal {
-    color: blue;
-}
-
-    .normal:hover {
-        cursor: pointer;
-    }
-
-#outputMsg {
+#outputMsgPinReq {
     display: block;
     font-weight: bold;
 }
 
-#loginLoading {
+#pinRequestLoading {
     float: left;
     display: none;
     visibility: hidden;
 }
 
-#loginFlyout {
+#pinRequestFlyout {
     margin-top: 40px;
 }
