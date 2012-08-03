@@ -77,6 +77,9 @@
     </Content>
     <Content Include="css\splitview.css" />
     <Content Include="default.html" />
+    <Content Include="fragments\documentFragments\game\game.css" />
+    <Content Include="fragments\documentFragments\game\game.html" />
+    <Content Include="fragments\documentFragments\game\game.js" />
     <Content Include="fragments\documentFragments\document\document.css" />
     <Content Include="fragments\documentFragments\document\document.html" />
     <Content Include="fragments\documentFragments\document\document.js" />
@@ -122,6 +125,7 @@
     <Content Include="images\externalSites\imdb\imdb-24x24.png" />
     <Content Include="images\externalSites\imdb\imdb-32x32.png" />
     <Content Include="images\externalSites\imdb\imdb-48x48.png" />
+    <Content Include="images\home\Blogs.png" />
     <Content Include="images\home\Contact.png" />
     <Content Include="images\home\Events.png" />
     <Content Include="images\home\Home.png" />
@@ -138,6 +142,7 @@
     <Content Include="images\placeholders\Cd.png" />
     <Content Include="images\placeholders\Document.png" />
     <Content Include="images\placeholders\Film.png" />
+    <Content Include="images\placeholders\Game.png" />
     <Content Include="images\placeholders\Journal.png" />
     <Content Include="images\placeholders\LanguageCourse.png" />
     <Content Include="images\placeholders\SheetMusic.png" />
