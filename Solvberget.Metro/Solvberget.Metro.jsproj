@@ -122,6 +122,7 @@
     <Content Include="images\externalSites\imdb\imdb-24x24.png" />
     <Content Include="images\externalSites\imdb\imdb-32x32.png" />
     <Content Include="images\externalSites\imdb\imdb-48x48.png" />
+    <Content Include="images\home\Blogs.png" />
     <Content Include="images\home\Contact.png" />
     <Content Include="images\home\Events.png" />
     <Content Include="images\home\Home.png" />
