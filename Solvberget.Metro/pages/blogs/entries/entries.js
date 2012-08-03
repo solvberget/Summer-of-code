@@ -11,7 +11,9 @@
 
         ready: function (element, options) {
 
-            var blogId = options.Id;
+            var blogId = options.blogId;
+            var blogModel = options.blogModel;
+            WinJS.Binding.processAll(element.querySelector(".fragment"), blogModel);
             getBlogWithEntries(blogId);
 
         },
@@ -68,8 +70,8 @@ var getBlogWithEntries = function (blogId) {
 
         if (response) {
 
-            for (var i = 0; i < response.length; i++) {
-                model = response[i];
+            for (var i = 0; i < response.Entries.length; i++) {
+                model = response.Entries[i];
 
                 if (entryTemplate && entriesTemplateHolder && model)
                     entryTemplate.render(model, entriesTemplateHolder);
@@ -78,7 +80,6 @@ var getBlogWithEntries = function (blogId) {
         }
 
     };
-
 
 
 

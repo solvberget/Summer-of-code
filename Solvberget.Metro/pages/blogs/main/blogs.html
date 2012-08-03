@@ -15,8 +15,10 @@
             <div id="blogTemplate">
                 <div class="blog">
                     <h2 class="blogTitle" data-win-bind="innerText: Title"></h2>
-                    <span class="blogSite" data-win-bind="innerText: Site"></span>
-                    <span class="blogDescription" data-win-bind="innerText: Description"></span>
+                    <div class="blogSite" data-win-bind="innerText: Site; href: Site"></div>
+                    <br />
+                    <div class="blogDescription" data-win-bind="innerText:Description"></div>
+                    <div class="blogCategories" data-win-bind="innerText: Categories BlogConverters.cateogriesConverter"></div>
                 </div>
             </div>
         </section>

@@ -163,7 +163,6 @@
     <Content Include="bin\App_Data\ordlister\ord_bm.txt" />
     <Content Include="bin\App_Data\ordlister\stopwords.txt" />
     <Content Include="bin\Contrib.Regex.dll" />
-    <Content Include="bin\Contrib.Regex.xml" />
     <Content Include="bin\Debug\Contrib.Regex.dll" />
     <Content Include="bin\Debug\Contrib.Regex.xml" />
     <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
@@ -259,14 +258,7 @@
     <Content Include="bin\Debug\Solvberget.Domain.dll.config" />
     <Content Include="bin\App_Data\ordlister_index\segments.gen" />
     <Content Include="bin\App_Data\ordlister_index\segments_3" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.fdt" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.fdx" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.fnm" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.frq" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.nrm" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.prx" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.tii" />
-    <Content Include="bin\App_Data\ordlister_index\_2j80.tis" />
+    <None Include="Properties\PublishProfiles\Metro.pubxml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">

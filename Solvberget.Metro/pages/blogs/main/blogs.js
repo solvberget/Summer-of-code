@@ -15,6 +15,7 @@
             self = this;
             getBlogs();
 
+
         },
 
         goHome: function () {
@@ -45,13 +46,9 @@ var getBlogs = function () {
                 populateBlogs(response);
             }
 
-
-
             // Hide progress-ring, show content
             $("#blogsContent").css("display", "block").css("visibility", "visible");
             $("#blogsLoading").css("display", "none").css("visibility", "none");
-
-
         }, this)
     );
 
@@ -69,18 +66,58 @@ var getBlogs = function () {
 
         if (response) {
 
+
             for (var i = 0; i < response.length; i++) {
                 model = response[i];
-
-                if (blogTemplate && blogsTemplateHolder && model)
-                    blogTemplate.render(model, blogsTemplateHolder);
-
+                var context = { model: model, index: i };
+                if (blogTemplate && blogsTemplateHolder && model) {
+                    blogTemplate.render(model, blogsTemplateHolder).done($.proxy(function () {                        
+                        $(".blog:last").click($.proxy(function () {
+                            var blogId = this.index;
+                            var blogModel = this.model;
+                            WinJS.Navigation.navigate("pages/blogs/entries/entries.html", { blogId: blogId, blogModel : blogModel});
+                        }, this));
+                    }, context));
+                }
             }
         }
 
     };
 
-
+    WinJS.Namespace.define("BlogConverters",  {
+        cateogriesConverter :  WinJS.Binding.converter(function (categories) {
+            var outputStr = "Kategorier: ";
+            for (x in categories ) {
+                outputStr += categories[x] + ", ";
+            }
+            outputStr = outputStr.substr(0, outputStr.length - 2);
+            return outputStr;
+        }),
+        entriesConverter :  WinJS.Binding.converter(function (entries)  {
+            return "Antall innlegg: " + entries.length;
+        }),
+        subtitleConverter: WinJS.Binding.converter(function (title) {
+            return "De siste innleggene fra " + title;
+        }),
+        publishedDate: WinJS.Binding.converter(function (published) {
+            return "Publisert: " + published;
+        }),
+        updatedDate: WinJS.Binding.converter(function (updated) {
+            return "Sist oppdatert: " + updated;
+        }),
+        descriptionWrapper: WinJS.Binding.converter(function (description) {
+            return description;
+        }),  
+        authorConverter: WinJS.Binding.converter(function (author) {
+            return "Av: " + author;
+        }),
+        thumbnailConverter: WinJS.Binding.converter(function (thumbnailUrl) {
+            return thumbnailUrl ? thumbnailUrl : "#";
+        }),
+        undefinedHider: WinJS.Binding.converter(function (attr) {
+            return attr ? "block" : "none";
+        }),
+    });
 
 
 };

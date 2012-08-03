@@ -9,7 +9,7 @@
 }
 
     .content article {
-        /* Define a multi-column, horizontally scrolling article by default. */ 
+        /* Define a multi-column, horizontally scrolling article by default. */
         column-gap: 80px;
         column-width: 480px;
         height: calc(100% - 50px);
@@ -22,7 +22,7 @@
     border: none;
 }
 
-#templates {
+.templates {
     display: none;
 }
 
@@ -51,7 +51,24 @@ progress.withText {
 
 .blog {
     margin-top: 20px;
+    padding: 20px;
+    border-width: 1px;
+    border-color: white;
+    border-style: dotted;
+    border-radius: 5px 5px 5px 5px;
+    width: 400px;
+    margin-right: 50px;
+    background-color: #330033;
 }
+
+    .blog:active {
+        background: #5B4350;
+        background-repeat: repeat;
+    }
+
+    .blog:hover {
+        cursor: pointer;
+    }
 
 #blogsContent {
     display: none;
@@ -59,10 +76,24 @@ progress.withText {
     display: inline;
 }
 
+#blogsTemplateHolder {
+    margin-top: 120px;
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+    -ms-flex-align: stretch;
+}
+
+
+.blogSite:link, .blogSite:visited {
+    color: white;
+}
+
+.blogCategories, .blogDescription, .blogSite {
+    margin-top: 10px;
+}
+
 .titlearea {
-
     overflow: visible;
-
 }
 
 @media screen and (-ms-view-state: snapped) {
@@ -74,6 +105,40 @@ progress.withText {
         display: -ms-grid;
         height: 100%;
         margin-left: 5px;
+        max-width: 300px;
+    }
+
+    #blogsContent {
+        margin-left: 5px;
+        -ms-grid-column: inherit;
+    }
+
+    .blog {
+        max-width: 250px;
+        margin-right: 0px;
+        overflow:hidden;
+    }
+
+    #mainBlogsContentSection {
+        margin-left: 10px;
+    }
+
+    #blogsTemplateHolder {
+        display: -ms-flexbox;
+        -ms-flex-direction: column;
+        -ms-flex-align: stretch;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .content article {
+        /* Define a single column, vertically scrolling article in snapped mode. */
+        -ms-grid-columns: 300px 1fr;
+        -ms-grid-row: 2;
+        -ms-grid-rows: auto 60px;
+        display: -ms-grid;
+        height: 100%;
         width: 300px;
     }
 
@@ -82,8 +147,17 @@ progress.withText {
         -ms-grid-column: inherit;
     }
 
-    #mainBlogsContentSection {
-        margin-left: 10px;
+    .blog {
+        width: 400px;
+        margin-top: 50px;
+        margin-right: 0px;
     }
 
+
+    #blogsTemplateHolder {
+        display: -ms-flexbox;
+        -ms-flex-direction: column;
+        -ms-flex-align: stretch;
+        margin-top: 10px;
+    }
 }
