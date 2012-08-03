@@ -7,7 +7,7 @@
     var contact = "/images/home/Contact.png";
     var openingHours = "/images/home/OpeningHours.png";
     var tasks = "/images/home/Lists.png";
-    var blogs = "/images/home/Lists.png";
+    var blogs = "/images/home/Blogs.png";
     var activePage = "home";
 
     var serverBaseUrl = "http://localhost:7089";

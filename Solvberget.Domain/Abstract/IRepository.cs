@@ -10,10 +10,8 @@ namespace Solvberget.Domain.Abstract
         UserInfo GetUserInformation(string userId, string verification);
         RequestReply RequestRenewalOfLoan(string documentNumber, string itemSecq, string barcode, string libraryUserId);
         RequestReply RequestReservation(string documentNumber, string userId, string branch);
-
-        RequestReply CancelReservation(string documentItemNumber, string documentItemSequence,
-                                           string cancellationSequence);
-
+        RequestReply CancelReservation(string documentItemNumber, string documentItemSequence, string cancellationSequence);
+        RequestReply RequestPinCodeToSms(string userId);
     }  
     
 }

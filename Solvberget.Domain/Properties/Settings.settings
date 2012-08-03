@@ -35,5 +35,8 @@
     <Setting Name="BokElskereServerUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://bokelskere.no/api/1.0/boker/info/</Value>
     </Setting>
+    <Setting Name="PinToSmsUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://aleph.stavanger.kommune.no/wtw/glemtpassord.php</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

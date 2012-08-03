@@ -24,6 +24,8 @@ namespace Solvberget.Domain.Implementation
         private readonly RulesRepository _rulesRepository;
         private readonly ImageRepository _imageRepository;
 
+        private const string UserPinSucessReply = "Passordet er sendt";
+
         public AlephRepository(string pathToImageCache, string pathToRulesFolder = null)
         {
             _storageHelper = new StorageHelper(pathToImageCache);
@@ -163,7 +165,7 @@ namespace Solvberget.Domain.Implementation
             return "Feil: Klarte ikke å hente ut ønsket informasjon fra returnert xml-ark.";
         }
 
-        public RequestReply RequestRenewalOfLoan (string documentNumber, string itemSecq, string barcode, string libraryUserId)
+        public RequestReply RequestRenewalOfLoan(string documentNumber, string itemSecq, string barcode, string libraryUserId)
         {
             var renewalRequest = GetLoanRenewalRequest(documentNumber, itemSecq, barcode, libraryUserId);
 
@@ -172,17 +174,59 @@ namespace Solvberget.Domain.Implementation
             {
                 if (renewalRequest.Equals("ok"))
                 {
-                    return new RequestReply {Success = true, Reply = "Lånetiden er utvidet"};
+                    return new RequestReply { Success = true, Reply = "Lånetiden er utvidet" };
                 }
-                return new RequestReply {Success = false, Reply = renewalRequest};
+                return new RequestReply { Success = false, Reply = renewalRequest };
             }
             return new RequestReply { Success = false, Reply = "Feil: Dokumentet er for tiden ikke tilgjengelig for utviding av lånetid" };
+        }
+
+        public RequestReply RequestPinCodeToSms(string userId)
+        {
+
+            if (String.IsNullOrEmpty(userId)) 
+                return new RequestReply { Success = false, Reply = "Vennligst oppgi et lånenummer." };
+
+            //REQUEST
+            var request = WebRequest.Create(Properties.Settings.Default.PinToSmsUrl);
+            request.Method = "POST";
+            var postData = "bor_id=" + userId;
+            var byteArray = Encoding.UTF8.GetBytes(postData);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+            using (var dataStream = request.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+            }
+
+            //RESPONSE
+            using (var response = request.GetResponse())
+            {
+                using (var responseStream = response.GetResponseStream())
+                {
+                    if (responseStream != null)
+                        using (var reader = new StreamReader(responseStream))
+                        {
+                            var responseFromServer = reader.ReadToEnd();
+                        
+                            if (responseFromServer.Contains(UserPinSucessReply))
+                                return new RequestReply { Success = true, Reply = "Din pin-kode vil bli tilsendt via SMS." };
+
+                            return new RequestReply { Success = false, Reply = "Forespørselen kunne ikke utføres. Vennligst sjekk lånenummeret." };
+
+                        }
+                }
+
+                return new RequestReply { Success = false, Reply = "Forespørselen kunne ikke utføres." };
+
+            }
+
         }
 
         private string GetLoanRenewalRequest(string documentNr, string itemSequence, string itemBarcode, string libraryUserId)
         {
             const Operation function = Operation.RenewLoan;
-            var options = new Dictionary<string, string> { { "doc_number", documentNr }, { "item_sequence", itemSequence }, { "bor_id", libraryUserId }, {"item_barcode", itemBarcode} };
+            var options = new Dictionary<string, string> { { "doc_number", documentNr }, { "item_sequence", itemSequence }, { "bor_id", libraryUserId }, { "item_barcode", itemBarcode } };
             var url = GetUrl(function, options);
             var docItemsXml = RepositoryUtils.GetXmlFromStream(url);
 
@@ -195,7 +239,6 @@ namespace Solvberget.Domain.Implementation
 
             return "Feil: Klarte ikke å hente ut ønsket informasjon fra returnert xml-ark.";
         }
-
 
         private void GenerateDocumentLocationAndAvailabilityInfo(Document document)
         {
@@ -246,7 +289,7 @@ namespace Solvberget.Domain.Implementation
             for (var i = 1; i <= numberOfRecords; i += 99)
             {
                 var start = i;
-                var end = numberOfRecords - i > 99 ? i+98 : numberOfRecords;
+                var end = numberOfRecords - i > 99 ? i + 98 : numberOfRecords;
                 var startString = "" + start;
                 var endString = "" + end;
                 var numOfZerosToAdd = 9 - startString.Length;
@@ -261,7 +304,7 @@ namespace Solvberget.Domain.Implementation
 
                 string setEntry = startString + "-" + endString;
                 const Operation function = Operation.PresentSetNumber;
-                var options = new Dictionary<string, string> {{"set_number", result.SetNumber}, {"set_entry", setEntry}};
+                var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", setEntry } };
 
                 var url = GetUrl(function, options);
 
@@ -372,6 +415,8 @@ namespace Solvberget.Domain.Implementation
                 return typeof(LanguageCourse).FullName;
             else if (dtc.Contains("j"))
                 return typeof(Journal).FullName;
+            else if (dtc.Any(x => x.StartsWith("m")))
+                return typeof (Game).FullName;
 
             return typeof(Document).FullName;
 

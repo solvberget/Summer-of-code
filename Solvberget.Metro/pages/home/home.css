@@ -77,7 +77,7 @@
         padding: 7px;
     }
 
-    .itemspage .itemslist .win-item {
+    .itemspage .homeContent .itemslist .win-item {
         -ms-grid-columns: 60px 1fr;
         -ms-grid-rows: 1fr;
         display: -ms-grid;
