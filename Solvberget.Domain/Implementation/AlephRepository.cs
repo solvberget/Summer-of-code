@@ -372,6 +372,8 @@ namespace Solvberget.Domain.Implementation
                 return typeof(LanguageCourse).FullName;
             else if (dtc.Contains("j"))
                 return typeof(Journal).FullName;
+            else if (dtc.Any(x => x.StartsWith("m")))
+                return typeof (Game).FullName;
 
             return typeof(Document).FullName;
 

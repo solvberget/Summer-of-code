@@ -111,6 +111,8 @@ namespace Solvberget.Domain.DTO
                 if (docTypeString != null)
                     DocumentType = docTypeString.Split(';');
 
+
+
                 Title = GetVarfield(nodes, "245", "a");
                 SubTitle = GetVarfield(nodes, "245", "b");
 
@@ -326,7 +328,8 @@ namespace Solvberget.Domain.DTO
                                     {typeof(Film).Name, "Film"},
                                     {typeof(Journal).Name, "Tidsskrift"},
                                     {typeof(LanguageCourse).Name, "Språkkurs"},
-                                    {typeof(SheetMusic).Name, "Note"}
+                                    {typeof(SheetMusic).Name, "Note"},
+                                    {typeof(Game).Name, "Spill"}
                                 };
 
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Dokument</title>
+    <link rel="stylesheet" href="game.css" />
+    <script type="text/javascript" src="game.js"></script>
+
+</head>
+<body>
+    
+    <section id="fragmentContent">
+
+        <article id="docLocAndAvail">
+            <h2>Tilgjengelighet</h2>
+            <div id="availabilityHolder"></div>
+        </article>
+        <article id="details">
+
+            <h2 id="H1">Fakta om dokumentet</h2>
+
+            <div class="fact" data-win-bind="style.display: Language DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'Language'}"></div>
+                <div class="fact-value" data-win-bind="innerText:Language"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: Languages DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'Languages'}"></div>
+                <div class="fact-value" data-win-bind="innerText:Languages DocumentDetailConverters.listConverter"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'SubTitle'}"></div>
+                <div class="fact-value" data-win-bind="innerText:SubTitle"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: ResponsiblePersons DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'ResponsiblePersons'}"></div>
+                <div class="fact-value" data-win-bind="innerText:ResponsiblePersons DocumentDetailConverters.listConverter"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: Publisher DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-bind="innerText:PublisherType"></div>
+                <div class="fact-value" data-win-bind="innerText:Publisher"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: PublishedYear DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'PublishedYear'}"></div>
+                <div class="fact-value" data-win-bind="innerText:PublishedYear"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: SeriesTitle DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'SeriesTitle'}"></div>
+                <div class="fact-value" data-win-bind="innerText:SeriesTitle"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: SeriesNumber DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'SeriesNumber'}"></div>
+                <div class="fact-value" data-win-bind="innerText:SeriesNumber"></div>
+            </div>
+            <div class="fact" data-win-bind="style.display: AvailabilityInfo DocumentDetailConverters.hideNullOrEmptyConverter">
+                <div class="fact-name" data-win-res="{textContent: 'AvailabilityInfo'}"></div>
+                <div class="fact-value" data-win-bind="innerText:AvailabilityInfo"></div>
+            </div>
+
+        </article>
+
+    </section>
+</body>
+</html>
+
