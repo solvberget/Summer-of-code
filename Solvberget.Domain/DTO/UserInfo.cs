@@ -48,39 +48,39 @@ namespace Solvberget.Domain.DTO
             var xElement = xdoc.Element("bor-info");
             if (xElement == null) return;
             var xElementRecord = xElement.Element("z303");
-            if (xElementRecord == null) return;
-
             var xElementField = xElementRecord;
-
-            Id = GetXmlValue(xElementRecord, "z303-id");
-            Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
-
-            DateOfBirth = GetFormattedDate(GetXmlValue(xElementRecord, "z303-birth-date"));
-
-            HomeLibrary = GetXmlValue(xElementRecord, "z303-home-library");
-
+            if (xElementRecord != null)
+            {
+              
+                Id = GetXmlValue(xElementRecord, "z303-id");
+                Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
+                DateOfBirth = GetFormattedDate(GetXmlValue(xElementRecord, "z303-birth-date"));
+                HomeLibrary = GetXmlValue(xElementRecord, "z303-home-library");
+            }
             xElementRecord = xElement.Element("z304");
-            if (xElementRecord == null) return;
 
-            PrefixAddress = GetXmlValue(xElementRecord, "z304-address-0");
-            StreetAddress = GetXmlValue(xElementRecord, "z304-address-1");
-            CityAddress = GetXmlValue(xElementRecord, "z304-address-3");
-            Zip = GetXmlValue(xElementRecord, "z304-zip");
-            Email = GetXmlValue(xElementRecord, "z304-email-address");
-            HomePhoneNumber = GetXmlValue(xElementRecord, "z304-telephone");
-            CellPhoneNumber = GetXmlValue(xElementRecord, "z304-telephone-3");
-
+            if (xElementRecord != null)
+            {
+                PrefixAddress = GetXmlValue(xElementRecord, "z304-address-0");
+                StreetAddress = GetXmlValue(xElementRecord, "z304-address-1");
+                CityAddress = GetXmlValue(xElementRecord, "z304-address-3");
+                Zip = GetXmlValue(xElementRecord, "z304-zip");
+                Email = GetXmlValue(xElementRecord, "z304-email-address");
+                HomePhoneNumber = GetXmlValue(xElementRecord, "z304-telephone");
+                CellPhoneNumber = GetXmlValue(xElementRecord, "z304-telephone-3");
+            }
             xElementRecord = xElement.Element("z305");
-            if (xElementRecord == null) return;
-
-            CashLimit = GetXmlValue(xElementRecord, "z305-cash-limit");
-
+            if (xElementRecord != null)
+            {
+                CashLimit = GetXmlValue(xElementRecord, "z305-cash-limit");
+            }
             xElementRecord = xElement.Element("balance");
-            if (xElementRecord == null) return;
+            if (xElementRecord != null)
+            {
 
-            Balance = xElementRecord.Value;
+                Balance = xElementRecord.Value;
+            }
 
-            
             // Put all the reservations of the borrower into a list of Reservation objects
             xElementRecord = xElement.Element("item-h");
             if (xElementRecord != null)
@@ -116,31 +116,29 @@ namespace Solvberget.Domain.DTO
                         itemDocNumber = GetXmlValue(xElementField, "z37-doc-number");
                         holdRequestEnd = GetFormattedDate(GetXmlValue(xElementField, "z37-end-hold-date"));
                     }
-                    
+
                     //Get information from table z13
                     xElementField = varfield.Element("z13");
-                    if (xElementField != null)
-                    {
-                        var docNumber = GetXmlValue(xElementField, "z13-doc-number");
+                    if (xElementField == null) continue;
+                    var docNumber = GetXmlValue(xElementField, "z13-doc-number");
 
-                        var docTitle = GetXmlValue(xElementField, "z13-title");
+                    var docTitle = GetXmlValue(xElementField, "z13-title");
 
 
-                        var reservation = new Reservation()
-                        {
-                            DocumentNumber = docNumber,
-                            DocumentTitle = docTitle,
-                            PickupLocation = pickupLocation,
-                            HoldRequestFrom = holdRequestFrom,
-                            HoldRequestTo = holdRequestTo,
-                            CancellationSequence = cancellationSequence,
-                            ItemSeq = itemSeq,
-                            ItemDocumentNumber = itemDocNumber,
-                            HoldRequestEnd = holdRequestEnd,
-                        };
+                    var reservation = new Reservation()
+                                          {
+                                              DocumentNumber = docNumber,
+                                              DocumentTitle = docTitle,
+                                              PickupLocation = pickupLocation,
+                                              HoldRequestFrom = holdRequestFrom,
+                                              HoldRequestTo = holdRequestTo,
+                                              CancellationSequence = cancellationSequence,
+                                              ItemSeq = itemSeq,
+                                              ItemDocumentNumber = itemDocNumber,
+                                              HoldRequestEnd = holdRequestEnd,
+                                          };
 
-                        reservations.Add(reservation);
-                    }
+                    reservations.Add(reservation);
                 }
 
 
@@ -179,7 +177,7 @@ namespace Solvberget.Domain.DTO
                     if (xElementField != null)
                     {
 
-                        
+
 
                         subLibrary = GetXmlValue(xElementField, "z36-sub-library");
                         if (subLibrary == "Hovedbibl.")
@@ -193,7 +191,7 @@ namespace Solvberget.Domain.DTO
 
                         dueDate = GetFormattedDate(GetXmlValue(xElementField, "z36-due-date"));
                     }
-                    
+
                     //Get information from table z30
                     xElementField = varfield.Element("z30");
                     if (xElementField != null)
@@ -216,23 +214,23 @@ namespace Solvberget.Domain.DTO
 
                         docTitle = GetXmlValue(xElementField, "z13-title");
                     }
-                        var loan = new Loan()
-                                       {
-                                           DocumentNumber = docNumber,
-                                           AdminisrtativeDocumentNumber = adminDocNumber,
-                                           ItemSequence = itemSequence,
-                                           Barcode = barcode,
-                                           DocumentTitle = docTitle,
-                                           SubLibrary = subLibrary,
-                                           OriginalDueDate = orgDueDate,
-                                           ItemStatus = itemStatus,
-                                           LoanDate = loanDate,
-                                           LoanHour = loanHour,
-                                           Material = null,
-                                           DueDate = dueDate
-                                       };
+                    var loan = new Loan()
+                                   {
+                                       DocumentNumber = docNumber,
+                                       AdminisrtativeDocumentNumber = adminDocNumber,
+                                       ItemSequence = itemSequence,
+                                       Barcode = barcode,
+                                       DocumentTitle = docTitle,
+                                       SubLibrary = subLibrary,
+                                       OriginalDueDate = orgDueDate,
+                                       ItemStatus = itemStatus,
+                                       LoanDate = loanDate,
+                                       LoanHour = loanHour,
+                                       Material = null,
+                                       DueDate = dueDate
+                                   };
 
-                        loans.Add(loan);
+                    loans.Add(loan);
 
                 }
                 loans = loans.OrderBy(x => x.DueDate).ToList();
@@ -255,7 +253,7 @@ namespace Solvberget.Domain.DTO
 
                 var varfields = xElement.Elements("fine").ToList();
                 foreach (var varfield in varfields)
-                {                    
+                {
                     //Get information from table z31
                     xElementField = varfield.Element("z31");
                     if (xElementField != null)
@@ -309,10 +307,10 @@ namespace Solvberget.Domain.DTO
                                        DocumentTitle = docTitle
                                    };
                     fines.Add(fine);
-                    
+
                     if (fine.Status != "Cancelled" && fine.Status != "Paid")
                         activeFines.Add(fine);
-                        
+
                 }
                 Fines = fines;
                 ActiveFines = activeFines;
@@ -348,7 +346,7 @@ namespace Solvberget.Domain.DTO
         {
             if (date.Length > 7)
             {
-                var year = date.Substring(0,4);
+                var year = date.Substring(0, 4);
                 var month = date.Substring(4, 2);
                 var day = date.Substring(6, 2);
                 return day + "." + month + "." + year;

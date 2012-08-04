@@ -68,7 +68,7 @@ namespace Solvberget.Domain.DTO
 
                 entries.Add(entry);
             }
-
+            entries = entries.OrderByDescending(x => x.PublishedDate).ToList();
             return entries;
 
         }
