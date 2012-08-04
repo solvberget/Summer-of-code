@@ -31,10 +31,9 @@ namespace Solvberget.Service.Infrastructure
             ninjectKernel.Bind<IRepository>().To<AlephRepository>()
                 .WithConstructorArgument("pathToImageCache", EnvironmentHelper.GetImageCachePath())
                 .WithConstructorArgument("pathToRulesFolder", EnvironmentHelper.GetRulesPath());
-
             ninjectKernel.Bind<IBlogRepository>().To<BlogRepository>()
                 .WithConstructorArgument("folderPath", EnvironmentHelper.GetBlogFeedPath());
-
+            ninjectKernel.Bind<INewsRepository>().To<NewsRepository>();
             ninjectKernel.Bind<IEventRepository>().To<LinticketRepository>();
             ninjectKernel.Bind<IReviewRepository>().To<ReviewRepository>();
             ninjectKernel.Bind<IRatingRepository>().To<RatingRepository>();

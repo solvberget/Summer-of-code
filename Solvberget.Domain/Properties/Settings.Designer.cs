@@ -131,5 +131,14 @@ namespace Solvberget.Domain.Properties {
                 return ((string)(this["PinToSmsUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://stavanger-kulturhus.no/index.php/rss/feed/test")]
+        public string NewsRssUrl {
+            get {
+                return ((string)(this["NewsRssUrl"]));
+            }
+        }
     }
 }

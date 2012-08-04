@@ -75,7 +75,11 @@ namespace Solvberget.Service
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
-            
+            routes.MapRoute(
+                "GetNewsItems", // Route name
+                "News/GetNewsItems/{limit}", // URL with parameters
+                new { controller = "News", action = "GetNewsItems", limit = UrlParameter.Optional } // Parameter defaults
+            );
 
         }
 
