@@ -1,26 +1,45 @@
-﻿.content {
-    -ms-grid-row: 2;
-    display: block;
-    height: 100%;
-    overflow-x: auto;
-    position: relative;
-    width: 100%;
-    z-index: 0;
+﻿.entry {
+    margin-top: 20px;
+    padding: 20px;
+    border-width: 1px;
+    border-color: white;
+    border-style: dotted;
+    border-radius: 5px 5px 5px 5px;
+    width: 400px;
+    margin-right: 50px;
+    background-color: #330033;
 }
 
-    .content article {
-        /* Define a multi-column, horizontally scrolling article by default. */ 
-        column-gap: 80px;
-        column-width: 480px;
-        height: calc(100% - 50px);
-        margin-left: 120px;
-        margin-top: 5px;
-        width: 480px;
-    }
-
-.titlecontainer {
-    border: none;
+.entryThumbnail {
+    max-width: 72px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
+
+.document-image-container {
+    float: right;
+    margin-top: 10px;
+    max-width: 72px;
+    margin-right: 20px;
+    height: auto;
+}
+
+
+#entriesTemplateHolder {
+    margin-top: 120px;
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+    -ms-flex-align: stretch;
+}
+
+.entriesSection {
+    margin-top: 20px;
+    margin-right: 50px;
+    padding: 20px;
+}
+
+/** STATIC */
 
 #templates {
     display: none;
@@ -56,9 +75,31 @@ progress.withText {
 }
 
 .titlearea {
-
     overflow: visible;
+}
 
+.content {
+    -ms-grid-row: 2;
+    display: block;
+    height: 100%;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+    .content article {
+        /* Define a multi-column, horizontally scrolling article by default. */
+        column-gap: 80px;
+        column-width: 480px;
+        height: calc(100% - 50px);
+        margin-left: 120px;
+        margin-top: 5px;
+        width: 480px;
+    }
+
+.titlecontainer {
+    border: none;
 }
 
 @media screen and (-ms-view-state: snapped) {
@@ -82,4 +123,26 @@ progress.withText {
         margin-left: 10px;
     }
 
+    #entriesTemplateHolder {
+        margin-top: 10px;
+        -ms-flex-direction: column;
+    }
+
+    .entry {
+        margin-top: 50px;
+                width: 200px;
+
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .entry {
+        margin-top: 50px;
+    }
+
+
+    #entriesTemplateHolder {
+        margin-top: 10px;
+        -ms-flex-direction: column;
+    }
 }
