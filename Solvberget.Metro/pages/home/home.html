@@ -13,6 +13,7 @@
     <script src="/pages/home/home.js"></script>
 </head>
 <body>
+
     <!-- This template is used to display each item in the ListView declared below. -->
     <div class="templates">
         <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
@@ -26,16 +27,12 @@
 
     <!-- The content that will be loaded and displayed. -->
 
-    
+    <div class="itemspage">
+        
+        <div class="itemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
 
-    <div class="itemspage fragment">
-<!--        <div id="homeHeader">
-            <h1 id="homeTitle">Sølvberget</h1>
-        </div>-->
-        <div class="homeContent">
-            <div class="itemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
-        </div>
         <div id="loginDiv"></div>
+
     </div>
 </body>
 </html>
