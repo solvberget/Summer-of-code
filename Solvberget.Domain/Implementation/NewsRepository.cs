@@ -25,7 +25,7 @@ namespace Solvberget.Domain.Implementation
                                                                  {
                                                                      Title = item.Title.Text,
                                                                      PublishedDateAsDateTime = item.PublishDate,
-                                                                     LinkAsUri = item.Links.First().Uri,
+                                                                     Link = item.Links.First().Uri,
                                                                      DescriptionUnescaped = item.Summary.Text
                                                                  }));
                 return newsItems;
