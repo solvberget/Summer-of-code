@@ -132,6 +132,7 @@
     <Content Include="images\login\Logout.png" />
     <Content Include="images\login\User.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\placeholders\3D.png" />
     <Content Include="images\placeholders\AudioBook.png" />
     <Content Include="images\placeholders\Blu-ray.png" />
     <Content Include="images\placeholders\Book.png" />

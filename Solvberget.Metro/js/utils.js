@@ -95,7 +95,7 @@
         }
 
     }
-    function logout() {
+    function logout(goingHome) {
 
         window.localStorage.setItem("BorrowerId", "");
         window.localStorage.setItem("LibraryUserId", "");
@@ -107,6 +107,10 @@
         roamingSettings.values["LibraryUserId"] = "";
 
         updateAppBarButton();
+
+        if (goingHome) {
+            Data.navigateToHome();
+        }
     }
 
 

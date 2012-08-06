@@ -51,6 +51,7 @@
             //Add functionality to the appbar buttons
             document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
             document.getElementById("cmdPin").addEventListener("click", pinToStart);
+
             document.getElementById("toNewsButton").addEventListener("click", Data.navigateToNews);
             document.getElementById("toListsButton").addEventListener("click", Data.navigateToLists);
             document.getElementById("toMyPageButton").addEventListener("click", Data.navigateToMypage);
@@ -84,7 +85,7 @@ function doLogin() {
 
     // Get active user
     var user = LoginFlyout.getLoggedInBorrowerId();
-    LoginFlyout.logout();
+    LoginFlyout.logout(true);
 
     // If user was not logging out, user was logging in, so show login
     if (!user || user == "") {
