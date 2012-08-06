@@ -30,6 +30,8 @@ namespace Solvberget.Domain.DTO
         public string ThumbnailUrl { get; set; }
         public string Description { get; set; }
 
+        // TODO: Regex match content to strip html/\n for empty description!
+
         public static List<BlogEntry> FillEntriesFromAtom(string xml)
         {
             var entries = new List<BlogEntry>();

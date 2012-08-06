@@ -77,9 +77,6 @@
     </Content>
     <Content Include="css\splitview.css" />
     <Content Include="default.html" />
-    <Content Include="fragments\documentFragments\game\game.css" />
-    <Content Include="fragments\documentFragments\game\game.html" />
-    <Content Include="fragments\documentFragments\game\game.js" />
     <Content Include="fragments\documentFragments\document\document.css" />
     <Content Include="fragments\documentFragments\document\document.html" />
     <Content Include="fragments\documentFragments\document\document.js" />
@@ -112,9 +109,6 @@
     <Content Include="fragments\loanRenewal\loanRenewal.css" />
     <Content Include="fragments\loanRenewal\loanRenewal.html" />
     <Content Include="fragments\loanRenewal\loanRenewal.js" />
-    <Content Include="fragments\pinRequest\pinRequest.css" />
-    <Content Include="fragments\pinRequest\pinRequest.html" />
-    <Content Include="fragments\pinRequest\pinRequest.js" />
     <Content Include="fragments\login\login.html" />
     <Content Include="fragments\login\login.css" />
     <Content Include="fragments\holdRequest\holdRequest.js" />
@@ -142,7 +136,6 @@
     <Content Include="images\placeholders\Cd.png" />
     <Content Include="images\placeholders\Document.png" />
     <Content Include="images\placeholders\Film.png" />
-    <Content Include="images\placeholders\Game.png" />
     <Content Include="images\placeholders\Journal.png" />
     <Content Include="images\placeholders\LanguageCourse.png" />
     <Content Include="images\placeholders\SheetMusic.png" />
