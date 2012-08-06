@@ -34,6 +34,12 @@
     height: auto;
 }
 
+#mainEntriesContentSection {
+    margin-left: 10px;
+    overflow: auto;
+}
+
+
 
 #entriesTemplateHolder {
     margin-top: 120px;
@@ -128,6 +134,7 @@ progress.withText {
 
     #mainEntriesContentSection {
         margin-left: 10px;
+        overflow: auto;
     }
 
     #entriesTemplateHolder {
@@ -152,4 +159,3 @@ progress.withText {
         -ms-flex-direction: column;
     }
 }
-

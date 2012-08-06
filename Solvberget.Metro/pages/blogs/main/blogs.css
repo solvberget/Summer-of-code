@@ -1,11 +1,4 @@
-﻿
-body {
-    overflow: auto;
-}
-
-
-
-.content {
+﻿.content {
     -ms-grid-row: 2;
     display: block;
     height: 100%;
@@ -28,6 +21,11 @@ body {
 .titlecontainer {
     border: none;
 }
+
+    #mainBlogsContentSection {
+        overflow:auto;
+    }
+
 
 .templates {
     display: none;
@@ -128,6 +126,7 @@ progress.withText {
 
     #mainBlogsContentSection {
         margin-left: 10px;
+        overflow:auto;
     }
 
     #blogsTemplateHolder {

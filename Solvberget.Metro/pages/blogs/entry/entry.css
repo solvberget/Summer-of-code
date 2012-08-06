@@ -1,11 +1,12 @@
-﻿body {
-    overflow: hidden;
-}
+﻿
 
 .separator {
     margin: 10px;
 }
 
+#mainEntryContentSection {
+    margin-left: 10px;
+}
 
 .content {
     -ms-grid-row: 2;
@@ -18,7 +19,7 @@
 }
 
     .content article {
-        /* Define a multi-column, horizontally scrolling article by default. */ 
+        /* Define a multi-column, horizontally scrolling article by default. */
         column-gap: 80px;
         column-width: 480px;
         height: calc(100% - 50px);
@@ -60,13 +61,10 @@ progress.withText {
 
 #entryContent {
     margin-top: 30px;
-
 }
 
 .titlearea {
-
     overflow: visible;
-
 }
 
 @media screen and (-ms-view-state: snapped) {
@@ -88,6 +86,6 @@ progress.withText {
 
     #mainEntryContentSection {
         margin-left: 10px;
+        overflow: auto;
     }
-
 }
