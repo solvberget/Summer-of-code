@@ -26,6 +26,93 @@
 
 (function () {
 
+    var queueDownload = WinJS.Class.define(function (queue, options, completed, context, priority) {
+        var maxNumInProgress = 5;
+        if (!document.numInProgress) document.numInProgress = 0;
+        if (!document.queue) document.queue = { q: {}, r: [] };
+
+        if (!document.queue.q[queue]) document.queue.q[queue] = [];
+        if (!document.queue.r) document.queue.r = [];
+
+        if (options) {
+
+            var callback = function (req, callBacks) {
+                if (callBacks.completed) callBacks.completed(req, callBacks.context);
+                document.numInProgress--;
+                if (document.queue.q[queue].length > 0 && document.numInProgress < maxNumInProgress) {
+                    for (var i = document.numInProgress; i <= maxNumInProgress && i < document.queue.q[queue].length; i++) {
+                        var next = document.queue.q[queue].shift();
+                        (function processNext(next) {
+                            document.queue.r.push(WinJS.xhr(next.options));
+                            document.queue.r[document.queue.r.length - 1].done(function (request, req) { callback(request, next) });
+                        })(next);
+                        document.numInProgress++;
+                    }
+                }
+                if (document.queue.r) {
+                    for (var i = 0; i < document.queue.r.length; i++) {
+                        r = document.queue.r[i];
+                        if (r._value)
+                            document.queue.r.splice(i, 1);
+                    }
+                }
+            }
+
+            var saveValues = { options: options, completed: completed, context: context }
+            if (priority)
+                document.queue.q[queue].unshift(saveValues);
+            else
+                document.queue.q[queue].push(saveValues);
+            if (document.queue.q[queue].length == 1 && document.numInProgress < maxNumInProgress) {
+                document.numInProgress++;
+                var next = document.queue.q[queue].shift();
+                document.queue.r = WinJS.xhr(next.options).done(function (request) { callback(request, next) });
+            }
+        }
+    });
+
+    var cancelQueue = WinJS.Class.define(function (queue) {
+        if (document.queue) {
+            if (document.queue.r) {
+                for (var i = 0; i < document.queue.r.length; i++) {
+                    document.queue.r[i].cancel();
+                }
+            }
+            if (document.queue.q)
+                document.queue.q[queue] = [];
+        }
+        if (document.numInProgress)
+            document.numInProgress = 0;
+
+    });
+
+    var prioritizeUrls = WinJS.Class.define(function (queue, urls) {
+        if (!urls) return;
+        if (!document.queue) return;
+        var length = document.queue.q[queue].length;
+        
+        if (length <= document.numInProgress) return;
+
+        for(var i = length -1; i > document.numInProgress; i--) {
+            var q = document.queue.q[queue][i];
+            if(urls.indexOf(q.options.url) != -1) {
+                document.queue.q[queue].splice(i, 1);
+                document.queue.q[queue].unshift(q);
+            }
+        }
+
+    });
+
+    WinJS.Namespace.define("Solvberget.Queue", {
+        QueueDownload: queueDownload,
+        CancelQueue: cancelQueue,
+        PrioritizeUrls: prioritizeUrls
+    });
+
+})();
+
+(function () {
+
     var styleNullToHiddenConverter = WinJS.Binding.converter(function (val) {
         var returnvalue;
         if (val != null) {
@@ -114,7 +201,7 @@
         getLoggedInBorrowerId: getLoggedInBorrowerId,
         getLoggedInLibraryUserId: getLoggedInLibraryUserId,
         updateAppBarButton: updateAppBarButton,
-        logout : logout,
+        logout: logout,
     });
 
 })();

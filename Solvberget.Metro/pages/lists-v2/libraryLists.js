@@ -42,6 +42,8 @@
 
         unload: function () {
             continueToGetDocuments = false;
+            Solvberget.Queue.CancelQueue('libraryList');
+            //Solvberget.Queue.QueueDownload('libraryList', null, null, null);
             console.log("Unload triggered");
         },
 
@@ -59,7 +61,7 @@
 
                         that.renderListContent(items[0].data);
                         listContent.scrollTop = 0;
-
+                        Solvberget.Queue.PrioritizeUrls('libraryList', items[0].data.urls);
                         if (that.doneLoadingDocuments(items[0].data.DocumentNumbers)) {
                             $(".headerProgress").hide();
                         }
@@ -73,7 +75,7 @@
             if (documentNumbers !== undefined) {
                 for (var docnumber in documentNumbers) {
                     if (!documentNumbers[docnumber]) {
-                        return false;
+                        //return false;
                     }
                 }
             }
@@ -82,6 +84,7 @@
 
         getLists: function (requestStr, listView) {
             var that = this;
+
             WinJS.xhr({ url: requestStr }).then(
                 function (request) {
                     if (!continueToGetDocuments) return;
@@ -194,65 +197,68 @@
 
         processRemainingDocuments: function () {
             var that = this;
-            return new WinJS.Promise(function (complete, error, progress) {
-                for (var i = 0; i < lists.length; i++) {
-                    var listItem = lists[i];
-                    var documentNumbers = listItem.DocumentNumbers;
-                    for (var documentNumber in documentNumbers) {
-                        if (!documentNumbers[documentNumber]) {
-                            if (!listItem.Documents) {
-                                listItem.Documents = new Array();
-                            }
-                            var reqStr = docRequestUrl + documentNumber;
-                            var jsonContext = new Object();
-                            jsonContext.listItem = listItem;
-                            jsonContext.docNo = documentNumber;
-                            $.getJSON(reqStr).then($.proxy(function (data) {
-                                this.listItem.Documents.push(data);
-                                this.listItem.DocumentNumbers[this.docNo] = true;
-                                that.processThumbnailOnDoc(this.listItem);
-                                that.updateListViewSelectionIfDocIsVisible(data.DocumentNumber);
-                                complete();
-                            }, jsonContext));
-                        } else {
-                            that.processThumbnailOnDoc(listItem);
+
+            var completed = function (request, context) {
+                var obj = JSON.parse(request.responseText);
+                context.listItem.Documents.push(obj);
+                context.listItem.DocumentNumbers[context.docNo] = true;
+                that.processThumbnailOnDoc(context.listItem);
+                that.updateListViewSelectionIfDocIsVisible(obj.DocumentNumber);
+            }
+
+            for (var i = 0; i < lists.length; i++) {
+                var listItem = lists[i];
+                if (!listItem.urls) listItem.urls = [];
+                var documentNumbers = listItem.DocumentNumbers;
+
+                for (var documentNumber in documentNumbers) {
+                    if (!documentNumbers[documentNumber]) {
+                        if (!listItem.Documents) {
+                            listItem.Documents = new Array();
                         }
+                        var reqStr = docRequestUrl + documentNumber;
+                        var jsonContext = { listItem: listItem, docNo: documentNumber };
+                        listItem.urls.push(reqStr);
+                        Solvberget.Queue.QueueDownload('libraryList', { url: reqStr }, completed, jsonContext);
+                    } else {
+                        that.processThumbnailOnDoc(listItem);
                     }
                 }
-            });
+            }
         },
 
         processThumbnailOnDoc: function (doc) {
             var that = this;
-            return new WinJS.Promise(function (complete, error, progress) {
-                if (doc !== undefined) {
-                    var documents = doc.Documents;
-                    if (documents !== undefined) {
-                        for (var j = 0; j < documents.length; j++) {
-                            var checkDoc = documents[j];
-                            if (checkDoc.ThumbnailUrl === undefined || checkDoc.ThumbnailUrl == "") {
-                                if (checkDoc.TriedFetchingThumbnail === undefined) {
-                                    checkDoc.ThumbnailUrl = "/images/placeholders/" + checkDoc.DocType + ".png";
-                                    checkDoc.TriedFetchingThumbnail = true;
-                                    var url = thumbRequestUrl;
-                                    $.getJSON(url + checkDoc.DocumentNumber).then($.proxy(function (data) {
-                                        if (data !== "") this.ThumbnailUrl = data;
-                                        checkDoc.element = undefined;
-                                        that.populateDocElement(checkDoc);
-                                    }, checkDoc)).then(function () {
-                                        complete();
-                                    });
-                                }
-                            }
-                            else {
+            var completed = function (request, context) {
+                var obj = JSON.parse(request.responseText);
+                if (obj !== "") context.ThumbnailUrl = obj;
+                context.element = undefined;
+                that.populateDocElement(context);
+            }
+
+            if (doc !== undefined) {
+                if (!doc.urls) doc.urls = [];
+                var documents = doc.Documents;
+                if (documents !== undefined) {
+                    for (var j = 0; j < documents.length; j++) {
+                        var checkDoc = documents[j];
+                        if (checkDoc.ThumbnailUrl === undefined || checkDoc.ThumbnailUrl == "") {
+                            if (checkDoc.TriedFetchingThumbnail === undefined) {
+                                checkDoc.ThumbnailUrl = "/images/placeholders/" + checkDoc.DocType + ".png";
                                 checkDoc.TriedFetchingThumbnail = true;
+                                var url = thumbRequestUrl + checkDoc.DocumentNumber;
+                                doc.urls.push(url);
+                                Solvberget.Queue.QueueDownload('libraryList', { url: url }, completed, checkDoc, true);
+
                             }
-                            that.populateDocElement(checkDoc);
                         }
+                        else {
+                            checkDoc.TriedFetchingThumbnail = true;
+                        }
+                        that.populateDocElement(checkDoc);
                     }
                 }
-
-            });
+            }
         },
 
 
