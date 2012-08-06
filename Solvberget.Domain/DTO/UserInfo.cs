@@ -319,8 +319,8 @@ namespace Solvberget.Domain.DTO
                 Fines = fines;
                 ActiveFines = activeFines;
 
-                Notifications = GetNotification(this);
             }
+            Notifications = GetNotification(this);
 
 
         }
@@ -365,69 +365,82 @@ namespace Solvberget.Domain.DTO
 
         private IEnumerable<Notification> GetNotification(UserInfo user)
         {
-            var notifications = new List<Notification>(); 
+            var notifications = new List<Notification>();
 
-            foreach (var loan in user.Loans)
+            if (user.Loans != null)
             {
-                var day = Convert.ToInt32(loan.DueDate.Substring(0, 2));
-                var month = Convert.ToInt32(loan.DueDate.Substring(3, 2));
-                var year = Convert.ToInt32(loan.DueDate.Substring(6, 4));
 
-                var dueDate = new DateTime(year, month, day);
-                var today = DateTime.Now;
 
-                TimeSpan span = dueDate.Subtract(today);
-                var timeLeft = span.Days;
 
-                if (timeLeft > 0 && timeLeft < 4)
+                foreach (var loan in user.Loans)
                 {
-                    notifications.Add(new Notification
-                                          {
-                                             Type = "Loan",
-                                             Title = loan.DocumentTitle +  " forfaller snart",
-                                             DocumentTitle = loan.DocumentTitle,
-                                             Content = "Lånet forfaller om mindre enn " + timeLeft + " dager. Lever eller forny " +
-                                                         "lånet for å unngå å få gebyr."
-                                         });
-                }
-                else if (timeLeft == 0)
-                {
-                    notifications.Add(new Notification
-                                        {
-                                            Type = "Loan",
-                                            Title = loan.DocumentTitle + " forfaller snart",
-                                            DocumentTitle = loan.DocumentTitle,
-                                            Content = "Lånet forfaller om mindre ett døgn. Lever eller forny " +
-                                                        "lånet for å unngå å få gebyr."
-                                        });
-                }
-                else if (timeLeft < 0)
-                {
-                    notifications.Add(new Notification
-                                        {
-                                            Type = "Fine",
-                                            Title = loan.DocumentTitle + " skulle vært levert",
-                                            DocumentTitle = loan.DocumentTitle,
-                                            Content = "Lånet har forfalt. Ved å fornye eller levere tilbake innen forfallsdato unngår du gebyr."
-                                        });
+                    var day = Convert.ToInt32(loan.DueDate.Substring(0, 2));
+                    var month = Convert.ToInt32(loan.DueDate.Substring(3, 2));
+                    var year = Convert.ToInt32(loan.DueDate.Substring(6, 4));
 
-                }
-            }
+                    var dueDate = new DateTime(year, month, day);
+                    var today = DateTime.Now;
 
-            foreach (var reservation in user.Reservations)
-            {
-                if (reservation.HoldRequestEnd != "")
-                {
-                    notifications.Add(new Notification
+                    TimeSpan span = dueDate.Subtract(today);
+                    var timeLeft = span.Days;
+
+                    if (timeLeft > 0 && timeLeft < 4)
                     {
-                        Type = "Reservation",
-                        Title = reservation.DocumentTitle +  " er klar til henting, ",
-                        DocumentTitle = reservation.DocumentTitle,
-                        Content = "Den kan hentes på " + reservation.PickupLocation
-                    });                    
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Loan",
+                                                  Title = loan.DocumentTitle + " forfaller snart",
+                                                  DocumentTitle = loan.DocumentTitle,
+                                                  Content =
+                                                      "Lånet forfaller om mindre enn " + timeLeft +
+                                                      " dager. Lever eller forny " +
+                                                      "lånet for å unngå å få gebyr."
+                                              });
+                    }
+                    else if (timeLeft == 0)
+                    {
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Loan",
+                                                  Title = loan.DocumentTitle + " forfaller snart",
+                                                  DocumentTitle = loan.DocumentTitle,
+                                                  Content = "Lånet forfaller om mindre ett døgn. Lever eller forny " +
+                                                            "lånet for å unngå å få gebyr."
+                                              });
+                    }
+                    else if (timeLeft < 0)
+                    {
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Fine",
+                                                  Title = loan.DocumentTitle + " skulle vært levert",
+                                                  DocumentTitle = loan.DocumentTitle,
+                                                  Content =
+                                                      "Lånet har forfalt. Ved å fornye eller levere tilbake innen forfallsdato unngår du gebyr."
+                                              });
+
+                    }
                 }
             }
 
+            if (user.Reservations != null)
+            {
+
+
+                foreach (var reservation in user.Reservations)
+                {
+                    if (reservation.HoldRequestEnd != "")
+                    {
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Reservation",
+                                                  Title = reservation.DocumentTitle + " er klar til henting, ",
+                                                  DocumentTitle = reservation.DocumentTitle,
+                                                  Content = "Den kan hentes på " + reservation.PickupLocation
+                                              });
+                    }
+                }
+            }
 
 
 
