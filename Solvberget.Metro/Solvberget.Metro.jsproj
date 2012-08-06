@@ -136,6 +136,7 @@
     <Content Include="images\placeholders\Cd.png" />
     <Content Include="images\placeholders\Document.png" />
     <Content Include="images\placeholders\Film.png" />
+    <Content Include="images\placeholders\Game.png" />
     <Content Include="images\placeholders\Journal.png" />
     <Content Include="images\placeholders\LanguageCourse.png" />
     <Content Include="images\placeholders\SheetMusic.png" />
