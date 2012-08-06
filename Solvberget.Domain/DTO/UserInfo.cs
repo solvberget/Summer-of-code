@@ -28,6 +28,7 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<Fine> ActiveFines { get; set; }
         public IEnumerable<Loan> Loans { get; set; }
         public IEnumerable<Reservation> Reservations { get; set; }
+        public IEnumerable<Notification> Notifications { get; set; }
 
 
         public void FillProperties(string xml)
@@ -93,6 +94,7 @@ namespace Solvberget.Domain.DTO
                 var itemSeq = "";
                 var itemDocNumber = "";
                 var holdRequestEnd = "";
+                var reservationStatus = "";
 
                 var reservations = new List<Reservation>();
 
@@ -109,6 +111,7 @@ namespace Solvberget.Domain.DTO
                         if (pickupLocation == "Hovedbibl.")
                             pickupLocation = "Hovedbiblioteket";
 
+                        reservationStatus = GetXmlValue(xElementField, "z37-status");
                         holdRequestFrom = GetFormattedDate(GetXmlValue(xElementField, "z37-request-date"));
                         holdRequestTo = GetFormattedDate(GetXmlValue(xElementField, "z37-end-request-date"));
                         cancellationSequence = GetXmlValue(xElementField, "z37-sequence");
@@ -125,18 +128,19 @@ namespace Solvberget.Domain.DTO
                     var docTitle = GetXmlValue(xElementField, "z13-title");
 
 
-                    var reservation = new Reservation()
-                                          {
-                                              DocumentNumber = docNumber,
-                                              DocumentTitle = docTitle,
-                                              PickupLocation = pickupLocation,
-                                              HoldRequestFrom = holdRequestFrom,
-                                              HoldRequestTo = holdRequestTo,
-                                              CancellationSequence = cancellationSequence,
-                                              ItemSeq = itemSeq,
-                                              ItemDocumentNumber = itemDocNumber,
-                                              HoldRequestEnd = holdRequestEnd,
-                                          };
+                        var reservation = new Reservation()
+                        {
+                            Status = reservationStatus,
+                            DocumentNumber = docNumber,
+                            DocumentTitle = docTitle,
+                            PickupLocation = pickupLocation,
+                            HoldRequestFrom = holdRequestFrom,
+                            HoldRequestTo = holdRequestTo,
+                            CancellationSequence = cancellationSequence,
+                            ItemSeq = itemSeq,
+                            ItemDocumentNumber = itemDocNumber,
+                            HoldRequestEnd = holdRequestEnd,
+                        };
 
                     reservations.Add(reservation);
                 }
@@ -314,7 +318,11 @@ namespace Solvberget.Domain.DTO
                 }
                 Fines = fines;
                 ActiveFines = activeFines;
+
             }
+            Notifications = GetNotification(this);
+
+
         }
 
         private static string GetXmlValue(XElement node, string tag)
@@ -354,6 +362,93 @@ namespace Solvberget.Domain.DTO
 
             return string.Empty;
         }
+
+        private IEnumerable<Notification> GetNotification(UserInfo user)
+        {
+            var notifications = new List<Notification>();
+
+            if (user.Loans != null)
+            {
+
+
+
+                foreach (var loan in user.Loans)
+                {
+                    var day = Convert.ToInt32(loan.DueDate.Substring(0, 2));
+                    var month = Convert.ToInt32(loan.DueDate.Substring(3, 2));
+                    var year = Convert.ToInt32(loan.DueDate.Substring(6, 4));
+
+                    var dueDate = new DateTime(year, month, day);
+                    var today = DateTime.Now;
+
+                    TimeSpan span = dueDate.Subtract(today);
+                    var timeLeft = span.Days;
+
+                    if (timeLeft > 0 && timeLeft < 4)
+                    {
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Loan",
+                                                  Title = loan.DocumentTitle + " forfaller snart",
+                                                  DocumentTitle = loan.DocumentTitle,
+                                                  Content =
+                                                      "Lånet forfaller om mindre enn " + timeLeft +
+                                                      " dager. Lever eller forny " +
+                                                      "lånet for å unngå å få gebyr."
+                                              });
+                    }
+                    else if (timeLeft == 0)
+                    {
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Loan",
+                                                  Title = loan.DocumentTitle + " forfaller snart",
+                                                  DocumentTitle = loan.DocumentTitle,
+                                                  Content = "Lånet forfaller om mindre ett døgn. Lever eller forny " +
+                                                            "lånet for å unngå å få gebyr."
+                                              });
+                    }
+                    else if (timeLeft < 0)
+                    {
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Fine",
+                                                  Title = loan.DocumentTitle + " skulle vært levert",
+                                                  DocumentTitle = loan.DocumentTitle,
+                                                  Content =
+                                                      "Lånet har forfalt. Ved å fornye eller levere tilbake innen forfallsdato unngår du gebyr."
+                                              });
+
+                    }
+                }
+            }
+
+            if (user.Reservations != null)
+            {
+
+
+                foreach (var reservation in user.Reservations)
+                {
+                    if (reservation.HoldRequestEnd != "")
+                    {
+                        notifications.Add(new Notification
+                                              {
+                                                  Type = "Reservation",
+                                                  Title = reservation.DocumentTitle + " er klar til henting, ",
+                                                  DocumentTitle = reservation.DocumentTitle,
+                                                  Content = "Den kan hentes på " + reservation.PickupLocation
+                                              });
+                    }
+                }
+            }
+
+
+
+
+
+            return notifications;
+        }
+
 
         protected static readonly Dictionary<string, string> TypeOfFineDictionary = new Dictionary<string, string>
                                 {

@@ -109,6 +109,9 @@ namespace Solvberget.Domain.Implementation
 
             user.FillProperties(userXDoc.ToString());
 
+
+
+
             return user;
 
         }

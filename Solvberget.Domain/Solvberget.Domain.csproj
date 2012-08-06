@@ -148,6 +148,7 @@
     <Compile Include="DTO\Film.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DTO\Notification.cs" />
     <Compile Include="DTO\NewsItem.cs" />
     <Compile Include="DTO\RequestReply.cs" />
     <Compile Include="DTO\LastFmAlbum.cs" />

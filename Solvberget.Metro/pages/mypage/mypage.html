@@ -50,6 +50,15 @@
                 <button class="cancelReservationButton" data-win-bind="">Fjern reservasjon</button>
             </div>
         </div>
+
+        <!-- Notifications template -->
+        <div id="notificationTemplate">
+            <div class="float-item">
+                <hr />
+                <span class="title" data-win-bind="innerText: Title"></span>
+                <span class="content" data-win-bind="innerText: Content "></span>
+            </div>
+        </div>
     </div>
 
     <!-- The content that will be loaded and displayed. -->
@@ -113,6 +122,12 @@
                 <div id="reservations" class="box">
                     <h2><span class="detail-title">Reserveringer</span></h2>
                     <div id="reservationTemplateHolder">
+                    </div>
+                </div>
+
+                <div id="notifications" class="box">
+                    <h2><span class="detail-title">Meldinger</span></h2>
+                    <div id="notificationTemplateHolder">
                     </div>
                 </div>
 
