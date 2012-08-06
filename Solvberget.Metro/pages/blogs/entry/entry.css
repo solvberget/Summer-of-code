@@ -1,4 +1,13 @@
-﻿.content {
+﻿body {
+    overflow: hidden;
+}
+
+.separator {
+    margin: 10px;
+}
+
+
+.content {
     -ms-grid-row: 2;
     display: block;
     height: 100%;
@@ -50,9 +59,8 @@ progress.withText {
 }
 
 #entryContent {
-    display: none;
-    visibility: hidden;
-    display: inline;
+    margin-top: 30px;
+
 }
 
 .titlearea {

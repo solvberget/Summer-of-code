@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Kontakt oss</title>
+    <title>Alle innlegg</title>
 
     <link href="entries.css" rel="stylesheet" />
     <script src="entries.js"></script>
@@ -15,14 +15,14 @@
             <div id="entryTemplate">
                 <div class="entry">
                     <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
-                        <img src="#" class="entryThumbnail" data-win-bind="src: ThumbnailUrl BlogConverters.thumbnailConverter; alt: Title; title: Title; style.display: ThumbnailUrl BlogConverters.undefinedHider" />
+                        <img src="#" alt="" class="entryThumbnail" data-win-bind="src: ThumbnailUrl BlogConverters.thumbnailConverter; alt: Title; title: Title; style.display: ThumbnailUrl BlogConverters.undefinedHider" />
                     </div>
-                    <h2 class="entryTitle" data-win-bind="innerText: Title"></h2>
+                    <h2 data-win-bind="innerText: Title"></h2>
                     <div data-win-bind="innerText: PublishedDateFormatted BlogConverters.publishedDate; style.display: PublishedDateFormatted BlogConverters.undefinedHider"></div>
                     <div data-win-bind="innerText: UpdatedDateFormatted BlogConverters.updatedDate; style.display: UpdatedDateFormatted BlogConverters.undefinedHider"></div>
                     <div data-win-bind="innerText: AuthorName BlogConverters.authorConverter; style.display: AuthorName BlogConverters.undefinedHider"></div>
                     <br />
-                    <div class="entryDescription" data-win-bind="innerHTML: Description BlogConverters.descriptionWrapper; style.display: Description BlogConverters.undefinedHider"></div>
+                    <div data-win-bind="innerHTML: Description BlogConverters.descriptionWrapper; style.display: Description BlogConverters.undefinedHider"></div>
 
                 </div>
             </div>

@@ -10,6 +10,15 @@
     background-color: #330033;
 }
 
+    .entry:active {
+        background: #5B4350;
+        background-repeat: repeat;
+    }
+
+    .entry:hover {
+        cursor: pointer;
+    }
+
 .entryThumbnail {
     max-width: 72px;
     height: auto;
@@ -69,8 +78,6 @@ progress.withText {
 }
 
 #entriesContent {
-    display: none;
-    visibility: hidden;
     display: inline;
 }
 
@@ -130,8 +137,7 @@ progress.withText {
 
     .entry {
         margin-top: 50px;
-                width: 200px;
-
+        width: 200px;
     }
 }
 
@@ -146,3 +152,4 @@ progress.withText {
         -ms-flex-direction: column;
     }
 }
+
