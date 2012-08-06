@@ -429,9 +429,9 @@ namespace Solvberget.Domain.DTO
                         notifications.Add(new Notification
                                               {
                                                   Type = "Reservation",
-                                                  Title = reservation.DocumentTitle + " er klar til henting, ",
+                                                  Title = reservation.DocumentTitle + " er klar til henting.",
                                                   DocumentTitle = reservation.DocumentTitle,
-                                                  Content = "Den kan hentes på " + reservation.PickupLocation
+                                                  Content = "Den kan hentes på " + reservation.PickupLocation + " innen " + reservation.HoldRequestEnd,
                                               });
                     }
                 }

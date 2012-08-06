@@ -271,7 +271,14 @@ WinJS.Namespace.define("DocumentDetailConverters", {
             return imageUrl;
 
         getDocumentImageUrl();
-        return "/images/placeholders/" + documentModel.DocType + ".png";
+
+        if (documentModel.DocType == "Film" && documentModel.TypeOfMedia == "Blu-ray") {
+            return "images/placeholders/Blu-ray.png";
+        }
+        else {
+            return "/images/placeholders/" + documentModel.DocType + ".png";
+        }
+
 
     }),
 
