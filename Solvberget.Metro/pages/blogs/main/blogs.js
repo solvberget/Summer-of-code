@@ -7,23 +7,14 @@
     var utils = WinJS.Utilities;
     var ui = WinJS.UI;
 
-    var self;
     ui.Pages.define("/pages/blogs/main/blogs.html", {
 
         ready: function (element, options) {
-
-            self = this;
+            
             getBlogs();
-
-
-        },
-
-        goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-
+            
         },
     });
-
 })();
 
 
@@ -36,8 +27,8 @@ var ajaxGetBlogs = function () {
 var getBlogs = function () {
 
     // Show progress-ring, hide content
-    $("#blogsContent").css("display", "none").css("visibility", "none");
-    $("#blogsLoading").css("display", "block").css("visibility", "visible");
+    $("#blogsContent").hide();
+    $("#blogsLoading").fadeIn();
 
     // Get the user information from server
     $.when(ajaxGetBlogs())
@@ -47,8 +38,8 @@ var getBlogs = function () {
             }
 
             // Hide progress-ring, show content
-            $("#blogsContent").css("display", "block").css("visibility", "visible");
-            $("#blogsLoading").css("display", "none").css("visibility", "none");
+            $("#blogsContent").fadeIn("slow");
+            $("#blogsLoading").hide();
         }, this)
     );
 
@@ -65,8 +56,6 @@ var getBlogs = function () {
         var model;
 
         if (response) {
-
-
             for (var i = 0; i < response.length; i++) {
                 model = response[i];
                 var context = { model: model, index: i };
@@ -81,7 +70,6 @@ var getBlogs = function () {
                 }
             }
         }
-
     };
 
     WinJS.Namespace.define("BlogConverters",  {

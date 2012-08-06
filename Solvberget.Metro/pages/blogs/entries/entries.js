@@ -17,18 +17,13 @@
             getBlogWithEntries(blogId);
 
         },
-
-        goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-
-        },
     });
 
 })();
 
 
 var ajaxGetBlogWithEntries = function (blogId) {
-    return $.getJSON(window.Data.serverBaseUrl + "/Blog/GetBlogWithEntries/"+blogId);
+    return $.getJSON(window.Data.serverBaseUrl + "/Blog/GetBlogWithEntries/" + blogId);
 };
 
 
@@ -36,22 +31,19 @@ var ajaxGetBlogWithEntries = function (blogId) {
 var getBlogWithEntries = function (blogId) {
 
     // Show progress-ring, hide content
-    $("#entriesContent").css("display", "none").css("visibility", "none");
-    $("#entriesLoading").css("display", "block").css("visibility", "visible");
+    $("#entriesContent").hide();
+    $("#entriesLoading").fadeIn();
 
     // Get the user information from server
     $.when(ajaxGetBlogWithEntries(blogId))
         .then($.proxy(function (response) {
-            if (response != undefined && response !== "") {
+
+            if (response != undefined && response !== "")
                 populateEntries(response);
-            }
-
-
 
             // Hide progress-ring, show content
-            $("#entriesContent").css("display", "block").css("visibility", "visible");
-            $("#entriesLoading").css("display", "none").css("visibility", "none");
-
+            $("#entriesContent").fadeIn("slow");
+            $("#entriesLoading").hide();
 
         }, this)
     );
@@ -71,11 +63,15 @@ var getBlogWithEntries = function (blogId) {
         if (response) {
 
             for (var i = 0; i < response.Entries.length; i++) {
+
                 model = response.Entries[i];
 
                 if (entryTemplate && entriesTemplateHolder && model)
-                    entryTemplate.render(model, entriesTemplateHolder);
-
+                    entryTemplate.render(model, entriesTemplateHolder).done($.proxy(function () {
+                        $(".entry:last").click($.proxy(function () {
+                            WinJS.Navigation.navigate("pages/blogs/entry/entry.html", { model: this });
+                        }, this));
+                    }, model));
             }
         }
 

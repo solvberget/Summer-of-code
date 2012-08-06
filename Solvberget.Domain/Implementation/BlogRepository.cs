@@ -56,7 +56,7 @@ namespace Solvberget.Domain.Implementation
 
             var feeds = root.Elements();
             blogs.AddRange(feeds.Select(xElement => Blog.FillBlog(xElement.ToString())));
-
+            blogs = blogs.OrderBy(blog => blog.Priority).ToList();
             return blogs;
 
         }
