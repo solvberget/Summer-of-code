@@ -151,6 +151,8 @@
     <Content Include="images\solvberget_wide.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="images\sølvberget_sort.eps" />
+    <Content Include="images\sølvberget_sort_svg.svg" />
     <Content Include="js\codeGenerator.js" />
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />

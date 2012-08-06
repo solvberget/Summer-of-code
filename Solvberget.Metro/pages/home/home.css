@@ -1,7 +1,18 @@
 ﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
    to .win-surface. */
-.itemspage {
+
+.itemspage .homeHeader {
+    position: absolute;
 }
+
+    .itemspage .homeHeader .homeImage{
+        position: inherit;
+        margin: auto;
+    }
+
+    .itemspage .homeHeader .homeTitle {
+        margin-left: 100px;
+    }
 
 .itemspage .homeContent .itemslist {
     
@@ -66,12 +77,12 @@
 }
 
 @media screen and (-ms-view-state: snapped) {
-    .itemspage .itemslist .win-vertical.win-viewport .win-surface {
+    .itemspage .homeContent .itemslist .win-vertical.win-viewport .win-surface {
         margin-bottom: 30px;
         margin-left: 6px;
     }
 
-    .itemspage .itemslist .win-vertical.win-viewport .win-container {
+    .itemspage .homeContent .itemslist .win-vertical.win-viewport .win-container {
         margin-bottom: 15px;
         margin-right: 42px;
         padding: 7px;
@@ -85,14 +96,14 @@
         width: 272px;
     }
 
-        .itemspage .itemslist .win-item .item-image, .itemspage .itemslist .win-item:hover .item-image {
+        .itemspage .homeContent .itemslist .win-item .item-image, .itemspage .itemslist .win-item:hover .item-image {
             -ms-grid-column: 1;
             -ms-grid-row-span: 1;
             height: 60px;
             width: 60px;
         }
 
-        .itemspage .itemslist .win-item .item-overlay {
+        .itemspage .homeContent .itemslist .win-item .item-overlay {
             -ms-grid-column: 2;
             -ms-grid-row: 1;
             -ms-grid-row-align: stretch;
@@ -102,13 +113,13 @@
             padding: 0;
         }
 
-            .itemspage .itemslist .win-item .item-overlay .item-title {
+            .itemspage .homeContent .itemslist .win-item .item-overlay .item-title {
                 max-height: 40px;
                 margin-top: 4px;
                 width: 202px;
             }
 
-            .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+            .itemspage .homeContent .itemslist .win-item .item-overlay .item-subtitle {
                 opacity: 0.6;
                 width: 202px;
             }
