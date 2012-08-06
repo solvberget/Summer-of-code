@@ -16,7 +16,7 @@
 
             getUserInformation();
 
-            $(".box").draggable({ revert: "valid", containment: "body" });
+            $(".box").draggable({  containment: "body" });
             $("#mypageData").droppable();
             $(".box").droppable();
 
@@ -202,7 +202,7 @@ var getUserInformation = function () {
 
             // Hide progress-ring, show content
             $("#mypageLoading").css("display", "none").css("visibility", "none");
-            $("#mypageData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
+            $("#mypageData").css("display", "-ms-flexbox").css("visibility", "visible").hide().fadeIn(500);
 
         }, this)
     );

@@ -102,11 +102,16 @@ progress.withText {
     max-height: calc(100% - 20px);
 }
 #mypageData > div {
-    float: left;
+}
+#mypageData {
+      display: -ms-flexbox;
+    -ms-flex-direction: row;
+    -ms-flex-align: stretch;
+
+
 }
 
 .float-item {
-    float: left;
     min-width: 220px;
     max-width: 220px;
     margin: 10px;
