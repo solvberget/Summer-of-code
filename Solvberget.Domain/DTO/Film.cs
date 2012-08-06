@@ -23,6 +23,7 @@ namespace Solvberget.Domain.DTO
         public string NorwegianTitle { get; set; }
         public string Subject { get; set; }
         public string CompositionType { get; set; }
+        public string TypeOfMedia { get; set; }
         public IEnumerable<string> SubtitleLanguage { get; set; }
         public IEnumerable<string> ReferencedPlaces { get; set; }
         public IEnumerable<string> Genre { get; set; }
@@ -108,6 +109,19 @@ namespace Solvberget.Domain.DTO
                 Genre = GetVarfieldAsList(nodes, "655", "a");
                 InvolvedPersons = GeneratePersonsFromXml(nodes, "700");
                 MainResponsible = ResponsiblePersons;
+
+                var typeOfMedia = GetVarfield(nodes, "019", "b");
+                if (typeOfMedia != null)
+                {
+                    if (typeOfMedia.Contains("ef"))
+                    {
+                        TypeOfMedia = "Blu-ray";
+                    }
+                    else if (typeOfMedia.Contains("ee"))
+                    {
+                        TypeOfMedia = "DVD";
+                    }
+                }
             }
         }
 

@@ -63,7 +63,7 @@ namespace Solvberget.Domain.DTO
                     {
                         string languageLookupValue = null;
                         LanguageDictionary.TryGetValue(languages[i], out languageLookupValue);
-                        languages[i] = languageLookupValue ?? languages[i];
+                        languages[i] = languageLookupValue ?? "Språk er ikke registrert";
                     }
                     Languages = languages;
                 }
@@ -105,7 +105,7 @@ namespace Solvberget.Domain.DTO
                 if (language != null)
                     LanguageDictionary.TryGetValue(language, out languageLookupValue);
 
-                Language = languageLookupValue ?? language;
+                Language = languageLookupValue ?? "Språk er ikke registrert";
 
                 var docTypeString = GetVarfield(nodes, "019", "b");
                 if (docTypeString != null)

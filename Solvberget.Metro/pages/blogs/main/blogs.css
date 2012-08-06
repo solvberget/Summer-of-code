@@ -22,6 +22,11 @@
     border: none;
 }
 
+    #mainBlogsContentSection {
+        overflow:auto;
+    }
+
+
 .templates {
     display: none;
 }
@@ -71,8 +76,6 @@ progress.withText {
     }
 
 #blogsContent {
-    display: none;
-    visibility: hidden;
     display: inline;
 }
 
@@ -95,6 +98,8 @@ progress.withText {
 .titlearea {
     overflow: visible;
 }
+
+
 
 @media screen and (-ms-view-state: snapped) {
     .content article {
@@ -121,6 +126,7 @@ progress.withText {
 
     #mainBlogsContentSection {
         margin-left: 10px;
+        overflow:auto;
     }
 
     #blogsTemplateHolder {

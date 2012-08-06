@@ -225,7 +225,12 @@
                            response[x].BackgroundImage = response[x].ThumbnailUrl;
                        }
                        else {
-                           response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                           if (response[x].DocType == "Film" && response[x].TypeOfMedia == "Blu-ray") {
+                               response[x].BackgroundImage = "images/placeholders/Blu-ray.png";
+                           }
+                           else {
+                               response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                           }
                        }
 
                        originalResults.push(response[x]);
