@@ -146,6 +146,25 @@ var addReservationsToDom = function (reservations) {
     }
 };
 
+var addNotificationsToDom = function (notifications) {
+    if (notifications == undefined) {
+        $("#notificationTemplateHolder").text("Du har ingen meldinger");
+        return;
+    }
+
+    var notificationTemplate = new WinJS.Binding.Template(document.getElementById("notificationTemplate"));
+    var notificationTemplateContainer = document.getElementById("notificationTemplateHolder");
+
+    notificationTemplateContainer.innerHTML = "";
+
+    var i, notification;
+    for (i = 0; i < notifications.length; i++) {
+        notification = notifications[i];
+        if (!notification) continue;
+        notificationTemplate.render(notification, notificationTemplateContainer);
+    }
+};
+
 var getUserInformation = function () {
 
     // Show progress-ring, hide content
@@ -174,6 +193,9 @@ var getUserInformation = function () {
                 // Delete reservations from main object
                 delete response.Reservations;
 
+                var notifications = response.Notifications;
+                delete response.Notifications;
+
                 if (response.Name === response.PrefixAddress)
                     response.PrefixAddress = "";
 
@@ -196,6 +218,7 @@ var getUserInformation = function () {
                 this.addFinesToDom(fines);
                 this.addLoansToDom(loans);
                 this.addReservationsToDom(reservations);
+                this.addNotificationsToDom(notifications);
 
 
             }
@@ -267,10 +290,5 @@ var getUserInformation = function () {
 
 
     });
-
-
-
-
-
 
 };

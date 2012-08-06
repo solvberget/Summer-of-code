@@ -51,6 +51,7 @@
             //Add functionality to the appbar buttons
             document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
             document.getElementById("cmdPin").addEventListener("click", pinToStart);
+            document.getElementById("toNewsButton").addEventListener("click", Data.navigateToNews);
             document.getElementById("toListsButton").addEventListener("click", Data.navigateToLists);
             document.getElementById("toMyPageButton").addEventListener("click", Data.navigateToMypage);
             document.getElementById("toBlogsPageButton").addEventListener("click", Data.navigateToBlogs);

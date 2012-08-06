@@ -109,6 +109,9 @@ namespace Solvberget.Domain.Implementation
 
             user.FillProperties(userXDoc.ToString());
 
+
+
+
             return user;
 
         }
@@ -232,12 +235,24 @@ namespace Solvberget.Domain.Implementation
 
             if (docItemsXml != null && docItemsXml.Root != null)
             {
-                var item = docItemsXml.Root.Element("reply") ?? docItemsXml.Root.Element("error");
-                if (item != null)
-                    return item.Value;
+
+                var xElement = docItemsXml.Root.Element("reply");
+                if (xElement != null) return xElement.Value;
+
+                xElement = docItemsXml.Root.Element("error-text-1");
+                if (xElement != null) return "Lånet kan ikke utvides flere ganger";
+
+                xElement = docItemsXml.Root.Element("error-text-2");
+                if (xElement != null) return "Lånet er resistrert som mistet";
+
+                xElement = docItemsXml.Root.Element("error");
+                if (xElement != null)
+                {
+                    return xElement.Value == "New due date must be bigger than current's loan due date" ? "Lånetiden kan ikke utvides mer enn den er nå" : "Det har oppstått en feil, vennligst kontakt biblioteket";
+                }
             }
 
-            return "Feil: Klarte ikke å hente ut ønsket informasjon fra returnert xml-ark.";
+            return "Det har oppstått en feil, vennligst kontakt biblioteket";
         }
 
         private void GenerateDocumentLocationAndAvailabilityInfo(Document document)

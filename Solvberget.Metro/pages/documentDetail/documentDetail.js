@@ -133,6 +133,9 @@ var populateFragment = function (documentModel) {
         $("#documentDetailLoading").css("display", "none").css("visibility", "none");
         $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
+        //Do not allow hold request for journals
+        $("#sendHoldRequestButton").css("display", "none").css("visibility", "none");
+
     });
 
 };
@@ -268,7 +271,14 @@ WinJS.Namespace.define("DocumentDetailConverters", {
             return imageUrl;
 
         getDocumentImageUrl();
-        return "/images/placeholders/" + documentModel.DocType + ".png";
+
+        if (documentModel.DocType == "Film" && documentModel.TypeOfMedia == "Blu-ray") {
+            return "images/placeholders/Blu-ray.png";
+        }
+        else {
+            return "/images/placeholders/" + documentModel.DocType + ".png";
+        }
+
 
     }),
 
@@ -290,7 +300,7 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         return totalCount + " " + pluralFix + " tilgjengelig";
     }),
     docEarliestAvailableDate: WinJS.Binding.converter(function (date) {
-        return (date || date != "") ? "Estimert tilgjengelig: " + date : "";
+        return (date || date != "") ? "Ventes å være ledig fra: " + date : "";
     }),
     personConverter: WinJS.Binding.converter(function (persons) {
         if (!persons) return "";

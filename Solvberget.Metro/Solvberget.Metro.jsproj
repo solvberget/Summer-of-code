@@ -125,6 +125,7 @@
     <Content Include="images\home\Home.png" />
     <Content Include="images\home\Lists.png" />
     <Content Include="images\home\MyPage.png" />
+    <Content Include="images\home\News.png" />
     <Content Include="images\home\OpeningHours.png" />
     <Content Include="images\home\Search.png" />
     <Content Include="images\login\Login.png" />
@@ -132,10 +133,12 @@
     <Content Include="images\login\User.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\placeholders\AudioBook.png" />
+    <Content Include="images\placeholders\Blu-ray.png" />
     <Content Include="images\placeholders\Book.png" />
     <Content Include="images\placeholders\Cd.png" />
     <Content Include="images\placeholders\Document.png" />
     <Content Include="images\placeholders\Film.png" />
+    <Content Include="images\placeholders\Game.png" />
     <Content Include="images\placeholders\Journal.png" />
     <Content Include="images\placeholders\LanguageCourse.png" />
     <Content Include="images\placeholders\SheetMusic.png" />
@@ -147,6 +150,8 @@
     <Content Include="images\solvberget_wide.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="images\sølvberget_sort.eps" />
+    <Content Include="images\sølvberget_sort_svg.svg" />
     <Content Include="js\codeGenerator.js" />
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
@@ -193,6 +198,9 @@
     <Content Include="pages\lists-v2\libraryLists.css" />
     <Content Include="pages\lists-v2\libraryLists.html" />
     <Content Include="pages\lists-v2\libraryLists.js" />
+    <Content Include="pages\news\news.css" />
+    <Content Include="pages\news\news.html" />
+    <Content Include="pages\news\news.js" />
     <Content Include="pages\mypage\mypage.css" />
     <Content Include="pages\mypage\mypage.html" />
     <Content Include="pages\mypage\mypage.js" />
