@@ -10,13 +10,11 @@ namespace Solvberget.Domain.DTO
     public class NewsItem
     {
         public string Title { get; set; }
+        public Uri Link { get; set; }
         public string DescriptionUnescaped { private get; set; }
         public DateTimeOffset PublishedDateAsDateTime { private get; set; }
-        public Uri LinkAsUri { private get; set; }
 
-        //Should be in a View-Model...?
-        public string PublishedDate { get { return PublishedDateAsDateTime.ToLocalTime().ToString("dd-MM-yyyy"); } }
-        public string Link { get { return LinkAsUri.AbsoluteUri; } }
+        public string PublishedDate { get { return "Publisert: " + PublishedDateAsDateTime.ToLocalTime().ToString("dd.MM.yyyy"); } }
         public string Description
         {
             get

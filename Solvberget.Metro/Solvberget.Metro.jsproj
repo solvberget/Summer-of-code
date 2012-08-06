@@ -125,6 +125,7 @@
     <Content Include="images\home\Home.png" />
     <Content Include="images\home\Lists.png" />
     <Content Include="images\home\MyPage.png" />
+    <Content Include="images\home\News.png" />
     <Content Include="images\home\OpeningHours.png" />
     <Content Include="images\home\Search.png" />
     <Content Include="images\login\Login.png" />
@@ -196,6 +197,9 @@
     <Content Include="pages\lists-v2\libraryLists.css" />
     <Content Include="pages\lists-v2\libraryLists.html" />
     <Content Include="pages\lists-v2\libraryLists.js" />
+    <Content Include="pages\news\news.css" />
+    <Content Include="pages\news\news.html" />
+    <Content Include="pages\news\news.js" />
     <Content Include="pages\mypage\mypage.css" />
     <Content Include="pages\mypage\mypage.html" />
     <Content Include="pages\mypage\mypage.js" />
