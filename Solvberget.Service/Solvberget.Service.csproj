@@ -257,8 +257,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="bin\Debug\Solvberget.Domain.dll.config" />
-    <Content Include="bin\App_Data\ordlister_index\segments.gen" />
-    <Content Include="bin\App_Data\ordlister_index\segments_3" />
     <None Include="Properties\PublishProfiles\Metro.pubxml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
