@@ -6,6 +6,14 @@
     var nav = WinJS.Navigation;
     WinJS.strictProcessing();
 
+    app.onerror = function (args) {
+        if (Data.activePage == "home")
+            Data.navigateToHome();
+        else
+            Data.itemByKey(Data.activePage).navigateTo();
+    }
+
+
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
 

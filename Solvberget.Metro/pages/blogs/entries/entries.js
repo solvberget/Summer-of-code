@@ -68,6 +68,9 @@ var getBlogWithEntries = function (blogId) {
 
                 if (entryTemplate && entriesTemplateHolder && model)
                     entryTemplate.render(model, entriesTemplateHolder).done($.proxy(function () {
+
+                        $(".entry:last").css("background-color", Data.getRandomColor());
+
                         $(".entry:last").click($.proxy(function () {
                             WinJS.Navigation.navigate("pages/blogs/entry/entry.html", { model: this });
                         }, this));

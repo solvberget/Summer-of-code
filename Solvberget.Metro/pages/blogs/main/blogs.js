@@ -60,7 +60,9 @@ var getBlogs = function () {
                 model = response[i];
                 var context = { model: model, index: i };
                 if (blogTemplate && blogsTemplateHolder && model) {
-                    blogTemplate.render(model, blogsTemplateHolder).done($.proxy(function () {                        
+                    blogTemplate.render(model, blogsTemplateHolder).done($.proxy(function () {
+                        $(".blog:last").css("background-color",Data.getRandomColor);
+
                         $(".blog:last").click($.proxy(function () {
                             var blogId = this.index;
                             var blogModel = this.model;

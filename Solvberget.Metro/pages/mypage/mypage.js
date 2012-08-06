@@ -165,6 +165,24 @@ var addNotificationsToDom = function (notifications) {
     }
 };
 
+var addColors = function () {
+
+    $("#fines").css("background-color", Data.colorPoolRgba[1]);
+    $("#loans").css("background-color", Data.colorPoolRgba[3]);
+    $("#reservations").css("background-color", Data.colorPoolRgba[6]);
+    $("#notifications").css("background-color", Data.colorPoolRgba[4]);
+
+    $("#myPagePersonalInformation").children().each(function () {
+        $(this).css("background-color", Data.colorPoolRgba[0]);
+    });
+
+    /**
+    $(".box").each(function () {
+        $(this).css("background-color", Data.getRandomColor())
+    });*/
+}
+
+
 var getUserInformation = function () {
 
     // Show progress-ring, hide content
@@ -219,7 +237,7 @@ var getUserInformation = function () {
                 this.addLoansToDom(loans);
                 this.addReservationsToDom(reservations);
                 this.addNotificationsToDom(notifications);
-
+                this.addColors();
 
             }
 
