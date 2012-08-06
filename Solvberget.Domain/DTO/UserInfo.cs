@@ -369,9 +369,6 @@ namespace Solvberget.Domain.DTO
 
             if (user.Loans != null)
             {
-
-
-
                 foreach (var loan in user.Loans)
                 {
                     var day = Convert.ToInt32(loan.DueDate.Substring(0, 2));
@@ -425,8 +422,6 @@ namespace Solvberget.Domain.DTO
 
             if (user.Reservations != null)
             {
-
-
                 foreach (var reservation in user.Reservations)
                 {
                     if (reservation.HoldRequestEnd != "")
@@ -441,10 +436,6 @@ namespace Solvberget.Domain.DTO
                     }
                 }
             }
-
-
-
-
 
             return notifications;
         }
