@@ -14,7 +14,6 @@ namespace Solvberget.Domain.DTO
         public string DescriptionUnescaped { private get; set; }
         public DateTimeOffset PublishedDateAsDateTime { private get; set; }
 
-        //Should be in a View-Model...?
         public string PublishedDate { get { return "Publisert: " + PublishedDateAsDateTime.ToLocalTime().ToString("dd.MM.yyyy"); } }
         public string Description
         {

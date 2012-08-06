@@ -28,7 +28,8 @@ namespace Solvberget.Domain.Implementation
                                                                      Link = item.Links.First().Uri,
                                                                      DescriptionUnescaped = item.Summary.Text
                                                                  }));
-                return newsItems;
+
+                return limitCount != null ? newsItems.Take((int)limitCount).ToList() : newsItems;
 
             }
 

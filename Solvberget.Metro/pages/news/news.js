@@ -15,7 +15,7 @@
         newsItems: null,
         onPage: false,
 
-        ready: function (element, options) {
+        ready: function (element) {
             this.onPage = true;
             $(".pagetitle").html("Nyheter fra Sølvberget");
             var newsItemsListView = element.querySelector(".newsItemsListView").winControl;
@@ -30,7 +30,7 @@
                 if (this.onPage) {
                     if (response != undefined && response !== "") {
                         this.newsItems = new WinJS.Binding.List(response);
-                        this.initializeLayout(newsItemsListView, appView);
+                        this.initializeLayout(newsItemsListView, appView.value);
                         $("#newsItemsLoading").hide();
                         $(".newsItemsListView").fadeIn();
                         newsItemsListView.element.focus();
@@ -45,7 +45,7 @@
         },
 
         ajaxGetNews: function () {
-            return $.getJSON(window.Data.serverBaseUrl + newsReqUrl).error(function (x, t, m) {
+            return $.getJSON(window.Data.serverBaseUrl + newsReqUrl).error(function () {
                 $("#newsItemsLoading").hide();
                 $("#newsLoadError").fadeIn();
             });
@@ -65,7 +65,7 @@
         },
 
         updateLayout: function (element, viewState, lastViewState) {
-            var newsItemslistView = element.querySelector(".newsItemsListView")
+            var newsItemslistView = element.querySelector(".newsItemsListView");
             if (newsItemslistView) {
                 var newsItemslistViewWinControl = newsItemslistView.winControl;
                 if (newsItemslistViewWinControl)
@@ -106,7 +106,3 @@
     });
 
 })();
-
-WinJS.Namespace.define("NewsConverters", {
-
-});
