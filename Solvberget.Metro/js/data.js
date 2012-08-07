@@ -38,10 +38,6 @@
         return color;
     };
 
-    function navigateToHome() {
-        return WinJS.Navigation.navigate("/pages/home/home.html");
-    };
-
     var list = new WinJS.Binding.List(menuItems);
 
     function navigateToHome() {

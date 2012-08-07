@@ -96,6 +96,7 @@
             //Add functionality to the appbar buttons
             document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
             document.getElementById("cmdPin").addEventListener("click", pinToStart);
+
             document.getElementById("toNewsButton").addEventListener("click", Data.navigateToNews);
             document.getElementById("toListsButton").addEventListener("click", Data.navigateToLists);
             document.getElementById("toMyPageButton").addEventListener("click", Data.navigateToMypage);
@@ -129,21 +130,20 @@ function doLogin() {
 
     // Get active user
     var user = LoginFlyout.getLoggedInBorrowerId();
-    LoginFlyout.logout();
 
     // If user was not logging out, user was logging in, so show login
-    if (!user || user == "") {
+
 
         // TODO: ROAMING
-        var loginDiv = document.getElementById("loginFragmentHolder");
-        loginDiv.innerHTML = "";
-        WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
+    var loginDiv = document.getElementById("loginFragmentHolder");
+    loginDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
-            var loginAnchor = document.querySelector("div");
+        var loginAnchor = document.querySelector("div");
 
-            LoginFlyout.showLogin(loginAnchor);
-        });
-    }
+        LoginFlyout.showLogin(loginAnchor);
+    });
+    
 }
 
 function pinByElementAsync(element, newTileID, newTileShortName, newTileDisplayName) {

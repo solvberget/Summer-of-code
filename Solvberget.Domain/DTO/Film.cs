@@ -121,6 +121,10 @@ namespace Solvberget.Domain.DTO
                     {
                         TypeOfMedia = "DVD";
                     }
+                    else if (typeOfMedia.Contains("eg"))
+                    {
+                        TypeOfMedia = "3D";
+                    }
                 }
             }
         }

@@ -56,7 +56,7 @@
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
 
-                        if (path.indexOf("ms-appx://") == 1){
+                        if (path.indexOf("ms-appx://") == -1){
                             path = "";
 
                         }else{
@@ -275,6 +275,10 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         if (documentModel.DocType == "Film" && documentModel.TypeOfMedia == "Blu-ray") {
             return "images/placeholders/Blu-ray.png";
         }
+        else if (documentModel.DocType == "Film" && documentModel.TypeOfMedia == "Blu-ray") {
+            return "images/placeholders/3D.png";
+        }
+
         else {
             return "/images/placeholders/" + documentModel.DocType + ".png";
         }
