@@ -33,7 +33,7 @@ namespace Solvberget.Domain.Implementation
             {
                 xml = XDocument.Load(blog.Url, LoadOptions.PreserveWhitespace).ToString();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // TODO: Log exception, mer spesifikk exception (blog not exist)
                 System.Console.WriteLine("Fatal feil: Kunne ikke hente blogg (bloggen finnes ikke?)");
