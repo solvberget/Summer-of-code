@@ -63,7 +63,7 @@ namespace Solvberget.Domain.DTO
                     {
                         string languageLookupValue = null;
                         LanguageDictionary.TryGetValue(languages[i], out languageLookupValue);
-                        languages[i] = languageLookupValue ?? languages[i];
+                        languages[i] = languageLookupValue ?? "Språk er ikke registrert";
                     }
                     Languages = languages;
                 }
@@ -105,11 +105,13 @@ namespace Solvberget.Domain.DTO
                 if (language != null)
                     LanguageDictionary.TryGetValue(language, out languageLookupValue);
 
-                Language = languageLookupValue ?? language;
+                Language = languageLookupValue ?? "Språk er ikke registrert";
 
                 var docTypeString = GetVarfield(nodes, "019", "b");
                 if (docTypeString != null)
                     DocumentType = docTypeString.Split(';');
+
+
 
                 Title = GetVarfield(nodes, "245", "a");
                 SubTitle = GetVarfield(nodes, "245", "b");
@@ -326,7 +328,8 @@ namespace Solvberget.Domain.DTO
                                     {typeof(Film).Name, "Film"},
                                     {typeof(Journal).Name, "Tidsskrift"},
                                     {typeof(LanguageCourse).Name, "Språkkurs"},
-                                    {typeof(SheetMusic).Name, "Note"}
+                                    {typeof(SheetMusic).Name, "Note"},
+                                    {typeof(Game).Name, "Spill"}
                                 };
 
         protected static readonly Dictionary<string, string> LanguageDictionary = new Dictionary<string, string>

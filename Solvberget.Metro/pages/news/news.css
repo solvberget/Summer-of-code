@@ -1,0 +1,136 @@
+﻿.newspage header[role=banner] .pagetitle {
+    -ms-grid-column: 2;
+    overflow: hidden;
+    width: calc(100% - 20px);
+}
+
+.templates {
+    display: none;
+}
+
+#newsItemsListViewId {
+    visibility: hidden;
+}
+
+/* This selector is used to prevent ui-dark/light.css from overwriting changes
+   to .win-surface. */
+.newspage .newsItemsListView.win-listview .win-horizontal.win-viewport .win-surface {
+    margin-left: 45px;
+    margin-bottom: 10px;
+}
+
+.newspage .newsItemsListView.win-listview {
+    margin-top: 60px;
+    height: calc(100% - 60px);
+    position: relative;
+    width: 100%;
+    z-index: 0;
+    display: none;
+}
+
+.newspage .win-listview .win-viewport.win-horizontal {
+}
+
+.newspage .win-listview .win-viewport.win-vertical {
+}
+
+.newspage .newsItemsListView .win-item {
+    padding: 20px;
+    height: 225px;
+    width: 350px;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 75px 30px auto;
+    display: -ms-grid;
+}
+
+    .newspage .newsItemsListView .win-item .news-title {
+        -ms-grid-row: 1;
+        overflow: hidden;
+        width: 340px;
+    }
+
+    .newspage .newsItemsListView .win-item .news-pub-date {
+        -ms-grid-row: 2;
+        font-weight: bold;
+        width: 340px;
+    }
+
+    .newspage .newsItemsListView .win-item .news-description {
+        -ms-grid-row: 3;
+        overflow: hidden;
+        width: 340px;
+    }
+
+@media screen and (-ms-view-state: snapped) {
+
+    /* This selector is used to prevent ui-dark/light.css from overwriting changes
+   to .win-surface. */
+    .newspage .newsItemsListView.win-listview .win-horizontal.win-viewport .win-surface {
+        
+    }
+
+    .newspage .newsItemsListView.win-listview {
+        margin-top: 0px;
+        height: 100%;
+        position: relative;
+        width: 100%;
+        z-index: 0;
+        display: none;
+    }
+
+    .newspage .newsItemsListView .win-item {
+        padding: 5px;
+        height: 220px;
+        width: 290px;
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 75px 30px 1fr;
+        display: -ms-grid;
+    }
+
+        .newspage .newsItemsListView .win-item .news-title {
+            -ms-grid-row: 1;
+            font-size: 14pt;
+            width: 285px;
+            overflow: visible;
+        }
+
+        .newspage .newsItemsListView .win-item .news-pub-date {
+            -ms-grid-row: 2;
+            font-weight: bold;
+            width: 285px;
+        }
+
+        .newspage .newsItemsListView .win-item .news-description {
+            -ms-grid-row: 3;
+            overflow: hidden;
+            width: 285px;
+        }
+}
+
+@media screen and (orientation: portrait) {
+}
+
+/* PROGRESS RING */
+#newsItemsLoading {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 250px;
+}
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+}
+
+progress.withText {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+progress.header {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+}

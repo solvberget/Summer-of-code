@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Nyheter</title>
+
+    <link href="news.css" rel="stylesheet" />
+    <script src="news.js"></script>
+
+</head>
+<body>
+
+    <div class="templates">
+        <div id="newsItemTemplate" data-win-control="WinJS.Binding.Template">
+            <h2 class="news-title" data-win-bind="innerHTML: Title"></h2>
+            <div class="news-pub-date" data-win-bind="innerHTML: PublishedDate"></div>
+            <div class="news-description" data-win-bind="innerHTML: Description"></div>
+        </div>
+    </div>
+
+    <div class="newspage fragment">
+
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle"></span>
+            </h1>
+        </header>
+
+        <section aria-label="Main content" role="main">
+
+            <div id="newsItemsLoading">
+                <label class="progress-ring-text">
+                    <progress class="win-ring withText"></progress>
+                </label>
+            </div>
+
+            <div class="newsItemsListView" aria-label="List of NewsItems" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+            
+        </section>
+
+    </div>
+
+</body>
+</html>

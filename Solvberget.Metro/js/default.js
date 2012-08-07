@@ -5,6 +5,55 @@
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
     WinJS.strictProcessing();
+    var messageDialog;
+
+
+
+
+    // Gracefull exit
+    app.onerror = function (customEventObject) {
+
+        // Get the error message and name for this exception
+        var errorMessage = customEventObject.detail.error.message;
+        var errorName = customEventObject.detail.error.name;
+
+        // Show an error dialog
+        exceptionError(errorMessage, errorName);
+
+        // Tell windows that we have taken care of the exception
+        return true;
+    }
+
+    function exceptionError(name, msg) {
+
+        // Check if the message dialog is not already showing
+        if (!messageDialog) {
+
+            // Create the message dialog and set its content
+            messageDialog = new Windows.UI.Popups.MessageDialog("Du har tydeligvis gjort noe lurt, for her har appen sporet helt av! \n\nKryptiske feilmelding:\n\n " + msg, "Ooops! (" + name + ")");
+
+            // Add commands and set their command handlers
+            messageDialog.commands.append(
+                new Windows.UI.Popups.UICommand("Lukk", closeCommandInvoked));
+
+            // Set the command that will be invoked by default
+            messageDialog.defaultCommandIndex = 0;
+
+            // Set the command to be invoked when escape is pressed
+            messageDialog.cancelCommandIndex = 0;
+
+            // Show the message dialog
+            messageDialog.showAsync();
+        }
+    };
+    function closeCommandInvoked(command) {
+        // Reset message dialog
+        messageDialog = undefined; 
+
+        // Go home
+        Data.navigateToHome();
+    };
+
 
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
@@ -46,13 +95,17 @@
                     }
                 }));
             }
-            setAppbarButton();
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
 
             //Add functionality to the appbar buttons
             document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
             document.getElementById("cmdPin").addEventListener("click", pinToStart);
+
+            document.getElementById("toNewsButton").addEventListener("click", Data.navigateToNews);
             document.getElementById("toListsButton").addEventListener("click", Data.navigateToLists);
             document.getElementById("toMyPageButton").addEventListener("click", Data.navigateToMypage);
+            document.getElementById("toBlogsPageButton").addEventListener("click", Data.navigateToBlogs);
             document.getElementById("toEventsButton").addEventListener("click", Data.navigateToEvents);
             document.getElementById("toOpeningHoursButton").addEventListener("click", Data.navigateToOpeningHours);
             document.getElementById("toContactButton").addEventListener("click", Data.navigateToContact);
@@ -82,26 +135,25 @@ function doLogin() {
 
     // Get active user
     var user = LoginFlyout.getLoggedInBorrowerId();
-    LoginFlyout.logout();
 
     // If user was not logging out, user was logging in, so show login
-    if (!user || user == "") {
+
 
         // TODO: ROAMING
-        var loginDiv = document.getElementById("loginFragmentHolder");
-        loginDiv.innerHTML = "";
-        WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
+    var loginDiv = document.getElementById("loginFragmentHolder");
+    loginDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
-            var loginAnchor = document.querySelector("div");
+        var loginAnchor = document.querySelector("div");
 
-            LoginFlyout.showLogin(loginAnchor);
-        });
-    }
+        LoginFlyout.showLogin(loginAnchor);
+    });
+    
 }
 
 function pinByElementAsync(element, newTileID, newTileShortName, newTileDisplayName) {
 
-    var uriLogo = new Windows.Foundation.Uri("ms-appx:///images/solvberget150.png");
+    var uriLogo = new Windows.Foundation.Uri("ms-appx:///images/home/" + newTileID + ".png");
     var uriSmallLogo = new Windows.Foundation.Uri("ms-appx:///images/solvberget30.png");
     var currentTime = new Date();
     var TileActivationArguments = WinJS.Navigation.location;
@@ -152,7 +204,7 @@ function pinToStart() {
 
     } else {
 
-        pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Appbar pinned secondary tile", "A secondary tile that was pinned by the user from the Appbar").then(function (isCreated) {
+        pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Sølvberget", "Sølvberget - Stavanger Bibliotek").then(function (isCreated) {
             if (isCreated) {
                 setAppbarButton();
             } else {
@@ -164,8 +216,9 @@ function pinToStart() {
 function setAppbarButton() {
 
     LoginFlyout.updateAppBarButton();
+    var exist = Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage); 
 
-    if (Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage)) {
+    if (exist) {
         document.getElementById("cmdPin").winControl.label = "Fjern fra start";
         document.getElementById("cmdPin").winControl.icon = "unpin";
         document.getElementById("cmdPin").winControl.tooltip = "Fjern fra start";

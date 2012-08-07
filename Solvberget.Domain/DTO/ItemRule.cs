@@ -49,15 +49,17 @@ namespace Solvberget.Domain.DTO
             var regex = new Regex(@"([^!]{5}) ([^!]{2}) ([^!]{2}) [^!]{1} ([^!]{30}) ([NY]{1}) ([NY]{1}) ([NYCT]{1}) [NYCT]{1} ([NY]{1}) [NYCT]{1} [NYCT]{1} [NYCT]{1} [NYCT]{1} \d{2} [NYCT]{1}");
             if (regex.Match(ruleLine).Success)
             {
-                var itemRule = new ItemRule();
-                itemRule.Library = regex.Match(ruleLine).Groups[1].ToString();
-                itemRule.ItemStatus = regex.Match(ruleLine).Groups[2].ToString();
-                itemRule.ProcessStatusCode = regex.Match(ruleLine).Groups[3].ToString();
-                itemRule.ProcessStatusText = regex.Match(ruleLine).Groups[4].ToString().Trim();
-                itemRule.CanBorrow = regex.Match(ruleLine).Groups[5].ToString().Equals("Y");
-                itemRule.CanRenew = regex.Match(ruleLine).Groups[6].ToString().Equals("Y");
-                itemRule.CanReserve = !regex.Match(ruleLine).Groups[7].ToString().Equals("N");
-                itemRule.ShownOnWebCataloge = regex.Match(ruleLine).Groups[8].ToString().Equals("Y");
+                var itemRule = new ItemRule
+                                   {
+                                       Library = regex.Match(ruleLine).Groups[1].ToString(),
+                                       ItemStatus = regex.Match(ruleLine).Groups[2].ToString(),
+                                       ProcessStatusCode = regex.Match(ruleLine).Groups[3].ToString(),
+                                       ProcessStatusText = regex.Match(ruleLine).Groups[4].ToString().Trim(),
+                                       CanBorrow = regex.Match(ruleLine).Groups[5].ToString().Equals("Y"),
+                                       CanRenew = regex.Match(ruleLine).Groups[6].ToString().Equals("Y"),
+                                       CanReserve = !regex.Match(ruleLine).Groups[7].ToString().Equals("N"),
+                                       ShownOnWebCataloge = regex.Match(ruleLine).Groups[8].ToString().Equals("Y")
+                                   };
 
                 rules.Add(itemRule);
             }

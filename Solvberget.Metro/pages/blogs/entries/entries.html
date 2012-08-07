@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Alle innlegg</title>
+
+    <link href="entries.css" rel="stylesheet" />
+    <script src="entries.js"></script>
+
+</head>
+<body>
+
+    <div class="templates">
+        <section class="entriesSection">
+            <div id="entryTemplate">
+                <div class="entry">
+                    <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                        <img src="#" alt="" class="entryThumbnail" data-win-bind="src: ThumbnailUrl BlogConverters.thumbnailConverter; alt: Title; title: Title; style.display: ThumbnailUrl BlogConverters.undefinedHider" />
+                    </div>
+                    <h2 data-win-bind="innerText: Title"></h2>
+                    <div data-win-bind="innerText: PublishedDateFormatted BlogConverters.publishedDate; style.display: PublishedDateFormatted BlogConverters.undefinedHider"></div>
+                    <div data-win-bind="innerText: UpdatedDateFormatted BlogConverters.updatedDate; style.display: UpdatedDateFormatted BlogConverters.undefinedHider"></div>
+                    <div data-win-bind="innerText: AuthorName BlogConverters.authorConverter; style.display: AuthorName BlogConverters.undefinedHider"></div>
+                    <br />
+                    <div data-win-bind="innerHTML: Description BlogConverters.descriptionWrapper; style.display: Description BlogConverters.undefinedHider"></div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back"></button>
+            <div class="titlearea win-type-ellipsis">
+                <h1 class="pagetitle" data-win-bind="innerText: Title">Innlegg</h1>
+                <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Title BlogConverters.subtitleConverter">De siste innleggene fra denne bloggen</h2>
+            </div>
+        </header>
+        <section
+            aria-label="Main content" id="mainEntriesContentSection" role="main">
+            <div id="entriesLoading">
+                <label class="progressRingText">
+                    <progress class="win-ring withText"></progress>
+                </label>
+            </div>
+            <div class="content" id="entriesContent" aria-label="Main content" role="main">
+                <article>
+                    <div>
+                        <div id="entriesTemplateHolder"></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

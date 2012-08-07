@@ -16,7 +16,7 @@
     <script type="text/javascript" src="/js/liveTile.js"></script>
     <script type="text/javascript" src="/js/lib/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom.min.js"></script>
-   
+
     <script src="/js/utils.js"></script>
     <script src="/js/data.js"></script>
 
@@ -27,22 +27,24 @@
 </head>
 <body>
 
-       <!-- BEGINTEMPLATE: Template code for an app bar -->
+    <!-- BEGINTEMPLATE: Template code for an app bar -->
     <div id="appBar" data-win-control="WinJS.UI.AppBar" data-win-options="">
-
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toHomeButton', label:'Hjem', section:'global',section:'selection',tooltip:'Gå hjem',icon:'url(/images/home/home.png)'}"></button>
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'cmdLoginFlyout', label:'Logg ut',icon:'otheruser',tooltip:'Logg ut', type:'flyout'}"></button>
         <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'cmdPin'}"></button>
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toListsButton', label:'Nyheter og anbefalinger',section:'global',section:'selection',tooltip:'Gå til nyheter og anbefalinger', icon:'url(/images/home/Lists.png)'}"></button>
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toMyPageButton', label:'Min side',section:'global',section:'selection',tooltip:'Gå til Min side',icon:'url(/images/home/MyPage.png)'}"></button>
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toEventsButton', label:'Arrangementer',section:'global',section:'selection',tooltip:'Gå til arrangementer',icon:'url(/images/home/Events.png)'}"></button>
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toOpeningHoursButton', label:'Åpningstider',section:'global',section:'selection',tooltip:'Gå til åpningstider',icon:'url(/images/home/OpeningHours.png)'}"></button>
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toContactButton', label:'Kontakt',section:'global',section:'selection',tooltip:'Gå til kontaktinformasjon',icon:'url(/images/home/Contact.png)'}"></button>
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toSearchButton', label:'Søk',section:'global',section:'selection',tooltip:'Søk i biblioteket',icon:'url(/images/home/Search.png)'}"></button>
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toHomeButton', label:'Hjem',section:'global',section:'selection',tooltip:'Gå hjem',icon:'url(/images/home/home.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toNewsButton', label:'Nyheter', section:'global',section:'selection',tooltip:'Nyheter fra Sølvberget', icon:'url(/images/home/News.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toEventsButton', label:'Arrangementer', section:'global',section:'selection',tooltip:'Gå til arrangementer',icon:'url(/images/home/Events.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toListsButton', label:'Anbefalinger og topplister', section:'global',section:'selection',tooltip:'Gå til anbefalinger og topplister', icon:'url(/images/home/Lists.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toBlogsPageButton', label:'Blogger', section:'global',section:'selection',tooltip:'Gå til blogger', icon:'url(/images/home/Blogs.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toMyPageButton', label:'Min side', section:'global',section:'selection',tooltip:'Gå til Min side',icon:'url(/images/home/MyPage.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toOpeningHoursButton', label:'Åpningstider', section:'global',section:'selection',tooltip:'Gå til åpningstider',icon:'url(/images/home/OpeningHours.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toContactButton', label:'Kontakt', section:'global',section:'selection',tooltip:'Gå til kontaktinformasjon',icon:'url(/images/home/Contact.png)'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'toSearchButton', label:'Søk', section:'global',section:'selection',tooltip:'Søk i biblioteket',icon:'url(/images/home/Search.png)'}"></button>
     </div>
     <!-- ENDTEMPLATE -->
 
     <div id="loginFragmentHolder"></div>
+    <div id="pinRequestFragmentHolder"></div>
     <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/home/home.html'}"></div>
 </body>
 </html>

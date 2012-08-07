@@ -187,7 +187,7 @@ namespace Solvberget.Domain.Implementation
                 }
             }
 
-            var similarWords = SpellChecker.SuggestSimilar(suggestionString, 5);
+            var similarWords = SpellChecker.SuggestSimilar(suggestionString, 1);
             return similarWords.Any() ? similarWords[0] : "";
             
         }

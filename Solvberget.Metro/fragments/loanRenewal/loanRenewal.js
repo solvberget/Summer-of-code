@@ -8,54 +8,65 @@
             submitRenewal(loan.DocumentNumber, loan.ItemSequence, loan.Barcode, LoginFlyout.getLoggedInLibraryUserId());
         }, false);
         document.getElementById("cancelRenewalButton").addEventListener("click", cancel, false);
+        document.getElementById("renewalOkButton").addEventListener("click", cancel, false);
         document.getElementById("renewalFlyout").addEventListener("afterhide", onDismiss, false);
 
         renewalFlyout.winControl.show(element, "right");
         $("#renewalLoading").css("display", "none").css("visibility", "hidden");
+        $("#renewalOkButton").css("display", "none").css("visibility", "hidden");
     }
-    
+
     var ajaxRequestLoanRenewal = function (documentNumber, itemSecq, barcode, libraryUserId) {
         var borrowerId = LoginFlyout.getLoggedInLibraryUserId();
         if (borrowerId != undefined && borrowerId !== "")
             var requestString = "?documentNumber=" + documentNumber + "&itemSecq=" + itemSecq + "&barcode=" + barcode + "&libraryUserId=" + libraryUserId;
         var requestUrl = window.Data.serverBaseUrl + "/Document/RequestLoanRenewal/" + requestString;
         var json = $.getJSON(requestUrl);
-     
+
         return json;
     };
 
     function submitRenewal(documentNumber, itemSecq, barcode, libraryUserId) {
         var renewalFlyout = document.getElementById("renewalFlyout");
-     
+
         $("#renewalLoading").css("display", "block").css("visibility", "visible");
-        
-       
+
+
         $.when(ajaxRequestLoanRenewal(documentNumber, itemSecq, barcode, libraryUserId))
-            .then($.proxy(function(response) {
+            .then($.proxy(function (response) {
                 if (response != undefined && response !== "") {
-                    //Ok det er fornyet
+                    //Ok, lånet er fornyet
                     var renewalDiv = document.getElementById("renewalOutputMsg");
                     renewalDiv.innerHTML = response.Reply;
-                    if(response.Success) {
+
+                    if (response.Success) {
+
+                        $("#submitRenewalButton").css("display", "none").css("visibility", "hidden");
+                        $("#cancelRenewalButton").css("display", "none").css("visibility", "hidden");
 
                         $("#renewalOutputMsg").removeClass("error");
                         $("#renewalOutputMsg").addClass("success");
                         //green
+
+                        WinJS.Binding.processAll(renewalDiv, response);
+                        $("#renewalLoading").css("display", "none").css("visibility", "hidden");
+                        setTimeout(function () {
+                            var flyout = document.getElementById("renewalFlyout");
+                            if (flyout != undefined)
+                                flyout.winControl.hide();
+                        }, 1200);
                     } else {
 
                         $("#renewalOutputMsg").removeClass("success");
                         $("#renewalOutputMsg").addClass("error");
                         //red
-                        
+
+                        $("#renewalLoading").css("display", "none").css("visibility", "hidden");
+                        $("#renewalOkButton").css("display", "block").css("visibility", "visible");
+                        $("#submitRenewalButton").css("display", "none").css("visibility", "hidden");
+                        $("#cancelRenewalButton").css("display", "none").css("visibility", "hidden");
+
                     }
-                    WinJS.Binding.processAll(renewalDiv, response);
-                    $("#renewalLoading").css("display", "none").css("visibility", "hidden");
-                    setTimeout(function () {
-                        var flyout = document.getElementById("renewalFlyout");
-                        if (flyout != undefined)
-                            flyout.winControl.hide();
-                    }, 1200);
-                    
                 }
             }, this)
             );
@@ -72,6 +83,7 @@
         document.getElementById("submitRenewalButton").value = "";
         document.getElementById("cancelRenewalButton").value = "";
         document.getElementById("renewalOutputMsg").value = "";
+        document.getElementById("renewalOkButton").value = "";
 
     }
 

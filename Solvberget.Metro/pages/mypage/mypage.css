@@ -1,6 +1,4 @@
-﻿body {
-    overflow: auto;
-}
+﻿
 
 .titlecontainer {
     border: none;
@@ -25,6 +23,7 @@
 
 #mainContentSection {
     margin-left: 45px;
+    overflow: auto;
 }
 
 #templates {
@@ -47,19 +46,21 @@
 
 .box {
     margin: 10px;
-    border-width: 1px;
-    border: solid;
     width: auto;
     height: auto;
     padding: 10px;
     overflow: hidden;
+    /**
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    */
     resize: both;
     max-width: 350px;
     min-width: 175px;
     min-height: 120px;
+    border-width: 1px;
+    border: solid;
     border-color: #666666;
 }
 
@@ -77,6 +78,10 @@
     }
 
     .box .documentTitle {
+        font-weight: bold;
+    }
+
+    .box .title {
         font-weight: bold;
     }
 
@@ -101,8 +106,14 @@ progress.withText {
     visibility: hidden;
     max-height: calc(100% - 20px);
 }
-#mypageData > div {
-    float: left;
+
+    #mypageData > div {
+    }
+
+#mypageData {
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+    -ms-flex-align: stretch;
 }
 
 .float-item {
@@ -116,24 +127,27 @@ progress.withText {
     display: inline;
 }
 
-#fines, #loans, #reservations {
+#fines, #loans, #reservations, #notifications {
     max-width: 750px;
     max-height: 600px;
     overflow: auto;
-
 }
 
 
-@media screen and (-ms-view-state: snapped) {
+@media screen and (orientation: portrait) {
     .box {
         float: none;
         margin-left: 0;
-        max-width: 220px;
+        max-width: 550px;
     }
 
-    #fines, #loans, #reservations {
+    #mainContentSection {
+        margin-left: 45px;
+    }
+
+    #fines, #loans, #reservations, #notifications {
         max-height: none;
-        max-width: 210px;
+        max-width: 550px;
     }
 
     .myPage header[role=banner] .titlearea .pagesubtitle {
@@ -142,5 +156,46 @@ progress.withText {
 
     .win-backbutton {
         margin-top: 60px!important;
+    }
+
+    #mypageData {
+        margin-top: 30px;
+        -ms-flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
+
+    .myPage header[role=banner] .titlearea {
+        overflow: visible;
+    }
+
+    body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
+
+
+@media screen and (-ms-view-state: snapped) {
+    .box {
+        max-width: 250px;
+    }
+
+    #fines, #loans, #reservations, #notifications {
+        max-height: none;
+        max-width: 250px;
+    }
+
+    #mainContentSection {
+        margin-left: 10px;
+    }
+
+    .myPage header[role=banner] .titlearea {
+        overflow: hidden;
+    }
+
+    body {
+        overflow: auto;
     }
 }

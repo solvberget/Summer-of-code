@@ -7,65 +7,84 @@
     var contact = "/images/home/Contact.png";
     var openingHours = "/images/home/OpeningHours.png";
     var tasks = "/images/home/Lists.png";
+    var blogs = "/images/home/Blogs.png";
+    var news = "/images/home/News.png";
     var activePage = "home";
 
     var serverBaseUrl = "http://localhost:7089";
 
+    var colorPoolRgba = ["rgba(255, 153, 0, 0.6)", "rgba(204, 51, 0, 0.6)", "rgba(136, 187, 0, 0.6)", "rgba(0, 85, 34, 0.6)", "rgba(0, 153, 204, 0.6)", "rgba(0, 51, 102, 0.6)", "rgba(102, 0, 102, 0.6)", "rgba(51, 0, 51, 0.6)"];
+
     var menuItems = [
-        { key: "lists", title: "Nyheter og anbefalinger", subtitle: "Nyheter, anbefalinger og topplister", backgroundImage: tasks, navigateTo: navigateToLists },
+        { key: "news", title: "Nyheter", subtitle: "Nyheter fra Sølvberget", backgroundImage: news, navigateTo: navigateToNews },
         { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: navigateToMypage },
         { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: navigateToEvents },
         { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen inn", backgroundImage: openingHours, navigateTo: navigateToOpeningHours },
+        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, navigateTo: navigateToLists },
         { key: "contact", title: "Kontakt oss", subtitle: "Kontaktinformasjon", backgroundImage: contact, navigateTo: navigateToContact },
+        { key: "blogs", title: "Blogger", subtitle: "Utvalgte blogger", backgroundImage: blogs, navigateTo: navigateToBlogs },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
     ];
 
-    function navigateToHome() {
-        return WinJS.Navigation.navigate("/pages/home/home.html");
+    function getRandomColor(alpha) {
+
+        var random = Math.random() * colorPoolRgba.length;
+        random = Math.floor(random);
+        var color = colorPoolRgba[random];
+        if (alpha) {
+            color = color.substr(0, color.length - 4);
+            color = color + alpha + ")";
+        }
+        return color;
     };
 
     var list = new WinJS.Binding.List(menuItems);
+    
+    function getActivePage() {
+        return WinJS.Navigation.location;
+    }
+
 
     function navigateToHome() {
-        activePage = "home"; WinJS.Navigation.navigate("/pages/home/home.html");
+        Data.activePage = "home"; WinJS.Navigation.navigate("/pages/home/home.html");
     }
 
-
-    function navigateToLists() 
-    { 
-        activePage = "lists"; WinJS.Navigation.navigate("/pages/lists-v2/libraryLists.html"); 
+    function navigateToNews() {
+        Data.activePage = "news"; WinJS.Navigation.navigate("/pages/news/news.html");
     }
 
-    function navigateToMypage() 
-    { 
-        activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html"); 
+    function navigateToLists() {
+        Data.activePage = "lists"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html");
     }
 
-    function navigateToEvents() 
-    { 
-        activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html"); 
+    function navigateToMypage() {
+        Data.activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html");
     }
 
-    function navigateToOpeningHours() 
-    { 
-        activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html"); 
+    function navigateToEvents() {
+        Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html");
     }
 
-    function navigateToContact() 
-    { 
-        activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html");
-    } 
+    function navigateToOpeningHours() {
+        Data.activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html");
+    }
 
-    function navigateToSearch() 
-    { 
-        Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show(); 
+    function navigateToContact() {
+        Data.activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html");
+    }
+
+    function navigateToSearch() {
+        Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show();
+    }
+    function navigateToBlogs() {
+        Data.activePage = "blogs"; WinJS.Navigation.navigate("/pages/blogs/main/blogs.html");
     }
 
     var loginThenNavigateTo = function (page) {
 
 
         var loginDiv = document.getElementById("loginDiv");
-      
+
 
         WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
@@ -85,7 +104,6 @@
     }
 
     WinJS.Namespace.define("Data", {
-
         items: list,
         itemByKey: itemByKey,
         menuItems: menuItems,
@@ -98,5 +116,9 @@
         navigateToOpeningHours: navigateToOpeningHours,
         navigateToContact: navigateToContact,
         navigateToSearch: navigateToSearch,
+        navigateToBlogs: navigateToBlogs,
+        navigateToNews: navigateToNews,
+        colorPoolRgba: colorPoolRgba,
+        getRandomColor: getRandomColor,
     });
 })();

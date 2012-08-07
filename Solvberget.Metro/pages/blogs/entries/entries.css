@@ -1,0 +1,161 @@
+﻿.entry {
+    margin-top: 20px;
+    padding: 20px;
+    border-width: 1px;
+    border-color: white;
+    border-style: dotted;
+    border-radius: 5px 5px 5px 5px;
+    width: 400px;
+    margin-right: 50px;
+    background-color: #330033;
+}
+
+    .entry:active {
+        background: #5B4350;
+        background-repeat: repeat;
+    }
+
+    .entry:hover {
+        cursor: pointer;
+    }
+
+.entryThumbnail {
+    max-width: 72px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.document-image-container {
+    float: right;
+    margin-top: 10px;
+    max-width: 72px;
+    margin-right: 20px;
+    height: auto;
+}
+
+#mainEntriesContentSection {
+    margin-left: 10px;
+    overflow: auto;
+}
+
+
+
+#entriesTemplateHolder {
+    margin-top: 120px;
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+    -ms-flex-align: stretch;
+}
+
+.entriesSection {
+    margin-top: 20px;
+    margin-right: 50px;
+    padding: 20px;
+}
+
+/** STATIC */
+
+#templates {
+    display: none;
+}
+
+#entriesLoading {
+    width: auto;
+    height: auto;
+    text-align: center;
+    margin-top: 250px;
+}
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+}
+
+progress.withText {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+/* Text style for a label for a default size progress ring */
+.progressRingText {
+    font-size: 20pt;
+    line-height: 25pt;
+}
+
+#entriesContent {
+    display: inline;
+}
+
+.titlearea {
+    overflow: visible;
+}
+
+.content {
+    -ms-grid-row: 2;
+    display: block;
+    height: 100%;
+    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+    .content article {
+        /* Define a multi-column, horizontally scrolling article by default. */
+        column-gap: 80px;
+        column-width: 480px;
+        height: calc(100% - 50px);
+        margin-left: 120px;
+        margin-top: 5px;
+        width: 480px;
+    }
+
+.titlecontainer {
+    border: none;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .content article {
+        /* Define a single column, vertically scrolling article in snapped mode. */
+        -ms-grid-columns: 300px 1fr;
+        -ms-grid-row: 2;
+        -ms-grid-rows: auto 60px;
+        display: -ms-grid;
+        height: 100%;
+        margin-left: 5px;
+        width: 300px;
+    }
+
+    #entriesContent {
+        margin-left: 5px;
+        -ms-grid-column: inherit;
+    }
+
+    #mainEntriesContentSection {
+        margin-left: 10px;
+        overflow: auto;
+    }
+
+    #entriesTemplateHolder {
+        margin-top: 10px;
+        -ms-flex-direction: column;
+    }
+
+    .entry {
+        margin-top: 50px;
+        width: 200px;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .entry {
+        margin-top: 50px;
+    }
+
+
+    #entriesTemplateHolder {
+        margin-top: 10px;
+        -ms-flex-direction: column;
+    }
+}

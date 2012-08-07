@@ -25,7 +25,7 @@
             var suggestionText = document.getElementById("spanDidYouMean");
 
             // Get a new search-suggestion
-            $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
+            $.getJSON(Data.serverBaseUrl + "/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
 
                 // Check to see if we have a suggestion
                 if (query != allData && allData != "") {
@@ -154,6 +154,7 @@
             this.filters.push({ results: null, text: "Språkkurs", predicate: function (item) { return item.DocType == "LanguageCourse"; } });
             this.filters.push({ results: null, text: "Tidsskrift", predicate: function (item) { return item.DocType == "Journal"; } });
             this.filters.push({ results: null, text: "Noter", predicate: function (item) { return item.DocType == "SheetMusic"; } });
+            this.filters.push({ results: null, text: "Spill", predicate: function (item) { return item.DocType == "Game"; } });
             this.filters.push({ results: null, text: "Annet", predicate: function (item) { return item.DocType == "Document"; } });
 
         },
@@ -224,7 +225,15 @@
                            response[x].BackgroundImage = response[x].ThumbnailUrl;
                        }
                        else {
-                           response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                           if (response[x].DocType == "Film" && response[x].TypeOfMedia == "Blu-ray") {
+                               response[x].BackgroundImage = "images/placeholders/Blu-ray.png";
+                           }
+                           else if (response[x].DocType == "Film" && response[x].TypeOfMedia == "3D") {
+                               response[x].BackgroundImage = "images/placeholders/3D.png";
+                            }
+                           else {
+                               response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                           }
                        }
 
                        originalResults.push(response[x]);

@@ -97,6 +97,7 @@
     <Compile Include="Abstract\IImageRepository.cs" />
     <Compile Include="Abstract\IListRepositoryStatic.cs" />
     <Compile Include="Abstract\IBlogRepository.cs" />
+    <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\IRatingRepository.cs" />
     <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\IRulesRepository.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="DTO\Blog.cs" />
     <Compile Include="DTO\BlogEntry.cs" />
     <Compile Include="DTO\BokElskereBok.cs" />
+    <Compile Include="DTO\Game.cs" />
     <Compile Include="DTO\Information.cs" />
     <Compile Include="DTO\ItemRule.cs" />
     <Compile Include="DTO\ImdbObject.cs" />
@@ -146,6 +148,8 @@
     <Compile Include="DTO\Film.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DTO\Notification.cs" />
+    <Compile Include="DTO\NewsItem.cs" />
     <Compile Include="DTO\RequestReply.cs" />
     <Compile Include="DTO\LastFmAlbum.cs" />
     <Compile Include="DTO\Fine.cs">
@@ -189,6 +193,7 @@
     <Compile Include="Implementation\BlogRepository.cs" />
     <Compile Include="Implementation\BokelskereRepository.cs" />
     <Compile Include="Implementation\InformationRepository.cs" />
+    <Compile Include="Implementation\NewsRepository.cs" />
     <Compile Include="Implementation\RulesRepository.cs" />
     <Compile Include="Implementation\ImdbRepository.cs" />
     <Compile Include="Implementation\DictionaryBuilder.cs" />

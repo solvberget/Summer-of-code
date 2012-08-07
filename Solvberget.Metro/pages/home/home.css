@@ -1,126 +1,160 @@
 ﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
    to .win-surface. */
-.itemspage {
-}
 
-.itemspage .homeContent .itemslist {
-    
+.itemspage {
+    display: -ms-grid;
+    -ms-grid-rows: 1fr 540px 1fr;
+    -ms-grid-columns: 1fr 1366px 1fr;
+    width: 100%;
     height: 100%;
 }
 
-.itemspage .homeContent .itemslist .win-surface {
-    margin: auto;
-    margin-top: 10%;
-}
-.itemspage .homeContent {
-    -ms-grid-row-span: 3;
-}
-
-    .itemspage .homeContent .itemslist .win-item {
-        -ms-grid-columns: 1fr;
-        -ms-grid-rows: 1fr 90px;
-        display: -ms-grid;
-        height:250px;
-        width: 250px;
-        position: relative;
-        margin-left: 5px;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        margin-top: 5px;
-
+    .itemspage .itemslist {
+        height: 540px;
+        width: 1366px;
+        -ms-grid-row: 2;
+        -ms-grid-column: 2;
+        -ms-grid-row-align: center;
+        -ms-grid-column-align: center;
     }
 
-        .itemspage .itemslist .win-item .item-image {
-            -ms-grid-row-span: 2;
+        .itemspage .itemslist .win-surface {
+            margin: auto;
         }
 
-        .itemspage .itemslist .win-item .item-overlay {
-            -ms-grid-row: 2;
-            height:45px;
-            -ms-grid-rows: 1fr 25px;
-            display: -ms-grid;
-            padding: 6px 15px 2px 15px;
-            position:absolute; bottom:0;
+        .itemspage .itemslist .win-item {
+            height: 250px;
+            width: 250px;
+            position: relative;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            margin-top: 5px;
         }
 
-            .itemspage .itemslist .win-item .item-overlay .item-title {
-                -ms-grid-row: 1;
-                overflow: hidden;
-                width: 220px;
+            .itemspage .itemslist .win-item .item-image {
+                -ms-grid-row-span: 2;
             }
 
-            .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+            .itemspage .itemslist .win-item .item-overlay {
                 -ms-grid-row: 2;
-                width: 220px;
+                height: 45px;
+                -ms-grid-rows: 1fr 25px;
+                display: -ms-grid;
+                padding: 6px 15px 2px 15px;
+                position: absolute;
+                bottom: 0;
             }
+
+                .itemspage .itemslist .win-item .item-overlay .item-title {
+                    -ms-grid-row: 1;
+                    overflow: hidden;
+                    width: 220px;
+                }
+
+                .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+                    -ms-grid-row: 2;
+                    width: 220px;
+                }
 
 @media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
 
-        .itemspage .itemslist .win-item .item-overlay .item-title {
-            color: rgba(255,255,255,0.87);
-        }
+    .itemspage .itemslist .win-item .item-overlay .item-title {
+        color: rgba(255,255,255,0.87);
+    }
 
-        .itemspage .itemslist .win-item .item-overlay .item-subtitle {
-            color: rgba(255,255,255,0.6);
-        }
+    .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+        color: rgba(255,255,255,0.6);
+    }
 }
 
 @media screen and (-ms-view-state: snapped) {
-    .itemspage .itemslist .win-vertical.win-viewport .win-surface {
-        margin-bottom: 30px;
-        margin-left: 6px;
-    }
 
-    .itemspage .itemslist .win-vertical.win-viewport .win-container {
-        margin-bottom: 15px;
-        margin-right: 42px;
-        padding: 7px;
-    }
-
-    .itemspage .itemslist .win-item {
-        -ms-grid-columns: 60px 1fr;
-        -ms-grid-rows: 1fr;
+    .itemspage {
         display: -ms-grid;
-        height: 60px;
-        width: 272px;
+        -ms-grid-rows: 1fr;
+        -ms-grid-columns: 1fr;
+        width: 100%;
+        height: 100%;
     }
 
-        .itemspage .itemslist .win-item .item-image, .itemspage .itemslist .win-item:hover .item-image {
-            -ms-grid-column: 1;
-            -ms-grid-row-span: 1;
-            height: 60px;
-            width: 60px;
-        }
-
-        .itemspage .itemslist .win-item .item-overlay {
-            -ms-grid-column: 2;
+        .itemspage .itemslist {
+            height: 100%;
+            width: 100%;
             -ms-grid-row: 1;
-            -ms-grid-row-align: stretch;
-            background: transparent;
-            display: inline-block;
-            margin-left: 10px;
-            padding: 0;
+            -ms-grid-column: 1;
+            -ms-grid-row-align: center;
+            -ms-grid-column-align: center;
         }
 
-            .itemspage .itemslist .win-item .item-overlay .item-title {
-                max-height: 40px;
-                margin-top: 4px;
-                width: 202px;
+        .itemspage .homeContent .itemslist .win-vertical.win-viewport .win-surface {
+            margin-bottom: 30px;
+            margin-left: 6px;
+        }
+
+        .itemspage .homeContent .itemslist .win-vertical.win-viewport .win-container {
+            margin-bottom: 15px;
+            margin-right: 42px;
+            padding: 7px;
+        }
+
+        .itemspage .itemslist .win-item {
+            -ms-grid-columns: 60px 1fr;
+            -ms-grid-rows: 1fr;
+            display: -ms-grid;
+            height: 60px;
+            width: 272px;
+        }
+
+            .itemspage .itemslist .win-item .item-image, .itemspage .itemslist .win-item:hover .item-image {
+                -ms-grid-column: 1;
+                -ms-grid-row-span: 1;
+                height: 60px;
+                width: 60px;
             }
 
-            .itemspage .itemslist .win-item .item-overlay .item-subtitle {
-                opacity: 0.6;
-                width: 202px;
+            .itemspage .itemslist .win-item .item-overlay {
+                -ms-grid-column: 2;
+                -ms-grid-row: 1;
+                -ms-grid-row-align: stretch;
+                background: transparent;
+                display: inline-block;
+                margin-left: 10px;
+                padding: 0;
             }
+
+                .itemspage .itemslist .win-item .item-overlay .item-title {
+                    max-height: 40px;
+                    margin-top: 4px;
+                    width: 202px;
+                }
+
+                .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+                    opacity: 0.6;
+                    width: 202px;
+                }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 
-    .itemspage .homeContent .itemslist {
-        width: 550px;
-        height: 1000px;
-        margin: auto;
-        margin-top: 20%;
+    .itemspage {
+        display: -ms-grid;
+        -ms-grid-rows: 1fr 1366px 1fr;
+        -ms-grid-columns: 1fr 540px 1fr;
+        width: 100%;
+        height: 100%;
     }
-    
+
+        .itemspage .itemslist {
+            height: 1300px;
+            width: 550px;
+            -ms-grid-row: 2;
+            -ms-grid-column: 2;
+            -ms-grid-row-align: center;
+            -ms-grid-column-align: center;
+        }
+
+            .itemspage .itemslist .win-surface {
+                margin: auto;
+            }
 }

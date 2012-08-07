@@ -50,6 +50,15 @@
                 <button class="cancelReservationButton" data-win-bind="">Fjern reservasjon</button>
             </div>
         </div>
+
+        <!-- Notifications template -->
+        <div id="notificationTemplate">
+            <div class="float-item">
+                <hr />
+                <span class="title" data-win-bind="innerText: Title"></span>
+                <span class="content" data-win-bind="innerText: Content "></span>
+            </div>
+        </div>
     </div>
 
     <!-- The content that will be loaded and displayed. -->
@@ -69,6 +78,12 @@
                 </label>
             </div>
             <article id="mypageData">
+                <div id="notifications" class="box">
+                    <h2><span class="detail-title">Meldinger</span></h2>
+                    <div id="notificationTemplateHolder">
+                    </div>
+                </div>
+
                 <div id="myPagePersonalInformation">
                     <div class="box">
                         <h2><span class="detail-title">Personalia</span></h2>
@@ -83,8 +98,6 @@
                         <span id="addressCity" data-win-bind="innerText: CityAddress"></span>
                     </div>
 
-
-
                     <div class="box">
                         <h2><span class="detail-title">Kontaktinformasjon</span></h2>
                         <span id="email" data-win-bind="innerText: Email"></span>
@@ -93,13 +106,13 @@
                     </div>
                 </div>
 
-                <div id="fines" class="box">
-                    <h2><span class="detail-title">Gebyrer</span></h2>
-                    <span id="balance" data-win-bind="innerText: Balance MyPageConverters.balanceConverter"></span>
-                    <div id="fineTemplateHolder">
+
+
+                <div id="reservations" class="box">
+                    <h2><span class="detail-title">Reserveringer</span></h2>
+                    <div id="reservationTemplateHolder">
                     </div>
                 </div>
-
 
                 <div id="loans" class="box">
                     <div id="loanHeader">
@@ -110,9 +123,11 @@
                     </div>
                 </div>
 
-                <div id="reservations" class="box">
-                    <h2><span class="detail-title">Reserveringer</span></h2>
-                    <div id="reservationTemplateHolder">
+
+                <div id="fines" class="box">
+                    <h2><span class="detail-title">Gebyrer</span></h2>
+                    <span id="balance" data-win-bind="innerText: Balance MyPageConverters.balanceConverter"></span>
+                    <div id="fineTemplateHolder">
                     </div>
                 </div>
 

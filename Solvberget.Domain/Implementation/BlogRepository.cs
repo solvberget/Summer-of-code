@@ -28,8 +28,17 @@ namespace Solvberget.Domain.Implementation
         {
             var blogs = GetBlogsFromFile(_folderPath + BlogFeedsFile);
             var blog = blogs.ElementAt(blogId);
-            var xml = XDocument.Load(blog.Url, LoadOptions.PreserveWhitespace).ToString();
-
+            string xml;
+            try
+            {
+                xml = XDocument.Load(blog.Url, LoadOptions.PreserveWhitespace).ToString();
+            }
+            catch (System.Exception)
+            {
+                // TODO: Log exception, mer spesifikk exception (blog not exist)
+                System.Console.WriteLine("Fatal feil: Kunne ikke hente blogg (bloggen finnes ikke?)");
+                return blog;
+            }
             blog.Entries = blog.ContentType.Equals("atom") ? BlogEntry.FillEntriesFromAtom(xml) : BlogEntry.FillEntriesFromRss(xml);
 
             return blog;
@@ -56,7 +65,7 @@ namespace Solvberget.Domain.Implementation
 
             var feeds = root.Elements();
             blogs.AddRange(feeds.Select(xElement => Blog.FillBlog(xElement.ToString())));
-
+            blogs = blogs.OrderBy(blog => blog.Priority).ToList();
             return blogs;
 
         }

@@ -16,9 +16,8 @@
 
             getUserInformation();
 
-            $(".box").draggable({ revert: "valid", containment: "body" });
-            $("#mypageData").droppable();
-            $(".box").droppable();
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
 
         },
 
@@ -146,6 +145,43 @@ var addReservationsToDom = function (reservations) {
     }
 };
 
+var addNotificationsToDom = function (notifications) {
+    if (notifications == undefined) {
+        $("#notificationTemplateHolder").text("Du har ingen meldinger");
+        return;
+    }
+
+    var notificationTemplate = new WinJS.Binding.Template(document.getElementById("notificationTemplate"));
+    var notificationTemplateContainer = document.getElementById("notificationTemplateHolder");
+
+    notificationTemplateContainer.innerHTML = "";
+
+    var i, notification;
+    for (i = 0; i < notifications.length; i++) {
+        notification = notifications[i];
+        if (!notification) continue;
+        notificationTemplate.render(notification, notificationTemplateContainer);
+    }
+};
+
+var addColors = function () {
+
+    $("#fines").css("background-color", Data.colorPoolRgba[1]);
+    $("#loans").css("background-color", Data.colorPoolRgba[3]);
+    $("#reservations").css("background-color", Data.colorPoolRgba[6]);
+    $("#notifications").css("background-color", Data.colorPoolRgba[4]);
+
+    $("#myPagePersonalInformation").children().each(function () {
+        $(this).css("background-color", Data.colorPoolRgba[0]);
+    });
+
+    /**
+    $(".box").each(function () {
+        $(this).css("background-color", Data.getRandomColor())
+    });*/
+}
+
+
 var getUserInformation = function () {
 
     // Show progress-ring, hide content
@@ -174,6 +210,9 @@ var getUserInformation = function () {
                 // Delete reservations from main object
                 delete response.Reservations;
 
+                var notifications = response.Notifications;
+                delete response.Notifications;
+
                 if (response.Name === response.PrefixAddress)
                     response.PrefixAddress = "";
 
@@ -196,13 +235,14 @@ var getUserInformation = function () {
                 this.addFinesToDom(fines);
                 this.addLoansToDom(loans);
                 this.addReservationsToDom(reservations);
-
+                this.addNotificationsToDom(notifications);
+                this.addColors();
 
             }
 
             // Hide progress-ring, show content
             $("#mypageLoading").css("display", "none").css("visibility", "none");
-            $("#mypageData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
+            $("#mypageData").css("display", "-ms-flexbox").css("visibility", "visible").hide().fadeIn(500);
 
         }, this)
     );
@@ -267,10 +307,5 @@ var getUserInformation = function () {
 
 
     });
-
-
-
-
-
 
 };
