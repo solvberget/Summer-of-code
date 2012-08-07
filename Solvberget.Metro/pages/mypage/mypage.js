@@ -63,7 +63,7 @@ var showToast = function (heading, body) {
 
     var toastTextElements = toastXml.getElementsByTagName("text");
     toastTextElements[0].appendChild(toastXml.createTextNode(heading));
-    toastTextElements[1].appendChild(toastXml.createTextNode(" " + body));
+    toastTextElements[1].appendChild(toastXml.createTextNode(body));
 
     var toast = new Windows.UI.Notifications.ToastNotification(toastXml);
 
