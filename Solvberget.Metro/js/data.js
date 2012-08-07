@@ -39,40 +39,45 @@
     };
 
     var list = new WinJS.Binding.List(menuItems);
+    
+    function getActivePage() {
+        return WinJS.Navigation.location;
+    }
+
 
     function navigateToHome() {
-        activePage = "home"; WinJS.Navigation.navigate("/pages/home/home.html");
+        Data.activePage = "home"; WinJS.Navigation.navigate("/pages/home/home.html");
     }
 
     function navigateToNews() {
-        activePage = "news"; WinJS.Navigation.navigate("/pages/news/news.html");
+        Data.activePage = "news"; WinJS.Navigation.navigate("/pages/news/news.html");
     }
 
     function navigateToLists() {
-        activePage = "lists"; WinJS.Navigation.navigate("/pages/lists-v2/libraryLists.html");
+        Data.activePage = "lists"; WinJS.Navigation.navigate("/pages/lists-v2/libraryLists.html");
     }
 
     function navigateToMypage() {
-        activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html");
+        Data.activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html");
     }
 
     function navigateToEvents() {
-        activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html");
+        Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html");
     }
 
     function navigateToOpeningHours() {
-        activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html");
+        Data.activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html");
     }
 
     function navigateToContact() {
-        activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html");
+        Data.activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html");
     }
 
     function navigateToSearch() {
         Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show();
     }
     function navigateToBlogs() {
-        activePage = "blogs"; WinJS.Navigation.navigate("/pages/blogs/main/blogs.html");
+        Data.activePage = "blogs"; WinJS.Navigation.navigate("/pages/blogs/main/blogs.html");
     }
 
     var loginThenNavigateTo = function (page) {
