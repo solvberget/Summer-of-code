@@ -179,6 +179,8 @@
     }
     function logout() {
 
+        var activePage = WinJS.Navigation.location;
+
         window.localStorage.setItem("BorrowerId", "");
         window.localStorage.setItem("LibraryUserId", "");
 
@@ -194,9 +196,24 @@
             var flyout = document.getElementById("loginFlyout");
             if (flyout != undefined)
                 flyout.winControl.hide();
-            Data.navigateToHome();
+            if (WinJS.Navigation.location == "/pages/mypage/mypage.html")
+                Data.navigateToHome();
             updateAppBarButton();
         }, 1200);
+
+
+        setTimeout(function () {        
+            $("#logoutConfimationMsg").css("display", "none").css("visibility", "hidden");
+            $("#confirmLogoutButton").css("display", "none").css("visibility", "hidden");
+            $("#cancelLogoutButton").css("display", "none").css("visibility", "hidden");
+
+            $("#labelForUserId").css("display", "block").css("visibility", "visible");
+            $("#userId").css("display", "block").css("visibility", "visible");
+            $("#laberForPin").css("display", "block").css("visibility", "visible");
+            $("#pin").css("display", "block").css("visibility", "visible");
+            $("#submitLoginButton").css("display", "block").css("visibility", "visible");
+            $("#outputMsg").css("display", "block").css("visibility", "visible");
+        }, 1300);
         
     }
 

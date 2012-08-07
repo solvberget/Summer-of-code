@@ -134,7 +134,8 @@ var populateFragment = function (documentModel) {
         $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
         //Do not allow hold request for journals
-        $("#sendHoldRequestButton").css("display", "none").css("visibility", "none");
+        if (documentType == "Journal") 
+            $("#sendHoldRequestButton").css("display", "none").css("visibility", "none");
 
     });
 

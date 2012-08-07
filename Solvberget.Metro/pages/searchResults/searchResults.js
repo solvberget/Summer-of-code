@@ -25,7 +25,7 @@
             var suggestionText = document.getElementById("spanDidYouMean");
 
             // Get a new search-suggestion
-            $.getJSON("http://localhost:7089/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
+            $.getJSON(Data.serverBaseUrl + "/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
 
                 // Check to see if we have a suggestion
                 if (query != allData && allData != "") {
