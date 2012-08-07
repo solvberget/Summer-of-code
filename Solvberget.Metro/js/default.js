@@ -199,7 +199,7 @@ function pinToStart() {
 
     } else {
 
-        pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Appbar pinned secondary tile", "A secondary tile that was pinned by the user from the Appbar").then(function (isCreated) {
+        pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Sølvberget", "Sølvberget - Stavanger Bibliotek").then(function (isCreated) {
             if (isCreated) {
                 setAppbarButton();
             } else {

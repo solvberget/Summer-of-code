@@ -56,7 +56,7 @@
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
 
-                        if (path.indexOf("ms-appx://") == -1){
+                        if (path.indexOf("ms-appx://") == 1){
                             path = "";
 
                         }else{
@@ -134,7 +134,7 @@ var populateFragment = function (documentModel) {
         $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
         //Do not allow hold request for journals
-        if (documentType == "Journal") 
+        if (documentType == "Journal")
             $("#sendHoldRequestButton").css("display", "none").css("visibility", "none");
 
     });
