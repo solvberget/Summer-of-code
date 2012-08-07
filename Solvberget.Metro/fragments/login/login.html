@@ -8,10 +8,17 @@
     <script type="text/javascript" src="login.js"></script>
 </head>
 <body>
-    <div id="loginFlyout" style="display:none" data-win-control="WinJS.UI.Flyout" aria-label="{Login flyout}">
+    <div id="loginFlyout" style="display: none" data-win-control="WinJS.UI.Flyout" aria-label="{Login flyout}">
         <form onsubmit="return false;">
+
+        <div id="logoutDiv">
+            <div id="logoutConfimationMsg">Du vil nå bli logget ut</div>
+            <button id="confirmLogoutButton">Logg ut</button>
+            <button id="cancelLogoutButton">Avbryt</button>
+        </div>
+
         <p>
-            <label for="userId">
+            <label for="userId" id="labelForUserId">
                 Lånernummer
                     <br />
             </label>
@@ -20,8 +27,9 @@
             <span id="userIdError" class="error"></span>
 
         </p>
+
         <p>
-            <label for="pin">
+            <label for="pin" id="laberForPin">
                 Pinkode<br />
             </label>
             <input type="password" id="pin" />

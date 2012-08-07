@@ -228,6 +228,9 @@
                            if (response[x].DocType == "Film" && response[x].TypeOfMedia == "Blu-ray") {
                                response[x].BackgroundImage = "images/placeholders/Blu-ray.png";
                            }
+                           else if (response[x].DocType == "Film" && response[x].TypeOfMedia == "3D") {
+                               response[x].BackgroundImage = "images/placeholders/3D.png";
+                            }
                            else {
                                response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
                            }
