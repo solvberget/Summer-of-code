@@ -10,6 +10,11 @@
         }
     });
 
+    function cancel() {
+        var flyout = document.getElementById("loginFlyout");
+        flyout.winControl.hide();
+    }
+
     // Ajax for login
     function ajaxDoLogin(userId, verification) {
         return $.getJSON("http://localhost:7089/User/GetUserInformation/" + userId + "/" + verification);
@@ -33,16 +38,50 @@
             document.getElementById("loginFlyout").addEventListener("afterhide", onDismiss, false);
             document.getElementById("outputMsg").addEventListener("click", showPinRrequestFlyout, false);
 
+            
+            $("#logoutConfimationMsg").css("display", "none").css("visibility", "hidden");
+            $("#confirmLogoutButton").css("display", "none").css("visibility", "hidden");
+            $("#cancelLogoutButton").css("display", "none").css("visibility", "hidden");
+
             loginFlyout.winControl.show(element, "right");
 
         }
-        else {
+        else if (navigateTo != undefined && navigateTo != "") {
 
             WinJS.Navigation.navigate(navigateTo);
 
         }
+        else {
+
+            var loginFlyout = document.getElementById("loginFlyout");
+            WinJS.UI.processAll(loginFlyout);
+
+            document.getElementById("confirmLogoutButton").addEventListener("click", logout, false);
+            document.getElementById("cancelLogoutButton").addEventListener("click", cancel, false);
+
+            $("#logoutConfimationMsg").css("display", "block").css("visibility", "visible");
+            $("#confirmLogoutButton").css("display", "block").css("visibility", "visible");
+            $("#cancelLogoutButton").css("display", "block").css("visibility", "visible");
+
+            $("#labelForUserId").css("display", "none").css("visibility", "hidden").css("height", "0px");
+            $("#userId").css("display", "none").css("visibility", "hidden").css("height", "0px");
+            $("#laberForPin").css("display", "none").css("visibility", "hidden").css("height", "0px");
+            $("#pin").css("display", "none").css("visibility", "hidden").css("height", "0px");
+            $("#submitLoginButton").css("display", "none").css("visibility", "hidden").css("height", "0px");
+            $("#outputMsg").css("display", "none").css("visibility", "hidden").css("height", "0px");
+            $("#loginLoading").css("display", "none").css("visibility", "hidden").css("height", "0px");
+
+            loginFlyout.winControl.show(element, "right");
+
+        }
 
     }
+
+    function logout() {
+        LoginFlyout.logout();
+    }
+
+
 
     // Show errors if any of the text fields are not filled out when the Login button is clicked
     function submitLogin() {

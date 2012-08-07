@@ -85,21 +85,20 @@ function doLogin() {
 
     // Get active user
     var user = LoginFlyout.getLoggedInBorrowerId();
-    LoginFlyout.logout(true);
 
     // If user was not logging out, user was logging in, so show login
-    if (!user || user == "") {
+
 
         // TODO: ROAMING
-        var loginDiv = document.getElementById("loginFragmentHolder");
-        loginDiv.innerHTML = "";
-        WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
+    var loginDiv = document.getElementById("loginFragmentHolder");
+    loginDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
-            var loginAnchor = document.querySelector("div");
+        var loginAnchor = document.querySelector("div");
 
-            LoginFlyout.showLogin(loginAnchor);
-        });
-    }
+        LoginFlyout.showLogin(loginAnchor);
+    });
+    
 }
 
 function pinByElementAsync(element, newTileID, newTileShortName, newTileDisplayName) {

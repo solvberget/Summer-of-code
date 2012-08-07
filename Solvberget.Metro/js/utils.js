@@ -12,8 +12,6 @@
                 });
             },
             {
-
-
                 element: {
                     get: function () { return this._element; }
                 },
@@ -57,9 +55,7 @@
         }
         if (borrowerId == undefined || borrowerId == "")
             borrowerId = window.localStorage.getItem("BorrowerId");
-
-
-
+        
         return borrowerId != undefined ? borrowerId : "";
     }
 
@@ -73,8 +69,7 @@
         if (roamingSettings) {
             libraryUserId = roamingSettings.values["LibraryUserId"];
         }
-
-
+        
         if (libraryUserId == undefined || libraryUserId == "")
             libraryUserId = window.localStorage.getItem("LibraryUserId");
 
@@ -95,7 +90,7 @@
         }
 
     }
-    function logout(goingHome) {
+    function logout() {
 
         window.localStorage.setItem("BorrowerId", "");
         window.localStorage.setItem("LibraryUserId", "");
@@ -106,13 +101,17 @@
         roamingSettings.values["BorrowerId"] = "";
         roamingSettings.values["LibraryUserId"] = "";
 
-        updateAppBarButton();
-
-        if (goingHome) {
+        document.getElementById("logoutConfimationMsg").innerHTML = "Du blir nå logget ut";
+               
+        setTimeout(function () {
+            var flyout = document.getElementById("loginFlyout");
+            if (flyout != undefined)
+                flyout.winControl.hide();
             Data.navigateToHome();
-        }
+            updateAppBarButton();
+        }, 1200);
+        
     }
-
 
     WinJS.Namespace.define("LoginFlyout", {
         getLoggedInBorrowerId: getLoggedInBorrowerId,
