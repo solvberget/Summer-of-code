@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Lucene.Net.Index;
 using Solvberget.Domain.Implementation;
 using Solvberget.Service.Infrastructure;
 
@@ -99,20 +100,19 @@ namespace Solvberget.Service
 
 
             //Task.Factory.StartNew(SetupLuceneDictionary);
-            BuildLuceneDictionary();
-       
-
-        }
-
-
-        private void SetupLuceneDictionary()
-        {
-            var documentRepository = new AlephRepository(EnvironmentHelper.GetImageCachePath(),
-                                                     EnvironmentHelper.GetRulesPath());
-            var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath(), EnvironmentHelper.GetStopwordsPath(), EnvironmentHelper.GetSuggestionListPath(), EnvironmentHelper.GetTestDictPath(), documentRepository);
-
-
-
+            try
+            {
+                BuildLuceneDictionary();
+            }
+            catch (MergePolicy.MergeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                
+                Console.WriteLine(e.Message);
+            }
         }
 
         private void BuildLuceneDictionary()

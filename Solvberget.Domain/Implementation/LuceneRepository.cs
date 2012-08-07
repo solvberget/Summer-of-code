@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Lucene.Net.Index;
 using Lucene.Net.Store;
 using Ninject;
 using Solvberget.Domain.Abstract;
@@ -23,7 +24,7 @@ namespace Solvberget.Domain.Implementation
     {
 
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
-        private string[] StopWords { get; set; }
+
 
 
 
@@ -51,11 +52,18 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-
-
         public void SuggestionListBuildDictionary()
         {
-            DictionaryBuilder.Build(_pathToSuggestionsDict, _pathToDictDir);
+            try
+            {
+                DictionaryBuilder.Build(_pathToSuggestionsDict, _pathToDictDir);
+            }
+            catch (Exception e)
+            {
+                
+                Console.WriteLine(e.Message);
+            }
+            
         }
 
 
@@ -65,9 +73,7 @@ namespace Solvberget.Domain.Implementation
 
             var di = DictionaryBuilder.CreateTargetFolder(_pathToDictDir);
             SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
-            StopWords = File.ReadAllLines(_pathToStopwordsDict);
             InitSuggestionListFromFile();
-
         }
 
 
@@ -92,21 +98,22 @@ namespace Solvberget.Domain.Implementation
                         _suggestionList.Add(document.Title);
 
                         DictionaryBuilder.Add(_pathToDictDir, document.Title.ToLower());
-
-                        //foreach (var word in document.Title.Split(' '))
-                        //{
-                        //   
-                        //    DictionaryBuilder.Add(_pathToDictDir, word);
-                        //    DictionaryBuilder.Add(_pathToDictDir, word.ToLower());
-                        //}
                     }
 
 
                     if (document.SubTitle != null)
                     {
                         _suggestionList.Add(document.SubTitle);
-
-                        DictionaryBuilder.Add(_pathToDictDir, document.SubTitle.ToLower());
+                        try
+                        {
+                            DictionaryBuilder.Add(_pathToDictDir, document.SubTitle.ToLower());
+                        }
+                        catch (Exception e)
+                        {
+                            
+                            Console.WriteLine(e.Message);
+                        }
+                     
 
                     }
 
@@ -116,7 +123,6 @@ namespace Solvberget.Domain.Implementation
             }
             WriteSuggestionListToFile();
             Task.Factory.StartNew(SuggestionListBuildDictionary);
-
         }
 
 
@@ -130,7 +136,6 @@ namespace Solvberget.Domain.Implementation
             }
             catch (Exception e)
             {
-
                 Console.WriteLine("Kan ikke lagre suggestion: " + e.Message);
             }
 
@@ -151,46 +156,21 @@ namespace Solvberget.Domain.Implementation
 
         /** HELPERS **/
 
-        private void AddWordToSuggestionString(ref string suggestionString, string word)
-        {
-            suggestionString += word + " ";
-        }
-
         public string Lookup(string value)
         {
             InitializeSpellChecker();
             UpdateSuggestionListFromAlephSearch(value);
-            var documentList = _documentRepository.Search(value);
 
             // Escape harmful values in input string
             value = System.Security.SecurityElement.Escape(value);
 
             if (string.IsNullOrEmpty(value)) return string.Empty;
 
-
-
-            var suggestionString = string.Empty;
-
-            return GetSuggestionString(value, suggestionString).TrimEnd();
-
-        }
-
-        private string GetSuggestionString(string value, string suggestionString)
-        {
-
-            foreach (var word in value.Split().Where(word => !string.IsNullOrEmpty(word)))
-            {
-                if (!StopWords.Contains(word))
-                {
-                    AddWordToSuggestionString(ref suggestionString, word);
-                    continue;
-                }
-            }
-
-            var similarWords = SpellChecker.SuggestSimilar(suggestionString, 1);
+            var similarWords = SpellChecker.SuggestSimilar(value, 1);
             return similarWords.Any() ? similarWords[0] : "";
-            
+
         }
+
 
         public string[] SuggestionList()
         {
