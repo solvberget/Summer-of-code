@@ -190,9 +190,9 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="pages\lists-v2\libraryLists.css" />
-    <Content Include="pages\lists-v2\libraryLists.html" />
-    <Content Include="pages\lists-v2\libraryLists.js" />
+    <Content Include="pages\lists\libraryLists.css" />
+    <Content Include="pages\lists\libraryLists.html" />
+    <Content Include="pages\lists\libraryLists.js" />
     <Content Include="pages\news\news.css" />
     <Content Include="pages\news\news.html" />
     <Content Include="pages\news\news.js" />
@@ -212,9 +212,6 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-    <Content Include="pages\lists\libraryLists.css" />
-    <Content Include="pages\lists\libraryLists.html" />
-    <Content Include="pages\lists\libraryLists.js" />
     <Content Include="sass\splitview.css" />
     <Content Include="sass\splitview.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">

@@ -16,9 +16,6 @@
 
             getUserInformation();
 
-            $(".box").draggable({  containment: "body" });
-            $("#mypageData").droppable();
-            $(".box").droppable();
 
         },
 
