@@ -63,13 +63,13 @@
             $("#confirmLogoutButton").css("display", "block").css("visibility", "visible");
             $("#cancelLogoutButton").css("display", "block").css("visibility", "visible");
 
-            $("#labelForUserId").css("display", "none").css("visibility", "hidden").css("height", "0px");
-            $("#userId").css("display", "none").css("visibility", "hidden").css("height", "0px");
-            $("#laberForPin").css("display", "none").css("visibility", "hidden").css("height", "0px");
-            $("#pin").css("display", "none").css("visibility", "hidden").css("height", "0px");
-            $("#submitLoginButton").css("display", "none").css("visibility", "hidden").css("height", "0px");
-            $("#outputMsg").css("display", "none").css("visibility", "hidden").css("height", "0px");
-            $("#loginLoading").css("display", "none").css("visibility", "hidden").css("height", "0px");
+            $("#labelForUserId").css("display", "none").css("visibility", "hidden");
+            $("#userId").css("display", "none").css("visibility", "hidden");
+            $("#laberForPin").css("display", "none").css("visibility", "hidden");
+            $("#pin").css("display", "none").css("visibility", "hidden");
+            $("#submitLoginButton").css("display", "none").css("visibility", "hidden");
+            $("#outputMsg").css("display", "none").css("visibility", "hidden");
+            $("#loginLoading").css("display", "none").css("visibility", "hidden");
 
             loginFlyout.winControl.show(element, "right");
 
