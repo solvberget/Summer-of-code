@@ -110,15 +110,6 @@
 @media screen and (orientation: portrait) {
 }
 
-/* AJAX NEWS ERROR */
-#newsLoadError {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    margin-top: 250px;
-    display: none;
-}
-
 /* PROGRESS RING */
 #newsItemsLoading {
     width: 100%;

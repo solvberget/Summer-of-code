@@ -20,66 +20,65 @@
             document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
 
         },
+        unload: function () {
+            Solvberget.Queue.CancelQueue('opening');
+        }
 
-        goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-        },
     });
 
 })();
 
-var ajaxGetOpeningHoursInformation = function () {
 
-    return $.getJSON(window.Data.serverBaseUrl + "/Document/GetOpeningHoursInformation");
+var ajaxGetOpeningHoursInformation = function () {
+    var url = window.Data.serverBaseUrl + "/Document/GetOpeningHoursInformation";
+    Solvberget.Queue.QueueDownload("opening", { url: url }, ajaxGetOpeningHoursInformationCallback, this, true);
+
+};
+
+var ajaxGetOpeningHoursInformationCallback = function (request, context) {
+    var response = JSON.parse(request.responseText);
+
+    // avoid processing null (if user navigates to fast away from page etc)
+    if (response != undefined && response !== "")
+        populateOpeningHours(response);
+
+
+    // Hide progress-ring, show content
+    $("#openingHoursContent").fadeIn("slow");
+    $("#openingHoursLoading").hide();
+
+};
+
+var populateOpeningHours = function (response) {
+
+    var openingHoursTemplateDiv = document.getElementById("openingHoursInformationTemplate");
+    var openingHoursTemplateHolder = document.getElementById("openingHoursInformationTemplateHolder");
+
+    var openingHoursTemplate = undefined;
+    if (openingHoursTemplateDiv)
+        openingHoursTemplate = new WinJS.Binding.Template(openingHoursTemplateDiv);
+
+    var model;
+
+    if (response) {
+
+        for (var i = 0; i < response.length; i++) {
+            model = response[i];
+
+            if (openingHoursTemplate && openingHoursTemplateHolder && model)
+                openingHoursTemplate.render(model, openingHoursTemplateHolder);
+
+        }
+    }
 };
 
 var getOpeningHoursInformation = function () {
 
     // Show progress-ring, hide content
-    $("#openingHoursContent").css("display", "none").css("visibility", "none");
-    $("#openingHoursLoading").css("display", "block").css("visibility", "visible");
+    $("#openingHoursContent").hide();
+    $("#openingHoursLoading").fadeIn();
 
     // Get the user information from server
-    $.when(ajaxGetOpeningHoursInformation())
-        .then($.proxy(function (response) {
-     
+    ajaxGetOpeningHoursInformation();
 
-                // avoid processing null (if user navigates to fast away from page etc)
-                if (response != undefined && response !== "") {
-                   
-                    populateOpeningHours(response);
-                }
-
-            // Hide progress-ring, show content
-            $("#openingHoursContent").css("display", "block").css("visibility", "visible");
-            $("#openingHoursLoading").css("display", "none").css("visibility", "none");
-
-
-        }, this)
-    );
-
-
-    var populateOpeningHours = function (response) {
-
-        var openingHoursTemplateDiv = document.getElementById("openingHoursInformationTemplate");
-        var openingHoursTemplateHolder = document.getElementById("openingHoursInformationTemplateHolder");
-
-        var openingHoursTemplate = undefined;
-        if (openingHoursTemplateDiv)
-            openingHoursTemplate = new WinJS.Binding.Template(openingHoursTemplateDiv);
-
-        var model;
-
-        if (response) {
-
-            for (var i = 0; i < response.length; i++) {
-                model = response[i];
-
-                if (openingHoursTemplate && openingHoursTemplateHolder && model)
-                    openingHoursTemplate.render(model, openingHoursTemplateHolder);
-
-            }
-        }
-
-    };
 }
