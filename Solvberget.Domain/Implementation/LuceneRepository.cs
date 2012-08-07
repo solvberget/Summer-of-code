@@ -34,10 +34,8 @@ namespace Solvberget.Domain.Implementation
 
         private readonly IRepository _documentRepository;
 
-        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict = null, string pathToSuggestionListDict = null, string pathToTestDict = null, IRepository documentRepository = null)
+        public LuceneRepository(string pathToDictionaryDirectory = null, string pathToSuggestionListDict = null, IRepository documentRepository = null)
         {
-            _pathToStopwordsDict = string.IsNullOrEmpty(pathToStopWordsDict)
-                ? @"App_Data\ordlister\stopwords.txt" : pathToStopWordsDict;
 
             _pathToSuggestionsDict = string.IsNullOrEmpty(pathToSuggestionListDict)
                 ? @"App_Data\ordlister\ord_forslag.txt" : pathToSuggestionListDict;

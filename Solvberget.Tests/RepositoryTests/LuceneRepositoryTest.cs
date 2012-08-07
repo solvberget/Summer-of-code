@@ -27,16 +27,14 @@ namespace Solvberget.Service.Tests.RepositoryTests
         {
 
             _basepath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data");
-            _dictPath= Path.Combine(_basepath,@"ordlister\ord_test.txt");
+            _dictPath = Path.Combine(_basepath, @"ordlister\ord_test.txt");
             _indexPath = Path.Combine(_basepath, @"ordlister_index");
 
-            DictionaryBuilder.Build(_dictPath, _indexPath);
 
-            _repository = new LuceneRepository(Path.Combine(_basepath, @"ordlister\ord_bm.txt"),
-                                               Path.Combine(_basepath, @"ordlister_index"),
-                                               Path.Combine(_basepath, @"ordlister\stopwords.txt"),
-                                               Path.Combine(_basepath, @"ordlister\ord_forslag.txt"),
-                                               Path.Combine(_basepath, @"ordlister\ord_test.txt"));
+            var documentRepository = new AlephRepository();
+            _repository = new LuceneRepository(_indexPath, _dictPath, documentRepository);
+
+            DictionaryBuilder.Build(_dictPath, _indexPath);
 
         }
         [Test]
@@ -94,7 +92,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
 
             const string testString = "Foball";
-            const string testSolution = "Fotball";
+            const string testSolution = "fotball";
 
             var solution = _repository.Lookup(testString);
             Assert.AreEqual(testSolution, solution);
@@ -120,69 +118,18 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
 
             const string testString = "Arry Poter";
-            const string testSolution = "Harry Potter";
+            const string testSolution = "harry potter";
 
             var solution = _repository.Lookup(testString);
             Assert.AreEqual(testSolution, solution);
 
         }
 
-        [Test]
-        public void TestLookupWithPeriod()
-        {
+        
 
+     
 
-            string testString = "Denne setningen avslutes med punktuum.";
-            string testSolution = "Denne setningen avsluttes med punktum";
-
-            var solution = _repository.Lookup(testString);
-            Assert.AreEqual(testSolution, solution);
-
-            testString = "Denne setningen. avslutes med punktuum.";
-            testSolution = "Denne setningen avsluttes med punktum";
-
-            solution = _repository.Lookup(testString);
-            Assert.AreEqual(testSolution, solution);
-
-        }
-
-        [Test]
-        public void TestLookupXss()
-        {
-
-
-            string testString = "<script>alert('error')";
-            const string testSolution = "&lt;script&gt;alert(&apos;error&apos;)";
-
-            var solution = _repository.Lookup(testString);
-            Assert.AreEqual(testSolution, solution);
-
-            testString = "Mitt <script> <br> fjernes";
-            solution = _repository.Lookup(testString);
-            Assert.IsFalse(solution.Contains("<script>"));
-            Assert.IsFalse(solution.Contains("<br>"));
-
-        }
-
-        [Test]
-        public void TestLookupWordSplitError()
-        {
-
-
-
-            string testString = "Fotball sko";
-            string testSolution = "Fotballsko";
-
-            var solution = _repository.Lookup(testString);
-            Assert.AreEqual(testSolution, solution);
-
-            testString = "Mine fotball sko er blå";
-            testSolution = "Mine fotballsko er blå";
-
-            solution = _repository.Lookup(testString);
-            Assert.AreEqual(testSolution, solution);
-        }
-
+     
         [Test]
         public void TestLookupMultipleWords()
         {
