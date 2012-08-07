@@ -49,7 +49,7 @@
     }
 
     function navigateToLists() {
-        activePage = "lists"; WinJS.Navigation.navigate("/pages/lists-v2/libraryLists.html");
+        activePage = "lists"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html");
     }
 
     function navigateToMypage() {
