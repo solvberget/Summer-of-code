@@ -113,6 +113,9 @@
     <Content Include="fragments\login\login.css" />
     <Content Include="fragments\holdRequest\holdRequest.js" />
     <Content Include="fragments\login\login.js" />
+    <Content Include="fragments\pinRequest\pinRequest.css" />
+    <Content Include="fragments\pinRequest\pinRequest.html" />
+    <Content Include="fragments\pinRequest\pinRequest.js" />
     <Content Include="images\ajax_loading.gif" />
     <Content Include="images\externalSites\bokelskere\bokelskere.png" />
     <Content Include="images\externalSites\imdb\imdb-16x16.png" />
