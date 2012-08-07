@@ -17,6 +17,8 @@
             getOpeningHoursInformation();
             $("#renewalLoading").css("display", "none").css("visibility", "hidden");
 
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
         },
         unload: function () {
             Solvberget.Queue.CancelQueue('opening');

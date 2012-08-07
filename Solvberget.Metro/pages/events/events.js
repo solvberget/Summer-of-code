@@ -33,6 +33,9 @@
             }
 
             this.getEvents(listView);
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
         },
 
         getEvents: function (listView) {

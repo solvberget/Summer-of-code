@@ -13,42 +13,34 @@
     ui.Pages.define("/pages/news/news.html", {
 
         newsItems: null,
-        onPage: false,
 
         ready: function (element) {
-            this.onPage = true;
             $(".pagetitle").html("Nyheter fra Sølvberget");
             var newsItemsListView = element.querySelector(".newsItemsListView").winControl;
             newsItemsListView.itemTemplate = this.itemTemplateFunction;
             newsItemsListView.oniteminvoked = this.newsItemInvoked.bind(this);
             this.getNewsItems(newsItemsListView);
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
         },
 
         getNewsItems: function (newsItemsListView) {
-
-            $.when(this.ajaxGetNews()).then($.proxy(function (response) {
-                if (this.onPage) {
-                    if (response != undefined && response !== "") {
-                        this.newsItems = new WinJS.Binding.List(response);
-                        this.initializeLayout(newsItemsListView, appView.value);
-                        $("#newsItemsLoading").hide();
-                        $(".newsItemsListView").fadeIn();
-                        newsItemsListView.element.focus();
-                    }
-                    else {
-                        $("#newsItemsLoading").hide();
-                        $("#newsLoadError").fadeIn();
-                    }
-                }
-            }, this));
-
+            var url = window.Data.serverBaseUrl + newsReqUrl;
+            var context = { listView: newsItemsListView, that: this };
+            Solvberget.Queue.QueueDownload("news", { url: url }, this.getNewsItemsCallback, context, true);
         },
 
-        ajaxGetNews: function () {
-            return $.getJSON(window.Data.serverBaseUrl + newsReqUrl).error(function () {
+        getNewsItemsCallback: function (request, context) {
+            var response = JSON.parse(request.responseText);
+            if (response != undefined && response !== "") {
+                var response = JSON.parse(request.responseText);
+                context.that.newsItems = new WinJS.Binding.List(response);
+                context.that.initializeLayout(context.listView, appView.value);
                 $("#newsItemsLoading").hide();
-                $("#newsLoadError").fadeIn();
-            });
+                $(".newsItemsListView").fadeIn();
+                context.listView.element.focus();
+            }
         },
 
         newsItemInvoked: function (args) {
@@ -100,7 +92,7 @@
         },
 
         unload: function () {
-            this.onPage = false;
+            Solvberget.Queue.CancelQueue('news');
         },
 
     });

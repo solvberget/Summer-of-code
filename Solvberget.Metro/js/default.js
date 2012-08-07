@@ -6,6 +6,10 @@
     var nav = WinJS.Navigation;
     WinJS.strictProcessing();
     var messageDialog;
+
+
+
+
     // Gracefull exit
     app.onerror = function (customEventObject) {
 
@@ -93,7 +97,8 @@
                     }
                 }));
             }
-            setAppbarButton();
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
 
             //Add functionality to the appbar buttons
             document.getElementById("cmdLoginFlyout").addEventListener("click", doLogin);
@@ -150,7 +155,7 @@ function doLogin() {
 
 function pinByElementAsync(element, newTileID, newTileShortName, newTileDisplayName) {
 
-    var uriLogo = new Windows.Foundation.Uri("ms-appx:///images/solvberget150.png");
+    var uriLogo = new Windows.Foundation.Uri("ms-appx:///images/home/" + newTileID + ".png");
     var uriSmallLogo = new Windows.Foundation.Uri("ms-appx:///images/solvberget30.png");
     var currentTime = new Date();
     var TileActivationArguments = WinJS.Navigation.location;
@@ -201,7 +206,7 @@ function pinToStart() {
 
     } else {
 
-        pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Appbar pinned secondary tile", "A secondary tile that was pinned by the user from the Appbar").then(function (isCreated) {
+        pinByElementAsync(document.getElementById("cmdPin"), Data.activePage, "Sølvberget", "Sølvberget - Stavanger Bibliotek").then(function (isCreated) {
             if (isCreated) {
                 setAppbarButton();
             } else {
@@ -213,8 +218,9 @@ function pinToStart() {
 function setAppbarButton() {
 
     LoginFlyout.updateAppBarButton();
+    var exist = Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage); 
 
-    if (Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage)) {
+    if (exist) {
         document.getElementById("cmdPin").winControl.label = "Fjern fra start";
         document.getElementById("cmdPin").winControl.icon = "unpin";
         document.getElementById("cmdPin").winControl.tooltip = "Fjern fra start";

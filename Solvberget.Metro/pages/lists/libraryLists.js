@@ -38,6 +38,8 @@
             //Get the lists
             this.getLists(listRequestUrl, listView);
 
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
         },
 
         unload: function () {
