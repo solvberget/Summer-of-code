@@ -1,18 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
 namespace Solvberget.Domain.DTO
 {
+
     public class Event
     {
+        private static readonly CultureInfo NbNoCultureInfo = new CultureInfo("nb-NO");
+        
         public string Id { get; set; }
         public string Name { get; set; }
         public string LocationId { get; set; }
         public string Location { get; set; }
-        public string Date { get; set; }
+        public string DateAsString { private get; set; }
+        public string DateFormatted
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(DateAsString))
+                {
+                    var dateAsDateTime = DateTime.Parse(DateAsString);
+                    return dateAsDateTime.ToString("d. MMMM yyyy", NbNoCultureInfo);
+                }
+                else
+                {
+                    return "Ukjent dato";
+                }
+            }
+        }
+        public string Month
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(DateAsString))
+                {
+                    var dateAsDateTime = DateTime.Parse(DateAsString);
+                    var month = dateAsDateTime.ToString("MMMM", NbNoCultureInfo);
+                    return char.ToUpper(month[0]) + month.Substring(1);
+                }
+                else
+                {
+                    return "Ukjent måned";
+                }
+            }
+        }
         public string Start { get; set; }
         public string Stop { get; set; }
         public string Link { get; set; }
