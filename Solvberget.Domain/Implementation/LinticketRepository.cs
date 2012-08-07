@@ -25,7 +25,7 @@ namespace Solvberget.Domain.Implementation
                 eventsAsJson = eventsAsJson.Replace("\"sted\"", "Location");
                 eventsAsJson = eventsAsJson.Replace("\"stedid\"", "LocationId");
                 eventsAsJson = eventsAsJson.Replace("\"arrid\"", "Id");
-                eventsAsJson = eventsAsJson.Replace("\"dato\"", "Date");
+                eventsAsJson = eventsAsJson.Replace("\"dato\"", "DateAsString");
                 eventsAsJson = eventsAsJson.Replace("\"link\"", "Link");
                 eventsAsJson = eventsAsJson.Replace("\"starttid\"", "Start");
                 eventsAsJson = eventsAsJson.Replace("\"slutttid\"", "Stop");
