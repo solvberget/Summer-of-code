@@ -1,6 +1,4 @@
-﻿body {
-    overflow: auto;
-}
+﻿
 
 .titlecontainer {
     border: none;
@@ -25,6 +23,7 @@
 
 #mainContentSection {
     margin-left: 45px;
+    overflow: auto;
 }
 
 #templates {
@@ -47,19 +46,21 @@
 
 .box {
     margin: 10px;
-    border-width: 1px;
-    border: solid;
     width: auto;
     height: auto;
     padding: 10px;
     overflow: hidden;
+    /**
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    */
     resize: both;
     max-width: 350px;
     min-width: 175px;
     min-height: 120px;
+    border-width: 1px;
+    border: solid;
     border-color: #666666;
 }
 
@@ -139,7 +140,8 @@ progress.withText {
         margin-left: 0;
         max-width: 550px;
     }
-        #mainContentSection {
+
+    #mainContentSection {
         margin-left: 45px;
     }
 

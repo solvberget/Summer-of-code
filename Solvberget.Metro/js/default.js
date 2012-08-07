@@ -5,6 +5,51 @@
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
     WinJS.strictProcessing();
+    var messageDialog;
+    // Gracefull exit
+    app.onerror = function (customEventObject) {
+
+        // Get the error message and name for this exception
+        var errorMessage = customEventObject.detail.error.message;
+        var errorName = customEventObject.detail.error.name;
+
+        // Show an error dialog
+        exceptionError(errorMessage, errorName);
+
+        // Tell windows that we have taken care of the exception
+        return true;
+    }
+
+    function exceptionError(name, msg) {
+
+        // Check if the message dialog is not already showing
+        if (!messageDialog) {
+
+            // Create the message dialog and set its content
+            messageDialog = new Windows.UI.Popups.MessageDialog("Du har tydeligvis gjort noe lurt, for her har appen sporet helt av! \n\nKryptiske feilmelding:\n\n " + msg, "Ooops! (" + name + ")");
+
+            // Add commands and set their command handlers
+            messageDialog.commands.append(
+                new Windows.UI.Popups.UICommand("Lukk", closeCommandInvoked));
+
+            // Set the command that will be invoked by default
+            messageDialog.defaultCommandIndex = 0;
+
+            // Set the command to be invoked when escape is pressed
+            messageDialog.cancelCommandIndex = 0;
+
+            // Show the message dialog
+            messageDialog.showAsync();
+        }
+    };
+    function closeCommandInvoked(command) {
+        // Reset message dialog
+        messageDialog = undefined; 
+
+        // Go home
+        Data.navigateToHome();
+    };
+
 
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {

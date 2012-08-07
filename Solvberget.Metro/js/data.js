@@ -26,6 +26,18 @@
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
     ];
 
+    function getRandomColor(alpha) {
+
+        var random = Math.random() * colorPoolRgba.length;
+        random = Math.floor(random);
+        var color = colorPoolRgba[random];
+        if (alpha) {
+            color = color.substr(0, color.length - 4);
+            color = color + alpha + ")";
+        }
+        return color;
+    };
+
     var list = new WinJS.Binding.List(menuItems);
 
     function navigateToHome() {
@@ -101,6 +113,7 @@
         navigateToSearch: navigateToSearch,
         navigateToBlogs: navigateToBlogs,
         navigateToNews: navigateToNews,
-        colorPoolRgba: colorPoolRgba
+        colorPoolRgba: colorPoolRgba,
+        getRandomColor: getRandomColor,
     });
 })();
