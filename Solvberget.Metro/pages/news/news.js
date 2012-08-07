@@ -29,7 +29,6 @@
         },
 
         getNewsItemsCallback: function (request, context) {
-            var response = JSON.parse(request.responseText);
             if (response != undefined && response !== "") {
                 var response = JSON.parse(request.responseText);
                 context.that.newsItems = new WinJS.Binding.List(response);
