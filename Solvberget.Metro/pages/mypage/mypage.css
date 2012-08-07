@@ -102,8 +102,6 @@ progress.withText {
 /*Progress ring*/
 
 #mypageData {
-    display: none;
-    visibility: hidden;
     max-height: calc(100% - 20px);
 }
 

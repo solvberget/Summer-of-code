@@ -12,16 +12,13 @@
             getDocument(documentModel.DocumentNumber);
 
             this.registerForShare();
-            var self = this;
 
             document.getElementById("sendHoldRequestButton").addEventListener("click", registerHoldRequest);
         },
 
-        goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-
+        unload: function () {
+            Solvberget.Queue.CancelQueue('details');
         },
-
         registerForShare: function () {
 
             // Register/listen to share requests
@@ -99,13 +96,82 @@
 
 var documentModel = undefined;
 
+var ajaxGetDocumentImage = function () {
+
+    var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/" + documentModel.DocumentNumber;
+    Solvberget.Queue.QueueDownload("details", { url: url }, ajaxGetDocumentImageCallback, this, true);
+
+}
+
+var ajaxGetDocumentImageCallback = function (request, context) {
+    var response = JSON.parse(request.responseText);
+
+    if (response != undefined && response !== "") {
+
+        documentModel.ImageUrl = response;
+
+        var documentImageDiv = document.getElementById("documentImage");
+
+        if (documentImageDiv != undefined && documentModel != undefined)
+            WinJS.Binding.processAll(documentImageDiv, documentModel);
+    }
+
+}
+
 var ajaxGetDocument = function (documentNumber) {
-    return $.getJSON(window.Data.serverBaseUrl + "/Document/GetDocument/" + documentNumber);
+
+    var url = window.Data.serverBaseUrl + "/Document/GetDocument/" + documentNumber;
+    Solvberget.Queue.QueueDownload("details", { url: url }, ajaxGetDocumentCallback, this, true);
+
+}
+
+var ajaxGetDocumentCallback = function (request, context) {
+    var response = JSON.parse(request.responseText);
+ 
+    if (response != undefined && response !== "") {
+
+
+        documentModel = response;
+
+        populateFragment(response);
+
+        // Select HTML-section to process with the new binding lists
+        var documentTitleDiv = document.getElementById("documentTitle");
+        var documentImageDiv = document.getElementById("documentImage");
+        var documentSubTitleDiv = document.getElementById("item-subtitle");
+
+        var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
+        var documentShareContent = document.getElementById("documentShareContent");
+
+
+        // avoid processing null (if user navigates to fast away from page etc)
+        if (documentTitleDiv != undefined && response != undefined)
+            WinJS.Binding.processAll(documentTitleDiv, response);
+        if (documentImageDiv != undefined && response != undefined)
+            WinJS.Binding.processAll(documentImageDiv, response);
+        if (documentSubTitleDiv != undefined && response != undefined)
+            WinJS.Binding.processAll(documentSubTitleDiv, response);
+
+
+        if (documentCompressedSubTitleDiv != undefined && response != undefined) {
+            if (response.MainResponsible != undefined) {
+
+                if (response.MainResponsible.Name != undefined) {
+                    response.CompressedSubTitle = response.MainResponsible.Name + ", " + response.CompressedSubTitle;
+                }
+            }
+        }
+        WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
+
+    }
+
+
+    if (documentShareContent != undefined && response != undefined) {
+        WinJS.Binding.processAll(documentShareContent, response);
+    }
+
 };
 
-var ajaxGetDocumentImage = function () {
-    return $.getJSON(window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/" + documentModel.DocumentNumber);
-};
 
 var populateFragment = function (documentModel) {
 
@@ -176,73 +242,17 @@ var populateAvailability = function () {
 var getDocumentImageUrl = function () {
 
 
-    $.when(ajaxGetDocumentImage())
-        .then($.proxy(function (response) {
-            if (response != undefined && response !== "") {
-
-                documentModel.ImageUrl = response;
-
-                var documentImageDiv = document.getElementById("documentImage");
-
-                if (documentImageDiv != undefined && documentModel != undefined)
-                    WinJS.Binding.processAll(documentImageDiv, documentModel);
-            }
-        }, this)
-    );
+    ajaxGetDocumentImage();
 
 };
 
 var getDocument = function (documentNumber) {
 
     // Show progress-ring, hide content
-    $("#documentDetailData").css("display", "none").css("visibility", "none");
-    $("#documentDetailLoading").css("display", "block").css("visibility", "visible");
+    $("#documentDetailData").hide();
+    $("#documentDetailLoading").fadeIn();
 
-    $.when(ajaxGetDocument(documentNumber))
-        .then($.proxy(function (response) {
-            if (response != undefined && response !== "") {
-
-
-                documentModel = response;
-
-                populateFragment(response);
-
-                // Select HTML-section to process with the new binding lists
-                var documentTitleDiv = document.getElementById("documentTitle");
-                var documentImageDiv = document.getElementById("documentImage");
-                var documentSubTitleDiv = document.getElementById("item-subtitle");
-
-                var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
-                var documentShareContent = document.getElementById("documentShareContent");
-
-
-                // avoid processing null (if user navigates to fast away from page etc)
-                if (documentTitleDiv != undefined && response != undefined)
-                    WinJS.Binding.processAll(documentTitleDiv, response);
-                if (documentImageDiv != undefined && response != undefined)
-                    WinJS.Binding.processAll(documentImageDiv, response);
-                if (documentSubTitleDiv != undefined && response != undefined)
-                    WinJS.Binding.processAll(documentSubTitleDiv, response);
-
-                
-                if (documentCompressedSubTitleDiv != undefined && response != undefined) {
-                    if (response.MainResponsible != undefined) {
-
-                        if (response.MainResponsible.Name != undefined) {
-                            response.CompressedSubTitle = response.MainResponsible.Name + ", " + response.CompressedSubTitle;
-                        }
-                    }
-                }
-                WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
-                
-            }
-
-
-            if (documentShareContent != undefined && response != undefined) {
-                WinJS.Binding.processAll(documentShareContent, response);
-            }
-
-        }), this);
+    ajaxGetDocument(documentNumber);
 
 };
 

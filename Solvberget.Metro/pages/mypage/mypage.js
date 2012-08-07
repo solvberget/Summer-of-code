@@ -7,35 +7,86 @@
     var utils = WinJS.Utilities;
     var ui = WinJS.UI;
 
-    var self;
     ui.Pages.define("/pages/mypage/mypage.html", {
 
         ready: function (element, options) {
 
-            self = this;
-
             getUserInformation();
-
             document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
 
-
         },
-
-        goHome: function () {
-            WinJS.Navigation.navigate("/pages/home/home.html");
-
-        },
+        unload: function () {
+            Solvberget.Queue.CancelQueue('mypage');
+        }
     });
-
 })();
 
-
 var ajaxGetUserInformation = function () {
-    var borrowerId = LoginFlyout.getLoggedInBorrowerId();
-    if (borrowerId != undefined && borrowerId !== "")
-        return $.getJSON(window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId);
-};
 
+    var borrowerId = LoginFlyout.getLoggedInBorrowerId();
+    if (borrowerId != undefined && borrowerId !== "") {
+        var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId
+        Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, this, true);
+
+    }
+
+}
+
+var ajaxGetUserInformationCallback = function (request, context) {
+    var response = JSON.parse(request.responseText);
+
+    if (response != undefined && response !== "") {
+        // Extract fines from object
+        var fines = response.ActiveFines;
+        // Delete fines from main object
+        delete response.ActiveFines;
+
+        // Extract loans from object
+        var loans = response.Loans;
+        // Delete loans from main object
+        delete response.Loans;
+
+        // Extract reservations from object
+        var reservations = response.Reservations;
+        // Delete reservations from main object
+        delete response.Reservations;
+
+        var notifications = response.Notifications;
+        delete response.Notifications;
+
+        if (response.Name === response.PrefixAddress)
+            response.PrefixAddress = "";
+
+        // Select HTML-section to process with the new binding lists
+        var contentDiv = document.getElementById("myPagePersonalInformation");
+        var titleNameDiv = document.getElementById("pageSubtitleName");
+        var balanceDiv = document.getElementById("balance");
+
+
+        // avoid processing null (if user navigates to fast away from page etc)
+        if (contentDiv != undefined && response != undefined)
+            WinJS.Binding.processAll(contentDiv, response);
+
+        if (titleNameDiv != undefined && response != undefined)
+            WinJS.Binding.processAll(titleNameDiv, response);
+
+        if (balanceDiv != undefined && response != undefined)
+            WinJS.Binding.processAll(balanceDiv, response);
+
+        addFinesToDom(fines);
+        addLoansToDom(loans);
+        addReservationsToDom(reservations);
+        addNotificationsToDom(notifications);
+        addColors();
+
+    }
+
+    // Hide progress-ring, show content
+    $("#mypageLoading").hide();
+    $("#mypageData").fadeIn("slow");//css("display", "-ms-flexbox").css("visibility", "visible").hide().fadeIn(500);
+
+
+};
 
 
 var cancelReservation = function (reservations, index, element) {
@@ -185,68 +236,15 @@ var addColors = function () {
 var getUserInformation = function () {
 
     // Show progress-ring, hide content
-    $("#mypageData").css("display", "none").css("visibility", "none");
-    $("#mypageLoading").css("display", "block").css("visibility", "visible");
+    $("#mypageData").hide();
+    $("#mypageLoading").fadeIn();
 
     // Prevent caching of this request
     $.ajaxSetup({ cache: false });
 
     // Get the user information from server
-    $.when(ajaxGetUserInformation())
-        .then($.proxy(function (response) {
-            if (response != undefined && response !== "") {
-                // Extract fines from object
-                var fines = response.ActiveFines;
-                // Delete fines from main object
-                delete response.ActiveFines;
-
-                // Extract loans from object
-                var loans = response.Loans;
-                // Delete loans from main object
-                delete response.Loans;
-
-                // Extract reservations from object
-                var reservations = response.Reservations;
-                // Delete reservations from main object
-                delete response.Reservations;
-
-                var notifications = response.Notifications;
-                delete response.Notifications;
-
-                if (response.Name === response.PrefixAddress)
-                    response.PrefixAddress = "";
-
-                // Select HTML-section to process with the new binding lists
-                var contentDiv = document.getElementById("myPagePersonalInformation");
-                var titleNameDiv = document.getElementById("pageSubtitleName");
-                var balanceDiv = document.getElementById("balance");
-
-
-                // avoid processing null (if user navigates to fast away from page etc)
-                if (contentDiv != undefined && response != undefined)
-                    WinJS.Binding.processAll(contentDiv, response);
-
-                if (titleNameDiv != undefined && response != undefined)
-                    WinJS.Binding.processAll(titleNameDiv, response);
-
-                if (balanceDiv != undefined && response != undefined)
-                    WinJS.Binding.processAll(balanceDiv, response);
-
-                this.addFinesToDom(fines);
-                this.addLoansToDom(loans);
-                this.addReservationsToDom(reservations);
-                this.addNotificationsToDom(notifications);
-                this.addColors();
-
-            }
-
-            // Hide progress-ring, show content
-            $("#mypageLoading").css("display", "none").css("visibility", "none");
-            $("#mypageData").css("display", "-ms-flexbox").css("visibility", "visible").hide().fadeIn(500);
-
-        }, this)
-    );
-
+    ajaxGetUserInformation()
+       
     WinJS.Namespace.define("MyPage", {
         addReservationsToDom: addReservationsToDom,
     });
