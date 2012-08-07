@@ -56,7 +56,7 @@
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
 
-                        if (path.indexOf("ms-appx://") == 1){
+                        if (path.indexOf("ms-appx://") == -1){
                             path = "";
 
                         }else{
