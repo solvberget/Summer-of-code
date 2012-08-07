@@ -50,7 +50,7 @@
                             var dataItem = items[i];
                             results.push({
                                 title: dataItem.Name,
-                                date: dataItem.Date,
+                                date: dataItem.DateFormatted,
                                 start: "Starter kl. " + that.trimTime(dataItem.Start),
                                 stop: "Slutter kl. " + that.trimTime(dataItem.Stop),
                                 location: dataItem.Location,
@@ -61,7 +61,7 @@
                                 city: dataItem.City + " " + dataItem.PostalCode,
                                 thumbImage: dataItem.ThumbUrl,
                                 backgroundImage: dataItem.PictureUrl,
-                                dateAndTime: dataItem.Date + " " + that.trimTime(dataItem.Start)
+                                dateAndTime: dataItem.DateFormatted + " " + that.trimTime(dataItem.Start) + "-" + that.trimTime(dataItem.Stop)
                             });
                         }
                         eventBinding = new WinJS.Binding.List(results);
