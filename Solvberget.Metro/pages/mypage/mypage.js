@@ -14,7 +14,7 @@
 
             self = this;
 
-            getUserInformation();
+            getUserInformation(true);
 
             document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
 
@@ -52,6 +52,25 @@ var cancelReservation = function (reservations, index, element) {
 
 
 };
+
+var showToast = function (heading, body) {
+
+    var template = Windows.UI.Notifications.ToastTemplateType.toastText02;
+
+
+
+    var toastXml = Windows.UI.Notifications.ToastNotificationManager.getTemplateContent(template);
+
+    var toastTextElements = toastXml.getElementsByTagName("text");
+    toastTextElements[0].appendChild(toastXml.createTextNode(heading));
+    toastTextElements[1].appendChild(toastXml.createTextNode(" " + body));
+
+    var toast = new Windows.UI.Notifications.ToastNotification(toastXml);
+
+    var toastNotifier = Windows.UI.Notifications.ToastNotificationManager.createToastNotifier();
+    toastNotifier.show(toast);
+};
+
 
 var renewLoan = function (loan) {
 
@@ -182,7 +201,7 @@ var addColors = function () {
 }
 
 
-var getUserInformation = function () {
+var getUserInformation = function (loadingMypage) {
 
     // Show progress-ring, hide content
     $("#mypageData").css("display", "none").css("visibility", "none");
@@ -232,12 +251,21 @@ var getUserInformation = function () {
                 if (balanceDiv != undefined && response != undefined)
                     WinJS.Binding.processAll(balanceDiv, response);
 
-                this.addFinesToDom(fines);
-                this.addLoansToDom(loans);
-                this.addReservationsToDom(reservations);
-                this.addNotificationsToDom(notifications);
-                this.addColors();
+                if (loadingMypage)
+                {
+                    this.addFinesToDom(fines);
+                    this.addLoansToDom(loans);
+                    this.addReservationsToDom(reservations);
+                    this.addNotificationsToDom(notifications);
+                    this.addColors();
+                }
 
+                if (notifications != null) {
+                    for (i = 0; i < notifications.length; i++)
+                    {
+                        showToast(notifications[i].Title, notifications[i].Content);
+                    }
+                }
             }
 
             // Hide progress-ring, show content
@@ -309,3 +337,8 @@ var getUserInformation = function () {
     });
 
 };
+
+WinJS.Namespace.define("MyPage", {
+    getUserInformation: getUserInformation,
+
+});
