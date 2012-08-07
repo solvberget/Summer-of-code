@@ -24,7 +24,7 @@ namespace Solvberget.Domain.Implementation
         private readonly RulesRepository _rulesRepository;
         private readonly ImageRepository _imageRepository;
 
-        public AlephRepository(string pathToImageCache, string pathToRulesFolder = null)
+        public AlephRepository(string pathToImageCache = null, string pathToRulesFolder = null)
         {
             _storageHelper = new StorageHelper(pathToImageCache);
             _imageRepository = new ImageRepository(null, pathToImageCache);

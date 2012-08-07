@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -82,18 +83,31 @@ namespace Solvberget.Service
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            SetupLuceneDictionary();
+            
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 
 
+            //Task.Factory.StartNew(SetupLuceneDictionary);
+            BuildLuceneDictionary();
+       
+
         }
 
-        private static void SetupLuceneDictionary()
-        {
-            DictionaryBuilder.Build(EnvironmentHelper.GetTestDictPath(), EnvironmentHelper.GetDictionaryIndexPath());
-            var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath(), EnvironmentHelper.GetStopwordsPath(), EnvironmentHelper.GetSuggestionListPath(), EnvironmentHelper.GetTestDictPath());
 
+        private void SetupLuceneDictionary()
+        {
+            var documentRepository = new AlephRepository(EnvironmentHelper.GetImageCachePath(),
+                                                     EnvironmentHelper.GetRulesPath());
+            var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath(), EnvironmentHelper.GetStopwordsPath(), EnvironmentHelper.GetSuggestionListPath(), EnvironmentHelper.GetTestDictPath(), documentRepository);
+
+
+
+        }
+
+        private void BuildLuceneDictionary()
+        {
+            DictionaryBuilder.Build(EnvironmentHelper.GetSuggestionListPath(), EnvironmentHelper.GetDictionaryIndexPath());
         }
     }
 }
