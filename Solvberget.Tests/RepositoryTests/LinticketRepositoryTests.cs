@@ -32,7 +32,8 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.AreEqual("Barne- og ungdomsbiblioteket", eventNr2544.Location);
             Assert.AreEqual("7", eventNr2544.LocationId);
             Assert.AreEqual("2544", eventNr2544.Id);
-            Assert.AreEqual("2012-11-27", eventNr2544.Date);
+            Assert.AreEqual("27. november 2012", eventNr2544.DateFormatted);
+            Assert.AreEqual("November", eventNr2544.Month);
             Assert.AreEqual("http://www.linticket.no/program/S%F8lvberget/vis.php3?Arr=2544", eventNr2544.Link);
             Assert.AreEqual("11:00:00", eventNr2544.Start);
             Assert.AreEqual("11:30:00", eventNr2544.Stop);

@@ -6,59 +6,90 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
+    var continueToGetEvents = false;
 
+    var requestUrl = Data.serverBaseUrl + "/Event/GetEvents";
+
+    var eventBinding;
 
     ui.Pages.define("/pages/events/events.html", {
 
-        itemSelectionIndex: 0,
+        itemSelectionIndex: -1,
 
-        // This function checks if the list and details columns should be displayed
-        // on separate pages instead of side-by-side.
         isSingleColumn: function () {
             var viewState = Windows.UI.ViewManagement.ApplicationView.value;
             return (viewState === appViewState.snapped || viewState === appViewState.fullScreenPortrait);
         },
 
-        // This function is called whenever a user navigates to this page. It
-        // populates the page elements with the app's data.
         ready: function (element, options) {
-
-            var listView = element.querySelector(".itemlist").winControl;
-            listView.layout = new ui.ListLayout();
-
-            //Setup the EventDataSource
-            var eventsDataSource = new DataSources.eventsDataSource();
-
-
-            this.itemSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
-
+            continueToGetEvents = true;
             element.querySelector("header[role=banner] .pagetitle").textContent = "Arrangementer";
-
-            // Set up the ListView.
-            listView.itemDataSource = eventsDataSource;
-            listView.itemTemplate = element.querySelector(".itemtemplate");
-            listView.onselectionchanged = this.selectionChanged.bind(this);
-
-
-            this.updateVisibility();
-            if (this.isSingleColumn()) {
-                if (this.itemSelectionIndex >= 0) {
-                    // For single-column detail view, load the article.
-                    console.log("Binding break");
-                    binding.processAll(element.querySelector(".articlesection"), options.item);
-                }
-            } else {
-                if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/events/events.html") {
-                    // Clean up the backstack to handle a user snapping, navigating
-                    // away, unsnapping, and then returning to this page.
-                    nav.history.backStack.pop();
-                }
-                // If this page has a selectionIndex, make that selection
-                // appear in the ListView.
-                listView.selection.set(Math.max(this.itemSelectionIndex, 0));
+            
+            var listView = element.querySelector(".itemlist").winControl;
+            if (listView) {
+                listView.layout = new ui.ListLayout();
+                listView.itemTemplate = element.querySelector(".itemtemplate");
+                listView.onselectionchanged = this.selectionChanged.bind(this);
             }
 
-            var self = this;
+            this.getEvents(listView);
+        },
+
+        getEvents: function (listView) {
+            var that = this;
+            return WinJS.xhr({ url: requestUrl }).then(
+
+                function (request) {
+                    if (!continueToGetEvents) return;
+                    var obj = JSON.parse(request.responseText);
+
+                    if (obj !== undefined) {
+                        var items = obj;
+                        var results = []
+                        for (var i = 0, itemsLength = items.length; i < itemsLength; i++) {
+                            var dataItem = items[i];
+                            results.push({
+                                title: dataItem.Name,
+                                date: dataItem.DateFormatted,
+                                start: "Starter kl. " + that.trimTime(dataItem.Start),
+                                stop: "Slutter kl. " + that.trimTime(dataItem.Stop),
+                                location: dataItem.Location,
+                                description: dataItem.Description,
+                                type: "Passer for: " + dataItem.TypeName,
+                                url: { l: dataItem.Link, t: "Link til arrangement" },
+                                address: dataItem.Address,
+                                city: dataItem.City + " " + dataItem.PostalCode,
+                                thumbImage: dataItem.ThumbUrl,
+                                backgroundImage: dataItem.PictureUrl,
+                                dateAndTime: dataItem.DateFormatted + " " + that.trimTime(dataItem.Start) + "-" + that.trimTime(dataItem.Stop)
+                            });
+                        }
+                        eventBinding = new WinJS.Binding.List(results);
+                        listView.itemDataSource = eventBinding.dataSource;
+                        if (that.isSingleColumn()) {
+                            that.updateVisibility();
+                        }
+                        else {
+                            listView.selection.set(Math.max(that.itemSelectionIndex, 0));
+                        }
+                        $(listView.id).fadeIn();
+                    }
+                });
+        },
+
+        trimTime: function (time) {
+            if (time != undefined) {
+                var t = time.trim();
+                if (t === "" || t === "null")
+                    return "Ukjent tidspunkt";
+                else if (t.length > 7)
+                    return t.substring(0, 5);
+                else
+                    return t;
+            }
+            else {
+                return "Ukjent tidspunkt";
+            }
         },
 
         goHome: function () {
@@ -67,66 +98,51 @@
         },
 
         selectionChanged: function (args) {
-
+            if (!continueToGetEvents) return;
             var listViewDiv = document.body.querySelector(".itemlist");
             var listView = undefined;
             if (listViewDiv) {
                 listView = listViewDiv.winControl;
             }
-            
+
             if (listView) {
                 var details;
                 var that = this;
-                // By default, the selection is restriced to a single item.
                 listView.selection.getItems().done(function updateDetails(items) {
                     if (items.length > 0) {
                         that.itemSelectionIndex = items[0].index;
+
+                        details = document.querySelector(".articlesection");
+                        binding.processAll(details, items[0].data);
+                        details.scrollTop = 0;
                         if (that.isSingleColumn()) {
-                            // If snapped or portrait, navigate to a new page containing the
-                            // selected item's details.
-                            nav.navigate("/pages/events/events.html", { selectedIndex: that.itemSelectionIndex, item: items[0].data });
-                        } else {
-                            // If fullscreen or filled, update the details column with new data.
-
-                            details = document.querySelector(".articlesection");
-                            binding.processAll(details, items[0].data);
-                            details.scrollTop = 0;
-
-                            // Fix for removing cached data, Windows error. 
-                            setTimeout(function () {
-                                window.focus();
-                            }, 0);
-
+                            document.body.querySelector(".articlesection").focus();
+                            nav.history.current.state = {
+                                selectedIndex: that.itemSelectionIndex
+                            };
+                            nav.history.backStack.push({
+                                location: "/pages/events/events.html",
+                                state: {}
+                            });
                         }
+                        that.updateVisibility();
                     }
                 });
             }
         },
 
         unload: function () {
-            //this.items.dispose();
+            continueToGetEvents = false;
         },
 
-        // This function updates the page layout in response to viewState changes.
         updateLayout: function (element, viewState, lastViewState) {
-            /// <param name="element" domElement="true" />
-            /// <param name="viewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
-            /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
-
             var listView = element.querySelector(".itemlist").winControl;
             var firstVisible = listView.indexOfFirstVisible;
             this.updateVisibility();
 
-            var handler = function (e) {
-                listView.removeEventListener("contentanimating", handler, false);
-                e.preventDefault();
-            }
-
             if (this.isSingleColumn()) {
                 listView.selection.clear();
                 if (this.itemSelectionIndex >= 0) {
-                    // If the app has snapped into a single-column detail view,
-                    // add the single-column list view to the backstack.
                     nav.history.current.state = {
                         selectedIndex: this.itemSelectionIndex
                     };
@@ -136,28 +152,19 @@
                     });
                     element.querySelector(".articlesection").focus();
                 } else {
-                    listView.addEventListener("contentanimating", handler, false);
-                    listView.indexOfFirstVisible = firstVisible;
                     listView.forceLayout();
                 }
             } else {
-                // If the app has unsnapped into the two-column view, remove any
-                // splitPage instances that got added to the backstack.
                 if (nav.canGoBack && nav.history.backStack[nav.history.backStack.length - 1].location === "/pages/events/events.html") {
                     nav.history.backStack.pop();
                 }
                 if (viewState !== lastViewState) {
-                    listView.addEventListener("contentanimating", handler, false);
-                    listView.indexOfFirstVisible = firstVisible;
                     listView.forceLayout();
                 }
-
-                listView.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : Math.max(firstVisible, 0));
+                listView.selection.set(this.itemSelectionIndex >= 0 ? this.itemSelectionIndex : firstVisible);
             }
         },
 
-        // This function toggles visibility of the two columns based on the current
-        // view state and item selection.
         updateVisibility: function () {
             var oldPrimary = document.querySelector(".primarycolumn");
             if (oldPrimary) {
