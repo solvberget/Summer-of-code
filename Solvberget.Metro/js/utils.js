@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
 
     var delayImageLoader = WinJS.Class.define(
             function (element, options) {
@@ -61,7 +61,7 @@
                 document.queue.q[queue].unshift(saveValues);
             else
                 document.queue.q[queue].push(saveValues);
-            if (document.queue.q[queue].length == 1 && document.numInProgress < maxNumInProgress) {
+            if (document.queue.q[queue]. length >= 1 && document.numInProgress < maxNumInProgress) {
                 document.numInProgress++;
                 var next = document.queue.q[queue].shift();
                 document.queue.r = WinJS.xhr(next.options).done(function (request) { callback(request, next) });
