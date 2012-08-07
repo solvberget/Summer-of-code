@@ -17,7 +17,7 @@
 
     // Ajax for login
     function ajaxDoLogin(userId, verification) {
-        return $.getJSON("http://localhost:7089/User/GetUserInformation/" + userId + "/" + verification);
+        return $.getJSON(Data.serverBaseUrl + "/User/GetUserInformation/" + userId + "/" + verification);
     }
 
     var navigateToUrl = '';
