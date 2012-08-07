@@ -12,6 +12,9 @@
         ready: function (element, options) {
             getBlogs();
         },
+        unload: function () {
+            Solvberget.Queue.CancelQueue('blogs');
+        }
     });
 })();
 
