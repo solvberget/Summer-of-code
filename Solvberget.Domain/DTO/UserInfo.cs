@@ -417,7 +417,17 @@ namespace Solvberget.Domain.DTO
                                               });
 
                     }
+
+
                 }
+
+                notifications.Add(new Notification
+                {
+                    Type = "Fine",
+                    Title = "Noe skulle vært levert",
+                    Content = "Noe har forfalt. Ved å fornye eller levere tilbake innen forfallsdato unngår du gebyr."
+                });
+                
             }
 
             if (user.Reservations != null)

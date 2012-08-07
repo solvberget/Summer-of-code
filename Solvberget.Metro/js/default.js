@@ -13,15 +13,17 @@
     // Gracefull exit
     app.onerror = function (customEventObject) {
 
-        // Get the error message and name for this exception
-        var errorMessage = customEventObject.detail.error.message;
-        var errorName = customEventObject.detail.error.name;
+        if (customEventObject.type === "error") {
+            // Get the error message and name for this exception
+            var errorMessage = customEventObject.detail.error == null ? customEventObject.detail.exception.message : customEventObject.detail.error.message;
+            var errorName = customEventObject.detail.error == null ? customEventObject.detail.exception.name :  customEventObject.detail.error.name ;
 
-        // Show an error dialog
-        exceptionError(errorMessage, errorName);
+            // Show an error dialog
+            exceptionError(errorMessage, errorName);
 
-        // Tell windows that we have taken care of the exception
-        return true;
+            // Tell windows that we have taken care of the exception
+            return true;
+        }
     }
 
     function exceptionError(name, msg) {
@@ -30,7 +32,7 @@
         if (!messageDialog) {
 
             // Create the message dialog and set its content
-            messageDialog = new Windows.UI.Popups.MessageDialog("Du har tydeligvis gjort noe lurt, for her har appen sporet helt av! \n\nKryptiske feilmelding:\n\n " + msg, "Ooops! (" + name + ")");
+            messageDialog = new Windows.UI.Popups.MessageDialog("Du har tydeligvis gjort noe lurt, for her har appen sporet helt av! \n\nKryptisk feilmelding:\n\n " + msg, "Ooops! (" + name + ")");
 
             // Add commands and set their command handlers
             messageDialog.commands.append(
@@ -48,7 +50,7 @@
     };
     function closeCommandInvoked(command) {
         // Reset message dialog
-        messageDialog = undefined; 
+        messageDialog = undefined;
 
         // Go home
         Data.navigateToHome();
@@ -111,6 +113,7 @@
             document.getElementById("toContactButton").addEventListener("click", Data.navigateToContact);
             document.getElementById("toSearchButton").addEventListener("click", Data.navigateToSearch);
             document.getElementById("toHomeButton").addEventListener("click", Data.navigateToHome);
+
         }
     };
 
@@ -139,7 +142,7 @@ function doLogin() {
     // If user was not logging out, user was logging in, so show login
 
 
-        // TODO: ROAMING
+    // TODO: ROAMING
     var loginDiv = document.getElementById("loginFragmentHolder");
     loginDiv.innerHTML = "";
     WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
@@ -148,7 +151,7 @@ function doLogin() {
 
         LoginFlyout.showLogin(loginAnchor);
     });
-    
+
 }
 
 function pinByElementAsync(element, newTileID, newTileShortName, newTileDisplayName) {
