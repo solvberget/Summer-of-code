@@ -16,6 +16,8 @@
 
             getUserInformation();
 
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
 
         },
 

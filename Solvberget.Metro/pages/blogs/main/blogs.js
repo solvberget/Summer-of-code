@@ -11,6 +11,8 @@
 
         ready: function (element, options) {
             getBlogs();
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
         },
         unload: function () {
             Solvberget.Queue.CancelQueue('blogs');

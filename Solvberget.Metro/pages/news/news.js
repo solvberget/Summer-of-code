@@ -22,6 +22,9 @@
             newsItemsListView.itemTemplate = this.itemTemplateFunction;
             newsItemsListView.oniteminvoked = this.newsItemInvoked.bind(this);
             this.getNewsItems(newsItemsListView);
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
         },
 
         getNewsItems: function (newsItemsListView) {
