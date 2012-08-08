@@ -25,7 +25,7 @@ namespace Solvberget.WindowsService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Projects\\Solvberget\\Solvberget.Service\\bin\\App_Data\\ordlister_index")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\projects\\Solvberget\\Solvberget.Service\\bin\\App_Data\\ordlister_index")]
         public string IndexPath {
             get {
                 return ((string)(this["IndexPath"]));
@@ -34,7 +34,7 @@ namespace Solvberget.WindowsService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Projects\\Solvberget\\Solvberget.Service\\bin\\App_Data\\ordlister\\ord_forslag.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\projects\\Solvberget\\Solvberget.Service\\bin\\App_Data\\ordlister\\ord_forslag.txt")]
         public string SuggestionPath {
             get {
                 return ((string)(this["SuggestionPath"]));

@@ -18,23 +18,23 @@ namespace Solvberget.Domain.Implementation
 
         public static void Build(string dictionaryPath, string indexPath)
         {
-
             var di = CreateTargetFolder(indexPath);
-            using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
+            using (var file = File.Open(dictionaryPath, FileMode.Open, FileAccess.Read))
             {
-                try
+                var dict = new PlainTextDictionary(file);
+                using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
                 {
-                    var fi = new FileInfo(dictionaryPath);
-                    staticSpellChecker.IndexDictionary(new PlainTextDictionary(fi));
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    try
+                    {
+                        staticSpellChecker.IndexDictionary(dict);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
             }
-
         }
-
 
         public static DirectoryInfo CreateTargetFolder(string path)
         {

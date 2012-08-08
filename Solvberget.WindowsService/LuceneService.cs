@@ -14,40 +14,35 @@ namespace Solvberget.WindowsService
 {
     public class LuceneService : ServiceBase
     {
-        private System.Timers.Timer timer;
-        private bool IsRunning;
-        private Thread thread;
+        private readonly System.Timers.Timer _timer;
+        private bool _isRunning;
+        private Thread _thread;
 
         public LuceneService()
         {
             InitializeComponent();
-            timer = new System.Timers.Timer();
-            timer.Elapsed += Listen;
-            timer.Interval = 30000;
-            IsRunning = false;
+            _timer = new System.Timers.Timer();
+            _timer.Elapsed += Listen;
+            _timer.Interval = 30000;
+            _isRunning = false;
         }
 
         protected override void OnStart(string[] args)
         {
             WriteLogEntry("Dictionary building has started", EventLogEntryType.SuccessAudit);
-            timer.Enabled = true;
+            _timer.Enabled = true;
         }
 
         protected override void OnStop()
         {
-            if (thread.IsAlive)
-            {
-                thread.Join();
-            }
-            timer.Dispose();
+            _timer.Dispose();
         }
 
         private void Listen(object source, ElapsedEventArgs args) {
-            if (!IsRunning)
+            if (!_isRunning)
             {
-                IsRunning = true;
-                thread = new Thread(BuildDictionary); 
-                thread.Start();
+                _isRunning = true;
+                Task.Factory.StartNew(BuildDictionary);
             }
         }
 
@@ -57,20 +52,9 @@ namespace Solvberget.WindowsService
             var suggestionCopy = sugggestionPath.Substring(0, sugggestionPath.Length - 4) + "copy.txt";
             try
             {
-                if (File.Exists(suggestionCopy))
-                {
-                    WriteLogEntry("File already exists");
-                    File.Delete(suggestionCopy);
-                    WriteLogEntry("File deleted");
-                    IsRunning = false;
-                    return;
-                }
-                File.Copy(sugggestionPath, suggestionCopy);
-
-                using (var repository = new LuceneRepository(indexPath, suggestionCopy))
-                {
-                    repository.SuggestionListBuildDictionary();
-                }
+                File.Copy(sugggestionPath, suggestionCopy, true);
+                DictionaryBuilder.Build(suggestionCopy, indexPath);
+                File.Delete(suggestionCopy);
             }
             catch (Exception e)
             {
@@ -78,7 +62,7 @@ namespace Solvberget.WindowsService
             }
             finally
             {
-                IsRunning = false;;
+                _isRunning = false;;
                 WriteLogEntry("Dictionary building has completed", EventLogEntryType.SuccessAudit);
 
             }

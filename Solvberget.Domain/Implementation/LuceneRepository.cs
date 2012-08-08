@@ -21,18 +21,9 @@ namespace Solvberget.Domain.Implementation
 {
 
 
-    public class LuceneRepository : ISuggestionDictionary, IDisposable
+    public class LuceneRepository : ISuggestionDictionary
     {
 
-        ~LuceneRepository()
-        {
-            
-        }
-
-        public void Dispose()
-        {
-            //Nothing to do
-        }
 
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
 
@@ -56,11 +47,6 @@ namespace Solvberget.Domain.Implementation
             _documentRepository = documentRepository;
 
 
-        }
-
-        public void SuggestionListBuildDictionary()
-        {
-            DictionaryBuilder.Build(_pathToSuggestionsDict, _pathToDictDir);
         }
 
         private void InitializeSpellChecker()
