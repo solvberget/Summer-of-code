@@ -81,6 +81,9 @@
     <Content Include="fragments\documentFragments\document\document.css" />
     <Content Include="fragments\documentFragments\document\document.html" />
     <Content Include="fragments\documentFragments\document\document.js" />
+    <Content Include="fragments\documentFragments\game\game.css" />
+    <Content Include="fragments\documentFragments\game\game.html" />
+    <Content Include="fragments\documentFragments\game\game.js" />
     <Content Include="fragments\documentFragments\journal\journal.css" />
     <Content Include="fragments\documentFragments\journal\journal.html" />
     <Content Include="fragments\documentFragments\journal\journal.js" />

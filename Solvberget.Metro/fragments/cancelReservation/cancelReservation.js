@@ -22,55 +22,64 @@
         $("#cancelReservationLoading").css("display", "none").css("visibility", "hidden");
     }
 
-    var ajaxCancelReservation = function (documentItemNumber, itemSeq, itemCancellationCode) {
-        return $.getJSON(window.Data.serverBaseUrl + "/Document/CancelReservation/" + documentItemNumber + "/" + itemSeq + "/" + itemCancellationCode);
+
+    var ajaxCancelReservation = function(documentItemNumber, itemSeq, itemCancellationCode) {
+
+        var url = window.Data.serverBaseUrl + "/Document/CancelReservation/" + documentItemNumber + "/" + itemSeq + "/" + itemCancellationCode;
+        Solvberget.Queue.QueueDownload("cancelreservation", { url: url }, ajaxCancelReservationCallback, this, true);
+
     };
+
+    var ajaxCancelReservationCallback = function (request, context) {
+        var response = JSON.parse(request.responseText);
+       
+        if (response != undefined && response !== "") {
+
+            var flyout = document.getElementById("cancelReservationFlyout");
+
+            var outputMsg = document.getElementById("cancelReservationOutputMsg");
+            if (!outputMsg)
+                return;
+
+            outputMsg.innerHTML = "";
+
+            if (response.Success) {
+                $("#cancelReservationOutputMsg").removeClass("error");
+                $("#cancelReservationOutputMsg").addClass("success");
+            } else {
+                $("#cancelReservationOutputMsg").removeClass("success");
+                $("#cancelReservationOutputMsg").addClass("error");
+            }
+            document.getElementById("cancelReservationOutputMsg").textContent = response.Reply;
+
+            $("#cancelReservationLoading").css("display", "none").css("visibility", "hidden");
+            if (response.Success) {
+                setTimeout(function () {
+                    flyout = document.getElementById("cancelReservationFlyout");
+                    if (flyout != undefined)
+                        flyout.winControl.hide();
+
+                    allReservations[reservationIndex] = undefined;
+                    MyPage.addReservationsToDom(allReservations);
+
+                }, 2000);
+            }
+        }
+    };
+
 
     function cancelReservation(documentItemNumber, itemSeq, itemCancellationCode) {
 
         $("#cancelReservationLoading").css("display", "block").css("visibility", "visible");
 
-        $.when(ajaxCancelReservation(documentItemNumber, itemSeq, itemCancellationCode))
-            .then($.proxy(function (response) {
-                if (response != undefined && response !== "") {
-
-                    var flyout = document.getElementById("cancelReservationFlyout");
-
-                    var outputMsg = document.getElementById("cancelReservationOutputMsg");
-                    if (!outputMsg)
-                        return;
-
-                    outputMsg.innerHTML = "";
-
-                    if (response.Success) {
-                        $("#cancelReservationOutputMsg").removeClass("error");
-                        $("#cancelReservationOutputMsg").addClass("success");
-                    } else {
-                        $("#cancelReservationOutputMsg").removeClass("success");
-                        $("#cancelReservationOutputMsg").addClass("error");
-                    }
-                    document.getElementById("cancelReservationOutputMsg").textContent = response.Reply;
-
-                    $("#cancelReservationLoading").css("display", "none").css("visibility", "hidden");
-                    if (response.Success) {
-                        setTimeout(function () {
-                            flyout = document.getElementById("cancelReservationFlyout");
-                            if (flyout != undefined)
-                                flyout.winControl.hide();
-
-                            allReservations[reservationIndex] = undefined;
-                            MyPage.addReservationsToDom(allReservations);
-
-                        }, 2000);
-                    }
-
-                }
-            }, this));
+        ajaxCancelReservation(documentItemNumber, itemSeq, itemCancellationCode);
     }
 
     function cancel() {
         var flyout = document.getElementById("cancelReservationFlyout");
         flyout.winControl.hide();
+        Solvberget.Queue.CancelQueue('cancelreservation');
+
     }
 
 
@@ -78,12 +87,9 @@
         // Clear fields on dismiss
         var subCancelBtn = document.getElementById("submitCancelReservationButton");
         if (subCancelBtn) {
-
-
             document.getElementById("submitCancelReservationButton").value = "";
             document.getElementById("cancelCancelReservationButton").value = "";
             document.getElementById("cancelReservationOutputMsg").value = "";
-
         }
     }
 

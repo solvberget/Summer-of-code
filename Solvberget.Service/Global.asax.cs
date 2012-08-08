@@ -38,6 +38,12 @@ namespace Solvberget.Service
             );
 
             routes.MapRoute(
+                "SpellingDictionaryLookup", // Route name
+                "Document/SpellingDictionaryLookup/{value}", // URL with parameters
+                new { controller = "Document", action = "SpellingDictionaryLookup" } // Param defaults
+            );
+
+            routes.MapRoute(
                 "GetDocumentThumbnailRoute", // Route name
                 "Document/GetDocumentThumbnailRoute/{id}/{size}", // URL with parameters
                 new { controller = "Document", action = "Index", id = UrlParameter.Optional, size = UrlParameter.Optional } // Parameter defaults
