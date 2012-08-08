@@ -114,6 +114,7 @@
             document.getElementById("toSearchButton").addEventListener("click", Data.navigateToSearch);
             document.getElementById("toHomeButton").addEventListener("click", Data.navigateToHome);
 
+            LiveTile.liveTile();
         }
     };
 

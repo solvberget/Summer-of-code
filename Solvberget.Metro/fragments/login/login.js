@@ -125,6 +125,7 @@
 
                         var borrowerId = response.BorrowerId;
                         var libraryId = response.Id;
+                        var notifications = response.Notifications;
 
                         if (borrowerId != undefined && libraryId != undefined) {
 
@@ -141,9 +142,14 @@
                             window.localStorage.setItem("BorrowerId", borrowerId);
                             window.localStorage.setItem("LibraryUserId", libraryId);
 
+                            Notifications.setUserNotifications(notifications);
+
                             LoginFlyout.updateAppBarButton();
 
+                            
                         }
+
+                        
 
                         setTimeout(function () {
                             var flyout = document.getElementById("loginFlyout");
@@ -153,10 +159,10 @@
                                 if (navigateToUrl && navigateToUrl != "")
                                     WinJS.Navigation.navigate(navigateToUrl);
                             }, 200);
+                            LiveTile.liveTile();
                         }, 1200);
 
-
-
+                        
                     }
                     else {
                         if (outputMsg != undefined)

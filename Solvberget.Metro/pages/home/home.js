@@ -33,7 +33,7 @@
 
             this.initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
             listView.element.focus();
-            MyPage.getUserInformation(false);
+            MyPage.ajaxGetUserInformation(false);
 
         },
 

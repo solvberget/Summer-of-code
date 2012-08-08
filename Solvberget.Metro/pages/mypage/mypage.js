@@ -21,18 +21,20 @@
     });
 })();
 
-var ajaxGetUserInformation = function () {
+var ajaxGetUserInformation = function (isLoadingMyPage) {
 
     var borrowerId = LoginFlyout.getLoggedInBorrowerId();
     if (borrowerId != undefined && borrowerId !== "") {
         var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId
-        Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, this, true);
+        Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, isLoadingMyPage, true);
     }
 
 }
 
 var ajaxGetUserInformationCallback = function (request, context) {
     var response = JSON.parse(request.responseText);
+
+    var isLoadingMyPage = context;
 
     if (response != undefined && response !== "") {
         // Extract fines from object
@@ -72,11 +74,22 @@ var ajaxGetUserInformationCallback = function (request, context) {
         if (balanceDiv != undefined && response != undefined)
             WinJS.Binding.processAll(balanceDiv, response);
 
-        addFinesToDom(fines);
-        addLoansToDom(loans);
-        addReservationsToDom(reservations);
-        addNotificationsToDom(notifications);
-        addColors();
+        if (isLoadingMyPage) {
+            addFinesToDom(fines);
+            addLoansToDom(loans);
+            addReservationsToDom(reservations);
+            addNotificationsToDom(notifications);
+            addColors();
+        }
+        if ((notifications) && (LoginFlyout.getLoggedInBorrowerId() != "" && LoginFlyout.getLoggedInBorrowerId() != undefined))
+        {
+            for (i = 0; i < notifications.length; i++)
+            {
+                showToast(notifications[i].Title, notifications[i].Content);
+            }
+
+            Notifications.setUserNotifications(notifications);
+        }
 
     }
 
@@ -261,7 +274,7 @@ var getUserInformation = function (loadingMypage) {
     $.ajaxSetup({ cache: false });
 
     // Get the user information from server
-    ajaxGetUserInformation()
+    ajaxGetUserInformation(loadingMypage)
        
     WinJS.Namespace.define("MyPage", {
         addReservationsToDom: addReservationsToDom,
@@ -327,6 +340,6 @@ var getUserInformation = function (loadingMypage) {
 };
 
 WinJS.Namespace.define("MyPage", {
-    getUserInformation: getUserInformation,
+    ajaxGetUserInformation: ajaxGetUserInformation,
 
 });
