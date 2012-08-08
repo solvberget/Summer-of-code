@@ -17,6 +17,8 @@ var documentModel;
 var fragmentReady = function (model) {
 
     documentModel = model;
+    $("#details").css("margin-top", "0px");
+
     getImdbRating();
 
 };
@@ -49,6 +51,8 @@ var ajaxGetImdbRatingCallback = function (request, context) {
         imdbTemplate.outerHTML = "";
         imdbTemplate.render(data, imdbTemplateContainer);
         imdbTemplate.render(data, imdbTemplateContainerShared);
+
+        $("#details").css("margin-top", "50px");
 
     }
 

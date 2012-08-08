@@ -14,6 +14,8 @@ var fragmentReady = function (model) {
     documentModel = model;
     getReview();
     getBokelskereRating();
+    $("#details").css("margin-top", "0px");
+
 
 };
 
@@ -33,15 +35,22 @@ var ajaxGetRating = function () {
 
 
 var ajaxGetReviewCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response;
+    if (request.responseText !== "") {
+        response = JSON.parse(request.responseText);
+    }
 
     if (response != undefined && response !== "") {
         var data = { documentReview: response };
 
         var reviewTemplate = new WinJS.Binding.Template(document.getElementById("reviewTemplate"));
         var reviewTemplateContainer = document.getElementById("reviewContainer");
-        reviewTemplate.outerHTML = ""
+        $(reviewTemplateContainer).css("margin-top", "10px");
+        
+        reviewTemplate.outerHTML = "";
         reviewTemplate.render(data, reviewTemplateContainer);
+        $("#details").css("margin-top", "65px");
+
     }
 
 };
@@ -49,8 +58,10 @@ var ajaxGetReviewCallback = function (request, context) {
 
 var ajaxGetRatingCallback = function (request, context) {
     var response = JSON.parse(request.responseText);
-    
+
     if (response != undefined && response !== "") {
+
+        if (response === "0.0") return;
 
         var data = { BokElskereRating: response };
 
@@ -63,6 +74,9 @@ var ajaxGetRatingCallback = function (request, context) {
         imdbTemplate.outerHTML = "";
         imdbTemplate.render(data, imdbTemplateContainer);
         imdbTemplate.render(data, imdbTemplateContainerShared);
+        
+        $("#details").css("margin-top", "65px");
+
 
     }
 };
@@ -71,6 +85,7 @@ var ajaxGetRatingCallback = function (request, context) {
 
 
 var getReview = function () {
+    $("#reviewContainer").css("margin-top","0px");
     ajaxGetReview();
 };
 
