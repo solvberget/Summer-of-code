@@ -29,7 +29,7 @@ namespace Solvberget.Domain.Implementation
 
 
         private readonly string _pathToDictDir;
-        private readonly string _pathToStopwordsDict;
+   
         private readonly string _pathToSuggestionsDict;
 
         private readonly IRepository _documentRepository;
@@ -50,19 +50,6 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-        public void SuggestionListBuildDictionary()
-        {
-            try
-            {
-                DictionaryBuilder.Build(_pathToSuggestionsDict, _pathToDictDir);
-            }
-            catch (Exception e)
-            {
-                
-                Console.WriteLine(e.Message);
-            }
-            
-        }
 
 
         private void InitializeSpellChecker()
@@ -120,7 +107,7 @@ namespace Solvberget.Domain.Implementation
 
             }
             WriteSuggestionListToFile();
-            Task.Factory.StartNew(SuggestionListBuildDictionary);
+            //Task.Factory.StartNew(SuggestionListBuildDictionary);
         }
 
 
