@@ -11,7 +11,7 @@
 
         ready: function (element, options) {
 
-            getUserInformation();
+            getUserInformation(true);
             document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
 
         },
@@ -27,7 +27,6 @@ var ajaxGetUserInformation = function () {
     if (borrowerId != undefined && borrowerId !== "") {
         var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId
         Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, this, true);
-
     }
 
 }
@@ -103,6 +102,25 @@ var cancelReservation = function (reservations, index, element) {
 
 
 };
+
+var showToast = function (heading, body) {
+
+    var template = Windows.UI.Notifications.ToastTemplateType.toastText02;
+
+
+
+    var toastXml = Windows.UI.Notifications.ToastNotificationManager.getTemplateContent(template);
+
+    var toastTextElements = toastXml.getElementsByTagName("text");
+    toastTextElements[0].appendChild(toastXml.createTextNode(heading));
+    toastTextElements[1].appendChild(toastXml.createTextNode(body));
+
+    var toast = new Windows.UI.Notifications.ToastNotification(toastXml);
+
+    var toastNotifier = Windows.UI.Notifications.ToastNotificationManager.createToastNotifier();
+    toastNotifier.show(toast);
+};
+
 
 var renewLoan = function (loan) {
 
@@ -233,7 +251,7 @@ var addColors = function () {
 }
 
 
-var getUserInformation = function () {
+var getUserInformation = function (loadingMypage) {
 
     // Show progress-ring, hide content
     $("#mypageData").hide();
@@ -307,3 +325,8 @@ var getUserInformation = function () {
     });
 
 };
+
+WinJS.Namespace.define("MyPage", {
+    getUserInformation: getUserInformation,
+
+});

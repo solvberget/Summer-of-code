@@ -32,7 +32,7 @@
         if (!messageDialog) {
 
             // Create the message dialog and set its content
-            messageDialog = new Windows.UI.Popups.MessageDialog("Du har tydeligvis gjort noe lurt, for her har appen sporet helt av! \n\nKryptiske feilmelding:\n\n " + msg, "Ooops! (" + name + ")");
+            messageDialog = new Windows.UI.Popups.MessageDialog("Du har tydeligvis gjort noe lurt, for her har appen sporet helt av! \n\nKryptisk feilmelding:\n\n " + msg, "Ooops! (" + name + ")");
 
             // Add commands and set their command handlers
             messageDialog.commands.append(
@@ -113,6 +113,7 @@
             document.getElementById("toContactButton").addEventListener("click", Data.navigateToContact);
             document.getElementById("toSearchButton").addEventListener("click", Data.navigateToSearch);
             document.getElementById("toHomeButton").addEventListener("click", Data.navigateToHome);
+
         }
     };
 
