@@ -20,6 +20,9 @@
             newsItemsListView.itemTemplate = this.itemTemplateFunction;
             newsItemsListView.oniteminvoked = this.newsItemInvoked.bind(this);
             this.getNewsItems(newsItemsListView);
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
         },
 
         getNewsItems: function (newsItemsListView) {
@@ -29,7 +32,7 @@
         },
 
         getNewsItemsCallback: function (request, context) {
-            var response = JSON.parse(request.responseText);
+            var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
             if (response != undefined && response !== "") {
                 context.that.newsItems = new WinJS.Binding.List(response);
                 context.that.initializeLayout(context.listView, appView.value);
@@ -71,13 +74,16 @@
         },
 
         initializeLayout: function (newsItemsListView, viewState) {
-            if (viewState === appViewState.snapped) {
-                $(".pagetitle").html("Nyheter");
-                newsItemsListView.itemDataSource = this.newsItems.dataSource;
-                newsItemsListView.layout = new ui.ListLayout();
-            } else {
-                newsItemsListView.itemDataSource = this.newsItems.dataSource;
-                newsItemsListView.layout = new ui.GridLayout();
+            if (this.newsItems) {
+                if (viewState === appViewState.snapped) {
+                    $(".pagetitle").html("Nyheter");
+                    newsItemsListView.itemDataSource = this.newsItems.dataSource;
+                    newsItemsListView.layout = new ui.ListLayout();
+
+                } else {
+                    newsItemsListView.itemDataSource = this.newsItems.dataSource;
+                    newsItemsListView.layout = new ui.GridLayout();
+                }
             }
         },
 

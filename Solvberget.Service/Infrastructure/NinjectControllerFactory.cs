@@ -43,13 +43,11 @@ namespace Solvberget.Service.Infrastructure
                 .WithConstructorArgument("folderPath", EnvironmentHelper.GetXmlListPath());
             ninjectKernel.Bind<IListRepository>().To<LibraryListDynamicRepository>()
                 .WithConstructorArgument("xmlFilePath", EnvironmentHelper.GetXmlFilePath());
-            ninjectKernel.Bind<ISpellingDictionary>()
+            ninjectKernel.Bind<ISuggestionDictionary>()
                 .To<LuceneRepository>()
-                .WithConstructorArgument("pathToDictionary", EnvironmentHelper.GetDictionaryPath())
-                .WithConstructorArgument("pathToDictionaryDirectory", EnvironmentHelper.GetDictionaryIndexPath())
-                .WithConstructorArgument("pathToStopWordsDict", EnvironmentHelper.GetStopwordsPath())
-                .WithConstructorArgument("pathToSuggestionListDict", EnvironmentHelper.GetSuggestionListPath())
-                .WithConstructorArgument("pathToTestDict", EnvironmentHelper.GetTestDictPath());
+                .WithConstructorArgument("indexPath", EnvironmentHelper.GetDictionaryIndexPath())
+                .WithConstructorArgument("suggestionPath", EnvironmentHelper.GetSuggestionListPath());
+
         }
     }
 }

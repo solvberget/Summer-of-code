@@ -8,7 +8,7 @@
     margin-left: 10px;
 }
 
-.content {
+#entryContent {
     -ms-grid-row: 2;
     display: block;
     height: 100%;
@@ -18,7 +18,7 @@
     z-index: 0;
 }
 
-    .content article {
+    #entryContent article {
         /* Define a multi-column, horizontally scrolling article by default. */
         column-gap: 80px;
         column-width: 480px;
@@ -68,7 +68,7 @@ progress.withText {
 }
 
 @media screen and (-ms-view-state: snapped) {
-    .content article {
+    #entryContent article {
         /* Define a single column, vertically scrolling article in snapped mode. */
         -ms-grid-columns: 300px 1fr;
         -ms-grid-row: 2;

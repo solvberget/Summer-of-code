@@ -7,14 +7,66 @@
     var page = WinJS.UI.Pages.define("/fragments/pinRequest/pinRequest.html", {
 
         ready: function (element, options) {
-            
+
         },
 
     });
 
+    // !------------ AJAX METHODS -------------! //
+
     var sendPinRequest = function (userId) {
-        return $.getJSON(requestUrlBase + userId);
+        var url = requestUrlBase + userId;
+        Solvberget.Queue.QueueDownload("pin", { url: url }, sendPinRequestCallback, null, true);
     };
+
+    // !------------ AJAX CALLBACKS -------------! //
+
+    var sendPinRequestCallback = function (request, context) {
+        var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
+        
+        var outputMsgPinReq = document.getElementById("outputMsgPinReq");
+        if (response.Success == true) {
+            if (outputMsgPinReq != undefined) {
+                if (response.Reply) {
+                    outputMsgPinReq.innerHTML = response.Reply;
+                }
+                else {
+                    outputMsgPinReq.innerHTML = "Din pin-kode vil bli tilsendt via SMS.";
+                }
+            }
+            $("#outputMsgPinReq").removeClass("error");
+            $("#outputMsgPinReq").addClass("success");
+            $("#submitPinRequestButton").removeAttr("disabled");
+            $("#cancelFlyoutButton").html("Lukk");
+            $("#pinRequestLoading").css("display", "none").css("visibility", "hidden");
+
+            setTimeout(function () {
+                var pinRequestFlyout = document.getElementById("pinRequestFlyout");
+                if (pinRequestFlyout != undefined)
+                    pinRequestFlyout.winControl.hide();
+            }, 2500);
+
+        }
+        else {
+            if (outputMsgPinReq != undefined) {
+                if (response.Reply) {
+                    outputMsgPinReq.innerHTML = response.Reply;
+                }
+                else {
+                    outputMsgPinReq.innerHTML = "Forespørselen kunne ikke utføres.";
+                }
+            }
+            $("#outputMsgPinReq").removeClass("success");
+            $("#outputMsgPinReq").addClass("error");
+            $("#submitPinRequestButton").removeAttr("disabled");
+            $("#cancelFlyoutButton").html("Lukk");
+            $("#pinRequestLoading").css("display", "none").css("visibility", "hidden");
+        }
+
+    };
+
+    // !------------ END AJAX  END -------------! //
+
 
     var submitPinRequest = function () {
 
@@ -36,48 +88,7 @@
             var outputMsgPinReq = document.getElementById("outputMsgPinReq");
             if (this.outputMsgPinReq != undefined)
                 outputMsgPinReq.innerHTML = "";
-            $.when(sendPinRequest($("#userIdPinReq").val()))
-                .then($.proxy(function (response) {
-                    var outputMsgPinReq = document.getElementById("outputMsgPinReq");
-                    if (response.Success == true) {
-                        if (outputMsgPinReq != undefined) {
-                            if (response.Reply) {
-                                outputMsgPinReq.innerHTML = response.Reply;
-                            }
-                            else {
-                                outputMsgPinReq.innerHTML = "Din pin-kode vil bli tilsendt via SMS.";
-                            }
-                        }
-                        $("#outputMsgPinReq").removeClass("error");
-                        $("#outputMsgPinReq").addClass("success");
-                        $("#submitPinRequestButton").removeAttr("disabled");
-                        $("#cancelFlyoutButton").html("Lukk");
-                        $("#pinRequestLoading").css("display", "none").css("visibility", "hidden");
-
-                        setTimeout(function () {
-                            var pinRequestFlyout = document.getElementById("pinRequestFlyout");
-                            if (pinRequestFlyout != undefined)
-                                pinRequestFlyout.winControl.hide();
-                        }, 2500);
-
-                    }
-                    else {
-                        if (outputMsgPinReq != undefined) {
-                            if (response.Reply) {
-                                outputMsgPinReq.innerHTML = response.Reply;
-                            }
-                            else {
-                                outputMsgPinReq.innerHTML = "Forespørselen kunne ikke utføres.";
-                            }
-                        }
-                        $("#outputMsgPinReq").removeClass("success");
-                        $("#outputMsgPinReq").addClass("error");
-                        $("#submitPinRequestButton").removeAttr("disabled");
-                        $("#cancelFlyoutButton").html("Lukk");
-                        $("#pinRequestLoading").css("display", "none").css("visibility", "hidden");
-                    }
-                    
-                }, this));
+            sendPinRequest($("#userIdPinReq").val());
         }
     };
 
@@ -88,7 +99,7 @@
         }
     };
 
-    var onDismiss = function() {
+    var onDismiss = function () {
         document.getElementById("userIdPinReq").value = "";
         document.getElementById("userIdErrorPinReq").innerHTML = "";
         document.getElementById("outputMsgPinReq").innerHTML = "";
@@ -96,6 +107,9 @@
         var reqPinFragmentDivHolder = document.getElementById("requestPinFragmentHolder");
         if (reqPinFragmentDivHolder)
             reqPinFragmentDivHolder.innerHTML = "";
+        
+        Solvberget.Queue.CancelQueue('pin');
+
     };
 
     var showPinRequestFlyout = function (element, navigateTo) {

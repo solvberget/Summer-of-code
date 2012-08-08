@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Service", "Solvb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Domain", "Solvberget.Domain\Solvberget.Domain.csproj", "{7EB0D844-7622-4F0D-A103-C326C6FA1293}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.WindowsService", "Solvberget.WindowsService\Solvberget.WindowsService.csproj", "{2165682B-2B4F-416E-B88F-07C70D5BE84D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -21,6 +23,16 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Release|x64.ActiveCfg = Release|Any CPU
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D}.Release|x86.ActiveCfg = Release|Any CPU
 		{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}.Debug|ARM.ActiveCfg = Debug|ARM
 		{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}.Debug|ARM.Build.0 = Debug|ARM
 		{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}.Debug|ARM.Deploy.0 = Debug|ARM

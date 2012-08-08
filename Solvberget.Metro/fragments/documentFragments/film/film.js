@@ -17,42 +17,53 @@ var documentModel;
 var fragmentReady = function (model) {
 
     documentModel = model;
+    $("#details").css("margin-top", "0px");
 
     getImdbRating();
-   
 
 };
+
+
+// !------------ AJAX METHODS -------------! //
 
 var ajaxGetImdbRating = function () {
-    return $.getJSON(window.Data.serverBaseUrl + "/Document/GetDocumentRating/" + documentModel.DocumentNumber);
+    var url = window.Data.serverBaseUrl + "/Document/GetDocumentRating/" + documentModel.DocumentNumber;
+    Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetImdbRatingCallback, this, true);
 };
 
+
+// !------------ AJAX CALLBACKS -------------! //
+
+
+var ajaxGetImdbRatingCallback = function (request, context) {
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
+
+    if (response != undefined && response !== "") {
+
+        var data = { ImdbRating: response };
+
+        var imdbTemplate = new WinJS.Binding.Template(document.getElementById("imdbTemplate"));
+        var imdbTemplateContainer = document.getElementById("ratingContainer");
+        //Render for sharing with facebook etc.
+        var imdbTemplateContainerShared = document.getElementById("ratingContainerShared");
+
+
+        imdbTemplate.outerHTML = "";
+        imdbTemplate.render(data, imdbTemplateContainer);
+        imdbTemplate.render(data, imdbTemplateContainerShared);
+
+        $("#details").css("margin-top", "50px");
+
+    }
+
+};
+
+
+// !------------ END AJAX END -------------! //
+
+
 var getImdbRating = function () {
-    
-
-    $.when(ajaxGetImdbRating())
-        .then($.proxy(function (response) {
-            if (response != undefined && response !== "") {
-
-                var data = { ImdbRating: response };
-
-                var imdbTemplate = new WinJS.Binding.Template(document.getElementById("imdbTemplate"));
-                var imdbTemplateContainer = document.getElementById("ratingContainer");
-                //Render for sharing with facebook etc.
-                var imdbTemplateContainerShared = document.getElementById("ratingContainerShared");
-
-
-                    imdbTemplate.outerHTML = "";
-                    imdbTemplate.render(data, imdbTemplateContainer);
-                    imdbTemplate.render(data, imdbTemplateContainerShared);
-
-               
-              
-                
-            }
-        }, this)
-    );
-
+    ajaxGetImdbRating();
 };
 
 
@@ -67,13 +78,13 @@ WinJS.Namespace.define("DocumentDetailConverters", {
     imdbStyleConverter: WinJS.Binding.converter(function (imdbSrc) {
         return "display:block";
     }),
-    nullStyleConverter : WinJS.Binding.converter(function (attr) {
+    nullStyleConverter: WinJS.Binding.converter(function (attr) {
         if (attr == undefined || attr == "" || attr === "null")
             return "display: none";
         else
             return "display:block";
     }),
-    imdbRatingConverter : WinJS.Binding.converter(function (rating) {
+    imdbRatingConverter: WinJS.Binding.converter(function (rating) {
         return rating + "/10";
     }),
 });

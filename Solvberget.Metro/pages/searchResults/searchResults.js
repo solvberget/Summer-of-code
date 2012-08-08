@@ -8,54 +8,62 @@
     var utils = WinJS.Utilities;
     var searchPageURI = "/pages/searchResults/searchResults.html";
 
+
     var suggestionMethods = {
         suggestionList: [],
         url: window.Data.serverBaseUrl + "/Document/SuggestionList/",
-        populateSuggestionList: function (allData) {
+        populateSuggestionList: function (request, context) {
+            // AJAX CALLBACK (populate suggestion list from server)
+            var allData = JSON.parse(request.responseText);
             suggestionMethods.suggestionList = allData;
         },
         getSuggestionListFromServer: function () {
-            $.getJSON(suggestionMethods.url, suggestionMethods.populateSuggestionList);
+            // DO AJAX (get suggestion list from server)
+            Solvberget.Queue.QueueDownload("search", { url: suggestionMethods.url }, suggestionMethods.populateSuggestionList, this, false);
+
+        },
+        updateSuggestionsCallback: function (request, context) {
+            // AJAX CALLBACK (check if suggestion is different from search then show)
+            var query = context.q;
+            var allData = JSON.parse(request.responseText);
+            // Check to see if we have a suggestion
+            if (query != allData && allData != "") {
+
+                suggestionMethods.didYouMean = allData;
+                suggestionMethods.suggestionQuery = allData;
+
+                var bindingSource = WinJS.Binding.as(suggestionMethods);
+                bindingSource.didYouMean = "Mente du " + suggestionMethods.didYouMean + "?";
+
+                var spanDidYouMean = document.getElementById("spanDidYouMean");
+
+                $(spanDidYouMean).click(function () {
+
+                    var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                    searchPane.show(suggestionMethods.suggestionQuery);
+
+                });
+
+                // Fade in the suggestion
+                $(spanDidYouMean).hide();
+                if (spanDidYouMean != null)
+                    WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
+
+
+                if ($(spanDidYouMean).text() !== "undefined")
+                    $(spanDidYouMean).fadeIn(250);
+            }
+
         },
         updateSuggestions: function (query) {
 
             // Reset suggestion
             suggestionMethods.didYouMean = "";
             suggestionMethods.suggestionQuery = "";
-            var suggestionText = document.getElementById("spanDidYouMean");
+            var context = { q: query };
 
-            // Get a new search-suggestion
-            $.getJSON(Data.serverBaseUrl + "/Document/SpellingDictionaryLookup", { value: query }, function (allData) {
-
-                // Check to see if we have a suggestion
-                if (query != allData && allData != "") {
-
-                    suggestionMethods.didYouMean = allData;
-                    suggestionMethods.suggestionQuery = allData;
-
-                    var bindingSource = WinJS.Binding.as(suggestionMethods);
-                    bindingSource.didYouMean = "Mente du " + suggestionMethods.didYouMean + "?";
-
-                    var spanDidYouMean = document.getElementById("spanDidYouMean");
-
-                    $(spanDidYouMean).click(function () {
-
-                        var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
-                        searchPane.show(suggestionMethods.suggestionQuery);
-
-                    });
-
-                    // Fade in the suggestion
-                    $(spanDidYouMean).hide();
-                    if (spanDidYouMean != null)
-                        WinJS.Binding.processAll(spanDidYouMean, suggestionMethods);
-
-                    setTimeout(function () {
-                        if ($(spanDidYouMean).text() !== "undefined")
-                            $(spanDidYouMean).fadeIn(250);
-                    }, 1600);
-                }
-            });
+            var searchUrl = Data.serverBaseUrl + "/Document/SpellingDictionaryLookup/" + query;
+            Solvberget.Queue.QueueDownload("search", { url: searchUrl }, this.updateSuggestionsCallback, context, false);
 
         },
         didYouMean: "",
@@ -64,77 +72,95 @@
     };
 
     var loadingWheel = {
-
         spin: function () {
-
-            $("#search-loading-wheel").css("visibility", "visible");
-
-
+            $("#search-loading-wheel").fadeIn();
         },
         stop: function () {
-
-            $("#search-loading-wheel").css("display", "none").css("visibility", "none");
-            $("#resultslist").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
-
-
+            $("#search-loading-wheel").hide();
+            $("#resultslist").fadeIn("slow");
         },
     };
 
+    // ----------------------AJAX METHODS---------------//
 
-    var ajaxSearchDocuments = function (query) {
-        return $.getJSON(window.Data.serverBaseUrl + "/Document/Search/" + query);
+    var ajaxSearchDocuments = function(query, context) {
+
+        var url = window.Data.serverBaseUrl + "/Document/Search/" + query;
+        Solvberget.Queue.QueueDownload("search", { url: url }, ajaxSearchDocumentsCallback, context, true);
+
     };
+    var ajaxGetThumbnailDocumentImage = function(query, size, context) {
 
-    var ajaxGetThumbnailDocumentImage = function (query, size) {
         var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
-        return $.getJSON(size == undefined ? url + query : url + query + "/" + size);
+        url = size == undefined ? url + query : url + query + "/" + size;
+        Solvberget.Queue.QueueDownload("search", { url: url }, ajaxGetThumbnailDocumentImageCallback, context, false);
+
     };
 
-    var lookupDict = function (query) {
-        return $.getJSON(window.Data.serverBaseUrl + "/Document/SpellingDictionaryLookup", { value: query });
-    };
-
-    var getImageQueue = {
-        queue: [],
-        working: false,
-        inSearchPage: false,
-        numInProgress: 0,
-        fireFinished: function () {
-
-            this.working = false;
-            this.numInProgress = this.numInProgress - 1;
-                this.startWorking();
-
-        },
-        addToQueue: function (item, index) {
-
-            this.queue.push({ item: item, index: index });
-                this.startWorking();
-
-        },
-        startWorking: function () {
-            if (!this.working && this.inSearchPage && this.queue[0] !== undefined) {
-                if (this.numInProgress == 5) {
-                    this.working = true;
-                }
-
-                this.numInProgress = this.numInProgress + 1;
 
 
-                var itemIndexObj = this.queue[0];
-                this.queue.shift();
-                if (itemIndexObj != undefined)
-                    self.getAndSetThumbImage(itemIndexObj.item, itemIndexObj.index);
-            }
-            else {
-                if (this.numInProgress < 1) {
-                    this.working = false;
-                    //if (this.inSearchPage)
-                    //    this.startWorking();
-                }
+
+    //-------------CALLBACKS-------------//
+
+    var ajaxGetThumbnailDocumentImageCallback = function(request, context) {
+
+        var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
+        
+        if (response && response != "") {
+            // Set the new value in the model of this item                   
+            context.item.data.BackgroundImage = response;
+
+            // Get the live DOM-object of this item
+            var section = document.getElementById("searchResultSection");
+            if (section) {
+                var listView = section.querySelector(".resultslist").winControl;
+                var htmlItem = listView.elementFromIndex(context.index);
+                if (htmlItem != null)
+                    WinJS.Binding.processAll(htmlItem, context.item.data);
             }
         }
+
+
     };
+    var ajaxSearchDocumentsCallback = function (request, context) {
+
+        var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
+
+        var originalResults = new WinJS.Binding.List();
+
+        for (x in response) {
+
+            if (response[x].ThumbnailUrl !== "") {
+                response[x].BackgroundImage = response[x].ThumbnailUrl;
+            }
+            else {
+                if (response[x].DocType == "Film" && response[x].TypeOfMedia == "Blu-ray") {
+                    response[x].BackgroundImage = "images/placeholders/Blu-ray.png";
+                }
+                else if (response[x].DocType == "Film" && response[x].TypeOfMedia == "3D") {
+                    response[x].BackgroundImage = "images/placeholders/3D.png";
+                }
+                else {
+                    response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                }
+            }
+
+            originalResults.push(response[x]);
+        }
+
+        context.populateFilterBar(context.element, originalResults);
+        context.applyFilter(context.filters[0], originalResults);
+        loadingWheel.stop();
+
+        for (var x in response) {
+            if (!response[x].ThumbnailUrl || response[x].ThumbnailUrl == "")
+                self.getAndSetThumbImage(originalResults.getItem(x), x);
+        }
+
+
+    };
+
+    //-------------CALLBACKS END----------------//
 
     var self;
 
@@ -161,15 +187,12 @@
 
         itemInvoked: function (args) {
 
-            var itemIndex = args.detail.itemIndex;
             var listView = document.body.querySelector(".resultslist").winControl;
             if (listView) {
-                args.detail.itemPromise.done(function itemInvoked(item) {
+                args.detail.itemPromise.done(function (item) {
                     var model = item.data;
                     nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
-
                 });
-
             }
         },
 
@@ -214,75 +237,14 @@
             suggestionMethods.updateSuggestions(args.queryText);
 
             // Perform the search
-            $.when(ajaxSearchDocuments(args.queryText))
-               .then($.proxy(function (response) {
+            ajaxSearchDocuments(args.queryText, this);
 
-                   var originalResults = new WinJS.Binding.List();
 
-                   for (x in response) {
-
-                       if (response[x].ThumbnailUrl !== "") {
-                           response[x].BackgroundImage = response[x].ThumbnailUrl;
-                       }
-                       else {
-                           if (response[x].DocType == "Film" && response[x].TypeOfMedia == "Blu-ray") {
-                               response[x].BackgroundImage = "images/placeholders/Blu-ray.png";
-                           }
-                           else if (response[x].DocType == "Film" && response[x].TypeOfMedia == "3D") {
-                               response[x].BackgroundImage = "images/placeholders/3D.png";
-                            }
-                           else {
-                               response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
-                           }
-                       }
-
-                       originalResults.push(response[x]);
-                   }
-
-                   this.populateFilterBar(element, originalResults);
-                   this.applyFilter(this.filters[0], originalResults);
-                   loadingWheel.stop();
-
-                   for (var x in response) {
-                       if (!response[x].ThumbnailUrl || response[x].ThumbnailUrl == "")
-                           getImageQueue.addToQueue(originalResults.getItem(x), x);
-                   }
-
-               }, this)
-            );
         },
         getAndSetThumbImage: function (item, index) {
-
-
-            $.when(ajaxGetThumbnailDocumentImage(item.data.DocumentNumber))
-            .then($.proxy(function (response) {
-
-                if (response && response != "") {
-                    // Set the new value in the model of this item                   
-                    item.data.BackgroundImage = response;
-
-                    // Get the live DOM-object of this item
-                    var section = document.getElementById("searchResultSection");
-                    if (section) {
-                        var listView = section.querySelector(".resultslist").winControl;
-                        var htmlItem = listView.elementFromIndex(index);
-                        if (htmlItem != null)
-                            WinJS.Binding.processAll(htmlItem, item.data);
-                    }
-                }
-                if (getImageQueue.inSearchPage)
-                    getImageQueue.fireFinished();
-
-
-            }, this),
-            function () {
-                if (getImageQueue.inSearchPage)
-                    getImageQueue.fireFinished();
-            })
-
-
+            var context = { item: item, index: index };
+            ajaxGetThumbnailDocumentImage(item.data.DocumentNumber, null, context);   
         },
-
 
         // This function updates the ListView with new layouts
         initializeLayout: function (listView, viewState) {
@@ -368,7 +330,6 @@
         ready: function (element, options) {
 
             self = this;
-            getImageQueue.inSearchPage = true;
 
             var listView = element.querySelector(".resultslist").winControl;
             listView.itemTemplate = element.querySelector(".itemtemplate");
@@ -379,12 +340,7 @@
         },
 
         unload: function () {
-
-            getImageQueue.inSearchPage = false;
-            getImageQueue.queue = [];
-            getImageQueue.numInProgress = 0;
-            getImageQueue.working = false;
-
+            Solvberget.Queue.CancelQueue("search");
         },
 
         // This function updates the page layout in response to viewState changes.

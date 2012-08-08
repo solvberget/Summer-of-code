@@ -17,6 +17,8 @@
             getContactInformation();
             $("#renewalLoading").css("display", "none").css("visibility", "hidden");
 
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
+
         },
         unload: function () {
             Solvberget.Queue.CancelQueue('contact');
@@ -33,7 +35,7 @@ var ajaxGetContactInformation = function () {
 };
 
 var ajaxGetContantInformationCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     if (response != undefined && response !== "") {
         populateContact(response);

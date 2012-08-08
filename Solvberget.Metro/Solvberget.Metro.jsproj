@@ -45,6 +45,7 @@
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>Solvberget.Metro_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -80,6 +81,9 @@
     <Content Include="fragments\documentFragments\document\document.css" />
     <Content Include="fragments\documentFragments\document\document.html" />
     <Content Include="fragments\documentFragments\document\document.js" />
+    <Content Include="fragments\documentFragments\game\game.css" />
+    <Content Include="fragments\documentFragments\game\game.html" />
+    <Content Include="fragments\documentFragments\game\game.js" />
     <Content Include="fragments\documentFragments\journal\journal.css" />
     <Content Include="fragments\documentFragments\journal\journal.html" />
     <Content Include="fragments\documentFragments\journal\journal.js" />
@@ -158,6 +162,7 @@
     <Content Include="images\sølvberget_sort_svg.svg" />
     <Content Include="js\codeGenerator.js" />
     <Content Include="js\documentImage.js" />
+    <Content Include="js\lib\jquery-1.7.2.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
     <Content Include="js\liveTile.js" />
     <Content Include="js\localizationConverter.js" />
@@ -216,7 +221,7 @@
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </None>
-    <Content Include="js\lib\jquery-1.7.2.js">
+    <Content Include="js\lib\jquery-1.7.2.intellisense.js">
       <Compile>True</Compile>
       <Minify>False</Minify>
       <OutputFolder>

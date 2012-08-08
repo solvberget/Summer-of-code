@@ -43,8 +43,9 @@ namespace Solvberget.Domain.Implementation
 
         private string GetExternalBookElskereRating(Book book)
         {
-           BokElskereBook bokElskereBook= _bokelskereRepository.GetExternalBokelskereBook(book.DocumentNumber);
-            return bokElskereBook.gjennomsnittelig_terningkast;
+           var bokElskereBook = _bokelskereRepository.GetExternalBokelskereBook(book.DocumentNumber);
+
+           return bokElskereBook == null ? string.Empty : bokElskereBook.gjennomsnittelig_terningkast;
         }
 
 

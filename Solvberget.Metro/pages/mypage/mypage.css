@@ -50,18 +50,10 @@
     height: auto;
     padding: 10px;
     overflow: hidden;
-    /**
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    */
     resize: both;
     max-width: 350px;
     min-width: 175px;
     min-height: 120px;
-    border-width: 1px;
-    border: solid;
-    border-color: #666666;
 }
 
     .box span {
@@ -102,8 +94,6 @@ progress.withText {
 /*Progress ring*/
 
 #mypageData {
-    display: none;
-    visibility: hidden;
     max-height: calc(100% - 20px);
 }
 
@@ -127,7 +117,7 @@ progress.withText {
     display: inline;
 }
 
-#fines, #loans, #reservations {
+#fines, #loans, #reservations, #notifications {
     max-width: 750px;
     max-height: 600px;
     overflow: auto;
@@ -145,7 +135,7 @@ progress.withText {
         margin-left: 45px;
     }
 
-    #fines, #loans, #reservations {
+    #fines, #loans, #reservations, #notifications {
         max-height: none;
         max-width: 550px;
     }
@@ -182,7 +172,7 @@ progress.withText {
         max-width: 250px;
     }
 
-    #fines, #loans, #reservations {
+    #fines, #loans, #reservations, #notifications {
         max-height: none;
         max-width: 250px;
     }

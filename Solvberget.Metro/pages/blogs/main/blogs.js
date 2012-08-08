@@ -11,6 +11,8 @@
 
         ready: function (element, options) {
             getBlogs();
+
+            document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
         },
         unload: function () {
             Solvberget.Queue.CancelQueue('blogs');
@@ -26,7 +28,7 @@ var ajaxGetBlogs = function () {
 }
 
 var ajaxGetBlogsCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
     if (response != undefined && response !== "") {
         populateBlogs(response);
     }

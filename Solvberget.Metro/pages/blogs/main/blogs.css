@@ -57,10 +57,10 @@ progress.withText {
 .blog {
     margin-top: 20px;
     padding: 20px;
-    border-width: 1px;
+    /*border-width: 1px;
     border-color: white;
     border-style: dotted;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;*/
     width: 400px;
     margin-right: 50px;
     background-color: #330033;

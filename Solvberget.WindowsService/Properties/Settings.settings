@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Solvberget.WindowsService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IndexPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Projects\Solvberget\Solvberget.Service\bin\App_Data\ordlister_index</Value>
+    </Setting>
+    <Setting Name="SuggestionPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Projects\Solvberget\Solvberget.Service\bin\App_Data\ordlister\ord_forslag.txt</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
