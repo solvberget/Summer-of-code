@@ -22,7 +22,7 @@
     // !------------ AJAX CALLBACKS -------------! //
 
     var sendPinRequestCallback = function (request, context) {
-        var response = JSON.parse(request.responseText);
+        var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
         
         var outputMsgPinReq = document.getElementById("outputMsgPinReq");
         if (response.Success == true) {

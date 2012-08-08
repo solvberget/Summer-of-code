@@ -104,7 +104,7 @@
 
     var ajaxGetThumbnailDocumentImageCallback = function(request, context) {
 
-        var response = JSON.parse(request.responseText);
+        var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
         
         if (response && response != "") {
             // Set the new value in the model of this item                   
@@ -124,7 +124,7 @@
     };
     var ajaxSearchDocumentsCallback = function (request, context) {
 
-        var response = JSON.parse(request.responseText);
+        var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
         var originalResults = new WinJS.Binding.List();
 

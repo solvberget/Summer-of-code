@@ -31,7 +31,7 @@
     };
 
     var ajaxCancelReservationCallback = function (request, context) {
-        var response = JSON.parse(request.responseText);
+        var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
        
         if (response != undefined && response !== "") {
 
