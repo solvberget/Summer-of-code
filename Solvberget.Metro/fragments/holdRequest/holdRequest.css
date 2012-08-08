@@ -13,8 +13,6 @@
 
 #holdRequestLoading {
     float: left;
-    display: none;
-    visibility: hidden;
 }
 
 #holdRequestFlyout {
