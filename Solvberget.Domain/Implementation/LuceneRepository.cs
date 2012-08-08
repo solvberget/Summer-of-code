@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using System.Text;
 using System.Threading.Tasks;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
@@ -20,13 +21,20 @@ namespace Solvberget.Domain.Implementation
 {
 
 
-    public class LuceneRepository : ISpellingDictionary
+    public class LuceneRepository : ISuggestionDictionary, IDisposable
     {
 
+        ~LuceneRepository()
+        {
+            
+        }
+
+        public void Dispose()
+        {
+            //Nothing to do
+        }
+
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
-
-
-
 
         private readonly string _pathToDictDir;
    
@@ -34,14 +42,14 @@ namespace Solvberget.Domain.Implementation
 
         private readonly IRepository _documentRepository;
 
-        public LuceneRepository(string pathToDictionaryDirectory = null, string pathToSuggestionListDict = null, IRepository documentRepository = null)
+        public LuceneRepository(string indexPath = null, string suggestionPath = null, IRepository documentRepository = null)
         {
 
-            _pathToSuggestionsDict = string.IsNullOrEmpty(pathToSuggestionListDict)
-                ? @"App_Data\ordlister\ord_forslag.txt" : pathToSuggestionListDict;
+            _pathToSuggestionsDict = string.IsNullOrEmpty(suggestionPath)
+                ? @"App_Data\ordlister\ord_forslag.txt" : suggestionPath;
 
-            _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory)
-                ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
+            _pathToDictDir = string.IsNullOrEmpty(indexPath)
+                ? @"App_Data\ordlister_index" : indexPath;
 
             _suggestionList = new HashMap();
 
@@ -50,7 +58,10 @@ namespace Solvberget.Domain.Implementation
 
         }
 
-
+        public void SuggestionListBuildDictionary()
+        {
+            DictionaryBuilder.Build(_pathToSuggestionsDict, _pathToDictDir);
+        }
 
         private void InitializeSpellChecker()
         {
@@ -81,25 +92,12 @@ namespace Solvberget.Domain.Implementation
                     if (document.Title != null)
                     {
                         _suggestionList.Add(document.Title);
-
-                        DictionaryBuilder.Add(_pathToDictDir, document.Title.ToLower());
                     }
 
 
                     if (document.SubTitle != null)
                     {
                         _suggestionList.Add(document.SubTitle);
-                        try
-                        {
-                            DictionaryBuilder.Add(_pathToDictDir, document.SubTitle.ToLower());
-                        }
-                        catch (Exception e)
-                        {
-                            
-                            Console.WriteLine(e.Message);
-                        }
-                     
-
                     }
 
                 }
@@ -107,11 +105,11 @@ namespace Solvberget.Domain.Implementation
 
             }
             WriteSuggestionListToFile();
-            //Task.Factory.StartNew(SuggestionListBuildDictionary);
+  
+
         }
 
-
-
+ 
 
         private void WriteSuggestionListToFile()
         {
@@ -140,7 +138,8 @@ namespace Solvberget.Domain.Implementation
 
 
         /** HELPERS **/
-
+        Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+        Encoding utf8 = Encoding.UTF8;
         public string Lookup(string value)
         {
             InitializeSpellChecker();
@@ -152,10 +151,41 @@ namespace Solvberget.Domain.Implementation
             if (string.IsNullOrEmpty(value)) return string.Empty;
 
             var similarWords = SpellChecker.SuggestSimilar(value, 1);
-            return similarWords.Any() ? similarWords[0] : "";
+           
+            if (similarWords.Any())
+            {
+                var upperCaseFirst = UppercaseFirst(similarWords[0]);
+                var lowerCaseFirst =LowerCaseFirst(similarWords[0]);
+                if (value.Equals(lowerCaseFirst)||value.Equals(upperCaseFirst) || value.Equals(similarWords[0].ToLower()))
+                    return "";
+                return utf8.GetString(iso.GetBytes(similarWords[0]));
+
+            }
+            return "";
 
         }
 
+        static string UppercaseFirst(string s)
+        {
+            // Check for empty string.
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            // Return char and concat substring.
+            return char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        static string LowerCaseFirst(string s)
+        {
+            // Check for empty string.
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            // Return char and concat substring.
+            return char.ToLower(s[0]) + s.Substring(1);
+        }
 
         public string[] SuggestionList()
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
@@ -94,30 +95,12 @@ namespace Solvberget.Service
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            
-
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 
 
-            //Task.Factory.StartNew(SetupLuceneDictionary);
-            try
-            {
-                BuildLuceneDictionary();
-            }
-            catch (MergePolicy.MergeException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch (Exception e)
-            {
-                
-                Console.WriteLine(e.Message);
-            }
+           
         }
 
-        private void BuildLuceneDictionary()
-        {
-            DictionaryBuilder.Build(EnvironmentHelper.GetSuggestionListPath(), EnvironmentHelper.GetDictionaryIndexPath());
-        }
+    
     }
 }

@@ -325,12 +325,16 @@ namespace Solvberget.Domain.Implementation
 
                 var doc = RepositoryUtils.GetXmlFromStream(url);
 
-                if (doc.Root != null)
+                if(doc != null)
                 {
-                    var xmlResult = doc.Root.Elements("record").Select(x => x).ToList();
-                    //Populate list with light documents of correct type
-                    xmlResult.ForEach(x => documents.Add(PopulateDocument(x, true)));
+                    if (doc.Root != null)
+                    {
+                        var xmlResult = doc.Root.Elements("record").Select(x => x).ToList();
+                        //Populate list with light documents of correct type
+                        xmlResult.ForEach(x => documents.Add(PopulateDocument(x, true)));
+                    }
                 }
+               
                 documents.RemoveAll(x => x.Title == null);
                 documents.ForEach(d => d.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(d.DocumentNumber, true));
                 if (i > 1000) break;

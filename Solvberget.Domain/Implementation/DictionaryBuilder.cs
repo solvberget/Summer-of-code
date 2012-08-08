@@ -15,6 +15,7 @@ namespace Solvberget.Domain.Implementation
 {
     public class DictionaryBuilder
     {
+
         public static void Build(string dictionaryPath, string indexPath)
         {
 

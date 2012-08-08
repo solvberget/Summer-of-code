@@ -11,16 +11,16 @@ namespace Solvberget.Service.Controllers
     public class DocumentController : BaseController
     {
         private readonly IRepository _documentRepository;
-        private readonly ISpellingDictionary _spellingRepository;
+        private readonly ISuggestionDictionary _suggestionRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IRatingRepository _ratingRepository;
         private readonly IReviewRepository _reviewRepository;
         private readonly IInformationRepository _informationRepository;
 
-        public DocumentController(IRepository documentRepository, ISpellingDictionary spellingRepository, IImageRepository imageRepository, IRatingRepository ratingRepository, IReviewRepository reviewRepository, IInformationRepository informationRepository)
+        public DocumentController(IRepository documentRepository, ISuggestionDictionary suggestionRepository, IImageRepository imageRepository, IRatingRepository ratingRepository, IReviewRepository reviewRepository, IInformationRepository informationRepository)
         {
             _documentRepository = documentRepository;
-            _spellingRepository = spellingRepository;
+            _suggestionRepository = suggestionRepository;
             _imageRepository = imageRepository;
             _ratingRepository = ratingRepository;
             _reviewRepository = reviewRepository;
@@ -107,13 +107,13 @@ namespace Solvberget.Service.Controllers
 
         public JsonResult SpellingDictionaryLookup(string value)
         {
-            var result = _spellingRepository.Lookup(value);
+            var result = _suggestionRepository.Lookup(value);
             return Json(result);
         }
 
         public JsonResult SuggestionList()
         {
-            return Json(_spellingRepository.SuggestionList(), JsonRequestBehavior.AllowGet);
+            return Json(_suggestionRepository.SuggestionList(), JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -101,7 +101,7 @@
     <Compile Include="Abstract\IRatingRepository.cs" />
     <Compile Include="Abstract\IReviewRepository.cs" />
     <Compile Include="Abstract\IRulesRepository.cs" />
-    <Compile Include="Abstract\ISpellingDictionary.cs" />
+    <Compile Include="Abstract\ISuggestionDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
     <Compile Include="DTO\Blog.cs" />
     <Compile Include="DTO\BlogEntry.cs" />
