@@ -203,22 +203,18 @@ namespace Solvberget.Domain.DTO
                 varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
-        public static IEnumerable<string> TrimContentList(List<string> list)
+        protected static IEnumerable<string> TrimContentList(List<string> list)
         {
             var temp = new List<string>();
-            if (list.ElementAt(0).Substring(0, 9) == "Innhold: ")
-                temp.Insert(0, list.ElementAt(0).Substring(9));
-            else
-                temp.Insert(0, list.ElementAt(0));
+
+            temp.Insert(0,
+                        list.ElementAt(0).Substring(0, 9) == "Innhold: "
+                            ? list.ElementAt(0).Substring(9)
+                            : list.ElementAt(0));
+
+            for (var i = 1; i < list.Count(); i++)
+                temp.Insert(i, list.ElementAt(i)[0] == ' ' ? list.ElementAt(i).Substring(1) : list.ElementAt(i));
             
-            
-            for (int i = 1; i < list.Count(); i++)
-            {
-                if (list.ElementAt(i)[0] == ' ')
-                    temp.Insert(i, list.ElementAt(i).Substring(1));
-                else
-                    temp.Insert(i, list.ElementAt(i));
-            }
             return temp;
         } 
 
