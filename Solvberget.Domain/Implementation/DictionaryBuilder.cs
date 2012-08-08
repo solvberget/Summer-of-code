@@ -20,44 +20,21 @@ namespace Solvberget.Domain.Implementation
         {
 
             var di = CreateTargetFolder(indexPath);
-            // var fi = new FileInfo(_pathToDict);
-            var fi = new FileInfo(dictionaryPath);
             using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
             {
                 try
                 {
+                    var fi = new FileInfo(dictionaryPath);
                     staticSpellChecker.IndexDictionary(new PlainTextDictionary(fi));
                 }
                 catch (Exception e)
                 {
-
                     Console.WriteLine(e.Message);
                 }
-                
             }
 
         }
 
-        public static void Add(string dictionaryPath, string value)
-        {
-            var di = CreateTargetFolder(dictionaryPath);
-            IndexReader indexReader = IndexReader.Open(dictionaryPath);
-            using (var staticSpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di)))
-            {
-                // To index a field of a user index:
-                try
-                {
-                    staticSpellChecker.IndexDictionary(new LuceneDictionary(indexReader, value));
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-
-                    
-                }
-              
-            }
-        }
 
         public static DirectoryInfo CreateTargetFolder(string path)
         {

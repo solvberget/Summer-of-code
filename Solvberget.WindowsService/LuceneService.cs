@@ -23,7 +23,7 @@ namespace Solvberget.WindowsService
             InitializeComponent();
             timer = new System.Timers.Timer();
             timer.Elapsed += Listen;
-            timer.Interval = 120000;
+            timer.Interval = 30000;
             IsRunning = false;
         }
 
@@ -52,17 +52,25 @@ namespace Solvberget.WindowsService
         }
 
         private void BuildDictionary() {
+            var indexPath = Properties.Settings.Default.IndexPath;
+            var sugggestionPath = Properties.Settings.Default.SuggestionPath;
+            var suggestionCopy = sugggestionPath.Substring(0, sugggestionPath.Length - 4) + "copy.txt";
             try
             {
-                var indexPath = Properties.Settings.Default.IndexPath;
-                var sugggestionPath = Properties.Settings.Default.SuggestionPath;
-                var suggestioncopy = sugggestionPath.Substring(0, sugggestionPath.Length - 4) + "copy.txt";
-                File.Copy(sugggestionPath, suggestioncopy);
-                using (var repository = new LuceneRepository(indexPath, suggestioncopy))
+                if (File.Exists(suggestionCopy))
+                {
+                    WriteLogEntry("File already exists");
+                    File.Delete(suggestionCopy);
+                    WriteLogEntry("File deleted");
+                    IsRunning = false;
+                    return;
+                }
+                File.Copy(sugggestionPath, suggestionCopy);
+
+                using (var repository = new LuceneRepository(indexPath, suggestionCopy))
                 {
                     repository.SuggestionListBuildDictionary();
                 }
-                File.Delete(suggestioncopy);
             }
             catch (Exception e)
             {
@@ -70,10 +78,12 @@ namespace Solvberget.WindowsService
             }
             finally
             {
-                IsRunning = false;
+                IsRunning = false;;
                 WriteLogEntry("Dictionary building has completed", EventLogEntryType.SuccessAudit);
+
             }
         }
+
 
         private void WriteLogEntry(string message, EventLogEntryType type = EventLogEntryType.Information)
         {
