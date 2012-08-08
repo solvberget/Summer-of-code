@@ -1,0 +1,117 @@
+﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
+   to .win-surface. */
+.groupdetailpage .eventItemsListView .win-horizontal.win-viewport .win-surface {
+    margin-left: 120px;
+    margin-bottom: 20px;
+}
+
+.groupdetailpage .eventItemsListView {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+    .groupdetailpage .eventItemsListView .win-item {
+        -ms-grid-columns: 110px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+        height: 75px;
+        width: 472px;
+    }
+
+        .groupdetailpage .eventItemsListView .win-item .item-image-container {
+            margin: 0 auto;
+        }
+
+            .groupdetailpage .eventItemsListView .win-item .item-image-container .item-image {
+                max-width: 110px;
+                max-height: 70px;
+            }
+
+        .groupdetailpage .eventItemsListView .win-item .item-info {
+            -ms-grid-column: 2;
+            margin-left: 10px;
+        }
+
+            .groupdetailpage .eventItemsListView .win-item .item-info .item-title {
+                margin-top: 4px;
+                max-height: 20px;
+                overflow: hidden;
+            }
+
+            .groupdetailpage .eventItemsListView .win-item .item-info .item-location {
+                opacity: 0.6;
+            }
+
+            .groupdetailpage .eventItemsListView .win-item .item-info .item-time {
+                opacity: 0.6;
+            }
+
+    .groupdetailpage .eventItemsListView .win-container {
+        margin-bottom: 15px;
+        margin-right: 60px;
+        padding: 7px;
+    }
+
+@media screen and (-ms-view-state: snapped) {
+
+    .groupdetailpage .eventItemsListView .win-vertical.win-viewport .win-surface {
+        margin-bottom: 30px;
+        margin-left: 6px;
+    }
+
+    .groupdetailpage .eventItemsListView .win-container {
+        margin-right: 42px;
+    }
+
+    .groupdetailpage .eventItemsListView .win-item {
+        -ms-grid-columns: 60px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+        height: 85px;
+        width: 320px;
+    }
+
+        .groupdetailpage .eventItemsListView .win-item .item-image-container {
+            margin: 0 auto;
+        }
+
+            .groupdetailpage .eventItemsListView .win-item .item-image-container .item-image {
+                max-width: 60px;
+                max-height: 60px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+
+        .groupdetailpage .eventItemsListView .win-item .item-info {
+            -ms-grid-column: 2;
+            margin-left: 5px;
+        }
+
+            .groupdetailpage .eventItemsListView .win-item .item-info .item-title {
+                margin-top: 2px;
+                max-height: 20px;
+                overflow: hidden;
+            }
+
+            .groupdetailpage .eventItemsListView .win-item .item-info .item-location {
+                opacity: 0.6;
+            }
+
+            .groupdetailpage .eventItemsListView .win-item .item-info .item-time {
+                opacity: 0.6;
+            }
+
+            .groupdetailpage .eventItemsListView .win-item .item-info .item-title {
+                max-height: 30pt;
+            }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+
+    .groupdetailpage .eventItemsListView .win-horizontal.win-viewport .win-surface {
+        margin-left: 100px;
+    }
+}

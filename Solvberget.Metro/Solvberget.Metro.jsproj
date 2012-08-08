@@ -159,7 +159,6 @@
     <Content Include="js\codeGenerator.js" />
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
-    <Content Include="js\ListDataSource.js" />
     <Content Include="js\liveTile.js" />
     <Content Include="js\localizationConverter.js" />
     <Content Include="js\localizationHelper.js" />
@@ -180,16 +179,16 @@
     <Content Include="pages\documentDetail\documentDetail.css" />
     <Content Include="pages\documentDetail\documentDetail.html" />
     <Content Include="pages\documentDetail\documentDetail.js" />
-    <Content Include="pages\events\events.css" />
-    <Content Include="pages\events\events.html" />
-    <Content Include="pages\events\events.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
+    <Content Include="pages\events\eventsData.js" />
+    <Content Include="pages\events\eventGroupDetail\eventGroupDetail.css" />
+    <Content Include="pages\events\eventGroupDetail\eventGroupDetail.html" />
+    <Content Include="pages\events\eventGroupDetail\eventGroupDetail.js" />
+    <Content Include="pages\events\groupedEvents\groupedEvents.css" />
+    <Content Include="pages\events\groupedEvents\groupedEvents.html" />
+    <Content Include="pages\events\groupedEvents\groupedEvents.js" />
+    <Content Include="pages\events\eventDetail\eventDetail.css" />
+    <Content Include="pages\events\eventDetail\eventDetail.html" />
+    <Content Include="pages\events\eventDetail\eventDetail.js" />
     <Content Include="pages\lists\libraryLists.css" />
     <Content Include="pages\lists\libraryLists.html" />
     <Content Include="pages\lists\libraryLists.js" />

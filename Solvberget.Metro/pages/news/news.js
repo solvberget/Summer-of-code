@@ -29,8 +29,8 @@
         },
 
         getNewsItemsCallback: function (request, context) {
+            var response = JSON.parse(request.responseText);
             if (response != undefined && response !== "") {
-                var response = JSON.parse(request.responseText);
                 context.that.newsItems = new WinJS.Binding.List(response);
                 context.that.initializeLayout(context.listView, appView.value);
                 $("#newsItemsLoading").hide();
@@ -59,6 +59,11 @@
                 if (newsItemslistViewWinControl)
                     if (lastViewState !== viewState) {
                         if (lastViewState === appViewState.snapped || viewState === appViewState.snapped) {
+                            var handler = function (e) {
+                                newsItemslistView.removeEventListener("contentanimating", handler, false);
+                                e.preventDefault();
+                            }
+                            newsItemslistView.addEventListener("contentanimating", handler, false);
                             this.initializeLayout(newsItemslistViewWinControl, viewState, element);
                         }
                     }
@@ -81,7 +86,7 @@
                 var colorIndex = Math.floor(Math.random() * Data.colorPoolRgba.length);
                 var newsItemTemplate = document.getElementById("newsItemTemplate");
                 var container = document.createElement("div");
-                container.style.backgroundColor = Data.colorPoolRgba[colorIndex];
+                container.style.backgroundColor = Data.getColorFromPool(colorIndex, 0.6);
                 newsItemTemplate.winControl.render(item.data, container);
                 return container;
             });

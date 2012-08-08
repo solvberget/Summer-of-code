@@ -13,7 +13,7 @@
 
     var serverBaseUrl = "http://localhost:7089";
 
-    var colorPoolRgba = ["rgba(255, 153, 0, 0.6)", "rgba(204, 51, 0, 0.6)", "rgba(136, 187, 0, 0.6)", "rgba(0, 85, 34, 0.6)", "rgba(0, 153, 204, 0.6)", "rgba(0, 51, 102, 0.6)", "rgba(102, 0, 102, 0.6)", "rgba(51, 0, 51, 0.6)"];
+    var colorPoolRgba = ["rgba(255, 153, 0, ", "rgba(204, 51, 0, ", "rgba(136, 187, 0, ", "rgba(0, 85, 34, ", "rgba(0, 153, 204, ", "rgba(0, 51, 102, ", "rgba(102, 0, 102, ", "rgba(51, 0, 51, "];
 
     var menuItems = [
         { key: "news", title: "Nyheter", subtitle: "Nyheter fra Sølvberget", backgroundImage: news, navigateTo: navigateToNews },
@@ -27,19 +27,27 @@
     ];
 
     function getRandomColor(alpha) {
-
         var random = Math.random() * colorPoolRgba.length;
         random = Math.floor(random);
-        var color = colorPoolRgba[random];
-        if (alpha) {
-            color = color.substr(0, color.length - 4);
-            color = color + alpha + ")";
-        }
-        return color;
+        if (alpha == undefined || alpha === 0)
+            return getColorFromPool(random, 0.6);
+        else
+            return getColorFromPool(random, alpha);
     };
 
+    function getColorFromPool(index, alpha) {
+        if (index >= 0 && index < colorPoolRgba.length) {
+            var color = colorPoolRgba[index];
+            color = color + alpha + ")";
+            return color;
+        }
+        else {
+            return colorPoolRgba[0] + "0.6)";
+        }
+    }
+
     var list = new WinJS.Binding.List(menuItems);
-    
+
     function getActivePage() {
         return WinJS.Navigation.location;
     }
@@ -62,7 +70,7 @@
     }
 
     function navigateToEvents() {
-        Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html");
+        Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/groupedEvents/groupedEvents.html");
     }
 
     function navigateToOpeningHours() {
@@ -120,5 +128,6 @@
         navigateToNews: navigateToNews,
         colorPoolRgba: colorPoolRgba,
         getRandomColor: getRandomColor,
+        getColorFromPool: getColorFromPool
     });
 })();
