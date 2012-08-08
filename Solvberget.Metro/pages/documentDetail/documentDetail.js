@@ -17,7 +17,7 @@
         },
 
         unload: function () {
-            Solvberget.Queue.CancelQueue('details');
+            Solvberget.Queue.CancelQueue('documentdetails');
         },
         registerForShare: function () {
 
@@ -99,7 +99,7 @@ var documentModel = undefined;
 var ajaxGetDocumentImage = function () {
 
     var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/" + documentModel.DocumentNumber;
-    Solvberget.Queue.QueueDownload("details", { url: url }, ajaxGetDocumentImageCallback, this, true);
+    Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentImageCallback, this, true);
 
 }
 
@@ -116,14 +116,14 @@ var ajaxGetDocumentImageCallback = function (request, context) {
             WinJS.Binding.processAll(documentImageDiv, documentModel);
     }
 
-}
+};
 
 var ajaxGetDocument = function (documentNumber) {
 
     var url = window.Data.serverBaseUrl + "/Document/GetDocument/" + documentNumber;
-    Solvberget.Queue.QueueDownload("details", { url: url }, ajaxGetDocumentCallback, this, true);
-
-}
+    Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentCallback, this, true);
+    
+};
 
 var ajaxGetDocumentCallback = function (request, context) {
     var response = JSON.parse(request.responseText);

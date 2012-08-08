@@ -25,7 +25,16 @@
 (function () {
 
     var queueDownload = WinJS.Class.define(function (queue, options, completed, context, priority) {
+        /** NOTICE! maxNumInProgress
+        *
+        *   IE limits number of concurrent connections to 6. By setting it to 5 there will always be one connection
+        *    ready to serve image loads through <img src> and similare ajax calls which we do not always think about. 
+        *
+        *    Setting maxNumInProgress to 6 will clog up the number of concurrent connections resulting in image loading
+        *    not bein executed before our custom ajax calls are complete. 
+        */
         var maxNumInProgress = 5;
+        
         if (!document.numInProgress) document.numInProgress = 0;
         if (!document.queue) document.queue = { q: {}, r: [] };
 
@@ -34,16 +43,14 @@
 
         if (options) {
 
-            var callback = function (req, callBacks) {
+            var callback = function(req, callBacks) {
                 if (callBacks.completed) callBacks.completed(req, callBacks.context);
                 document.numInProgress--;
                 if (document.queue.q[queue].length > 0 && document.numInProgress < maxNumInProgress) {
                     for (var i = document.numInProgress; i <= maxNumInProgress && i < document.queue.q[queue].length; i++) {
                         var next = document.queue.q[queue].shift();
-                        (function processNext(next) {
                             document.queue.r.push(WinJS.xhr(next.options));
-                            document.queue.r[document.queue.r.length - 1].done(function (request, req) { callback(request, next) });
-                        })(next);
+                            document.queue.r[document.queue.r.length - 1].done(function (request) { callback(request, next); });
                         document.numInProgress++;
                     }
                 }
@@ -54,9 +61,9 @@
                             document.queue.r.splice(i, 1);
                     }
                 }
-            }
-
-            var saveValues = { options: options, completed: completed, context: context }
+            };
+            
+            var saveValues = { options: options, completed: completed, context: context };
             if (priority)
                 document.queue.q[queue].unshift(saveValues);
             else
@@ -64,7 +71,8 @@
             if (document.queue.q[queue]. length >= 1 && document.numInProgress < maxNumInProgress) {
                 document.numInProgress++;
                 var next = document.queue.q[queue].shift();
-                document.queue.r = WinJS.xhr(next.options).done(function (request) { callback(request, next) });
+                document.queue.r.push(WinJS.xhr(next.options));
+                document.queue.r[document.queue.r.length - 1].done(function (request) { callback(request, next); });
             }
         }
     });

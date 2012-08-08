@@ -9,16 +9,53 @@
     var documentNumber;
     var internalLibraryUserId;
     var documentModel;
-    // Ajax for reservasjon
-    function ajaxDoReserve(docId, libraryInternalUserId, branch) {
-        return $.getJSON("http://localhost:7089/Document/RequestReservation/" + docId + "/" + libraryInternalUserId + "/" + branch);
-    }
+
+
+    // !------------ AJAX METHODS -------------! //
+
+    var ajaxDoReserve = function (docId, libraryInternalUserId, branch) {
+        var url = window.Data.serverBaseUrl + "/Document/RequestReservation/" + docId + "/" + libraryInternalUserId + "/" + branch;
+        Solvberget.Queue.QueueDownload("reserve", { url: url }, ajaxDoReserveCallback, null, true);
+    };
+
+    // !------------ AJAX CALLBACKS -------------! //
+
+    var ajaxDoReserveCallback = function (request, context) {
+        var response = JSON.parse(request.responseText);
+
+        if (response != undefined && response != "") {
+
+
+            var outputMsg = document.getElementById("outputMsgHoldRequest");
+            var jqueryOutputMsg = $("#outputMsgHoldRequest");
+
+            if (response.Success) {
+                jqueryOutputMsg.addClass("success");
+                jqueryOutputMsg.removeClass("error");
+                $("#sendHoldRequestButton").attr("disabled", "disabled");
+                setTimeout(function () {
+                    dismiss();
+                }, 2000);
+            } else {
+                jqueryOutputMsg.removeClass("success");
+                jqueryOutputMsg.addClass("error");
+            }
+
+
+            if (outputMsg != undefined) {
+                outputMsg.innerHTML = response.Reply;
+            }
+        }
+        $("#holdRequestLoading").hide();
+    };
 
 
     function showHoldRequestFlyout(element, docModel) {
         documentModel = docModel;
         documentNumber = docModel.DocumentNumber;
         internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
+
+        $("#holdRequestLoading").hide();
 
         if (internalLibraryUserId && internalLibraryUserId !== "") {
             $("#holdRequestFlyoutLoggedInSuccess").css("display", "block").css("visibility", "visible");
@@ -73,43 +110,16 @@
 
     function doReservation(docId, userId, branch) {
 
-        $("#holdRequestLoading").css("display", "block").css("visibility", "visible");
+        $("#holdRequestLoading").fadeIn();
 
         var outputMsg = document.getElementById("outputMsgHoldRequest");
         if (outputMsg != undefined)
-
             outputMsg.innerHTML = "";
 
         // Prevent multiple reservation by caching this request
         $.ajaxSetup({ cache: true });
 
-        $.when(ajaxDoReserve(docId, userId, branch))
-            .then($.proxy(function (response) {
-
-                var outputMsg = document.getElementById("outputMsgHoldRequest");
-                var jqueryOutputMsg = $("#outputMsgHoldRequest");
-
-                if (response.Success) {
-                    jqueryOutputMsg.addClass("success");
-                    jqueryOutputMsg.removeClass("error");
-                    $("#sendHoldRequestButton").attr("disabled", "disabled");
-                    setTimeout(function () {
-                        dismiss();
-                    }, 2000);
-                } else {
-                    jqueryOutputMsg.removeClass("success");
-                    jqueryOutputMsg.addClass("error");
-                }
-
-
-                if (outputMsg != undefined) {
-                    outputMsg.innerHTML = response.Reply;
-                }
-
-
-                $("#holdRequestLoading").css("display", "none").css("visibility", "hidden");
-
-            }, this));
+        ajaxDoReserve(docId, userId, branch);
 
     }
 
@@ -126,6 +136,7 @@
         document.getElementById("submitRequestButtonMain").value = "";
         document.getElementById("submitRequestButtonCancel").value = "";
         document.getElementById("outputMsgHoldRequest").value = "";
+        Solvberget.Queue.CancelQueue('reserve');
 
     }
 
