@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Lucene.Net.Index;
 using Solvberget.Domain.Implementation;
 using Solvberget.Service.Infrastructure;
 
@@ -35,6 +38,12 @@ namespace Solvberget.Service
                 "GetUserInformation", // Route name
                 "User/GetUserInformation/{userId}/{verification}", // URL with parameters
                 new { controller = "User", action = "GetUserInformation", verification = UrlParameter.Optional } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "SpellingDictionaryLookup", // Route name
+                "Document/SpellingDictionaryLookup/{value}", // URL with parameters
+                new { controller = "Document", action = "SpellingDictionaryLookup" } // Param defaults
             );
 
             routes.MapRoute(
@@ -92,18 +101,12 @@ namespace Solvberget.Service
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            SetupLuceneDictionary();
-
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
 
 
+           
         }
 
-        private static void SetupLuceneDictionary()
-        {
-            DictionaryBuilder.Build(EnvironmentHelper.GetTestDictPath(), EnvironmentHelper.GetDictionaryIndexPath());
-            var repository = new LuceneRepository(EnvironmentHelper.GetDictionaryPath(), EnvironmentHelper.GetDictionaryIndexPath(), EnvironmentHelper.GetStopwordsPath(), EnvironmentHelper.GetSuggestionListPath(), EnvironmentHelper.GetTestDictPath());
-
-        }
+    
     }
 }

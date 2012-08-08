@@ -16,7 +16,7 @@
         if (customEventObject.type === "error") {
             // Get the error message and name for this exception
             var errorMessage = customEventObject.detail.error == null ? customEventObject.detail.exception.message : customEventObject.detail.error.message;
-            var errorName = customEventObject.detail.error == null ? customEventObject.detail.exception.name :  customEventObject.detail.error.name ;
+            var errorName = customEventObject.detail.error == null ? customEventObject.detail.exception.name : customEventObject.detail.error.name;
 
             // Show an error dialog
             exceptionError(errorMessage, errorName);
@@ -24,7 +24,7 @@
             // Tell windows that we have taken care of the exception
             return true;
         }
-    }
+    };
 
     function exceptionError(name, msg) {
 

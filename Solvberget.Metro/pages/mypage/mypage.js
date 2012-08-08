@@ -32,7 +32,7 @@ var ajaxGetUserInformation = function (isLoadingMyPage) {
 }
 
 var ajaxGetUserInformationCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     var isLoadingMyPage = context;
 

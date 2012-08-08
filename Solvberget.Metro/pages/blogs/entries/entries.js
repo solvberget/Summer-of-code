@@ -30,7 +30,7 @@ var ajaxGetBlogWithEntries = function (blogId) {
     Solvberget.Queue.QueueDownload("blogs", { url: url }, ajaxGetBlogWithEntriesCallback, this, true);
 };
 var ajaxGetBlogWithEntriesCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
     if (response != undefined && response !== "")
         populateEntries(response);
 

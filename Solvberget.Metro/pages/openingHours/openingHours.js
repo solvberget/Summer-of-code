@@ -36,7 +36,7 @@ var ajaxGetOpeningHoursInformation = function () {
 };
 
 var ajaxGetOpeningHoursInformationCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     // avoid processing null (if user navigates to fast away from page etc)
     if (response != undefined && response !== "")
