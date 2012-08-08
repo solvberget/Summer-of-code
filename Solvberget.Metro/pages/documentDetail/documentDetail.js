@@ -104,7 +104,7 @@ var ajaxGetDocumentImage = function () {
 }
 
 var ajaxGetDocumentImageCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     if (response != undefined && response !== "") {
 
@@ -126,7 +126,7 @@ var ajaxGetDocument = function (documentNumber) {
 };
 
 var ajaxGetDocumentCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
  
     if (response != undefined && response !== "") {
 

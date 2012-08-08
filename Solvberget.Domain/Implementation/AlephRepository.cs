@@ -285,7 +285,7 @@ namespace Solvberget.Domain.Implementation
             var url = GetUrl(function, options);
             var authenticationDoc = RepositoryUtils.GetXmlFromStream(url);
 
-            if (authenticationDoc.Root != null)
+            if (authenticationDoc != null && authenticationDoc.Root != null)
             {
 
                 var xElement = authenticationDoc.Root.DescendantsAndSelf("z303").FirstOrDefault();

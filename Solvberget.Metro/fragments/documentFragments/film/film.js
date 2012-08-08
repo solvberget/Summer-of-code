@@ -17,6 +17,8 @@ var documentModel;
 var fragmentReady = function (model) {
 
     documentModel = model;
+    $("#details").css("margin-top", "0px");
+
     getImdbRating();
 
 };
@@ -34,7 +36,7 @@ var ajaxGetImdbRating = function () {
 
 
 var ajaxGetImdbRatingCallback = function (request, context) {
-    var response = JSON.parse(request.responseText);
+    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     if (response != undefined && response !== "") {
 
@@ -49,6 +51,8 @@ var ajaxGetImdbRatingCallback = function (request, context) {
         imdbTemplate.outerHTML = "";
         imdbTemplate.render(data, imdbTemplateContainer);
         imdbTemplate.render(data, imdbTemplateContainerShared);
+
+        $("#details").css("margin-top", "50px");
 
     }
 

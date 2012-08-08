@@ -46,7 +46,7 @@ namespace Solvberget.Domain.Implementation
             if (Equals(doc.DocType, typeof(Book).Name))
             {
                 var book = doc as Book;
-                if (book != null)
+                if (book != null && book.Isbn != null)
                 {
                     var isbn = book.Isbn;
                   isbn =  isbn.Replace("-", "");
