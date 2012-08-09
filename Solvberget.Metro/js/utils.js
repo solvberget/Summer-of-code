@@ -290,6 +290,47 @@
 
     }
 
+    function setIsNotificationSeen(isSeen) {
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+        
+        if (isSeen) {
+
+            window.localStorage.setItem("NotificationsSeen", "true");
+
+            if (roamingSettings)
+                roamingSettings.values["NotificationsSeen"] = "true";
+
+        }
+        else {
+            window.localStorage.setItem("NotificationsSeen", "false");
+
+            if (roamingSettings)
+                roamingSettings.values["NotificationsSeen"] = "false";
+        }
+
+    }
+
+    function isNotificationSeen() {
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+
+        var notifications = new Array();
+
+        if (roamingSettings) {
+            notifications = roamingSettings.values["NotificationsSeen"];
+        }
+
+        if (notifications == undefined || notifications == "")
+            notifications = window.localStorage.getItem("NotificationsSeen");
+
+        if (notifications == "true") return true;
+
+        return false;
+    }
+
     function updateAppBarButton() {
 
         if (document.getElementById("cmdLoginFlyout")) {
@@ -412,6 +453,8 @@
     WinJS.Namespace.define("Notifications", {
         getUserNotifications: getUserNotifications,
         setUserNotifications: setUserNotifications,
+        setIsNotificationSeen: setIsNotificationSeen,
+        isNotificationSeen: isNotificationSeen,
     });
 
     WinJS.Namespace.define("LiveTile", {
