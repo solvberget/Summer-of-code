@@ -290,7 +290,7 @@
 
     }
 
-    function setIsNotificationSeen(isSeen) {
+    function setAreNotificationsSeen(isSeen) {
         var applicationData = Windows.Storage.ApplicationData.current;
         if (applicationData)
             var roamingSettings = applicationData.roamingSettings;
@@ -312,7 +312,7 @@
 
     }
 
-    function isNotificationSeen() {
+    function areNotificationsSeen() {
         var applicationData = Windows.Storage.ApplicationData.current;
         if (applicationData)
             var roamingSettings = applicationData.roamingSettings;
@@ -330,6 +330,26 @@
 
         return false;
     }
+
+    var showToast = function (heading, body) {
+
+        var template = Windows.UI.Notifications.ToastTemplateType.toastText02;
+
+
+
+        var toastXml = Windows.UI.Notifications.ToastNotificationManager.getTemplateContent(template);
+
+        var toastTextElements = toastXml.getElementsByTagName("text");
+        toastTextElements[0].appendChild(toastXml.createTextNode(heading));
+        toastTextElements[1].appendChild(toastXml.createTextNode(body));
+
+        var toast = new Windows.UI.Notifications.ToastNotification(toastXml);
+
+        var toastNotifier = Windows.UI.Notifications.ToastNotificationManager.createToastNotifier();
+        toastNotifier.show(toast);
+
+        Notifications.setAreNotificationsSeen(true);
+    };
 
     function updateAppBarButton() {
 
@@ -360,6 +380,8 @@
         roamingSettings.values["BorrowerId"] = "";
         roamingSettings.values["LibraryUserId"] = "";
         roamingSettings.values["Notifications"] = "";
+
+        Notifications.setAreNotificationsSeen(false);
 
         document.getElementById("logoutConfimationMsg").innerHTML = "Du blir nå logget ut";
 
@@ -453,12 +475,16 @@
     WinJS.Namespace.define("Notifications", {
         getUserNotifications: getUserNotifications,
         setUserNotifications: setUserNotifications,
-        setIsNotificationSeen: setIsNotificationSeen,
-        isNotificationSeen: isNotificationSeen,
+        setAreNotificationsSeen: setAreNotificationsSeen,
+        areNotificationsSeen: areNotificationsSeen,
     });
 
     WinJS.Namespace.define("LiveTile", {
         liveTile: liveTile,
+    });
+
+    WinJS.Namespace.define("Toast", {
+        showToast: showToast,
     });
 
 })();

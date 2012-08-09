@@ -55,7 +55,16 @@
                 window.localStorage.setItem("BorrowerId", borrowerId);
                 window.localStorage.setItem("LibraryUserId", libraryId);
 
-                Notifications.setUserNotifications(notifications);
+                if (notifications) {
+                    if (!Notifications.areNotificationsSeen()) {
+                        for (i = 0; i < notifications.length; i++) {
+                            Toast.showToast(notifications[i].Title, notifications[i].Content);
+                        }
+                    }
+                    Notifications.setUserNotifications(notifications);
+                }
+
+                //Notifications.setAreNotificationsSeen(true);
 
                 LoginFlyout.updateAppBarButton();
 
