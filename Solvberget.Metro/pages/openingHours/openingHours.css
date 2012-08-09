@@ -8,7 +8,7 @@
     z-index: 0;
 }
 
-  .content article {
+    .content article {
         /* Define a multi-column, horizontally scrolling article by default. */
         column-fill: auto;
         column-gap: 80px;
@@ -17,7 +17,6 @@
         margin-left: 120px;
         margin-top: 5px;
         width: 480px;
-      
     }
 
 
@@ -46,46 +45,46 @@ progress.withText {
     width: 250px;
     padding: 20px;
     margin-top: 20px;
-    width:300px;
+    width: 300px;
     max-width: 350px;
     margin-right: 0px;
     overflow: hidden;
 }
+
 #openingHoursData {
     display: none;
     visibility: hidden;
 }
 
 .openingHoursInformationTitle {
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 
 @media screen and (-ms-view-state: snapped) {
-            .content article {
-            /* Define a single column, vertically scrolling article in snapped mode. */
-            -ms-grid-columns: 300px 1fr;
-            -ms-grid-row: 2;
-            -ms-grid-rows: auto 60px;
-            display: -ms-grid;
-            height: 100%;
-            margin-left: 5px;
-            width: 300px;
-        }
-    
+    .content article {
+        /* Define a single column, vertically scrolling article in snapped mode. */
+        -ms-grid-columns: 300px 1fr;
+        -ms-grid-row: 2;
+        -ms-grid-rows: auto 60px;
+        display: -ms-grid;
+        height: 100%;
+        margin-left: 5px;
+        width: 300px;
+    }
+
     #openingHoursContent {
         margin-left: 5px;
         -ms-grid-column: inherit;
     }
 
     #mainContentSection {
-    margin-left: 10px;
-}
-   .openingHourstTitle, .openingHoursValue {
+        margin-left: 10px;
+    }
+
+    .openingHourstTitle, .openingHoursValue {
         margin-top: 13px;
         font-size: 15px;
-        padding-right:10px;
+        padding-right: 10px;
     }
-}
-
 }
