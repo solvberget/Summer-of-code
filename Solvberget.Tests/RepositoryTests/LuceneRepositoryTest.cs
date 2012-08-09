@@ -118,7 +118,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
 
             const string testString = "Arry Poter";
-            const string testSolution = "Harry Potter";
+            const string testSolution = "harry potter";
 
             var solution = _repository.Lookup(testString);
             Assert.AreEqual(testSolution, solution);

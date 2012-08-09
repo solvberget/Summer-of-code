@@ -98,6 +98,8 @@
                 }));
             }
 
+            Notifications.setAreNotificationsSeen(false);
+
             document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
 
             //Add functionality to the appbar buttons

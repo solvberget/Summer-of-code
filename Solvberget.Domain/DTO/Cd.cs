@@ -39,7 +39,7 @@ namespace Solvberget.Domain.DTO
                 var discContent = GetVarfield(nodes, "505", "a");
 
                 if( discContent != null)
-                    DiscContent = TrimContentList(discContent.Split(';').ToList());
+                    DiscContent = TrimContentList(discContent);
 
                 Performers = GetVarfield(nodes, "511", "a");
                 CompositionTypeOrGenre = GetVarfieldAsList(nodes, "652", "a");

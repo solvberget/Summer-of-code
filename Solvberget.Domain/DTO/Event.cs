@@ -76,6 +76,7 @@ namespace Solvberget.Domain.DTO
         public string Longitude { get; set; }
         public string Latitude { get; set; }
         public string TypeName { get; set; }
+        public string TicketPrice { get; set; }
 
         private static string TrimTime(string time)
         {

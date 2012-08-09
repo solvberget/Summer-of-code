@@ -42,8 +42,15 @@ progress.withText {
     height: 100px;
 }
 
-/*Progress ring*/
-
+.openingHourTile {
+    width: 250px;
+    padding: 20px;
+    margin-top: 20px;
+    width:300px;
+    max-width: 350px;
+    margin-right: 0px;
+    overflow: hidden;
+}
 #openingHoursData {
     display: none;
     visibility: hidden;

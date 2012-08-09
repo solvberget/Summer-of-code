@@ -28,7 +28,7 @@ namespace Solvberget.Domain.DTO
 
         public static string StripHtmlTags(string strHtml)
         {
-            return Regex.Replace(strHtml, "<(.|\n)*?>", "");
+            return Regex.Replace(strHtml, @"<(?!\/?(a)(?=>|\s.*>))\/?.*?>", "");
         }
 
         public static HtmlNode GetDiv(string strHtml, string divName)
@@ -50,22 +50,25 @@ namespace Solvberget.Domain.DTO
         public static string CleanHtml(string strHtml)
         {
 
-            //Fix \n
+            //Remove \n\t
             var cleanedHtml = strHtml.Replace("\n", "");
             cleanedHtml = cleanedHtml.Replace("\t", " ");
             
+            //Create some \n
             cleanedHtml = cleanedHtml.Replace("<li>", "\n");
-            //cleanedHtml = cleanedHtml.Replace("</tr>", "\n");
             cleanedHtml = cleanedHtml.Replace("&nbsp;", " ");
+
+            //Remove/Replace specific <a> tags
+            cleanedHtml = cleanedHtml.Replace("<a name=\'foaje\'></a>", "");
+            cleanedHtml = cleanedHtml.Replace("<a name=\"eztoc2404_0_1\" id=\"eztoc2404_0_1\"></a>", "");
+            cleanedHtml = cleanedHtml.Replace("<a href=\"#foaje\">kulturhusets foaje</a>", "kulturhusets foaje");
             
-            //Remove html tags
+            //Remove all html tags
             cleanedHtml = StripHtmlTags(cleanedHtml);
             
-            //Remove information
-            cleanedHtml = cleanedHtml.Replace("Hvor er vi? Se kart på Google maps", "");
+            //Remove some characters
             cleanedHtml = cleanedHtml.Replace("» ", "\n");
             cleanedHtml = cleanedHtml.Replace("►", "");
-            
             cleanedHtml = cleanedHtml.Replace(",", "");
           
             //Remove multipe whitespaces

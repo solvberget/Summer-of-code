@@ -44,7 +44,7 @@ var ajaxGetUserInformationCallback = function (request, context) {
 
         // Extract loans from object
         var loans = response.Loans;
-        // Delete loans from main object
+        // Delete loans from main objectareNotificationsSeen
         delete response.Loans;
 
         // Extract reservations from object
@@ -82,11 +82,14 @@ var ajaxGetUserInformationCallback = function (request, context) {
             addNotificationsToDom(notifications);
             addColors();
         }
-        if ((notifications) && (LoginFlyout.getLoggedInBorrowerId() != "" && LoginFlyout.getLoggedInBorrowerId() != undefined)) {
-            for (var i = 0; i < notifications.length; i++) {
-                showToast(notifications[i].Title, notifications[i].Content);
+        if ((notifications) && (LoginFlyout.getLoggedInBorrowerId() != "" && LoginFlyout.getLoggedInBorrowerId() != undefined))
+        {
+            if (!Notifications.areNotificationsSeen()) {
+                for (i = 0; i < notifications.length; i++)
+                {
+                    Toast.showToast(notifications[i].Title, notifications[i].Content);
+                }
             }
-
             Notifications.setUserNotifications(notifications);
         }
 
@@ -113,24 +116,6 @@ var cancelReservation = function (reservations, index, element) {
     });
 
 
-};
-
-var showToast = function (heading, body) {
-
-    var template = Windows.UI.Notifications.ToastTemplateType.toastText02;
-
-
-
-    var toastXml = Windows.UI.Notifications.ToastNotificationManager.getTemplateContent(template);
-
-    var toastTextElements = toastXml.getElementsByTagName("text");
-    toastTextElements[0].appendChild(toastXml.createTextNode(heading));
-    toastTextElements[1].appendChild(toastXml.createTextNode(body));
-
-    var toast = new Windows.UI.Notifications.ToastNotification(toastXml);
-
-    var toastNotifier = Windows.UI.Notifications.ToastNotificationManager.createToastNotifier();
-    toastNotifier.show(toast);
 };
 
 
@@ -168,6 +153,9 @@ var addFinesToDom = function (fines) {
                     var docModel = this;
                     WinJS.Navigation.navigate("/pages/documentDetail/documentDetail.html", { documentModel: docModel });
                 }, context));
+            }
+            else {
+                $(".clickableFinesArea:last").removeClass("clickableArea");
             }
         }
     }
