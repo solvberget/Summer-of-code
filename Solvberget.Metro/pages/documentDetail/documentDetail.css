@@ -3,6 +3,14 @@
     overflow-y: hidden;
 }
 
+#openShare {
+    background-color:rgba(0, 153, 204, 0.6);
+}
+
+#sendHoldRequestButton {
+    background-color: rgba(136, 187, 0, 0.6);
+}
+
 .templates {
     display: none;
 }
@@ -82,7 +90,7 @@ progress.withText {
     display: block;
 }
 
-#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count  {
+#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
     display: inline;
 }
 
@@ -108,7 +116,7 @@ progress.withText {
 
 #fragmentContent {
     margin-left: 30px;
-      -ms-grid-column: inherit;
+    -ms-grid-column: inherit;
 }
 
     #fragmentContent > * {
@@ -126,7 +134,7 @@ progress.withText {
 /** FRAGMENT CONTENT */
 
 #details {
-margin-top:50px;
+    margin-top: 50px;
 }
 
 .fact {

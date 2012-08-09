@@ -13,12 +13,13 @@
         <!-- Fine template -->
         <div id="fineTemplate">
             <div class="float-item">
-
                 <hr />
-                <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
-                <span class="fineDate" data-win-bind="innerText: Date MyPageConverters.dateConverter"></span>
-                <span class="status" data-win-bind="innerText: Status MyPageConverters.statusConverter"></span>
-                <span class="sum" data-win-bind="innerText: Sum MyPageConverters.sumConverter"></span>
+                <div class="clickableFinesArea clickableArea">
+                    <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+                    <span class="fineDate" data-win-bind="innerText: Date MyPageConverters.dateConverter"></span>
+                    <span class="status" data-win-bind="innerText: Status MyPageConverters.statusConverter"></span>
+                    <span class="sum" data-win-bind="innerText: Sum MyPageConverters.sumConverter"></span>
+                </div>
                 <br />
                 <span class="description" data-win-bind="innerText: Description"></span>
             </div>
@@ -29,10 +30,12 @@
             <div class="float-item">
 
                 <hr />
-                <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
-                <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter"></span>
-                <span class="loanDate" data-win-bind="innerText: LoanDate MyPageConverters.loanDateConverter"></span>
-                <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
+                <div class="clickableLoanArea clickableArea">
+                    <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+                    <span class="loanMaterial" data-win-bind="innerText: Material MyPageConverters.loanMaterialConverter"></span>
+                    <span class="loanDate" data-win-bind="innerText: LoanDate MyPageConverters.loanDateConverter"></span>
+                    <span class="loanDueDate" data-win-bind="innerText: DueDate MyPageConverters.dueDateConverter"></span>
+                </div>
                 <button class="renewLoanButton" data-win-bind="">Utvid lånetid</button>
             </div>
 
@@ -42,11 +45,13 @@
         <div id="reservationTemplate">
             <div class="float-item">
                 <hr />
-                <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
-                <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
-                <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
-                <span class="holdRequestReady" data-win-bind="innerText: HoldRequestEnd MyPageConverters.holdRequestReadyTextConverter"></span>
-                <span class="holdRequestEnd" data-win-bind="innerText: HoldRequestEnd MyPageConverters.holdRequestEndConverter"></span>
+                <div class="clickableReservationArea clickableArea">
+                    <span class="documentTitle" data-win-bind="innerText: DocumentTitle"></span>
+                    <span class="pickupLibrary" data-win-bind="innerText: PickupLibrary MyPageConverters.pickupLibraryConverter"></span>
+                    <span class="holdRequestFrom" data-win-bind="innerText: HoldRequestFrom MyPageConverters.holdRequestFromConverter"></span>
+                    <span class="holdRequestReady" data-win-bind="innerText: HoldRequestEnd MyPageConverters.holdRequestReadyTextConverter"></span>
+                    <span class="holdRequestEnd" data-win-bind="innerText: HoldRequestEnd MyPageConverters.holdRequestEndConverter"></span>
+                </div>
                 <button class="cancelReservationButton" data-win-bind="">Fjern reservasjon</button>
             </div>
         </div>

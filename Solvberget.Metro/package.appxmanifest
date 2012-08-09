@@ -3,7 +3,7 @@
   <Identity Name="Solvberget" Version="1.0.0.4" Publisher="CN=arnea_000" />
   <Properties>
     <DisplayName>Sølvberget Metro</DisplayName>
-    <PublisherDisplayName>Capgemini AS ved Kristoffer, Tormod, Ellen og Sindre</PublisherDisplayName>
+    <PublisherDisplayName>Capgemini AS</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Prerequisites>
