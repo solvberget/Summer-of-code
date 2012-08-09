@@ -29,7 +29,7 @@ var ajaxGetUserInformation = function (isLoadingMyPage) {
         Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, isLoadingMyPage, true);
     }
 
-}
+};
 
 var ajaxGetUserInformationCallback = function (request, context) {
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
@@ -58,33 +58,32 @@ var ajaxGetUserInformationCallback = function (request, context) {
         if (response.Name === response.PrefixAddress)
             response.PrefixAddress = "";
 
-        // Select HTML-section to process with the new binding lists
-        var contentDiv = document.getElementById("myPagePersonalInformation");
-        var titleNameDiv = document.getElementById("pageSubtitleName");
-        var balanceDiv = document.getElementById("balance");
-
-
-        // avoid processing null (if user navigates to fast away from page etc)
-        if (contentDiv != undefined && response != undefined)
-            WinJS.Binding.processAll(contentDiv, response);
-
-        if (titleNameDiv != undefined && response != undefined)
-            WinJS.Binding.processAll(titleNameDiv, response);
-
-        if (balanceDiv != undefined && response != undefined)
-            WinJS.Binding.processAll(balanceDiv, response);
-
         if (isLoadingMyPage) {
+
+            // Select HTML-section to process with the new binding lists
+            var contentDiv = document.getElementById("myPagePersonalInformation");
+            var titleNameDiv = document.getElementById("pageSubtitleName");
+            var balanceDiv = document.getElementById("balance");
+
+
+            // avoid processing null (if user navigates to fast away from page etc)
+            if (contentDiv != undefined && response != undefined)
+                WinJS.Binding.processAll(contentDiv, response);
+
+            if (titleNameDiv != undefined && response != undefined)
+                WinJS.Binding.processAll(titleNameDiv, response);
+
+            if (balanceDiv != undefined && response != undefined)
+                WinJS.Binding.processAll(balanceDiv, response);
+
             addFinesToDom(fines);
             addLoansToDom(loans);
             addReservationsToDom(reservations);
             addNotificationsToDom(notifications);
             addColors();
         }
-        if ((notifications) && (LoginFlyout.getLoggedInBorrowerId() != "" && LoginFlyout.getLoggedInBorrowerId() != undefined))
-        {
-            for (i = 0; i < notifications.length; i++)
-            {
+        if ((notifications) && (LoginFlyout.getLoggedInBorrowerId() != "" && LoginFlyout.getLoggedInBorrowerId() != undefined)) {
+            for (var i = 0; i < notifications.length; i++) {
                 showToast(notifications[i].Title, notifications[i].Content);
             }
 
@@ -163,6 +162,13 @@ var addFinesToDom = function (fines) {
         for (i = 0; i < fines.length; i++) {
             fine = fines[i];
             fineTemplate.render(fine, fineTemplateContainer);
+            if (fines[i].DocumentNumber !== "") {
+                var context = { DocumentNumber: fines[i].DocumentNumber };
+                $(".clickableFinesArea:last").click($.proxy(function () {
+                    var docModel = this;
+                    WinJS.Navigation.navigate("/pages/documentDetail/documentDetail.html", { documentModel: docModel });
+                }, context));
+            }
         }
     }
 };
@@ -176,26 +182,27 @@ var addLoansToDom = function (loans) {
 
     var loanTemplate = new WinJS.Binding.Template(document.getElementById("loanTemplate"));
     var loansTemplateContainer = document.getElementById("loanTemplateHolder");
-
-    loansTemplateContainer.innerHTML = "";
+    if (loansTemplateContainer)
+        loansTemplateContainer.innerHTML = "";
 
     var i, loan;
     for (i = 0; i < loans.length; i++) {
         loan = loans[i];
-
         loanTemplate.render(loan, loansTemplateContainer).done(function (element) {
             $(element).find(".renewLoanButton:last").attr("index", i);
             $(element).find(".renewLoanButton:last").click(function () {
                 var index = $(this).attr("index");
-
                 renewLoan(loans[index]);
             });
+            var context = { DocumentNumber: loans[i].DocumentNumber };
+            $(".clickableLoanArea:last").click($.proxy(function () {
+                var docModel = this;
+                WinJS.Navigation.navigate("/pages/documentDetail/documentDetail.html", { documentModel: docModel });
+            }, context));
         });
     }
 
     $(".renewAllButton").click(function () {
-        var index = $(this).attr("index");
-
         for (i = 0; i < loans.length; i++) {
             renewLoan(loans[i]);
         }
@@ -223,6 +230,13 @@ var addReservationsToDom = function (reservations) {
                 var index = $(this).attr("index");
                 cancelReservation(reservations, index, $(this));
             });
+
+            var context = { DocumentNumber: reservations[i].DocumentNumber };
+            $(".clickableReservationArea:last").click($.proxy(function () {
+                var docModel = this;
+                WinJS.Navigation.navigate("/pages/documentDetail/documentDetail.html", { documentModel: docModel });
+            }, context));
+
         });
     }
 };
@@ -246,15 +260,15 @@ var addNotificationsToDom = function (notifications) {
     }
 };
 
-var addColors = function() {
+var addColors = function () {
+    var alpha = "0.7";
+    $("#fines").css("background-color", Data.getColorFromPool(1, alpha));
+    $("#loans").css("background-color", Data.getColorFromPool(3, alpha));
+    $("#reservations").css("background-color", Data.getColorFromPool(6, alpha));
+    $("#notifications").css("background-color", Data.getColorFromPool(4, alpha));
 
-    $("#fines").css("background-color", Data.getColorFromPool(1));
-    $("#loans").css("background-color", Data.getColorFromPool(3));
-    $("#reservations").css("background-color", Data.getColorFromPool(6));
-    $("#notifications").css("background-color", Data.getColorFromPool(4));
-
-    $("#myPagePersonalInformation").children().each(function() {
-        $(this).css("background-color", Data.getColorFromPool(0));
+    $("#myPagePersonalInformation").children().each(function () {
+        $(this).css("background-color", Data.getColorFromPool(0, alpha));
     });
 
 };
@@ -271,7 +285,7 @@ var getUserInformation = function (loadingMypage) {
 
     // Get the user information from server
     ajaxGetUserInformation(loadingMypage)
-       
+
     WinJS.Namespace.define("MyPage", {
         addReservationsToDom: addReservationsToDom,
     });

@@ -12,7 +12,6 @@
             getDocument(documentModel.DocumentNumber);
 
             this.registerForShare();
-
             document.getElementById("sendHoldRequestButton").addEventListener("click", registerHoldRequest);
         },
 
@@ -96,12 +95,12 @@
 
 var documentModel = undefined;
 
-var ajaxGetDocumentImage = function () {
+var ajaxGetDocumentImage = function() {
 
     var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/" + documentModel.DocumentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentImageCallback, this, true);
 
-}
+};
 
 var ajaxGetDocumentImageCallback = function (request, context) {
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);

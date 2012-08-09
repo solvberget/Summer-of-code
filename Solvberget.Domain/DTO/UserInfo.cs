@@ -52,7 +52,7 @@ namespace Solvberget.Domain.DTO
             var xElementField = xElementRecord;
             if (xElementRecord != null)
             {
-              
+
                 Id = GetXmlValue(xElementRecord, "z303-id");
                 Name = GetFormattedName(GetXmlValue(xElementRecord, "z303-name"));
                 DateOfBirth = GetFormattedDate(GetXmlValue(xElementRecord, "z303-birth-date"));
@@ -125,22 +125,23 @@ namespace Solvberget.Domain.DTO
                     if (xElementField == null) continue;
                     var docNumber = GetXmlValue(xElementField, "z13-doc-number");
 
+                    docNumber = GetFormattedDocNumber(docNumber);
                     var docTitle = GetXmlValue(xElementField, "z13-title");
 
 
-                        var reservation = new Reservation()
-                        {
-                            Status = reservationStatus,
-                            DocumentNumber = docNumber,
-                            DocumentTitle = docTitle,
-                            PickupLocation = pickupLocation,
-                            HoldRequestFrom = holdRequestFrom,
-                            HoldRequestTo = holdRequestTo,
-                            CancellationSequence = cancellationSequence,
-                            ItemSeq = itemSeq,
-                            ItemDocumentNumber = itemDocNumber,
-                            HoldRequestEnd = holdRequestEnd,
-                        };
+                    var reservation = new Reservation()
+                    {
+                        Status = reservationStatus,
+                        DocumentNumber = docNumber,
+                        DocumentTitle = docTitle,
+                        PickupLocation = pickupLocation,
+                        HoldRequestFrom = holdRequestFrom,
+                        HoldRequestTo = holdRequestTo,
+                        CancellationSequence = cancellationSequence,
+                        ItemSeq = itemSeq,
+                        ItemDocumentNumber = itemDocNumber,
+                        HoldRequestEnd = holdRequestEnd,
+                    };
 
                     reservations.Add(reservation);
                 }
@@ -215,7 +216,8 @@ namespace Solvberget.Domain.DTO
                     if (xElementField != null)
                     {
                         docNumber = GetXmlValue(xElementField, "z13-doc-number");
-
+                        docNumber = GetFormattedDocNumber(docNumber);
+        
                         docTitle = GetXmlValue(xElementField, "z13-title");
                     }
                     var loan = new Loan()
@@ -246,7 +248,7 @@ namespace Solvberget.Domain.DTO
             double sum = 0;
             var date = "";
             var status = "";
-            char creditDebit = new char();
+            var creditDebit = new char();
             var description = "";
             string descriptionLookupValue = null;
 
@@ -296,6 +298,7 @@ namespace Solvberget.Domain.DTO
                     if (xElementField != null)
                     {
                         docId = GetXmlValue(xElementField, "z13-doc-number") ?? docId;
+                        docId = GetFormattedDocNumber(docId);
 
                         docTitle = GetXmlValue(xElementField, "z13-title");
                     }
@@ -323,6 +326,19 @@ namespace Solvberget.Domain.DTO
             Notifications = GetNotification(this);
 
 
+        }
+
+        private static string GetFormattedDocNumber(string docNumber)
+        {
+            if (!string.IsNullOrEmpty(docNumber))
+            {
+                var docNumberStringBuilder = new StringBuilder(docNumber);
+                for (var i = docNumber.Length; i < 9; i++)
+                    docNumberStringBuilder.Insert(0, "0");
+
+                docNumber = docNumberStringBuilder.ToString();
+            }
+            return docNumber;
         }
 
         private static string GetXmlValue(XElement node, string tag)
@@ -417,9 +433,9 @@ namespace Solvberget.Domain.DTO
                                               });
 
                     }
-                    
+
                 }
-               
+
             }
 
             if (user.Reservations != null)
