@@ -81,8 +81,11 @@ progress.withText {
     #mainContentSection {
     margin-left: 10px;
 }
-    .openingHoursInformationTitle {
-    margin-top: 10px
+   .openingHourstTitle, .openingHoursValue {
+        margin-top: 13px;
+        font-size: 15px;
+        padding-right:10px;
+    }
 }
 
 }

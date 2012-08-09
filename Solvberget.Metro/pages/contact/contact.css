@@ -93,7 +93,7 @@ progress.withText {
         -ms-grid-rows: auto 60px;
         display: -ms-grid;
         height: 100%;
-        margin-left: 5px;
+        margin-left: 1px;
         width: 300px;
     }
 
@@ -109,5 +109,6 @@ progress.withText {
     .contactTitle, .contactValue {
         margin-top: 13px;
         font-size: 15px;
+        padding-right:10px;
     }
 }
