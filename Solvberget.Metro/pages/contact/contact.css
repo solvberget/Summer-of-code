@@ -56,10 +56,10 @@ progress.withText {
 
 .contactTile {
     width: 250px;
-
-     padding: 20px;
+    padding: 20px;
     margin-top: 20px;
-    max-width: 250px;
+    width: 300px;
+    max-width: 350px;
     margin-right: 0px;
     overflow: hidden;
 }
@@ -67,7 +67,6 @@ progress.withText {
 
 .contactTitle, .contactValue {
     margin-top: 10px;
-   
 }
 
 #contactContent {
