@@ -161,6 +161,7 @@
     <Content Include="bin\App_Data\librarylists\static\example_list3.xml" />
     <Content Include="bin\App_Data\librarylists\static\example_list4.xml" />
     <Content Include="bin\App_Data\librarylists\static\example_list5.xml" />
+    <Content Include="bin\App_Data\ordlister\ord_test.txt" />
     <Content Include="bin\App_Data\ordlister\stopwords.txt" />
     <Content Include="bin\App_Data\rules\itemrules.txt" />
     <Content Include="bin\Contrib.Regex.dll" />
