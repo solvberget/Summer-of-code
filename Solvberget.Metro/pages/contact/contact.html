@@ -11,16 +11,18 @@
 <body>
 
     <div class="templates">
-        <section class="contactSection">
-            <div id="contactInformationTemplate">
-                <h2 class="contactInformationTitle" data-win-bind="innerText: InformationTitle"></h2>
-                <span class="contactInformationValue" data-win-bind="innerHTML: InformationValue"></span>
+        <section>
+            <div id="contactTemplate">
+                <div class="contactTile" id="contact">
+                    <h2 class="contactTitle" data-win-bind="innerText: InformationTitle"></h2>
+                    <div class="contactvalue" data-win-bind="innerHTML: InformationValue"></div>
+                </div>
             </div>
         </section>
     </div>
 
     <!-- The content that will be loaded and displayed. -->
-    <div class="contact fragment">
+    <div class="fragment">
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
@@ -29,7 +31,7 @@
             </div>
         </header>
         <section
-            aria-label="Main content" id="mainContentSection" role="main">
+            aria-label="Main content" id="mainContactContentSection" role="main">
             <div id="contactLoading">
                 <progress class="win-ring withText"></progress>
             </div>

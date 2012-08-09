@@ -40,7 +40,7 @@ var ajaxGetOpeningHoursInformationCallback = function (request, context) {
 
     // avoid processing null (if user navigates to fast away from page etc)
     if (response != undefined && response !== "")
-        populateOpeningHours(response);
+        populateOpeningHours(response, context);
 
 
     // Hide progress-ring, show content
@@ -49,9 +49,9 @@ var ajaxGetOpeningHoursInformationCallback = function (request, context) {
 
 };
 
-var populateOpeningHours = function (response) {
+var populateOpeningHours = function (response, context) {
 
-    var openingHoursTemplateDiv = document.getElementById("openingHoursInformationTemplate");
+    var openingHoursTemplateDiv = document.getElementById("openingHoursTemplate");
     var openingHoursTemplateHolder = document.getElementById("openingHoursInformationTemplateHolder");
 
     var openingHoursTemplate = undefined;
@@ -66,7 +66,10 @@ var populateOpeningHours = function (response) {
             model = response[i];
 
             if (openingHoursTemplate && openingHoursTemplateHolder && model)
-                openingHoursTemplate.render(model, openingHoursTemplateHolder);
+                openingHoursTemplate.render(model, openingHoursTemplateHolder).done($.proxy(function () {
+                    $(".openingHourTile:last").css("background-color", Data.getRandomColor());
+
+                }, context));
 
         }
     }
