@@ -132,10 +132,10 @@
                     }
                 }
                 if (document.queue.r) {
-                    for (var i = 0; i < document.queue.r.length; i++) {
-                        r = document.queue.r[i];
+                    for (var j = 0; j < document.queue.r.length; j++) {
+                        r = document.queue.r[j];
                         if (r._value)
-                            document.queue.r.splice(i, 1);
+                            document.queue.r.splice(j, 1);
                     }
                 }
             };
@@ -279,7 +279,7 @@
 
         var notificationsAsString = "";
 
-        for (i = 0; i < notifications.length; i++ ){
+        for (var i = 0; i < notifications.length; i++ ){
             notificationsAsString = notificationsAsString.concat(notifications[i].Title, ",", notifications[i].Content, ";");
         }
 

@@ -15,11 +15,14 @@
             } else {
                 listView.layout = new ui.GridLayout();
             }
+            listView.forceLayout();
         },
 
         itemInvoked: function (args) {
-            var item = this.items.getAt(args.detail.itemIndex);
-            nav.navigate("/pages/events/eventDetail/eventDetail.html", { item: EventData.getItemReference(item) });
+            if (this.items) {
+                var item = this.items.getAt(args.detail.itemIndex);
+                nav.navigate("/pages/events/eventDetail/eventDetail.html", { item: EventData.getItemReference(item) });
+            }
         },
 
         ready: function (element, options) {
@@ -44,7 +47,8 @@
         },
 
         unload: function () {
-            this.items.dispose();
+            if (this.items)
+                this.items.dispose();
         },
 
         updateLayout: function (element, viewState, lastViewState) {

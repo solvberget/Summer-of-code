@@ -11,16 +11,16 @@
     ui.Pages.define("/pages/events/groupedEvents/groupedEvents.html", {
 
         ready: function (element) {
-            var listView = element.querySelector(".eventItemsListView").winControl;
-            listView.groupHeaderTemplate = element.querySelector(".headertemplate");
-            //listView.itemTemplate = this.eventTemplateFunction;
-            listView.oniteminvoked = this.itemInvoked.bind(this);
-            this.getEvents(listView);
+            var listView = element.querySelector(".eventItemsListView");
+            var listViewWinControl = listView.winControl;
+            listViewWinControl.groupHeaderTemplate = element.querySelector(".headertemplate");
+            listViewWinControl.oniteminvoked = this.itemInvoked.bind(this);
+            this.getEvents(listViewWinControl);
         },
 
-        getEvents: function (listView) {
+        getEvents: function (listViewWinControl) {
             var url = window.Data.serverBaseUrl + eventsReqUrl;
-            var context = { listView: listView, that: this };
+            var context = { listViewWinControl: listViewWinControl, that: this };
             window.Solvberget.Queue.QueueDownload("events", { url: url }, this.getEventsCallback, context, true);
         },
 
@@ -28,10 +28,10 @@
             var response = request.responseText === "" ? "" : JSON.parse(request.responseText);
             if (response != undefined && response !== "") {
                 EventData.setData(response);
-                context.that.initializeLayout(context.listView, appView.value);
+                context.that.initializeLayout(context.listViewWinControl, appView.value);
                 $("#eventItemsLoading").hide();
                 $(".eventItemsListView").fadeIn();
-                context.listView.element.focus();
+                context.listViewWinControl.element.focus();
             }
         },
 
@@ -83,7 +83,7 @@
             return itemPromise.then(function (item) {
                 var eventItemTemplate = document.getElementById("event-item-template");
                 var container = document.createElement("div");
-                container.style.backgroundColor = window.Data.getColorFromPool(item.groupKey % window.Data.colorPoolRgba.length, 0.2);
+                container.style.backgroundColor = window.Data.getColorFromPool(item.groupKey % window.Data.colorPoolRgba.length, 0.45);
                 if (eventItemTemplate)
                     eventItemTemplate.winControl.render(item.data, container);
                 return container;
@@ -95,7 +95,8 @@
                 var groupItemTemplate = document.getElementById("group-item-template");
                 var container = document.createElement("div");
                 container.style.backgroundColor = window.Data.getColorFromPool(item.key % window.Data.colorPoolRgba.length, 0.6);
-                groupItemTemplate.winControl.render(item.data, container);
+                if (groupItemTemplate)
+                    groupItemTemplate.winControl.render(item.data, container);
                 return container;
             });
         },

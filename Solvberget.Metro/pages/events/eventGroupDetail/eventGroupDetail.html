@@ -9,18 +9,20 @@
 </head>
 <body>
 
-    <!-- ITEM TEMPLATE -->
-    <div class="event-item-template" data-win-control="WinJS.Binding.Template">
-        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
-            <img class="item-image" src="#" data-win-bind="src: PictureUrl; alt: Name" />
-        </div>
+    <div class="event-templates">
+        <!-- ITEM TEMPLATE -->
+        <div class="event-item-template" data-win-control="WinJS.Binding.Template">
+            <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                <img class="item-image" src="#" data-win-bind="src: PictureUrl; alt: Name" />
+            </div>
 
-        <div class="item-info">
-            <h4 class="item-title" data-win-bind="textContent: Name"></h4>
-            <h6 class="item-location win-type-ellipsis" data-win-bind="textContent: Location"></h6>
-            <h6 class="item-time win-type-ellipsis" data-win-bind="textContent: DateAndTime"></h6>
-        </div>
+            <div class="item-info">
+                <h4 class="item-title" data-win-bind="textContent: Name"></h4>
+                <h6 class="item-location win-type-ellipsis" data-win-bind="textContent: Location"></h6>
+                <h6 class="item-time win-type-ellipsis" data-win-bind="textContent: DateAndTime"></h6>
+            </div>
 
+        </div>
     </div>
 
     <!-- The content that will be loaded and displayed. -->

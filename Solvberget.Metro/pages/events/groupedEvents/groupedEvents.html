@@ -11,29 +11,31 @@
 
 <body>
 
-    <!-- HEADER TEMPLATE (TYPE) -->
-    <div class="headertemplate" data-win-control="WinJS.Binding.Template">
-        <p class="group-title win-type-x-large" data-win-bind="textContent: Name; groupKey: key"
-            onclick="WinJS.Navigation.navigate('/pages/events/eventGroupDetail/eventGroupDetail.html', { groupKey: event.srcElement.groupKey })" role="link">
-        </p>
-    </div>
-
-    <!-- GROUP TEMPLATE -->
-    <div id="group-item-template" data-win-control="WinJS.Binding.Template">
-        <h2 class="group-title" data-win-bind="textContent: Name"></h2>
-    </div>
-
-    <!-- ITEM TEMPLATE -->
-    <div id="event-item-template" data-win-control="WinJS.Binding.Template">
-        <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
-            <img class="item-image" src="#" data-win-bind="src: PictureUrl; alt: Name" />
+    <div class=".event-templates">
+        <!-- HEADER TEMPLATE (TYPE) -->
+        <div class="headertemplate" data-win-control="WinJS.Binding.Template">
+            <p class="group-title win-type-x-large" data-win-bind="textContent: Name; groupKey: key"
+                onclick="WinJS.Navigation.navigate('/pages/events/eventGroupDetail/eventGroupDetail.html', { groupKey: event.srcElement.groupKey })" role="link">
+            </p>
         </div>
 
-        <div class="item-overlay">
-            <h4 class="item-title" data-win-bind="textContent: Name"></h4>
-            <h6 class="item-location win-type-ellipsis" data-win-bind="textContent: Location"></h6>
-            <h6 class="item-time win-type-ellipsis" data-win-bind="textContent: DateAndTime"></h6>
+        <!-- GROUP TEMPLATE -->
+        <div id="group-item-template" data-win-control="WinJS.Binding.Template">
+            <h2 class="group-title" data-win-bind="textContent: Name"></h2>
+        </div>
 
+        <!-- ITEM TEMPLATE -->
+        <div id="event-item-template" data-win-control="WinJS.Binding.Template">
+            <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                <img class="item-image" src="#" data-win-bind="src: PictureUrl; alt: Name" />
+            </div>
+
+            <div class="item-overlay">
+                <h4 class="item-title" data-win-bind="textContent: Name"></h4>
+                <h6 class="item-location win-type-ellipsis" data-win-bind="textContent: Location"></h6>
+                <h6 class="item-time win-type-ellipsis" data-win-bind="textContent: DateAndTime"></h6>
+
+            </div>
         </div>
     </div>
 
