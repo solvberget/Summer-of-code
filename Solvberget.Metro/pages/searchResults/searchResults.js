@@ -222,6 +222,21 @@
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
             this.lastSearch = args.queryText;
+            
+            /** http://msdn.microsoft.com/en-us/library/windows/apps/hh465233.aspx 
+            *
+            * If your app is activated with an empty queryText string and your app is already running or is suspended, 
+            * return to the app's last-viewed page. If your app isn't running or suspended,
+            * take the user to a landing page appropriate for this search.
+            * 
+            * Generally, your app's default, home page is an appropriate landing page when the queryText 
+            * is an empty string, but you can also design an app page specifically for this purpose.
+            **/
+
+            if(args.queryText === "") {
+                Data.navigateToHome();
+            }
+
             WinJS.Namespace.define("searchResults", { markText: this.markText.bind(this) });
             utils.markSupportedForProcessing(searchResults.markText);
             this.initializeLayout(element.querySelector(".resultslist").winControl, Windows.UI.ViewManagement.ApplicationView.value);
