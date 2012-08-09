@@ -128,6 +128,9 @@ namespace Solvberget.Domain.Implementation
 
         private void InitSuggestionListFromFile()
         {
+            if (!File.Exists(_pathToSuggestionsDict))
+                File.Create(_pathToSuggestionsDict);
+
             var tempList = File.ReadAllLines(_pathToSuggestionsDict);
 
             foreach (var word in tempList)
