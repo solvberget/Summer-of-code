@@ -39,7 +39,9 @@
             var documentTitle = documentModel.Title;
 
             if (documentTitle !== "") {
-
+                var replaceAll = function (txt, replace, with_this) {
+                    return txt.replace(new RegExp(replace, 'g'),with_this);
+                }
                 var range = document.createRange();
                 range.selectNode(document.getElementById("documentShareContent"));
                 request.data = MSApp.createDataPackage(range);
@@ -53,8 +55,8 @@
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
 
-                        if (path.indexOf("ms-appx://") == 1){
-                            path = "";
+                        if (path.indexOf("/images/placeholders") >=0){
+                            var path = "";
 
                         }else{
                             var imageUri = new Windows.Foundation.Uri(path);
