@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="IndexPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Projects\Solvberget\Solvberget.Service\bin\App_Data\ordlister_index</Value>
+      <Value Profile="(Default)">C:\projects\Solvberget\Solvberget.Service\bin\App_Data\ordlister_index</Value>
     </Setting>
     <Setting Name="SuggestionPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Projects\Solvberget\Solvberget.Service\bin\App_Data\ordlister\ord_forslag.txt</Value>
+      <Value Profile="(Default)">C:\projects\Solvberget\Solvberget.Service\bin\App_Data\ordlister\ord_forslag.txt</Value>
     </Setting>
   </Settings>
 </SettingsFile>

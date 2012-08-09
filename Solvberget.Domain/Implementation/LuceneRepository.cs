@@ -21,18 +21,9 @@ namespace Solvberget.Domain.Implementation
 {
 
 
-    public class LuceneRepository : ISuggestionDictionary, IDisposable
+    public class LuceneRepository : ISuggestionDictionary
     {
 
-        ~LuceneRepository()
-        {
-
-        }
-
-        public void Dispose()
-        {
-            //Nothing to do
-        }
 
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
 
@@ -56,11 +47,6 @@ namespace Solvberget.Domain.Implementation
             _documentRepository = documentRepository;
 
 
-        }
-
-        public void SuggestionListBuildDictionary()
-        {
-            DictionaryBuilder.Build(_pathToSuggestionsDict, _pathToDictDir);
         }
 
         private void InitializeSpellChecker()
@@ -128,18 +114,11 @@ namespace Solvberget.Domain.Implementation
 
         private void InitSuggestionListFromFile()
         {
-            if (!File.Exists(_pathToSuggestionsDict))
-                File.Create(_pathToSuggestionsDict);
-            else
+            var tempList = File.ReadAllLines(_pathToSuggestionsDict);
+
+            foreach (var word in tempList)
             {
-
-                var tempList = File.ReadAllLines(_pathToSuggestionsDict);
-
-                foreach (var word in tempList)
-                {
-                    _suggestionList.Add(word);
-                }
-
+                _suggestionList.Add(word);
             }
         }
 
@@ -162,10 +141,10 @@ namespace Solvberget.Domain.Implementation
             if (similarWords.Any())
             {
                 var upperCaseFirst = UppercaseFirst(similarWords[0]);
-                var lowerCaseFirst = LowerCaseFirst(similarWords[0]);
-                if (value.Equals(lowerCaseFirst) || value.Equals(upperCaseFirst) || value.Equals(similarWords[0].ToLower()))
+                var lowerCaseFirst =LowerCaseFirst(similarWords[0]);
+                if (value.Equals(lowerCaseFirst)||value.Equals(upperCaseFirst) || value.Equals(similarWords[0].ToLower()))
                     return "";
-                return similarWords[0];
+                return utf8.GetString(iso.GetBytes(similarWords[0]));
 
             }
             return "";
