@@ -28,6 +28,9 @@ var ajaxGetUserInformation = function (isLoadingMyPage) {
         var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId
         Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, isLoadingMyPage, true);
     }
+    else if (isLoadingMyPage ) {
+            Data.navigateToHome();
+    }
 
 };
 
