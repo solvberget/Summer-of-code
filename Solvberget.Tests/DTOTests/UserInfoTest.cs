@@ -53,7 +53,7 @@ namespace Solvberget.Service.Tests.DTOTests
             Assert.AreEqual(2, user.Fines.Count());
             Assert.AreEqual("19.03.2007", user.Fines.ElementAt(1).Date);
             Assert.AreEqual("For sent levert", user.Fines.ElementAt(1).Description);
-            Assert.AreEqual("230544", user.Fines.ElementAt(1).DocumentNumber);
+            Assert.AreEqual("000230544", user.Fines.ElementAt(1).DocumentNumber);
             Assert.AreEqual("Gift", user.Fines.ElementAt(1).DocumentTitle);
 
 

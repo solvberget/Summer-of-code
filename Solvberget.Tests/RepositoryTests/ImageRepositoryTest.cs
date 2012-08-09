@@ -113,12 +113,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             Assert.IsNotNullOrEmpty(hpMovieImage);
             Assert.True(hpMovieImage.Equals(ServerCacheImagesPath + "000605680.jpg"));
 
-            // 000579526 - Istid 3
-            const string theDawnOfTheIceAgeMovie = "000579526";
-            var iceAgeMovie = _imageRepository.GetDocumentImage(theDawnOfTheIceAgeMovie);
-            Assert.IsNotNullOrEmpty(iceAgeMovie);
-            Assert.True(iceAgeMovie.Equals(ServerCacheImagesPath + "000579526.jpg"));
-
+  
 
             // 000588841 - Atter en konge
             const string atterEnKongeMovie = "000588841";
