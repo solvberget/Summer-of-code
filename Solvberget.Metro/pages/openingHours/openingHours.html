@@ -10,12 +10,12 @@
 </head>
 <body>
     <div class="templates">
-        <section class="openingHoursSection">
-            <div id="openingHoursInformationTemplate">
-                <h2 class="openingHoursInformationTitle" data-win-bind="innerText: InformationTitle"></h2>
-                <span class="openingHoursInformationValue" data-win-bind="innerText: InformationValue"></span>
+        <div id="openingHoursTemplate">
+            <div class="openingHourTile">
+                <h2 data-win-bind="innerText: InformationTitle"></h2>
+                <div data-win-bind="innerText: InformationValue"></div>
             </div>
-        </section>
+        </div>
     </div>
 
 
@@ -31,7 +31,7 @@
         <section
             aria-label="Main content" id="mainContentSection" role="main">
             <div id="openingHoursLoading">
-                  <progress class="win-ring withText"></progress>
+                <progress class="win-ring withText"></progress>
             </div>
             <div class="content" id="openingHoursContent" aria-label="Main content" role="main">
                 <article>

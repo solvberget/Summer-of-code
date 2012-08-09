@@ -37,7 +37,7 @@ namespace Solvberget.Domain.DTO
 
                 var content = GetVarfield(nodes, "505", "a");
 
-                if (content != null) Content = TrimContentList(content.Split(';').ToList());
+                if (content != null) Content = TrimContentList(content);
             }
         }
 

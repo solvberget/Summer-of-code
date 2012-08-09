@@ -28,7 +28,7 @@ namespace Solvberget.Domain.DTO
 
         public static string StripHtmlTags(string strHtml)
         {
-            return Regex.Replace(strHtml, "<(.|\n)*?>", "");
+            return Regex.Replace(strHtml, @"<(?!\/?(a)(?=>|\s.*>))\/?.*?>", "");
         }
 
         public static HtmlNode GetDiv(string strHtml, string divName)
@@ -57,12 +57,17 @@ namespace Solvberget.Domain.DTO
             cleanedHtml = cleanedHtml.Replace("<li>", "\n");
             //cleanedHtml = cleanedHtml.Replace("</tr>", "\n");
             cleanedHtml = cleanedHtml.Replace("&nbsp;", " ");
+
+
+            cleanedHtml = cleanedHtml.Replace("<a name=\'foaje\'></a>", "");
+            cleanedHtml = cleanedHtml.Replace("<a name=\"eztoc2404_0_1\" id=\"eztoc2404_0_1\"></a>", "");
+            cleanedHtml = cleanedHtml.Replace("<a href=\"#foaje\">kulturhusets foaje</a>", "kulturhusets foaje");
             
             //Remove html tags
             cleanedHtml = StripHtmlTags(cleanedHtml);
             
-            //Remove information
-            cleanedHtml = cleanedHtml.Replace("Hvor er vi? Se kart på Google maps", "");
+            
+            
             cleanedHtml = cleanedHtml.Replace("» ", "\n");
             cleanedHtml = cleanedHtml.Replace("►", "");
             
