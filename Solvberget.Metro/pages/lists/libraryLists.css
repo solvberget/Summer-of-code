@@ -16,7 +16,10 @@
         display: none;
     }
 
-
+    .listpage .documentHolder:hover {
+        color: rgba(204, 51, 0, 1);
+        cursor: pointer;
+    }
 
     /* LISTVIEW */
     .listpage .listView .win-vertical.win-viewport .win-surface {
