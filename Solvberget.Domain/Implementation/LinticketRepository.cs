@@ -40,6 +40,7 @@ namespace Solvberget.Domain.Implementation
                 eventsAsJson = eventsAsJson.Replace("\"by\"", "City");
                 eventsAsJson = eventsAsJson.Replace("\"postnummer\"", "PostalCode");
                 eventsAsJson = eventsAsJson.Replace("\"gateadresse\"", "Address");
+                eventsAsJson = eventsAsJson.Replace("\"priser\"", "TicketPrice");
 
                 events = new JavaScriptSerializer().Deserialize<List<Event>>(eventsAsJson);
 

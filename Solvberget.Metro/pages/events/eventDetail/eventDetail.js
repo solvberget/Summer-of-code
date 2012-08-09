@@ -26,6 +26,10 @@
 
         typeConverter: WinJS.Binding.converter(function (type) {
             return (type == undefined || type === "") ? "" : "Type arrangement: " + type;
+        }),
+
+        priceConverter: WinJS.Binding.converter(function (price) {
+            return (price == undefined || price === "") ? "" : "Pris: " + price + " kr";
         })
 
     });

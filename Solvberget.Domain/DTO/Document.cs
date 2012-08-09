@@ -203,42 +203,33 @@ namespace Solvberget.Domain.DTO
                 varfield.Where(x => ((string)x.Attribute("label")).Equals(subfieldLabel)).Select(x => x.Value).FirstOrDefault();
         }
 
-        protected static IEnumerable<string> TrimContentList(List<string> list)
-            // Innhold: CD 1: Two divided by zero ;
+        protected static IEnumerable<string> TrimContentList(string list)
         {
+            var returnList = new List<string>();
             var temp = new List<string>();
 
-            temp.Insert(0,
-                        list.ElementAt(0).Substring(0, 9) == "Innhold: "
-                            ? list.ElementAt(0).Substring(9)
-                            : list.ElementAt(0));
-
-            for (var i = 0; i < list.Count(); i++){
-                //if (i == 0)
-                //{
-                //    if (temp.ElementAt(i).Substring(0, 5) == "CD 1:")
-                //    {
-                //        temp.Insert(i, "CD 1:");
-                //        i++;
-                //        temp.Insert(i, temp.ElementAt(i).Substring(5));
-                //    }
-                //}
-
-                //if (list.ElementAt(i).Contains("CD"))
-                //{
-                //    temp.Insert(i, list.ElementAt(i).);
-                //    i++;
-                //    temp.Insert(i, "");
-                //    i++;
-                //    temp.Insert(i, list.ElementAt(i - 1).Split(':').ElementAt(0));
-                //    i++;
-                //    temp.Insert(i, list.ElementAt(i - 2).Split(':').ElementAt(1));
-                //}
-
-                temp.Insert(i, list.ElementAt(i)[0] == ' ' ? list.ElementAt(i).Substring(1) : list.ElementAt(i));
-            }
+            var cleanedList = list.Replace("Innhold: ", "");
+            //cleanedList = cleanedList.Replace(":", ";");
+            cleanedList = cleanedList.Replace("; ", ";");
+            cleanedList = cleanedList.Replace(" CD", ";;CD");
             
-            return temp;
+
+            temp = cleanedList.Split(';').ToList();
+
+            for (var i = 0; i < temp.Count(); i++){
+                if (temp.ElementAt(i).Contains("CD"))
+                {
+                    returnList.Insert(i, temp.ElementAt(i).Split(':').ToList()[0].Trim());
+                    i++;
+                    returnList.Insert(i, temp.ElementAt(i - 1).Split(':').ToList()[1].Trim());
+                }
+                else
+                {
+                    returnList.Insert(i, temp.ElementAt(i).Trim());
+                }
+            }
+  
+            return returnList;
         } 
 
         protected static IEnumerable<string> GetVarfieldAsList(IEnumerable<XElement> nodes, string id,
