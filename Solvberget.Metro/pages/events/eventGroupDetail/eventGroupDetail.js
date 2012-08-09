@@ -9,13 +9,13 @@
 
         items: null,
 
-        initializeLayout: function (listView, viewState) {
+        initializeLayout: function (listViewWinControl, viewState) {
             if (viewState === appViewState.snapped) {
-                listView.layout = new ui.ListLayout();
+                listViewWinControl.layout = new ui.ListLayout();
             } else {
-                listView.layout = new ui.GridLayout();
+                listViewWinControl.layout = new ui.GridLayout();
             }
-            listView.forceLayout();
+            listViewWinControl.forceLayout();
         },
 
         itemInvoked: function (args) {
@@ -47,8 +47,7 @@
         },
 
         unload: function () {
-            if (this.items)
-                this.items.dispose();
+            if (this.items) this.items.dispose();
         },
 
         updateLayout: function (element, viewState, lastViewState) {
@@ -63,7 +62,7 @@
                                 e.preventDefault();
                             };
                             listViewWinControl.addEventListener("contentanimating", handler, false);
-                            var firstVisible = listView.indexOfFirstVisible;
+                            var firstVisible = listViewWinControl.indexOfFirstVisible;
                             this.initializeLayout(listViewWinControl, viewState);
                             listViewWinControl.indexOfFirstVisible = firstVisible;
                         }
