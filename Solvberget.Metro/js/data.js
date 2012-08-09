@@ -23,102 +23,136 @@
         { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, navigateTo: navigateToLists },
         { key: "contact", title: "Kontakt oss", subtitle: "Kontaktinformasjon", backgroundImage: contact, navigateTo: navigateToContact },
         { key: "blogs", title: "Blogger", subtitle: "Utvalgte blogger", backgroundImage: blogs, navigateTo: navigateToBlogs },
-        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
+        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: searchHandler },
     ];
 
-    function getRandomColor(alpha) {
+    function searchHandler() {
 
-        var random = Math.random() * colorPoolRgba.length;
-        random = Math.floor(random);
-        var color = colorPoolRgba[random];
-        if (alpha) {
-            color = color.substr(0, color.length - 4);
-            color = color + alpha + ")";
+        var currentViewState = Windows.UI.ViewManagement.ApplicationView.value;
+        if (currentViewState === 2) {
+
+            // Create the message dialog and set its content
+            var snapDialog = new Windows.UI.Popups.MessageDialog(
+                "Det er ikke mulig å søke i snapview\n\n" +
+                    "Dra vinduet ut i vanlig visning for å søke", "Ooops!");
+
+            snapDialog.commands.append(
+                new Windows.UI.Popups.UICommand("Lukk", function () { }, 1));
+
+            // Set the command that will be invoked by default
+            snapDialog.defaultCommandIndex = 1;
+
+            // Set the command to be invoked when escape is pressed
+            snapDialog.cancelCommandIndex = 1;
+
+            try {
+
+                // Show the message dialog
+                snapDialog.showAsync();
+
+            } catch (exception) {
+                // No access exception
+                console.log(new Date().toString() + ": No access exception(cant display dialog)");
+            }
+
         }
-        return color;
-    };
+        else {
+            navigateToSearch();
+        }
+    }
+        function getRandomColor(alpha) {
 
-    var list = new WinJS.Binding.List(menuItems);
+            var random = Math.random() * colorPoolRgba.length;
+            random = Math.floor(random);
+            var color = colorPoolRgba[random];
+            if (alpha) {
+                color = color.substr(0, color.length - 4);
+                color = color + alpha + ")";
+            }
+            return color;
+        };
+
+        var list = new WinJS.Binding.List(menuItems);
     
-    function getActivePage() {
-        return WinJS.Navigation.location;
-    }
-
-
-    function navigateToHome() {
-        Data.activePage = "home"; WinJS.Navigation.navigate("/pages/home/home.html");
-    }
-
-    function navigateToNews() {
-        Data.activePage = "news"; WinJS.Navigation.navigate("/pages/news/news.html");
-    }
-
-    function navigateToLists() {
-        Data.activePage = "lists"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html");
-    }
-
-    function navigateToMypage() {
-        Data.activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html");
-    }
-
-    function navigateToEvents() {
-        Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html");
-    }
-
-    function navigateToOpeningHours() {
-        Data.activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html");
-    }
-
-    function navigateToContact() {
-        Data.activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html");
-    }
-
-    function navigateToSearch() {
-        Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show();
-    }
-    function navigateToBlogs() {
-        Data.activePage = "blogs"; WinJS.Navigation.navigate("/pages/blogs/main/blogs.html");
-    }
-
-    var loginThenNavigateTo = function (page) {
-
-
-        var loginDiv = document.getElementById("loginDiv");
-
-
-        WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
-
-            var loginAnchor = document.querySelector(".win-container:nth-child(1)");
-            LoginFlyout.showLogin(loginAnchor, page);
-
-        });
-
-    }
-
-    var itemByKey = function (key) {
-
-        for (var i = 0; i < menuItems.length; i++) {
-            if (key === menuItems[i].key)
-                return menuItems[i];
+        function getActivePage() {
+            return WinJS.Navigation.location;
         }
-    }
 
-    WinJS.Namespace.define("Data", {
-        items: list,
-        itemByKey: itemByKey,
-        menuItems: menuItems,
-        serverBaseUrl: serverBaseUrl,
-        activePage: activePage,
-        navigateToHome: navigateToHome,
-        navigateToLists: navigateToLists,
-        navigateToMypage: navigateToMypage,
-        navigateToEvents: navigateToEvents,
-        navigateToOpeningHours: navigateToOpeningHours,
-        navigateToContact: navigateToContact,
-        navigateToSearch: navigateToSearch,
-        navigateToBlogs: navigateToBlogs,
-        navigateToNews: navigateToNews,
-        colorPoolRgba: colorPoolRgba,
-        getRandomColor: getRandomColor,
-    });
-})();
+
+        function navigateToHome() {
+            Data.activePage = "home"; WinJS.Navigation.navigate("/pages/home/home.html");
+        }
+
+        function navigateToNews() {
+            Data.activePage = "news"; WinJS.Navigation.navigate("/pages/news/news.html");
+        }
+
+        function navigateToLists() {
+            Data.activePage = "lists"; WinJS.Navigation.navigate("/pages/lists/libraryLists.html");
+        }
+
+        function navigateToMypage() {
+            Data.activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html");
+        }
+
+        function navigateToEvents() {
+            Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html");
+        }
+
+        function navigateToOpeningHours() {
+            Data.activePage = "openingHours"; WinJS.Navigation.navigate("/pages/openingHours/openingHours.html");
+        }
+
+        function navigateToContact() {
+            Data.activePage = "contact"; WinJS.Navigation.navigate("/pages/contact/contact.html");
+        }
+
+        function navigateToSearch() {
+            Windows.ApplicationModel.Search.SearchPane.getForCurrentView().show();
+        }
+        function navigateToBlogs() {
+            Data.activePage = "blogs"; WinJS.Navigation.navigate("/pages/blogs/main/blogs.html");
+        }
+
+        var loginThenNavigateTo = function (page) {
+
+
+            var loginDiv = document.getElementById("loginDiv");
+
+
+            WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
+
+                var loginAnchor = document.querySelector(".win-container:nth-child(1)");
+                LoginFlyout.showLogin(loginAnchor, page);
+
+            });
+
+        }
+
+        var itemByKey = function (key) {
+
+            for (var i = 0; i < menuItems.length; i++) {
+                if (key === menuItems[i].key)
+                    return menuItems[i];
+            }
+        }
+
+        WinJS.Namespace.define("Data", {
+            items: list,
+            itemByKey: itemByKey,
+            menuItems: menuItems,
+            serverBaseUrl: serverBaseUrl,
+            activePage: activePage,
+            navigateToHome: navigateToHome,
+            navigateToLists: navigateToLists,
+            navigateToMypage: navigateToMypage,
+            navigateToEvents: navigateToEvents,
+            navigateToOpeningHours: navigateToOpeningHours,
+            navigateToContact: navigateToContact,
+            navigateToSearch: navigateToSearch,
+            navigateToBlogs: navigateToBlogs,
+            navigateToNews: navigateToNews,
+            colorPoolRgba: colorPoolRgba,
+            getRandomColor: getRandomColor,
+        });
+    })();

@@ -34,7 +34,6 @@
             this.initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
             listView.element.focus();
             MyPage.getUserInformation(false);
-
         },
 
         // This function updates the page layout in response to viewState changes.
