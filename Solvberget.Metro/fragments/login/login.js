@@ -57,7 +57,7 @@
 
                 if (notifications) {
                     if (!Notifications.areNotificationsSeen()) {
-                        for (i = 0; i < notifications.length; i++) {
+                        for (var i = 0; i < notifications.length; i++) {
                             Toast.showToast(notifications[i].Title, notifications[i].Content);
                         }
                     }
