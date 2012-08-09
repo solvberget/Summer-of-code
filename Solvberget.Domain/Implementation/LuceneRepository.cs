@@ -1,10 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
+using System.Text;
+using System.Threading.Tasks;
+using Lucene.Net.Index;
 using Lucene.Net.Store;
 using Ninject;
 using Solvberget.Domain.Abstract;
+using Solvberget.Domain.DTO;
+using Solvberget.Domain.Utils;
 using SpellChecker.Net.Search.Spell;
 
 using Directory = System.IO.Directory;
@@ -13,40 +21,46 @@ namespace Solvberget.Domain.Implementation
 {
 
 
-    public class LuceneRepository : ISpellingDictionary
+    public class LuceneRepository : ISuggestionDictionary, IDisposable
     {
 
-        private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
-        private string[] StopWords { get; set; }
-
-
-        private readonly string _pathToDict;
-        private readonly string _pathToDictDir;
-        private readonly string _pathToStopwordsDict;
-        private readonly string _pathToSuggestionsDict;
-        private readonly string _pathToTestDict;
-
-        private string[] _suggestionList;
-
-        public LuceneRepository(string pathToDictionary = null, string pathToDictionaryDirectory = null, string pathToStopWordsDict = null, string pathToSuggestionListDict = null, string pathToTestDict = null)
+        ~LuceneRepository()
         {
-            _pathToStopwordsDict = string.IsNullOrEmpty(pathToStopWordsDict)
-                ? @"App_Data\ordlister\stopwords.txt" : pathToStopWordsDict;
+            
+        }
 
-            _pathToDict = string.IsNullOrEmpty(pathToDictionary)
-                ? @"App_Data\ordlister\ord_bm.txt" : pathToDictionary;
+        public void Dispose()
+        {
+            //Nothing to do
+        }
 
-            _pathToSuggestionsDict = string.IsNullOrEmpty(pathToSuggestionListDict)
-                ? @"App_Data\ordlister\ord_forslag.txt" : pathToSuggestionListDict;
+        private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
 
-            _pathToDictDir = string.IsNullOrEmpty(pathToDictionaryDirectory)
-                ? @"App_Data\ordlister_index" : pathToDictionaryDirectory;
+        private readonly string _pathToDictDir;
+   
+        private readonly string _pathToSuggestionsDict;
 
-            _pathToTestDict = string.IsNullOrEmpty(pathToTestDict)
-                ? @"App_Data\ordlister\ord_test.txt" : pathToTestDict;
+        private readonly IRepository _documentRepository;
 
-            InitializeSpellChecker();
+        public LuceneRepository(string indexPath = null, string suggestionPath = null, IRepository documentRepository = null)
+        {
 
+            _pathToSuggestionsDict = string.IsNullOrEmpty(suggestionPath)
+                ? @"App_Data\ordlister\ord_forslag.txt" : suggestionPath;
+
+            _pathToDictDir = string.IsNullOrEmpty(indexPath)
+                ? @"App_Data\ordlister_index" : indexPath;
+
+            _suggestionList = new HashMap();
+
+            _documentRepository = documentRepository;
+
+
+        }
+
+        public void SuggestionListBuildDictionary()
+        {
+            DictionaryBuilder.Build(_pathToSuggestionsDict, _pathToDictDir);
         }
 
         private void InitializeSpellChecker()
@@ -55,117 +69,128 @@ namespace Solvberget.Domain.Implementation
 
             var di = DictionaryBuilder.CreateTargetFolder(_pathToDictDir);
             SpellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(FSDirectory.Open(di));
-            _suggestionList = File.ReadAllLines(_pathToSuggestionsDict);
-            StopWords = File.ReadAllLines(_pathToStopwordsDict);
+            InitSuggestionListFromFile();
+        }
+
+
+        /**
+         * SUGGESTION LIST
+         **/
+
+        private readonly HashMap _suggestionList;
+
+        public void UpdateSuggestionListFromAlephSearch(string searchValue)
+        {
+
+            InitSuggestionListFromFile();
+            var documentList = _documentRepository.Search(searchValue);
+            if (documentList.Count > 1)
+            {
+                foreach (var document in documentList)
+                {
+
+                    if (document.Title != null)
+                    {
+                        _suggestionList.Add(document.Title);
+                    }
+
+
+                    if (document.SubTitle != null)
+                    {
+                        _suggestionList.Add(document.SubTitle);
+                    }
+
+                }
+
+
+            }
+            WriteSuggestionListToFile();
+  
+
+        }
+
+ 
+
+        private void WriteSuggestionListToFile()
+        {
+            try
+            {
+                File.WriteAllLines(_pathToSuggestionsDict, _suggestionList.Values.ToArray());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Kan ikke lagre suggestion: " + e.Message);
+            }
+
         }
 
 
 
+        private void InitSuggestionListFromFile()
+        {
+            var tempList = File.ReadAllLines(_pathToSuggestionsDict);
+
+            foreach (var word in tempList)
+            {
+                _suggestionList.Add(word);
+            }
+        }
 
 
         /** HELPERS **/
-
-        private void AddWordToSuggestionString(ref string suggestionString, string word)
-        {
-            suggestionString += word + " ";
-        }
-
-        private string WordSplitErrorMerger(string value)
-        {
-            var returnlist = new List<string>();
-            var words = value.Split();
-
-            if (words.Count() == 1) return value;
-
-            for (var i = 1; i < words.Count(); i++)
-            {
-                var prevWord = words.ElementAt(i - 1);
-                var currentWord = words.ElementAt(i);
-
-                if (StopWords.Contains(prevWord) || StopWords.Contains(currentWord))
-                {
-                    returnlist.Add(prevWord);
-                    if (i == words.Count() - 1)
-                    {
-                        returnlist.Add(currentWord);
-                    }
-                    continue;
-                }
-                var combinedWord = prevWord + currentWord;
-                if (SpellChecker.Exist(combinedWord.ToLower()))
-                {
-                    returnlist.Add(combinedWord);
-                    i++;
-                }
-                else
-                {
-                    returnlist.Add(prevWord);
-                    if (i == words.Count() - 1)
-                    {
-                        returnlist.Add(currentWord);
-                    }
-                }
-            }
-
-            return string.Join(" ", returnlist);
-
-        }
-
-
-
+        Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+        Encoding utf8 = Encoding.UTF8;
         public string Lookup(string value)
         {
             InitializeSpellChecker();
+            UpdateSuggestionListFromAlephSearch(value);
+
             // Escape harmful values in input string
             value = System.Security.SecurityElement.Escape(value);
 
             if (string.IsNullOrEmpty(value)) return string.Empty;
 
-            value = WordSplitErrorMerger(value);
+            var similarWords = SpellChecker.SuggestSimilar(value, 1);
+           
+            if (similarWords.Any())
+            {
+                var upperCaseFirst = UppercaseFirst(similarWords[0]);
+                var lowerCaseFirst =LowerCaseFirst(similarWords[0]);
+                if (value.Equals(lowerCaseFirst)||value.Equals(upperCaseFirst) || value.Equals(similarWords[0].ToLower()))
+                    return "";
+                return utf8.GetString(iso.GetBytes(similarWords[0]));
 
-            var suggestionString = string.Empty;
+            }
+            return "";
 
-            return GetSuggestionString(value, suggestionString).TrimEnd();
         }
 
-        private string GetSuggestionString(string value, string suggestionString)
+        static string UppercaseFirst(string s)
         {
-            foreach (var word in value.Split().Where(word => !string.IsNullOrEmpty(word)))
+            // Check for empty string.
+            if (string.IsNullOrEmpty(s))
             {
-                if (StopWords.Contains(word))
-                {
-                    AddWordToSuggestionString(ref suggestionString, word);
-                    continue;
-                }
-
-                // If the word exist in our dictionary, use it
-                if (SpellChecker.Exist(word.ToLower()))
-                {
-                    AddWordToSuggestionString(ref suggestionString, word);
-                    continue;
-                }
-
-                var similarWords = SpellChecker.SuggestSimilar(word, 5);
-
-                if (similarWords != null && similarWords.Length > 0)
-                {
-                    var suggestionWord = similarWords[0];
-
-                    // Preserver case, e.g Fotbal will convert to Fotball, not convert to fotball. 
-                    if (char.IsUpper(word[0]))
-                        suggestionWord = char.ToUpper(suggestionWord[0]) + suggestionWord.Substring(1);
-
-                    AddWordToSuggestionString(ref suggestionString, suggestionWord);
-                }
-                else
-                    AddWordToSuggestionString(ref suggestionString, word);
+                return string.Empty;
             }
-            return suggestionString;
+            // Return char and concat substring.
+            return char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        static string LowerCaseFirst(string s)
+        {
+            // Check for empty string.
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            // Return char and concat substring.
+            return char.ToLower(s[0]) + s.Substring(1);
         }
 
         public string[] SuggestionList()
         {
-            var suggestions = _suggestionList ?? File.ReadAllLines(_pathToSuggestionsDict);
+            InitSuggestionListFromFile();
+            var suggestions = _suggestionList.Values.ToArray();
             return suggestions;
         }
     }

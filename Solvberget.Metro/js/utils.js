@@ -252,6 +252,44 @@
 
         return libraryUserId != undefined ? libraryUserId : "";
     }
+
+    function getUserNotifications() {
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+
+        var notifications = new Array();
+
+        if (roamingSettings) {
+            notifications = roamingSettings.values["Notifications"];
+        }
+
+        if (notifications == undefined || notifications == "")
+            notifications = window.localStorage.getItem("Notifications");
+
+        return notifications != undefined ? notifications : "";
+    }
+
+    function setUserNotifications(notifications) {
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+
+        var notificationsAsString = "";
+
+        for (i = 0; i < notifications.length; i++ ){
+            notificationsAsString = notificationsAsString.concat(notifications[i].Title, ",", notifications[i].Content, ";");
+        }
+
+        window.localStorage.setItem("Notifications", notificationsAsString);
+
+        if (roamingSettings)
+            roamingSettings.values["Notifications"] = notificationsAsString;
+
+    }
+
     function updateAppBarButton() {
 
         if (document.getElementById("cmdLoginFlyout")) {
@@ -273,12 +311,14 @@
 
         window.localStorage.setItem("BorrowerId", "");
         window.localStorage.setItem("LibraryUserId", "");
+        window.localStorage.setItem("Notifications", "");
 
         var applicationData = Windows.Storage.ApplicationData.current;
         var roamingSettings = applicationData.roamingSettings;
 
         roamingSettings.values["BorrowerId"] = "";
         roamingSettings.values["LibraryUserId"] = "";
+        roamingSettings.values["Notifications"] = "";
 
         document.getElementById("logoutConfimationMsg").innerHTML = "Du blir nå logget ut";
 
@@ -291,6 +331,7 @@
             updateAppBarButton();
         }, 1200);
 
+        LiveTile.liveTile();
 
         setTimeout(function () {
             $("#logoutConfimationMsg").css("display", "none").css("visibility", "hidden");
@@ -306,12 +347,75 @@
         }, 1300);
 
     }
+    var interval;
+
+    function liveTile() {      
+
+        Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().clear();
+
+        Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().enableNotificationQueue(true);
+
+        var type = Windows.UI.Notifications.TileTemplateType.tileWideText09;
+
+        var tileXml = Windows.UI.Notifications.TileUpdateManager.getTemplateContent(type);
+
+        var notificationsAsString = Notifications.getUserNotifications();
+
+        var notifications = notificationsAsString.split(";");
+
+        
+
+        var liveTileInterval = function () {
+            title = notifications[number % (notifications.length - 1)].split(",")[0];
+            content = notifications[number % (notifications.length - 1)].split(",")[1];
+
+            tileNotification = new Windows.UI.Notifications.TileNotification(tileXml);
+
+            tileImageAttributes[0].innerText = title + number;
+            tileImageAttributes[1].innerText = content;
+
+            Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().update(tileNotification);
+
+            number++;
+        };
+
+        if (notifications[0] != "") {
+            var tileNotification = new Windows.UI.Notifications.TileNotification(tileXml);
+
+
+            var scheduledTileNotifications = new Array();
+
+            var title = "";
+            var content = "";
+
+            var number = 0;
+
+            var tileImageAttributes = tileXml.getElementsByTagName("text");
+
+
+            interval = setInterval(liveTileInterval, 4000);
+        }
+        else {
+            if(interval)
+                clearInterval(interval);
+            Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().clear();
+        }
+    };
 
     WinJS.Namespace.define("LoginFlyout", {
         getLoggedInBorrowerId: getLoggedInBorrowerId,
         getLoggedInLibraryUserId: getLoggedInLibraryUserId,
         updateAppBarButton: updateAppBarButton,
         logout: logout,
+    });
+
+    WinJS.Namespace.define("Notifications", {
+        getUserNotifications: getUserNotifications,
+        setUserNotifications: setUserNotifications,
+    });
+
+    WinJS.Namespace.define("LiveTile", {
+        liveTile: liveTile,
     });
 
 })();

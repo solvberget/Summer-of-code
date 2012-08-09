@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Arragement</title>
+    <link href="eventDetail.css" rel="stylesheet" />
+    <script src="eventDetail.js"></script>
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="event-detail-page fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle"></span>
+            </h1>
+        </header>
+        <div class="content" aria-label="Main content" role="main">
+            <article>
+
+                <header>
+                    <h2 class="event-title" data-win-bind="innerText: Name"></h2>
+
+                    <h4 class="event-time" data-win-bind="innerText: DateFormatted"></h4>
+                    <h4 class="event-time" data-win-bind="innerText: StartFormatted EventItemConverters.startConverter"></h4>
+                    <h4 class="event-time" data-win-bind="innerText: StopFormatted EventItemConverters.stopConverter"></h4>
+
+                    <h3 class="event-location" data-win-bind="innerText: Location"></h3>
+
+                </header>
+
+                <div class="event-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                    <img class="event-image" src="#" data-win-bind="src: PictureUrl; alt: Title" />
+                </div>
+
+                <div class="event-content-holder">
+                    <div class="event-content" data-win-bind="innerHTML: Description"></div>
+                    <div class="event-content" data-win-bind="innerHTML: TypeName EventItemConverters.typeConverter"></div>
+                    <a class="event-content" href="#" data-win-bind="href: Link">Link til arrangement</a>
+                    <br />
+                    <br />
+                </div>
+
+            </article>
+        </div>
+    </div>
+</body>
+</html>
