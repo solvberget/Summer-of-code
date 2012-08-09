@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Arrangementer</title>
+
+    <link href="eventGroupDetail.css" rel="stylesheet" />
+    <script src="eventGroupDetail.js"></script>
+</head>
+<body>
+
+    <div class="event-templates">
+        <!-- ITEM TEMPLATE -->
+        <div class="event-item-template" data-win-control="WinJS.Binding.Template">
+            <div class="item-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                <img class="item-image" src="#" data-win-bind="src: PictureUrl; alt: Name" />
+            </div>
+
+            <div class="item-info">
+                <h4 class="item-title" data-win-bind="textContent: Name"></h4>
+                <h6 class="item-location win-type-ellipsis" data-win-bind="textContent: Location"></h6>
+                <h6 class="item-time win-type-ellipsis" data-win-bind="textContent: DateAndTime"></h6>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- The content that will be loaded and displayed. -->
+    <div class="groupdetailpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle"></span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+            <div class="eventItemsListView" aria-label="List of this group's items" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+        </section>
+    </div>
+</body>
+</html>

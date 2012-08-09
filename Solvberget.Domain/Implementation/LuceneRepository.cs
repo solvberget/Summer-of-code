@@ -26,7 +26,7 @@ namespace Solvberget.Domain.Implementation
 
         ~LuceneRepository()
         {
-            
+
         }
 
         public void Dispose()
@@ -37,7 +37,7 @@ namespace Solvberget.Domain.Implementation
         private SpellChecker.Net.Search.Spell.SpellChecker SpellChecker { get; set; }
 
         private readonly string _pathToDictDir;
-   
+
         private readonly string _pathToSuggestionsDict;
 
         private readonly IRepository _documentRepository;
@@ -105,11 +105,11 @@ namespace Solvberget.Domain.Implementation
 
             }
             WriteSuggestionListToFile();
-  
+
 
         }
 
- 
+
 
         private void WriteSuggestionListToFile()
         {
@@ -128,11 +128,18 @@ namespace Solvberget.Domain.Implementation
 
         private void InitSuggestionListFromFile()
         {
-            var tempList = File.ReadAllLines(_pathToSuggestionsDict);
-
-            foreach (var word in tempList)
+            if (!File.Exists(_pathToSuggestionsDict))
+                File.Create(_pathToSuggestionsDict);
+            else
             {
-                _suggestionList.Add(word);
+
+                var tempList = File.ReadAllLines(_pathToSuggestionsDict);
+
+                foreach (var word in tempList)
+                {
+                    _suggestionList.Add(word);
+                }
+
             }
         }
 
@@ -151,12 +158,12 @@ namespace Solvberget.Domain.Implementation
             if (string.IsNullOrEmpty(value)) return string.Empty;
 
             var similarWords = SpellChecker.SuggestSimilar(value, 1);
-           
+
             if (similarWords.Any())
             {
                 var upperCaseFirst = UppercaseFirst(similarWords[0]);
-                var lowerCaseFirst =LowerCaseFirst(similarWords[0]);
-                if (value.Equals(lowerCaseFirst)||value.Equals(upperCaseFirst) || value.Equals(similarWords[0].ToLower()))
+                var lowerCaseFirst = LowerCaseFirst(similarWords[0]);
+                if (value.Equals(lowerCaseFirst) || value.Equals(upperCaseFirst) || value.Equals(similarWords[0].ToLower()))
                     return "";
                 return utf8.GetString(iso.GetBytes(similarWords[0]));
 

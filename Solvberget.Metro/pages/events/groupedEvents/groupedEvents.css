@@ -1,0 +1,177 @@
+﻿.event-templates {
+    display: none;
+}
+
+/* This selector is used to prevent ui-dark/light.css from overwriting changes
+   to .win-surface. */
+.eventspage .eventItemsListView .win-horizontal.win-viewport .win-surface {
+    margin-left: 45px;
+    margin-bottom: 60px;
+}
+
+.eventspage .eventItemsListView.win-listview {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+.eventspage .eventItemsListView .win-groupheader {
+    margin-top: 5px;
+    margin-left: 70px;
+    padding: 0;
+}
+
+    .eventspage .eventItemsListView .win-groupheader .group-title {
+        margin-bottom: 10px;
+        margin-left: 5px;
+        margin-top: 0;
+    }
+
+.eventspage .eventItemsListView .win-item {
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 1fr 90px;
+    display: -ms-grid;
+    height: 250px;
+    width: 250px;
+}
+
+    .eventspage .eventItemsListView .win-item .item-image-container {
+        -ms-grid-row: 1;
+        text-align: center;
+        margin-top: 0px;
+    }
+
+        .eventspage .eventItemsListView .win-item .item-image-container .item-image {
+            max-height: 160px;
+        }
+
+    .eventspage .eventItemsListView .win-item .item-overlay {
+        -ms-grid-row: 2;
+        -ms-grid-rows: 1fr 21px 21px;
+        display: -ms-grid;
+        padding: 6px 15px 2px 15px;
+    }
+
+        .eventspage .eventItemsListView .win-item .item-overlay .item-title {
+            -ms-grid-row: 1;
+            overflow: hidden;
+            width: 220px;
+        }
+
+        .eventspage .eventItemsListView .win-item .item-overlay .item-location {
+            -ms-grid-row: 2;
+            width: 220px;
+        }
+
+        .eventspage .eventItemsListView .win-item .item-overlay .item-time {
+            -ms-grid-row: 3;
+            width: 220px;
+        }
+
+    .eventspage .eventItemsListView .win-item .group-title {
+        font-size: 18pt;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+@media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
+    .eventspage .eventItemsListView .win-item .item-overlay {
+        background: rgba(0,0,0,0.65);
+    }
+
+        .eventspage .eventItemsListView .win-item .item-overlay .item-title {
+            color: rgba(255,255,255,0.87);
+        }
+
+        .eventspage .eventItemsListView .win-item .item-overlay .item-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+}
+
+@media screen and (-ms-view-state: snapped) {
+
+    .eventspage .eventItemsListView .win-vertical.win-viewport .win-surface {
+        margin-bottom: 30px;
+        margin-left: 6px;
+    }
+
+    .eventspage .eventItemsListView .win-vertical.win-viewport .win-container {
+        margin-right: 42px;
+        margin-bottom: 15px;
+        padding: 7px;
+    }
+
+    .eventspage .eventItemsListView .win-item {
+        -ms-grid-columns: 60px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+        height: 90px;
+        width: 272px;
+    }
+
+        .eventspage .eventItemsListView .win-item .item-image-container {
+            -ms-grid-column: 1;
+            -ms-grid-row-span: 1;
+            margin-top: 3px;
+            padding: 5px;
+            text-align: inherit;
+        }
+
+            .eventspage .eventItemsListView .win-item .item-image-container .item-image {
+                height: 60px;
+                width: 60px;
+            }
+
+        .eventspage .eventItemsListView .win-item .item-overlay {
+            -ms-grid-column: 2;
+            -ms-grid-row: 1;
+            -ms-grid-row-align: stretch;
+            background: transparent;
+            display: inline-block;
+            margin-left: 10px;
+            padding: 0;
+        }
+
+            .eventspage .eventItemsListView .win-item .item-overlay .item-title {
+                margin-top: 4px;
+                max-height: 40px;
+                width: 202px;
+            }
+
+            .eventspage .eventItemsListView .win-item .item-overlay .item-subtitle {
+                opacity: 0.6;
+                width: 202px;
+            }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .eventspage .eventItemsListView .win-horizontal.win-viewport .win-surface {
+        margin-left: 25px;
+    }
+}
+
+/* PROGRESS RING */
+#eventItemsLoading {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 250px;
+}
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+}
+
+progress.withText {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+progress.header {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+}

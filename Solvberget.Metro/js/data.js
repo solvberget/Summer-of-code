@@ -13,7 +13,7 @@
 
     var serverBaseUrl = "http://localhost:7089";
 
-    var colorPoolRgba = ["rgba(255, 153, 0, 0.6)", "rgba(204, 51, 0, 0.6)", "rgba(136, 187, 0, 0.6)", "rgba(0, 85, 34, 0.6)", "rgba(0, 153, 204, 0.6)", "rgba(0, 51, 102, 0.6)", "rgba(102, 0, 102, 0.6)", "rgba(51, 0, 51, 0.6)"];
+    var colorPoolRgba = ["rgba(255, 153, 0, ", "rgba(204, 51, 0, ", "rgba(136, 187, 0, ", "rgba(0, 85, 34, ", "rgba(0, 153, 204, ", "rgba(0, 51, 102, ", "rgba(102, 0, 102, ", "rgba(51, 0, 51, "];
 
     var menuItems = [
         { key: "news", title: "Nyheter", subtitle: "Nyheter fra Sølvberget", backgroundImage: news, navigateTo: navigateToNews },
@@ -23,23 +23,76 @@
         { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, navigateTo: navigateToLists },
         { key: "contact", title: "Kontakt oss", subtitle: "Kontaktinformasjon", backgroundImage: contact, navigateTo: navigateToContact },
         { key: "blogs", title: "Blogger", subtitle: "Utvalgte blogger", backgroundImage: blogs, navigateTo: navigateToBlogs },
-        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: navigateToSearch },
+        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: searchHandler },
     ];
+
+    function searchHandler() {
+
+        var currentViewState = Windows.UI.ViewManagement.ApplicationView.value;
+        if (currentViewState === 2) {
+
+            // Create the message dialog and set its content
+            var snapDialog = new Windows.UI.Popups.MessageDialog(
+                "Det er ikke mulig å søke i snapview\n\n" +
+                    "Dra vinduet ut i vanlig visning for å søke", "Ooops!");
+
+            snapDialog.commands.append(
+                new Windows.UI.Popups.UICommand("Lukk", function () { }, 1));
+
+            // Set the command that will be invoked by default
+            snapDialog.defaultCommandIndex = 1;
+
+            // Set the command to be invoked when escape is pressed
+            snapDialog.cancelCommandIndex = 1;
+
+            try {
+
+                // Show the message dialog
+                snapDialog.showAsync();
+
+            } catch (exception) {
+                // No access exception
+                console.log(new Date().toString() + ": No access exception(cant display dialog)");
+            }
+        }
+
+        else {
+            navigateToSearch();
+        }
+    };
+
+
+    function getColorFromPool(index, alpha) {
+        if (index >= 0 && index < colorPoolRgba.length) {
+            var color = colorPoolRgba[index];
+            if (alpha) 
+                color = color + alpha + ")";        
+            else 
+              color = color + "0.6)";
+            return color;
+
+        }
+        else {
+            return colorPoolRgba[0] + "0.6)";
+        }
+    };
 
     function getRandomColor(alpha) {
 
         var random = Math.random() * colorPoolRgba.length;
         random = Math.floor(random);
         var color = colorPoolRgba[random];
-        if (alpha) {
-            color = color.substr(0, color.length - 4);
+        if (alpha)
             color = color + alpha + ")";
-        }
+        else
+            color = color + "0.6)";
         return color;
+
     };
 
+
     var list = new WinJS.Binding.List(menuItems);
-    
+
     function getActivePage() {
         return WinJS.Navigation.location;
     }
@@ -62,7 +115,7 @@
     }
 
     function navigateToEvents() {
-        Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/events.html");
+        Data.activePage = "events"; WinJS.Navigation.navigate("/pages/events/groupedEvents/groupedEvents.html");
     }
 
     function navigateToOpeningHours() {
@@ -93,7 +146,7 @@
 
         });
 
-    }
+    };
 
     var itemByKey = function (key) {
 
@@ -101,7 +154,7 @@
             if (key === menuItems[i].key)
                 return menuItems[i];
         }
-    }
+    };
 
     WinJS.Namespace.define("Data", {
         items: list,
@@ -120,5 +173,6 @@
         navigateToNews: navigateToNews,
         colorPoolRgba: colorPoolRgba,
         getRandomColor: getRandomColor,
+        getColorFromPool: getColorFromPool
     });
 })();

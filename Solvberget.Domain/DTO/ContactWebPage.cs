@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using HtmlAgilityPack;
 
@@ -28,6 +29,8 @@ namespace Solvberget.Domain.DTO
             var pList = GetValue(node, "p");
             var ullist = GetValue(node, "ul");
             var iteratorList = ullist;
+            var email = "";
+            var emailString = "";
             
             //This is to sort the current HTML
             if (h3List.Count < ullist.Count)
@@ -43,7 +46,20 @@ namespace Solvberget.Domain.DTO
 
             for (var i = 0; i < iteratorList.Count; i++)
             {
-                var contactInformation = new ContactInformation {InformationTitle = h3List[i], InformationValue = ullist[i]};
+                //Remove multipe whitespaces
+                var options = RegexOptions.None;
+                var emailRegex = new Regex(@"([.a-z0-9-]+)*@(stavanger-kulturhus.no)", options);
+                email = emailRegex.Match(iteratorList[i]).Value;
+
+                var emailStringRegex = new Regex(@"(E-postadresse)", options);
+                ullist[i] = emailStringRegex.Replace(iteratorList[i], "E-post");
+
+                var contactInformation = new ContactInformation
+                                             {
+                                                 InformationTitle = h3List[i], 
+                                                 InformationValue = ullist[i],
+                                                 Email = email
+                                             };
                 //contactInformation.FillProperties();
                 ContactInformationList.Add(contactInformation);
             }
