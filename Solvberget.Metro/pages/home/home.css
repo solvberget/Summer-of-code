@@ -1,6 +1,8 @@
 ﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
    to .win-surface. */
-
+.templates {
+    display: none;
+}
 .itemspage {
     display: -ms-grid;
     -ms-grid-rows: 1fr 540px 1fr;
