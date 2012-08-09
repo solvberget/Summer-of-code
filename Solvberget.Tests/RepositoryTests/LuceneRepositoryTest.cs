@@ -151,7 +151,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [Test]
         public void TestSuggestionList()
         {
-            Assert.Contains("harry potter", _repository.SuggestionList());
+            Assert.Contains("Harry Potter", _repository.SuggestionList());
             Assert.Contains("villanden", _repository.SuggestionList());
         }
 
