@@ -371,7 +371,7 @@
 
             tileNotification = new Windows.UI.Notifications.TileNotification(tileXml);
 
-            tileImageAttributes[0].innerText = title + number;
+            tileImageAttributes[0].innerText = title;
             tileImageAttributes[1].innerText = content;
 
             Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().update(tileNotification);
@@ -393,7 +393,7 @@
             var tileImageAttributes = tileXml.getElementsByTagName("text");
 
 
-            interval = setInterval(liveTileInterval, 4000);
+            interval = setInterval(liveTileInterval, 5000);
         }
         else {
             if(interval)

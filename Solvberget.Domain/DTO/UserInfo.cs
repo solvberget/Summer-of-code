@@ -439,18 +439,6 @@ namespace Solvberget.Domain.DTO
                 }
             }
 
-            // Dummydata for testing push notifications to tile and toast
-            for (int i = 0; i < 5; i++)
-            {
-                notifications.Add(new Notification
-                {
-                    Type = "Fine",
-                    Title = "Tittel " + i,
-                    Content = "Noe har forfalt. Ved å fornye eller levere tilbake innen forfallsdato unngår du gebyr."
-                });
-            }
-            // Dummydata
-
             return notifications;
         }
 
