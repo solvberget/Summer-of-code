@@ -83,7 +83,7 @@
             return itemPromise.then(function (item) {
                 var eventItemTemplate = document.getElementById("event-item-template");
                 var container = document.createElement("div");
-                container.style.backgroundColor = window.Data.getColorFromPool(item.groupKey % window.Data.colorPoolRgba.length, 0.2);
+                container.style.backgroundColor = window.Data.getColorFromPool(item.groupKey % window.Data.colorPoolRgba.length, 0.45);
                 if (eventItemTemplate)
                     eventItemTemplate.winControl.render(item.data, container);
                 return container;
@@ -95,7 +95,8 @@
                 var groupItemTemplate = document.getElementById("group-item-template");
                 var container = document.createElement("div");
                 container.style.backgroundColor = window.Data.getColorFromPool(item.key % window.Data.colorPoolRgba.length, 0.6);
-                groupItemTemplate.winControl.render(item.data, container);
+                if (groupItemTemplate)
+                    groupItemTemplate.winControl.render(item.data, container);
                 return container;
             });
         },

@@ -15,6 +15,7 @@
             } else {
                 listView.layout = new ui.GridLayout();
             }
+            listView.forceLayout();
         },
 
         itemInvoked: function (args) {
