@@ -35,17 +35,17 @@
             }
         },
 
-        initializeLayout: function (listView, viewState) {
+        initializeLayout: function (listViewWinControl, viewState) {
             if (viewState === appViewState.snapped) {
-                listView.itemTemplate = this.groupTemplateFunction;
-                listView.itemDataSource = EventData.groups.dataSource;
-                listView.groupDataSource = null;
-                listView.layout = new ui.ListLayout();
+                listViewWinControl.itemTemplate = this.groupTemplateFunction;
+                listViewWinControl.itemDataSource = EventData.groups.dataSource;
+                listViewWinControl.groupDataSource = null;
+                listViewWinControl.layout = new ui.ListLayout();
             } else {
-                listView.itemTemplate = this.eventTemplateFunction;
-                listView.itemDataSource = EventData.items.dataSource;
-                listView.groupDataSource = EventData.groups.dataSource;
-                listView.layout = new ui.GridLayout({ groupHeaderPosition: "top" });
+                listViewWinControl.itemTemplate = this.eventTemplateFunction;
+                listViewWinControl.itemDataSource = EventData.items.dataSource;
+                listViewWinControl.groupDataSource = EventData.groups.dataSource;
+                listViewWinControl.layout = new ui.GridLayout({ groupHeaderPosition: "top" });
             }
         },
 
@@ -69,10 +69,10 @@
                     if (lastViewState !== viewState) {
                         if (lastViewState === appViewState.snapped || viewState === appViewState.snapped) {
                             var handler = function (e) {
-                                listView.removeEventListener("contentanimating", handler, false);
+                                listViewWinControl.removeEventListener("contentanimating", handler, false);
                                 e.preventDefault();
                             };
-                            listView.addEventListener("contentanimating", handler, false);
+                            listViewWinControl.addEventListener("contentanimating", handler, false);
                             this.initializeLayout(listViewWinControl, viewState, element);
                         }
                     }

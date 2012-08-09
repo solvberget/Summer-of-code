@@ -165,7 +165,7 @@ namespace Solvberget.Domain.Implementation
                 var lowerCaseFirst = LowerCaseFirst(similarWords[0]);
                 if (value.Equals(lowerCaseFirst) || value.Equals(upperCaseFirst) || value.Equals(similarWords[0].ToLower()))
                     return "";
-                return utf8.GetString(iso.GetBytes(similarWords[0]));
+                return similarWords[0];
 
             }
             return "";
