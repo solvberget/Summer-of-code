@@ -38,7 +38,7 @@ var ajaxGetContantInformationCallback = function (request, context) {
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     if (response != undefined && response !== "") {
-        populateContact(response);
+        populateContact(response, context);
     }
 
     // Hide progress-ring, show content
@@ -48,9 +48,9 @@ var ajaxGetContantInformationCallback = function (request, context) {
 };
 
 
-var populateContact = function (response) {
+var populateContact = function (response, context) {
 
-    var contactTemplateDiv = document.getElementById("contactInformationTemplate");
+    var contactTemplateDiv = document.getElementById("contactTemplate");
     var contactTemplateHolder = document.getElementById("contactInformationTemplateHolder");
 
     var contactTemplate = undefined;
@@ -65,7 +65,9 @@ var populateContact = function (response) {
             model = response[i];
 
             if (contactTemplate && contactTemplateHolder && model)
-                contactTemplate.render(model, contactTemplateHolder);
+                contactTemplate.render(model, contactTemplateHolder).done($.proxy(function () {
+                    $(".contactTile:last").css("background-color", Data.getRandomColor());
+                }, context));
 
         }
     }
