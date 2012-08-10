@@ -46,7 +46,7 @@ namespace Solvberget.Domain.DTO
             if (xElement == null) return;
             var element = xElement.FirstAttribute;
             gjennomsnittelig_terningkast = GetXmlValue(xElement, GetPropertyName(() => gjennomsnittelig_terningkast));
-         
+     
 
             antall_sitater = GetXmlValue(xElement, GetPropertyName(() => antall_sitater));
             favorittprosent = GetXmlValue(xElement, GetPropertyName(() => favorittprosent));
