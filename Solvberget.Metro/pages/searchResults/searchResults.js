@@ -126,37 +126,46 @@
 
         var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
-        var originalResults = new WinJS.Binding.List();
+        if (response.length === 0) {
+            $("#search-loading-wheel").hide();
+            $(".filterarea").hide();
+            $(".resultslist").hide();
+            $("#no-results").fadeIn("slow");
+        }
 
-        for (x in response) {
+        else {
+            var originalResults = new WinJS.Binding.List();
 
-            if (response[x].ThumbnailUrl !== "") {
-                response[x].BackgroundImage = response[x].ThumbnailUrl;
-            }
-            else {
-                if (response[x].DocType == "Film" && response[x].TypeOfMedia == "Blu-ray") {
-                    response[x].BackgroundImage = "images/placeholders/Blu-ray.png";
-                }
-                else if (response[x].DocType == "Film" && response[x].TypeOfMedia == "3D") {
-                    response[x].BackgroundImage = "images/placeholders/3D.png";
+            for (x in response) {
+
+                if (response[x].ThumbnailUrl !== "") {
+                    response[x].BackgroundImage = response[x].ThumbnailUrl;
                 }
                 else {
-                    response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                    if (response[x].DocType == "Film" && response[x].TypeOfMedia == "Blu-ray") {
+                        response[x].BackgroundImage = "images/placeholders/Blu-ray.png";
+                    }
+                    else if (response[x].DocType == "Film" && response[x].TypeOfMedia == "3D") {
+                        response[x].BackgroundImage = "images/placeholders/3D.png";
+                    }
+                    else {
+                        response[x].BackgroundImage = "images/placeholders/" + response[x].DocType + ".png";
+                    }
                 }
+
+                originalResults.push(response[x]);
             }
 
-            originalResults.push(response[x]);
+            context.populateFilterBar(context.element, originalResults);
+            context.applyFilter(context.filters[0], originalResults);
+            $(".filterarea-hr").show();
+            loadingWheel.stop();
+
+            for (var x in response) {
+                if (!response[x].ThumbnailUrl || response[x].ThumbnailUrl == "")
+                    self.getAndSetThumbImage(originalResults.getItem(x), x);
+            }
         }
-
-        context.populateFilterBar(context.element, originalResults);
-        context.applyFilter(context.filters[0], originalResults);
-        loadingWheel.stop();
-
-        for (var x in response) {
-            if (!response[x].ThumbnailUrl || response[x].ThumbnailUrl == "")
-                self.getAndSetThumbImage(originalResults.getItem(x), x);
-        }
-
 
     };
 
@@ -233,27 +242,28 @@
             * is an empty string, but you can also design an app page specifically for this purpose.
             **/
 
-            if(args.queryText === "") {
-                Data.navigateToHome();
+            if (args.queryText === "") {
+                $("#search-loading-wheel").hide();
+                $("#no-results").fadeIn("slow");
             }
+            else {
+                WinJS.Namespace.define("searchResults", { markText: this.markText.bind(this) });
+                utils.markSupportedForProcessing(searchResults.markText);
+                this.initializeLayout(element.querySelector(".resultslist").winControl, Windows.UI.ViewManagement.ApplicationView.value);
+                this.generateFilters();
 
-            WinJS.Namespace.define("searchResults", { markText: this.markText.bind(this) });
-            utils.markSupportedForProcessing(searchResults.markText);
-            this.initializeLayout(element.querySelector(".resultslist").winControl, Windows.UI.ViewManagement.ApplicationView.value);
-            this.generateFilters();
+                // Hide search pane ** Not implemented by Microsoft yet **
+                //var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
+                //searchPane.hide(); ** Not implemented by Microsoft yet **
 
-            // Hide search pane ** Not implemented by Microsoft yet **
-            //var searchPane = Windows.ApplicationModel.Search.SearchPane.getForCurrentView();
-            //searchPane.hide(); ** Not implemented by Microsoft yet **
+                // Show loadingWheel
+                loadingWheel.spin();
 
-            // Show loadingWheel
-            loadingWheel.spin();
+                suggestionMethods.updateSuggestions(args.queryText);
 
-            suggestionMethods.updateSuggestions(args.queryText);
-
-            // Perform the search
-            ajaxSearchDocuments(args.queryText, this);
-
+                // Perform the search
+                ajaxSearchDocuments(args.queryText, this);
+            }
 
         },
         getAndSetThumbImage: function (item, index) {
@@ -304,6 +314,7 @@
 
         // This function generates the filter selection list.
         populateFilterBar: function (element, originalResults) {
+
             var filterBar = element.querySelector(".filterbar");
             if (element.querySelector(".resultslist") != undefined) {
                 var listView = element.querySelector(".resultslist").winControl;
@@ -312,7 +323,10 @@
 
                 filterBar.innerHTML = "";
                 for (filterIndex = 0; filterIndex < this.filters.length; filterIndex++) {
+
                     this.applyFilter(this.filters[filterIndex], originalResults);
+
+                    //if (this.filters[filterIndex].results.length === 0) continue;
 
                     li = document.createElement("li");
                     li.filterIndex = filterIndex;
@@ -324,6 +338,10 @@
                             this.filterChanged(element, args.target.filterIndex);
                     }.bind(this);
                     filterBar.appendChild(li);
+
+                    if (this.filters[filterIndex].results.length === 0) {
+                        utils.addClass(li, "hide-li");
+                    }
 
                     if (filterIndex === 0) {
                         utils.addClass(li, "highlight");
