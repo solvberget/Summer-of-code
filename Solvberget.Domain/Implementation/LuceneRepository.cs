@@ -38,7 +38,9 @@ namespace Solvberget.Domain.Implementation
 
             _pathToSuggestionsDict = string.IsNullOrEmpty(suggestionPath)
                 ? @"App_Data\ordlister\ord_forslag.txt" : suggestionPath;
-
+            
+            if (!File.Exists(_pathToSuggestionsDict)) File.Create(_pathToSuggestionsDict); 
+            
             _pathToDictDir = string.IsNullOrEmpty(indexPath)
                 ? @"App_Data\ordlister_index" : indexPath;
 
