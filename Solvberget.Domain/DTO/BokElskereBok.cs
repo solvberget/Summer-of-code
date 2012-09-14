@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -46,18 +47,22 @@ namespace Solvberget.Domain.DTO
             if (xElement == null) return;
             var element = xElement.FirstAttribute;
             gjennomsnittelig_terningkast = GetXmlValue(xElement, GetPropertyName(() => gjennomsnittelig_terningkast));
-     
-
-            antall_sitater = GetXmlValue(xElement, GetPropertyName(() => antall_sitater));
-            favorittprosent = GetXmlValue(xElement, GetPropertyName(() => favorittprosent));
-            antall_favoritt = GetXmlValue(xElement, GetPropertyName(() => antall_favoritt));
-            link = GetXmlValue(xElement, GetPropertyName(() => link));
-            antall_diskusjoner = GetXmlValue(xElement, GetPropertyName(() => antall_diskusjoner));
-            antall_eiere = GetXmlValue(xElement, GetPropertyName(() => antall_eiere));
-            antall_lesere = GetXmlValue(xElement, GetPropertyName(() => antall_lesere));
-            antall_lister = GetXmlValue(xElement, GetPropertyName(() => antall_lister));
-            antall_terningkast = GetXmlValue(xElement, GetPropertyName(() => antall_terningkast));
-
+            decimal terningkast;
+            if (Decimal.TryParse(gjennomsnittelig_terningkast, NumberStyles.Any, CultureInfo.InvariantCulture, out terningkast))
+            {
+                var gjennomsnittelig_terningkast_decimal = Math.Round(terningkast, 1);
+                gjennomsnittelig_terningkast = gjennomsnittelig_terningkast_decimal.ToString();
+            }
+            
+            //antall_sitater = GetXmlValue(xElement, GetPropertyName(() => antall_sitater));
+            //favorittprosent = GetXmlValue(xElement, GetPropertyName(() => favorittprosent));
+            //antall_favoritt = GetXmlValue(xElement, GetPropertyName(() => antall_favoritt));
+            //link = GetXmlValue(xElement, GetPropertyName(() => link));
+            //antall_diskusjoner = GetXmlValue(xElement, GetPropertyName(() => antall_diskusjoner));
+            //antall_eiere = GetXmlValue(xElement, GetPropertyName(() => antall_eiere));
+            //antall_lesere = GetXmlValue(xElement, GetPropertyName(() => antall_lesere));
+            //antall_lister = GetXmlValue(xElement, GetPropertyName(() => antall_lister));
+            //antall_terningkast = GetXmlValue(xElement, GetPropertyName(() => antall_terningkast));
 
         }
 

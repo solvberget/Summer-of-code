@@ -8,9 +8,9 @@
     <title>Search Contract</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
-    <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>
-    <script src="//Microsoft.WinJS.1.0.RC/js/ui.js"></script>
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/css/searchResults.css" rel="stylesheet" />
@@ -53,14 +53,23 @@
         </header>
 
         <section aria-label="Main content" id="searchResultSection" role="main">
+            
             <div class="filterarea">
+                <hr class="filterarea-hr" />
                 <ul class="filterbar"></ul>
                 <select class="filterselect"></select>
                 <a href="#" id="hrefDidYouMean"><span data-win-bind="innerText: didYouMean;" id="spanDidYouMean"></span></a>
+                <hr class="filterarea-hr" />
             </div>
+            
             <div id="search-loading-wheel">
                 <progress class="win-ring withText"></progress>
             </div>
+            
+            <div id="no-results">
+                <h2>Ditt søk ga ingen treff...</h2>
+            </div>
+            
             <div class="resultslist" aria-label="Search results" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }">
             </div>
 

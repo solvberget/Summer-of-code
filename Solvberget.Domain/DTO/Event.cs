@@ -11,6 +11,7 @@ namespace Solvberget.Domain.DTO
     public class Event
     {
         private static readonly CultureInfo NbNoCultureInfo = new CultureInfo("nb-NO");
+        private static readonly string SingleEventAsICalBase = "http://www.linticket.no/iCal/Sølvberget/index.php3?Arr=";
 
         public string Id { get; set; }
         public string Name { get; set; }
@@ -77,6 +78,13 @@ namespace Solvberget.Domain.DTO
         public string Latitude { get; set; }
         public string TypeName { get; set; }
         public string TicketPrice { get; set; }
+        public string ICalLink
+        {
+            get
+            {
+                return SingleEventAsICalBase + Id;
+            }
+        }
 
         private static string TrimTime(string time)
         {

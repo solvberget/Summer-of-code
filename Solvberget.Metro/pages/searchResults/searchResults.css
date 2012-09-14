@@ -6,7 +6,6 @@
 }
 
 /* Progress ring*/
-
 #search-loading-wheel {
     text-align: center;
     margin-top: 250px;
@@ -18,8 +17,12 @@ progress.withText {
     height: 100px;
 }
 
-/*Progress ring*/
-
+/* No results */
+#no-results {
+    text-align: center;
+    margin-top: 250px;
+    display: none;
+}
 
 .titlecontainer {
     border: none;
@@ -28,6 +31,10 @@ progress.withText {
 .searchResults section[role=main] .filterarea {
     -ms-grid-row: 1;
 }
+    .searchResults section[role=main] .filterarea .filterarea-hr {
+        /*margin-left: 80px;*/
+        display: none;
+    }
 
     .searchResults section[role=main] .filterarea .filterbar {
         height: auto;
@@ -47,11 +54,16 @@ progress.withText {
         }
 
             .searchResults section[role=main] .filterarea .filterbar li:active {
-                color: rgba(90, 183, 227, 1);
+                /* Default: color: rgba(90, 183, 227, 1); */
+                color: rgba(204, 51, 0, 1);
             }
 
             .searchResults section[role=main] .filterarea .filterbar li.highlight, .searchResults section[role=main] .filterarea .filterbar li:hover {
                 opacity: 1.00;
+            }
+
+            .searchResults section[role=main] .filterarea .filterbar li.hide-li {
+                display: none;
             }
 
 .searchResults section[role=main] .resultslist .win-horizontal.win-viewport .win-surface {
@@ -63,6 +75,7 @@ progress.withText {
     -ms-grid-row: 3;
     height: 100%;
     margin-bottom: 36px;
+    margin-top: 20px;
     position: relative;
     width: 100%;
     z-index: 0;
@@ -146,6 +159,10 @@ progress.withText {
         -ms-grid-rows: 40px 21px 1fr;
         display: -ms-grid;
     }
+
+        .searchResults section[role=main] .resultslist {
+            margin-top: 20px;
+        }
 
         /* Hide the horizontal list of filters in snapped mode. */
         .searchResults section[role=main] .filterarea .filterbar {

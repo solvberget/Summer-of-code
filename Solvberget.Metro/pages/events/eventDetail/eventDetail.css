@@ -19,7 +19,7 @@
         width: calc(100% - 120px);
         display: -ms-grid;
         -ms-grid-columns: 450px 1fr;
-        -ms-grid-rows: 155px 1fr;
+        -ms-grid-rows: 180px 1fr;
     }
 
         .event-detail-page .content article header {
@@ -54,7 +54,7 @@
         }
 
             .event-detail-page .content article .event-content-holder .event-content {
-                margin-bottom: 5px;
+                margin-bottom: 10px;
                 margin-right: 20px;
             }
 
