@@ -7,17 +7,17 @@
     ui.Pages.define("/pages/documentDetail/documentDetail.html", {
 
         ready: function (element, options) {
-
             documentModel = options.documentModel;
             getDocument(documentModel.DocumentNumber);
-
             this.registerForShare();
             document.getElementById("sendHoldRequestButton").addEventListener("click", registerHoldRequest);
+            document.getElementById("addToFavoritesButton").addEventListener("click", addToFavorites);
         },
 
         unload: function () {
             Solvberget.Queue.CancelQueue('documentdetails');
         },
+
         registerForShare: function () {
 
             // Register/listen to share requests
@@ -30,6 +30,7 @@
             });
 
         },
+
         shareHtmlHandler: function (e) {
 
             var request = e.request;
@@ -39,7 +40,7 @@
 
             if (documentTitle !== "") {
                 var replaceAll = function (txt, replace, with_this) {
-                    return txt.replace(new RegExp(replace, 'g'),with_this);
+                    return txt.replace(new RegExp(replace, 'g'), with_this);
                 }
                 var range = document.createRange();
                 range.selectNode(document.getElementById("documentShareContent"));
@@ -54,10 +55,10 @@
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
 
-                        if (path.indexOf("/images/placeholders") >=0){
+                        if (path.indexOf("/images/placeholders") >= 0) {
                             var path = "";
 
-                        }else{
+                        } else {
                             var imageUri = new Windows.Foundation.Uri(path);
                             var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
                             if (path.indexOf("http") != -1) {
@@ -97,7 +98,7 @@
 
 var documentModel = undefined;
 
-var ajaxGetDocumentImage = function() {
+var ajaxGetDocumentImage = function () {
 
     var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/" + documentModel.DocumentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentImageCallback, this, true);
@@ -123,12 +124,12 @@ var ajaxGetDocument = function (documentNumber) {
 
     var url = window.Data.serverBaseUrl + "/Document/GetDocument/" + documentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentCallback, this, true);
-    
+
 };
 
 var ajaxGetDocumentCallback = function (request, context) {
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
- 
+
     if (response != undefined && response !== "") {
 
 
@@ -269,6 +270,46 @@ function registerHoldRequest() {
         HoldRequest.showFlyout(holdRequestAnchor, documentModel);
     });
 };
+
+function addToFavorites() {
+
+    var applicationData = Windows.Storage.ApplicationData.current;
+
+    if (applicationData) {
+
+        var roamingSettings = applicationData.roamingSettings;
+
+        //Debug:
+        //roamingSettings.values.remove("favorites");
+
+        if (roamingSettings) {
+
+            var existing = roamingSettings.values["favorites"];
+            var docNumbers;
+
+            if ( !existing || jQuery.isEmptyObject(existing) ) {
+                docNumbers = [];
+                docNumbers.push(documentModel.DocumentNumber);
+            }
+            else {
+                var favorites = JSON.parse(existing);
+                if (favorites.docNumbers) {
+                    for (var i = 0; i < favorites.docNumbers.length; i++) {
+                        if (favorites.docNumbers[i] === documentModel.DocumentNumber)
+                            return;
+                    }
+                }
+                docNumbers = favorites.docNumbers;
+                docNumbers.push(documentModel.DocumentNumber);
+            }
+
+            favorites = { docNumbers: docNumbers };
+            roamingSettings.values["favorites"] = JSON.stringify(favorites);
+
+        }
+    }
+
+}
 
 
 WinJS.Namespace.define("DocumentDetail", {
