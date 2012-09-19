@@ -210,7 +210,7 @@ progress.header {
 
     .listpage {
         -ms-grid-columns: 1fr;
-        -ms-grid-rows: 10% 40% 50%;
+        -ms-grid-rows: 10% 90%;
         display: -ms-grid;
         height: 100%;
         width: 100%;
@@ -228,11 +228,12 @@ progress.header {
             -ms-grid-row: 2;
             margin-left: 50px;
             width: calc(100% - 85px - 70px);
+            visibility: hidden;
         }
 
         .listpage .listContentSection {
             -ms-grid-column: 1;
-            -ms-grid-row: 3;
+            -ms-grid-row: 2;
             margin-left: 70px;
             padding-right: 120px;
             position: relative;
@@ -242,6 +243,11 @@ progress.header {
             width: calc(100% - 105px - 70px);
             height: 100%;
             -ms-grid-row-span: 1;
+            visibility: hidden;
+        }
+
+        .listpage .primarycolumn {
+            visibility: visible;
         }
 
         .listpage .listContentSection #listContent-article {
