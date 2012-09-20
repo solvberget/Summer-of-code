@@ -122,7 +122,7 @@ progress.withText {
     display: inline;
 }
 
-#fines, #loans, #reservations, #notifications {
+#fines, #loans, #reservations, #notifications, #favorites {
     max-width: 750px;
     max-height: 600px;
     overflow: auto;
@@ -140,7 +140,7 @@ progress.withText {
         margin-left: 45px;
     }
 
-    #fines, #loans, #reservations, #notifications {
+    #fines, #loans, #reservations, #notifications, #favorites {
         max-height: none;
         max-width: 550px;
     }
@@ -177,7 +177,7 @@ progress.withText {
         max-width: 250px;
     }
 
-    #fines, #loans, #reservations, #notifications {
+    #fines, #loans, #reservations, #notifications, #favorites {
         max-height: none;
         max-width: 250px;
     }

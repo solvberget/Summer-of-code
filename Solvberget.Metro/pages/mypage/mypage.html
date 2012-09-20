@@ -64,7 +64,20 @@
                 <span class="content" data-win-bind="innerText: Content "></span>
             </div>
         </div>
+
+        <!-- Favorites template -->
+        <div id="favoriteTemplate">
+            <div class="float-item">
+                <div class="clickableFavoriteArea clickableArea">
+                    <span class="documentTitle" data-win-bind="innerText: DocumentNumber"></span>
+                </div>
+                <button class="deleteFavoriteButton" data-win-bind="">Slett</button>
+            </div>
+        </div>
+
     </div>
+
+
 
     <!-- The content that will be loaded and displayed. -->
     <div class="myPage fragment">
@@ -119,6 +132,7 @@
                     </div>
                 </div>
 
+
                 <div id="loans" class="box">
                     <div id="loanHeader">
                         <h2 class="detail-h2-title"><span class="detail-title">Lån</span></h2>
@@ -135,6 +149,14 @@
                     <div id="fineTemplateHolder">
                     </div>
                 </div>
+
+
+                <div id="favorites" class="box">
+                    <h2 class="detail-title"><span class="detail-title">Favoritter</span></h2>
+                    <div id="favoritesTemplateHolder">
+                    </div>
+                </div>
+
 
             </article>
         </section>
