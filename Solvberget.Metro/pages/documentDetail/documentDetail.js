@@ -1,7 +1,6 @@
 ﻿(function () {
     "use strict";
 
-
     var ui = WinJS.UI;
 
     ui.Pages.define("/pages/documentDetail/documentDetail.html", {
@@ -242,10 +241,7 @@ var populateAvailability = function () {
 };
 
 var getDocumentImageUrl = function () {
-
-
     ajaxGetDocumentImage();
-
 };
 
 var getDocument = function (documentNumber) {
@@ -259,14 +255,11 @@ var getDocument = function (documentNumber) {
 };
 
 function registerHoldRequest() {
-
     var that = this;
     var holdRequestDiv = document.getElementById("holdRequestFragmentHolder");
     holdRequestDiv.innerHTML = "";
     WinJS.UI.Fragments.renderCopy("/fragments/holdRequest/holdRequest.html", holdRequestDiv).done(function () {
-
         var holdRequestAnchor = document.getElementById("sendHoldRequestButton");
-
         HoldRequest.showFlyout(holdRequestAnchor, documentModel);
     });
 };
@@ -276,41 +269,75 @@ function addToFavorites() {
     var applicationData = Windows.Storage.ApplicationData.current;
 
     if (applicationData) {
-
-        var roamingSettings = applicationData.roamingSettings;
-
-        //Debug:
-        //roamingSettings.values.remove("favorites");
-
-        if (roamingSettings) {
-
-            var existing = roamingSettings.values["favorites"];
-            var docNumbers;
-
-            if ( !existing || jQuery.isEmptyObject(existing) ) {
-                docNumbers = [];
-                docNumbers.push(documentModel.DocumentNumber);
-            }
-            else {
-                var favorites = JSON.parse(existing);
-                if (favorites.docNumbers) {
-                    for (var i = 0; i < favorites.docNumbers.length; i++) {
-                        if (favorites.docNumbers[i] === documentModel.DocumentNumber)
-                            return;
-                    }
-                }
-                docNumbers = favorites.docNumbers;
-                docNumbers.push(documentModel.DocumentNumber);
-            }
-
-            favorites = { docNumbers: docNumbers };
-            roamingSettings.values["favorites"] = JSON.stringify(favorites);
-
+        var internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
+        if (internalLibraryUserId && internalLibraryUserId !== "") {
+            addToRoamingStorage(applicationData, internalLibraryUserId);
+        }
+        else {
+            renderAddToFavoritesFlyout(false, "Du må være logget inn for å legge til favoritter!",
+                                      "Velg \"Logg inn\" fra bunnmenyen eller gå til \"Min side\"");
         }
     }
 
 }
 
+function addToRoamingStorage(applicationData, internalLibraryUserId) {
+
+    var roamingSettings = applicationData.roamingSettings;
+
+    //Debug - delete favorites:
+    //var key = "favorites-" + internalLibraryUserId;
+    //roamingSettings.values.remove(key);
+
+    if (roamingSettings)
+        storeFavorites(roamingSettings, internalLibraryUserId)
+    else {
+        renderAddToFavoritesFlyout(false, "Det oppstod en feil...",
+                                  "(Ikke tilgang til roaming storage)");
+    }
+
+}
+
+function storeFavorites(roamingSettings, internalLibraryUserId) {
+
+    var key = "favorites-" + internalLibraryUserId;
+
+    var existing = roamingSettings.values[key];
+    var docNumbers;
+
+    if (!existing || jQuery.isEmptyObject(existing)) {
+        docNumbers = [];
+        docNumbers.push(documentModel.DocumentNumber);
+    }
+    else {
+        var favorites = JSON.parse(existing);
+        if (favorites.docNumbers) {
+            for (var i = 0; i < favorites.docNumbers.length; i++) {
+                if (favorites.docNumbers[i] === documentModel.DocumentNumber) {
+                    renderAddToFavoritesFlyout(false, "Dette dokumentet ligger allerede i dine favoritter!", "");
+                    return;
+                }
+            }
+        }
+        docNumbers = favorites.docNumbers;
+        docNumbers.push(documentModel.DocumentNumber);
+    }
+
+    favorites = { docNumbers: docNumbers };
+    roamingSettings.values[key] = JSON.stringify(favorites);
+
+    renderAddToFavoritesFlyout(true, "Dokumentet ble lagt til i dine favoritter!", "");
+
+}
+
+function renderAddToFavoritesFlyout(success, message1, message2) {
+    var addToFavoritesDiv = document.getElementById("addToFavoritesFragmentHolder");
+    addToFavoritesDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/addToFavorites/addToFavorites.html", addToFavoritesDiv).done(function () {
+        var holdRequestAnchor = document.getElementById("addToFavoritesButton");
+        AddToFavorites.showFlyout(holdRequestAnchor, success, message1, message2);
+    });
+};
 
 WinJS.Namespace.define("DocumentDetail", {
     model: documentModel,
@@ -319,7 +346,6 @@ WinJS.Namespace.define("DocumentDetail", {
 WinJS.Namespace.define("DocumentDetailConverters", {
 
     imageUrl: WinJS.Binding.converter(function (imageUrl) {
-
         if (imageUrl != "")
             return imageUrl;
 
@@ -335,11 +361,7 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         else {
             return "/images/placeholders/" + documentModel.DocType + ".png";
         }
-
-
     }),
-
-
     hideNullOrEmptyConverter: WinJS.Binding.converter(function (factSrc) {
         if (factSrc == "" || factSrc == null || factSrc == undefined) {
             return "none";
