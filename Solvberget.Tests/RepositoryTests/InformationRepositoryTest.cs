@@ -12,14 +12,14 @@ namespace Solvberget.Service.Tests.RepositoryTests
     internal class InformationRepositoryTest
     {
 
-        private InformationRepository _informationRepository;
+        private InformationRepositoryHtml _informationRepository;
 
 
         [SetUp]
         public void InitRepository()
         {
 
-            _informationRepository = new InformationRepository();
+            _informationRepository = new InformationRepositoryHtml();
 
         }
 

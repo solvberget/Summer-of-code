@@ -192,7 +192,8 @@
     <Compile Include="Implementation\BokbasenRepository.cs" />
     <Compile Include="Implementation\BlogRepository.cs" />
     <Compile Include="Implementation\BokelskereRepository.cs" />
-    <Compile Include="Implementation\InformationRepository.cs" />
+    <Compile Include="Implementation\InformationRepositoryXml.cs" />
+    <Compile Include="Implementation\InformationRepositoryHtml.cs" />
     <Compile Include="Implementation\NewsRepository.cs" />
     <Compile Include="Implementation\RulesRepository.cs" />
     <Compile Include="Implementation\ImdbRepository.cs" />

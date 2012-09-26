@@ -5,11 +5,10 @@ namespace Solvberget.Service.Infrastructure
 {
     public static class EnvironmentHelper
     {
+
         private static readonly string ApplicationAppDataPath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"bin\App_Data");
         private static readonly string ApplicationContentDataPath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"Content");
       
- 
-
         public static string GetDictionaryPath()
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_bm.txt");    
@@ -34,6 +33,7 @@ namespace Solvberget.Service.Infrastructure
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_forslag.txt");
         }
+        
         public static string GetTestDictPath()
         {
             return Path.Combine(ApplicationAppDataPath, @"ordlister\ord_test.txt");
@@ -56,6 +56,16 @@ namespace Solvberget.Service.Infrastructure
         public static string GetBlogFeedPath()
         {
             return Path.Combine(ApplicationAppDataPath, @"blogs\");
+        }
+
+        public static string GetOpeningInfoAsXmlPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"info\opening.xml");
+        }
+
+        public static string GetContactInfoAsXmlPath()
+        {
+            return Path.Combine(ApplicationAppDataPath, @"info\contact.xml");
         }
 
     }

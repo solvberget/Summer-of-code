@@ -7,7 +7,7 @@ using Solvberget.Domain.DTO;
 
 namespace Solvberget.Domain.Implementation
 {
-    public class InformationRepository : IInformationRepository
+    public class InformationRepositoryHtml : IInformationRepository
     {
 
         public List<OpeningHoursInformation> GetOpeningHoursInformation()
