@@ -154,6 +154,8 @@
     <Content Include="bin\App_Data\blogs\feeds.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="bin\App_Data\info\contact.xml" />
+    <Content Include="bin\App_Data\info\opening.xml" />
     <Content Include="bin\App_Data\librarylists\dynamic\example_list2.xml" />
     <Content Include="bin\App_Data\librarylists\dynamic\example_list1.xml" />
     <Content Include="bin\App_Data\librarylists\static\example_list1.xml" />
