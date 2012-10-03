@@ -17,7 +17,7 @@ var fragmentReady = function (model) {
 
 
 var ajaxGetReview = function () {
-    var url = "http://localhost:7089/Document/GetDocumentReview/" + documentModel.DocumentNumber;
+    var url = window.Data.serverBaseUrl + "/Document/GetDocumentReview/" + documentModel.DocumentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetReviewCallback, this, true);
 };
 
