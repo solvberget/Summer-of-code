@@ -43,8 +43,8 @@ var ajaxGetUserInformation = function (isLoadingMyPage) {
         var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId
         Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, isLoadingMyPage, true);
     }
-    else if (isLoadingMyPage ) {
-            Data.navigateToHome();
+    else if (isLoadingMyPage) {
+        Data.navigateToHome();
     }
 
 };
@@ -293,9 +293,9 @@ var addFavoritesToDom = function (favoritesToUse) {
     favoritesTemplateContainer.innerHTML = "";
 
     var i;
-    var favorite = {};
+    var favorite;
     for (i = 0; i < favorites.length; i++) {
-        favorite.DocumentNumber = favorites[i];
+        favorite = favorites[i];
         if (!favorite) continue;
         favoriteTemplate.render(favorite, favoritesTemplateContainer).done(function (element) {
             $(element).find(".deleteFavoriteButton:last").attr("index", i);
@@ -329,8 +329,8 @@ var getFavorites = function () {
             var favoritesUnparsed = roamingSettings.values[key];
             if (favoritesUnparsed && !jQuery.isEmptyObject(favoritesUnparsed)) {
                 var favorites = JSON.parse(favoritesUnparsed);
-                if (favorites.docNumbers) {
-                    return favorites.docNumbers;
+                if (favorites) {
+                    return favorites;
                 }
             }
             return [];
@@ -343,8 +343,23 @@ var getFavorites = function () {
 
 var deleteFavorite = function (favorites, index) {
     if (favorites && index) {
-        favorites.splice(index - 1, 1);
+        favorites.splice(index, 1);
+        storeModifiedFavorites(favorites);
         addFavoritesToDom(favorites);
+    }
+}
+
+var storeModifiedFavorites = function (favorites) {
+    var applicationData = Windows.Storage.ApplicationData.current;
+    if (applicationData) {
+        var internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
+        if (internalLibraryUserId && internalLibraryUserId !== "") {
+            var roamingSettings = applicationData.roamingSettings;
+            if (roamingSettings) {
+                var key = "favorites-" + internalLibraryUserId;
+                roamingSettings.values[key] = JSON.stringify(favorites);
+            }
+        }
     }
 }
 
@@ -418,5 +433,8 @@ WinJS.Namespace.define("MyPageConverters", {
     holdRequestReadyTextConverter: WinJS.Binding.converter(function (holdRequestEnd) {
         return holdRequestEnd == undefined || holdRequestEnd == "" ? "Klar til henting: Nei" : "Klar til henting: Ja";
     }),
-
+    nullConverter: WinJS.Binding.converter(function (value) {
+        return value == undefined ? "" : value;
+    })
+    
 });

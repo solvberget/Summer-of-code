@@ -67,11 +67,19 @@
 
         <!-- Favorites template -->
         <div id="favoriteTemplate">
-            <div class="float-item">
+            <div class="float-item favorite-item">
                 <div class="clickableFavoriteArea clickableArea">
-                    <span class="documentTitle" data-win-bind="innerText: DocumentNumber"></span>
+                    <div class="favorite-img-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                        <img class="favorite-img" src="#" alt="" data-win-bind="src: ThumbnailUrl; alt: Title" />
+                    </div>
+                    <div class="favorite-section">
+                        <span class="documentTitle favorite-title" data-win-bind="innerText: Title MyPageConverters.nullConverter"></span>
+                        <span class="favorite-subtitle" data-win-bind="innerText: Author MyPageConverters.nullConverter"></span>
+                        <span class="favorite-subtitle" data-win-bind="innerText: CompressedSubTitle MyPageConverters.nullConverter"></span>
+                         <button class="deleteFavoriteButton favorite-button" data-win-bind="">Slett</button>
+                    </div>
+                    <div class="clear-float"></div>
                 </div>
-                <button class="deleteFavoriteButton" data-win-bind="">Slett</button>
             </div>
         </div>
 
