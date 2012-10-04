@@ -64,7 +64,28 @@
                 <span class="content" data-win-bind="innerText: Content "></span>
             </div>
         </div>
+
+        <!-- Favorites template -->
+        <div id="favoriteTemplate">
+            <div class="float-item favorite-item">
+                <div class="clickableFavoriteArea clickableArea">
+                    <div class="favorite-img-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                        <img class="favorite-img" src="#" alt="" data-win-bind="src: ThumbnailUrl; alt: Title" />
+                    </div>
+                    <div class="favorite-section">
+                        <span class="documentTitle favorite-title" data-win-bind="innerText: Title MyPageConverters.nullConverter"></span>
+                        <span class="favorite-subtitle" data-win-bind="innerText: Author MyPageConverters.nullConverter"></span>
+                        <span class="favorite-subtitle" data-win-bind="innerText: CompressedSubTitle MyPageConverters.nullConverter"></span>
+                         <button class="deleteFavoriteButton favorite-button" data-win-bind="">Slett</button>
+                    </div>
+                    <div class="clear-float"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 
     <!-- The content that will be loaded and displayed. -->
     <div class="myPage fragment">
@@ -119,6 +140,7 @@
                     </div>
                 </div>
 
+
                 <div id="loans" class="box">
                     <div id="loanHeader">
                         <h2 class="detail-h2-title"><span class="detail-title">Lån</span></h2>
@@ -135,6 +157,14 @@
                     <div id="fineTemplateHolder">
                     </div>
                 </div>
+
+
+                <div id="favorites" class="box">
+                    <h2 class="detail-title"><span class="detail-title">Favoritter</span></h2>
+                    <div id="favoritesTemplateHolder">
+                    </div>
+                </div>
+
 
             </article>
         </section>

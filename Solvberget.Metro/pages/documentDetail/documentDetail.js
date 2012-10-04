@@ -1,23 +1,22 @@
 ﻿(function () {
     "use strict";
 
-
     var ui = WinJS.UI;
 
     ui.Pages.define("/pages/documentDetail/documentDetail.html", {
 
         ready: function (element, options) {
-
             documentModel = options.documentModel;
             getDocument(documentModel.DocumentNumber);
-
             this.registerForShare();
             document.getElementById("sendHoldRequestButton").addEventListener("click", registerHoldRequest);
+            document.getElementById("addToFavoritesButton").addEventListener("click", addToFavorites);
         },
 
         unload: function () {
             Solvberget.Queue.CancelQueue('documentdetails');
         },
+
         registerForShare: function () {
 
             // Register/listen to share requests
@@ -30,6 +29,7 @@
             });
 
         },
+
         shareHtmlHandler: function (e) {
 
             var request = e.request;
@@ -39,7 +39,7 @@
 
             if (documentTitle !== "") {
                 var replaceAll = function (txt, replace, with_this) {
-                    return txt.replace(new RegExp(replace, 'g'),with_this);
+                    return txt.replace(new RegExp(replace, 'g'), with_this);
                 }
                 var range = document.createRange();
                 range.selectNode(document.getElementById("documentShareContent"));
@@ -54,10 +54,10 @@
                     var path = $(this).attr("src");
                     if (path !== undefined && path !== "undefined") {
 
-                        if (path.indexOf("/images/placeholders") >=0){
+                        if (path.indexOf("/images/placeholders") >= 0) {
                             var path = "";
 
-                        }else{
+                        } else {
                             var imageUri = new Windows.Foundation.Uri(path);
                             var streamReference = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(imageUri);
                             if (path.indexOf("http") != -1) {
@@ -97,7 +97,7 @@
 
 var documentModel = undefined;
 
-var ajaxGetDocumentImage = function() {
+var ajaxGetDocumentImage = function () {
 
     var url = window.Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/" + documentModel.DocumentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentImageCallback, this, true);
@@ -123,12 +123,12 @@ var ajaxGetDocument = function (documentNumber) {
 
     var url = window.Data.serverBaseUrl + "/Document/GetDocument/" + documentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentCallback, this, true);
-    
+
 };
 
 var ajaxGetDocumentCallback = function (request, context) {
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
- 
+
     if (response != undefined && response !== "") {
 
 
@@ -241,10 +241,7 @@ var populateAvailability = function () {
 };
 
 var getDocumentImageUrl = function () {
-
-
     ajaxGetDocumentImage();
-
 };
 
 var getDocument = function (documentNumber) {
@@ -258,18 +255,96 @@ var getDocument = function (documentNumber) {
 };
 
 function registerHoldRequest() {
-
     var that = this;
     var holdRequestDiv = document.getElementById("holdRequestFragmentHolder");
     holdRequestDiv.innerHTML = "";
     WinJS.UI.Fragments.renderCopy("/fragments/holdRequest/holdRequest.html", holdRequestDiv).done(function () {
-
         var holdRequestAnchor = document.getElementById("sendHoldRequestButton");
-
         HoldRequest.showFlyout(holdRequestAnchor, documentModel);
     });
 };
 
+function addToFavorites() {
+
+    var applicationData = Windows.Storage.ApplicationData.current;
+
+    if (applicationData) {
+        var internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
+        if (internalLibraryUserId && internalLibraryUserId !== "") {
+            addToRoamingStorage(applicationData, internalLibraryUserId);
+        }
+        else {
+            renderAddToFavoritesFlyout(false, "Du må være logget inn for å legge til favoritter!",
+                                      "Velg \"Logg inn\" fra bunnmenyen eller gå til \"Min side\"");
+        }
+    }
+
+}
+
+function addToRoamingStorage(applicationData, internalLibraryUserId) {
+
+    var roamingSettings = applicationData.roamingSettings;
+
+    ////Debug - delete favorites:
+    //var key = "favorites-" + internalLibraryUserId;
+    //roamingSettings.values.remove(key);
+
+    if (roamingSettings)
+        storeFavorites(roamingSettings, internalLibraryUserId)
+    else {
+        renderAddToFavoritesFlyout(false, "Det oppstod en feil...",
+                                  "(Ikke tilgang til roaming storage)");
+    }
+
+}
+
+function storeFavorites(roamingSettings, internalLibraryUserId) {
+
+    var key = "favorites-" + internalLibraryUserId;
+
+    var existing = roamingSettings.values[key];
+    var docs;
+
+    if (!existing || jQuery.isEmptyObject(existing)) {
+        docs = [];
+    }
+    else {
+        var favorites = JSON.parse(existing);
+        if (favorites) {
+            for (var i = 0; i < favorites.length; i++) {
+                if (favorites[i].DocumentNumber === documentModel.DocumentNumber) {
+                    renderAddToFavoritesFlyout(false, "Dette dokumentet ligger allerede i dine favoritter!", "");
+                    return;
+                }
+            }
+        }
+
+        docs = favorites;
+
+    }
+
+    if (documentModel.Author) {
+        if (documentModel.Author.Name) {
+            docs.push({ DocumentNumber: documentModel.DocumentNumber, Title: documentModel.Title, Author: documentModel.Author.Name, SubTitle: documentModel.CompressedSubTitle, ThumbnailUrl: documentModel.ThumbnailUrl });
+        }
+    }
+    else {
+        docs.push({ DocumentNumber: documentModel.DocumentNumber, Title: documentModel.Title, CompressedSubTitle: documentModel.CompressedSubTitle, ThumbnailUrl: documentModel.ThumbnailUrl });
+    }
+
+    roamingSettings.values[key] = JSON.stringify(docs);
+    renderAddToFavoritesFlyout(true, "Dokumentet ble lagt til i dine favoritter!", "");
+
+}
+
+function renderAddToFavoritesFlyout(success, message1, message2) {
+    var addToFavoritesDiv = document.getElementById("addToFavoritesFragmentHolder");
+    addToFavoritesDiv.innerHTML = "";
+    WinJS.UI.Fragments.renderCopy("/fragments/addToFavorites/addToFavorites.html", addToFavoritesDiv).done(function () {
+        var holdRequestAnchor = document.getElementById("addToFavoritesButton");
+        AddToFavorites.showFlyout(holdRequestAnchor, success, message1, message2);
+    });
+};
 
 WinJS.Namespace.define("DocumentDetail", {
     model: documentModel,
@@ -278,7 +353,6 @@ WinJS.Namespace.define("DocumentDetail", {
 WinJS.Namespace.define("DocumentDetailConverters", {
 
     imageUrl: WinJS.Binding.converter(function (imageUrl) {
-
         if (imageUrl != "")
             return imageUrl;
 
@@ -294,11 +368,7 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         else {
             return "/images/placeholders/" + documentModel.DocType + ".png";
         }
-
-
     }),
-
-
     hideNullOrEmptyConverter: WinJS.Binding.converter(function (factSrc) {
         if (factSrc == "" || factSrc == null || factSrc == undefined) {
             return "none";

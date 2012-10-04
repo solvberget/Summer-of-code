@@ -51,7 +51,7 @@ namespace Solvberget.Domain.DTO
             if (Decimal.TryParse(gjennomsnittelig_terningkast, NumberStyles.Any, CultureInfo.InvariantCulture, out terningkast))
             {
                 var gjennomsnittelig_terningkast_decimal = Math.Round(terningkast, 1);
-                gjennomsnittelig_terningkast = gjennomsnittelig_terningkast_decimal.ToString();
+                gjennomsnittelig_terningkast = gjennomsnittelig_terningkast_decimal.ToString(CultureInfo.InvariantCulture);
             }
             
             //antall_sitater = GetXmlValue(xElement, GetPropertyName(() => antall_sitater));

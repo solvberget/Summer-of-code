@@ -11,12 +11,12 @@
     .content article {
         /* Define a multi-column, horizontally scrolling article by default. */
         column-fill: auto;
-        column-gap: 80px;
+        column-gap: 40px;
         column-width: 480px;
         height: calc(100% - 50px);
         margin-left: 120px;
         margin-top: 5px;
-        width: 480px;
+        width: 320px;
     }
 
 
@@ -41,10 +41,13 @@ progress.withText {
     height: 100px;
 }
 
+.openingHourTile:first-child {
+    margin-top: 0px;
+}
+
 .openingHourTile {
-    width: 250px;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 8px;
     width: 300px;
     max-width: 350px;
     margin-right: 0px;
@@ -62,6 +65,7 @@ progress.withText {
 
 
 @media screen and (-ms-view-state: snapped) {
+    
     .content article {
         /* Define a single column, vertically scrolling article in snapped mode. */
         -ms-grid-columns: 300px 1fr;
@@ -87,4 +91,5 @@ progress.withText {
         font-size: 15px;
         padding-right: 10px;
     }
+
 }

@@ -11,6 +11,10 @@
     background-color: rgba(136, 187, 0, 0.6);
 }
 
+#addToFavoritesButton {
+    background-color: rgba(102, 0, 102, 0.6);
+}
+
 .templates {
     display: none;
 }

@@ -1,0 +1,24 @@
+﻿/* Flyout-login buttons */
+.win-flyout:not(.win-menu) button,
+.win-flyout:not(.win-menu) input[type="button"] {
+    margin-top: 16px;
+    margin-left: 20px;
+    float: right;
+}
+
+#addToFavoritesReply {
+    display: block;
+    font-weight: bold;
+}
+
+#addToFavoritesFlyout {
+    margin-top: 40px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}

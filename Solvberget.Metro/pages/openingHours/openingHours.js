@@ -67,8 +67,7 @@ var populateOpeningHours = function (response, context) {
 
             if (openingHoursTemplate && openingHoursTemplateHolder && model)
                 openingHoursTemplate.render(model, openingHoursTemplateHolder).done($.proxy(function () {
-                    $(".openingHourTile:last").css("background-color", Data.getRandomColor());
-
+                    $(".openingHourTile:last").css("background-color", Data.getColorFromPool(i % Data.colorPoolRgba.length, "0.6"));
                 }, context));
 
         }

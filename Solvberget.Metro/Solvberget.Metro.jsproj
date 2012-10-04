@@ -105,6 +105,9 @@
     <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.css" />
     <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.html" />
     <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.js" />
+    <Content Include="fragments\addToFavorites\addToFavorites.css" />
+    <Content Include="fragments\addToFavorites\addToFavorites.html" />
+    <Content Include="fragments\addToFavorites\addToFavorites.js" />
     <Content Include="fragments\holdRequest\holdRequest.css" />
     <Content Include="fragments\holdRequest\holdRequest.html" />
     <Content Include="fragments\cancelReservation\cancelReservation.css" />

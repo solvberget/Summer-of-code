@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Contrib.Regex">
-      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Contrib.Regex.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -213,52 +210,23 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\RepositoryUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="bin\Debug\Solvberget.Domain.dll.config" />
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\Contrib.Regex.dll" />
-    <Content Include="bin\Debug\Contrib.Regex.xml" />
-    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Analyzers.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Analyzers.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Core.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Core.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Highlighter.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Highlighter.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Queries.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Queries.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Snowball.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Snowball.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Spatial.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Spatial.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.SpellChecker.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.SpellChecker.xml" />
-    <Content Include="bin\Debug\Lucene.Net.dll" />
-    <Content Include="bin\Debug\Lucene.Net.FastVectorHighlighter.dll" />
-    <Content Include="bin\Debug\Lucene.Net.FastVectorHighlighter.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Search.SimpleFacetedSearch.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Search.SimpleFacetedSearch.xml" />
-    <Content Include="bin\Debug\Lucene.Net.xml" />
-    <Content Include="bin\Debug\Ninject.dll" />
-    <Content Include="bin\Debug\Ninject.pdb" />
-    <Content Include="bin\Debug\Ninject.xml" />
-    <Content Include="bin\Debug\Solvberget.Domain.dll" />
-    <Content Include="bin\Debug\Solvberget.Domain.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

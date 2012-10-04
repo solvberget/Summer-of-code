@@ -45,6 +45,11 @@
     margin-bottom: 10px;
 }
 
+.deleteFavoriteButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
 .renewAllButton {
     float: right;
 }
@@ -55,7 +60,6 @@
     height: auto;
     padding: 10px;
     overflow: hidden;
-    resize: both;
     max-width: 350px;
     min-width: 175px;
     min-height: 120px;
@@ -122,12 +126,44 @@ progress.withText {
     display: inline;
 }
 
-#fines, #loans, #reservations, #notifications {
+#fines, #loans, #reservations, #notifications, #favorites {
     max-width: 750px;
     max-height: 600px;
     overflow: auto;
 }
 
+.favorite-item {
+    margin-top: 20px;
+    height: 160px;
+}
+
+    .favorite-item .favorite-section {
+        margin-left: 75px;
+    }
+
+        .favorite-item .favorite-section .favorite-title {
+
+        }
+
+        .favorite-item .favorite-section .favorite-subtitle {
+            margin-top: 2px;
+        }
+
+    .favorite-item .favorite-img-container {
+        float: left;
+    }
+
+        .favorite-item .favorite-img-container .favorite-img {
+            max-width: 60px;
+            max-height: 120px;
+        }
+
+    .favorite-item .favorite-button {
+    }
+
+.clear-float {
+    clear: both;
+}
 
 @media screen and (orientation: portrait) {
     .box {
@@ -140,7 +176,7 @@ progress.withText {
         margin-left: 45px;
     }
 
-    #fines, #loans, #reservations, #notifications {
+    #fines, #loans, #reservations, #notifications, #favorites {
         max-height: none;
         max-width: 550px;
     }
@@ -177,7 +213,7 @@ progress.withText {
         max-width: 250px;
     }
 
-    #fines, #loans, #reservations, #notifications {
+    #fines, #loans, #reservations, #notifications, #favorites {
         max-height: none;
         max-width: 250px;
     }
@@ -189,6 +225,10 @@ progress.withText {
     .myPage header[role=banner] .titlearea {
         overflow: hidden;
     }
+
+        .myPage header[role=banner] .titlearea .pagesubtitle {
+            padding-left: 0px;
+        }
 
     body {
         overflow: auto;

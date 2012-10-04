@@ -1,172 +1,4 @@
-﻿/* LIST PAGE */
-.listpage {
-    -ms-grid-columns: 550px 1fr;
-    display: -ms-grid;
-    height: 100%;
-    width: 100%;
-}
-
-    .listpage header[role=banner] .pagetitle {
-        -ms-grid-column: 2;
-        overflow: hidden;
-        width: calc(100% - 20px);
-    }
-
-    .listpage .templates {
-        display: none;
-    }
-
-    .listpage .documentHolder:hover {
-        color: rgba(204, 51, 0, 1);
-        cursor: pointer;
-    }
-
-    /* LISTVIEW */
-    .listpage .listView .win-vertical.win-viewport .win-surface {
-        margin-bottom: 40px;
-    }
-
-    .listpage .listViewSection {
-        -ms-grid-row: 2;
-        margin-left: 106px;
-    }
-
-        .listpage .listViewSection .listView {
-            height: 100%;
-            position: relative;
-            width: 100%;
-            z-index: 0;
-        }
-
-#listViewId {
-    display: none;
-}
-
-.listpage .listView .win-vertical.win-viewport .win-container {
-    margin-bottom: 15px;
-    margin-right: 42px;
-    padding: 7px;
-}
-
-.listpage .listViewSection .listView .win-container .win-selectioncheckmark {
-    display: none;
-}
-
-.listpage .listViewSection .listView .win-container .win-selectioncheckmarkbackground {
-    display: none;
-}
-
-.listpage .listViewSection .listView .win-item {
-    /*-ms-grid-columns: 110px 1fr;*/
-    -ms-grid-rows: 1fr;
-    display: -ms-grid;
-    height: 90px;
-    width: 412px;
-}
-
-    .listpage .listViewSection .listView .win-item .list-info {
-        /*-ms-grid-column: 2;*/
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-        .listpage .listViewSection .listView .win-item .list-info .item-title {
-            margin-top: 4px;
-            overflow: hidden;
-        }
-
-.listpage .listViewSection .listView .item .list-info .item-subtitle {
-    opacity: 0.6;
-}
-
-.listpage .listViewSection .listOfLists .win-item .list-info .item-description {
-    max-height: 60px;
-    overflow: hidden;
-}
-
-
-
-
-
-
-
-
-
-/* LIST CONTENT */
-.listpage .listContentSection {
-    -ms-grid-column: 2;
-    -ms-grid-row-span: 2;
-    -ms-grid-row: 1;
-    margin-left: 70px;
-    overflow-y: auto;
-    padding-right: 120px;
-    position: relative;
-    z-index: 0;
-    margin-top: 37px;
-    margin-bottom: 50px;
-}
-
-    .listpage .listContentSection header {
-        margin-bottom: 6px;
-        margin-top: 6px;
-        display: block;
-    }
-
-    .listpage .listContentSection .listTitle {
-        float: left;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        font-size: 24pt;
-        font-weight: 200;
-        line-height: 1.2;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-
-
-
-
-
-
-
-/* DOCUMENT IN LIST */
-.listpage .documentsHolder {
-    margin-top: 20px;
-}
-
-.listpage .documentHolder {
-    margin-top: 20px;
-}
-
-    .listpage .documentHolder .documentSection {
-        margin-left: 75px;
-    }
-
-    .listpage .documentHolder .documentImageContainer {
-        float: left;
-    }
-
-        .listpage .documentHolder .documentImageContainer .documentImage {
-            max-width: 60px;
-        }
-
-.listpage .clearFloat {
-    clear: both;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* PROGRESS RING */
+﻿/* PROGRESS RING */
 #listsLoading {
     width: 100%;
     height: 100%;
@@ -195,62 +27,263 @@ progress.header {
 
 
 
+/* LIST PAGE */
+.listpage {
+    -ms-grid-columns: 550px 1fr;
+    display: -ms-grid;
+    height: 100%;
+    width: 100%;
+}
+
+    .listpage h2 {
+        font-weight: 200;
+    }
+
+    .listpage .templates {
+        display: none;
+    }
+
+    .listpage header[role=banner] .pagetitle {
+        -ms-grid-column: 2;
+        overflow: hidden;
+        width: calc(100% - 20px);
+    }
+
+    .listpage .listViewSection {
+        -ms-grid-row: 2;
+        margin-left: 106px;
+    }
+
+        .listpage .listViewSection .listView {
+            height: 100%;
+            position: relative;
+            width: 100%;
+            z-index: 0;
+        }
+
+            .listpage .listViewSection .listView .win-vertical.win-viewport .win-surface {
+                margin-bottom: 40px;
+            }
+
+            .listpage .listViewSection .listView .win-vertical.win-viewport .win-container {
+                margin-bottom: 15px;
+                margin-right: 42px;
+                padding: 7px;
+            }
+
+            .listpage .listViewSection .listView .win-container .win-selectioncheckmark, .listpage .listViewSection .listView .win-container .win-selectioncheckmarkbackground {
+                display: none;
+            }
+
+            .listpage .listViewSection .listView .win-item {
+                /*-ms-grid-rows: 1fr;
+                display: -ms-grid;*/
+                height: 90px;
+                width: 412px;
+            }
+
+                .listpage .listViewSection .listView .win-item .list-info {
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+
+                    .listpage .listViewSection .listView .win-item .list-info .item-title {
+                        margin-top: 4px;
+                        overflow: hidden;
+                    }
+
+                    .listpage .listViewSection .listView .win-item .list-info .item-subtitle {
+                        opacity: 0.6;
+                    }
+
+                    .listpage .listViewSection .listView .win-item .list-info .item-description {
+                        max-height: 60px;
+                        overflow: hidden;
+                    }
+
+    .listpage .listContentSection {
+        -ms-grid-column: 2;
+        -ms-grid-row-span: 2;
+        -ms-grid-row: 1;
+        margin-left: 70px;
+        overflow-y: auto;
+        padding-right: 30px;
+        position: relative;
+        z-index: 0;
+        margin-top: 55px;
+        margin-bottom: 10px;
+    }
+
+        .listpage .listContentSection #listContent-article .clearFloat {
+            clear: both;
+        }
 
 
+        .listpage .listContentSection #listContent-article header {
+            margin-bottom: 6px;
+            margin-top: 6px;
+            display: block;
+        }
 
+        .listpage .listContentSection #listContent-article .listTitle {
+            float: left;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            font-size: 24pt;
+            font-weight: 500;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
+        .listpage .listContentSection #listContent-article #documentsHolder {
+            margin-top: 30px;
+        }
+
+            .listpage .listContentSection #listContent-article #documentsHolder .documentHolder {
+                margin-top: 20px;
+            }
+
+                .listpage .listContentSection #listContent-article #documentsHolder .documentHolder .documentSection {
+                    margin-left: 75px;
+                }
+
+                .listpage .listContentSection #listContent-article #documentsHolder .documentHolder .documentImageContainer {
+                    float: left;
+                }
+
+                    .listpage .listContentSection #listContent-article #documentsHolder .documentHolder .documentImageContainer .documentImage {
+                        max-width: 60px;
+                    }
+
+                .listpage .listContentSection #listContent-article #documentsHolder .documentHolder:hover {
+                    color: rgba(204, 51, 0, 1);
+                    cursor: pointer;
+                }
 
 @media screen and (-ms-view-state: filled) {
 }
 
 @media screen and (-ms-view-state: snapped) {
+
+    .listpage {
+        -ms-grid-columns: 320px 0px;
+        overflow: hidden;
+    }
+
+        .listpage .listViewSection {
+            margin-left: 6px;
+        }
+
+        .listpage .listView .win-vertical.win-viewport .win-container {
+            margin-bottom: 0px;
+            margin-right: 0px;
+            padding-top: 7px;
+            width: 260px;
+        }
+
+        .listpage .listViewSection {
+            margin-top: 10px;
+        }
+
+            .listpage .listViewSection .listView .win-item {
+                height: 50px;
+                width: 265px;
+                background: rgba(255,255,255,0.03);
+            }
+
+                .listpage .listViewSection .listView .win-item .list-info .item-title {
+                    margin-top: 4px;
+                    overflow: hidden;
+                }
+
+        .listpage .listContentSection {
+            -ms-grid-row: 2;
+            -ms-grid-row-span: 1;
+            margin-left: 20px;
+            padding-right: 36px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+            .listpage .listContentSection #listContent-article .listTitle {
+                font-size: 14pt;
+                font-weight: 500;
+            }
+
+            .listpage .listContentSection #listContent-article #documentsHolder {
+                margin-top: 15px;
+            }
+
+                .listpage .listContentSection #listContent-article #documentsHolder .documentHolder {
+                    margin-top: 20px;
+                }
+
+
+
+        .listpage .listViewSection, .listpage .listContentSection {
+            -ms-grid-column: 2;
+            visibility: hidden;
+        }
+
+        .listpage .primarycolumn {
+            -ms-grid-column: 1;
+            visibility: visible;
+        }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 
     .listpage {
-        -ms-grid-columns: 1fr;
-        -ms-grid-rows: 10% 40% 50%;
+        -ms-grid-columns: 1fr 0px;
         display: -ms-grid;
-        height: 100%;
-        width: 100%;
     }
 
-        .listpage header[role=banner] .pagetitle {
-            -ms-grid-column: 1;
-            -ms-grid-row: 1;
-            overflow: hidden;
-            width: calc(100% - 128px - 70px);
-        }
 
         .listpage .listViewSection {
-            -ms-grid-column: 1;
-            -ms-grid-row: 2;
-            margin-left: 50px;
-            width: calc(100% - 85px - 70px);
+            margin-top: 30px;
+            margin-left: 70px;
+            /*width: calc(100% - 85px - 70px);*/
+            /*visibility: hidden;*/
         }
 
+            .listpage .listViewSection .listView .win-item {
+                /*-ms-grid-columns: 110px 1fr;*/
+                -ms-grid-rows: 1fr;
+                display: -ms-grid;
+                height: 90px;
+                width: 570px;
+                background: rgba(255,255,255,0.03);
+                padding: 10px;
+            }
+
+
+            .listpage .listViewSection .listView .win-vertical.win-viewport .win-container {
+                margin-right: calc(100% - 600px);
+            }
+
         .listpage .listContentSection {
-            -ms-grid-column: 1;
-            -ms-grid-row: 3;
-            margin-left: 70px;
-            padding-right: 120px;
-            position: relative;
-            z-index: 0;
-            margin-top: 35px;
-            margin-bottom: 50px;
-            width: calc(100% - 105px - 70px);
-            height: 100%;
+            -ms-grid-row: 2;
             -ms-grid-row-span: 1;
+            margin-left: 100px;
+            padding-right: 25px;
+            margin-top: 0px;
+            margin-bottom: 10px;
+        }
+
+        .listpage .listContentSection, .listpage .listViewSection {
+            -ms-grid-column: 2;
+            visibility: hidden;
+        }
+
+        .listpage .primarycolumn {
+            -ms-grid-column: 1;
+            visibility: visible;
         }
 
         .listpage .listContentSection #listContent-article {
-            height: 90%;
+            margin-top: 30px;
+            height: 94%;
             overflow: auto;
         }
-
-        .listpage .listContentSection #documentsHolder {
-            height: 80%;
-        }
-
 }

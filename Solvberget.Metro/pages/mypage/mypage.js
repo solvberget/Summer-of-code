@@ -10,16 +10,31 @@
     ui.Pages.define("/pages/mypage/mypage.html", {
 
         ready: function (element, options) {
-
             getUserInformation(true);
             document.getElementById("appBar").addEventListener("beforeshow", setAppbarButton());
-
         },
+
         unload: function () {
             Solvberget.Queue.CancelQueue('mypage');
         }
+
     });
+
 })();
+
+var getUserInformation = function (loadingMypage) {
+
+    // Show progress-ring, hide content
+    $("#mypageData").hide();
+    $("#mypageLoading").fadeIn();
+
+    // Prevent caching of this request
+    $.ajaxSetup({ cache: false });
+
+    // Get the user information from server
+    ajaxGetUserInformation(loadingMypage)
+
+};
 
 var ajaxGetUserInformation = function (isLoadingMyPage) {
 
@@ -28,13 +43,14 @@ var ajaxGetUserInformation = function (isLoadingMyPage) {
         var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId
         Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, isLoadingMyPage, true);
     }
-    else if (isLoadingMyPage ) {
-            Data.navigateToHome();
+    else if (isLoadingMyPage) {
+        Data.navigateToHome();
     }
 
 };
 
 var ajaxGetUserInformationCallback = function (request, context) {
+
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     var isLoadingMyPage = context;
@@ -83,13 +99,13 @@ var ajaxGetUserInformationCallback = function (request, context) {
             addLoansToDom(loans);
             addReservationsToDom(reservations);
             addNotificationsToDom(notifications);
+            addFavoritesToDom();
             addColors();
         }
-        if ((notifications) && (LoginFlyout.getLoggedInBorrowerId() != "" && LoginFlyout.getLoggedInBorrowerId() != undefined))
-        {
+
+        if ((notifications) && (LoginFlyout.getLoggedInBorrowerId() != "" && LoginFlyout.getLoggedInBorrowerId() != undefined)) {
             if (!Notifications.areNotificationsSeen()) {
-                for (i = 0; i < notifications.length; i++)
-                {
+                for (i = 0; i < notifications.length; i++) {
                     Toast.showToast(notifications[i].Title, notifications[i].Content);
                 }
             }
@@ -136,6 +152,7 @@ var renewLoan = function (loan) {
 
 
 };
+
 var addFinesToDom = function (fines) {
 
     if (fines == undefined)
@@ -163,6 +180,7 @@ var addFinesToDom = function (fines) {
         }
     }
 };
+
 var addLoansToDom = function (loans) {
 
     if (loans == undefined) {
@@ -251,96 +269,172 @@ var addNotificationsToDom = function (notifications) {
     }
 };
 
+var addFavoritesToDom = function (favoritesToUse) {
+
+    var favorites;
+
+    if (favoritesToUse)
+        favorites = favoritesToUse;
+    else
+        favorites = getFavorites();
+
+    if (!favorites || favorites === "") {
+        $("#favoritesTemplateHolder").text("Du oppstod en feil ved henting av favoritter");
+        return;
+    }
+    else if (favorites.length === 0) {
+        $("#favoritesTemplateHolder").text("Du har ikke lagt til noen favoritter");
+        return;
+    }
+
+    var favoriteTemplate = new WinJS.Binding.Template(document.getElementById("favoriteTemplate"));
+    var favoritesTemplateContainer = document.getElementById("favoritesTemplateHolder");
+
+    favoritesTemplateContainer.innerHTML = "";
+
+    var i;
+    var favorite;
+    for (i = 0; i < favorites.length; i++) {
+        favorite = favorites[i];
+        if (!favorite) continue;
+        favoriteTemplate.render(favorite, favoritesTemplateContainer).done(function (element) {
+            $(element).find(".deleteFavoriteButton:last").attr("index", i);
+            $(element).find(".deleteFavoriteButton:last").click(function () {
+                var index = $(this).attr("index");
+                deleteFavorite(favorites, index);
+            });
+
+            var context = { DocumentNumber: favorites[i] };
+            $(".clickableFavoriteArea:last").click($.proxy(function () {
+                var docModel = this;
+                WinJS.Navigation.navigate("/pages/documentDetail/documentDetail.html", { documentModel: docModel });
+            }, context));
+
+        });
+    }
+
+}
+
+var getFavorites = function () {
+
+    var applicationData = Windows.Storage.ApplicationData.current;
+    var internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
+    if (!applicationData || !internalLibraryUserId || internalLibraryUserId === "") {
+        return "";
+    }
+    else {
+        var roamingSettings = applicationData.roamingSettings;
+        if (roamingSettings) {
+            var key = "favorites-" + internalLibraryUserId;
+            var favoritesUnparsed = roamingSettings.values[key];
+            if (favoritesUnparsed && !jQuery.isEmptyObject(favoritesUnparsed)) {
+                var favorites = JSON.parse(favoritesUnparsed);
+                if (favorites) {
+                    return favorites;
+                }
+            }
+            return [];
+        }
+        else {
+            return "";
+        }
+    }
+}
+
+var deleteFavorite = function (favorites, index) {
+    if (favorites && index) {
+        favorites.splice(index, 1);
+        storeModifiedFavorites(favorites);
+        addFavoritesToDom(favorites);
+    }
+}
+
+var storeModifiedFavorites = function (favorites) {
+    var applicationData = Windows.Storage.ApplicationData.current;
+    if (applicationData) {
+        var internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
+        if (internalLibraryUserId && internalLibraryUserId !== "") {
+            var roamingSettings = applicationData.roamingSettings;
+            if (roamingSettings) {
+                var key = "favorites-" + internalLibraryUserId;
+                roamingSettings.values[key] = JSON.stringify(favorites);
+            }
+        }
+    }
+}
+
 var addColors = function () {
     var alpha = "0.7";
     $("#fines").css("background-color", Data.getColorFromPool(1, alpha));
     $("#loans").css("background-color", Data.getColorFromPool(3, alpha));
     $("#reservations").css("background-color", Data.getColorFromPool(6, alpha));
     $("#notifications").css("background-color", Data.getColorFromPool(4, alpha));
-
+    $("#favorites").css("background-color", Data.getColorFromPool(7, alpha));
     $("#myPagePersonalInformation").children().each(function () {
         $(this).css("background-color", Data.getColorFromPool(0, alpha));
     });
-
-};
-
-
-var getUserInformation = function (loadingMypage) {
-
-    // Show progress-ring, hide content
-    $("#mypageData").hide();
-    $("#mypageLoading").fadeIn();
-
-    // Prevent caching of this request
-    $.ajaxSetup({ cache: false });
-
-    // Get the user information from server
-    ajaxGetUserInformation(loadingMypage)
-
-    WinJS.Namespace.define("MyPage", {
-        addReservationsToDom: addReservationsToDom,
-    });
-
-    WinJS.Namespace.define("MyPageConverters", {
-
-        balanceConverter: WinJS.Binding.converter(function (balance) {
-            if (balance == undefined) return "Du har ingen gebyrer!";
-            return balance == "" ? "" : "Balanse: " + balance + ",-";
-        }),
-        sumConverter: WinJS.Binding.converter(function (sum) {
-            if (sum == undefined) return "";
-            return sum == "" ? "" : "Gebyr: " + sum + ",-";
-        }),
-        statusConverter: WinJS.Binding.converter(function (status) {
-            if (status == undefined) return "";
-            return status == "" ? "" : "Status: " + status;
-        }),
-        dateConverter: WinJS.Binding.converter(function (date) {
-            if (date == undefined) return "";
-            return date == "" ? "" : "Dato: " + date;
-        }),
-        loanMaterialConverter: WinJS.Binding.converter(function (loanMaterial) {
-            if (loanMaterial == undefined) return "";
-            return loanMaterial == "" ? "" : "Type: " + loanMaterial;
-        }),
-        loanCatalogerNameConverter: WinJS.Binding.converter(function (loanCataloger) {
-            if (loanCataloger == undefined) return "";
-            return loanCataloger == "" ? "" : "Utlåner: " + loanCataloger;
-        }),
-        loanDateConverter: WinJS.Binding.converter(function (loanDate) {
-            if (loanDate == undefined) return "";
-            return loanDate == "" ? "" : "Lånt: " + loanDate;
-        }),
-        dueDateConverter: WinJS.Binding.converter(function (dueDate) {
-            if (dueDate == undefined) return "";
-            return dueDate == "" ? "" : "Frist for innlevering: " + dueDate;
-        }),
-        originalDueDateConverter: WinJS.Binding.converter(function (originalDueDate) {
-            if (originalDueDate == undefined) return "";
-            return originalDueDate == "" ? "" : "Opprinnelig lånefrist: " + originalDueDate;
-        }),
-        holdRequestFromConverter: WinJS.Binding.converter(function (holdRequestFrom) {
-            if (holdRequestFrom == undefined) return "";
-            return holdRequestFrom == "" ? "" : "Reservert: " + holdRequestFrom;
-        }),
-        holdRequestEndConverter: WinJS.Binding.converter(function (holdRequestEnd) {
-            if (holdRequestEnd == undefined) return "";
-            return holdRequestEnd == "" ? "" : "Hentefrist: " + holdRequestEnd;
-        }),
-        pickupLibraryConverter: WinJS.Binding.converter(function (pickupLibrary) {
-            if (pickupLibrary == undefined) return "";
-            return pickupLibrary == "" ? "" : "Hentes hos: " + pickupLibrary;
-        }),
-        holdRequestReadyTextConverter: WinJS.Binding.converter(function (holdRequestEnd) {
-            return holdRequestEnd == undefined || holdRequestEnd == "" ? "Klar til henting: Nei" : "Klar til henting: Ja";
-        }),
-
-
-    });
-
 };
 
 WinJS.Namespace.define("MyPage", {
     ajaxGetUserInformation: ajaxGetUserInformation,
+    addReservationsToDom: addReservationsToDom
+});
 
+WinJS.Namespace.define("MyPageConverters", {
+
+    balanceConverter: WinJS.Binding.converter(function (balance) {
+        if (balance == undefined) return "Du har ingen gebyrer";
+        return balance == "" ? "" : "Balanse: " + balance + ",-";
+    }),
+    sumConverter: WinJS.Binding.converter(function (sum) {
+        if (sum == undefined) return "";
+        return sum == "" ? "" : "Gebyr: " + sum + ",-";
+    }),
+    statusConverter: WinJS.Binding.converter(function (status) {
+        if (status == undefined) return "";
+        return status == "" ? "" : "Status: " + status;
+    }),
+    dateConverter: WinJS.Binding.converter(function (date) {
+        if (date == undefined) return "";
+        return date == "" ? "" : "Dato: " + date;
+    }),
+    loanMaterialConverter: WinJS.Binding.converter(function (loanMaterial) {
+        if (loanMaterial == undefined) return "";
+        return loanMaterial == "" ? "" : "Type: " + loanMaterial;
+    }),
+    loanCatalogerNameConverter: WinJS.Binding.converter(function (loanCataloger) {
+        if (loanCataloger == undefined) return "";
+        return loanCataloger == "" ? "" : "Utlåner: " + loanCataloger;
+    }),
+    loanDateConverter: WinJS.Binding.converter(function (loanDate) {
+        if (loanDate == undefined) return "";
+        return loanDate == "" ? "" : "Lånt: " + loanDate;
+    }),
+    dueDateConverter: WinJS.Binding.converter(function (dueDate) {
+        if (dueDate == undefined) return "";
+        return dueDate == "" ? "" : "Frist for innlevering: " + dueDate;
+    }),
+    originalDueDateConverter: WinJS.Binding.converter(function (originalDueDate) {
+        if (originalDueDate == undefined) return "";
+        return originalDueDate == "" ? "" : "Opprinnelig lånefrist: " + originalDueDate;
+    }),
+    holdRequestFromConverter: WinJS.Binding.converter(function (holdRequestFrom) {
+        if (holdRequestFrom == undefined) return "";
+        return holdRequestFrom == "" ? "" : "Reservert: " + holdRequestFrom;
+    }),
+    holdRequestEndConverter: WinJS.Binding.converter(function (holdRequestEnd) {
+        if (holdRequestEnd == undefined) return "";
+        return holdRequestEnd == "" ? "" : "Hentefrist: " + holdRequestEnd;
+    }),
+    pickupLibraryConverter: WinJS.Binding.converter(function (pickupLibrary) {
+        if (pickupLibrary == undefined) return "";
+        return pickupLibrary == "" ? "" : "Hentes hos: " + pickupLibrary;
+    }),
+    holdRequestReadyTextConverter: WinJS.Binding.converter(function (holdRequestEnd) {
+        return holdRequestEnd == undefined || holdRequestEnd == "" ? "Klar til henting: Nei" : "Klar til henting: Ja";
+    }),
+    nullConverter: WinJS.Binding.converter(function (value) {
+        return value == undefined ? "" : value;
+    })
+    
 });
