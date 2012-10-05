@@ -22,12 +22,12 @@ var fragmentReady = function (model) {
 // !------------ AJAX METHODS -------------! //
 
 var ajaxGetReview = function () {
-    var url = "http://localhost:7089/Document/GetDocumentReview/" + documentModel.DocumentNumber;
+    var url = window.Data.serverBaseUrl + "/Document/GetDocumentReview/" + documentModel.DocumentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetReviewCallback, this, true);
 };
 
 var ajaxGetRating = function () {
-    var url = "http://localhost:7089/Document/GetDocumentRating/" + documentModel.DocumentNumber;
+    var url = window.Data.serverBaseUrl + "/Document/GetDocumentRating/" + documentModel.DocumentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetRatingCallback, this, true);
 };
 

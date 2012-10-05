@@ -71,7 +71,7 @@ progress.header {
                 padding: 7px;
             }
 
-            .listpage .listViewSection .listView .win-container .win-selectioncheckmark, listpage .listViewSection .listView .win-container .win-selectioncheckmarkbackground {
+            .listpage .listViewSection .listView .win-container .win-selectioncheckmark, .listpage .listViewSection .listView .win-container .win-selectioncheckmarkbackground {
                 display: none;
             }
 
@@ -188,7 +188,8 @@ progress.header {
 
             .listpage .listViewSection .listView .win-item {
                 height: 50px;
-                width: 230px;
+                width: 265px;
+                background: rgba(255,255,255,0.03);
             }
 
                 .listpage .listViewSection .listView .win-item .list-info .item-title {
@@ -213,6 +214,12 @@ progress.header {
             .listpage .listContentSection #listContent-article #documentsHolder {
                 margin-top: 15px;
             }
+
+                .listpage .listContentSection #listContent-article #documentsHolder .documentHolder {
+                    margin-top: 20px;
+                }
+
+
 
         .listpage .listViewSection, .listpage .listContentSection {
             -ms-grid-column: 2;
@@ -245,7 +252,9 @@ progress.header {
                 -ms-grid-rows: 1fr;
                 display: -ms-grid;
                 height: 90px;
-                width: 600px;
+                width: 570px;
+                background: rgba(255,255,255,0.03);
+                padding: 10px;
             }
 
 

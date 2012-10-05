@@ -285,7 +285,7 @@ function addToRoamingStorage(applicationData, internalLibraryUserId) {
 
     var roamingSettings = applicationData.roamingSettings;
 
-    //Debug - delete favorites:
+    ////Debug - delete favorites:
     //var key = "favorites-" + internalLibraryUserId;
     //roamingSettings.values.remove(key);
 
@@ -303,29 +303,36 @@ function storeFavorites(roamingSettings, internalLibraryUserId) {
     var key = "favorites-" + internalLibraryUserId;
 
     var existing = roamingSettings.values[key];
-    var docNumbers;
+    var docs;
 
     if (!existing || jQuery.isEmptyObject(existing)) {
-        docNumbers = [];
-        docNumbers.push(documentModel.DocumentNumber);
+        docs = [];
     }
     else {
         var favorites = JSON.parse(existing);
-        if (favorites.docNumbers) {
-            for (var i = 0; i < favorites.docNumbers.length; i++) {
-                if (favorites.docNumbers[i] === documentModel.DocumentNumber) {
+        if (favorites) {
+            for (var i = 0; i < favorites.length; i++) {
+                if (favorites[i].DocumentNumber === documentModel.DocumentNumber) {
                     renderAddToFavoritesFlyout(false, "Dette dokumentet ligger allerede i dine favoritter!", "");
                     return;
                 }
             }
         }
-        docNumbers = favorites.docNumbers;
-        docNumbers.push(documentModel.DocumentNumber);
+
+        docs = favorites;
+
     }
 
-    favorites = { docNumbers: docNumbers };
-    roamingSettings.values[key] = JSON.stringify(favorites);
+    if (documentModel.Author) {
+        if (documentModel.Author.Name) {
+            docs.push({ DocumentNumber: documentModel.DocumentNumber, Title: documentModel.Title, Author: documentModel.Author.Name, SubTitle: documentModel.CompressedSubTitle, ThumbnailUrl: documentModel.ThumbnailUrl });
+        }
+    }
+    else {
+        docs.push({ DocumentNumber: documentModel.DocumentNumber, Title: documentModel.Title, CompressedSubTitle: documentModel.CompressedSubTitle, ThumbnailUrl: documentModel.ThumbnailUrl });
+    }
 
+    roamingSettings.values[key] = JSON.stringify(docs);
     renderAddToFavoritesFlyout(true, "Dokumentet ble lagt til i dine favoritter!", "");
 
 }

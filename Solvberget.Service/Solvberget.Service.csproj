@@ -42,10 +42,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Contrib.Regex">
-      <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Contrib.Regex.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -82,8 +78,9 @@
     <Reference Include="Lucene.Net.Search.SimpleFacetedSearch">
       <HintPath>..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Search.SimpleFacetedSearch.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\library\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
@@ -166,70 +163,6 @@
     <Content Include="bin\App_Data\ordlister\ord_test.txt" />
     <Content Include="bin\App_Data\ordlister\stopwords.txt" />
     <Content Include="bin\App_Data\rules\itemrules.txt" />
-    <Content Include="bin\Contrib.Regex.dll" />
-    <Content Include="bin\Debug\Contrib.Regex.dll" />
-    <Content Include="bin\Debug\Contrib.Regex.xml" />
-    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Analyzers.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Analyzers.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Core.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Core.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Highlighter.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Highlighter.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Queries.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Queries.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Snowball.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Snowball.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Spatial.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.Spatial.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.SpellChecker.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Contrib.SpellChecker.xml" />
-    <Content Include="bin\Debug\Lucene.Net.dll" />
-    <Content Include="bin\Debug\Lucene.Net.FastVectorHighlighter.dll" />
-    <Content Include="bin\Debug\Lucene.Net.FastVectorHighlighter.xml" />
-    <Content Include="bin\Debug\Lucene.Net.Search.SimpleFacetedSearch.dll" />
-    <Content Include="bin\Debug\Lucene.Net.Search.SimpleFacetedSearch.xml" />
-    <Content Include="bin\Debug\Lucene.Net.xml" />
-    <Content Include="bin\Debug\Ninject.dll" />
-    <Content Include="bin\Debug\Ninject.pdb" />
-    <Content Include="bin\Debug\Ninject.xml" />
-    <Content Include="bin\Debug\Solvberget.Domain.dll" />
-    <Content Include="bin\Debug\Solvberget.Domain.pdb" />
-    <Content Include="bin\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.Analyzers.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.Analyzers.xml" />
-    <Content Include="bin\Lucene.Net.Contrib.Core.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.Core.xml" />
-    <Content Include="bin\Lucene.Net.Contrib.Highlighter.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.Highlighter.xml" />
-    <Content Include="bin\Lucene.Net.Contrib.Queries.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.Queries.xml" />
-    <Content Include="bin\Lucene.Net.Contrib.Snowball.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.Snowball.xml" />
-    <Content Include="bin\Lucene.Net.Contrib.Spatial.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.Spatial.xml" />
-    <Content Include="bin\Lucene.Net.Contrib.SpellChecker.dll" />
-    <Content Include="bin\Lucene.Net.Contrib.SpellChecker.xml" />
-    <Content Include="bin\Lucene.Net.dll" />
-    <Content Include="bin\Lucene.Net.FastVectorHighlighter.dll" />
-    <Content Include="bin\Lucene.Net.FastVectorHighlighter.xml" />
-    <Content Include="bin\Lucene.Net.Search.SimpleFacetedSearch.dll" />
-    <Content Include="bin\Lucene.Net.Search.SimpleFacetedSearch.xml" />
-    <Content Include="bin\Lucene.Net.xml" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Ninject.dll" />
-    <Content Include="bin\Ninject.pdb" />
-    <Content Include="bin\Ninject.xml" />
-    <Content Include="bin\Solvberget.Domain.dll" />
-    <Content Include="bin\Solvberget.Domain.pdb" />
-    <Content Include="bin\Solvberget.Service.dll" />
-    <Content Include="bin\Solvberget.Service.pdb" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.dll" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -259,8 +192,8 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="bin\Debug\Solvberget.Domain.dll.config" />
     <None Include="Properties\PublishProfiles\Metro.pubxml" />
+    <None Include="Properties\PublishProfiles\Solvberget.pubxml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
@@ -309,7 +242,6 @@
     <Content Include="Views\Document\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Release\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Event\" />
   </ItemGroup>

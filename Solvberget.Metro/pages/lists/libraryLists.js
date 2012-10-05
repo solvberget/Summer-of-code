@@ -71,6 +71,7 @@
                 }
                 // If this page has a selectionIndex, make that appear in the ListView.
                 listSelectionIndex = Math.max(listSelectionIndex, 0);
+                if (getListsHasReturnedCallback) listView.selection.set(listSelectionIndex);
             }
 
             //AppBar
@@ -126,7 +127,7 @@
         },
 
         getLists: function (requestStr, listView) {
-            
+
             var that = this;
 
             WinJS.xhr({ url: requestStr }).then(
