@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ChildJsonResult.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\UserController.cs" />

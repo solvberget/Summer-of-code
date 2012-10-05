@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<contact>
+
+  <info>
+    <title>Informasjonen og servicetelefonen</title>
+    <phone>(+47) 51 50 74 65 – åpen mandag-fredag 10.00-15.00</phone>
+    <fax>(+47) 51 50 70 25</fax>
+    <email>biblioteket@stavanger-kulturhus.no</email>
+    <visitingaddress>Sølvberggata 2.</visitingaddress>
+    <address>Postboks 310, 4002 STAVANGER</address>
+  </info>
+
+  <info>
+    <title>Pressekontakter</title>
+    <contact-persons>
+      <person>
+        <name>Dorthe Stramrud</name>
+        <position>Kommunikasjonsrådgiver</position>
+        <email>dorthe.h.stramrud@stavanger-kulturhus.no</email>
+        <phone>902 06 908</phone>
+      </person>
+      <person>
+        <name>Øyvind Berekvam</name>
+        <position>Nettredaktør</position>
+        <email>oyvind.berekvam@stavanger-kulturhus.no</email>
+        <phone>995 65 627</phone>
+      </person>
+      <person>
+        <name>Espen Røsbak</name>
+        <position>Kapittel-festivalen</position>
+        <email>espen.rosbak@stavanger-kulturhus.no</email>
+        <phone>915 86 998</phone>
+      </person>
+    </contact-persons>
+  </info>
+
+  <info>
+    <title>Musikk- og filmbiblioteket</title>
+    <phone>(+47) 51 50 79 50</phone>
+    <fax>(+47) 51 50 70 36</fax>
+    <email>musikkbiblioteket@stavanger-kulturhus.no</email>
+    <address></address>
+    <visitingaddress>2. etasje, Sølvberggata 2</visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position></position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>
+  
+  <info>
+    <title>Kulturbiblioteket</title>
+    <phone>(+47)  51 50 71 49</phone>
+    <fax></fax>
+    <email>biblioteket@stavanger-kulturhus.no</email>
+    <address></address>
+    <visitingaddress> 2. etasje, Sølvberggata 2</visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position></position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>
+
+  <info>
+    <title>Barne- og ungdomsbiblioteket</title>
+    <phone>(+47) 51 50 71 51</phone>
+    <fax></fax>
+    <email>biblioteket@stavanger-kulturhus.no</email>
+    <address></address>
+    <visitingaddress>3. etasje, Sølvberggata 2</visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position></position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>
+
+  <info>
+    <title>Sølvberget Galleri</title>
+    <phone></phone>
+    <fax></fax>
+    <email></email>
+    <address></address>
+    <visitingaddress></visitingaddress>
+    <contact-persons>
+      <person>
+        <name>Anne Liv Tønnessen</name>
+        <position>Kontaktperson</position>
+        <email></email>
+        <phone>51 50 77 66</phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>Galleriet er under omorganisering og nyutvikling.</field>
+    </generic-fields>
+  </info>
+
+  <info>
+    <title>Faktabiblioteket</title>
+    <phone>(+47) 51 50 71 42</phone>
+    <fax></fax>
+    <email>biblioteket@stavanger-kulturhus.no</email>
+    <address></address>
+    <visitingaddress>3. etasje, Sølvberggata 2</visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position></position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>
+  
+  <info>
+    <title>Madla bibliotek</title>
+    <phone>(+47) 51 55 52 21</phone>
+    <fax></fax>
+    <email>madla.bibliotek@stavanger-kulturhus.no</email>
+    <address></address>
+    <visitingaddress>AMFI Madla, Madlakrossen 9, 4042 Hafrsfjord</visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position></position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>
+
+  <info>
+    <title>Skolebibliotekssentralen</title>
+    <phone>(+47) 51 50 72 39</phone>
+    <fax></fax>
+    <email>skolebiblioteksentralen@stavanger-kulturhus.no</email>
+    <address></address>
+    <visitingaddress></visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position></position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>
+
+  <info>
+    <title></title>
+    <phone></phone>
+    <fax></fax>
+    <email></email>
+    <address></address>
+    <visitingaddress></visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position></position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>
+
+  <!--<info>
+    <title></title>
+    <phone></phone>
+    <fax></fax>
+    <email></email>
+    <address></address>
+    <visitingaddress></visitingaddress>
+    <contact-persons>
+      <person>
+        <name></name>
+        <position>Ansvarlig redaktør, Sølvberget Nett:</position>
+        <email></email>
+        <phone></phone>
+      </person>
+    </contact-persons>
+    <generic-fields>
+      <field>
+      </field>
+    </generic-fields>
+  </info>-->
+
+</contact>

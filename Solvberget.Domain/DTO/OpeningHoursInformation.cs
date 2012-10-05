@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -5,7 +6,7 @@ namespace Solvberget.Domain.DTO
 {
     public class OpeningHoursInformation : Information
     {
-        
+
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public Dictionary<string, string> LocationOrDayOfWeekToTime { get; set; }
@@ -16,30 +17,39 @@ namespace Solvberget.Domain.DTO
 
         public static OpeningHoursInformation GenerateFromXml(XElement xml)
         {
-            var ohi = new OpeningHoursInformation();
+            var ohi = new OpeningHoursInformation {LocationOrDayOfWeekToTime = new Dictionary<string, string>()};
             ohi.FillProperties(xml);
-            return ohi;    
+            return ohi;
         }
 
-        private void FillProperties(XElement xml)
+        private void FillProperties(XContainer xml)
         {
-            
+            if (xml == null) return;
+
             var title = xml.Element("title");
             var subTitle = xml.Element("subtitle");
-            var location = xml.Element("title");
-            var phone = xml.Element("title");
-            var url = xml.Element("title");
-            var urlText = xml.Element("title");
+            var location = xml.Element("location");
+            var phone = xml.Element("phone");
+            var url = xml.Element("url");
+            var urlText = xml.Element("urlText");
 
-            if (title != null) Title = title.Value;
-            if (subTitle != null) SubTitle = subTitle.Value;
-            if (location != null) Location = location.Value;
-            if (phone != null) Phone = phone.Value;
-            if (url != null) Url = url.Value;
-            if (UrlText != null) UrlText = urlText.Value;
+            if (title != null) Title = string.IsNullOrEmpty(title.Value) ? null : title.Value;
+            if (subTitle != null) SubTitle = string.IsNullOrEmpty(subTitle.Value) ? null : subTitle.Value;
+            if (location != null) Location = string.IsNullOrEmpty(location.Value) ? null : location.Value;
+            if (phone != null) Phone = string.IsNullOrEmpty(phone.Value) ? null : phone.Value;
+            if (url != null) Url = string.IsNullOrEmpty(url.Value) ? null : url.Value;
+            if (urlText != null) UrlText = string.IsNullOrEmpty(urlText.Value) ? null : urlText.Value;
 
-            //Key-value
-
+            var keyValueList = xml.Element("departmentOrDayOfWeekToTimeList");
+            if (keyValueList == null) return;
+            var items = keyValueList.Descendants("item");
+            foreach (var item in items)
+            {
+                var key = item.Attribute("key");
+                if (key == null) continue;
+                var value = item.Element("value");
+                if (value != null) LocationOrDayOfWeekToTime.Add(key.Value, value.Value ?? string.Empty);
+            }
         }
 
     }

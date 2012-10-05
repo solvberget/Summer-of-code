@@ -103,6 +103,7 @@
     <Compile Include="DTO\Blog.cs" />
     <Compile Include="DTO\BlogEntry.cs" />
     <Compile Include="DTO\BokElskereBok.cs" />
+    <Compile Include="DTO\ContactPerson.cs" />
     <Compile Include="DTO\Game.cs" />
     <Compile Include="DTO\Information.cs" />
     <Compile Include="DTO\ItemRule.cs" />

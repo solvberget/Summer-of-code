@@ -31,19 +31,27 @@ namespace Solvberget.Domain.Implementation
             var xmlDoc = XDocument.Load(_filePathOpening);
             if (xmlDoc.Root != null)
             {
-                var locations = xmlDoc.Root.Descendants("locations");
-                locations.AsParallel().ToList().ForEach(location => openingHoursList.Add(OpeningHoursInformation.GenerateFromXml(location)));
+                var branches = xmlDoc.Root.Descendants("branch");
+                branches.AsParallel().ToList().ForEach(branch => openingHoursList.Add(OpeningHoursInformation.GenerateFromXml(branch)));
             }
-            
-            return openingHoursList.ToList();
+
+            return openingHoursList.Reverse().ToList();
 
         }
 
         public List<ContactInformation> GetContactInformation()
         {
-            var webpage = new ContactWebPage();
-            webpage.FillProperties();
-            return webpage.ContactInformationList;
+
+            var contactInformationList = new ConcurrentBag<ContactInformation>();
+            var xmlDoc = XDocument.Load((_filePathContact));
+            if (xmlDoc.Root != null)
+            {
+                var infoItems = xmlDoc.Root.Descendants("info");
+                infoItems.AsParallel().ToList().ForEach(infoItem => contactInformationList.Add(ContactInformation.GenerateFromXml(infoItem)));
+            }
+
+            return contactInformationList.Reverse().ToList();
+
         }
 
     }
