@@ -170,7 +170,6 @@
 
                         $('#' + doc.DocumentNumber).die('click').live('click', function () {
                             var model = { DocumentNumber: $(this).attr("id") };
-                            //nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: that.resolveDocumentFromDocumentNumber(documentNumber) });
                             nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
                         });
                     }
