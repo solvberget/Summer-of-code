@@ -180,27 +180,6 @@
     </generic-fields>
   </info>
 
-  <info>
-    <title></title>
-    <phone></phone>
-    <fax></fax>
-    <email></email>
-    <address></address>
-    <visitingaddress></visitingaddress>
-    <contact-persons>
-      <person>
-        <name></name>
-        <position></position>
-        <email></email>
-        <phone></phone>
-      </person>
-    </contact-persons>
-    <generic-fields>
-      <field>
-      </field>
-    </generic-fields>
-  </info>
-
   <!--<info>
     <title></title>
     <phone></phone>

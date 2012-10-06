@@ -47,7 +47,7 @@
       <item key="Lørdag (alle avdelinger)">
         <value>10.00 - 16.00</value>
       </item>
-      <item key="Søndag (alle avdelinger fra og med 2. september)">
+      <item key="Søndag (alle avdelinger)">
         <value>12.00 - 16.00</value>
       </item>
     </departmentOrDayOfWeekToTimeList>
