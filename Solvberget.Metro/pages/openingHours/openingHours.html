@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Kontakt oss</title>
@@ -8,19 +9,27 @@
     <script src="openingHours.js"></script>
 
 </head>
+
 <body>
+
     <div class="templates">
-        <div id="openingHoursTemplate">
-            <div class="openingHourTile">
-                <h2 data-win-bind="innerText: InformationTitle"></h2>
-                <div data-win-bind="innerText: InformationValue"></div>
+
+        <div id="opening-hours-template">
+            <div class="opening-hour-tile">
+                <h2 data-win-bind="innerText: Title"></h2>
+                <div data-win-bind="innerText: SubTitle Solvberget.Converters.nullConverter"></div>
+                <div data-win-bind="innerText: Phone Solvberget.Converters.nullConverter"></div>
+                <a href="#" data-win-bind="innerText: UrlText Solvberget.Converters.nullConverter; href: Url Solvberget.Converters.nullConverter"></a>
+                <div data-win-bind="innerText: Location Solvberget.Converters.nullConverter"></div>
+                <hr />
+                <div class="opening-hours-list"></div>
             </div>
         </div>
+
     </div>
 
+    <div class="opening-hours fragment">
 
-    <!-- The content that will be loaded and displayed. -->
-    <div class="openingHours fragment">
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
@@ -28,20 +37,25 @@
                 <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Name"></h2>
             </div>
         </header>
-        <section
-            aria-label="Main content" id="mainContentSection" role="main">
-            <div id="openingHoursLoading">
+
+        <section aria-label="Main content" role="main">
+            
+            <div id="opening-hours-loading">
                 <progress class="win-ring withText"></progress>
             </div>
-            <div class="content" id="openingHoursContent" aria-label="Main content" role="main">
+            
+            <div class="content" aria-label="Main content" role="main">
                 <article>
                     <div>
-                        <div id="openingHoursInformationTemplateHolder"></div>
+                        <div id="opening-hours-information-template-holder"></div>
                     </div>
                 </article>
             </div>
+
         </section>
 
     </div>
+
 </body>
+
 </html>

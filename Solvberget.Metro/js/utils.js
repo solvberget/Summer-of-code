@@ -211,9 +211,16 @@
         }
         return returnvalue;
     });
-    WinJS.Namespace.define("Solvberget.Converters", {
-        styleNullToHiddenConverter: styleNullToHiddenConverter
+
+    var nullConverter = WinJS.Binding.converter(function(value) {
+        return value == undefined ? "" : value;
     });
+
+    WinJS.Namespace.define("Solvberget.Converters", {
+        styleNullToHiddenConverter: styleNullToHiddenConverter,
+        nullConverter: nullConverter    
+    });
+    
 })();
 
 (function () {
