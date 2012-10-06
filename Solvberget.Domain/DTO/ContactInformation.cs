@@ -32,8 +32,8 @@ namespace Solvberget.Domain.DTO
             var phone = xml.Element("phone");
             var fax = xml.Element("fax");
             var email = xml.Element("email");
-            var visitingAddress = xml.Element("visitingadress");
-            var address = xml.Element("adress");
+            var visitingAddress = xml.Element("visitingaddress");
+            var address = xml.Element("address");
 
             if (title != null) Title = string.IsNullOrEmpty(title.Value) ? null : title.Value;
             if (phone != null) Phone = string.IsNullOrEmpty(phone.Value) ? null : phone.Value;
