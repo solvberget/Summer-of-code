@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Kontakt oss</title>
@@ -8,21 +9,29 @@
     <script src="contact.js"></script>
 
 </head>
+
 <body>
 
     <div class="templates">
-        <section>
-            <div id="contactTemplate">
-                <div class="contactTile" id="contact">
-                    <h2 class="contactTitle" data-win-bind="innerText: InformationTitle"></h2>
-                    <div class="contactvalue" data-win-bind="innerHTML: InformationValue"></div>
-                </div>
+
+        <div id="contact-info-template">
+            <div class="contact-tile">
+                <h2 data-win-bind="innerText: Title"></h2>
+                <hr />
+                <div class="contact-info-item" data-win-bind="innerHTML: Phone Solvberget.ContactConverters.phoneConverter"></div>
+                <div class="contact-info-item" data-win-bind="innerHTML: Fax Solvberget.ContactConverters.faxConverter"></div>
+                <a href="#" class="contact-info-item" data-win-bind="href: Email Solvberget.Converters.emailToMailtoConverter; innerHTML: Email Solvberget.Converters.nullConverter"></a>
+                <div class="contact-info-item" data-win-bind="innerHTML: VisitingAddress Solvberget.ContactConverters.visitingAddressConverter"></div>
+                <div class="contact-info-item" data-win-bind="innerHTML: Address Solvberget.ContactConverters.postAddressConverter"></div>
+                <div class="contact-persons-holder"></div>
+                <div class="generic-fields-holder"></div>
             </div>
-        </section>
+        </div>
+
     </div>
 
-    <!-- The content that will be loaded and displayed. -->
-    <div class="fragment">
+    <div class="contact-info fragment">
+
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
@@ -30,20 +39,22 @@
                 <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Name"></h2>
             </div>
         </header>
-        <section
-            aria-label="Main content" id="mainContactContentSection" role="main">
-            <div id="contactLoading">
+
+        <section aria-label="Main content" role="main">
+            <div id="contact-info-loading">
                 <progress class="win-ring withText"></progress>
             </div>
-            <div class="content" id="contactContent" aria-label="Main content" role="main">
+            <div class="content" aria-label="Main content" role="main">
                 <article>
                     <div>
-                        <div id="contactInformationTemplateHolder"></div>
+                        <div id="contact-information-template-holder"></div>
                     </div>
                 </article>
             </div>
         </section>
 
     </div>
+
 </body>
+
 </html>

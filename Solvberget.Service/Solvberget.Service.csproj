@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ChildJsonResult.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -149,6 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\App_Data\blogs\feeds.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="bin\App_Data\info\contact.xml" />
+    <Content Include="bin\App_Data\info\opening.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="bin\App_Data\librarylists\dynamic\example_list2.xml" />

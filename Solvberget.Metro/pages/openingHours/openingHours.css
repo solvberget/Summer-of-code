@@ -1,4 +1,4 @@
-﻿.content {
+﻿.opening-hours .content {
     -ms-grid-row: 2;
     display: block;
     height: 100%;
@@ -6,90 +6,90 @@
     position: relative;
     width: 100%;
     z-index: 0;
+    display: none;
 }
 
-    .content article {
+    .opening-hours .content article {
         /* Define a multi-column, horizontally scrolling article by default. */
         column-fill: auto;
-        column-gap: 40px;
+        column-gap: 20px;
         column-width: 480px;
-        height: calc(100% - 50px);
+        height: calc(100% - 20px);
         margin-left: 120px;
         margin-top: 5px;
-        width: 320px;
+        width: 370px;
     }
 
+        .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile:first-child {
+            margin-top: 0px;
+        }
 
-.titlecontainer {
-    border: none;
-}
+        .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile {
+            height: 250px;
+            padding: 20px;
+            margin-top: 8px;
+            width: 350px;
+            max-width: 350px;
+            margin-right: 0px;
+            overflow: hidden;
+        }
 
-.contactInformationTitle {
-    margin-top: 20px;
-}
+            .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list .opening-time-list-item {
+                margin-top: 3px;
+            }
 
-/* Progress ring*/
+                .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list .opening-time-list-item .opening-time {
+                    float: right;
+                }
 
-#openingHoursLoading {
+.opening-hours #opening-hours-loading {
     text-align: center;
     margin-top: 250px;
 }
 
 progress.withText {
-    color: inherit; /* Uses the same text color as the page */
+    color: inherit;
     width: 100px;
     height: 100px;
 }
 
-.openingHourTile:first-child {
-    margin-top: 0px;
-}
-
-.openingHourTile {
-    padding: 20px;
-    margin-top: 8px;
-    width: 300px;
-    max-width: 350px;
-    margin-right: 0px;
-    overflow: hidden;
-}
-
-#openingHoursData {
+.templates {
     display: none;
-    visibility: hidden;
 }
 
-.openingHoursInformationTitle {
-    margin-top: 20px;
-}
+@media screen and (-ms-view-state: fullscreen-portrait) {
 
+    .opening-hours .content article {
+        margin-left: 100px;
+    }
+}
 
 @media screen and (-ms-view-state: snapped) {
-    
-    .content article {
+
+    .opening-hours .content article {
         /* Define a single column, vertically scrolling article in snapped mode. */
         -ms-grid-columns: 300px 1fr;
         -ms-grid-row: 2;
-        -ms-grid-rows: auto 60px;
         display: -ms-grid;
+        margin-left: 8px;
+        width: 250px;
         height: 100%;
-        margin-left: 5px;
-        width: 300px;
     }
 
-    #openingHoursContent {
-        margin-left: 5px;
-        -ms-grid-column: inherit;
-    }
+        .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile {
+            -ms-grid-column: 1;
+            height: 250px;
+            padding: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            width: 250px;
+            max-width: 250px;
+            margin-right: 8px;
+            overflow: hidden;
+        }
 
-    #mainContentSection {
-        margin-left: 10px;
-    }
-
-    .openingHourstTitle, .openingHoursValue {
-        margin-top: 13px;
-        font-size: 15px;
-        padding-right: 10px;
-    }
+            .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list {
+                font-size: 9pt;
+            }
 
 }

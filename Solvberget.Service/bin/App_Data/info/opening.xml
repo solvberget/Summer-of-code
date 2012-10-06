@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<openinghours>
+
+  <branch>
+    <title>Kulturhusets foajé</title>
+    <subtitle></subtitle>
+    <phone></phone>
+    <url></url>
+    <urlText></urlText>
+    <location></location>
+    <departmentOrDayOfWeekToTimeList>
+      <item key="Mandag-torsdag">
+        <value>10.00-22.00</value>
+      </item>
+      <item key="Fredag og lørdag">
+        <value>10.00-23.00</value>
+      </item>
+      <item key="Søndag">
+        <value>12.00-22.00</value>
+      </item>
+    </departmentOrDayOfWeekToTimeList>
+  </branch>
+
+  <branch>
+    <title>Stavanger bibliotek</title>
+    <subtitle></subtitle>
+    <phone></phone>
+    <url></url>
+    <urlText></urlText>
+    <location></location>
+    <departmentOrDayOfWeekToTimeList>
+      <item key="Mandag - torsdag">
+        <value></value>
+      </item>
+      <item key="Musikk- og filmbiblioteket">
+        <value>10.00 - 21.00</value>
+      </item>
+      <item key="Kultur- og faktabiblioteket">
+        <value>10.00 - 19.00</value>
+      </item>
+      <item key="Barne- og ungdomsbiblioteket">
+        <value>10.00 - 19.00</value>
+      </item>
+      <item key="Fredag (alle avdelinger)">
+        <value>10.00 - 17.00</value>
+      </item>
+      <item key="Lørdag (alle avdelinger)">
+        <value>10.00 - 16.00</value>
+      </item>
+      <item key="Søndag (alle avdelinger)">
+        <value>12.00 - 16.00</value>
+      </item>
+    </departmentOrDayOfWeekToTimeList>
+  </branch>
+
+  <branch>
+    <title>Madla bibliotek</title>
+    <subtitle></subtitle>
+    <phone>(+47) 51 55 52 21</phone>
+    <url></url>
+    <urlText></urlText>
+    <location>AMFI Madla</location>
+    <departmentOrDayOfWeekToTimeList>
+      <item key="Mandag - Torsdag">
+        <value>10.00 - 18.00</value>
+      </item>
+      <item key="Fredag">
+        <value>10.00 - 17.00</value>
+      </item>
+      <item key="Lørdag">
+        <value>10.00 - 16.00</value>
+      </item>
+    </departmentOrDayOfWeekToTimeList>
+  </branch>
+
+  <branch>
+    <title>SF Kino Stavanger, billettluke</title>
+    <subtitle></subtitle>
+    <phone>(+47) 51 51 07 00</phone>
+    <url>http://www.sfkino.no/</url>
+    <urlText>SF Kino Stavanger</urlText>
+    <departmentOrDayOfWeekToTimeList>
+      <item key="Mandag-torsdag">
+        <value>11.30-21.30</value>
+      </item>
+      <item key="Fredag">
+        <value>11.30-22.30</value>
+      </item>
+      <item key="Lørdag">
+        <value>12.00-22.30</value>
+      </item>
+      <item key="Søndag">
+        <value>12.00-21.30</value>
+      </item>
+    </departmentOrDayOfWeekToTimeList>
+  </branch>
+
+  <branch>
+    <title>Choco Boco</title>
+    <subtitle></subtitle>
+    <phone>(+47) 51 86 33 08</phone>
+    <url>http://choco.no/</url>
+    <urlText>www.choco.no</urlText>
+    <location></location>
+    <departmentOrDayOfWeekToTimeList>
+      <item key="Mandag-torsdag">
+        <value>10.00-22.00</value>
+      </item>
+      <item key="Fredag">
+        <value>10.00-24.00</value>
+      </item>
+      <item key="Lørdag">
+        <value>11.00-24.00</value>
+      </item>
+      <item key="Søndag">
+        <value>12.00-22.00</value>
+      </item>
+    </departmentOrDayOfWeekToTimeList>
+  </branch>
+
+  <branch>
+    <title>Kult.kafeen</title>
+    <subtitle></subtitle>
+    <phone>(+47) 51 89 16 00</phone>
+    <url>http://www.kultkafeen.no/</url>
+    <urlText>www.kultkafeen.no</urlText>
+    <location></location>
+    <departmentOrDayOfWeekToTimeList>
+      <item key="Mandag-lørdag">
+        <value>10.00-22.00</value>
+      </item>
+      <item key="Søndag">
+        <value>12.00-22.00</value>
+      </item>
+    </departmentOrDayOfWeekToTimeList>
+  </branch>
+
+  <!--<branch>
+    <title></title>
+    <subtitle></subtitle>
+    <phone></phone>
+    <url></url>
+    <urlText></urlText>
+    <location></location>
+    <departmentOrDayOfWeekToTimeList>
+      <item key="">
+        <value></value>
+      </item>
+    </departmentOrDayOfWeekToTimeList>
+  </branch>-->
+
+</openinghours>

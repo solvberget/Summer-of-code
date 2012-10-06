@@ -103,6 +103,7 @@
     <Compile Include="DTO\Blog.cs" />
     <Compile Include="DTO\BlogEntry.cs" />
     <Compile Include="DTO\BokElskereBok.cs" />
+    <Compile Include="DTO\ContactPerson.cs" />
     <Compile Include="DTO\Game.cs" />
     <Compile Include="DTO\Information.cs" />
     <Compile Include="DTO\ItemRule.cs" />
@@ -189,7 +190,8 @@
     <Compile Include="Implementation\BokbasenRepository.cs" />
     <Compile Include="Implementation\BlogRepository.cs" />
     <Compile Include="Implementation\BokelskereRepository.cs" />
-    <Compile Include="Implementation\InformationRepository.cs" />
+    <Compile Include="Implementation\InformationRepositoryXml.cs" />
+    <Compile Include="Implementation\InformationRepositoryHtml.cs" />
     <Compile Include="Implementation\NewsRepository.cs" />
     <Compile Include="Implementation\RulesRepository.cs" />
     <Compile Include="Implementation\ImdbRepository.cs" />

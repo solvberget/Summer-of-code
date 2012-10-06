@@ -211,9 +211,21 @@
         }
         return returnvalue;
     });
-    WinJS.Namespace.define("Solvberget.Converters", {
-        styleNullToHiddenConverter: styleNullToHiddenConverter
+
+    var nullConverter = WinJS.Binding.converter(function(value) {
+        return value == undefined ? "" : value;
     });
+
+    var emailToMailtoConverter = WinJS.Binding.converter(function(value) {
+        return value == undefined ? "" : "mailto:" + value;
+    });
+
+    WinJS.Namespace.define("Solvberget.Converters", {
+        styleNullToHiddenConverter: styleNullToHiddenConverter,
+        nullConverter: nullConverter,
+        emailToMailtoConverter: emailToMailtoConverter
+   });
+    
 })();
 
 (function () {
