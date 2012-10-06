@@ -1,4 +1,4 @@
-﻿.content {
+﻿.contact-info .content {
     -ms-grid-row: 2;
     display: block;
     height: 100%;
@@ -6,109 +6,96 @@
     position: relative;
     width: 100%;
     z-index: 0;
-}
-
-    .content article {
-        /* Define a multi-column, horizontally scrolling article by default. */
-        column-gap: 80px;
-        column-width: 250px;
-        height: calc(100% - 50px);
-        margin-left: 120px;
-        margin-top: 5px;
-        width: 400px;
-    }
-
-.titlecontainer {
-    border: none;
-}
-
-#mainContactContentSection {
-    overflow: auto;
-}
-
-
-.templates {
     display: none;
 }
 
-#contactLoading {
-    width: auto;
-    height: auto;
+    .contact-info .content article {
+        /* Define a multi-column, horizontally scrolling article by default. */
+        column-fill: auto;
+        column-gap: 20px;
+        column-width: 480px;
+        height: calc(100% - 20px);
+        margin-left: 120px;
+        margin-top: 5px;
+        width: 370px;
+    }
+
+
+        .contact-info .content article #contact-information-template-holder .contact-tile:first-child {
+            margin-top: 0px;
+        }
+
+        .contact-info .content article #contact-information-template-holder .contact-tile {
+            height: 250px;
+            padding: 20px;
+            margin-top: 8px;
+            width: 350px;
+            max-width: 350px;
+            margin-right: 0px;
+            overflow: hidden;
+        }
+
+            .contact-info .content article #contact-information-template-holder .contact-tile .contact-info-item {
+                margin-top: 7px;
+            }
+
+            .contact-info .content article #contact-information-template-holder .contact-tile .contact-person {
+                margin-top: 7px;
+            }
+
+
+.contact-info #contact-info-loading {
     text-align: center;
     margin-top: 250px;
 }
 
 progress.withText {
-    color: inherit; /* Uses the same text color as the page */
-}
-
-progress.withText {
+    color: inherit;
     width: 100px;
     height: 100px;
-    text-align: center;
 }
 
-/* Text style for a label for a default size progress ring */
-.progressRingText {
-    font-size: 20pt;
-    line-height: 25pt;
+.templates {
+    display: none;
 }
 
-.contactTile {
-    width: 250px;
-    padding: 20px;
-    margin-top: 20px;
-    width: 300px;
-    max-width: 350px;
-    margin-right: 0px;
-    overflow: hidden;
+@media screen and (-ms-view-state: fullscreen-portrait) {
+
+    .contact-info .content article {
+        margin-left: 100px;
+    }
 }
-
-
-.contactTitle, .contactValue {
-    margin-top: 10px;
-}
-
-#contactContent {
-    display: inline;
-}
-
-.titlearea {
-    overflow: visible;
-}
-
-#contactTemplateHolder {
-    margin-top: 120px;
-    display: -ms-flexbox;
-    -ms-flex-direction: row;
-    -ms-flex-align: stretch;
-}
-
 
 @media screen and (-ms-view-state: snapped) {
-    .content article {
+
+    .contact-info .content article {
         /* Define a single column, vertically scrolling article in snapped mode. */
         -ms-grid-columns: 300px 1fr;
         -ms-grid-row: 2;
-        -ms-grid-rows: auto 60px;
         display: -ms-grid;
+        margin-left: 8px;
+        width: 250px;
         height: 100%;
-        margin-left: 1px;
-        width: 300px;
     }
 
-    #contactContent {
-        margin-left: 5px;
-        -ms-grid-column: inherit;
-    }
+        .contact-info .content article #contact-information-template-holder .contact-tile {
+            -ms-grid-column: 1;
+            height: 250px;
+            padding: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            width: 250px;
+            max-width: 250px;
+            margin-right: 8px;
+            overflow: hidden;
+        }
 
-    #mainContentSection {
-        margin-left: 10px;
-    }
+        .contact-info .content article #contact-information-template-holder .contact-tile .contact-persons-holder {
+            font-size: 10pt;
+        }
 
-    .contactTitle, .contactValue {
-        margin-top: 13px;
-        font-size: 15px;
-        padding-right:10px;
-    }
+        .contact-info .content article #contact-information-template-holder .contact-tile .contact-info-item {
+            font-size: 10pt;
+        }
+
 }
