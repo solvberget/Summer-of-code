@@ -7,7 +7,8 @@
     var ui = WinJS.UI;
     var utils = WinJS.Utilities;
     var nav = WinJS.Navigation;
-
+    var app = WinJS.Application;
+    
     var listRequestUrl = Data.serverBaseUrl + "/List/GetListsStaticAndDynamic";
     var docRequestUrl = Data.serverBaseUrl + "/Document/GetDocumentLight/";
     var thumbRequestUrl = Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
@@ -25,8 +26,19 @@
 
             continueToGetDocuments = true;
 
-            //Get selectionIndex if contained in options
-            listSelectionIndex = (options && "selectedIndex" in options) ? options.selectedIndex : -1;
+            if (options && "selectedIndex" in options) {
+                listSelectionIndex = options.selectedIndex;
+            }
+            else if (app.sessionState.listpageSelectionIndex && !this.isSingleColumn()) {
+                if (app.sessionState.listpageSelectionIndex.index) {
+                    listSelectionIndex = app.sessionState.listpageSelectionIndex.index;
+                } else {
+                    listSelectionIndex = -1;
+                }
+            }
+            else {
+                listSelectionIndex = -1;
+            }
 
             //Set page header
             element.querySelector("header[role=banner] .pagetitle").textContent = "Anbefalinger";
@@ -100,6 +112,7 @@
                         }
                         else {
                             // If fullscreen or filled, update the details column with new data.
+                            that.saveListSelectionIndex();
                             var listContent = that.element.querySelector(".listContentSection");
                             binding.processAll(listContent, items[0].data);
                             that.renderListContent(items[0].data);
@@ -170,6 +183,7 @@
 
                         $('#' + doc.DocumentNumber).die('click').live('click', function () {
                             var model = { DocumentNumber: $(this).attr("id") };
+                            that.saveListSelectionIndex();
                             nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
                         });
                     }
@@ -332,6 +346,11 @@
                     }
                 }
             }
+        },
+
+        saveListSelectionIndex: function () {
+            var indexObj = { index: listSelectionIndex };
+            app.sessionState.listpageSelectionIndex = indexObj;
         },
 
         updateLayout: function (element, viewState, lastViewState) {
