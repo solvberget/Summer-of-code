@@ -304,7 +304,7 @@ var addFavoritesToDom = function (favoritesToUse) {
                 deleteFavorite(favorites, index);
             });
 
-            var context = { DocumentNumber: favorites[i] };
+            var context = { DocumentNumber: favorites[i].DocumentNumber };
             $(".clickableFavoriteArea:last").click($.proxy(function () {
                 var docModel = this;
                 WinJS.Navigation.navigate("/pages/documentDetail/documentDetail.html", { documentModel: docModel });
