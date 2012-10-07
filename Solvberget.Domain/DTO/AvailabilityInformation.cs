@@ -43,9 +43,16 @@ namespace Solvberget.Domain.DTO
                 if (AvailableCount == 0)
                 {
                     var dueDates = items.Where(x => x.LoanDueDate != null).Select(x => x.LoanDueDate.Value);
-                    var earliestDueDate = dueDates.OrderBy(x => x).FirstOrDefault();
-                    EarliestAvailableDate = items.All(x => x.OnHold) ? earliestDueDate.AddDays(doc.StandardLoanTime) : earliestDueDate;
-                    EarliestAvailableDateFormatted = earliestDueDate.ToShortDateString();
+                    if (dueDates.Any())
+                    {
+                        var earliestDueDate = dueDates.OrderBy(x => x).FirstOrDefault();
+                        EarliestAvailableDate = items.All(x => x.OnHold) ? earliestDueDate.AddDays(doc.StandardLoanTime) : earliestDueDate;
+                        EarliestAvailableDateFormatted = earliestDueDate.ToShortDateString();
+                    }
+                    else
+                    {
+                        EarliestAvailableDateFormatted = "Ukjent";
+;                    }
                 }
                 else
                 {
