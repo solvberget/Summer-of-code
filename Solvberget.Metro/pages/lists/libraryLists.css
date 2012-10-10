@@ -21,6 +21,7 @@ progress.header {
     margin-top: 5px;
     width: 25px;
     height: 25px;
+    color: inherit;
 }
 
 
