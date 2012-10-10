@@ -25,7 +25,9 @@
     }
 
         .groupdetailpage .eventItemsListView .win-item .item-image-container {
-            margin: 0 auto;
+            /*margin: 0 auto;*/
+            background-color: rgba(255, 255, 255, 0.01);
+            text-align: center;
         }
 
             .groupdetailpage .eventItemsListView .win-item .item-image-container .item-image {
@@ -74,7 +76,7 @@
         -ms-grid-rows: 1fr;
         display: -ms-grid;
         height: 85px;
-        width: 320px;
+        width: 280px;
     }
 
         .groupdetailpage .eventItemsListView .win-item .item-image-container {
@@ -118,4 +120,5 @@
     .groupdetailpage .eventItemsListView .win-horizontal.win-viewport .win-surface {
         margin-left: 100px;
     }
+
 }

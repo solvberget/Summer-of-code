@@ -10,6 +10,13 @@
             var item = options && options.item ? EventData.resolveItemReference(options.item) : EventData.items.getAt(0);
             event = item;
             WinJS.Binding.processAll(element, item);
+            
+            if (!item.PictureUrl) {
+                $(".event-image-container").css("display", "none");
+                $(".event-image-container").css("-ms-grid-row", "0");
+                $(".event-content-holder").css("-ms-grid-row", "2");
+            }
+
             element.querySelector(".titlearea .pagetitle").textContent = EventData.getGroupByKey(item.TypeId).Name;
             document.getElementById("cal-button").addEventListener("click", this.openIcalForEvent);
             document.getElementById("link-button").addEventListener("click", this.openLinkToEvent);
