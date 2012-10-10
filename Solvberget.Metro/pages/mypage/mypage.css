@@ -1,11 +1,13 @@
-﻿
+﻿#templates {
+    display: none;
+}
 
-.clickableArea:hover {
+.myPage .clickableArea:hover {
     cursor: pointer;
     background-color: rgba(255,255,255,0.1);
 }
 
-.titlecontainer {
+.myPage .titlecontainer {
     border: none;
 }
 
@@ -26,35 +28,22 @@
         padding-left: 10px;
     }
 
-#mainContentSection {
-    margin-left: 45px;
+.myPage #mainContentSection {
+    margin-left: 30px;
     overflow: auto;
 }
 
-#templates {
-    display: none;
-}
+    .myPage #mainContentSection #mypageData {
+        display: -ms-flexbox;
+        -ms-flex-direction: row;
+        -ms-flex-align: stretch;
+        max-height: calc(100% - 20px);
+    }
 
-.renewLoanButton {
-    margin-top: 15px;
-    margin-bottom: 10px;
-}
+    .myPage #mainContentSection #mypageData > div {
+    }
 
-.cancelReservationButton {
-    margin-top: 15px;
-    margin-bottom: 10px;
-}
-
-.deleteFavoriteButton {
-    margin-top: 15px;
-    margin-bottom: 10px;
-}
-
-.renewAllButton {
-    float: right;
-}
-
-.box {
+.myPage .box {
     margin: 10px;
     width: auto;
     height: auto;
@@ -65,131 +54,132 @@
     min-height: 120px;
 }
 
-    .box span {
+    .myPage .box span {
         display: block;
     }
 
-    .box .detail-h2-title {
+    .myPage .box .detail-h2-title {
         display: inline;
     }
 
-    .box .detail-title {
+    .myPage .box .detail-title {
         margin-bottom: 3px;
         display: inline;
     }
 
-    .box .documentTitle {
+    .myPage .box .documentTitle {
         font-weight: bold;
     }
 
-    .box .title {
+    .myPage .box .title {
         font-weight: bold;
     }
 
+.myPage #fines, #loans, #reservations, #notifications, #favorites {
+    max-width: 750px;
+    max-height: calc(100% - 20px);
+    overflow: auto;
+}
 
-/* Progress ring*/
+.myPage .renewLoanButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
 
-#mypageLoading {
+.myPage .cancelReservationButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.myPage .deleteFavoriteButton {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.myPage .renewAllButton {
+    float: right;
+}
+
+.myPage #mainContentSection #mypageLoading {
     text-align: center;
     margin-top: 250px;
 }
 
 progress.withText {
-    color: inherit; /* Uses the same text color as the page */
+    color: inherit;
     width: 100px;
     height: 100px;
 }
 
-/*Progress ring*/
-
-#mypageData {
-    max-height: calc(100% - 20px);
-}
-
-    #mypageData > div {
-    }
-
-#mypageData {
-    display: -ms-flexbox;
-    -ms-flex-direction: row;
-    -ms-flex-align: stretch;
-}
-
-.float-item {
+.myPage .float-item {
     float: left;
     min-width: 220px;
     max-width: 220px;
     margin: 10px;
 }
 
-.inline {
-    display: inline;
-}
-
-#fines, #loans, #reservations, #notifications, #favorites {
-    max-width: 750px;
-    max-height: 600px;
-    overflow: auto;
-}
-
-.favorite-item {
+.myPage .favorite-item {
     margin-top: 20px;
     height: 160px;
 }
 
-    .favorite-item .favorite-section {
+    .myPage .favorite-item .favorite-section {
         margin-left: 75px;
     }
 
-        .favorite-item .favorite-section .favorite-title {
-
+        .myPage .favorite-item .favorite-section .favorite-title {
         }
 
-        .favorite-item .favorite-section .favorite-subtitle {
+        .myPage .favorite-item .favorite-section .favorite-subtitle {
             margin-top: 2px;
         }
 
-    .favorite-item .favorite-img-container {
+    .myPage .favorite-item .favorite-img-container {
         float: left;
     }
 
-        .favorite-item .favorite-img-container .favorite-img {
+        .myPage .favorite-item .favorite-img-container .favorite-img {
             max-width: 60px;
             max-height: 120px;
         }
 
-    .favorite-item .favorite-button {
+    .myPage .favorite-item .favorite-button {
     }
 
-.clear-float {
+.myPage .clear-float {
     clear: both;
 }
 
 @media screen and (orientation: portrait) {
-    .box {
+    
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        padding-left: 0px;
+    }
+
+    .myPage .box {
         float: none;
         margin-left: 0;
-        max-width: 550px;
+        max-width: calc(100% - 150px);
     }
 
-    #mainContentSection {
-        margin-left: 45px;
+    .myPage #mainContentSection {
+        margin-left: 100px;
     }
 
-    #fines, #loans, #reservations, #notifications, #favorites {
+    .myPage #mainContentSection #mypageData #fines, #loans, #reservations, #notifications, #favorites {
         max-height: none;
-        max-width: 550px;
+        max-width: calc(100% - 150px);
     }
 
     .myPage header[role=banner] .titlearea .pagesubtitle {
         display: block;
     }
 
-    .win-backbutton {
-        margin-top: 60px!important;
+    .myPage .win-backbutton {
+        margin-top: 59px!important;
     }
 
-    #mypageData {
+    .myPage #mainContentSection #mypageData {
         margin-top: 30px;
         -ms-flex-direction: column;
         margin-left: auto;
@@ -205,21 +195,28 @@ progress.withText {
         overflow-y: scroll;
         overflow-x: hidden;
     }
+
 }
 
 
 @media screen and (-ms-view-state: snapped) {
-    .box {
-        max-width: 250px;
+    
+    .myPage .box {
+        max-width: 260px;
     }
 
-    #fines, #loans, #reservations, #notifications, #favorites {
+    .myPage #mainContentSection #mypageData #fines, #loans, #reservations, #notifications, #favorites {
         max-height: none;
-        max-width: 250px;
+        max-width: 260px;
     }
 
-    #mainContentSection {
-        margin-left: 10px;
+    .myPage #mainContentSection {
+        width: calc(100% - 15px);
+        margin-left: 15px;
+    }
+
+    .myPage #mainContentSection #notifications {
+        margin-top: 0px;
     }
 
     .myPage header[role=banner] .titlearea {
@@ -233,4 +230,5 @@ progress.withText {
     body {
         overflow: auto;
     }
+
 }
