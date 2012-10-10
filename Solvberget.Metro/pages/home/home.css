@@ -13,7 +13,7 @@
 
     .itemspage .itemslist {
         height: 540px;
-        width: 1366px;
+        width: 1080px;
         -ms-grid-row: 2;
         -ms-grid-column: 2;
         -ms-grid-row-align: center;
@@ -21,7 +21,7 @@
     }
 
         .itemspage .itemslist .win-surface {
-            margin: auto;
+            margin: 0 auto;
         }
 
         .itemspage .itemslist .win-item {
