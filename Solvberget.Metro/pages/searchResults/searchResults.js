@@ -230,7 +230,12 @@
 
         // This function executes each step required to perform a search.
         handleQuery: function (element, args) {
-            this.lastSearch = args.queryText;
+
+            //XMLHttpRequest fails if query text contains ":"
+            //Quick-fix here, may do additonal escaping later
+            var queryTextEscaped = args.queryText.replace(/\:/g, ' ');
+
+            this.lastSearch = queryTextEscaped;
             
             /** http://msdn.microsoft.com/en-us/library/windows/apps/hh465233.aspx 
             *
@@ -259,10 +264,10 @@
                 // Show loadingWheel
                 loadingWheel.spin();
 
-                suggestionMethods.updateSuggestions(args.queryText);
+                suggestionMethods.updateSuggestions(queryTextEscaped);
 
                 // Perform the search
-                ajaxSearchDocuments(args.queryText, this);
+                ajaxSearchDocuments(queryTextEscaped, this);
             }
 
         },
