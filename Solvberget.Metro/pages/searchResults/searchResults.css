@@ -7,8 +7,12 @@
 
 /* Progress ring*/
 #search-loading-wheel {
-    text-align: center;
-    margin-top: 250px;
+    -ms-grid-row: 3;
+    width: 100%;
+    height: 100%;
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+    -ms-flex-align: center;
 }
 
 progress.withText {
@@ -31,6 +35,7 @@ progress.withText {
 .searchResults section[role=main] .filterarea {
     -ms-grid-row: 1;
 }
+
     .searchResults section[role=main] .filterarea .filterarea-hr {
         /*margin-left: 80px;*/
         display: none;
