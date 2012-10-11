@@ -3,36 +3,41 @@
 <head>
     <meta charset="utf-8" />
 
-    <!-- WinJS references -->
-    <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/home/home.css" rel="stylesheet" />
-    <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
-
+    <link href="/css/font-awesome.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
     <script src="/pages/home/home.js"></script>
+
 </head>
+
 <body>
 
-    <!-- This template is used to display each item in the ListView declared below. -->
     <div class="templates">
-        <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
-            <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
+
+        <div class="home-template" data-win-control="WinJS.Binding.Template">
+            <!--<img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />-->
+            <div class="item-vector-icon" data-win-bind="textContent: icon"></div>
             <div class="item-overlay">
                 <h4 class="item-title" data-win-bind="textContent: title"></h4>
                 <h6 class="item-subtitle win-type-ellipsis" data-win-bind="textContent: subtitle"></h6>
             </div>
         </div>
+
     </div>
 
-    <!-- The content that will be loaded and displayed. -->
+    <div class="homepage">
 
-    <div class="itemspage">
-        
-        <div class="itemslist" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
+        <div class="logo-holder">
+            <img src="/images/sølvberget_sort_svg.svg" width="186" height="132,5" alt="Sølvberget" />
+        </div>
+
+        <div class="home-list" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }"></div>
 
         <div id="loginDiv"></div>
 
     </div>
+
 </body>
+
 </html>

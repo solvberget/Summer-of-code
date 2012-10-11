@@ -6,56 +6,251 @@
 
     ui.Pages.define("/pages/home/home.html", {
 
-        // This function updates the ListView with new layouts
-        initializeLayout: function (listView, viewState) {
-            /// <param name="listView" value="WinJS.UI.ListView.prototype" />
-
-            if (viewState === appViewState.snapped) {
-                listView.layout = new ui.ListLayout();
-            } else {
-                listView.layout = new ui.GridLayout();
-            }
-        },
-
-        itemInvoked: function (args) {
-
-            Data.menuItems[args.detail.itemIndex].navigateTo();
-
-        },
-
-        // This function is called whenever a user navigates to this page. It
-        // populates the page elements with the app's data.
         ready: function (element, options) {
-            var listView = element.querySelector(".itemslist").winControl;
-            listView.itemDataSource = Data.items.dataSource;
-            listView.itemTemplate = element.querySelector(".itemtemplate");
+            var listView = element.querySelector(".home-list").winControl;
             listView.oniteminvoked = this.itemInvoked.bind(this);
-
-            this.initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value);
+            this.initializeLayout(listView, Windows.UI.ViewManagement.ApplicationView.value, element);
             listView.element.focus();
             MyPage.ajaxGetUserInformation(false);
-
         },
 
-        // This function updates the page layout in response to viewState changes.
         updateLayout: function (element, viewState, lastViewState) {
-            /// <param name="element" domElement="true" />
-            /// <param name="viewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
-            /// <param name="lastViewState" value="Windows.UI.ViewManagement.ApplicationViewState" />
-
-            var listView = element.querySelector(".itemslist").winControl;
+            var listView = element.querySelector(".home-list").winControl;
             if (lastViewState !== viewState) {
-                if (lastViewState === appViewState.snapped || viewState === appViewState.snapped) {
+                if (lastViewState !== appViewState.fullScreenLandscape || viewState !== appViewState.full) {
                     var handler = function (e) {
                         listView.removeEventListener("contentanimating", handler, false);
                         e.preventDefault();
                     }
                     listView.addEventListener("contentanimating", handler, false);
                     var firstVisible = listView.indexOfFirstVisible;
-                    this.initializeLayout(listView, viewState);
+                    this.initializeLayout(listView, viewState, element);
                     listView.indexOfFirstVisible = firstVisible;
                 }
             }
-        }
+        },
+
+        initializeLayout: function (listView, viewState, element) {
+            if (viewState === appViewState.snapped) {
+                listView.itemDataSource = Data.items.dataSource;
+                listView.itemTemplate = snappedTemplateRenderer;
+                listView.layout = new ui.ListLayout();
+            } else if (viewState === appViewState.fullScreenPortrait) {
+                listView.itemDataSource = Data.items.dataSource;
+                listView.itemTemplate = multisizeItemTemplateRendererPortrait;
+                listView.layout = new ui.GridLayout({ groupInfo: groupInfo, groupHeaderPosition: "top" });
+            }
+            else {
+                listView.itemDataSource = Data.items.dataSource;
+                listView.itemTemplate = multisizeItemTemplateRendererLandscape;
+                listView.layout = new ui.GridLayout({ groupInfo: groupInfo, groupHeaderPosition: "top" });
+            }
+        },
+
+        itemInvoked: function (args) {
+            Data.menuItems[args.detail.itemIndex].navigateTo();
+        },
+
     });
+
+    function groupInfo() {
+        return {
+            enableCellSpanning: true,
+            cellWidth: 125,
+            cellHeight: 125
+        };
+    }
+
+    function multisizeItemTemplateRendererLandscape(itemPromise) {
+        return itemPromise.then(function (currentItem) {
+            var content;
+            content = document.getElementsByClassName("home-template")[0];
+            var result = content.cloneNode(true);
+            switch (currentItem.data.key) {
+                case "news":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "mypage":
+                    {
+                        result.className = "home-large-template color1";
+                    }
+                    break;
+                case "events":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "openingHours":
+                    {
+                        result.className = "home-small-template color2";
+                    }
+                    break;
+                case "lists":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "contact":
+                    {
+                        result.className = "home-small-template color2";
+                    }
+                    break;
+                case "blogs":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "search":
+                    {
+                        result.className = "home-large-template color3";
+                    }
+                    break;
+                default:
+                    {
+                        result.className = "home-large-template color1";
+                    }
+            }
+            
+            result.attributes.removeNamedItem("data-win-control");
+            result.attributes.removeNamedItem("style");
+            result.style.overflow = "hidden";
+
+            result.getElementsByClassName("item-title")[0].textContent = currentItem.data.title;
+            result.getElementsByClassName("item-subtitle")[0].textContent = currentItem.data.subtitle;
+            result.getElementsByClassName("item-vector-icon")[0].innerHTML = "<i class=\"" + currentItem.data.icon + "\"></i>";
+            return result;
+
+        });
+    }
+    
+    function multisizeItemTemplateRendererPortrait(itemPromise) {
+        return itemPromise.then(function (currentItem) {
+            var content;
+            content = document.getElementsByClassName("home-template")[0];
+            var result = content.cloneNode(true);
+            switch (currentItem.data.key) {
+                case "news":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "mypage":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "events":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "openingHours":
+                    {
+                        result.className = "home-medium-template color2";
+                    }
+                    break;
+                case "lists":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "contact":
+                    {
+                        result.className = "home-medium-template color2";
+                    }
+                    break;
+                case "blogs":
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+                    break;
+                case "search":
+                    {
+                        result.className = "home-medium-template color3";
+                    }
+                    break;
+                default:
+                    {
+                        result.className = "home-medium-template color1";
+                    }
+            }
+            
+            result.attributes.removeNamedItem("data-win-control");
+            result.attributes.removeNamedItem("style");
+            result.style.overflow = "hidden";
+
+            result.getElementsByClassName("item-title")[0].textContent = currentItem.data.title;
+            result.getElementsByClassName("item-subtitle")[0].textContent = currentItem.data.subtitle;
+            result.getElementsByClassName("item-vector-icon")[0].innerHTML = "<i class=\"" + currentItem.data.icon + "\"></i>";
+            return result;
+
+        });
+    }
+
+    function snappedTemplateRenderer(itemPromise) {
+        return itemPromise.then(function (currentItem) {
+            var content;
+            content = document.getElementsByClassName("home-template")[0];
+            var result = content.cloneNode(true);
+            switch (currentItem.data.key) {
+                case "news":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                case "mypage":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                case "events":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                case "openingHours":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                case "lists":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                case "contact":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                case "blogs":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                case "search":
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+                    break;
+                default:
+                    {
+                        result.className = "home-snapped-template color1";
+                    }
+            }
+
+            result.attributes.removeNamedItem("data-win-control");
+            result.attributes.removeNamedItem("style");
+            result.style.overflow = "hidden";
+
+            result.getElementsByClassName("item-title")[0].textContent = currentItem.data.title;
+            result.getElementsByClassName("item-subtitle")[0].textContent = "";
+            result.getElementsByClassName("item-vector-icon")[0].innerHTML = "<i class=\"" + currentItem.data.icon + "\"></i>";
+            return result;
+
+        });
+    }
+
 })();

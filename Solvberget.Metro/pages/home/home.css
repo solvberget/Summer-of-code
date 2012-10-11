@@ -1,30 +1,176 @@
-﻿/* This selector is used to prevent ui-dark/light.css from overwriting changes
-   to .win-surface. */
-.templates {
+﻿.templates {
     display: none;
 }
-.itemspage {
+
+.homepage .home-large-template {
+    height: 260px;
+    width: 260px;
+    position: relative;
+    /*margin-left: 5px;*/
+    /*margin-right: 5px;*/
+    /*margin-bottom: 5px;*/
+    /*margin-top: 5px;*/
+}
+
+    .homepage .home-large-template .item-vector-icon {
+        -ms-grid-row-span: 2;
+        width: 100%;
+        height: 100%;
+        display: -ms-flexbox;
+        -ms-flex-pack: center;
+        -ms-flex-align: center;
+        font-size: 70pt;
+    }
+
+    .homepage .home-large-template .item-image {
+        -ms-grid-row-span: 2;
+    }
+
+    .homepage .home-large-template .item-overlay {
+        -ms-grid-row: 2;
+        height: 45px;
+        -ms-grid-rows: 1fr 25px;
+        display: -ms-grid;
+        padding: 6px 15px 2px 15px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .homepage .home-large-template .item-title {
+        -ms-grid-row: 1;
+        overflow: hidden;
+        width: 220px;
+    }
+
+    .homepage .home-large-template .item-overlay .item-subtitle {
+        -ms-grid-row: 2;
+        width: 220px;
+    }
+
+.homepage .home-medium-template {
+    height: 125px;
+    width: 260px;
+    position: relative;
+    /*margin-left: 5px;*/
+    /*margin-right: 5px;*/
+    /*margin-bottom: 5px;*/
+    /*margin-top: 5px;*/
+}
+
+    .homepage .home-medium-template .item-vector-icon {
+        -ms-grid-row-span: 2;
+        width: 100%;
+        height: 100%;
+        display: -ms-flexbox;
+        -ms-flex-pack: center;
+        -ms-flex-align: center;
+        font-size: 24pt;
+    }
+
+    .homepage .home-medium-template .item-image {
+        -ms-grid-row-span: 2;
+    }
+
+    .homepage .home-medium-template .item-overlay {
+        -ms-grid-row: 2;
+        height: 45px;
+        -ms-grid-rows: 1fr 25px;
+        display: -ms-grid;
+        padding: 6px 15px 2px 15px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .homepage .home-medium-template .item-title {
+        -ms-grid-row: 1;
+        overflow: hidden;
+        width: 220px;
+    }
+
+    .homepage .home-medium-template .item-overlay .item-subtitle {
+        -ms-grid-row: 2;
+        width: 220px;
+    }
+
+.homepage .home-small-template {
+    height: 125px;
+    width: 125px;
+    position: relative;
+    /*margin-left: 5px;*/
+    /*margin-right: 5px;*/
+    /*margin-bottom: 5px;*/
+    /*margin-top: 5px;*/
+}
+
+    .homepage .home-small-template .item-vector-icon {
+        -ms-grid-row-span: 2;
+        width: 100%;
+        height: 100%;
+        display: -ms-flexbox;
+        -ms-flex-pack: center;
+        -ms-flex-align: center;
+        font-size: 24pt;
+    }
+
+    .homepage .home-small-template .item-image {
+        -ms-grid-row-span: 2;
+    }
+
+    .homepage .home-small-template .item-overlay {
+        -ms-grid-row: 2;
+        height: 45px;
+        -ms-grid-rows: 1fr 25px;
+        display: -ms-grid;
+        padding: 6px 15px 2px 15px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .homepage .home-small-template .item-title {
+        -ms-grid-row: 1;
+        overflow: hidden;
+        width: 220px;
+    }
+
+    .homepage .home-small-template .item-overlay .item-subtitle {
+        -ms-grid-row: 2;
+        width: 220px;
+    }
+
+.homepage {
     display: -ms-grid;
-    -ms-grid-rows: 1fr 540px 1fr;
-    -ms-grid-columns: 1fr 1366px 1fr;
+    -ms-grid-rows: 1fr 405px 1fr;
+    -ms-grid-columns: 1fr 810px 1fr;
     width: 100%;
     height: 100%;
 }
 
-    .itemspage .itemslist {
-        height: 540px;
-        width: 1080px;
+    .homepage .logo-holder {
+        -ms-grid-row: 3;
+        -ms-grid-column: 2;
+        position: relative;
+    }
+
+        .homepage .logo-holder img {
+            margin-top: 20px;
+            position: absolute;
+            right: 0;
+        }
+
+    .homepage .home-list {
+        height: 405px;
+        width: 810px;
         -ms-grid-row: 2;
         -ms-grid-column: 2;
         -ms-grid-row-align: center;
         -ms-grid-column-align: center;
     }
 
-        .itemspage .itemslist .win-surface {
-            margin: 0 auto;
+        .homepage .home-list .win-surface {
+            margin: 0;
         }
 
-        .itemspage .itemslist .win-item {
+    /*.homepage .home-list .win-item {
             height: 250px;
             width: 250px;
             position: relative;
@@ -34,11 +180,11 @@
             margin-top: 5px;
         }
 
-            .itemspage .itemslist .win-item .item-image {
+            .homepage .home-list .win-item .item-image {
                 -ms-grid-row-span: 2;
             }
 
-            .itemspage .itemslist .win-item .item-overlay {
+            .homepage .home-list .win-item .item-overlay {
                 -ms-grid-row: 2;
                 height: 45px;
                 -ms-grid-rows: 1fr 25px;
@@ -48,59 +194,53 @@
                 bottom: 0;
             }
 
-                .itemspage .itemslist .win-item .item-overlay .item-title {
+                .homepage .home-list .win-item .item-overlay .item-title {
                     -ms-grid-row: 1;
                     overflow: hidden;
                     width: 220px;
                 }
 
-                .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+                .homepage .home-list .win-item .item-overlay .item-subtitle {
                     -ms-grid-row: 2;
                     width: 220px;
-                }
+                }*/
+
+    .homepage .color1 {
+        background-color: rgba(0, 51, 102, 1.0);
+    }
+
+    .homepage .color2 {
+        background-color: rgba(0, 153, 204, 1.0);
+    }
+
+    .homepage .color3 {
+        background-color: rgba(0, 85, 34, 1.0);
+    }
+
+    .homepage .color4 {
+        background-color: rgba(136, 187, 0, 1.0);
+    }
 
 @media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
 
-    .itemspage .itemslist .win-item .item-overlay .item-title {
+    .homepage .home-list .win-item .item-overlay .item-title {
         color: rgba(255,255,255,0.87);
     }
 
-    .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+    .homepage .home-list .win-item .item-overlay .item-subtitle {
         color: rgba(255,255,255,0.6);
-    }
-
-    .itemspage .itemslist .win-surface {
-        margin: auto;
     }
 }
 
 @media screen and (-ms-view-state: filled) {
 
-    .itemspage {
-        display: -ms-grid;
-        -ms-grid-rows: 1fr 540px 1fr;
-        -ms-grid-columns: 1366px;
-        width: 100%;
-        height: 100%;
-    }
+    /* USE LANDSCAPE SETTINGS */
 
-        .itemspage .itemslist {
-            height: 540px;
-            width: 1366px;
-            -ms-grid-row: 2;
-            -ms-grid-column: 1;
-            -ms-grid-row-align: center;
-            -ms-grid-column-align: center;
-        }
-
-            .itemspage .itemslist .win-surface {
-                margin-left: 0;
-            }
 }
 
 @media screen and (-ms-view-state: snapped) {
 
-    .itemspage {
+    .homepage {
         display: -ms-grid;
         -ms-grid-rows: 1fr;
         -ms-grid-columns: 1fr;
@@ -108,42 +248,45 @@
         height: 100%;
     }
 
-        .itemspage .itemslist {
-            height: 100%;
-            width: 100%;
+        .homepage .home-list {
+            height: calc(100% - 25px);
+            width: calc(100% - 17px);
             -ms-grid-row: 1;
             -ms-grid-column: 1;
             -ms-grid-row-align: center;
             -ms-grid-column-align: center;
+            margin-top: 25px;
+            margin-left: 17px;
         }
 
-        .itemspage .homeContent .itemslist .win-vertical.win-viewport .win-surface {
+        .homepage .homeContent .home-list .win-vertical.win-viewport .win-surface {
             margin-bottom: 30px;
             margin-left: 6px;
         }
 
-        .itemspage .homeContent .itemslist .win-vertical.win-viewport .win-container {
+        .homepage .homeContent .home-list .win-vertical.win-viewport .win-container {
             margin-bottom: 15px;
             margin-right: 42px;
             padding: 7px;
         }
 
-        .itemspage .itemslist .win-item {
+        .homepage .home-list .home-snapped-template {
             -ms-grid-columns: 60px 1fr;
             -ms-grid-rows: 1fr;
             display: -ms-grid;
             height: 60px;
             width: 272px;
+            /*margin-left: 10px;*/
         }
 
-            .itemspage .itemslist .win-item .item-image, .itemspage .itemslist .win-item:hover .item-image {
+            .homepage .home-list .home-snapped-template .item-image, .homepage .home-list .win-item:hover .item-image {
                 -ms-grid-column: 1;
                 -ms-grid-row-span: 1;
                 height: 60px;
                 width: 60px;
             }
 
-            .itemspage .itemslist .win-item .item-overlay {
+            .homepage .home-list .home-snapped-template .item-overlay {
                 -ms-grid-column: 2;
                 -ms-grid-row: 1;
                 -ms-grid-row-align: stretch;
@@ -153,38 +296,56 @@
                 padding: 0;
             }
 
-                .itemspage .itemslist .win-item .item-overlay .item-title {
+                .homepage .home-list .home-snapped-template .item-overlay .item-title {
                     max-height: 40px;
                     margin-top: 4px;
                     width: 202px;
                 }
 
-                .itemspage .itemslist .win-item .item-overlay .item-subtitle {
+                .homepage .home-list .home-snapped-template .item-overlay .item-subtitle {
                     opacity: 0.6;
                     width: 202px;
                 }
+
+            .homepage .home-list .home-snapped-template .item-vector-icon {
+                font-size: 20pt;
+                -ms-grid-column: 1;
+                -ms-grid-row-span: 1;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+        .homepage .logo-holder {
+            position: relative;
+        }
+
+            .homepage .logo-holder img {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 
-    .itemspage {
+    .homepage {
         display: -ms-grid;
         -ms-grid-rows: 1fr 1083px 1fr;
-        -ms-grid-columns: 1fr 545px 1fr;
+        -ms-grid-columns: 1fr 768px 1fr;
         width: 100%;
         height: 100%;
     }
 
-        .itemspage .itemslist {
-            height: 1083px;
-            width: 545px;
+        .homepage .home-list {
+            height: 550px;
+            width: 540px;
             -ms-grid-row: 2;
             -ms-grid-column: 2;
             -ms-grid-row-align: center;
             -ms-grid-column-align: center;
         }
 
-            .itemspage .itemslist .win-surface {
-                margin: auto;
+            .homepage .home-list .win-surface {
+                margin: 0;
             }
 }

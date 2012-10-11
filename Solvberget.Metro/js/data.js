@@ -17,14 +17,14 @@
     var colorPoolRgba = ["rgba(255, 153, 0, ", "rgba(204, 51, 0, ", "rgba(136, 187, 0, ", "rgba(0, 85, 34, ", "rgba(0, 153, 204, ", "rgba(0, 51, 102, ", "rgba(102, 0, 102, ", "rgba(51, 0, 51, "];
 
     var menuItems = [
-        { key: "news", title: "Nyheter", subtitle: "Nyheter fra Sølvberget", backgroundImage: news, navigateTo: navigateToNews },
-        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, navigateTo: navigateToMypage },
-        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", backgroundImage: events, navigateTo: navigateToEvents },
-        { key: "openingHours", title: "Åpningstider", subtitle: "Velkommen inn", backgroundImage: openingHours, navigateTo: navigateToOpeningHours },
-        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, navigateTo: navigateToLists },
-        { key: "contact", title: "Kontakt oss", subtitle: "Kontaktinformasjon", backgroundImage: contact, navigateTo: navigateToContact },
-        { key: "blogs", title: "Blogger", subtitle: "Utvalgte blogger", backgroundImage: blogs, navigateTo: navigateToBlogs },
-        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", backgroundImage: search, navigateTo: searchHandler },
+        { key: "news", title: "Nyheter", subtitle: "Nyheter fra Sølvberget", backgroundImage: news, icon: "icon-rss", navigateTo: navigateToNews },
+        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-reorder", navigateTo: navigateToLists },
+        { key: "openingHours", title: "Åpningstider", subtitle: "", backgroundImage: openingHours, icon: "icon-info-sign", navigateTo: navigateToOpeningHours },
+        { key: "contact", title: "Kontakt oss", subtitle: "", backgroundImage: contact, icon: "icon-phone", navigateTo: navigateToContact },
+        { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", icon: "icon-search", backgroundImage: search, navigateTo: searchHandler },
+        { key: "blogs", title: "Blogger", subtitle: "Utvalgte blogger", backgroundImage: blogs, icon: "icon-edit", navigateTo: navigateToBlogs },
+        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, icon: "icon-user", navigateTo: navigateToMypage },
+        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents },
     ];
 
     function searchHandler() {
@@ -66,10 +66,10 @@
     function getColorFromPool(index, alpha) {
         if (index >= 0 && index < colorPoolRgba.length) {
             var color = colorPoolRgba[index];
-            if (alpha) 
-                color = color + alpha + ")";        
-            else 
-              color = color + "0.6)";
+            if (alpha)
+                color = color + alpha + ")";
+            else
+                color = color + "0.6)";
             return color;
 
         }

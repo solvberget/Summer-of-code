@@ -60,6 +60,7 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
+    <Content Include="css\font-awesome.css" />
     <Content Include="css\screen.css">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -78,6 +79,10 @@
     </Content>
     <Content Include="css\splitview.css" />
     <Content Include="default.html" />
+    <Content Include="font\fontawesome-webfont.eot" />
+    <Content Include="font\fontawesome-webfont.svg" />
+    <Content Include="font\fontawesome-webfont.ttf" />
+    <Content Include="font\fontawesome-webfont.woff" />
     <Content Include="fragments\documentFragments\document\document.css" />
     <Content Include="fragments\documentFragments\document\document.html" />
     <Content Include="fragments\documentFragments\document\document.js" />
