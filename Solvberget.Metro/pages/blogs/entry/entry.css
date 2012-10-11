@@ -1,47 +1,46 @@
-﻿
+﻿.blogentry .titlearea {
+    overflow: visible;
+}
 
-.separator {
+.blogentry .separator {
     margin: 10px;
 }
 
-#mainEntryContentSection {
-    margin-left: 10px;
-}
-
-#entryContent {
+.blogentry #mainEntryContentSection {
     -ms-grid-row: 2;
     display: block;
     height: 100%;
     overflow-x: auto;
     position: relative;
     width: 100%;
+    margin-top: 30px;
     z-index: 0;
 }
 
-    #entryContent article {
+    .blogentry #mainEntryContentSection article {
         /* Define a multi-column, horizontally scrolling article by default. */
         column-gap: 80px;
         column-width: 480px;
         height: calc(100% - 50px);
-        margin-left: 120px;
-        margin-top: 5px;
+        margin-left: 100px;
+        margin-top: 0px;
         width: 480px;
     }
 
-.titlecontainer {
-    border: none;
-}
-
-#templates {
-    display: none;
-}
-
-#entryLoading {
+.blogentry #entryLoading {
     width: 100%;
     height: 100%;
     display: -ms-flexbox;
     -ms-flex-pack: center;
     -ms-flex-align: center;
+}
+
+.blogentry .titlecontainer {
+    border: none;
+}
+
+#templates {
+    display: none;
 }
 
 progress.withText {
@@ -54,22 +53,14 @@ progress.withText {
     text-align: center;
 }
 
-/* Text style for a label for a default size progress ring */
 .progressRingText {
     font-size: 20pt;
     line-height: 25pt;
 }
 
-#entryContent {
-    margin-top: 30px;
-}
-
-.titlearea {
-    overflow: visible;
-}
-
 @media screen and (-ms-view-state: snapped) {
-    #entryContent article {
+
+    .blogentry #mainEntryContentSection article {
         /* Define a single column, vertically scrolling article in snapped mode. */
         -ms-grid-columns: 300px 1fr;
         -ms-grid-row: 2;
@@ -80,13 +71,12 @@ progress.withText {
         width: 300px;
     }
 
-    #entryContent {
-        margin-left: 5px;
+    .blogentry #mainEntryContentSection {
+        width: calc(100% - 10px);
+        margin-left: 10px;
         -ms-grid-column: inherit;
+        overflow: auto;
+        padding-right: 10px;
     }
 
-    #mainEntryContentSection {
-        margin-left: 10px;
-        overflow: auto;
-    }
 }

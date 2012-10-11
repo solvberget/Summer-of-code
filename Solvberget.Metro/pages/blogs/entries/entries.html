@@ -11,6 +11,7 @@
 <body>
 
     <div class="templates">
+        
         <section class="entriesSection">
             <div id="entryTemplate">
                 <div class="entry">
@@ -27,10 +28,11 @@
                 </div>
             </div>
         </section>
+
     </div>
 
-    <!-- The content that will be loaded and displayed. -->
-    <div class="fragment">
+    <div class="entries fragment">
+        
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
@@ -38,13 +40,15 @@
                 <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Title BlogConverters.subtitleConverter">De siste innleggene fra denne bloggen</h2>
             </div>
         </header>
-        <section
-            aria-label="Main content" id="mainEntriesContentSection" role="main">
+
+        <section aria-label="Main content" id="mainEntriesContentSection" role="main">
+            
             <div id="entriesLoading">
                 <label class="progressRingText">
                     <progress class="win-ring withText"></progress>
                 </label>
             </div>
+
             <div class="content" id="entriesContent" aria-label="Main content" role="main">
                 <article>
                     <div>
@@ -52,6 +56,7 @@
                     </div>
                 </article>
             </div>
+
         </section>
 
     </div>
