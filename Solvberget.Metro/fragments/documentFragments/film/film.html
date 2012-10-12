@@ -8,8 +8,9 @@
 <body>
     <div class="templates">
         <div id="imdbTemplate">
-            <img src="ms-appx:///images/externalSites/imdb/imdb-48x48.png" />
-            <h2 class="imdbRating" data-win-bind="textContent: ImdbRating DocumentDetailConverters.imdbRatingConverter"></h2>
+            <img src="ms-appx:///images/externalSites/imdb/imdb-48x48.png" /><br />
+            <!--<h2 class="imdbRating" data-win-bind="textContent: ImdbRating DocumentDetailConverters.imdbRatingConverter"></h2>-->
+            <div id="ratingControl" class="win-small" data-win-control="WinJS.UI.Rating" data-win-options="{disabled: true}"></div>
         </div>
 
     </div>

@@ -65,18 +65,24 @@ var ajaxGetRatingCallback = function (request, context) {
 
         var data = { BokElskereRating: response };
 
-        var imdbTemplate = new WinJS.Binding.Template(document.getElementById("bokelskeretemplate"));
-        var imdbTemplateContainer = document.getElementById("ratingContainer");
-        //Render for sharing with facebook etc.
-        var imdbTemplateContainerShared = document.getElementById("ratingContainerShared");
+        var bokelskereTemplate = new WinJS.Binding.Template(document.getElementById("bokelskeretemplate"));
+        var ratingContainer = document.getElementById("ratingContainer");
 
+        ////Render for sharing with facebook etc.
+        //var imdbTemplateContainerShared = document.getElementById("ratingContainerShared");
 
-        imdbTemplate.outerHTML = "";
-        imdbTemplate.render(data, imdbTemplateContainer);
-        imdbTemplate.render(data, imdbTemplateContainerShared);
+        bokelskereTemplate.outerHTML = "";
+        bokelskereTemplate.render(data, ratingContainer);
+
+        var rating = document.getElementById("ratingControl").winControl;
+        if (rating) {
+            rating.maxRating = 6.0;
+            rating.averageRating = response;
+        }
+
+        //imdbTemplate.render(data, imdbTemplateContainerShared);
         
         $("#details").css("margin-top", "65px");
-
 
     }
 };
