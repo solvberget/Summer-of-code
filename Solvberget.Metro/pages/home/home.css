@@ -2,6 +2,11 @@
     display: none;
 }
 
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .homepage .home-large-template {
     height: 260px;
     width: 260px;
@@ -88,6 +93,51 @@
     }
 
     .homepage .home-medium-template .item-overlay .item-subtitle {
+        -ms-grid-row: 2;
+        width: 220px;
+    }
+
+.homepage .home-medium-rotate-template {
+    height: 260px;
+    width: 125px;
+    position: relative;
+    /*margin-left: 5px;*/
+    /*margin-right: 5px;*/
+    /*margin-bottom: 5px;*/
+    /*margin-top: 5px;*/
+}
+
+    .homepage .home-medium-rotate-template .item-vector-icon {
+        -ms-grid-row-span: 2;
+        width: 100%;
+        height: 100%;
+        display: -ms-flexbox;
+        -ms-flex-pack: center;
+        -ms-flex-align: center;
+        font-size: 24pt;
+    }
+
+    .homepage .home-medium-rotate-template .item-image {
+        -ms-grid-row-span: 2;
+    }
+
+    .homepage .home-medium-rotate-template .item-overlay {
+        -ms-grid-row: 2;
+        height: 45px;
+        -ms-grid-rows: 1fr 25px;
+        display: -ms-grid;
+        padding: 6px 15px 2px 15px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .homepage .home-medium-rotate-template .item-title {
+        -ms-grid-row: 1;
+        overflow: hidden;
+        width: 220px;
+    }
+
+    .homepage .home-medium-rotate-template .item-overlay .item-subtitle {
         -ms-grid-row: 2;
         width: 220px;
     }
@@ -221,6 +271,14 @@
         background-color: rgba(136, 187, 0, 1.0);
     }
 
+    .homepage .color5 {
+        background-color: rgba(255, 153, 0, 1.0);
+    }
+
+    .homepage .color6 {
+        background-color: rgba(204, 51, 0, 1.0);
+    }
+
 @media screen and (-ms-view-state: fullscreen-landscape), screen and (-ms-view-state: fullscreen-portrait), screen and (-ms-view-state: filled) {
 
     .homepage .home-list .win-item .item-overlay .item-title {
@@ -330,15 +388,15 @@
 
     .homepage {
         display: -ms-grid;
-        -ms-grid-rows: 1fr 1083px 1fr;
-        -ms-grid-columns: 1fr 768px 1fr;
+        -ms-grid-rows: 1fr 810px 1fr;
+        -ms-grid-columns: 1fr 410px 1fr;
         width: 100%;
         height: 100%;
     }
 
         .homepage .home-list {
-            height: 550px;
-            width: 540px;
+            height: 810px;
+            width: 410px;
             -ms-grid-row: 2;
             -ms-grid-column: 2;
             -ms-grid-row-align: center;

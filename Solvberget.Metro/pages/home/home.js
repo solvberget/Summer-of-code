@@ -36,7 +36,7 @@
                 listView.itemTemplate = snappedTemplateRenderer;
                 listView.layout = new ui.ListLayout();
             } else if (viewState === appViewState.fullScreenPortrait) {
-                listView.itemDataSource = Data.items.dataSource;
+                listView.itemDataSource = Data.itemsPortrait.dataSource;
                 listView.itemTemplate = multisizeItemTemplateRendererPortrait;
                 listView.layout = new ui.GridLayout({ groupInfo: groupInfo, groupHeaderPosition: "top" });
             }
@@ -48,7 +48,16 @@
         },
 
         itemInvoked: function (args) {
-            Data.menuItems[args.detail.itemIndex].navigateTo();
+
+            var viewState = Windows.UI.ViewManagement.ApplicationView.value;
+
+            if (viewState === appViewState.fullScreenLandscape) {
+                Data.menuItems[args.detail.itemIndex].navigateTo();
+            } else if (viewState === appViewState.fullScreenPortrait) {
+                Data.menuItemsPortrait[args.detail.itemIndex].navigateTo();
+            } else {
+                Data.menuItems[args.detail.itemIndex].navigateTo();
+            }
         },
 
     });
@@ -69,17 +78,17 @@
             switch (currentItem.data.key) {
                 case "news":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-small-template color4";
                     }
                     break;
                 case "mypage":
                     {
-                        result.className = "home-large-template color1";
+                        result.className = "home-large-template color5";
                     }
                     break;
                 case "events":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-medium-template color6";
                     }
                     break;
                 case "openingHours":
@@ -89,7 +98,7 @@
                     break;
                 case "lists":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-large-template color1";
                     }
                     break;
                 case "contact":
@@ -99,7 +108,7 @@
                     break;
                 case "blogs":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-small-template color4";
                     }
                     break;
                 case "search":
@@ -112,7 +121,7 @@
                         result.className = "home-large-template color1";
                     }
             }
-            
+
             result.attributes.removeNamedItem("data-win-control");
             result.attributes.removeNamedItem("style");
             result.style.overflow = "hidden";
@@ -124,7 +133,7 @@
 
         });
     }
-    
+
     function multisizeItemTemplateRendererPortrait(itemPromise) {
         return itemPromise.then(function (currentItem) {
             var content;
@@ -133,42 +142,42 @@
             switch (currentItem.data.key) {
                 case "news":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-small-template color4";
                     }
                     break;
                 case "mypage":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-large-template color5";
                     }
                     break;
                 case "events":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-medium-rotate-template color6";
                     }
                     break;
                 case "openingHours":
                     {
-                        result.className = "home-medium-template color2";
+                        result.className = "home-small-template color2";
                     }
                     break;
                 case "lists":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-large-template color1";
                     }
                     break;
                 case "contact":
                     {
-                        result.className = "home-medium-template color2";
+                        result.className = "home-small-template color2";
                     }
                     break;
                 case "blogs":
                     {
-                        result.className = "home-medium-template color1";
+                        result.className = "home-small-template color4";
                     }
                     break;
                 case "search":
                     {
-                        result.className = "home-medium-template color3";
+                        result.className = "home-large-template color3";
                     }
                     break;
                 default:
@@ -176,7 +185,7 @@
                         result.className = "home-medium-template color1";
                     }
             }
-            
+
             result.attributes.removeNamedItem("data-win-control");
             result.attributes.removeNamedItem("style");
             result.style.overflow = "hidden";

@@ -11,20 +11,25 @@
     var news = "/images/home/News.png";
     var activePage = "home";
 
-    //var serverBaseUrl = "http://localhost:7089";
-    var serverBaseUrl = "http://31.24.130.26";
+    var serverBaseUrl = "http://localhost:7089";
+    //var serverBaseUrl = "http://31.24.130.26";
 
     var colorPoolRgba = ["rgba(255, 153, 0, ", "rgba(204, 51, 0, ", "rgba(136, 187, 0, ", "rgba(0, 85, 34, ", "rgba(0, 153, 204, ", "rgba(0, 51, 102, ", "rgba(102, 0, 102, ", "rgba(51, 0, 51, "];
 
     var menuItems = [
-        { key: "news", title: "Nyheter", subtitle: "Nyheter fra Sølvberget", backgroundImage: news, icon: "icon-rss", navigateTo: navigateToNews },
-        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-reorder", navigateTo: navigateToLists },
+        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-book", navigateTo: navigateToLists },
         { key: "openingHours", title: "Åpningstider", subtitle: "", backgroundImage: openingHours, icon: "icon-info-sign", navigateTo: navigateToOpeningHours },
         { key: "contact", title: "Kontakt oss", subtitle: "", backgroundImage: contact, icon: "icon-phone", navigateTo: navigateToContact },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", icon: "icon-search", backgroundImage: search, navigateTo: searchHandler },
         { key: "blogs", title: "Blogger", subtitle: "Utvalgte blogger", backgroundImage: blogs, icon: "icon-edit", navigateTo: navigateToBlogs },
+        { key: "news", title: "Nyheter", subtitle: "", backgroundImage: news, icon: "icon-rss", navigateTo: navigateToNews },
         { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, icon: "icon-user", navigateTo: navigateToMypage },
-        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents },
+        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents }
+    ];
+
+    var menuItemsPortrait = [
+        menuItems[0], menuItems[3], menuItems[6], menuItems[1], menuItems[2], menuItems[4], menuItems[5],
+        { key: "events", title: "Arrangementer", subtitle: "", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents }
     ];
 
     function searchHandler() {
@@ -93,6 +98,7 @@
 
 
     var list = new WinJS.Binding.List(menuItems);
+    var listPortrait = new WinJS.Binding.List(menuItemsPortrait);
 
     function getActivePage() {
         return WinJS.Navigation.location;
@@ -159,8 +165,10 @@
 
     WinJS.Namespace.define("Data", {
         items: list,
+        itemsPortrait: listPortrait,
         itemByKey: itemByKey,
         menuItems: menuItems,
+        menuItemsPortrait: menuItemsPortrait,
         serverBaseUrl: serverBaseUrl,
         activePage: activePage,
         navigateToHome: navigateToHome,
