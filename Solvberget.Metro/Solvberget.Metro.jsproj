@@ -129,6 +129,15 @@
     <Content Include="fragments\pinRequest\pinRequest.html" />
     <Content Include="fragments\pinRequest\pinRequest.js" />
     <Content Include="images\ajax_loading.gif" />
+    <Content Include="images\appbar\blogs.png" />
+    <Content Include="images\appbar\contact.png" />
+    <Content Include="images\appbar\events.png" />
+    <Content Include="images\appbar\home.png" />
+    <Content Include="images\appbar\lists.png" />
+    <Content Include="images\appbar\mypage.png" />
+    <Content Include="images\appbar\news.png" />
+    <Content Include="images\appbar\opening.png" />
+    <Content Include="images\appbar\search.png" />
     <Content Include="images\externalSites\bokelskere\bokelskere.png" />
     <Content Include="images\externalSites\imdb\imdb-16x16.png" />
     <Content Include="images\externalSites\imdb\imdb-24x24.png" />
