@@ -48,12 +48,8 @@
         },
 
         itemInvoked: function (args) {
-
             var viewState = Windows.UI.ViewManagement.ApplicationView.value;
-
-            if (viewState === appViewState.fullScreenLandscape) {
-                Data.menuItems[args.detail.itemIndex].navigateTo();
-            } else if (viewState === appViewState.fullScreenPortrait) {
+            if (viewState === appViewState.fullScreenPortrait) {
                 Data.menuItemsPortrait[args.detail.itemIndex].navigateTo();
             } else {
                 Data.menuItems[args.detail.itemIndex].navigateTo();
@@ -206,22 +202,22 @@
             switch (currentItem.data.key) {
                 case "news":
                     {
-                        result.className = "home-snapped-template color1";
+                        result.className = "home-snapped-template color4";
                     }
                     break;
                 case "mypage":
                     {
-                        result.className = "home-snapped-template color1";
+                        result.className = "home-snapped-template color5";
                     }
                     break;
                 case "events":
                     {
-                        result.className = "home-snapped-template color1";
+                        result.className = "home-snapped-template color6";
                     }
                     break;
                 case "openingHours":
                     {
-                        result.className = "home-snapped-template color1";
+                        result.className = "home-snapped-template color2";
                     }
                     break;
                 case "lists":
@@ -231,17 +227,17 @@
                     break;
                 case "contact":
                     {
-                        result.className = "home-snapped-template color1";
+                        result.className = "home-snapped-template color2";
                     }
                     break;
                 case "blogs":
                     {
-                        result.className = "home-snapped-template color1";
+                        result.className = "home-snapped-template color4";
                     }
                     break;
                 case "search":
                     {
-                        result.className = "home-snapped-template color1";
+                        result.className = "home-snapped-template color3";
                     }
                     break;
                 default:
