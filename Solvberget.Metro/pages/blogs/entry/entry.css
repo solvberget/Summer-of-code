@@ -68,15 +68,21 @@ progress.withText {
         display: -ms-grid;
         height: 100%;
         margin-left: 5px;
-        width: 300px;
+        width: 290px;
     }
 
     .blogentry #mainEntryContentSection {
-        width: calc(100% - 10px);
+        width: calc(100% - 20px);
+        margin-top: 20px;
+        height: calc(100% - 20px);
         margin-left: 10px;
         -ms-grid-column: inherit;
         overflow: auto;
         padding-right: 10px;
+    }
+
+    .blogentry #mainEntryContentSection .entry-content {
+        width: 280px;
     }
 
 }

@@ -113,22 +113,26 @@ progress.withText {
         height: 100%;
         margin-left: 5px;
         max-width: 300px;
+        margin-top: 0px;
     }
 
     .blogs #blogsContent {
         margin-left: 5px;
+        width: calc(100% - 5px);
         -ms-grid-column: inherit;
     }
 
     .blogs .blog {
-        max-width: 250px;
+        max-width: 240px;
         margin-right: 0px;
         margin-top: 10px;
         overflow: hidden;
     }
 
     .blogs #mainBlogsContentSection {
+        margin-top: 10px;
         margin-left: 10px;
+        width: calc(100% - 10px);
         overflow: auto;
     }
 
@@ -136,7 +140,7 @@ progress.withText {
         display: -ms-flexbox;
         -ms-flex-direction: column;
         -ms-flex-align: stretch;
-        margin-top: 10px;
+        margin-top: 0px;
     }
 
 }
@@ -163,7 +167,7 @@ progress.withText {
     .blogs .blog {
         width: 400px;
         height: 230px;
-        margin-top: 10px;
+        margin-top: 20px;
         margin-right: 0px;
     }
 

@@ -10,12 +10,13 @@
 
     .entries .content article {
         /* Define a multi-column, horizontally scrolling article by default. */
-        column-gap: 80px;
-        column-width: 480px;
+        column-fill: auto;
+        column-gap: 20px;
+        column-width: 530px;
         height: calc(100% - 50px);
         margin-left: 120px;
         margin-top: 5px;
-        width: 480px;
+        width: 530px;
     }
 
 .entries .entry {
@@ -25,9 +26,13 @@
     border-color: white;
     border-style: dotted;
     border-radius: 5px 5px 5px 5px;*/
-    width: 400px;
+    height: 330px;
+    max-height: 330px;
+    width: 480px;
+    max-width: 480px;
     margin-right: 50px;
     background-color: #330033;
+    overflow: hidden;
 }
 
     .entries .entry:active {
@@ -55,7 +60,7 @@
 }
 
 .entries #mainEntriesContentSection {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     overflow: auto;
 }
 
@@ -122,34 +127,39 @@ progress.withText {
         height: 100%;
         margin-left: 5px;
         width: 300px;
+        margin-top: 0px;
     }
 
     .entries #entriesContent {
         margin-left: 5px;
+        width: calc(100% - 5px);
         -ms-grid-column: inherit;
     }
 
     .entries #mainEntriesContentSection {
+        margin-top: 10px;
         margin-left: 10px;
+        width: calc(100% - 10px);
         overflow: auto;
     }
 
     .entries #entriesTemplateHolder {
-        margin-top: 10px;
+        margin-top: 0px;
         -ms-flex-direction: column;
     }
 
     .entries .entry {
         margin-top: 10px;
-        width: 250px;
+        width: 240px;
+        height: 370px;
+        max-height: 500px;
     }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
 
     .entries .entry {
-        margin-top: 10px;
-        height: 300px;
+        margin-right: 0px;
     }
 
     .entries #entriesTemplateHolder {
@@ -158,13 +168,12 @@ progress.withText {
     }
 
     .entries .content article {
-        /* Define a multi-column, horizontally scrolling article by default. */
-        column-gap: 20px;
-        column-width: 420px;
-        height: calc(100% - 50px);
-        margin-left: 120px;
-        margin-top: 5px;
-        width: 420px;
+        margin-left: 100px;
+        margin-top: 20px;
+        margin-right: 0px;
     }
 
+        .entries .content article #entriesTemplateHolder .entry:first-child {
+            margin-top: 10px;
+        }
 }

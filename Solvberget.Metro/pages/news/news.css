@@ -81,7 +81,7 @@
     .newspage .newsItemsListView .win-item {
         padding: 5px;
         height: 220px;
-        width: 290px;
+        width: 280px;
         -ms-grid-columns: 1fr;
         -ms-grid-rows: 75px 30px 1fr;
         display: -ms-grid;
