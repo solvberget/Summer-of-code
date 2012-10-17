@@ -18,7 +18,6 @@ namespace Solvberget.Domain.DTO
         public string Edition { get; set; }
         public string NumberOfPages { get; set; }
         public string Content { get; set; }
-        public string TitleAndPartTitle { get; set; }
         public IEnumerable<Person> ReferredPersons { get; set; }
         public IEnumerable<Organization> ReferredOrganizations { get; set; } 
         public IEnumerable<string> ReferencedPlaces { get; set; } 
@@ -94,45 +93,27 @@ namespace Solvberget.Domain.DTO
                     Author.InvertName(Author.Name);
                 MainResponsible = Author;
 
-
                 PartTitle = GetVarfield(nodes, "245", "p");
 
-                TitleAndPartTitle = Title;
-
-                if (Title != null)
+                if (Title != null && PartTitle != null)
                 {
-                    if (PartTitle != null)
-                        TitleAndPartTitle = Title + " : " + PartTitle;
-                    
-                    else if (SubTitle != null)
-                        TitleAndPartTitle = Title + " : " + SubTitle;
-                    
-                    Title = TitleAndPartTitle;
+                    Title = Title + " : " + PartTitle;
                 }
-
-
 
             }
         }
 
-
-
-
         public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
         {
             var book = new Book();
-
             book.FillProperties(xml);
-
             return book;
         }
 
         public new static Book GetObjectFromFindDocXmlBsMarcLight(string xml)
         {
             var book = new Book();
-
             book.FillPropertiesLight(xml);
-
             return book;
         }
 
