@@ -171,15 +171,17 @@ body {
         height: 45px;
         -ms-grid-rows: 1fr 25px;
         display: -ms-grid;
-        padding: 6px 15px 2px 15px;
+        padding: 6px 0px 2px 0px;
         position: absolute;
         bottom: 0;
+        width: 125px;
     }
 
     .homepage .home-small-template .item-title {
         -ms-grid-row: 1;
         overflow: hidden;
-        width: 220px;
+        width: 125px;
+        text-align: center;
     }
 
     .homepage .home-small-template .item-overlay .item-subtitle {
