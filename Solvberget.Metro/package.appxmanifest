@@ -4,7 +4,7 @@
   <Properties>
     <DisplayName>Sølvberget Metro</DisplayName>
     <PublisherDisplayName>Capgemini AS</PublisherDisplayName>
-    <Logo>images\storelogo.png</Logo>
+    <Logo>images\solvberget50.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
