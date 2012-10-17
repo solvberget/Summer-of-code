@@ -117,24 +117,7 @@
       </item>
     </departmentOrDayOfWeekToTimeList>
   </branch>
-
-  <branch>
-    <title>Kult.kafeen</title>
-    <subtitle></subtitle>
-    <phone>(+47) 51 89 16 00</phone>
-    <url>http://www.kultkafeen.no/</url>
-    <urlText>www.kultkafeen.no</urlText>
-    <location></location>
-    <departmentOrDayOfWeekToTimeList>
-      <item key="Mandag-lørdag">
-        <value>10.00-22.00</value>
-      </item>
-      <item key="Søndag">
-        <value>12.00-22.00</value>
-      </item>
-    </departmentOrDayOfWeekToTimeList>
-  </branch>
-
+  
   <!--<branch>
     <title></title>
     <subtitle></subtitle>
