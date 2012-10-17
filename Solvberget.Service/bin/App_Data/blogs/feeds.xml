@@ -39,7 +39,7 @@
     </categories>
   </feed>
 
-  <feed>
+  <!--<feed>
     <url>http://solvbergetspillblogg.wordpress.com/feed/</url>
     <priority>4</priority>
     <type>rss</type>
@@ -49,6 +49,6 @@
       <category>Spill</category>
       <category>Bibliotek</category>
     </categories>
-  </feed>
+  </feed>-->
 
 </blogfeeds>
