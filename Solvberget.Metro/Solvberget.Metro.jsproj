@@ -128,7 +128,6 @@
     <Content Include="fragments\pinRequest\pinRequest.css" />
     <Content Include="fragments\pinRequest\pinRequest.html" />
     <Content Include="fragments\pinRequest\pinRequest.js" />
-    <Content Include="images\ajax_loading.gif" />
     <Content Include="images\appbar\blogs.png" />
     <Content Include="images\appbar\contact.png" />
     <Content Include="images\appbar\events.png" />
@@ -171,11 +170,11 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\solvberget150.png" />
     <Content Include="images\solvberget30.png" />
+    <Content Include="images\solvberget50.png" />
     <Content Include="images\solvberget_splash.png" />
     <Content Include="images\solvberget_wide.png" />
-    <Content Include="images\splashscreen.png" />
-    <Content Include="images\storelogo.png" />
     <Content Include="images\sølvberget_sort.eps" />
+    <Content Include="images\sølvberget_sort.tif" />
     <Content Include="images\sølvberget_sort_svg.svg" />
     <Content Include="js\codeGenerator.js" />
     <Content Include="js\documentImage.js" />
@@ -327,7 +326,6 @@
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\externalSites\lastFm\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
