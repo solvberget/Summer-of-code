@@ -35,7 +35,7 @@
                 $("#sendHoldRequestButton").attr("disabled", "disabled");
                 setTimeout(function () {
                     dismiss();
-                }, 2000);
+                }, 1000);
             } else {
                 jqueryOutputMsg.removeClass("success");
                 jqueryOutputMsg.addClass("error");

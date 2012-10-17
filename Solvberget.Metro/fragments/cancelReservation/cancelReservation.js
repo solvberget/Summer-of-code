@@ -62,7 +62,7 @@
                     allReservations[reservationIndex] = undefined;
                     MyPage.addReservationsToDom(allReservations);
 
-                }, 2000);
+                }, 1000);
             }
         }
     };
