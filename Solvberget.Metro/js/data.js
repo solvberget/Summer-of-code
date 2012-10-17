@@ -15,6 +15,8 @@
     var serverBaseUrl = "http://31.24.130.26";
 
     var colorPoolRgba = ["rgba(255, 153, 0, ", "rgba(204, 51, 0, ", "rgba(136, 187, 0, ", "rgba(0, 85, 34, ", "rgba(0, 153, 204, ", "rgba(0, 51, 102, ", "rgba(102, 0, 102, ", "rgba(51, 0, 51, "];
+    var colorPoolSubsetSorted = ["rgba(0, 51, 102, ", "rgba(0, 153, 204, ", "rgba(0, 85, 34, ", "rgba(136, 187, 0, ", "rgba(255, 153, 0, ", "rgba(204, 51, 0, " ];
+    var colorPoolBlogs = ["rgba(0, 51, 102, ", "rgba(0, 85, 34, ", "rgba(204, 51, 0, "];
 
     var menuItems = [
         { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-book", navigateTo: navigateToLists },
@@ -67,7 +69,7 @@
         }
     };
 
-
+    
     function getColorFromPool(index, alpha) {
         if (index >= 0 && index < colorPoolRgba.length) {
             var color = colorPoolRgba[index];
@@ -80,6 +82,36 @@
         }
         else {
             return colorPoolRgba[0] + "0.6)";
+        }
+    };
+
+    function getColorFromSubsetPool(index, alpha) {
+        if (index >= 0 && index < colorPoolSubsetSorted.length) {
+            var color = colorPoolSubsetSorted[index];
+            if (alpha)
+                color = color + alpha + ")";
+            else
+                color = color + "0.6)";
+            return color;
+
+        }
+        else {
+            return colorPoolRgba[0] + "0.6)";
+        }
+    };
+
+    function getColorFromBlogsPool(index, alpha) {
+        if (index >= 0 && index < colorPoolBlogs.length) {
+            var color = colorPoolBlogs[index];
+            if (alpha)
+                color = color + alpha + ")";
+            else
+                color = color + "0.6)";
+            return color;
+
+        }
+        else {
+            return colorPoolBlogs[0] + "0.6)";
         }
     };
 
@@ -182,6 +214,8 @@
         navigateToNews: navigateToNews,
         colorPoolRgba: colorPoolRgba,
         getRandomColor: getRandomColor,
-        getColorFromPool: getColorFromPool
+        getColorFromPool: getColorFromPool,
+        getColorFromSubsetPool: getColorFromSubsetPool,
+        getColorFromBlogsPool: getColorFromBlogsPool
     });
 })();
