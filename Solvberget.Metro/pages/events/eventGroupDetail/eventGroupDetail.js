@@ -36,7 +36,7 @@
                         function groupKeySelector(item) { return group.key; },
                         function groupDataSelector(item) { return group; }
                     );
-                    element.querySelector(".titlearea .pagetitle").textContent = "Arrangementer: " + group.Name;
+                    element.querySelector(".titlearea .pagetitle").textContent = group.Name;
                     listViewWinControl.itemDataSource = pageList.dataSource;
                     listViewWinControl.itemTemplate = element.querySelector(".event-item-template");
                     listViewWinControl.oniteminvoked = this.itemInvoked.bind(this);
