@@ -32,7 +32,7 @@
 
         initializeLayout: function (listView, viewState, element) {
             if (viewState === appViewState.snapped) {
-                listView.itemDataSource = Data.items.dataSource;
+                listView.itemDataSource = Data.itemsSnapped.dataSource;
                 listView.itemTemplate = snappedTemplateRenderer;
                 listView.layout = new ui.ListLayout();
             } else if (viewState === appViewState.fullScreenPortrait) {
@@ -49,9 +49,14 @@
 
         itemInvoked: function (args) {
             var viewState = Windows.UI.ViewManagement.ApplicationView.value;
-            if (viewState === appViewState.fullScreenPortrait) {
+            if (viewState === appViewState.fullScreenLandscape) {
+                Data.menuItems[args.detail.itemIndex].navigateTo();
+            } else if (viewState === appViewState.fullScreenPortrait) {
                 Data.menuItemsPortrait[args.detail.itemIndex].navigateTo();
-            } else {
+            } else if (viewState === appViewState.snapped) {
+                Data.menuItemsSnapped[args.detail.itemIndex].navigateTo();
+            }
+            else {
                 Data.menuItems[args.detail.itemIndex].navigateTo();
             }
         },

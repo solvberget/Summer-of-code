@@ -92,7 +92,7 @@
                 var colorIndex = Math.floor(Math.random() * Data.colorPoolRgba.length);
                 var newsItemTemplate = document.getElementById("newsItemTemplate");
                 var container = document.createElement("div");
-                container.style.backgroundColor = Data.getColorFromPool(colorIndex, 0.6);
+                container.style.backgroundColor = Data.getColorFromPool(colorIndex, 1.0);
                 newsItemTemplate.winControl.render(item.data, container);
                 return container;
             });

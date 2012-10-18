@@ -9,6 +9,10 @@
     display: none;
 }
 
+    .contact-info .content a:link, .contact-info .content a:visited {
+        color: rgb(190, 190, 190);
+    }
+
     .contact-info .content article {
         /* Define a multi-column, horizontally scrolling article by default. */
         column-fill: auto;
@@ -93,12 +97,11 @@ progress.withText {
             overflow: hidden;
         }
 
-        .contact-info .content article #contact-information-template-holder .contact-tile .contact-persons-holder {
-            font-size: 10pt;
-        }
+            .contact-info .content article #contact-information-template-holder .contact-tile .contact-persons-holder {
+                font-size: 10pt;
+            }
 
-        .contact-info .content article #contact-information-template-holder .contact-tile .contact-info-item {
-            font-size: 10pt;
-        }
-
+            .contact-info .content article #contact-information-template-holder .contact-tile .contact-info-item {
+                font-size: 10pt;
+            }
 }

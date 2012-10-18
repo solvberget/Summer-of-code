@@ -20,27 +20,31 @@
         width: 370px;
     }
 
-        .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile:first-child {
-            margin-top: 0px;
+    .opening-hours .content a:link, .contact-info .content a:visited {
+        color: rgb(29, 29, 29);
+    }
+
+    .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile:first-child {
+        margin-top: 0px;
+    }
+
+    .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile {
+        height: 250px;
+        padding: 20px;
+        margin-top: 8px;
+        width: 350px;
+        max-width: 350px;
+        margin-right: 0px;
+        overflow: hidden;
+    }
+
+        .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list .opening-time-list-item {
+            margin-top: 3px;
         }
 
-        .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile {
-            height: 250px;
-            padding: 20px;
-            margin-top: 8px;
-            width: 350px;
-            max-width: 350px;
-            margin-right: 0px;
-            overflow: hidden;
-        }
-
-            .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list .opening-time-list-item {
-                margin-top: 3px;
+            .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list .opening-time-list-item .opening-time {
+                float: right;
             }
-
-                .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list .opening-time-list-item .opening-time {
-                    float: right;
-                }
 
 .opening-hours #opening-hours-loading {
     width: 100%;
@@ -94,5 +98,4 @@ progress.withText {
             .opening-hours .content article #opening-hours-information-template-holder .opening-hour-tile .opening-hours-list {
                 font-size: 9pt;
             }
-
 }

@@ -56,7 +56,7 @@ var populateBlogs = function (response) {
             var context = { model: model, index: i };
             if (blogTemplate && blogsTemplateHolder && model) {
                 blogTemplate.render(model, blogsTemplateHolder).done($.proxy(function () {
-                    $(".blog:last").css("background-color", Data.getColorFromBlogsPool(i%3, "0.8"));
+                    $(".blog:last").css("background-color", Data.getColorFromBlogsPool(i%3, "1.0"));
 
                     $(".blog:last").click($.proxy(function () {
                         var blogId = this.index;

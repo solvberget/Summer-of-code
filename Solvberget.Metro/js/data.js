@@ -14,24 +14,81 @@
     //var serverBaseUrl = "http://localhost:7089";
     var serverBaseUrl = "http://31.24.130.26";
 
-    var colorPoolRgba = ["rgba(255, 153, 0, ", "rgba(204, 51, 0, ", "rgba(136, 187, 0, ", "rgba(0, 85, 34, ", "rgba(0, 153, 204, ", "rgba(0, 51, 102, ", "rgba(102, 0, 102, ", "rgba(51, 0, 51, "];
-    var colorPoolSubsetSorted = ["rgba(0, 51, 102, ", "rgba(0, 153, 204, ", "rgba(0, 85, 34, ", "rgba(136, 187, 0, ", "rgba(255, 153, 0, ", "rgba(204, 51, 0, " ];
-    var colorPoolBlogs = ["rgba(0, 51, 102, ", "rgba(0, 85, 34, ", "rgba(204, 51, 0, "];
+    // Original colors
+    var colorPoolRgba = [
+        "rgba(255, 153, 0, ",
+        "rgba(204, 51, 0, ",
+        "rgba(136, 187, 0, ",
+        "rgba(0, 85, 34, ",
+        "rgba(0, 153, 204, ",
+        "rgba(0, 51, 102, ",
+        "rgba(102, 0, 102, ",
+        "rgba(51, 0, 51, "
+    ];
+    
+    var colorPoolSubsetSorted = [
+        "rgba(0, 51, 102, ",
+        "rgba(0, 153, 204, ",
+        "rgba(0, 85, 34, ",
+        "rgba(136, 187, 0, ",
+        "rgba(255, 153, 0, ",
+        "rgba(204, 51, 0, "
+    ];
+    
+    var colorPoolBlogs = [
+        "rgba(0, 51, 102, ",
+        "rgba(0, 85, 34, ",
+        "rgba(204, 51, 0, "
+    ];
+
+    // Refined colors from Torbjørn
+    var colorPoolRgbaRefined = [
+        "rgba(229, 102, 0, ",
+        "rgba(204, 51, 0, ",
+        "rgba(136, 187, 0, ",
+        "rgba(68, 136, 17, ",
+        "rgba(0, 153, 204, ",
+        "rgba(0, 102, 153, ",
+        "rgba(102, 0, 102, ",
+        "rgba(76, 0, 76, "
+    ];
+    
+    var colorPoolSubsetSortedRefined = [
+        colorPoolRgbaRefined[0],
+        colorPoolRgbaRefined[1],
+        colorPoolRgbaRefined[3],
+        colorPoolRgbaRefined[2],
+        colorPoolRgbaRefined[5],
+        colorPoolRgbaRefined[4],
+        colorPoolRgbaRefined[7],
+        colorPoolRgbaRefined[6]
+    ];
+
+    var colorPoolBlogsRefined = [
+        colorPoolSubsetSortedRefined[1],
+        colorPoolSubsetSortedRefined[4],
+        colorPoolSubsetSortedRefined[3]
+    ];
 
     var menuItems = [
-        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-book", navigateTo: navigateToLists },
-        { key: "openingHours", title: "Åpningstider", subtitle: "", backgroundImage: openingHours, icon: "icon-info-sign", navigateTo: navigateToOpeningHours },
-        { key: "contact", title: "Kontakt oss", subtitle: "", backgroundImage: contact, icon: "icon-phone", navigateTo: navigateToContact },
+        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, icon: "icon-user", navigateTo: navigateToMypage },
+        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents },
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", icon: "icon-search", backgroundImage: search, navigateTo: searchHandler },
         { key: "blogs", title: "Blogger", subtitle: "", backgroundImage: blogs, icon: "icon-edit", navigateTo: navigateToBlogs },
         { key: "news", title: "Nyheter", subtitle: "", backgroundImage: news, icon: "icon-rss", navigateTo: navigateToNews },
-        { key: "mypage", title: "Min Side", subtitle: "", backgroundImage: home, icon: "icon-user", navigateTo: navigateToMypage },
-        { key: "events", title: "Arrangementer", subtitle: "Hva skjer på Sølvberget", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents }
+        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-book", navigateTo: navigateToLists },
+        { key: "openingHours", title: "Åpningstider", subtitle: "", backgroundImage: openingHours, icon: "icon-info-sign", navigateTo: navigateToOpeningHours },
+        { key: "contact", title: "Kontakt oss", subtitle: "", backgroundImage: contact, icon: "icon-phone", navigateTo: navigateToContact }
     ];
 
     var menuItemsPortrait = [
-        menuItems[0], menuItems[3], menuItems[6], menuItems[1], menuItems[2], menuItems[4], menuItems[5],
-        { key: "events", title: "Arrangementer", subtitle: "", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents }
+        menuItems[0], menuItems[2], menuItems[5],
+        { key: "events", title: "Arrangementer", subtitle: "", icon: "icon-calendar", backgroundImage: events, navigateTo: navigateToEvents },
+         menuItems[3], menuItems[4], menuItems[6], menuItems[7]
+    ];
+
+    var menuItemsSnapped = [
+        menuItems[0], menuItems[1], menuItems[3], menuItems[4], menuItems[5], menuItems[6], menuItems[7]
     ];
 
     function searchHandler() {
@@ -71,47 +128,47 @@
 
     
     function getColorFromPool(index, alpha) {
-        if (index >= 0 && index < colorPoolRgba.length) {
-            var color = colorPoolRgba[index];
+        if (index >= 0 && index < colorPoolRgbaRefined.length) {
+            var color = colorPoolRgbaRefined[index];
             if (alpha)
                 color = color + alpha + ")";
             else
-                color = color + "0.6)";
+                color = color + "1.0)";
             return color;
 
         }
         else {
-            return colorPoolRgba[0] + "0.6)";
+            return colorPoolRgbaRefined[0] + "1.0)";
         }
     };
 
     function getColorFromSubsetPool(index, alpha) {
-        if (index >= 0 && index < colorPoolSubsetSorted.length) {
-            var color = colorPoolSubsetSorted[index];
+        if (index >= 0 && index < colorPoolSubsetSortedRefined.length) {
+            var color = colorPoolSubsetSortedRefined[index];
             if (alpha)
                 color = color + alpha + ")";
             else
-                color = color + "0.6)";
+                color = color + "1.0)";
             return color;
 
         }
         else {
-            return colorPoolRgba[0] + "0.6)";
+            return colorPoolSubsetSortedRefined[0] + "1.0)";
         }
     };
 
     function getColorFromBlogsPool(index, alpha) {
-        if (index >= 0 && index < colorPoolBlogs.length) {
-            var color = colorPoolBlogs[index];
+        if (index >= 0 && index < colorPoolBlogsRefined.length) {
+            var color = colorPoolBlogsRefined[index];
             if (alpha)
                 color = color + alpha + ")";
             else
-                color = color + "0.6)";
+                color = color + "1.0)";
             return color;
 
         }
         else {
-            return colorPoolBlogs[0] + "0.6)";
+            return colorPoolBlogsRefined[0] + "1.0)";
         }
     };
 
@@ -131,6 +188,7 @@
 
     var list = new WinJS.Binding.List(menuItems);
     var listPortrait = new WinJS.Binding.List(menuItemsPortrait);
+    var listSnapped = new WinJS.Binding.List(menuItemsSnapped);
 
     function getActivePage() {
         return WinJS.Navigation.location;
@@ -198,9 +256,11 @@
     WinJS.Namespace.define("Data", {
         items: list,
         itemsPortrait: listPortrait,
+        itemsSnapped: listSnapped,
         itemByKey: itemByKey,
         menuItems: menuItems,
         menuItemsPortrait: menuItemsPortrait,
+        menuItemsSnapped: menuItemsSnapped,
         serverBaseUrl: serverBaseUrl,
         activePage: activePage,
         navigateToHome: navigateToHome,

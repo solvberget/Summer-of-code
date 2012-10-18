@@ -57,7 +57,7 @@
                             var colorIndex;
                             if (i % 2) colorIndex = 3;
                             else colorIndex = 5;
-                            $(".opening-hour-tile:last").css("background-color", Data.getColorFromPool( colorIndex, "0.8"));
+                            $(".opening-hour-tile:last").css("background-color", Data.getColorFromPool( colorIndex, "1.0"));
 
                         }, model));
                 }

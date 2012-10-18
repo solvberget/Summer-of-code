@@ -67,7 +67,7 @@ var populateEntries = function (response) {
             if (entryTemplate && entriesTemplateHolder && model)
                 entryTemplate.render(model, entriesTemplateHolder).done($.proxy(function () {
 
-                    $(".entry:last").css("background-color", Data.getColorFromSubsetPool(i%6, "0.8"));
+                    $(".entry:last").css("background-color", Data.getColorFromSubsetPool(i%8, "1.0"));
 
                     $(".entry:last").click($.proxy(function () {
                         WinJS.Navigation.navigate("pages/blogs/entry/entry.html", { model: this });
