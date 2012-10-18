@@ -28,11 +28,8 @@ var getUserInformation = function (loadingMypage) {
     $("#mypageData").hide();
     $("#mypageLoading").fadeIn();
 
-    // Prevent caching of this request
-    $.ajaxSetup({ cache: false });
-
     // Get the user information from server
-    ajaxGetUserInformation(loadingMypage)
+    ajaxGetUserInformation(loadingMypage);
 
 };
 
@@ -40,8 +37,9 @@ var ajaxGetUserInformation = function (isLoadingMyPage) {
 
     var borrowerId = LoginFlyout.getLoggedInBorrowerId();
     if (borrowerId != undefined && borrowerId !== "") {
-        var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId
-        Solvberget.Queue.QueueDownload("mypage", { url: url }, ajaxGetUserInformationCallback, isLoadingMyPage, true);
+        var url = window.Data.serverBaseUrl + "/User/GetUserInformation/" + borrowerId;
+        var headers = { "If-Modified-Since": "Mon, 27 Mar 1972 00:00:00 GMT" };
+        Solvberget.Queue.QueueDownload("mypage", { url: url, headers: headers }, ajaxGetUserInformationCallback, isLoadingMyPage, true);
     }
     else if (isLoadingMyPage) {
         Data.navigateToHome();
