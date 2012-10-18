@@ -137,8 +137,9 @@ progress.withText {
     }
 
     .entries #mainEntriesContentSection {
-        margin-top: 10px;
+        margin-top: 50px;
         margin-left: 10px;
+        height: calc(100% - 50px);
         width: calc(100% - 10px);
         overflow: auto;
     }
@@ -154,6 +155,19 @@ progress.withText {
         height: 370px;
         max-height: 500px;
     }
+
+    .entries .entry:first-child {
+        margin-top: 0px;
+    }
+
+    .entries .win-type-ellipsis {
+        white-space: normal;
+    }
+
+    .entries .pagesubtitle {
+        padding-right: 5px;
+    }
+
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {

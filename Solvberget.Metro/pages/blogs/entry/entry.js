@@ -18,6 +18,13 @@
                 });
 
             });
+            
+            if (model.Title) {
+                if (model.Title.length > 40) {
+                    $(".pagetitle").css("font-size", "15pt");
+                }
+            }
+
         },
     });
 })();

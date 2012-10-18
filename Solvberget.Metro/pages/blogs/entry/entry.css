@@ -73,16 +73,23 @@ progress.withText {
 
     .blogentry #mainEntryContentSection {
         width: calc(100% - 20px);
-        margin-top: 20px;
-        height: calc(100% - 20px);
+        margin-top: 50px;
+        height: calc(100% - 50px);
         margin-left: 10px;
         -ms-grid-column: inherit;
         overflow: auto;
         padding-right: 10px;
     }
 
-    .blogentry #mainEntryContentSection .entry-content {
-        width: 280px;
+        .blogentry #mainEntryContentSection .entry-content {
+            width: 280px;
+        }
+
+    .blogentry .win-type-ellipsis {
+        white-space: normal;
     }
 
+    .blogentry img {
+        max-width: 230px;
+    }
 }

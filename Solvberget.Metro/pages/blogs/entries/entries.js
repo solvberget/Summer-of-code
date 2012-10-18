@@ -13,6 +13,15 @@
 
             var blogId = options.blogId;
             var blogModel = options.blogModel;
+
+            if (blogModel) {
+                if (blogModel.Title) {
+                    if (blogModel.Title.length > 40) {
+                        blogModel.Title = blogModel.Title.substr(0, 37) + "...";
+                    }    
+                }
+            }
+
             WinJS.Binding.processAll(element.querySelector(".fragment"), blogModel);
             getBlogWithEntries(blogId);
 

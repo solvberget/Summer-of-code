@@ -110,7 +110,7 @@ progress.withText {
         -ms-grid-row: 2;
         -ms-grid-rows: auto 60px;
         display: -ms-grid;
-        height: 100%;
+        height: calc(100% - 40px);
         margin-left: 5px;
         max-width: 300px;
         margin-top: 0px;
@@ -119,6 +119,7 @@ progress.withText {
     .blogs #blogsContent {
         margin-left: 5px;
         width: calc(100% - 5px);
+        height: 100%;
         -ms-grid-column: inherit;
     }
 
@@ -133,6 +134,7 @@ progress.withText {
         margin-top: 10px;
         margin-left: 10px;
         width: calc(100% - 10px);
+        height: calc(100% - 10px);
         overflow: auto;
     }
 
@@ -141,6 +143,10 @@ progress.withText {
         -ms-flex-direction: column;
         -ms-flex-align: stretch;
         margin-top: 0px;
+    }
+
+    .blogs .win-type-ellipsis {
+        white-space: normal;
     }
 
 }
