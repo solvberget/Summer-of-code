@@ -29,7 +29,7 @@
     }
 
 .myPage #mainContentSection {
-    margin-left: 30px;
+    margin-left: 0px;
     overflow: auto;
 }
 
@@ -37,11 +37,12 @@
         display: -ms-flexbox;
         -ms-flex-direction: row;
         -ms-flex-align: stretch;
-        max-height: calc(100% - 20px);
+        height: calc(100% - 20px);
+        margin-left: 114px;
     }
 
-    .myPage #mainContentSection #mypageData > div {
-    }
+        .myPage #mainContentSection #mypageData > div {
+        }
 
 .myPage .box {
     margin: 10px;
@@ -123,7 +124,7 @@ progress.withText {
 
 .myPage .favorite-item {
     margin-top: 20px;
-    height: 160px;
+    height: 150px;
 }
 
     .myPage .favorite-item .favorite-section {
@@ -154,56 +155,65 @@ progress.withText {
 }
 
 @media screen and (orientation: portrait) {
-    
-    .myPage header[role=banner] .titlearea .pagesubtitle {
-        padding-left: 0px;
+
+    .mypage {
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 150px 1fr 0px;
+        display: -ms-grid;
+        height: 100%;
+        width: 100%;
     }
 
-    .myPage .box {
-        float: none;
-        margin-left: 0;
-        max-width: calc(100% - 150px);
-    }
+        .myPage header[role=banner] .titlearea .pagesubtitle {
+            padding-left: 0px;
+        }
 
-    .myPage #mainContentSection {
-        margin-left: 100px;
-    }
+        .myPage .box {
+            float: none;
+            margin-left: 0;
+            max-width: calc(100% - 150px);
+        }
 
-    .myPage #mainContentSection #mypageData #fines, #loans, #reservations, #notifications, #favorites {
-        max-height: none;
-        max-width: calc(100% - 150px);
-    }
+        .myPage #mainContentSection {
+            margin-left: 100px;
+            overflow-y: scroll;
+        }
 
-    .myPage header[role=banner] .titlearea .pagesubtitle {
-        display: block;
-    }
+            .myPage #mainContentSection #mypageData #fines, #loans, #reservations, #notifications, #favorites {
+                max-height: none;
+                max-width: calc(100% - 150px);
+            }
 
-    .myPage .win-backbutton {
-        margin-top: 59px!important;
-    }
+        .myPage header[role=banner] .titlearea .pagesubtitle {
+            display: block;
+        }
 
-    .myPage #mainContentSection #mypageData {
-        margin-top: 30px;
-        -ms-flex-direction: column;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 30px;
-    }
+        .myPage .win-backbutton {
+            margin-top: 59px!important;
+        }
 
-    .myPage header[role=banner] .titlearea {
-        overflow: visible;
-    }
+        .myPage #mainContentSection #mypageData {
+            margin-top: 30px;
+            -ms-flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
+        }
 
-    body {
-        overflow-y: scroll;
+        .myPage header[role=banner] .titlearea {
+            overflow: visible;
+        }
+
+    /*body {
+
         overflow-x: hidden;
-    }
+    }*/
 
 }
 
 
 @media screen and (-ms-view-state: snapped) {
-    
+
     .myPage .box {
         max-width: 260px;
     }
@@ -218,9 +228,9 @@ progress.withText {
         margin-left: 15px;
     }
 
-    .myPage #mainContentSection #notifications {
-        margin-top: 0px;
-    }
+        .myPage #mainContentSection #notifications {
+            margin-top: 0px;
+        }
 
     .myPage header[role=banner] .titlearea {
         overflow: hidden;
@@ -233,5 +243,4 @@ progress.withText {
     body {
         overflow: auto;
     }
-
 }

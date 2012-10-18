@@ -92,6 +92,7 @@
 
     <!-- The content that will be loaded and displayed. -->
     <div class="myPage fragment">
+        
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
@@ -99,14 +100,17 @@
                 <h2 id="pageSubtitleName" class="pagesubtitle" data-win-bind="innerText: Name"></h2>
             </div>
         </header>
-        <section
-            aria-label="Main content" id="mainContentSection" role="main">
+
+        <section aria-label="Main content" id="mainContentSection" role="main">
+            
             <div id="mypageLoading">
                 <label class="progressRingText">
                     <progress class="win-ring withText"></progress>
                 </label>
             </div>
+
             <article id="mypageData">
+                
                 <div id="notifications" class="box">
                     <h2><span class="detail-title">Meldinger</span></h2>
                     <div id="notificationTemplateHolder">
@@ -157,16 +161,16 @@
                     </div>
                 </div>
 
-
                 <div id="favorites" class="box">
                     <h2 class="detail-title"><span class="detail-title">Favoritter</span></h2>
                     <div id="favoritesTemplateHolder">
                     </div>
                 </div>
 
-
             </article>
+
         </section>
+    
     </div>
 
     <div id="loanRenewalFragmentHolder"></div>

@@ -362,15 +362,15 @@ var storeModifiedFavorites = function (favorites) {
 }
 
 var addColors = function () {
-    var alpha = "0.7";
-    $("#fines").css("background-color", Data.getColorFromPool(1, alpha));
-    $("#loans").css("background-color", Data.getColorFromPool(3, alpha));
-    $("#reservations").css("background-color", Data.getColorFromPool(6, alpha));
-    $("#notifications").css("background-color", Data.getColorFromPool(4, alpha));
-    $("#favorites").css("background-color", Data.getColorFromPool(7, alpha));
+    var alpha = "1.0";
+    $("#notifications").css("background-color", Data.getColorFromSubsetPool(0, alpha));
     $("#myPagePersonalInformation").children().each(function () {
-        $(this).css("background-color", Data.getColorFromPool(0, alpha));
+        $(this).css("background-color", Data.getColorFromSubsetPool(1, alpha));
     });
+    $("#loans").css("background-color", Data.getColorFromSubsetPool(2, alpha));
+    $("#reservations").css("background-color", Data.getColorFromSubsetPool(4, alpha));
+    $("#fines").css("background-color", Data.getColorFromSubsetPool(5, alpha));
+    $("#favorites").css("background-color", Data.getColorFromSubsetPool(6, alpha));
 };
 
 WinJS.Namespace.define("MyPage", {
