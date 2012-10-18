@@ -156,53 +156,46 @@ progress.withText {
 
 @media screen and (orientation: portrait) {
 
-    .mypage {
-        -ms-grid-columns: 1fr;
-        -ms-grid-rows: 150px 1fr 0px;
-        display: -ms-grid;
-        height: 100%;
-        width: 100%;
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        padding-left: 0px;
     }
 
-        .myPage header[role=banner] .titlearea .pagesubtitle {
-            padding-left: 0px;
-        }
+    .myPage .box {
+        float: none;
+        margin-left: 0;
+        max-width: calc(100% - 150px);
+    }
 
-        .myPage .box {
-            float: none;
-            margin-left: 0;
+    .myPage #mainContentSection {
+        margin-left: 100px;
+        overflow-y: scroll;
+        width: calc(100% - 50px);
+    }
+
+        .myPage #mainContentSection #mypageData #fines, #loans, #reservations, #notifications, #favorites {
+            max-height: none;
             max-width: calc(100% - 150px);
         }
 
-        .myPage #mainContentSection {
-            margin-left: 100px;
-            overflow-y: scroll;
-        }
+    .myPage header[role=banner] .titlearea .pagesubtitle {
+        display: block;
+    }
 
-            .myPage #mainContentSection #mypageData #fines, #loans, #reservations, #notifications, #favorites {
-                max-height: none;
-                max-width: calc(100% - 150px);
-            }
+    .myPage .win-backbutton {
+        margin-top: 59px!important;
+    }
 
-        .myPage header[role=banner] .titlearea .pagesubtitle {
-            display: block;
-        }
+    .myPage #mainContentSection #mypageData {
+        margin-top: 30px;
+        -ms-flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
 
-        .myPage .win-backbutton {
-            margin-top: 59px!important;
-        }
-
-        .myPage #mainContentSection #mypageData {
-            margin-top: 30px;
-            -ms-flex-direction: column;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 30px;
-        }
-
-        .myPage header[role=banner] .titlearea {
-            overflow: visible;
-        }
+    .myPage header[role=banner] .titlearea {
+        overflow: visible;
+    }
 
     /*body {
 
@@ -227,6 +220,10 @@ progress.withText {
         width: calc(100% - 15px);
         margin-left: 15px;
     }
+
+        .myPage #mainContentSection #mypageData {
+            margin-top: 0px;
+        }
 
         .myPage #mainContentSection #notifications {
             margin-top: 0px;
