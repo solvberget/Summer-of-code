@@ -77,39 +77,24 @@
                     "Prøv igjen",
                     commandInvokedHandler, 0));
 
-                internetDialog.commands.append(
-                    new Windows.UI.Popups.UICommand("Lukk", commandInvokedHandler, 1));
-
                 // Set the command that will be invoked by default
                 internetDialog.defaultCommandIndex = 0;
 
-                // Set the command to be invoked when escape is pressed
-                internetDialog.cancelCommandIndex = 1;
-
                 try {
-
                     // Show the message dialog
                     internetDialog.showAsync();
-
                 } catch (exception) {
                     // No access exception
                     console.log(new Date().toString() + ": No access exception(cant display dialog)");
                 }
-            }, 130);
-
+            }, 500);
 
         }
 
         function commandInvokedHandler(command) {
-
             if (command.id == 0) {
                 // Try again
                 processQueue();
-            }
-            else {
-                //cancel
-                Solvberget.Queue.CancelQueue();
-                Data.navigateToHome();
             }
         }
 
@@ -347,8 +332,6 @@
 
         var template = Windows.UI.Notifications.ToastTemplateType.toastText02;
 
-
-
         var toastXml = Windows.UI.Notifications.ToastNotificationManager.getTemplateContent(template);
 
         var toastTextElements = toastXml.getElementsByTagName("text");
@@ -437,8 +420,6 @@
         var notificationsAsString = Notifications.getUserNotifications();
 
         var notifications = notificationsAsString.split(";");
-
-        
 
         var liveTileInterval = function () {
             title = notifications[number % (notifications.length - 1)].split(",")[0];
