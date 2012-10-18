@@ -180,7 +180,6 @@
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-1.7.2.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
-    <Content Include="js\liveTile.js" />
     <Content Include="js\localizationConverter.js" />
     <Content Include="js\localizationHelper.js" />
     <Content Include="js\data.js" />
