@@ -75,7 +75,7 @@
 
                             var colorIndex;
                             if (i % 2) colorIndex = 5;
-                            else colorIndex = 6;
+                            else colorIndex = 3;
                             $(".contact-tile:last").css("background-color", Data.getColorFromPool(colorIndex, "1.0"));
 
                         }, model));
