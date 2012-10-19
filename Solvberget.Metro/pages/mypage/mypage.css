@@ -11,7 +11,7 @@
     border: none;
 }
 
-.myPage header[role=banner] .titlearea {
+/*.myPage header[role=banner] .titlearea {
     margin-top: 45px;
 }
 
@@ -26,11 +26,13 @@
         margin: 0;
         padding: 0;
         padding-left: 10px;
-    }
+    }*/
 
 .myPage #mainContentSection {
+    margin-top: 10px;
     margin-left: 0px;
     overflow: auto;
+    height: calc(100% - 10px);
 }
 
     .myPage #mainContentSection #mypageData {
@@ -38,7 +40,7 @@
         -ms-flex-direction: row;
         -ms-flex-align: stretch;
         height: calc(100% - 20px);
-        margin-left: 114px;
+        margin-left: 112px;
     }
 
         .myPage #mainContentSection #mypageData > div {
@@ -156,9 +158,9 @@ progress.withText {
 
 @media screen and (orientation: portrait) {
 
-    .myPage header[role=banner] .titlearea .pagesubtitle {
+    /*.myPage header[role=banner] .titlearea .pagesubtitle {
         padding-left: 0px;
-    }
+    }*/
 
     .myPage .box {
         float: none;
@@ -167,6 +169,7 @@ progress.withText {
     }
 
     .myPage #mainContentSection {
+        margin-top: 0px;
         margin-left: 100px;
         overflow-y: scroll;
         width: calc(100% - 50px);
@@ -181,9 +184,9 @@ progress.withText {
         display: block;
     }
 
-    .myPage .win-backbutton {
+    /*.myPage .win-backbutton {
         margin-top: 59px!important;
-    }
+    } NO NO */
 
     .myPage #mainContentSection #mypageData {
         margin-top: 30px;
@@ -229,13 +232,13 @@ progress.withText {
             margin-top: 0px;
         }
 
-    .myPage header[role=banner] .titlearea {
+    /*.myPage header[role=banner] .titlearea {
         overflow: hidden;
     }
 
         .myPage header[role=banner] .titlearea .pagesubtitle {
             padding-left: 0px;
-        }
+        }*/
 
     body {
         overflow: auto;
