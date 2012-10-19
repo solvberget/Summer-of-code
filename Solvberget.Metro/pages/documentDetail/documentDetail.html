@@ -1,20 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
+
     <meta charset="utf-8" />
     <title>Detaljer</title>
-
 
     <link href="documentDetail.css" rel="stylesheet" />
     <script src="documentDetail.js"></script>
     <script src="../../js/localizationHelper.js"></script>
 
-
 </head>
+
 <body>
 
     <div class="templates">
-        
+
         <div id="availabilityTemplate">
             <section class="availabilitySection">
                 <span class="doc-loc-branch" data-win-bind="innerText: Branch"></span>
@@ -29,7 +30,7 @@
                 <span class="doc-estimated-wait" style="" data-win-bind="innerText: EarliestAvailableDateFormatted DocumentDetailConverters.docEarliestAvailableDate"></span>
             </section>
         </div>
-        
+
         <div id="documentShareContent" style="background-color: #f2f2f2; padding: 1px 15px 20px 15px; margin-bottom: 40px; font-family: 'Segoe UI Semilight'">
             <h2 data-win-bind="innerText: Title"></h2>
             <img src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title; style.display:ImageUrl DocumentDetailConverters.hideNullOrEmptyConverter" />
@@ -57,57 +58,50 @@
             </div>
             <p>Jeg har funnet denne boken med  <a href="url">Sølvberget folkebiblioteks Windows 8 Metro app</a></p>
             </>
-                    
-        </div>
-        <div style="margin-top: 10px">
-            <img src="ms-appx:///images/solvberget_wide.png" />
         </div>
 
     </div>
 
-    <div class="documentdetailpage">
+    <div class="document-detail-page fragment">
+
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <div class="titlearea win-type-ellipsis">
+                <h1 class="win-type-ellipsis" id="document-title" data-win-bind="textContent: Title">Laster...</h1>
+                <h3 class="win-type-ellipsis pagesubtitle" id="document-subtitle" data-win-bind="textContent: SubTitle; style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter"></h3>
+            </div>
+        </header>
 
         <div id="documentDetailLoading">
             <progress class="win-ring withText"></progress>
         </div>
-        <div id="documentDetailData" class="fragment">
-            <header aria-label="Header content" role="banner">
-                <button class="win-backbutton" aria-label="Back" disabled></button>
-                <h1 class="titlearea win-type-ellipsis">
-                    <span id="documentTitle" data-win-bind="textContent: Title">Dokumentinformasjon</span>
-                </h1>
-                <h2 id="item-subtitle" class="win-type-ellipsis pagesubtitle" data-win-bind="textContent: SubTitle; style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter"></h2>
 
-            </header>
-
-            <div id="document-content" aria-label="Main content" role="main">
-
-                <article id="documentStaticInformation">
-                    <div>
-
-                        <h3 id="document-compressedsubtitle-container" data-win-bind="innerText: CompressedSubTitle"></h3>
-                        <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
-                            <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" />
-                        </div>
-                        <div id="documentButtonContainer">
-                            <button id="openShare" type="button" class="button">Del</button>
-                            <button id="sendHoldRequestButton" type="button" class="button" data-win-options="{ tooltip:'Registrer ønske om reservering på hovedbiblioteket' }">
-                                Reserver
-                            </button>
-                            <br />
-                            <button id="addToFavoritesButton" type="button" class="button"  data-win-options="{ tooltip:'Legg til i dine favoritter' }">Legg til i favoritter</button>
-                        </div>
-                        
-                        <div id="ratingContainer">
-                        </div>                        
-
+        <section id="document-content" aria-label="Main content" role="main">
+            
+            <article id="documentStaticInformation">
+                <div>
+                    <h3 id="document-compressedsubtitle-container" data-win-bind="innerText: CompressedSubTitle"></h3>
+                    <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
+                        <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" alt="" />
                     </div>
-                </article>
-                <div id="documentFragmentHolder"></div>
+                    <div id="documentButtonContainer">
+                        <button id="openShareButton" type="button" class="button">Del</button>
+                        <button id="sendHoldRequestButton" type="button" class="button" data-win-options="{ tooltip:'Registrer ønske om reservering på hovedbiblioteket' }">
+                            Reserver
+                        </button>
+                        <br />
+                        <button id="addToFavoritesButton" type="button" class="button" data-win-options="{ tooltip:'Legg til i dine favoritter' }">Legg til i favoritter</button>
+                    </div>
 
-            </div>
+                    <div id="ratingContainer">
+                    </div>
+                </div>
+            </article>
 
-        </div>
+            <div id="documentFragmentHolder"></div>
+
+        </section>
+
     </div>
 
     <div id="holdRequestFragmentHolder"></div>

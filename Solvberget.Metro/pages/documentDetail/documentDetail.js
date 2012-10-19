@@ -24,7 +24,7 @@
             dataTransferManager.addEventListener("datarequested", this.shareHtmlHandler);
 
             // Open share dialog on openShare-link clicked
-            document.getElementById("openShare").addEventListener("click", function () {
+            document.getElementById("openShareButton").addEventListener("click", function () {
                 Windows.ApplicationModel.DataTransfer.DataTransferManager.showShareUI();
             });
 
@@ -106,45 +106,31 @@ var ajaxGetDocumentImage = function () {
 
 var ajaxGetDocumentImageCallback = function (request, context) {
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
-
     if (response != undefined && response !== "") {
-
         documentModel.ImageUrl = response;
-
         var documentImageDiv = document.getElementById("documentImage");
-
         if (documentImageDiv != undefined && documentModel != undefined)
             WinJS.Binding.processAll(documentImageDiv, documentModel);
     }
-
 };
 
 var ajaxGetDocument = function (documentNumber) {
-
     var url = window.Data.serverBaseUrl + "/Document/GetDocument/" + documentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetDocumentCallback, this, true);
-
 };
 
 var ajaxGetDocumentCallback = function (request, context) {
+
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
-
     if (response != undefined && response !== "") {
-
-
         documentModel = response;
-
         populateFragment(response);
-
         // Select HTML-section to process with the new binding lists
-        var documentTitleDiv = document.getElementById("documentTitle");
+        var documentTitleDiv = document.getElementById("document-title");
         var documentImageDiv = document.getElementById("documentImage");
-        var documentSubTitleDiv = document.getElementById("item-subtitle");
-
+        var documentSubTitleDiv = document.getElementById("document-subtitle");
         var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
         var documentShareContent = document.getElementById("documentShareContent");
-
-
         // avoid processing null (if user navigates to fast away from page etc)
         if (documentTitleDiv != undefined && response != undefined)
             WinJS.Binding.processAll(documentTitleDiv, response);
@@ -152,7 +138,6 @@ var ajaxGetDocumentCallback = function (request, context) {
             WinJS.Binding.processAll(documentImageDiv, response);
         if (documentSubTitleDiv != undefined && response != undefined)
             WinJS.Binding.processAll(documentSubTitleDiv, response);
-
 
         if (documentCompressedSubTitleDiv != undefined && response != undefined) {
             if (response.MainResponsible != undefined) {
@@ -198,7 +183,7 @@ var populateFragment = function (documentModel) {
 
         // Hide progress-ring, show content
         $("#documentDetailLoading").css("display", "none").css("visibility", "none");
-        $("#documentDetailData").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
+        $("#document-content").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
         //Do not allow hold request for journals
         if (documentType == "Journal")
@@ -247,7 +232,7 @@ var getDocumentImageUrl = function () {
 var getDocument = function (documentNumber) {
 
     // Show progress-ring, hide content
-    $("#documentDetailData").hide();
+    $("#document-content").hide();
     $("#documentDetailLoading").fadeIn();
 
     ajaxGetDocument(documentNumber);

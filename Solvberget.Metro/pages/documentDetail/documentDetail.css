@@ -1,239 +1,236 @@
-﻿body {
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-#openShare {
-    background-color:rgba(0, 153, 204, 0.6);
-}
-
-#sendHoldRequestButton {
-    background-color: rgba(136, 187, 0, 0.6);
-}
-
-#addToFavoritesButton {
-    background-color: rgba(102, 0, 102, 0.6);
-}
-
+﻿/* TEMPLATES */
 .templates {
     display: none;
 }
 
-/** Header menu */
 
 
-.titlecontainer {
-    border: none;
+
+/* BUTTONS */
+.document-detail-page #openShareButton {
+    background-color: rgba(136, 187, 0, 1.0);
 }
 
-.myPage header[role=banner] .titlearea {
-    margin-top: 45px;
+.document-detail-page #sendHoldRequestButton {
+    background-color: rgba(0, 153, 204, 1.0);
 }
 
-    .myPage header[role=banner] .titlearea .pagetitle {
-        display: inline;
-        padding: 0;
-        padding-right: 5px;
-    }
+.document-detail-page #addToFavoritesButton {
+    background-color: rgba(102, 0, 102, 1.0);
+    width: 206px;
+}
 
-    .myPage header[role=banner] .titlearea .pagesubtitle {
-        display: inline;
-        margin: 0;
-        padding: 0;
-        padding-left: 10px;
-    }
 
-/* Progress ring*/
 
-#documentDetailLoading {
+
+/* LOADING */
+.document-detail-page #documentDetailLoading {
     width: 100%;
     height: 100%;
     display: -ms-flexbox;
     -ms-flex-pack: center;
     -ms-flex-align: center;
+    -ms-grid-row: 2;
 }
 
-progress.withText {
-    color: inherit; /* Uses the same text color as the page */
+.document-detail-page progress.withText {
+    color: inherit;
     width: 100px;
     height: 100px;
 }
 
-/*Progress ring*/
 
-/** MAIN CONTENT */
 
-#document-content {
-    margin-left: 120px;
-    margin-top: 30px;
-    -ms-grid-columns: auto 1fr;
-    -ms-grid-rows: 1fr;
+
+/* document-detail-page */
+.document-detail-page {
+    /*-ms-grid-columns: 1fr;
+    -ms-grid-rows: 160px 1fr 0px;
     display: -ms-grid;
-    height: calc(100% - 200px);
+    height: 100%;
+    width: 100%;*/
 }
 
-#documentDetailData {
-    display: none;
-    visibility: hidden;
-    width: 100%;
-    height: inherit;
-}
+    /*.document-detail-page header[role=banner] .titlearea {
+        -ms-grid-column: 2;
+        margin-top: 37px;
+    }*/
 
-#documentFragmentHolder {
-    -ms-grid-column: 2;
-    -ms-grid-row: 1;
-    -ms-hyphenate-limit-zone: 0%;
-    -ms-hyphens: manual;
-    column-fill: auto;
-    column-gap: normal;
-    column-rule: 0px solid gray;
-    columns: auto 19em;
-    height: calc(100% - 10px);
-    overflow: auto;
-    padding-bottom: 20px;
-}
-
-#availabilityHolder > section > span {
-    display: block;
-}
-
-#availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
-    display: inline;
-}
-
-#availabilityHolder .doc-loc-code, #availabilityHolder .doc-loc-classification {
-    display: inline;
-}
-
-.doc-loc-hyllesign {
-    display: block;
-}
-
-.doc-loc-branch {
-    font-weight: 600;
-}
-
-.availabilitySection {
-    margin-top: 10px;
-}
-
-.documentdetailpage {
-    height: inherit;
-}
-
-#fragmentContent {
-    margin-left: 30px;
-    -ms-grid-column: inherit;
-}
-
-    #fragmentContent > * {
-        padding-top: 15px;
+    .document-detail-page header[role=banner] .pagetitle {
+        /*-ms-grid-column: 2;
+        -ms-grid-row: 1;
+        overflow: hidden;
+        width: calc(100% - 20px);*/
     }
 
-        #fragmentContent > *:first-child {
-            padding-top: 0;
+    .document-detail-page header[role=banner] .pagesubtitle {
+        /*-ms-grid-column: 2;
+        -ms-grid-row: 1;
+        overflow: hidden;
+        width: calc(100% - 20px);*/
+        margin-top: -10px;
+    }
+
+    .document-detail-page #document-content {
+        -ms-grid-row: 2;
+        margin-left: 120px;
+        margin-top: 30px;
+        -ms-grid-columns: 270px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+        height: calc(100% - 30px);
+        width: calc(100% - 120px);
+    }
+
+    .document-detail-page #documentDetailData {
+        display: none;
+        visibility: hidden;
+        width: 100%;
+        height: inherit;
+    }
+
+    .document-detail-page #documentFragmentHolder {
+        -ms-grid-column: 2;
+        -ms-grid-row: 1;
+        -ms-hyphenate-limit-zone: 0%;
+        -ms-hyphens: manual;
+        column-fill: auto;
+        column-gap: normal;
+        column-rule: 0px solid gray;
+        columns: auto 19em;
+        height: calc(100% - 10px);
+        overflow: auto;
+        padding-bottom: 20px;
+    }
+
+    .document-detail-page #availabilityHolder > section > span {
+        display: block;
+    }
+
+    .document-detail-page #availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
+        display: inline;
+    }
+
+    .document-detail-page #availabilityHolder .doc-loc-code, #availabilityHolder .doc-loc-classification {
+        display: inline;
+    }
+
+    .document-detail-page .doc-loc-hyllesign {
+        display: block;
+    }
+
+    .document-detail-page .doc-loc-branch {
+        font-weight: 600;
+    }
+
+    .document-detail-page .availabilitySection {
+        margin-top: 10px;
+    }
+
+    .document-detail-page #fragmentContent {
+        margin-left: 30px;
+        -ms-grid-column: inherit;
+    }
+
+        .document-detail-page #fragmentContent > * {
+            padding-top: 15px;
         }
 
-#docLocAndAvail {
-}
+            .document-detail-page #fragmentContent > *:first-child {
+                padding-top: 0;
+                margin-top: 0px;
+            }
+
+    .document-detail-page #docLocAndAvail {
+    }
 
 
-/** FRAGMENT CONTENT */
+    /** FRAGMENT CONTENT */
 
-#details {
-    margin-top: 50px;
-}
+    .document-detail-page #details {
+        margin-top: 50px;
+    }
 
-.fact {
-    margin-top: 15px;
-    width: auto;
-    height: auto;
-    padding-top: 10px;
-    padding-right: 10px;
-    overflow: hidden;
-    resize: both;
-}
+    .document-detail-page .fact {
+        margin-top: 15px;
+        width: auto;
+        height: auto;
+        padding-top: 10px;
+        padding-right: 10px;
+        overflow: hidden;
+    }
 
-.fact-name {
-    font-weight: 600;
-}
+    .document-detail-page .fact-name {
+        font-weight: 600;
+    }
 
-.fact-name {
-}
+    .document-detail-page .fact-name {
+    }
 
-.fact-value {
-}
+    .document-detail-page .fact-value {
+    }
 
-/** HEADER **/
-.pagesubtitle {
-    margin: 0;
-    padding: 0;
-    -ms-grid-column: 2;
-    -ms-grid-row: 2;
-}
+    /** LEFT BAR STATIC INFORMATION */
+    .document-detail-page #documentStaticInformation {
+        -ms-grid-column: 1;
+        -ms-grid-row: 1;
+        /*margin-right: 20px;*/
+    }
 
+    .document-detail-page .document-compressedsubtitle-container {
+        height: auto;
+        margin: 16px;
+        text-align: center;
+    }
 
+    .document-detail-page .document-image-container {
+        height: 100%;
+        width: 100%;
+        margin-top: 10px;
+        position: relative;
+        text-align: center;
+    }
 
+    .document-detail-page #documentImage {
+        max-height: 362px;
+        max-width: 240px;
+    }
 
-/** LEFT BAR STATIC INFORMATION */
-#documentStaticInformation {
-    -ms-grid-column: 1;
-    -ms-grid-row: 1;
-    margin-right: 20px;
-}
+    .document-detail-page #documentButtonContainer {
+        text-align: center;
+        margin-top: 10px;
+    }
 
-.document-compressedsubtitle-container {
-    height: auto;
-    margin: 16px;
-}
+    .document-detail-page .button {
+        /*margin: 10px;*/
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
 
-.document-image-container {
-    height: auto;
-    width: 240px;
-    max-height: 450px;
-    max-width: 240px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-}
+    .document-detail-page #ratingContainer {
+        margin-top: 5px;
+        height: 100%;
+        padding: 10px;
+        overflow: hidden;
+        min-height: 90px;
+        text-align: center;
+    }
 
-
-
-#documentImage {
-    max-width: inherit;
-    max-height: inherit;
-}
-
-#documentButtonContainer {
-    text-align: center;
-}
-
-.button {
-    margin: 10px;
-}
-
-#ratingContainer {
-    margin-top: 15px;
-    width: auto;
-    height: auto;
-    padding: 10px;
-    overflow: hidden;
-    resize: both;
-    max-width: 100%;
-    min-width: 100%;
-    min-height: 90px;
-    text-align: center;
-}
-
-
+    .document-detail-page #imdb-logo {
+        height: 33px;
+        width: 33px;
+    }
 
 @media screen and (-ms-view-state: snapped) {
+
     body {
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
     }
 
-    .document-image-container {
+    .document-detail-page .document-image-container {
         height: auto;
         width: 100px;
         max-height: 450px;
@@ -244,7 +241,7 @@ progress.withText {
     }
 
 
-    #document-content {
+    .document-detail-page #document-content {
         margin-left: 0;
         margin-top: 10px;
         -ms-grid-columns: auto;
@@ -253,7 +250,7 @@ progress.withText {
         margin-left: 10px;
     }
 
-    .pagesubtitle {
+    .document-detail-page .pagesubtitle {
         margin: 0;
         padding: 0;
         -ms-grid-column: 1;
@@ -262,7 +259,7 @@ progress.withText {
     }
 
 
-    #documentFragmentHolder {
+    .document-detail-page #documentFragmentHolder {
         -ms-grid-column: 1;
         -ms-grid-row: 1;
         margin-left: 10px;
@@ -279,14 +276,13 @@ progress.withText {
         padding-bottom: 20px;
     }
 
-    #ratingContainer {
+    .document-detail-page #ratingContainer {
         margin-left: 10px;
         margin-top: 15px;
         width: auto;
         height: auto;
         padding: 10px;
         overflow: hidden;
-        resize: both;
         max-width: 100%;
         min-width: 100%;
         min-height: 90px;
@@ -294,14 +290,14 @@ progress.withText {
         -ms-grid-column: 1;
     }
 
-    #documentTitle {
+    /*.document-detail-page #documentTitle {
         margin: 0!important;
         padding: 0!important;
         margin-left: 10px;
         float: left;
-    }
+    }*/
 
-    #documentButtonContainer {
+    .document-detail-page #documentButtonContainer {
         display: none;
     }
 }
