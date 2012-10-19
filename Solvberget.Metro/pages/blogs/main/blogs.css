@@ -2,11 +2,11 @@
     display: none;
 }
 
-.titlecontainer {
+.blogs .titlecontainer {
     border: none;
 }
 
-.titlearea {
+.blogs .titlearea {
     overflow: visible;
 }
 

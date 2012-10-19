@@ -20,23 +20,18 @@
     });
 })();
 
-var ajaxGetBlogs = function () {
-
+var ajaxGetBlogs = function() {
     var url = window.Data.serverBaseUrl + "/Blog/GetBlogs";
     Solvberget.Queue.QueueDownload("blogs", { url: url }, ajaxGetBlogsCallback, this, true);
-
-}
+};
 
 var ajaxGetBlogsCallback = function (request, context) {
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
     if (response != undefined && response !== "") {
         populateBlogs(response);
     }
-
-    // Hide progress-ring, show content
     $("#blogsContent").fadeIn("slow");
     $("#blogsLoading").hide();
-
 };
 
 var populateBlogs = function (response) {
@@ -70,14 +65,9 @@ var populateBlogs = function (response) {
 };
 
 var getBlogs = function () {
-
-    // Show progress-ring, hide content
     $("#blogsContent").hide();
     $("#blogsLoading").fadeIn();
-
-    // Get the user information from server
     ajaxGetBlogs();
-  
 };
 
 
