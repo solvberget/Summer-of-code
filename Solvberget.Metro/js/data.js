@@ -76,7 +76,7 @@
         { key: "search", title: "Søk", subtitle: "Søk etter bøker, filmer eller lydbøker", icon: "icon-search", backgroundImage: search, navigateTo: searchHandler },
         { key: "blogs", title: "Blogger", subtitle: "", backgroundImage: blogs, icon: "icon-edit", navigateTo: navigateToBlogs },
         { key: "news", title: "Nyheter", subtitle: "", backgroundImage: news, icon: "icon-rss", navigateTo: navigateToNews },
-        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-book", navigateTo: navigateToLists },
+        { key: "lists", title: "Anbefalinger", subtitle: "Anbefalinger og topplister", backgroundImage: tasks, icon: "icon-heart", navigateTo: navigateToLists },
         { key: "openingHours", title: "Åpningstider", subtitle: "", backgroundImage: openingHours, icon: "icon-info-sign", navigateTo: navigateToOpeningHours },
         { key: "contact", title: "Kontakt oss", subtitle: "", backgroundImage: contact, icon: "icon-phone", navigateTo: navigateToContact }
     ];
