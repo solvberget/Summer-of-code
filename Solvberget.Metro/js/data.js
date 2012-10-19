@@ -67,7 +67,7 @@
     var colorPoolBlogsRefined = [
         colorPoolSubsetSortedRefined[1],
         colorPoolSubsetSortedRefined[4],
-        colorPoolSubsetSortedRefined[3]
+        colorPoolSubsetSortedRefined[2]
     ];
 
     var menuItems = [
