@@ -7,6 +7,7 @@
 
     .searchResults section[role=main] .filterarea {
         -ms-grid-row: 1;
+        margin-top: 15px;
     }
 
         .searchResults section[role=main] .filterarea .filterarea-hr {
@@ -99,15 +100,16 @@
                 }
 
 .searchResults header[role=banner] .titlearea {
-    -ms-grid-column: 2;
-    margin-top: 45px;
+    /*-ms-grid-column: 2;*/
+    /*margin-top: 45px;*/
+    overflow: visible;
 }
 
-    .searchResults header[role=banner] .titlearea .pagetitle {
+    /*.searchResults header[role=banner] .titlearea .pagetitle {
         display: inline;
         padding: 0;
         padding-right: 30px;
-    }
+    }*/
 
     .searchResults header[role=banner] .titlearea .pagesubtitle {
         display: inline;
