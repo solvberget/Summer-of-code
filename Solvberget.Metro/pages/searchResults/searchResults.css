@@ -5,125 +5,98 @@
     display: -ms-grid;
 }
 
-/* Progress ring*/
-#search-loading-wheel {
-    -ms-grid-row: 3;
-    width: 100%;
-    height: 100%;
-    display: -ms-flexbox;
-    -ms-flex-pack: center;
-    -ms-flex-align: center;
-}
-
-progress.withText {
-    color: inherit; /* Uses the same text color as the page */
-    width: 100px;
-    height: 100px;
-}
-
-/* No results */
-#no-results {
-    text-align: center;
-    margin-top: 250px;
-    display: none;
-}
-
-.titlecontainer {
-    border: none;
-}
-
-.searchResults section[role=main] .filterarea {
-    -ms-grid-row: 1;
-}
-
-    .searchResults section[role=main] .filterarea .filterarea-hr {
-        /*margin-left: 80px;*/
-        display: none;
+    .searchResults section[role=main] .filterarea {
+        -ms-grid-row: 1;
     }
 
-    .searchResults section[role=main] .filterarea .filterbar {
-        height: auto;
-        list-style-type: none;
-        margin-left: 80px;
-        margin-top: 5px;
-        max-width: calc(100% - 120px);
-    }
-
-        .searchResults section[role=main] .filterarea .filterbar li {
-            display: inline;
-            font-family: "Segoe UI Light";
-            font-size: 20pt;
-            line-height: 24pt;
-            margin-right: 40px;
-            opacity: 0.6;
+        .searchResults section[role=main] .filterarea .filterarea-hr {
+            /*margin-left: 80px;*/
+            display: none;
         }
 
-            .searchResults section[role=main] .filterarea .filterbar li:active {
-                /* Default: color: rgba(90, 183, 227, 1); */
-                color: rgba(204, 51, 0, 1);
-            }
-
-            .searchResults section[role=main] .filterarea .filterbar li.highlight, .searchResults section[role=main] .filterarea .filterbar li:hover {
-                opacity: 1.00;
-            }
-
-            .searchResults section[role=main] .filterarea .filterbar li.hide-li {
-                display: none;
-            }
-
-.searchResults section[role=main] .resultslist .win-horizontal.win-viewport .win-surface {
-    margin-left: 108px;
-    margin-bottom: 60px;
-}
-
-.searchResults section[role=main] .resultslist {
-    -ms-grid-row: 3;
-    height: calc(100% - 20px);
-    margin-bottom: 36px;
-    margin-top: 20px;
-    position: relative;
-    width: 100%;
-    z-index: 0;
-}
-
-    .searchResults section[role=main] .resultslist .win-horizontal.win-viewport .win-container {
-        margin-bottom: 20px;
-        margin-right: 41px;
-    }
-
-    .searchResults section[role=main] .resultslist .item {
-        /* Define a grid with columns for an icon, spacing and item details */
-        -ms-grid-columns: 60px 10px 1fr;
-        -ms-grid-rows: 1fr;
-        display: -ms-grid;
-        height: 64px;
-        padding-left: 7px;
-        padding-top: 1px;
-        padding-right: 7px;
-        width: 340px;
-    }
-
-        .searchResults section[role=main] .resultslist .item .item-image {
-            -ms-grid-column: 1;
-            -ms-grid-row: 1;
-            height: 56px;
-            margin-top: 4px;
-            margin-bottom: 4px;
-            width: auto;
+        .searchResults section[role=main] .filterarea .filterbar {
+            height: auto;
+            list-style-type: none;
+            margin-left: 80px;
+            margin-top: 5px;
+            max-width: calc(100% - 120px);
         }
 
-        .searchResults section[role=main] .resultslist .item .item-content {
-            -ms-grid-column: 3;
-            -ms-grid-row: 1;
-        }
-
-            .searchResults section[role=main] .resultslist .item .item-content .item-subtitle, .searchResults section[role=main] .resultslist .item .item-content .item-description {
+            .searchResults section[role=main] .filterarea .filterbar li {
+                display: inline;
+                font-family: "Segoe UI Light";
+                font-size: 20pt;
+                line-height: 24pt;
+                margin-right: 40px;
                 opacity: 0.6;
             }
 
-            .searchResults section[role=main] .resultslist .item .item-content .item-main-person, .searchResults section[role=main] .resultslist .item .item-content .item-description {
-                opacity: 0.6;
+                .searchResults section[role=main] .filterarea .filterbar li:active {
+                    /* Default: color: rgba(90, 183, 227, 1); */
+                    color: rgba(204, 51, 0, 1);
+                }
+
+                .searchResults section[role=main] .filterarea .filterbar li.highlight, .searchResults section[role=main] .filterarea .filterbar li:hover {
+                    opacity: 1.00;
+                }
+
+                .searchResults section[role=main] .filterarea .filterbar li.hide-li {
+                    display: none;
+                }
+
+    .searchResults section[role=main] .resultslist .win-horizontal.win-viewport .win-surface {
+        margin-left: 108px;
+        margin-bottom: 60px;
+    }
+
+    .searchResults section[role=main] .resultslist {
+        -ms-grid-row: 3;
+        height: calc(100% - 20px);
+        margin-bottom: 36px;
+        margin-top: 20px;
+        position: relative;
+        width: 100%;
+        z-index: 0;
+    }
+
+        .searchResults section[role=main] .resultslist .win-horizontal.win-viewport .win-container {
+            margin-bottom: 20px;
+            margin-right: 41px;
+        }
+
+        .searchResults section[role=main] .resultslist .item {
+            /* Define a grid with columns for an icon, spacing and item details */
+            -ms-grid-columns: 60px 10px 1fr;
+            -ms-grid-rows: 1fr;
+            display: -ms-grid;
+            height: 64px;
+            padding-left: 7px;
+            padding-top: 1px;
+            padding-right: 7px;
+            width: 340px;
+        }
+
+            .searchResults section[role=main] .resultslist .item .item-image {
+                -ms-grid-column: 1;
+                -ms-grid-row: 1;
+                height: 56px;
+                margin-top: 4px;
+                margin-bottom: 4px;
+                width: auto;
             }
+
+            .searchResults section[role=main] .resultslist .item .item-content {
+                -ms-grid-column: 3;
+                -ms-grid-row: 1;
+            }
+
+                .searchResults section[role=main] .resultslist .item .item-content .item-subtitle, .searchResults section[role=main] .resultslist .item .item-content .item-description {
+                    opacity: 0.6;
+                }
+
+                .searchResults section[role=main] .resultslist .item .item-content .item-main-person, .searchResults section[role=main] .resultslist .item .item-content .item-description {
+                    opacity: 0.6;
+                }
 
 .searchResults header[role=banner] .titlearea {
     -ms-grid-column: 2;
@@ -141,6 +114,38 @@ progress.withText {
         margin: 0;
         padding: 0;
     }
+
+.searchResults #no-results {
+    text-align: center;
+    margin-top: 250px;
+    display: none;
+}
+
+.searchResults #hrefDidYouMean {
+    float: left;
+    margin-left: 120px;
+    padding-bottom: -100px;
+}
+
+.searchResults .titlecontainer {
+    border: none;
+}
+
+/* Progress ring*/
+#search-loading-wheel {
+    -ms-grid-row: 3;
+    width: 100%;
+    height: 100%;
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+    -ms-flex-align: center;
+}
+
+progress.withText {
+    color: inherit; /* Uses the same text color as the page */
+    width: 100px;
+    height: 100px;
+}
 
 /* Define a style for both selected filters and text matching the query. */
 .searchResults mark {

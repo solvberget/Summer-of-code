@@ -51,7 +51,6 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="config.rb" />
     <Content Include="css\default.css">
       <Compile>True</Compile>
       <Minify>False</Minify>
@@ -61,23 +60,6 @@
       </IncludedFiles>
     </Content>
     <Content Include="css\font-awesome.css" />
-    <Content Include="css\screen.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="css\searchResults.css">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
-    <Content Include="css\splitview.css" />
     <Content Include="default.html" />
     <Content Include="font\fontawesome-webfont.eot" />
     <Content Include="font\fontawesome-webfont.svg" />
@@ -221,18 +203,6 @@
     <Content Include="pages\openingHours\openingHours.css" />
     <Content Include="pages\openingHours\openingHours.html" />
     <Content Include="pages\openingHours\openingHours.js" />
-    <Content Include="sass\default.css" />
-    <Content Include="sass\searchResults.css" />
-    <Content Include="sass\searchResults.scss">
-      <Compile>True</Compile>
-      <Minify>True</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <CompileStyle>Nested</CompileStyle>
-      <DebugInfo>False</DebugInfo>
-    </Content>
-    <Content Include="sass\splitview.css" />
-    <Content Include="sass\splitview.scss" />
     <None Include="js\lib\jquery-1.7.2.intellisense.js">
       <DependentUpon>jquery-1.7.2.js</DependentUpon>
     </None>
@@ -314,18 +284,7 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="sass\default.scss">
-      <Compile>True</Compile>
-      <Minify>True</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <CompileStyle>Nested</CompileStyle>
-      <DebugInfo>False</DebugInfo>
-    </Content>
     <None Include="Solvberget.Metro_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-US\resources.resjson" />
