@@ -1,8 +1,8 @@
 ﻿body {
 }
 .success {
-    color: green;
+    color: #448811;
 }
 .error {
-    color: red;
+    color: #cc3300;
 }
