@@ -1,4 +1,4 @@
-﻿/* TEMPLATES */
+﻿/*          TEMPLATES       */
 .templates {
     display: none;
 }
@@ -6,7 +6,7 @@
 
 
 
-/* BUTTONS */
+/*          BUTTONS         */
 .document-detail-page #openShareButton {
     background-color: rgba(136, 187, 0, 1.0);
 }
@@ -23,7 +23,7 @@
 
 
 
-/* LOADING */
+/*          LOADING         */
 .document-detail-page #documentDetailLoading {
     width: 100%;
     height: 100%;
@@ -42,34 +42,10 @@
 
 
 
-/* document-detail-page */
+/*          MAIN        */
 .document-detail-page {
-    /*-ms-grid-columns: 1fr;
-    -ms-grid-rows: 160px 1fr 0px;
-    display: -ms-grid;
-    height: 100%;
-    width: 100%;*/
+    overflow: auto;
 }
-
-    /*.document-detail-page header[role=banner] .titlearea {
-        -ms-grid-column: 2;
-        margin-top: 37px;
-    }*/
-
-    .document-detail-page header[role=banner] .pagetitle {
-        /*-ms-grid-column: 2;
-        -ms-grid-row: 1;
-        overflow: hidden;
-        width: calc(100% - 20px);*/
-    }
-
-    .document-detail-page header[role=banner] .pagesubtitle {
-        /*-ms-grid-column: 2;
-        -ms-grid-row: 1;
-        overflow: hidden;
-        width: calc(100% - 20px);*/
-        margin-top: -10px;
-    }
 
     .document-detail-page #document-content {
         -ms-grid-row: 2;
@@ -89,92 +65,28 @@
         height: inherit;
     }
 
-    .document-detail-page #documentFragmentHolder {
+    .document-detail-page #document-fragment-holder {
+        margin-left: 30px;
+        margin-top: 23px;
+        height: calc(100% - 23px);
+        width: calc(100% - 30px);
         -ms-grid-column: 2;
         -ms-grid-row: 1;
         -ms-hyphenate-limit-zone: 0%;
         -ms-hyphens: manual;
-        column-fill: auto;
-        column-gap: normal;
-        column-rule: 0px solid gray;
-        columns: auto 19em;
-        height: calc(100% - 10px);
-        overflow: auto;
-        padding-bottom: 20px;
     }
 
-    .document-detail-page #availabilityHolder > section > span {
-        display: block;
-    }
-
-    .document-detail-page #availabilityHolder .doc-availability-tot, #availabilityHolder .doc-availability-count {
-        display: inline;
-    }
-
-    .document-detail-page #availabilityHolder .doc-loc-code, #availabilityHolder .doc-loc-classification {
-        display: inline;
-    }
-
-    .document-detail-page .doc-loc-hyllesign {
-        display: block;
-    }
-
-    .document-detail-page .doc-loc-branch {
-        font-weight: 600;
-    }
-
-    .document-detail-page .availabilitySection {
-        margin-top: 10px;
-    }
-
-    .document-detail-page #fragmentContent {
-        margin-left: 30px;
-        -ms-grid-column: inherit;
-    }
-
-        .document-detail-page #fragmentContent > * {
-            padding-top: 15px;
-        }
-
-            .document-detail-page #fragmentContent > *:first-child {
-                padding-top: 0;
-                margin-top: 0px;
-            }
-
-    .document-detail-page #docLocAndAvail {
+    .document-detail-page .titlearea {
+        overflow: visible;
     }
 
 
-    /** FRAGMENT CONTENT */
 
-    .document-detail-page #details {
-        margin-top: 50px;
-    }
 
-    .document-detail-page .fact {
-        margin-top: 15px;
-        width: auto;
-        height: auto;
-        padding-top: 10px;
-        padding-right: 10px;
-        overflow: hidden;
-    }
-
-    .document-detail-page .fact-name {
-        font-weight: 600;
-    }
-
-    .document-detail-page .fact-name {
-    }
-
-    .document-detail-page .fact-value {
-    }
-
-    /** LEFT BAR STATIC INFORMATION */
+    /*          LEFT BAR STATIC INFORMATION         */
     .document-detail-page #documentStaticInformation {
         -ms-grid-column: 1;
         -ms-grid-row: 1;
-        /*margin-right: 20px;*/
     }
 
     .document-detail-page .document-compressedsubtitle-container {
@@ -202,7 +114,6 @@
     }
 
     .document-detail-page .button {
-        /*margin: 10px;*/
         margin-right: 10px;
         margin-left: 10px;
         margin-top: 7px;
@@ -210,18 +121,113 @@
     }
 
     .document-detail-page #ratingContainer {
-        margin-top: 5px;
-        height: 100%;
-        padding: 10px;
-        overflow: hidden;
-        min-height: 90px;
-        text-align: center;
+        width: 100%;
+        height: 80px;
+        padding-left: 5px;
+        display: -ms-flexbox;
+        -ms-flex-pack: center;
+        -ms-flex-align: center;
     }
 
+        .document-detail-page #ratingContainer #ratingControl {
+            padding-left: 5px;
+            margin-top: 4px;
+        }
+
     .document-detail-page #imdb-logo {
+        margin-top: 5px;
         height: 33px;
         width: 33px;
     }
+
+    .document-detail-page #bokelskere-heading {
+        margin-top: 4px;
+    }
+
+
+
+
+    /*          FRAGMENT CONTENT        */
+
+    .document-detail-page #fragmentContent {
+        height: 100%;
+        width: 100%;
+        -ms-grid-column: inherit;
+        display: -ms-grid;
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 1fr;
+    }
+
+        .document-detail-page #fragmentContent #left-content {
+            display: none;
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+        }
+
+        .document-detail-page #fragmentContent #details {
+            -ms-grid-column: 1;
+            -ms-grid-row: 1;
+            column-fill: auto;
+            column-gap: normal;
+            column-rule: 0px solid gray;
+            columns: auto 17em;
+            height: calc(100% - 20px);
+            overflow: visible;
+            padding-bottom: 10px;
+            padding-right: 10px;
+        }
+
+    .document-detail-page .fact {
+        margin-top: 20px;
+        width: auto;
+        height: auto;
+        padding-right: 5px;
+        overflow: hidden;
+    }
+
+    .document-detail-page .fact-name {
+        font-weight: 600;
+    }
+
+    .document-detail-page .fact-name {
+    }
+
+    .document-detail-page .fact-value {
+    }
+
+    .document-detail-page #availabilityHolder .doc-loc-branch, .document-detail-page #availabilityHolder .doc-loc-department, .document-detail-page #availabilityHolder .doc-loc-branch, .document-detail-page #availabilityHolder .doc-loc-collection {
+        display: block;
+    }
+
+    .document-detail-page #availabilityHolder .doc-loc-code, .document-detail-page #availabilityHolder .doc-loc-classification {
+        display: inline;
+    }
+
+    .document-detail-page #availabilityHolder .doc-availability-tot, .document-detail-page #availabilityHolder .doc-availability-count {
+        display: inline;
+    }
+
+    .document-detail-page #availabilityHolder .doc-loc-hyllesign {
+        display: inline;
+    }
+
+    .document-detail-page #availabilityHolder .doc-estimated-wait {
+        display: block;
+    }
+
+    .document-detail-page .doc-loc-branch {
+        font-weight: 600;
+    }
+
+    .document-detail-page .availabilitySection {
+        margin-top: 20px;
+    }
+
+    .document-detail-page #docLocAndAvail {
+    }
+
+
+
 
 @media screen and (-ms-view-state: snapped) {
 

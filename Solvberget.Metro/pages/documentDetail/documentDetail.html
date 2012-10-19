@@ -25,6 +25,7 @@
                     <span class="doc-loc-classification" data-win-bind="innerText: ClassificationNr DocumentDetailConverters.classificationCodeConverter"></span>
                     <span class="doc-loc-code" data-win-bind="innerText: LocationCode DocumentDetailConverters.nullToEmptyStringConverter"></span>
                 </div>
+                <br />
                 <span class="doc-availability-count" data-win-bind="innerText: AvailableCount DocumentDetailConverters.docAvailable; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
                 <span class="doc-availability-tot" data-win-bind="innerText: TotalCount DocumentDetailConverters.docTotalCount; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
                 <span class="doc-estimated-wait" style="" data-win-bind="innerText: EarliestAvailableDateFormatted DocumentDetailConverters.docEarliestAvailableDate"></span>
@@ -65,10 +66,10 @@
     <div class="document-detail-page fragment">
 
         <header aria-label="Header content" role="banner">
-            <button class="win-backbutton" aria-label="Back" disabled></button>
+            <button class="win-backbutton" aria-label="Back"></button>
             <div class="titlearea win-type-ellipsis">
-                <h1 class="win-type-ellipsis" id="document-title" data-win-bind="textContent: Title">Laster...</h1>
-                <h3 class="win-type-ellipsis pagesubtitle" id="document-subtitle" data-win-bind="textContent: SubTitle; style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter"></h3>
+                <h1 class="pagetitle" id="document-title" data-win-bind="textContent: Title">Laster...</h1>
+                <h2 class="pagesubtitle" id="document-subtitle" data-win-bind="textContent: SubTitle; style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter"></h2>
             </div>
         </header>
 
@@ -77,28 +78,31 @@
         </div>
 
         <section id="document-content" aria-label="Main content" role="main">
-            
+
             <article id="documentStaticInformation">
+
                 <div>
+
                     <h3 id="document-compressedsubtitle-container" data-win-bind="innerText: CompressedSubTitle"></h3>
+
                     <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                         <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" alt="" />
                     </div>
+
                     <div id="documentButtonContainer">
                         <button id="openShareButton" type="button" class="button">Del</button>
-                        <button id="sendHoldRequestButton" type="button" class="button" data-win-options="{ tooltip:'Registrer ønske om reservering på hovedbiblioteket' }">
-                            Reserver
-                        </button>
+                        <button id="sendHoldRequestButton" type="button" class="button" data-win-options="{ tooltip:'Registrer ønske om reservering på hovedbiblioteket' }">Reserver</button>
                         <br />
                         <button id="addToFavoritesButton" type="button" class="button" data-win-options="{ tooltip:'Legg til i dine favoritter' }">Legg til i favoritter</button>
                     </div>
 
-                    <div id="ratingContainer">
-                    </div>
+                    <div id="ratingContainer"></div>
+
                 </div>
+
             </article>
 
-            <div id="documentFragmentHolder"></div>
+            <div id="document-fragment-holder"></div>
 
         </section>
 

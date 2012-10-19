@@ -1,9 +1,7 @@
 ﻿(function () {
 
-    // Track if the log in was successful
-    var loggedIn;
-
     "use strict";
+
     var page = WinJS.UI.Pages.define("/fragments/documentFragments/film/film.html", {
         ready: function (element, options) {
 
@@ -16,7 +14,6 @@ var documentModel;
 
 var fragmentReady = function (model) {
     documentModel = model;
-    $("#details").css("margin-top", "0px");
     ajaxGetImdbRating();
 };
 
@@ -30,6 +27,7 @@ var ajaxGetImdbRating = function () {
 
 // !------------ AJAX CALLBACKS -------------! //
 var ajaxGetImdbRatingCallback = function (request, context) {
+
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     if (response != undefined && response !== "") {
@@ -39,9 +37,6 @@ var ajaxGetImdbRatingCallback = function (request, context) {
         var imdbTemplate = new WinJS.Binding.Template(document.getElementById("imdbTemplate"));
         var imdbTemplateContainer = document.getElementById("ratingContainer");
 
-        //Render for sharing with facebook etc.
-        //var imdbTemplateContainerShared = document.getElementById("ratingContainerShared");
-
         imdbTemplate.outerHTML = "";
         imdbTemplate.render(data, imdbTemplateContainer);
 
@@ -50,10 +45,6 @@ var ajaxGetImdbRatingCallback = function (request, context) {
             rating.maxRating = 10.0;
             rating.averageRating = response;
         }
-
-        //imdbTemplate.render(data, imdbTemplateContainerShared);
-
-        $("#details").css("margin-top", "50px");
 
     }
 

@@ -8,27 +8,40 @@
 
 </head>
 <body>
+
     <div class="templates">
+
         <div id="reviewTemplate">
-            <h2 id="reviewTitle">Bokbasens omtale</h2>
             <div id="reviewContent" data-win-bind="innerText: documentReview">
             </div>
         </div>
-          <div id="bokelskeretemplate">
-            <h3>Bokelskere.no</h3>
-              <!--<h2 class="bokelskereRating" data-win-bind="textContent: BokElskereRating DocumentDetailConverters.bokelskereRatingConverter"></h2>-->
-              <div id="ratingControl" class="win-small" data-win-control="WinJS.UI.Rating" data-win-options="{disabled: true}"></div>
+
+        <div id="bokelskeretemplate">
+            <h3 id="bokelskere-heading">Bokelskere.no</h3>
+            <!--<h2 class="bokelskereRating" data-win-bind="textContent: BokElskereRating DocumentDetailConverters.bokelskereRatingConverter"></h2>-->
+            <div id="ratingControl" class="win-small" data-win-control="WinJS.UI.Rating" data-win-options="{disabled: true}"></div>
         </div>
 
     </div>
 
     <section id="fragmentContent">
-        <article id="reviewContainer"></article>
-        <article id="docLocAndAvail">
-            <h2>Tilgjengelighet</h2>
-            <div id="availabilityHolder"></div>
-        </article>
+
+        <div id="left-content">
+
+            <article id="reviewContainer">
+                <h2>Bokbasens omtale</h2>
+                <div id="reviewHolder"></div>
+            </article>
+
+            <article id="docLocAndAvail">
+                <h2>Tilgjengelighet</h2>
+                <div id="availabilityHolder"></div>
+            </article>
+
+        </div>
+
         <article id="details">
+
             <h2 id="H1">Fakta om boka</h2>
 
             <div class="fact" data-win-bind="style.display: Author.Name DocumentDetailConverters.hideNullOrEmptyConverter">
@@ -119,9 +132,11 @@
                 <div class="fact-name" data-win-res="{textContent: 'SeriesNumber'}"></div>
                 <div class="fact-value" data-win-bind="innerText:SeriesNumber"></div>
             </div>
+
         </article>
-        
+
     </section>
+
 </body>
 </html>
 

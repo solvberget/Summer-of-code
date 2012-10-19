@@ -38,9 +38,9 @@
             var documentTitle = documentModel.Title;
 
             if (documentTitle !== "") {
-                var replaceAll = function (txt, replace, with_this) {
+                var replaceAll = function(txt, replace, with_this) {
                     return txt.replace(new RegExp(replace, 'g'), with_this);
-                }
+                };
                 var range = document.createRange();
                 range.selectNode(document.getElementById("documentShareContent"));
                 request.data = MSApp.createDataPackage(range);
@@ -78,13 +78,9 @@
                     request.failWithDisplayText(err);
                 });
 
-
             } else {
-
                 request.failWithDisplayText("Hmm, vi fant faktisk ingen tittel å dele");
-
             }
-
         },
 
     });
@@ -123,14 +119,17 @@ var ajaxGetDocumentCallback = function (request, context) {
 
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
     if (response != undefined && response !== "") {
+
         documentModel = response;
         populateFragment(response);
+
         // Select HTML-section to process with the new binding lists
         var documentTitleDiv = document.getElementById("document-title");
         var documentImageDiv = document.getElementById("documentImage");
         var documentSubTitleDiv = document.getElementById("document-subtitle");
         var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
         var documentShareContent = document.getElementById("documentShareContent");
+
         // avoid processing null (if user navigates to fast away from page etc)
         if (documentTitleDiv != undefined && response != undefined)
             WinJS.Binding.processAll(documentTitleDiv, response);
@@ -141,16 +140,15 @@ var ajaxGetDocumentCallback = function (request, context) {
 
         if (documentCompressedSubTitleDiv != undefined && response != undefined) {
             if (response.MainResponsible != undefined) {
-
                 if (response.MainResponsible.Name != undefined) {
                     response.CompressedSubTitle = response.MainResponsible.Name + ", " + response.CompressedSubTitle;
                 }
             }
         }
+
         WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
 
     }
-
 
     if (documentShareContent != undefined && response != undefined) {
         WinJS.Binding.processAll(documentShareContent, response);
@@ -162,7 +160,7 @@ var ajaxGetDocumentCallback = function (request, context) {
 var populateFragment = function (documentModel) {
 
 
-    var documentFragmentHolder = document.getElementById("documentFragmentHolder");
+    var documentFragmentHolder = document.getElementById("document-fragment-holder");
     documentFragmentHolder.innerHTML = "";
 
     var documentType = documentModel.DocType;
@@ -208,6 +206,7 @@ var populateAvailability = function () {
     if (documentModel.AvailabilityInfo) {
 
         for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
+
             model = documentModel.AvailabilityInfo[i];
             model.LocationCode = documentModel.LocationCode;
             model.ClassificationNr = documentModel.ClassificationNr;
@@ -215,6 +214,13 @@ var populateAvailability = function () {
             if (availabilityTemplate && availabilityTemplateHolder && model)
                 availabilityTemplate.render(model, availabilityTemplateHolder);
             availabilityTemplate.render(model, availabilityTemplateHolderShared);
+
+            var appView = Windows.UI.ViewManagement.ApplicationView;
+            var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
+
+            if (appView.value === appViewState.fullScreenLandscape || appView.value === appViewState.filled) {
+                cssForLeftContent();
+            }
 
         }
     }
@@ -230,13 +236,9 @@ var getDocumentImageUrl = function () {
 };
 
 var getDocument = function (documentNumber) {
-
-    // Show progress-ring, hide content
     $("#document-content").hide();
     $("#documentDetailLoading").fadeIn();
-
     ajaxGetDocument(documentNumber);
-
 };
 
 function registerHoldRequest() {
@@ -250,9 +252,7 @@ function registerHoldRequest() {
 };
 
 function addToFavorites() {
-
     var applicationData = Windows.Storage.ApplicationData.current;
-
     if (applicationData) {
         var internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
         if (internalLibraryUserId && internalLibraryUserId !== "") {
@@ -331,8 +331,21 @@ function renderAddToFavoritesFlyout(success, message1, message2) {
     });
 };
 
+function cssForLeftContent() {
+    $("#fragmentContent").css("-ms-grid-columns", "280px 1fr");
+    $("#left-content").css("display", "inline");
+    $("#details").css("-ms-grid-column", "2");
+
+}
+
+function  cssForReview() {
+    $("#fragmentContent").css("-ms-grid-columns", "360px 1fr");
+}
+
 WinJS.Namespace.define("DocumentDetail", {
     model: documentModel,
+    cssForLeftContent: cssForLeftContent,
+    cssForReview: cssForReview
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {
@@ -361,7 +374,7 @@ WinJS.Namespace.define("DocumentDetailConverters", {
         return "block";
     }),
     docAvailableStyle: WinJS.Binding.converter(function (numAvailable) {
-        return (!numAvailable || numAvailable < 1 || numAvailable == "0" || numAvailable == "null") ? "Red" : "Green";
+        return (!numAvailable || numAvailable < 1 || numAvailable == "0" || numAvailable == "null") ? "#cc3300" : "#448811";
     }),
     docAvailable: WinJS.Binding.converter(function (numAvailable) {
         return numAvailable + " av";
