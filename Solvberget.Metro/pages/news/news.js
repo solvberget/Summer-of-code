@@ -63,10 +63,10 @@
                     if (lastViewState !== viewState) {
                         if (lastViewState === appViewState.snapped || viewState === appViewState.snapped) {
                             var handler = function (e) {
-                                newsItemslistView.removeEventListener("contentanimating", handler, false);
+                                newsItemslistViewWinControl.removeEventListener("contentanimating", handler, false);
                                 e.preventDefault();
                             }
-                            newsItemslistView.addEventListener("contentanimating", handler, false);
+                            newsItemslistViewWinControl.addEventListener("contentanimating", handler, false);
                             this.initializeLayout(newsItemslistViewWinControl, viewState, element);
                         }
                     }
@@ -79,7 +79,6 @@
                     $(".pagetitle").html("Nyheter");
                     newsItemsListView.itemDataSource = this.newsItems.dataSource;
                     newsItemsListView.layout = new ui.ListLayout();
-
                 } else {
                     newsItemsListView.itemDataSource = this.newsItems.dataSource;
                     newsItemsListView.layout = new ui.GridLayout();
