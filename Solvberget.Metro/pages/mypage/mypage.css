@@ -164,7 +164,8 @@ progress.withText {
 
     .myPage .box {
         float: none;
-        margin-left: 0;
+        margin-left: 0px;
+        margin-top: 0px;
         max-width: calc(100% - 150px);
     }
 
@@ -212,6 +213,7 @@ progress.withText {
 
     .myPage .box {
         max-width: 260px;
+        margin-top: 0px;
     }
 
     .myPage #mainContentSection #mypageData #fines, #loans, #reservations, #notifications, #favorites {
