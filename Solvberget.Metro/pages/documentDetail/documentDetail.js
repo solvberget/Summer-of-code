@@ -64,9 +64,10 @@
 
                     if (haveAvailability) {
                         cssForLeftContentLandscapeOrFilled();
+                    } else {
+                        $("#details").css("-ms-grid-column", "1");
                     }
-
-                    $("#details").css("-ms-grid-column", "2");
+                
                     $("#details").css("margin-top", "0px");
                     $("#details").css("margin-bottom", "0px");
 
