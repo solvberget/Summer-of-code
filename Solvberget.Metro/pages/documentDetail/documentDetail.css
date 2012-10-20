@@ -160,6 +160,10 @@
             -ms-grid-row: 1;
         }
 
+         .document-detail-page #fragmentContent #left-content #reviewContainer {
+            display: none;
+        }
+
         .document-detail-page #fragmentContent #details {
             -ms-grid-column: 1;
             -ms-grid-row: 1;

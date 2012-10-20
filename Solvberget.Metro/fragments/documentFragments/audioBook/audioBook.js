@@ -39,11 +39,10 @@ var ajaxGetReviewCallback = function (request, context) {
         reviewTemplate.render(data, reviewTemplateContainer);
 
         $("#docLocAndAvail").css("margin-top", "20px");
+        $("#reviewContainer").show("200");
         DocumentDetail.setHaveReview();
         DocumentDetail.cssForReview();
 
-    } else {
-        $("#reviewContainer").css("display", "none");
     }
 
 };

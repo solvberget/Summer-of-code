@@ -40,18 +40,17 @@ var ajaxGetReviewCallback = function (request, context) {
 
         var reviewTemplate = new WinJS.Binding.Template(document.getElementById("reviewTemplate"));
         var reviewTemplateContainer = document.getElementById("reviewHolder");
-        
+
         reviewTemplate.outerHTML = "";
         reviewTemplate.render(data, reviewTemplateContainer);
 
         $("#docLocAndAvail").css("margin-top", "20px");
+        $("#reviewContainer").show("200");
         DocumentDetail.setHaveReview();
         DocumentDetail.cssForReview();
 
-    } else {
-        $("#reviewContainer").css("display", "none");
     }
-
+    
 };
 
 var ajaxGetRatingCallback = function (request, context) {
@@ -85,16 +84,20 @@ WinJS.Namespace.define("DocumentDetailFragment", {
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {
+   
     bokelskereStyleConverter: WinJS.Binding.converter(function (imdbSrc) {
         return "display:block";
     }),
+    
     nullStyleConverter: WinJS.Binding.converter(function (attr) {
         if (attr == undefined || attr == "" || attr === "null")
             return "display: none";
         else
             return "display:block";
     }),
+    
     bokelskereRatingConverter: WinJS.Binding.converter(function (rating) {
         return rating + "/6";
-    }),
+    })
+    
 });
