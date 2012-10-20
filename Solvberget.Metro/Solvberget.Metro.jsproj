@@ -223,17 +223,8 @@
       <IncludedFiles>
       </IncludedFiles>
     </Content>
-    <Content Include="js\lib\spinn.min.js" />
     <Content Include="js\navigator.js" />
     <Content Include="js\utils.js" />
-    <Content Include="js\lib\spinn.min.js">
-      <Compile>True</Compile>
-      <Minify>False</Minify>
-      <OutputFolder>
-      </OutputFolder>
-      <IncludedFiles>
-      </IncludedFiles>
-    </Content>
     <Content Include="js\navigator.js">
       <Compile>True</Compile>
       <Minify>False</Minify>

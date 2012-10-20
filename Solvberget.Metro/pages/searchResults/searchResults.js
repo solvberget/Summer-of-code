@@ -10,18 +10,23 @@
 
 
     var suggestionMethods = {
+
         suggestionList: [],
+
         url: window.Data.serverBaseUrl + "/Document/SuggestionList/",
+
         populateSuggestionList: function (request, context) {
             // AJAX CALLBACK (populate suggestion list from server)
             var allData = JSON.parse(request.responseText);
             suggestionMethods.suggestionList = allData;
         },
+        
         getSuggestionListFromServer: function () {
             // DO AJAX (get suggestion list from server)
             Solvberget.Queue.QueueDownload("search", { url: suggestionMethods.url }, suggestionMethods.populateSuggestionList, this, false);
 
         },
+        
         updateSuggestionsCallback: function (request, context) {
             // AJAX CALLBACK (check if suggestion is different from search then show)
             var query = context.q;
@@ -55,6 +60,7 @@
             }
 
         },
+        
         updateSuggestions: function (query) {
 
             // Reset suggestion
@@ -66,7 +72,9 @@
             Solvberget.Queue.QueueDownload("search", { url: searchUrl }, this.updateSuggestionsCallback, context, false);
 
         },
+        
         didYouMean: "",
+        
         suggestionQuery: "",
 
     };
@@ -283,12 +291,12 @@
             var modernQuotationMark = "&#148;";
             if (viewState === appViewState.snapped) {
                 listView.layout = new ui.ListLayout();
-                document.querySelector(".titlearea .pagetitle").innerHTML = modernQuotationMark + toStaticHTML(this.lastSearch) + modernQuotationMark;
+                document.querySelector(".titlearea .pagetitle").innerHTML = modernQuotationMark + window.toStaticHTML(this.lastSearch) + modernQuotationMark;
                 document.querySelector(".titlearea .pagesubtitle").innerHTML = "";
             } else {
                 listView.layout = new ui.GridLayout();
                 document.querySelector(".titlearea .pagetitle").innerHTML = "Søk";
-                document.querySelector(".titlearea .pagesubtitle").innerHTML = "Resultater for " + modernQuotationMark + toStaticHTML(this.lastSearch) + modernQuotationMark;
+                document.querySelector(".titlearea .pagesubtitle").innerHTML = "Resultater for " + modernQuotationMark + window.toStaticHTML(this.lastSearch) + modernQuotationMark;
             }
         },
 

@@ -1,29 +1,26 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="ms-design-extensionType" content="Search" />
 
-
-    <title>Search Contract</title>
+    <title>Search</title>
 
     <!-- WinJS references -->
     <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
+    <link href="/pages/searchResults/searchResults.css" rel="stylesheet" />
     <link href="/css/default.css" rel="stylesheet" />
-    <link href="/css/searchResults.css" rel="stylesheet" />
-
-
-    <script type="text/javascript" src="/js/lib/spinn.min.js"></script>
 
     <script type="text/javascript" src="/js/data.js"></script>
-
     <script type="text/javascript" src="/pages/searchResults/searchResults.js"></script>
-    <link href="/pages/searchResults/searchResults.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
+
 </head>
+
 <body>
     <!-- This template is used to display each item in the ListView declared
          below. -->
@@ -49,27 +46,28 @@
             <div class="titlearea win-type-ellipsis">
                 <h1 class="pagetitle">Søk</h1>
                 <h2 class="pagesubtitle"></h2>
+                <a href="#" id="hrefDidYouMean"><span data-win-bind="innerText: didYouMean;" id="spanDidYouMean"></span></a>
             </div>
         </header>
 
         <section aria-label="Main content" id="searchResultSection" role="main">
-            
+
             <div class="filterarea">
                 <hr class="filterarea-hr" />
                 <ul class="filterbar"></ul>
                 <select class="filterselect"></select>
-                <a href="#" id="hrefDidYouMean"><span data-win-bind="innerText: didYouMean;" id="spanDidYouMean"></span></a>
+                
                 <hr class="filterarea-hr" />
             </div>
-            
+
             <div id="search-loading-wheel">
                 <progress class="win-ring withText"></progress>
             </div>
-            
+
             <div id="no-results">
                 <h2>Ditt søk ga ingen treff...</h2>
             </div>
-            
+
             <div class="resultslist" aria-label="Search results" data-win-control="WinJS.UI.ListView" data-win-options="{ selectionMode: 'none' }">
             </div>
 
