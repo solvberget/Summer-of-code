@@ -1,11 +1,14 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>Film</title>
     <link rel="stylesheet" href="film.css" />
     <script type="text/javascript" src="film.js"></script>
 </head>
+
 <body>
+
     <div class="templates">
         <div id="imdbTemplate">
             <img src="ms-appx:///images/externalSites/imdb/imdb-48x48.png" id="imdb-logo" alt="IMDB" />
@@ -14,22 +17,22 @@
         </div>
 
     </div>
+
     <section id="fragmentContent">
 
-        <article id="review">
+        <div id="left-content">
 
-            <h2 id="reviewTitle"></h2>
+            <article id="docLocAndAvail">
+                <h2>Tilgjengelighet</h2>
+                <div id="availabilityHolder"></div>
+            </article>
 
-            <div id="reviewContent">
-            </div>
+        </div>
 
-        </article>
-        <article id="docLocAndAvail">
-            <h2>Tilgjengelighet</h2>
-            <div id="availabilityHolder"></div>
-        </article>
         <article id="details">
+
             <h2>Fakta om filmen</h2>
+
             <div class="fact" data-win-bind="style.display: OriginalTitle DocumentDetailConverters.hideNullOrEmptyConverter">
                 <div class="fact-name" data-win-res="{textContent: 'OriginalTitle'}"></div>
                 <div class="fact-value" data-win-bind="innerText:OriginalTitle"></div>
@@ -120,8 +123,9 @@
             </div>
 
         </article>
-        
+
     </section>
+
 </body>
 </html>
 

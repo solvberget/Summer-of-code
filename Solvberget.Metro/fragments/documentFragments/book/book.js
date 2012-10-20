@@ -12,11 +12,9 @@ var documentModel;
 
 var fragmentReady = function (model) {
     documentModel = model;
-    getReview();
-    getBokelskereRating();
+    ajaxGetReview();
+    ajaxGetRating();
 };
-
-// !------------ AJAX METHODS -------------! //
 
 var ajaxGetReview = function () {
     var url = window.Data.serverBaseUrl + "/Document/GetDocumentReview/" + documentModel.DocumentNumber;
@@ -27,9 +25,6 @@ var ajaxGetRating = function () {
     var url = window.Data.serverBaseUrl + "/Document/GetDocumentRating/" + documentModel.DocumentNumber;
     Solvberget.Queue.QueueDownload("documentdetails", { url: url }, ajaxGetRatingCallback, this, true);
 };
-
-// !------------ AJAX CALLBACKS -------------! //
-
 
 var ajaxGetReviewCallback = function (request, context) {
 
@@ -59,7 +54,6 @@ var ajaxGetReviewCallback = function (request, context) {
 
 };
 
-
 var ajaxGetRatingCallback = function (request, context) {
 
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
@@ -85,21 +79,6 @@ var ajaxGetRatingCallback = function (request, context) {
     }
     
 };
-
-// !------------ END AJAX END -------------! //
-
-
-var getReview = function () {
-    //$("#reviewContainer").css("margin-top","0px");
-    ajaxGetReview();
-};
-
-var getBokelskereRating = function () {
-    ajaxGetRating();
-};
-
-// !------------ Namespace bindings -------------! //
-
 
 WinJS.Namespace.define("DocumentDetailFragment", {
     ready: fragmentReady,
