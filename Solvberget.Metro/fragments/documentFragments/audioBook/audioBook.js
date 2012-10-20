@@ -12,9 +12,8 @@ var documentModel;
 
 var fragmentReady = function (model) {
     documentModel = model;
-    getReview();
+    ajaxGetReview();
 };
-
 
 var ajaxGetReview = function () {
     var url = window.Data.serverBaseUrl + "/Document/GetDocumentReview/" + documentModel.DocumentNumber;
@@ -22,24 +21,33 @@ var ajaxGetReview = function () {
 };
 
 var ajaxGetReviewCallback = function (request, context) {
-    var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
+
+    var response;
+
+    if (request.responseText !== "") {
+        response = JSON.parse(request.responseText);
+    }
 
     if (response != undefined && response !== "") {
+
         var data = { documentReview: response };
+
         var reviewTemplate = new WinJS.Binding.Template(document.getElementById("reviewTemplate"));
         var reviewTemplateContainer = document.getElementById("reviewContainer");
+
         reviewTemplate.outerHTML = "";
         reviewTemplate.render(data, reviewTemplateContainer);
+
+        $("#docLocAndAvail").css("margin-top", "20px");
+        DocumentDetail.setHaveReview();
+        DocumentDetail.cssForReview();
+
+    } else {
+        $("#reviewContainer").css("display", "none");
     }
-};
 
-var getReview = function () {
-    ajaxGetReview();
 };
-
 
 WinJS.Namespace.define("DocumentDetailFragment", {
-
     ready: fragmentReady,
-
 });

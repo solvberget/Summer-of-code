@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 
     <title>Lydbok</title>
@@ -7,10 +8,12 @@
     <script type="text/javascript" src="audioBook.js"></script>
 
 </head>
+
 <body>
-        <div class="templates">
+
+    <div class="templates">
+
         <div id="reviewTemplate">
-            <h2 id="reviewTitle">Bokbasens omtale</h2>
             <div id="reviewContent" data-win-bind="innerText: documentReview">
             </div>
         </div>
@@ -18,15 +21,25 @@
     </div>
 
     <section id="fragmentContent">
-        <article id="reviewContainer"></article>
-        <article id="docLocAndAvail">
-            <h2>Tilgjengelighet</h2>
-            <div id="availabilityHolder"></div>
-        </article>
+
+        <div id="left-content">
+
+            <article id="reviewContainer">
+                <h2>Bokbasens omtale</h2>
+                <div id="reviewHolder"></div>
+            </article>
+
+            <article id="docLocAndAvail">
+                <h2>Tilgjengelighet</h2>
+                <div id="availabilityHolder"></div>
+            </article>
+
+        </div>
+
         <article id="details">
 
             <h2 id="H1">Fakta om lydboken</h2>
-            
+
             <div class="fact" data-win-bind="style.display: Author.Name DocumentDetailConverters.hideNullOrEmptyConverter">
                 <div class="fact-name" data-win-res="{textContent: 'Author'}"></div>
                 <div class="fact-value" data-win-bind="innerText:Author.Name"></div>
@@ -95,6 +108,6 @@
         </article>
 
     </section>
+
 </body>
 </html>
-

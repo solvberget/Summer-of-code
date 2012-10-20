@@ -1,1 +1,7 @@
-﻿
+﻿#fragmentContent #left-content #reviewContainer {
+    padding-right: 40px;
+}
+
+#fragmentContent #left-content #reviewContent {
+    margin-top: 20px;
+}
