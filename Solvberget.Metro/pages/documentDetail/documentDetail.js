@@ -2,6 +2,8 @@
     "use strict";
 
     var ui = WinJS.UI;
+    var avv = Windows.UI.ViewManagement.ApplicationView.value;
+    var avs = Windows.UI.ViewManagement.ApplicationViewState;
 
     ui.Pages.define("/pages/documentDetail/documentDetail.html", {
 
@@ -11,10 +13,94 @@
             this.registerForShare();
             document.getElementById("sendHoldRequestButton").addEventListener("click", registerHoldRequest);
             document.getElementById("addToFavoritesButton").addEventListener("click", addToFavorites);
+            this.setShareButtonState();
         },
 
         unload: function () {
             Solvberget.Queue.CancelQueue('documentdetails');
+        },
+
+        setShareButtonState: function() {
+            if (avv === avs.snapped) {
+                $("#openShareButton").attr("disabled", "disabled");
+            } else {
+                $("#openShareButton").removeAttr("disabled");
+            }
+        },
+
+        updateLayout: function (element, viewState, lastViewState) {
+
+            // Long and maybe a bit of duplication due to time... 
+
+            if (viewState === avs.snapped) {
+                $("#openShareButton").attr("disabled", "disabled");
+            } else {
+                $("#openShareButton").removeAttr("disabled");
+            }
+
+            if (lastViewState === avs.fullScreenLandscape || lastViewState === avs.filled) {
+            
+                if (viewState === avs.fullScreenPortrait) {
+
+                    if (haveAvailability) {
+                        cssForLeftContentPortrait();
+                    }
+
+                    $("#details").css("-ms-grid-column", "1");
+
+                } else if (viewState === avs.snapped) {
+                    
+                    if (haveAvailability) {
+                        $("#details").css("margin-top", "20px");
+                    }
+
+                    $("#details").css("-ms-grid-column", "1");
+
+                }
+
+            } else if (lastViewState === avs.fullScreenPortrait) {
+                
+                if (viewState === avs.fullScreenLandscape || viewState === avs.filled) {
+
+                    if (haveAvailability) {
+                        cssForLeftContentLandscapeOrFilled();
+                    }
+
+                    $("#details").css("-ms-grid-column", "2");
+                    $("#details").css("margin-top", "0px");
+                    $("#details").css("margin-bottom", "0px");
+
+                } else if (viewState === avs.snapped) {
+
+                    // We can't reach here?
+                    
+                }
+
+            } else if (lastViewState === avs.snapped) {
+                
+                if (viewState === avs.fullScreenLandscape || viewState === avs.filled) {
+
+                    if (haveAvailability) {
+                        cssForLeftContentLandscapeOrFilled();
+                        $("#details").css("margin-top", "0px");
+                    }
+
+                } else if (viewState === avs.fullScreenPortrait) {
+                    
+                    if (haveAvailability) {
+                        cssForLeftContentPortrait();
+                    }
+
+                    $("#details").css("-ms-grid-column", "1");
+
+                }
+
+            }
+
+            if (haveReview) {
+                cssForReview(viewState);
+            }
+
         },
 
         registerForShare: function () {
@@ -92,6 +178,8 @@
 
 
 var documentModel = undefined;
+var haveAvailability = false;
+var haveReview = false;
 
 var ajaxGetDocumentImage = function () {
 
@@ -127,7 +215,7 @@ var ajaxGetDocumentCallback = function (request, context) {
         var documentTitleDiv = document.getElementById("document-title");
         var documentImageDiv = document.getElementById("documentImage");
         var documentSubTitleDiv = document.getElementById("document-subtitle");
-        var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle-container");
+        var documentCompressedSubTitleDiv = document.getElementById("document-compressedsubtitle");
         var documentShareContent = document.getElementById("documentShareContent");
 
         // avoid processing null (if user navigates to fast away from page etc)
@@ -205,6 +293,8 @@ var populateAvailability = function () {
 
     if (documentModel.AvailabilityInfo) {
 
+        haveAvailability = true;
+
         for (var i = 0; i < documentModel.AvailabilityInfo.length; i++) {
 
             model = documentModel.AvailabilityInfo[i];
@@ -215,21 +305,62 @@ var populateAvailability = function () {
                 availabilityTemplate.render(model, availabilityTemplateHolder);
             availabilityTemplate.render(model, availabilityTemplateHolderShared);
 
-            var appView = Windows.UI.ViewManagement.ApplicationView;
-            var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
-
-            if (appView.value === appViewState.fullScreenLandscape || appView.value === appViewState.filled) {
-                cssForLeftContent();
-            }
-
         }
-    }
-    else {
+        
+        var avv = Windows.UI.ViewManagement.ApplicationView.value;
+        var avs = Windows.UI.ViewManagement.ApplicationViewState;
+
+        if (avv === avs.fullScreenLandscape || avv.value === avs.filled) {
+            cssForLeftContentLandscapeOrFilled();
+        } else if (avv === avs.fullScreenPortrait) {
+            cssForLeftContentPortrait();
+        } else {
+            cssForAvailabilityInSnapped();
+        }
+
+    } else {
         $("#sendHoldRequestButton").attr("disabled", "disabled");
         $("#docLocAndAvail").css("display", "none");
     }
 
 };
+
+function cssForLeftContentLandscapeOrFilled () {
+    $("#fragmentContent").css("-ms-grid-columns", "280px 1fr");
+    $("#left-content").css("display", "inline");
+    $("#details").css("-ms-grid-column", "2");
+}
+
+function cssForLeftContentPortrait () {
+    $("#details").css("margin-top", "20px");
+    $("#details").css("margin-bottom", "-25px");
+}
+
+function cssForAvailabilityInSnapped() {
+    $("#left-content").css("display", "inline");
+    $("#details").css("margin-top", "20px");
+}
+
+function cssForReview (avv) {
+
+    if (!avv) {
+        avv = Windows.UI.ViewManagement.ApplicationView.value;
+    }
+    var avs = Windows.UI.ViewManagement.ApplicationViewState;
+
+    if (avv === avs.fullScreenLandscape || avv.value === avs.filled) {
+        $("#fragmentContent").css("-ms-grid-columns", "360px 1fr");
+    } else if (avv === avs.fullScreenPortrait) {
+        $("#fragmentContent").css("-ms-grid-columns", "360px 1fr");
+    } else {
+        $("#fragmentContent").css("-ms-grid-columns", "1fr");
+    }
+    
+}
+
+function setHaveReview () {
+    haveReview = true;
+}
 
 var getDocumentImageUrl = function () {
     ajaxGetDocumentImage();
@@ -241,7 +372,7 @@ var getDocument = function (documentNumber) {
     ajaxGetDocument(documentNumber);
 };
 
-function registerHoldRequest() {
+function registerHoldRequest () {
     var that = this;
     var holdRequestDiv = document.getElementById("holdRequestFragmentHolder");
     holdRequestDiv.innerHTML = "";
@@ -251,7 +382,7 @@ function registerHoldRequest() {
     });
 };
 
-function addToFavorites() {
+function addToFavorites () {
     var applicationData = Windows.Storage.ApplicationData.current;
     if (applicationData) {
         var internalLibraryUserId = LoginFlyout.getLoggedInLibraryUserId();
@@ -266,7 +397,7 @@ function addToFavorites() {
 
 }
 
-function addToRoamingStorage(applicationData, internalLibraryUserId) {
+function addToRoamingStorage (applicationData, internalLibraryUserId) {
 
     var roamingSettings = applicationData.roamingSettings;
 
@@ -283,7 +414,7 @@ function addToRoamingStorage(applicationData, internalLibraryUserId) {
 
 }
 
-function storeFavorites(roamingSettings, internalLibraryUserId) {
+function storeFavorites (roamingSettings, internalLibraryUserId) {
 
     var key = "favorites-" + internalLibraryUserId;
 
@@ -322,7 +453,7 @@ function storeFavorites(roamingSettings, internalLibraryUserId) {
 
 }
 
-function renderAddToFavoritesFlyout(success, message1, message2) {
+function renderAddToFavoritesFlyout (success, message1, message2) {
     var addToFavoritesDiv = document.getElementById("addToFavoritesFragmentHolder");
     addToFavoritesDiv.innerHTML = "";
     WinJS.UI.Fragments.renderCopy("/fragments/addToFavorites/addToFavorites.html", addToFavoritesDiv).done(function () {
@@ -331,20 +462,9 @@ function renderAddToFavoritesFlyout(success, message1, message2) {
     });
 };
 
-function cssForLeftContent() {
-    $("#fragmentContent").css("-ms-grid-columns", "280px 1fr");
-    $("#left-content").css("display", "inline");
-    $("#details").css("-ms-grid-column", "2");
-
-}
-
-function  cssForReview() {
-    $("#fragmentContent").css("-ms-grid-columns", "360px 1fr");
-}
-
 WinJS.Namespace.define("DocumentDetail", {
     model: documentModel,
-    cssForLeftContent: cssForLeftContent,
+    setHaveReview: setHaveReview,
     cssForReview: cssForReview
 });
 

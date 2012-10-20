@@ -14,7 +14,6 @@ var fragmentReady = function (model) {
     documentModel = model;
     getReview();
     getBokelskereRating();
-    //$("#details").css("margin-top", "0px");
 };
 
 // !------------ AJAX METHODS -------------! //
@@ -51,6 +50,7 @@ var ajaxGetReviewCallback = function (request, context) {
         reviewTemplate.render(data, reviewTemplateContainer);
 
         $("#docLocAndAvail").css("margin-top", "20px");
+        DocumentDetail.setHaveReview();
         DocumentDetail.cssForReview();
 
     } else {
@@ -61,6 +61,7 @@ var ajaxGetReviewCallback = function (request, context) {
 
 
 var ajaxGetRatingCallback = function (request, context) {
+
     var response = request.responseText == "" ? "" : JSON.parse(request.responseText);
 
     if (response != undefined && response !== "") {
@@ -72,9 +73,6 @@ var ajaxGetRatingCallback = function (request, context) {
         var bokelskereTemplate = new WinJS.Binding.Template(document.getElementById("bokelskeretemplate"));
         var ratingContainer = document.getElementById("ratingContainer");
 
-        ////Render for sharing with facebook etc.
-        //var imdbTemplateContainerShared = document.getElementById("ratingContainerShared");
-
         bokelskereTemplate.outerHTML = "";
         bokelskereTemplate.render(data, ratingContainer);
 
@@ -84,12 +82,8 @@ var ajaxGetRatingCallback = function (request, context) {
             rating.averageRating = response;
         }
 
-        //imdbTemplate.render(data, imdbTemplateContainerShared);
-        
-        //What?
-        //$("#details").css("margin-top", "65px");
-
     }
+    
 };
 
 // !------------ END AJAX END -------------! //

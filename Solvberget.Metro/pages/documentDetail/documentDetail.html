@@ -67,9 +67,11 @@
 
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back"></button>
-            <div class="titlearea win-type-ellipsis">
-                <h1 class="pagetitle" id="document-title" data-win-bind="textContent: Title">Laster...</h1>
-                <h2 class="pagesubtitle" id="document-subtitle" data-win-bind="textContent: SubTitle; style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter"></h2>
+            <div class="titlearea ">
+                <h1 class="win-type-ellipsis">
+                    <span class="pagetitle" id="document-title" data-win-bind="textContent: Title"></span>
+                </h1>
+                <h2 class="pagesubtitle win-type-ellipsis" id="document-subtitle" data-win-bind="textContent: SubTitle; style.display: SubTitle DocumentDetailConverters.hideNullOrEmptyConverter"></h2>
             </div>
         </header>
 
@@ -83,7 +85,9 @@
 
                 <div>
 
-                    <h3 id="document-compressedsubtitle-container" data-win-bind="innerText: CompressedSubTitle"></h3>
+                    <div class="document-compressedsubtitle-container">
+                        <h3 id="document-compressedsubtitle" data-win-bind="innerText: CompressedSubTitle"></h3>
+                    </div>
 
                     <div class="document-image-container" data-win-control="Solvberget.Utils.DelayImageLoader">
                         <img id="documentImage" src="#" data-win-bind="src: ImageUrl DocumentDetailConverters.imageUrl; alt: Title" alt="" />
