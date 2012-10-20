@@ -311,7 +311,7 @@ var populateAvailability = function () {
         var avv = Windows.UI.ViewManagement.ApplicationView.value;
         var avs = Windows.UI.ViewManagement.ApplicationViewState;
 
-        if (avv === avs.fullScreenLandscape || avv.value === avs.filled) {
+        if (avv === avs.fullScreenLandscape || avv === avs.filled) {
             cssForLeftContentLandscapeOrFilled();
         } else if (avv === avs.fullScreenPortrait) {
             cssForLeftContentPortrait();
