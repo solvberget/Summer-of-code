@@ -52,7 +52,7 @@ var ajaxGetImdbRatingCallback = function (request, context) {
 // !------------ END AJAX END -------------! //
 
 WinJS.Namespace.define("DocumentDetailFragment", {
-    ready: fragmentReady,
+    readyFilm: fragmentReady
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {

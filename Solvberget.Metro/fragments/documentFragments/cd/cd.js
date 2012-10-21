@@ -4,28 +4,19 @@
     var page = WinJS.UI.Pages.define("/fragments/documentFragments/cd/cd.html", {
         ready: function (element, options) {
 
-
-
         }
     });
 
 })();
 
-var fragmentReady = function () {
+var fragmentReady = function() {
 
-
-}
-
+};
 
 WinJS.Namespace.define("DocumentDetailFragment", {
-
-    ready: fragmentReady,
-
+    readyCd: fragmentReady
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {
-    // Title converter
-    // Subtitle converter
-    // BackgroundImage converter (empty ==> dummy)
-    // 
+   
 });

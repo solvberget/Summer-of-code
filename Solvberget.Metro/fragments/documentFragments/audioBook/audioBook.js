@@ -3,6 +3,7 @@
 
     var page = WinJS.UI.Pages.define("/fragments/documentFragments/audioBook/audioBook.html", {
         ready: function (element, options) {
+            
         }
     });
 
@@ -48,5 +49,5 @@ var ajaxGetReviewCallback = function (request, context) {
 };
 
 WinJS.Namespace.define("DocumentDetailFragment", {
-    ready: fragmentReady,
+    readyAudioBook: fragmentReady,
 });

@@ -258,17 +258,17 @@ var populateFragment = function (documentModel) {
     WinJS.UI.Fragments.renderCopy("/fragments/documentFragments/" + documentType + "/" + documentType + ".html", documentFragmentHolder).done(function () {
 
         var fragmentContent = document.getElementById("fragmentContent");
-        // generate code for documentdetailpage
-        //var htmlGenerated = CodeGenerator.documentToFactsHTML(documentModel);
+
         if (fragmentContent != undefined && documentModel != undefined)
             WinJS.Binding.processAll(fragmentContent, documentModel);
 
-        DocumentDetailFragment.ready(that.documentModel);
+        var type = that.documentModel.DocType;
+        callFragmentReady(type, that.documentModel);
+
         WinJS.Resources.processAll();
 
         populateAvailability();
 
-        // Hide progress-ring, show content
         $("#documentDetailLoading").css("display", "none").css("visibility", "none");
         $("#document-content").css("display", "block").css("visibility", "visible").hide().fadeIn(500);
 
@@ -278,6 +278,28 @@ var populateFragment = function (documentModel) {
 
     });
 
+};
+
+var callFragmentReady = function(type, dm) {
+    if (type === "Book")
+        DocumentDetailFragment.readyBook(documentModel);
+    else if (type === "Film")
+        DocumentDetailFragment.readyFilm(dm);
+    else if (type === "AudioBook")
+        DocumentDetailFragment.readyAudioBook(dm);
+    else if (type === "Cd")
+        DocumentDetailFragment.readyCd(dm);
+    else if (type === "SheetMusic")
+        DocumentDetailFragment.readySheetMusic(dm);
+    else if (type === "LanguageCourse")
+        DocumentDetailFragment.readyLanguageCourse(dm);
+    else if (type === "Journal")
+        DocumentDetailFragment.readyJournal(dm);
+    else if (type === "Game")
+        DocumentDetailFragment.readyGame(dm);
+    else {
+        DocumentDetailFragment.readyDocument(dm);
+    }
 };
 
 var populateAvailability = function () {
@@ -466,7 +488,7 @@ function renderAddToFavoritesFlyout (success, message1, message2) {
 WinJS.Namespace.define("DocumentDetail", {
     model: documentModel,
     setHaveReview: setHaveReview,
-    cssForReview: cssForReview
+    cssForReview: cssForReview,
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {

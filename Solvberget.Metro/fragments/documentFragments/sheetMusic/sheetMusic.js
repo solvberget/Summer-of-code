@@ -4,28 +4,20 @@
     var page = WinJS.UI.Pages.define("/fragments/documentFragments/sheetMusic/sheetMusic.html", {
         ready: function (element, options) {
 
-
-
         }
     });
 
 })();
 
-var fragmentReady = function () {
+var fragmentReady = function() {
 
-
-}
+};
 
 
 WinJS.Namespace.define("DocumentDetailFragment", {
-
-    ready: fragmentReady,
-
+    readySheetMusic: fragmentReady,
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {
-    // Title converter
-    // Subtitle converter
-    // BackgroundImage converter (empty ==> dummy)
-    // 
+
 });

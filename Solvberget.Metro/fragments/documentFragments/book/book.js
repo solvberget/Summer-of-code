@@ -80,7 +80,7 @@ var ajaxGetRatingCallback = function (request, context) {
 };
 
 WinJS.Namespace.define("DocumentDetailFragment", {
-    ready: fragmentReady,
+    readyBook: fragmentReady
 });
 
 WinJS.Namespace.define("DocumentDetailConverters", {
