@@ -7,9 +7,6 @@
     WinJS.strictProcessing();
     var messageDialog;
 
-
-
-
     // Gracefull exit
     app.onerror = function (customEventObject) {
 
@@ -58,14 +55,18 @@
 
 
     app.onactivated = function (args) {
+
         if (args.detail.kind === activation.ActivationKind.launch) {
+
+            var settingsPane = Windows.UI.ApplicationSettings.SettingsPane.getForCurrentView();
+            settingsPane.addEventListener("commandsrequested", onCommandsRequested);
 
             var applicationData = Windows.Storage.ApplicationData.current;
             applicationData.addEventListener("datachanged", roamingDataChangeHandler);
 
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
-                // TODO: This application has been newly launched. Initialize
-                // your application here.
+                // TODO: This application has been newly launched.
+                // Initialize your application here.
             } else {
                 // TODO: This application has been reactivated from suspension.
                 // Restore application state here.
@@ -233,4 +234,22 @@ function setAppbarButton() {
         document.getElementById("cmdPin").winControl.icon = "pin";
         document.getElementById("cmdPin").winControl.tooltip = "Pin til start";
     }
+}
+
+function onSettingsCommand(settingsCommand) {
+    var uriToLaunch = "http://www.solvberget.no";
+    var uri = new Windows.Foundation.Uri(uriToLaunch);
+    Windows.System.Launcher.launchUriAsync(uri).then(
+       function (success) {
+           if (success) {
+               // URI launched
+           } else {
+               // URI launch failed
+           }
+       });
+}
+
+function onCommandsRequested(eventArgs) { 
+    var settingsCommand = new Windows.UI.ApplicationSettings.SettingsCommand("personvern", "Personvernerklæring", onSettingsCommand);
+    eventArgs.request.applicationCommands.append(settingsCommand);
 }
