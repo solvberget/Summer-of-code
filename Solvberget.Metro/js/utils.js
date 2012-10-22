@@ -20,6 +20,7 @@
     WinJS.Namespace.define("Solvberget.Utils", {
         DelayImageLoader: delayImageLoader
     });
+
 })();
 
 
@@ -63,6 +64,7 @@
         };
 
 
+
         function showNoInternetDialog() {
 
             setTimeout(function () {
@@ -90,6 +92,8 @@
             }, 500);
 
         }
+
+
 
         function commandInvokedHandler(command) {
             if (command.id == 0) {
@@ -197,11 +201,11 @@
         return returnvalue;
     });
 
-    var nullConverter = WinJS.Binding.converter(function(value) {
+    var nullConverter = WinJS.Binding.converter(function (value) {
         return value == undefined ? "" : value;
     });
 
-    var emailToMailtoConverter = WinJS.Binding.converter(function(value) {
+    var emailToMailtoConverter = WinJS.Binding.converter(function (value) {
         return value == undefined ? "" : "mailto:" + value;
     });
 
@@ -209,15 +213,14 @@
         styleNullToHiddenConverter: styleNullToHiddenConverter,
         nullConverter: nullConverter,
         emailToMailtoConverter: emailToMailtoConverter
-   });
-    
+    });
+
 })();
 
 (function () {
 
 
     function getLoggedInBorrowerId() {
-
 
         var applicationData = Windows.Storage.ApplicationData.current;
         if (applicationData)
@@ -231,6 +234,7 @@
             borrowerId = window.localStorage.getItem("BorrowerId");
 
         return borrowerId != undefined ? borrowerId : "";
+
     }
 
     function getLoggedInLibraryUserId() {
@@ -276,7 +280,7 @@
 
         var notificationsAsString = "";
 
-        for (var i = 0; i < notifications.length; i++ ){
+        for (var i = 0; i < notifications.length; i++) {
             notificationsAsString = notificationsAsString.concat(notifications[i].Title, ",", notifications[i].Content, ";");
         }
 
@@ -291,7 +295,7 @@
         var applicationData = Windows.Storage.ApplicationData.current;
         if (applicationData)
             var roamingSettings = applicationData.roamingSettings;
-        
+
         if (isSeen) {
 
             window.localStorage.setItem("NotificationsSeen", "true");
@@ -361,6 +365,7 @@
         }
 
     }
+
     function logout() {
 
         var activePage = WinJS.Navigation.location;
@@ -405,9 +410,10 @@
         }, 1300);
 
     }
+
     var interval;
 
-    function liveTile() {      
+    function liveTile() {
 
         Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().clear();
 
@@ -452,7 +458,7 @@
             interval = setInterval(liveTileInterval, 5000);
         }
         else {
-            if(interval)
+            if (interval)
                 clearInterval(interval);
             Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().clear();
         }

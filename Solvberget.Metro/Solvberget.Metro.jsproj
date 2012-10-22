@@ -152,7 +152,6 @@
     <Content Include="images\solvberget_sort_svg_modified.svg">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="js\codeGenerator.js" />
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-1.7.2.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
