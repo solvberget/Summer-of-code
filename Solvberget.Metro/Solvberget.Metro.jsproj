@@ -157,7 +157,10 @@
     <Content Include="images\solvberget_wide.png" />
     <Content Include="images\sølvberget_sort.eps" />
     <Content Include="images\sølvberget_sort.tif" />
-    <Content Include="images\sølvberget_sort_svg.svg" />
+    <Content Include="images\solvberget_sort_svg.svg" />
+    <Content Include="images\solvberget_sort_svg_modified.svg">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="js\codeGenerator.js" />
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-1.7.2.js" />
