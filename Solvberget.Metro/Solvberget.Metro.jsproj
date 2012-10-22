@@ -271,7 +271,6 @@
   <ItemGroup>
     <PRIResource Include="Strings\en-US\resources.resjson" />
     <PRIResource Include="Strings\nb-NO\resources.resjson" />
-    <PRIResource Include="Strings\sv-SE\resources.resjson" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
