@@ -144,14 +144,12 @@
     <Content Include="images\solvberget150.png" />
     <Content Include="images\solvberget30.png" />
     <Content Include="images\solvberget50.png" />
+    <Content Include="images\solvberget_125.svg" />
+    <Content Include="images\solvberget_125_nosvg.svg" />
     <Content Include="images\solvberget_splash.png" />
     <Content Include="images\solvberget_wide.png" />
     <Content Include="images\sølvberget_sort.eps" />
     <Content Include="images\sølvberget_sort.tif" />
-    <Content Include="images\solvberget_sort_svg.svg" />
-    <Content Include="images\solvberget_sort_svg_modified.svg">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="js\documentImage.js" />
     <Content Include="js\lib\jquery-1.7.2.js" />
     <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />

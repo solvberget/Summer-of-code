@@ -207,7 +207,7 @@
     }
 
         .homepage .logo-holder img {
-            margin-top: 20px;
+            margin-top: 5px;
             position: absolute;
             right: 0;
         }
@@ -390,6 +390,7 @@
 
             .homepage .logo-holder img {
                 position: absolute;
+                padding-right: 25px;
                 right: 0;
                 bottom: 0;
             }
