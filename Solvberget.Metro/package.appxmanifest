@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="Solvberget" Version="1.0.0.4" Publisher="CN=arnea_000" />
+  <Identity Name="Solvberget" Version="1.1.0.0" Publisher="CN=arnea_000" />
   <Properties>
     <DisplayName>Sølvberget Metro</DisplayName>
-    <PublisherDisplayName>Capgemini AS</PublisherDisplayName>
+    <PublisherDisplayName>Capgemini Norge AS</PublisherDisplayName>
     <Logo>images\solvberget50.png</Logo>
   </Properties>
   <Prerequisites>
