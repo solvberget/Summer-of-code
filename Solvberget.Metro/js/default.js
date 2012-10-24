@@ -236,7 +236,7 @@ function setAppbarButton() {
     }
 }
 
-function onSettingsCommand(settingsCommand) {
+function onPrivacyCommand(settingsCommand) {
     var uriToLaunch = "http://www.solvberget.no";
     var uri = new Windows.Foundation.Uri(uriToLaunch);
     Windows.System.Launcher.launchUriAsync(uri).then(
@@ -249,7 +249,16 @@ function onSettingsCommand(settingsCommand) {
        });
 }
 
+function onAttributionCommand(settingCommand) {
+    WinJS.UI.SettingsFlyout.showSettings("attributionSettingsFlyout", "/pages/charms/attr/attribution.html");
+}
+
 function onCommandsRequested(eventArgs) { 
-    var settingsCommand = new Windows.UI.ApplicationSettings.SettingsCommand("personvern", "Personvernerklæring", onSettingsCommand);
-    eventArgs.request.applicationCommands.append(settingsCommand);
+
+    var privacyCommand = new Windows.UI.ApplicationSettings.SettingsCommand("personvern", "Personvernerklæring", onPrivacyCommand);
+    eventArgs.request.applicationCommands.append(privacyCommand);
+
+    var attributionCommand = new Windows.UI.ApplicationSettings.SettingsCommand("attribution", "Kredittering", onAttributionCommand);
+    eventArgs.request.applicationCommands.append(attributionCommand);
+    
 }

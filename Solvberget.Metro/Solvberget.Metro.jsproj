@@ -166,6 +166,8 @@
     <Content Include="pages\blogs\main\blogs.css" />
     <Content Include="pages\blogs\main\blogs.html" />
     <Content Include="pages\blogs\main\blogs.js" />
+    <Content Include="pages\charms\attr\attribution.html" />
+    <Content Include="pages\charms\attr\attribution.js" />
     <Content Include="pages\contact\contact.css" />
     <Content Include="pages\contact\contact.html" />
     <Content Include="pages\contact\contact.js" />
