@@ -30,8 +30,8 @@ namespace Solvberget.Domain.DTO
         public int PublishedYear { get; set; }
         public string SeriesTitle { get; set; }
         public string SeriesNumber { get; set; }
-        
         public string CompressedSubTitle { get { return GetCompressedString(); } set { } }
+        
         //Location and availability info for each branch
         public List<AvailabilityInformation> AvailabilityInfo { get; private set; }
 

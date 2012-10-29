@@ -26,6 +26,20 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<Person> InvolvedPersons { get; set; }
         public IEnumerable<Organization> InvolvedOrganizations { get; set; }
 
+        public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
+        {
+            var book = new Book();
+            book.FillProperties(xml);
+            return book;
+        }
+
+        public new static Book GetObjectFromFindDocXmlBsMarcLight(string xml)
+        {
+            var book = new Book();
+            book.FillPropertiesLight(xml);
+            return book;
+        }
+
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
@@ -103,18 +117,23 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-        public new static Book GetObjectFromFindDocXmlBsMarc(string xml)
+        protected override string GetCompressedString()
         {
-            var book = new Book();
-            book.FillProperties(xml);
-            return book;
-        }
 
-        public new static Book GetObjectFromFindDocXmlBsMarcLight(string xml)
-        {
-            var book = new Book();
-            book.FillPropertiesLight(xml);
-            return book;
+            var returnValue = Author.Name;
+
+            if (string.IsNullOrEmpty(returnValue))
+            {
+                return base.GetCompressedString();
+            }
+
+            if (PublishedYear != 0)
+            {
+                returnValue += " (" + PublishedYear + ")";
+            }
+
+            return returnValue;
+
         }
 
     }

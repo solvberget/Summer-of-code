@@ -28,6 +28,24 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<string> ReferencedPlaces { get; set; }
         public IEnumerable<string> Genre { get; set; }
 
+        public new static AudioBook GetObjectFromFindDocXmlBsMarc(string xml)
+        {
+            var audioBook = new AudioBook();
+
+            audioBook.FillProperties(xml);
+
+            return audioBook;
+        }
+
+        public new static AudioBook GetObjectFromFindDocXmlBsMarcLight(string xml)
+        {
+            var audioBook = new AudioBook();
+
+            audioBook.FillPropertiesLight(xml);
+
+            return audioBook;
+        }
+
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
@@ -50,7 +68,6 @@ namespace Solvberget.Domain.DTO
                 InvolvedOrganizations = GenerateOrganizationsFromXml(nodes, "710");
             }
         }
-
 
         protected override void FillPropertiesLight(string xml)
         {
@@ -95,24 +112,23 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-
-
-        public new static AudioBook GetObjectFromFindDocXmlBsMarc(string xml)
+        protected override string GetCompressedString()
         {
-            var audioBook = new AudioBook();
 
-            audioBook.FillProperties(xml);
+            var returnValue = Author.Name;
 
-            return audioBook;
-        }
+            if (string.IsNullOrEmpty(returnValue))
+            {
+                return base.GetCompressedString();
+            }
 
-        public new static AudioBook GetObjectFromFindDocXmlBsMarcLight(string xml)
-        {
-            var audioBook = new AudioBook();
+            if (PublishedYear != 0)
+            {
+                returnValue += " (" + PublishedYear + ")";
+            }
 
-            audioBook.FillPropertiesLight(xml);
+            return returnValue;
 
-            return audioBook;
         }
 
     }

@@ -227,13 +227,14 @@ var ajaxGetDocumentCallback = function (request, context) {
         if (documentSubTitleDiv != undefined && response != undefined)
             WinJS.Binding.processAll(documentSubTitleDiv, response);
 
-        if (documentCompressedSubTitleDiv != undefined && response != undefined) {
-            if (response.MainResponsible != undefined) {
-                if (response.MainResponsible.Name != undefined) {
-                    response.CompressedSubTitle = response.MainResponsible.Name + ", " + response.CompressedSubTitle;
-                }
-            }
-        }
+        // No need to do this...
+        //if (documentCompressedSubTitleDiv != undefined && response != undefined) {
+        //    if (response.MainResponsible != undefined) {
+        //        if (response.MainResponsible.Name != undefined) {
+        //            response.CompressedSubTitle = response.MainResponsible.Name + ", " + response.CompressedSubTitle;
+        //        }
+        //    }
+        //}
 
         WinJS.Binding.processAll(documentCompressedSubTitleDiv, response);
 

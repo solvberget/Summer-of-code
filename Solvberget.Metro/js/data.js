@@ -11,8 +11,8 @@
     var news = "/images/home/News.png";
     var activePage = "home";
 
-    //var serverBaseUrl = "http://localhost:7089";
-    var serverBaseUrl = "http://31.24.130.26";
+    var serverBaseUrl = "http://localhost:7089";
+    //var serverBaseUrl = "http://31.24.130.26";
 
     // Original colors
     var colorPoolRgba = [

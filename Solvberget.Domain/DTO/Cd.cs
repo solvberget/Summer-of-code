@@ -19,15 +19,32 @@ namespace Solvberget.Domain.DTO
         public IEnumerable<Person> InvolvedPersons { get; set; }
         public IEnumerable<string> InvolvedMusicGroups { get; set; }
         public string SongTitlesOtherWritingForms { get; set; }
+
+        public new static Cd GetObjectFromFindDocXmlBsMarc(string xml)
+        {
+            var document = new Cd();
+
+            document.FillProperties(xml);
+
+            return document;
+        }
+
+        public new static Cd GetObjectFromFindDocXmlBsMarcLight(string xml)
+        {
+            var document = new Cd();
+
+            document.FillPropertiesLight(xml);
+
+            return document;
+        }
+
         public string ArtistOrGroupName { get 
             {
                 if (ArtistOrComposer != null && ArtistOrComposer.Name != null) return ArtistOrComposer.Name;
-
                 return MusicGroup ?? "Ukjent artist";
             } 
         }
         
-
         protected override void FillProperties(string xml)
         {
             base.FillProperties(xml);
@@ -91,26 +108,25 @@ namespace Solvberget.Domain.DTO
             }
         }
 
-     
-
-
-        public new static Cd GetObjectFromFindDocXmlBsMarc(string xml)
+        protected override string GetCompressedString()
         {
-            var document = new Cd();
 
-            document.FillProperties(xml);
+            var returnValue = ArtistOrGroupName;
 
-            return document;
+            if (returnValue.Equals("Ukjent artist"))
+            {
+                return base.GetCompressedString();
+            }
+
+            if (PublishedYear != 0)
+            {
+                returnValue += " (" + PublishedYear + ")";
+            }
+
+            return returnValue;
+
         }
-
-        public new static Cd GetObjectFromFindDocXmlBsMarcLight(string xml)
-        {
-            var document = new Cd();
-
-            document.FillPropertiesLight(xml);
-
-            return document;
-        }
-
+        
     }
+
 }
