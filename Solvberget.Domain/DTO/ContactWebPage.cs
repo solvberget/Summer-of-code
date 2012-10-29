@@ -30,7 +30,7 @@ namespace Solvberget.Domain.DTO
             var ullist = GetValue(node, "ul");
             var iteratorList = ullist;
             var email = "";
-            var emailString = "";
+            //var emailString = "";
             
             //This is to sort the current HTML
             if (h3List.Count < ullist.Count)
