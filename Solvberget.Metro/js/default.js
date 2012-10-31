@@ -237,7 +237,7 @@ function setAppbarButton() {
 }
 
 function onPrivacyCommand(settingsCommand) {
-    var uriToLaunch = "http://www.solvberget.no";
+    var uriToLaunch = "http://www.stavanger-kulturhus.no/SOELVBERGET/App-personvern";
     var uri = new Windows.Foundation.Uri(uriToLaunch);
     Windows.System.Launcher.launchUriAsync(uri).then(
        function (success) {
