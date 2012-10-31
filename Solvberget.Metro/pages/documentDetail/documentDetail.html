@@ -26,8 +26,9 @@
                     <span class="doc-loc-code" data-win-bind="innerText: LocationCode DocumentDetailConverters.nullToEmptyStringConverter"></span>
                 </div>
                 <br />
-                <span class="doc-availability-count" data-win-bind="innerText: AvailableCount DocumentDetailConverters.docAvailable; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
-                <span class="doc-availability-tot" data-win-bind="innerText: TotalCount DocumentDetailConverters.docTotalCount; style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></span>
+                <i class="icon-sign-blank" data-win-bind="style.color: AvailableCount DocumentDetailConverters.docAvailableStyle"></i>
+                <span class="doc-availability-count" data-win-bind="innerText: AvailableCount DocumentDetailConverters.docAvailable"></span>
+                <span class="doc-availability-tot" data-win-bind="innerText: TotalCount DocumentDetailConverters.docTotalCount"></span>
                 <span class="doc-estimated-wait" style="" data-win-bind="innerText: EarliestAvailableDateFormatted DocumentDetailConverters.docEarliestAvailableDate"></span>
             </section>
         </div>
