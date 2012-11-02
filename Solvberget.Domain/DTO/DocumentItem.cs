@@ -23,6 +23,7 @@ namespace Solvberget.Domain.DTO
         public string ItemProcessStatusText { get; set; }
         public string Barcode { get; set; }
         public bool IsReservable { get; set; }
+        public int NoRequests { get; set; }
 
         public DateTime? LoanDueDate { get; private set; }
 
@@ -82,7 +83,24 @@ namespace Solvberget.Domain.DTO
                         documentItems.Where(x => x.Barcode.Equals(barcode)).Select(x => x).ToList().FirstOrDefault();
                     if (docItem != null)
                         docItem.ItemProcessStatusText = processText;
+
+                    var noReqTmp = GetValueFromXElement(item, "no-requests");
+                    if (string.IsNullOrEmpty(noReqTmp))
+                    {
+                        docItem.NoRequests = 0; 
+                    } else {
+                        var noReqSplitted = noReqTmp.Split('(');
+                        if (noReqSplitted[0] != null)
+                        {
+                            var tmp = noReqSplitted[0].Trim();
+                            var noReqParsed = 0;
+                            int.TryParse(tmp, out noReqParsed);
+                            docItem.NoRequests = noReqParsed;
+                        }
+                    }
+
                 }
+
             }
             foreach (var documentItem in documentItems)
             {

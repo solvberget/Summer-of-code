@@ -9,6 +9,7 @@ namespace Solvberget.Domain.DTO
     {
 
         public static readonly IEnumerable<string> BranchesToHandle = new List<string> { "Hovedbibl.", "Madla" };
+        public static readonly int AveragePickupTimeInDays = 4;
 
         public string Branch { get; private set; }
         public IEnumerable<string> Department { get; private set; }
@@ -46,8 +47,26 @@ namespace Solvberget.Domain.DTO
                     if (dueDates.Any())
                     {
                         var earliestDueDate = dueDates.OrderBy(x => x).FirstOrDefault();
-                        EarliestAvailableDate = items.All(x => x.OnHold) ? earliestDueDate.AddDays(doc.StandardLoanTime) : earliestDueDate;
-                        EarliestAvailableDateFormatted = earliestDueDate.ToShortDateString();
+                        
+                        if (!items.Any(x => x.NoRequests > 0))
+                        {
+                            EarliestAvailableDateFormatted = earliestDueDate.ToShortDateString();
+                        }
+                        else
+                        {
+                            var totalNumberOfReservations = items.Sum(x => x.NoRequests);
+                            var calculation1 = (totalNumberOfReservations * (doc.StandardLoanTime + AveragePickupTimeInDays));
+                            // Below for added days: if it is required to round up the result of dividing m by n 
+                            // (where m and n are integers), one should compute (m+n-1)/n
+                            // Source: Number Conversion, Roland Backhouse, 2001
+                            var calculation2 = ( calculation1 + TotalCount - 1 ) / TotalCount;
+                            
+                            if (TotalCount == 1)
+                                EarliestAvailableDateFormatted = earliestDueDate.AddDays(calculation2).ToShortDateString();
+                            else
+                                EarliestAvailableDateFormatted = earliestDueDate.AddDays(calculation2 + doc.StandardLoanTime).ToShortDateString();
+                        
+                        }
                     }
                     else
                     {
