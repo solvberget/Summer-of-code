@@ -332,6 +332,19 @@
         return false;
     }
 
+    function clearNotifications() {
+
+        var applicationData = Windows.Storage.ApplicationData.current;
+        if (applicationData)
+            var roamingSettings = applicationData.roamingSettings;
+
+        window.localStorage.setItem("Notifications", "");
+
+        if (roamingSettings)
+            roamingSettings.values["Notifications"] = "";
+
+    }
+
     var showToast = function (heading, body) {
 
         var template = Windows.UI.Notifications.ToastTemplateType.toastText02;
@@ -381,6 +394,7 @@
         roamingSettings.values["LibraryUserId"] = "";
         roamingSettings.values["Notifications"] = "";
 
+        clearNotifications();
         Notifications.setAreNotificationsSeen(false);
 
         document.getElementById("logoutConfimationMsg").innerHTML = "Du blir nå logget ut";
@@ -394,7 +408,7 @@
             updateAppBarButton();
         }, 1200);
 
-        LiveTile.liveTile();
+        Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().clear();
 
         setTimeout(function () {
             $("#logoutConfimationMsg").css("display", "none").css("visibility", "hidden");
