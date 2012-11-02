@@ -50,7 +50,16 @@ namespace Solvberget.Domain.DTO
                         
                         if (!items.Any(x => x.NoRequests > 0))
                         {
-                            EarliestAvailableDateFormatted = earliestDueDate.ToShortDateString();
+                            if (earliestDueDate.CompareTo(DateTime.Now) < 0)
+                            {
+                                // The due date has passed, but the document is not handed in yet. Set to next day.
+                                EarliestAvailableDateFormatted = DateTime.Now.AddDays(1).ToShortDateString();
+                            }
+                            else
+                            {
+                                EarliestAvailableDateFormatted = earliestDueDate.ToShortDateString();
+                            }
+
                         }
                         else
                         {
