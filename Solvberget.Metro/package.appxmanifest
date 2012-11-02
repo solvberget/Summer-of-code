@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="Solvberget" Version="1.1.0.0" Publisher="CN=arnea_000" />
+  <Identity Name="SlvbergetKFStavangerbibli.Slvberget" Version="1.1.0.1" Publisher="CN=9996F995-FE52-4CC6-A6D3-40DC06CD472E" />
   <Properties>
-    <DisplayName>Sølvberget Metro</DisplayName>
-    <PublisherDisplayName>Capgemini Norge AS</PublisherDisplayName>
+    <DisplayName>Sølvberget</DisplayName>
+    <PublisherDisplayName>Sølvberget KF, Stavanger bibliotek og kulturhus</PublisherDisplayName>
     <Logo>images\solvberget50.png</Logo>
   </Properties>
   <Prerequisites>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <VisualElements DisplayName="Sølvberget" Logo="images\solvberget150.png" SmallLogo="images\solvberget30.png" Description="Søk i Stavanger Bibliotek sine bøker, filmer og lydbøker, og få oversikt over kommende arrangementer!" ForegroundText="light" BackgroundColor="#000000" ToastCapable="true">
+      <VisualElements DisplayName="Sølvberget" Logo="images\solvberget150.png" SmallLogo="images\solvberget30.png" Description="I appen til Rogalands best besøkte kulturinstitusjon får du mange bok, film - og musikktips. Du kan også sjekke de mange arrangementene våre, få oversikt over nyheter og søke i bibliotekets katalog. Forny utlån, sjekk åpningstider, finn kontaktinfo og mye mye mer." ForegroundText="light" BackgroundColor="#000000" ToastCapable="true">
         <DefaultTile ShowName="allLogos" WideLogo="images\solvberget_wide.png" ShortName="Solvberget" />
         <SplashScreen Image="images\solvberget_splash.png" />
         <InitialRotationPreference>

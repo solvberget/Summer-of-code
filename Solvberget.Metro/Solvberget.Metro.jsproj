@@ -44,8 +44,9 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>nb-no</DefaultLanguage>
-    <PackageCertificateKeyFile>Solvberget.Metro_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Solvberget.Metro_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <PackageCertificateThumbprint>36D616CBFD5A6AA9454BE5B336DF6246EFE8DB1F</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -157,6 +158,8 @@
     <Content Include="js\localizationHelper.js" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
+    <None Include="Solvberget.Metro_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="pages\blogs\entries\entries.css" />
     <Content Include="pages\blogs\entries\entries.html" />
     <Content Include="pages\blogs\entries\entries.js" />
