@@ -332,19 +332,6 @@
         return false;
     }
 
-    function clearNotifications() {
-
-        var applicationData = Windows.Storage.ApplicationData.current;
-        if (applicationData)
-            var roamingSettings = applicationData.roamingSettings;
-
-        window.localStorage.setItem("Notifications", "");
-
-        if (roamingSettings)
-            roamingSettings.values["Notifications"] = "";
-
-    }
-
     var showToast = function (heading, body) {
 
         var template = Windows.UI.Notifications.ToastTemplateType.toastText02;
@@ -388,13 +375,15 @@
         window.localStorage.setItem("Notifications", "");
 
         var applicationData = Windows.Storage.ApplicationData.current;
-        var roamingSettings = applicationData.roamingSettings;
-
-        roamingSettings.values["BorrowerId"] = "";
-        roamingSettings.values["LibraryUserId"] = "";
-        roamingSettings.values["Notifications"] = "";
-
-        clearNotifications();
+        if (applicationData) {
+            var roamingSettings = applicationData.roamingSettings;
+            if (roamingSettings) {
+                roamingSettings.values["BorrowerId"] = "";
+                roamingSettings.values["LibraryUserId"] = "";
+                roamingSettings.values["Notifications"] = "";
+            }
+        }
+        
         Notifications.setAreNotificationsSeen(false);
 
         document.getElementById("logoutConfimationMsg").innerHTML = "Du blir nå logget ut";
@@ -408,6 +397,8 @@
             updateAppBarButton();
         }, 1200);
 
+        if (interval)
+            clearInterval(interval);
         Windows.UI.Notifications.TileUpdateManager.createTileUpdaterForApplication().clear();
 
         setTimeout(function () {
@@ -494,6 +485,7 @@
 
     WinJS.Namespace.define("LiveTile", {
         liveTile: liveTile,
+        interval: interval
     });
 
     WinJS.Namespace.define("Toast", {
