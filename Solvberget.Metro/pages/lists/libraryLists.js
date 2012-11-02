@@ -8,7 +8,7 @@
     var utils = WinJS.Utilities;
     var nav = WinJS.Navigation;
     var app = WinJS.Application;
-    
+
     var listRequestUrl = Data.serverBaseUrl + "/List/GetListsStaticAndDynamic";
     var docRequestUrl = Data.serverBaseUrl + "/Document/GetDocumentLight/";
     var thumbRequestUrl = Data.serverBaseUrl + "/Document/GetDocumentThumbnailImage/";
@@ -19,6 +19,11 @@
     var listSelectionIndex = -1;
     var continueToGetDocuments = false;
     var getListsHasReturnedCallback = false;
+
+    var isUpdatingListContent = false;
+    var isPopulatingElement = false;
+
+    //var delayRendringLimit = 8;
 
     ui.Pages.define("/pages/lists/libraryLists.html", {
 
@@ -68,7 +73,7 @@
                 if (listSelectionIndex >= 0) {
                     var listContent = this.element.querySelector(".listContentSection");
                     binding.processAll(listContent, lists[listSelectionIndex]);
-                    this.renderListContent(lists[listSelectionIndex]);
+                    this.renderList(lists[listSelectionIndex]);
                     listContent.scrollTop = 0;
                     Solvberget.Queue.PrioritizeUrls('libraryList', lists[listSelectionIndex].urls);
                     if (this.doneLoadingDocuments(lists[listSelectionIndex].DocumentNumbers)) {
@@ -115,7 +120,7 @@
                             that.saveListSelectionIndex();
                             var listContent = that.element.querySelector(".listContentSection");
                             binding.processAll(listContent, items[0].data);
-                            that.renderListContent(items[0].data);
+                            that.renderList(items[0].data);
                             listContent.scrollTop = 0;
                             Solvberget.Queue.PrioritizeUrls('libraryList', items[0].data.urls);
                             if (that.doneLoadingDocuments(items[0].data.DocumentNumbers)) {
@@ -166,27 +171,37 @@
                 });
         },
 
-        renderListContent: function (listModel) {
+        renderList: function (listModel) {
             var that = this;
+            if (listModel.Documents) {
+                //if (Object.keys(listModel.DocumentNumbers).length > delayRendringLimit) {
+                //    if (!this.doneLoadingDocuments(listModel.DocumentNumbers)) {
+                //        return;
+                //    }
+                //}
+                this.renderListContent(listModel, that);
+            }
+        },
+
+        renderListContent: function (listModel, context) {
             var documentTemplateHolder = document.getElementById("documentsHolder");
             documentTemplateHolder.innerHTML = "";
             var documentTemplateDiv = document.getElementById("documentTemplate");
             var documentTemplate = undefined;
             if (documentTemplateDiv)
                 documentTemplate = new WinJS.Binding.Template(documentTemplateDiv);
-            if (listModel.Documents) {
-                for (var i = 0; i < listModel.Documents.length; i++) {
-                    var doc = listModel.Documents[i];
-                    if (documentTemplate && documentTemplateHolder && doc) {
-                        that.populateDocElement(doc);
-                        documentTemplateHolder.innerHTML += window.toStaticHTML(doc.element.innerHTML);
 
-                        $('#' + doc.DocumentNumber).die('click').live('click', function () {
-                            var model = { DocumentNumber: $(this).attr("id") };
-                            that.saveListSelectionIndex();
-                            nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
-                        });
-                    }
+            for (var i = 0; i < listModel.Documents.length; i++) {
+                var doc = listModel.Documents[i];
+                if (documentTemplate && documentTemplateHolder && doc) {
+                    context.populateDocElement(doc);
+                    documentTemplateHolder.innerHTML += window.toStaticHTML(doc.element.innerHTML);
+
+                    $('#' + doc.DocumentNumber).die('click').live('click', function () {
+                        var model = { DocumentNumber: $(this).attr("id") };
+                        context.saveListSelectionIndex();
+                        nav.navigate("/pages/documentDetail/documentDetail.html", { documentModel: model });
+                    });
                 }
             }
         },
@@ -234,9 +249,10 @@
         },
 
         updateContentSectionIfDocIsVisible: function (docNumber) {
-            if (this.docIsVisible(docNumber)) {
-                if (!continueToGetDocuments) return;
-                var that = this;
+            if (!continueToGetDocuments) return;
+            var that = this;
+            if (!that.isUpdatingListContent && this.docIsVisible(docNumber)) {
+                that.isUpdatingListContent = true;
                 var listViewForListsElement = this.element.querySelector(".listView");
                 var listViewForLists = listViewForListsElement.winControl;
                 if (listViewForLists) {
@@ -245,7 +261,7 @@
                             listSelectionIndex = items[0].index;
                             var listContent = that.element.querySelector(".listContentSection");
                             binding.processAll(listContent, items[0].data);
-                            that.renderListContent(items[0].data);
+                            that.renderList(items[0].data);
                             listContent.scrollTop = 0;
                             if (that.doneLoadingDocuments(items[0].data.DocumentNumbers)) {
                                 $(".headerProgress").hide();
@@ -253,13 +269,15 @@
                         }
                     });
                 }
+                that.isUpdatingListContent = false;
             }
         },
 
         populateDocElement: function (doc) {
             var that = this;
             if (doc) {
-                if (doc.element === undefined) {
+                if (!isPopulatingElement && doc.element === undefined) {
+                    isPopulatingElement = true;
                     var item = new Object();
                     item.data = doc;
                     var documentTemplateDiv = document.getElementById("documentTemplate");
@@ -278,6 +296,7 @@
                             }
                         });
                     }
+                    isPopulatingElement = false;
                 }
             }
         },
