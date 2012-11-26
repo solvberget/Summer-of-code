@@ -2,7 +2,7 @@
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
   <Publisher>CN=9996F995-FE52-4CC6-A6D3-40DC06CD472E</Publisher>
   <NamespacePrefix>SlvbergetKFStavangerbibli</NamespacePrefix>
-  <PublisherDisplayName>Sølvberget KF, Stavanger bibliotek og kulturhus</PublisherDisplayName>
+  <PublisherDisplayName>Sølvberget KF</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="false" />
@@ -356,5 +356,10 @@
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames />
-  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/8aa30af4-14c3-43d5-aaa0-8c5ecef20f0d" />
+  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/8aa30af4-14c3-43d5-aaa0-8c5ecef20f0d">
+    <PackageInfo>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.1</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>
