@@ -11,25 +11,37 @@
     app.onerror = function (customEventObject) {
 
         if (customEventObject.type === "error") {
+
             // Get the error message and name for this exception
-            var errorMessage = customEventObject.detail.error == null ? customEventObject.detail.exception.message : customEventObject.detail.error.message;
-            var errorName = customEventObject.detail.error == null ? customEventObject.detail.exception.name : customEventObject.detail.error.name;
+            if (customEventObject.detail.error == null) {
+                exceptionError("Beklager, det oppstod en feil. \n\nTeknisk informasjon:\n\n " + customEventObject.detail.exception.message, "Feilmelding (" + customEventObject.detail.exception.name + ")");
+                return true
+            }
 
-            // Show an error dialog
-            exceptionError(errorMessage, errorName);
+            if (customEventObject.detail.error.status == 500) {
+                exceptionError("Kunne ikke hente data fra webtjener.", "Feil ved tilkobling til webtjener");
+                return true
+            }
 
-            // Tell windows that we have taken care of the exception
-            return true;
+            exceptionError("Beklager, det oppstod en feil. \n\nTeknisk informasjon:\n\nFeil: " + customEventObject.detail.error.name +
+                "\nStatus: " + customEventObject.detail.error.status +
+                "\nMelding: " + customEventObject.detail.error.message,
+                "Feilmelding");
+
         }
+
+        // Tell windows that we have taken care of the exception
+        return true;
+
     };
 
-    function exceptionError(name, msg) {
+    function exceptionError(msg, title) {
 
         // Check if the message dialog is not already showing
         if (!messageDialog) {
 
             // Create the message dialog and set its content
-            messageDialog = new Windows.UI.Popups.MessageDialog("Du har tydeligvis gjort noe lurt, for her har appen sporet helt av! \n\nKryptisk feilmelding:\n\n " + msg, "Ooops! (" + name + ")");
+            messageDialog = new Windows.UI.Popups.MessageDialog(msg, title);
 
             // Add commands and set their command handlers
             messageDialog.commands.append(
@@ -223,7 +235,7 @@ function pinToStart() {
 function setAppbarButton() {
 
     LoginFlyout.updateAppBarButton();
-    var exist = Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage); 
+    var exist = Windows.UI.StartScreen.SecondaryTile.exists(Data.activePage);
 
     if (exist) {
         document.getElementById("cmdPin").winControl.label = "Fjern fra start";
@@ -253,12 +265,12 @@ function onAttributionCommand(settingCommand) {
     WinJS.UI.SettingsFlyout.showSettings("attributionSettingsFlyout", "/pages/charms/attr/attribution.html");
 }
 
-function onCommandsRequested(eventArgs) { 
+function onCommandsRequested(eventArgs) {
 
     var privacyCommand = new Windows.UI.ApplicationSettings.SettingsCommand("personvern", "Personvernerklæring", onPrivacyCommand);
     eventArgs.request.applicationCommands.append(privacyCommand);
 
     var attributionCommand = new Windows.UI.ApplicationSettings.SettingsCommand("attribution", "Kredittering", onAttributionCommand);
     eventArgs.request.applicationCommands.append(attributionCommand);
-    
+
 }
