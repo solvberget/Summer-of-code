@@ -28,7 +28,7 @@
 
 (function () {
 
-    var queueDownload = WinJS.Class.define(function (queue, options, completed, context, priority) {
+    var queueDownload = WinJS.Class.define(function (queue, options, completed, context, priority, error) {
         /** NOTICE! maxNumInProgress
         *
         *   IE limits number of concurrent connections to 6. By setting it to 5 there will always be one connection
@@ -56,7 +56,12 @@
                 document.numInProgress++;
                 var next = document.queue.q[queue].shift();
                 document.queue.r.push(WinJS.xhr(next.options));
-                document.queue.r[document.queue.r.length - 1].done(function (request) { callback(request, next); });
+                document.queue.r[document.queue.r.length - 1].done(function (request) {
+                    callback(request, next, true);
+                }, function (request) {
+                    callback(request, next, false);
+                })
+                ;
             }
             else {
                 showNoInternetDialog();
@@ -112,9 +117,15 @@
 
         if (options) {
 
-            var callback = function (req, callBacks) {
-                if (callBacks.completed) callBacks.completed(req, callBacks.context);
-                document.numInProgress--;
+            var callback = function (req, callBacks, success) {
+                if (success) {
+                    if (callBacks.completed) { callBacks.completed(req, callBacks.context); }
+                }
+                else {
+                    if (callBacks.error) { callBacks.error(req, callBacks.context); }
+                }
+
+                    document.numInProgress--;
                 if (document.queue.q[queue].length > 0 && document.numInProgress < maxNumInProgress) {
                     for (var i = document.numInProgress; i <= maxNumInProgress && i < document.queue.q[queue].length; i++) {
                         processQueue();

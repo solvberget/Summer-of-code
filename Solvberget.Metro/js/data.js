@@ -208,7 +208,14 @@
     }
 
     function navigateToMypage() {
-        Data.activePage = "mypage"; loginThenNavigateTo("/pages/mypage/mypage.html");
+        var homepage = getActivePage();
+        Data.activePage = "mypage";
+        if (homepage == "/pages/home/home.html") {
+            loginThenNavigateTo("/pages/mypage/mypage.html", ".win-container:nth-child(1)");
+        }
+        else {
+            loginThenNavigateTo("/pages/mypage/mypage.html", "#toMyPageButton");
+        }
     }
 
     function navigateToEvents() {
@@ -230,7 +237,7 @@
         Data.activePage = "blogs"; WinJS.Navigation.navigate("/pages/blogs/main/blogs.html");
     }
 
-    var loginThenNavigateTo = function (page) {
+    var loginThenNavigateTo = function (page, querySelector) {
 
 
         var loginDiv = document.getElementById("loginDiv");
@@ -238,7 +245,7 @@
 
         WinJS.UI.Fragments.renderCopy("/fragments/login/login.html", loginDiv).done(function () {
 
-            var loginAnchor = document.querySelector(".win-container:nth-child(1)");
+            var loginAnchor = document.querySelector(querySelector);
             LoginFlyout.showLogin(loginAnchor, page);
 
         });
