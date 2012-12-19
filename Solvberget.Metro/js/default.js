@@ -6,6 +6,7 @@
     var nav = WinJS.Navigation;
     WinJS.strictProcessing();
     var messageDialog;
+    WinJS.Binding.optimizeBindingReferences = true;
 
     // Gracefull exit
     app.onerror = function (customEventObject) {

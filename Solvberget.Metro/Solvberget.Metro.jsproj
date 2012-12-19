@@ -47,6 +47,7 @@
     <PackageCertificateKeyFile>Solvberget.Metro_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <PackageCertificateThumbprint>36D616CBFD5A6AA9454BE5B336DF6246EFE8DB1F</PackageCertificateThumbprint>
+    <AppxPackageDir>C:\apppackages\</AppxPackageDir>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">

@@ -68,8 +68,10 @@ var ajaxGetRatingCallback = function (request, context) {
 
         bokelskereTemplate.outerHTML = "";
         bokelskereTemplate.render(data, ratingContainer);
-
-        var rating = document.getElementById("ratingControl").winControl;
+        
+        var element = document.getElementById("ratingControl");
+        if (element === undefined || element == null) return;
+        var rating = element.winControl;
         if (rating) {
             rating.maxRating = 6.0;
             rating.averageRating = response;

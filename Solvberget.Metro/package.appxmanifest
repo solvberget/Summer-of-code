@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="SlvbergetKFStavangerbibli.Slvberget" Version="1.1.0.2" Publisher="CN=9996F995-FE52-4CC6-A6D3-40DC06CD472E" />
+  <Identity Name="SlvbergetKFStavangerbibli.Slvberget" Version="1.1.0.4" Publisher="CN=9996F995-FE52-4CC6-A6D3-40DC06CD472E" />
   <Properties>
     <DisplayName>Sølvberget</DisplayName>
     <PublisherDisplayName>Sølvberget KF</PublisherDisplayName>
