@@ -1,15 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Solvberget.Metro", "Solvberget.Metro\Solvberget.Metro.jsproj", "{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}"
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Solvberget.Metro", "src\Solvberget.Metro\Solvberget.Metro.jsproj", "{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Tests", "Solvberget.Tests\Solvberget.Tests.csproj", "{9426CD77-75BA-4FC1-BB17-19D687AC12EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Tests", "test\Solvberget.Tests\Solvberget.Tests.csproj", "{9426CD77-75BA-4FC1-BB17-19D687AC12EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Service", "Solvberget.Service\Solvberget.Service.csproj", "{97A27773-1B8E-42C1-B1BD-DBC38C588492}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Service", "src\Solvberget.Service\Solvberget.Service.csproj", "{97A27773-1B8E-42C1-B1BD-DBC38C588492}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Domain", "Solvberget.Domain\Solvberget.Domain.csproj", "{7EB0D844-7622-4F0D-A103-C326C6FA1293}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Domain", "src\Solvberget.Domain\Solvberget.Domain.csproj", "{7EB0D844-7622-4F0D-A103-C326C6FA1293}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.WindowsService", "Solvberget.WindowsService\Solvberget.WindowsService.csproj", "{2165682B-2B4F-416E-B88F-07C70D5BE84D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.WindowsService", "src\Solvberget.WindowsService\Solvberget.WindowsService.csproj", "{2165682B-2B4F-416E-B88F-07C70D5BE84D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{033C6AD7-D58B-4FD3-83E5-CB2A19BC02C9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

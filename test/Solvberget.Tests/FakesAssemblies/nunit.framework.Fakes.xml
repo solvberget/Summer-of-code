@@ -172,6 +172,9 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAssignableFromConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimAssignableFromConstraint.ConstructorType">
+            <summary>Sets the shim of AssignableFromConstraint.AssignableFromConstraint(Type type)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAssignableFromConstraint.MatchesObject">
             <summary>Sets the shim of AssignableFromConstraint.Matches(Object actual)</summary>
         </member>
@@ -208,6 +211,9 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAssignableToConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimAssignableToConstraint.ConstructorType">
+            <summary>Sets the shim of AssignableToConstraint.AssignableToConstraint(Type type)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAssignableToConstraint.MatchesObject">
             <summary>Sets the shim of AssignableToConstraint.Matches(Object actual)</summary>
         </member>
@@ -243,6 +249,9 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeConstraint.ConstructorTypeConstraint">
+            <summary>Sets the shim of AttributeConstraint.AttributeConstraint(Type type, Constraint baseConstraint)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeConstraint.GetStringRepresentation">
             <summary>Sets the shim of AttributeConstraint.GetStringRepresentation()</summary>
@@ -292,6 +301,9 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeExistsConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeExistsConstraint.ConstructorType">
+            <summary>Sets the shim of AttributeExistsConstraint.AttributeExistsConstraint(Type type)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeExistsConstraint.MatchesObject">
             <summary>Sets the shim of AttributeExistsConstraint.Matches(Object actual)</summary>
         </member>
@@ -324,6 +336,9 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeOperator.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeOperator.ConstructorType">
+            <summary>Sets the shim of AttributeOperator.AttributeOperator(Type type)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimAttributeOperator.ReduceConstraintBuilderConstraintStack">
             <summary>Sets the shim of AttributeOperator.Reduce(ConstraintStack stack)</summary>
@@ -1270,11 +1285,20 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllGet">
             <summary>Sets the shim of ConstraintExpression.get_All()</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AssignableFromType">
+            <summary>Sets the shim of ConstraintExpression.AssignableFrom(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AssignableToType">
+            <summary>Sets the shim of ConstraintExpression.AssignableTo(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AtLeastObject">
             <summary>Sets the shim of ConstraintExpression.AtLeast(Object expected)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AtMostObject">
             <summary>Sets the shim of ConstraintExpression.AtMost(Object expected)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AttributeType">
+            <summary>Sets the shim of ConstraintExpression.Attribute(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
@@ -1326,6 +1350,12 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.InnerExceptionGet">
             <summary>Sets the shim of ConstraintExpression.get_InnerException()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.InstanceOfType">
+            <summary>Sets the shim of ConstraintExpression.InstanceOf(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.InstanceOfTypeType">
+            <summary>Sets the shim of ConstraintExpression.InstanceOfType(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.LengthGet">
             <summary>Sets the shim of ConstraintExpression.get_Length()</summary>
@@ -1411,6 +1441,9 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.TrueGet">
             <summary>Sets the shim of ConstraintExpression.get_True()</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.TypeOfType">
+            <summary>Sets the shim of ConstraintExpression.TypeOf(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.UniqueGet">
             <summary>Sets the shim of ConstraintExpression.get_Unique()</summary>
         </member>
@@ -1450,11 +1483,20 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.AllGet">
             <summary>Sets the shim of ConstraintExpression.get_All()</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.AssignableFromType">
+            <summary>Sets the shim of ConstraintExpression.AssignableFrom(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.AssignableToType">
+            <summary>Sets the shim of ConstraintExpression.AssignableTo(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.AtLeastObject">
             <summary>Sets the shim of ConstraintExpression.AtLeast(Object expected)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.AtMostObject">
             <summary>Sets the shim of ConstraintExpression.AtMost(Object expected)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.AttributeType">
+            <summary>Sets the shim of ConstraintExpression.Attribute(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.BinarySerializableGet">
             <summary>Sets the shim of ConstraintExpression.get_BinarySerializable()</summary>
@@ -1497,6 +1539,12 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.InnerExceptionGet">
             <summary>Sets the shim of ConstraintExpression.get_InnerException()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.InstanceOfType">
+            <summary>Sets the shim of ConstraintExpression.InstanceOf(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.InstanceOfTypeType">
+            <summary>Sets the shim of ConstraintExpression.InstanceOfType(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.LengthGet">
             <summary>Sets the shim of ConstraintExpression.get_Length()</summary>
@@ -1581,6 +1629,9 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.TrueGet">
             <summary>Sets the shim of ConstraintExpression.get_True()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.TypeOfType">
+            <summary>Sets the shim of ConstraintExpression.TypeOf(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintExpression.AllInstances.UniqueGet">
             <summary>Sets the shim of ConstraintExpression.get_Unique()</summary>
@@ -1678,11 +1729,20 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllGet">
             <summary>Sets the shim of ConstraintFactory.get_All()</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AssignableFromType">
+            <summary>Sets the shim of ConstraintFactory.AssignableFrom(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AssignableToType">
+            <summary>Sets the shim of ConstraintFactory.AssignableTo(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AtLeastObject">
             <summary>Sets the shim of ConstraintFactory.AtLeast(Object expected)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AtMostObject">
             <summary>Sets the shim of ConstraintFactory.AtMost(Object expected)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AttributeType">
+            <summary>Sets the shim of ConstraintFactory.Attribute(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
@@ -1743,6 +1803,12 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.InnerExceptionGet">
             <summary>Sets the shim of ConstraintFactory.get_InnerException()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.InstanceOfType">
+            <summary>Sets the shim of ConstraintFactory.InstanceOf(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.InstanceOfTypeType">
+            <summary>Sets the shim of ConstraintFactory.InstanceOfType(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.LengthGet">
             <summary>Sets the shim of ConstraintFactory.get_Length()</summary>
@@ -1825,6 +1891,9 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.TrueGet">
             <summary>Sets the shim of ConstraintFactory.get_True()</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.TypeOfType">
+            <summary>Sets the shim of ConstraintFactory.TypeOf(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.UniqueGet">
             <summary>Sets the shim of ConstraintFactory.get_Unique()</summary>
         </member>
@@ -1858,11 +1927,20 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.AllGet">
             <summary>Sets the shim of ConstraintFactory.get_All()</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.AssignableFromType">
+            <summary>Sets the shim of ConstraintFactory.AssignableFrom(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.AssignableToType">
+            <summary>Sets the shim of ConstraintFactory.AssignableTo(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.AtLeastObject">
             <summary>Sets the shim of ConstraintFactory.AtLeast(Object expected)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.AtMostObject">
             <summary>Sets the shim of ConstraintFactory.AtMost(Object expected)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.AttributeType">
+            <summary>Sets the shim of ConstraintFactory.Attribute(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.BinarySerializableGet">
             <summary>Sets the shim of ConstraintFactory.get_BinarySerializable()</summary>
@@ -1914,6 +1992,12 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.InnerExceptionGet">
             <summary>Sets the shim of ConstraintFactory.get_InnerException()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.InstanceOfType">
+            <summary>Sets the shim of ConstraintFactory.InstanceOf(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.InstanceOfTypeType">
+            <summary>Sets the shim of ConstraintFactory.InstanceOfType(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.LengthGet">
             <summary>Sets the shim of ConstraintFactory.get_Length()</summary>
@@ -1995,6 +2079,9 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.TrueGet">
             <summary>Sets the shim of ConstraintFactory.get_True()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.TypeOfType">
+            <summary>Sets the shim of ConstraintFactory.TypeOf(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimConstraintFactory.AllInstances.UniqueGet">
             <summary>Sets the shim of ConstraintFactory.get_Unique()</summary>
@@ -2752,6 +2839,9 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimExactTypeConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimExactTypeConstraint.ConstructorType">
+            <summary>Sets the shim of ExactTypeConstraint.ExactTypeConstraint(Type type)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimExactTypeConstraint.MatchesObject">
             <summary>Sets the shim of ExactTypeConstraint.Matches(Object actual)</summary>
         </member>
@@ -2787,6 +2877,9 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimExceptionTypeConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimExceptionTypeConstraint.ConstructorType">
+            <summary>Sets the shim of ExceptionTypeConstraint.ExceptionTypeConstraint(Type type)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimExceptionTypeConstraint.WriteActualValueToMessageWriter">
             <summary>Sets the shim of ExceptionTypeConstraint.WriteActualValueTo(MessageWriter writer)</summary>
@@ -2964,6 +3057,9 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimInstanceOfTypeConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimInstanceOfTypeConstraint.ConstructorType">
+            <summary>Sets the shim of InstanceOfTypeConstraint.InstanceOfTypeConstraint(Type type)</summary>
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimInstanceOfTypeConstraint.MatchesObject">
             <summary>Sets the shim of InstanceOfTypeConstraint.Matches(Object actual)</summary>
@@ -3262,6 +3358,12 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer.FailurePointsGet">
             <summary>Sets the shim of NUnitEqualityComparer.get_FailurePoints()</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer.FirstImplementsIEquatableOfSecondTypeType">
+            <summary>Sets the shim of NUnitEqualityComparer.FirstImplementsIEquatableOfSecond(Type first, Type second)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer.GetEquatableGenericArgumentsType">
+            <summary>Sets the shim of NUnitEqualityComparer.GetEquatableGenericArguments(Type type)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer.GetExternalComparerObjectObject">
             <summary>Sets the shim of NUnitEqualityComparer.GetExternalComparer(Object x, Object y)</summary>
         </member>
@@ -3282,6 +3384,12 @@
         </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer.StringsEqualStringString">
             <summary>Sets the shim of NUnitEqualityComparer.StringsEqual(String x, String y)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer._GetEquatableGenericArgumentsb__0Type">
+            <summary>Sets the shim of NUnitEqualityComparer.&lt;GetEquatableGenericArguments&gt;b__0(Type interface)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer._GetEquatableGenericArgumentsb__1Type">
+            <summary>Sets the shim of NUnitEqualityComparer.&lt;GetEquatableGenericArguments&gt;b__1(Type iEquatableInterface)</summary>
         </member>
         <member name="T:NUnit.Framework.Constraints.Fakes.ShimNUnitEqualityComparer.AllInstances">
             <summary>Define shims for all instances members</summary>
@@ -4846,6 +4954,9 @@
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimTypeConstraint.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:NUnit.Framework.Constraints.Fakes.ShimTypeConstraint.ConstructorType">
+            <summary>Sets the shim of TypeConstraint.TypeConstraint(Type type)</summary>
+        </member>
         <member name="P:NUnit.Framework.Constraints.Fakes.ShimTypeConstraint.WriteActualValueToMessageWriter">
             <summary>Sets the shim of TypeConstraint.WriteActualValueTo(MessageWriter writer)</summary>
         </member>
@@ -6199,6 +6310,15 @@
         <member name="P:NUnit.Framework.Fakes.ShimAssert.CatchTestDelegateStringObjectArray">
             <summary>Sets the shim of Assert.Catch(TestDelegate code, String message, Object[] args)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.CatchTypeTestDelegate">
+            <summary>Sets the shim of Assert.Catch(Type expectedExceptionType, TestDelegate code)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.CatchTypeTestDelegateString">
+            <summary>Sets the shim of Assert.Catch(Type expectedExceptionType, TestDelegate code, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.CatchTypeTestDelegateStringObjectArray">
+            <summary>Sets the shim of Assert.Catch(Type expectedExceptionType, TestDelegate code, String message, Object[] args)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimAssert.Constructor">
             <summary>Sets the shim of Assert.Assert()</summary>
         </member>
@@ -6409,6 +6529,15 @@
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IncrementAssertCount">
             <summary>Sets the shim of Assert.IncrementAssertCount()</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsAssignableFromTypeObject">
+            <summary>Sets the shim of Assert.IsAssignableFrom(Type expected, Object actual)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsAssignableFromTypeObjectString">
+            <summary>Sets the shim of Assert.IsAssignableFrom(Type expected, Object actual, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsAssignableFromTypeObjectStringObjectArray">
+            <summary>Sets the shim of Assert.IsAssignableFrom(Type expected, Object actual, String message, Object[] args)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IsEmptyIEnumerable">
             <summary>Sets the shim of Assert.IsEmpty(IEnumerable collection)</summary>
         </member>
@@ -6436,6 +6565,24 @@
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IsFalseBooleanStringObjectArray">
             <summary>Sets the shim of Assert.IsFalse(Boolean condition, String message, Object[] args)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsInstanceOfTypeObject">
+            <summary>Sets the shim of Assert.IsInstanceOf(Type expected, Object actual)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsInstanceOfTypeObjectString">
+            <summary>Sets the shim of Assert.IsInstanceOf(Type expected, Object actual, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsInstanceOfTypeObjectStringObjectArray">
+            <summary>Sets the shim of Assert.IsInstanceOf(Type expected, Object actual, String message, Object[] args)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsInstanceOfTypeTypeObject">
+            <summary>Sets the shim of Assert.IsInstanceOfType(Type expected, Object actual)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsInstanceOfTypeTypeObjectString">
+            <summary>Sets the shim of Assert.IsInstanceOfType(Type expected, Object actual, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsInstanceOfTypeTypeObjectStringObjectArray">
+            <summary>Sets the shim of Assert.IsInstanceOfType(Type expected, Object actual, String message, Object[] args)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNaNDouble">
             <summary>Sets the shim of Assert.IsNaN(Double aDouble)</summary>
         </member>
@@ -6454,6 +6601,15 @@
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNaNNullableOfDoubleStringObjectArray">
             <summary>Sets the shim of Assert.IsNaN(Nullable`1&lt;Double&gt; aDouble, String message, Object[] args)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotAssignableFromTypeObject">
+            <summary>Sets the shim of Assert.IsNotAssignableFrom(Type expected, Object actual)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotAssignableFromTypeObjectString">
+            <summary>Sets the shim of Assert.IsNotAssignableFrom(Type expected, Object actual, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotAssignableFromTypeObjectStringObjectArray">
+            <summary>Sets the shim of Assert.IsNotAssignableFrom(Type expected, Object actual, String message, Object[] args)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotEmptyIEnumerable">
             <summary>Sets the shim of Assert.IsNotEmpty(IEnumerable collection)</summary>
         </member>
@@ -6471,6 +6627,24 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotEmptyStringStringObjectArray">
             <summary>Sets the shim of Assert.IsNotEmpty(String aString, String message, Object[] args)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotInstanceOfTypeObject">
+            <summary>Sets the shim of Assert.IsNotInstanceOf(Type expected, Object actual)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotInstanceOfTypeObjectString">
+            <summary>Sets the shim of Assert.IsNotInstanceOf(Type expected, Object actual, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotInstanceOfTypeObjectStringObjectArray">
+            <summary>Sets the shim of Assert.IsNotInstanceOf(Type expected, Object actual, String message, Object[] args)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotInstanceOfTypeTypeObject">
+            <summary>Sets the shim of Assert.IsNotInstanceOfType(Type expected, Object actual)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotInstanceOfTypeTypeObjectString">
+            <summary>Sets the shim of Assert.IsNotInstanceOfType(Type expected, Object actual, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotInstanceOfTypeTypeObjectStringObjectArray">
+            <summary>Sets the shim of Assert.IsNotInstanceOfType(Type expected, Object actual, String message, Object[] args)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimAssert.IsNotNullObject">
             <summary>Sets the shim of Assert.IsNotNull(Object anObject)</summary>
@@ -6733,6 +6907,15 @@
         <member name="P:NUnit.Framework.Fakes.ShimAssert.ThrowsIResolveConstraintTestDelegateStringObjectArray">
             <summary>Sets the shim of Assert.Throws(IResolveConstraint expression, TestDelegate code, String message, Object[] args)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.ThrowsTypeTestDelegate">
+            <summary>Sets the shim of Assert.Throws(Type expectedExceptionType, TestDelegate code)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.ThrowsTypeTestDelegateString">
+            <summary>Sets the shim of Assert.Throws(Type expectedExceptionType, TestDelegate code, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimAssert.ThrowsTypeTestDelegateStringObjectArray">
+            <summary>Sets the shim of Assert.Throws(Type expectedExceptionType, TestDelegate code, String message, Object[] args)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimAssert.TrueBoolean">
             <summary>Sets the shim of Assert.True(Boolean condition)</summary>
         </member>
@@ -6984,6 +7167,15 @@
         </member>
         <member name="M:NUnit.Framework.Fakes.ShimCollectionAssert.BehaveAsNotImplemented">
             <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimCollectionAssert.AllItemsAreInstancesOfTypeIEnumerableType">
+            <summary>Sets the shim of CollectionAssert.AllItemsAreInstancesOfType(IEnumerable collection, Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimCollectionAssert.AllItemsAreInstancesOfTypeIEnumerableTypeString">
+            <summary>Sets the shim of CollectionAssert.AllItemsAreInstancesOfType(IEnumerable collection, Type expectedType, String message)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimCollectionAssert.AllItemsAreInstancesOfTypeIEnumerableTypeStringObjectArray">
+            <summary>Sets the shim of CollectionAssert.AllItemsAreInstancesOfType(IEnumerable collection, Type expectedType, String message, Object[] args)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimCollectionAssert.AllItemsAreNotNullIEnumerable">
             <summary>Sets the shim of CollectionAssert.AllItemsAreNotNull(IEnumerable collection)</summary>
@@ -7327,11 +7519,20 @@
         <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.ConstructorString">
             <summary>Sets the shim of ExpectedExceptionAttribute.ExpectedExceptionAttribute(String exceptionName)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.ConstructorType">
+            <summary>Sets the shim of ExpectedExceptionAttribute.ExpectedExceptionAttribute(Type exceptionType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.ExpectedExceptionGet">
+            <summary>Sets the shim of ExpectedExceptionAttribute.get_ExpectedException()</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.ExpectedExceptionNameGet">
             <summary>Sets the shim of ExpectedExceptionAttribute.get_ExpectedExceptionName()</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.ExpectedExceptionNameSetString">
             <summary>Sets the shim of ExpectedExceptionAttribute.set_ExpectedExceptionName(String value)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.ExpectedExceptionSetType">
+            <summary>Sets the shim of ExpectedExceptionAttribute.set_ExpectedException(Type value)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.ExpectedMessageGet">
             <summary>Sets the shim of ExpectedExceptionAttribute.get_ExpectedMessage()</summary>
@@ -7360,11 +7561,17 @@
         <member name="T:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.AllInstances.ExpectedExceptionGet">
+            <summary>Sets the shim of ExpectedExceptionAttribute.get_ExpectedException()</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.AllInstances.ExpectedExceptionNameGet">
             <summary>Sets the shim of ExpectedExceptionAttribute.get_ExpectedExceptionName()</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.AllInstances.ExpectedExceptionNameSetString">
             <summary>Sets the shim of ExpectedExceptionAttribute.set_ExpectedExceptionName(String value)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.AllInstances.ExpectedExceptionSetType">
+            <summary>Sets the shim of ExpectedExceptionAttribute.set_ExpectedException(Type value)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimExpectedExceptionAttribute.AllInstances.ExpectedMessageGet">
             <summary>Sets the shim of ExpectedExceptionAttribute.get_ExpectedMessage()</summary>
@@ -7554,6 +7761,9 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimHas.AllGet">
             <summary>Sets the shim of Has.get_All()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimHas.AttributeType">
+            <summary>Sets the shim of Has.Attribute(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimHas.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
@@ -7789,6 +7999,12 @@
         <member name="P:NUnit.Framework.Fakes.ShimIs.AllGet">
             <summary>Sets the shim of Is.get_All()</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimIs.AssignableFromType">
+            <summary>Sets the shim of Is.AssignableFrom(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimIs.AssignableToType">
+            <summary>Sets the shim of Is.AssignableTo(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimIs.AtLeastObject">
             <summary>Sets the shim of Is.AtLeast(Object expected)</summary>
         </member>
@@ -7821,6 +8037,12 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimIs.GreaterThanOrEqualToObject">
             <summary>Sets the shim of Is.GreaterThanOrEqualTo(Object expected)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimIs.InstanceOfType">
+            <summary>Sets the shim of Is.InstanceOf(Type expectedType)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimIs.InstanceOfTypeType">
+            <summary>Sets the shim of Is.InstanceOfType(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimIs.LessThanObject">
             <summary>Sets the shim of Is.LessThan(Object expected)</summary>
@@ -7875,6 +8097,9 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimIs.TrueGet">
             <summary>Sets the shim of Is.get_True()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimIs.TypeOfType">
+            <summary>Sets the shim of Is.TypeOf(Type expectedType)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimIs.UniqueGet">
             <summary>Sets the shim of Is.get_Unique()</summary>
@@ -8131,8 +8356,14 @@
         <member name="P:NUnit.Framework.Fakes.ShimRandomAttribute.ConstructorInt32Int32Int32">
             <summary>Sets the shim of RandomAttribute.RandomAttribute(Int32 min, Int32 max, Int32 count)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimRandomAttribute.GetDataParameterInfo">
+            <summary>Sets the shim of RandomAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.ShimRandomAttribute.AllInstances">
             <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimRandomAttribute.AllInstances.GetDataParameterInfo">
+            <summary>Sets the shim of RandomAttribute.GetData(ParameterInfo parameter)</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.ShimRandomizer">
             <summary>Shim type of NUnit.Framework.Randomizer</summary>
@@ -8166,6 +8397,12 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimRandomizer.GetIntsInt32Int32Int32">
             <summary>Sets the shim of Randomizer.GetInts(Int32 min, Int32 max, Int32 count)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimRandomizer.GetRandomizerMemberInfo">
+            <summary>Sets the shim of Randomizer.GetRandomizer(MemberInfo member)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimRandomizer.GetRandomizerParameterInfo">
+            <summary>Sets the shim of Randomizer.GetRandomizer(ParameterInfo parameter)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimRandomizer.RandomSeedGet">
             <summary>Sets the shim of Randomizer.get_RandomSeed()</summary>
@@ -8797,11 +9034,17 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.DescriptionSetString">
             <summary>Sets the shim of TestCaseAttribute.set_Description(String value)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.ExpectedExceptionGet">
+            <summary>Sets the shim of TestCaseAttribute.get_ExpectedException()</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.ExpectedExceptionNameGet">
             <summary>Sets the shim of TestCaseAttribute.get_ExpectedExceptionName()</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.ExpectedExceptionNameSetString">
             <summary>Sets the shim of TestCaseAttribute.set_ExpectedExceptionName(String value)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.ExpectedExceptionSetType">
+            <summary>Sets the shim of TestCaseAttribute.set_ExpectedException(Type value)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.ExpectedMessageGet">
             <summary>Sets the shim of TestCaseAttribute.get_ExpectedMessage()</summary>
@@ -8884,11 +9127,17 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.AllInstances.DescriptionSetString">
             <summary>Sets the shim of TestCaseAttribute.set_Description(String value)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.AllInstances.ExpectedExceptionGet">
+            <summary>Sets the shim of TestCaseAttribute.get_ExpectedException()</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.AllInstances.ExpectedExceptionNameGet">
             <summary>Sets the shim of TestCaseAttribute.get_ExpectedExceptionName()</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.AllInstances.ExpectedExceptionNameSetString">
             <summary>Sets the shim of TestCaseAttribute.set_ExpectedExceptionName(String value)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.AllInstances.ExpectedExceptionSetType">
+            <summary>Sets the shim of TestCaseAttribute.set_ExpectedException(Type value)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseAttribute.AllInstances.ExpectedMessageGet">
             <summary>Sets the shim of TestCaseAttribute.get_ExpectedMessage()</summary>
@@ -8992,6 +9241,9 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.DescriptionGet">
             <summary>Sets the shim of TestCaseData.get_Description()</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.ExpectedExceptionGet">
+            <summary>Sets the shim of TestCaseData.get_ExpectedException()</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.ExpectedExceptionNameGet">
             <summary>Sets the shim of TestCaseData.get_ExpectedExceptionName()</summary>
         </member>
@@ -9055,6 +9307,9 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.ThrowsString">
             <summary>Sets the shim of TestCaseData.Throws(String exceptionName)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.ThrowsType">
+            <summary>Sets the shim of TestCaseData.Throws(Type exceptionType)</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.ShimTestCaseData.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
@@ -9066,6 +9321,9 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.AllInstances.DescriptionGet">
             <summary>Sets the shim of TestCaseData.get_Description()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.AllInstances.ExpectedExceptionGet">
+            <summary>Sets the shim of TestCaseData.get_ExpectedException()</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.AllInstances.ExpectedExceptionNameGet">
             <summary>Sets the shim of TestCaseData.get_ExpectedExceptionName()</summary>
@@ -9127,6 +9385,9 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.AllInstances.ThrowsString">
             <summary>Sets the shim of TestCaseData.Throws(String exceptionName)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseData.AllInstances.ThrowsType">
+            <summary>Sets the shim of TestCaseData.Throws(Type exceptionType)</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute">
             <summary>Shim type of NUnit.Framework.TestCaseSourceAttribute</summary>
         </member>
@@ -9154,8 +9415,14 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute.ConstructorString">
             <summary>Sets the shim of TestCaseSourceAttribute.TestCaseSourceAttribute(String sourceName)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute.ConstructorTypeString">
+            <summary>Sets the shim of TestCaseSourceAttribute.TestCaseSourceAttribute(Type sourceType, String sourceName)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute.SourceNameGet">
             <summary>Sets the shim of TestCaseSourceAttribute.get_SourceName()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute.SourceTypeGet">
+            <summary>Sets the shim of TestCaseSourceAttribute.get_SourceType()</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute.AllInstances">
             <summary>Define shims for all instances members</summary>
@@ -9168,6 +9435,9 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute.AllInstances.SourceNameGet">
             <summary>Sets the shim of TestCaseSourceAttribute.get_SourceName()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestCaseSourceAttribute.AllInstances.SourceTypeGet">
+            <summary>Sets the shim of TestCaseSourceAttribute.get_SourceType()</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.ShimTestContext">
             <summary>Shim type of NUnit.Framework.TestContext</summary>
@@ -9316,6 +9586,9 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestDetails.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestDetails.ConstructorObjectMethodInfoStringStringBoolean">
+            <summary>Sets the shim of TestDetails.TestDetails(Object fixture, MethodInfo method, String fullName, String type, Boolean isSuite)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestDetails.FixtureGet">
             <summary>Sets the shim of TestDetails.get_Fixture()</summary>
         </member>
@@ -9333,6 +9606,12 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestDetails.IsSuiteSetBoolean">
             <summary>Sets the shim of TestDetails.set_IsSuite(Boolean value)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestDetails.MethodGet">
+            <summary>Sets the shim of TestDetails.get_Method()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestDetails.MethodSetMethodInfo">
+            <summary>Sets the shim of TestDetails.set_Method(MethodInfo value)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestDetails.TypeGet">
             <summary>Sets the shim of TestDetails.get_Type()</summary>
@@ -9360,6 +9639,12 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestDetails.AllInstances.IsSuiteSetBoolean">
             <summary>Sets the shim of TestDetails.set_IsSuite(Boolean value)</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestDetails.AllInstances.MethodGet">
+            <summary>Sets the shim of TestDetails.get_Method()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestDetails.AllInstances.MethodSetMethodInfo">
+            <summary>Sets the shim of TestDetails.set_Method(MethodInfo value)</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestDetails.AllInstances.TypeGet">
             <summary>Sets the shim of TestDetails.get_Type()</summary>
@@ -9424,6 +9709,12 @@
         <member name="P:NUnit.Framework.Fakes.ShimTestFixtureAttribute.SeparateArgs">
             <summary>Sets the shim of TestFixtureAttribute.SeparateArgs()</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestFixtureAttribute.TypeArgsGet">
+            <summary>Sets the shim of TestFixtureAttribute.get_TypeArgs()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestFixtureAttribute.TypeArgsSetTypeArray">
+            <summary>Sets the shim of TestFixtureAttribute.set_TypeArgs(Type[] value)</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.ShimTestFixtureAttribute.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
@@ -9459,6 +9750,12 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimTestFixtureAttribute.AllInstances.SeparateArgs">
             <summary>Sets the shim of TestFixtureAttribute.SeparateArgs()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestFixtureAttribute.AllInstances.TypeArgsGet">
+            <summary>Sets the shim of TestFixtureAttribute.get_TypeArgs()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimTestFixtureAttribute.AllInstances.TypeArgsSetTypeArray">
+            <summary>Sets the shim of TestFixtureAttribute.set_TypeArgs(Type[] value)</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.ShimTestFixtureSetUpAttribute">
             <summary>Shim type of NUnit.Framework.TestFixtureSetUpAttribute</summary>
@@ -9763,6 +10060,9 @@
         <member name="P:NUnit.Framework.Fakes.ShimThrows.InnerExceptionGet">
             <summary>Sets the shim of Throws.get_InnerException()</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimThrows.InstanceOfType">
+            <summary>Sets the shim of Throws.InstanceOf(Type expectedType)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimThrows.InvalidOperationExceptionGet">
             <summary>Sets the shim of Throws.get_InvalidOperationException()</summary>
         </member>
@@ -9771,6 +10071,9 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimThrows.TargetInvocationExceptionGet">
             <summary>Sets the shim of Throws.get_TargetInvocationException()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimThrows.TypeOfType">
+            <summary>Sets the shim of Throws.TypeOf(Type expectedType)</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.ShimThrows.AllInstances">
             <summary>Define shims for all instances members</summary>
@@ -9820,14 +10123,23 @@
         <member name="P:NUnit.Framework.Fakes.ShimValueSourceAttribute.ConstructorString">
             <summary>Sets the shim of ValueSourceAttribute.ValueSourceAttribute(String sourceName)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimValueSourceAttribute.ConstructorTypeString">
+            <summary>Sets the shim of ValueSourceAttribute.ValueSourceAttribute(Type sourceType, String sourceName)</summary>
+        </member>
         <member name="P:NUnit.Framework.Fakes.ShimValueSourceAttribute.SourceNameGet">
             <summary>Sets the shim of ValueSourceAttribute.get_SourceName()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimValueSourceAttribute.SourceTypeGet">
+            <summary>Sets the shim of ValueSourceAttribute.get_SourceType()</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.ShimValueSourceAttribute.AllInstances">
             <summary>Define shims for all instances members</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.ShimValueSourceAttribute.AllInstances.SourceNameGet">
             <summary>Sets the shim of ValueSourceAttribute.get_SourceName()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimValueSourceAttribute.AllInstances.SourceTypeGet">
+            <summary>Sets the shim of ValueSourceAttribute.get_SourceType()</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.ShimValuesAttribute">
             <summary>Shim type of NUnit.Framework.ValuesAttribute</summary>
@@ -9859,8 +10171,14 @@
         <member name="P:NUnit.Framework.Fakes.ShimValuesAttribute.ConstructorObjectObjectObject">
             <summary>Sets the shim of ValuesAttribute.ValuesAttribute(Object arg1, Object arg2, Object arg3)</summary>
         </member>
+        <member name="P:NUnit.Framework.Fakes.ShimValuesAttribute.GetDataParameterInfo">
+            <summary>Sets the shim of ValuesAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.ShimValuesAttribute.AllInstances">
             <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.ShimValuesAttribute.AllInstances.GetDataParameterInfo">
+            <summary>Sets the shim of ValuesAttribute.GetData(ParameterInfo parameter)</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.StubAssert">
             <summary>Stub type of NUnit.Framework.Assert</summary>
@@ -10549,6 +10867,72 @@
         <member name="P:NUnit.Framework.Fakes.StubITestAction.n::NUnit#Framework#ITestAction#Targets">
             <summary>Sets the stub of ITestAction.get_Targets()</summary>
         </member>
+        <member name="T:NUnit.Framework.Fakes.StubITestCaseData">
+            <summary>Stub type of NUnit.Framework.ITestCaseData</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubITestCaseData.#ctor">
+            <summary>Initializes a new instance of type StubITestCaseData</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.ArgumentsGet">
+            <summary>Sets the stub of ITestCaseData.get_Arguments()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.DescriptionGet">
+            <summary>Sets the stub of ITestCaseData.get_Description()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.ExpectedExceptionGet">
+            <summary>Sets the stub of ITestCaseData.get_ExpectedException()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.ExpectedExceptionNameGet">
+            <summary>Sets the stub of ITestCaseData.get_ExpectedExceptionName()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.ExplicitGet">
+            <summary>Sets the stub of ITestCaseData.get_Explicit()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.HasExpectedResultGet">
+            <summary>Sets the stub of ITestCaseData.get_HasExpectedResult()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.IgnoreReasonGet">
+            <summary>Sets the stub of ITestCaseData.get_IgnoreReason()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.IgnoredGet">
+            <summary>Sets the stub of ITestCaseData.get_Ignored()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.ResultGet">
+            <summary>Sets the stub of ITestCaseData.get_Result()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubITestCaseData.TestNameGet">
+            <summary>Sets the stub of ITestCaseData.get_TestName()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#Arguments">
+            <summary>Sets the stub of ITestCaseData.get_Arguments()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#Description">
+            <summary>Sets the stub of ITestCaseData.get_Description()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#ExpectedException">
+            <summary>Sets the stub of ITestCaseData.get_ExpectedException()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#ExpectedExceptionName">
+            <summary>Sets the stub of ITestCaseData.get_ExpectedExceptionName()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#Explicit">
+            <summary>Sets the stub of ITestCaseData.get_Explicit()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#HasExpectedResult">
+            <summary>Sets the stub of ITestCaseData.get_HasExpectedResult()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#IgnoreReason">
+            <summary>Sets the stub of ITestCaseData.get_IgnoreReason()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#Ignored">
+            <summary>Sets the stub of ITestCaseData.get_Ignored()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#Result">
+            <summary>Sets the stub of ITestCaseData.get_Result()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubITestCaseData.n::NUnit#Framework#ITestCaseData#TestName">
+            <summary>Sets the stub of ITestCaseData.get_TestName()</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.StubIgnoreAttribute">
             <summary>Stub type of NUnit.Framework.IgnoreAttribute</summary>
         </member>
@@ -10939,6 +11323,60 @@
         <member name="P:NUnit.Framework.Fakes.StubPairwiseAttribute.TypeId">
             <summary>Sets the stub of Attribute.get_TypeId()</summary>
         </member>
+        <member name="T:NUnit.Framework.Fakes.StubParameterDataAttribute">
+            <summary>Stub type of NUnit.Framework.ParameterDataAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubParameterDataAttribute.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubParameterDataAttribute.Equals(System.Object)">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubParameterDataAttribute.EqualsObject">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubParameterDataAttribute.GetData(System.Reflection.ParameterInfo)">
+            <summary>Sets the stub of ParameterDataAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubParameterDataAttribute.GetDataParameterInfo">
+            <summary>Sets the stub of ParameterDataAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubParameterDataAttribute.GetHashCode">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubParameterDataAttribute.GetHashCode01">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubParameterDataAttribute.InitializeStub">
+            <summary>Initializes a new instance of type StubParameterDataAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubParameterDataAttribute.IsDefaultAttribute">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubParameterDataAttribute.IsDefaultAttribute01">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubParameterDataAttribute.Match(System.Object)">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubParameterDataAttribute.MatchObject">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubParameterDataAttribute.TypeIdGet">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubParameterDataAttribute.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubParameterDataAttribute.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubParameterDataAttribute.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubParameterDataAttribute.TypeId">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.StubPlatformAttribute">
             <summary>Stub type of NUnit.Framework.PlatformAttribute</summary>
         </member>
@@ -11050,6 +11488,66 @@
         <member name="P:NUnit.Framework.Fakes.StubPropertyAttribute.TypeId">
             <summary>Sets the stub of Attribute.get_TypeId()</summary>
         </member>
+        <member name="T:NUnit.Framework.Fakes.StubRandomAttribute">
+            <summary>Stub type of NUnit.Framework.RandomAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.#ctor(System.Int32)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.#ctor(System.Double,System.Double,System.Int32)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.Equals(System.Object)">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRandomAttribute.EqualsObject">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.GetData(System.Reflection.ParameterInfo)">
+            <summary>Sets the stub of RandomAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRandomAttribute.GetDataParameterInfo">
+            <summary>Sets the stub of RandomAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.GetHashCode">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRandomAttribute.GetHashCode01">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.InitializeStub">
+            <summary>Initializes a new instance of type StubRandomAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.IsDefaultAttribute">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRandomAttribute.IsDefaultAttribute01">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRandomAttribute.Match(System.Object)">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRandomAttribute.MatchObject">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRandomAttribute.TypeIdGet">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRandomAttribute.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRandomAttribute.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRandomAttribute.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRandomAttribute.TypeId">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
         <member name="T:NUnit.Framework.Fakes.StubRandomizer">
             <summary>Stub type of NUnit.Framework.Randomizer</summary>
         </member>
@@ -11106,6 +11604,72 @@
         </member>
         <member name="P:NUnit.Framework.Fakes.StubRandomizer.InstanceObserver">
             <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:NUnit.Framework.Fakes.StubRangeAttribute">
+            <summary>Stub type of NUnit.Framework.RangeAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.#ctor(System.Double,System.Double,System.Double)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.#ctor(System.Int64,System.Int64,System.Int64)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.#ctor(System.Single,System.Single,System.Single)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.Equals(System.Object)">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRangeAttribute.EqualsObject">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.GetData(System.Reflection.ParameterInfo)">
+            <summary>Sets the stub of ValuesAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRangeAttribute.GetDataParameterInfo">
+            <summary>Sets the stub of ValuesAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.GetHashCode">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRangeAttribute.GetHashCode01">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.InitializeStub">
+            <summary>Initializes a new instance of type StubRangeAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.IsDefaultAttribute">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRangeAttribute.IsDefaultAttribute01">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubRangeAttribute.Match(System.Object)">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRangeAttribute.MatchObject">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubRangeAttribute.TypeIdGet">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRangeAttribute.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRangeAttribute.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRangeAttribute.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubRangeAttribute.TypeId">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
         </member>
         <member name="T:NUnit.Framework.Fakes.StubRepeatAttribute">
             <summary>Stub type of NUnit.Framework.RepeatAttribute</summary>
@@ -12383,6 +12947,69 @@
             <summary>Gets or sets the instance observer.</summary>
         </member>
         <member name="P:NUnit.Framework.Fakes.StubValueSourceAttribute.TypeId">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
+        <member name="T:NUnit.Framework.Fakes.StubValuesAttribute">
+            <summary>Stub type of NUnit.Framework.ValuesAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.#ctor(System.Object)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.#ctor(System.Object[])">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.#ctor(System.Object,System.Object)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.#ctor(System.Object,System.Object,System.Object)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.Equals(System.Object)">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubValuesAttribute.EqualsObject">
+            <summary>Sets the stub of Attribute.Equals(Object obj)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.GetData(System.Reflection.ParameterInfo)">
+            <summary>Sets the stub of ValuesAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubValuesAttribute.GetDataParameterInfo">
+            <summary>Sets the stub of ValuesAttribute.GetData(ParameterInfo parameter)</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.GetHashCode">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubValuesAttribute.GetHashCode01">
+            <summary>Sets the stub of Attribute.GetHashCode()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.InitializeStub">
+            <summary>Initializes a new instance of type StubValuesAttribute</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.IsDefaultAttribute">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubValuesAttribute.IsDefaultAttribute01">
+            <summary>Sets the stub of Attribute.IsDefaultAttribute()</summary>
+        </member>
+        <member name="M:NUnit.Framework.Fakes.StubValuesAttribute.Match(System.Object)">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubValuesAttribute.MatchObject">
+            <summary>Sets the stub of Attribute.Match(Object obj)</summary>
+        </member>
+        <member name="F:NUnit.Framework.Fakes.StubValuesAttribute.TypeIdGet">
+            <summary>Sets the stub of Attribute.get_TypeId()</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubValuesAttribute.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubValuesAttribute.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubValuesAttribute.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:NUnit.Framework.Fakes.StubValuesAttribute.TypeId">
             <summary>Sets the stub of Attribute.get_TypeId()</summary>
         </member>
     </members>
