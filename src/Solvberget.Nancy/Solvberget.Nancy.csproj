@@ -80,6 +80,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Modules\BlogModule.cs" />
+    <Compile Include="Modules\DocumentModule.cs" />
+    <Compile Include="Modules\EventModule.cs" />
+    <Compile Include="Modules\InformationModule.cs" />
+    <Compile Include="Modules\ListModule.cs" />
+    <Compile Include="Modules\NewsModule.cs" />
+    <Compile Include="Modules\SuggestionModule.cs" />
+    <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Solvberget.Domain\Solvberget.Domain.csproj">
+      <Project>{7eb0d844-7622-4f0d-a103-c326c6fa1293}</Project>
+      <Name>Solvberget.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
