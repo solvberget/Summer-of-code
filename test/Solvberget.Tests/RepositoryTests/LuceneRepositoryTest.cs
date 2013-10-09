@@ -14,7 +14,6 @@ using NUnit.Framework;
 
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
-using Solvberget.Service.Infrastructure;
 
 
 namespace Solvberget.Service.Tests.RepositoryTests

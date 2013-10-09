@@ -4,6 +4,6 @@ namespace Solvberget.Nancy
 {
     public class Bootstrapper : AutofacNancyBootstrapper
     {
-         
+           
     }
 }
