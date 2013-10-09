@@ -40,8 +40,16 @@ namespace Solvberget.Domain.Implementation
 
         public DateTime? GetTimestampForLatestChange()
         {
-            var newestFile = FileUtils.GetNewestFile(new DirectoryInfo(_folderPath));
+            var newestFile = GetNewestFile(new DirectoryInfo(_folderPath));
             return newestFile != null ? (DateTime?)newestFile.LastWriteTimeUtc : null;
+        }
+
+        private static FileInfo GetNewestFile(DirectoryInfo directory)
+        {
+            return directory.GetFiles()
+                .Union(directory.GetDirectories().Select(GetNewestFile))
+                .OrderByDescending(f => (f == null ? DateTime.MinValue : f.LastWriteTime))
+                .FirstOrDefault();
         }
 
         //private void AddContentToList(LibraryList libraryList)

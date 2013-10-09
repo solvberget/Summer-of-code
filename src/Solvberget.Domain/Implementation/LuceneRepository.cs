@@ -44,7 +44,7 @@ namespace Solvberget.Domain.Implementation
             _pathToDictDir = string.IsNullOrEmpty(indexPath)
                 ? @"App_Data\ordlister_index" : indexPath;
 
-            _suggestionList = new HashMap();
+            _suggestionList = new HashSet<string>();
 
             _documentRepository = documentRepository;
 
@@ -65,7 +65,7 @@ namespace Solvberget.Domain.Implementation
          * SUGGESTION LIST
          **/
 
-        private readonly HashMap _suggestionList;
+        private readonly HashSet<string> _suggestionList;
 
         public void UpdateSuggestionListFromAlephSearch(string searchValue)
         {
@@ -103,7 +103,7 @@ namespace Solvberget.Domain.Implementation
         {
             try
             {
-                File.WriteAllLines(_pathToSuggestionsDict, _suggestionList.Values.ToArray());
+                File.WriteAllLines(_pathToSuggestionsDict, _suggestionList.ToArray());
             }
             catch (Exception e)
             {
@@ -178,7 +178,7 @@ namespace Solvberget.Domain.Implementation
         public string[] SuggestionList()
         {
             InitSuggestionListFromFile();
-            var suggestions = _suggestionList.Values.ToArray();
+            var suggestions = _suggestionList.ToArray();
             return suggestions;
         }
     }
