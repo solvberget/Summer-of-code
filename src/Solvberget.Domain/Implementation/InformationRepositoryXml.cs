@@ -18,8 +18,11 @@ namespace Solvberget.Domain.Implementation
         private const string StdFilePathContact = @"App_Data\info\contact.xml";
         private readonly string _filePathContact;
 
-        public InformationRepositoryXml(string filePathOpening = null, string filePathContact = null)
+        public InformationRepositoryXml(IEnvironmentPathProvider environment)
         {
+            var filePathOpening = environment.GetOpeningInfoAsXmlPath();
+            var filePathContact = environment.GetContactInfoAsXmlPath();
+
             _filePathOpening = string.IsNullOrEmpty(filePathOpening) ? StdFilePathOpening : filePathOpening;
             _filePathContact = string.IsNullOrEmpty(filePathContact) ? StdFilePathContact : filePathContact;
         }

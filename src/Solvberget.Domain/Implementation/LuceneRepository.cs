@@ -33,8 +33,10 @@ namespace Solvberget.Domain.Implementation
 
         private readonly IRepository _documentRepository;
 
-        public LuceneRepository(string indexPath = null, string suggestionPath = null, IRepository documentRepository = null)
+        public LuceneRepository(IEnvironmentPathProvider environment, IRepository documentRepository = null)
         {
+            var indexPath = environment.GetDictionaryIndexPath();
+            var suggestionPath = environment.GetSuggestionListPath();
 
             _pathToSuggestionsDict = string.IsNullOrEmpty(suggestionPath)
                 ? @"App_Data\ordlister\ord_forslag.txt" : suggestionPath;

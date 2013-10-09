@@ -18,10 +18,12 @@ namespace Solvberget.Domain.Implementation
         private readonly IRepository _repository;
         private readonly IImageRepository _imageRepository;
 
-        public LibraryListXmlRepository(IRepository repository, IImageRepository imageRepository, string folderPath = null)
+        public LibraryListXmlRepository(IRepository repository, IImageRepository imageRepository, IEnvironmentPathProvider environment)
         {
             _repository = repository;
             _imageRepository = imageRepository;
+
+            var folderPath = environment.GetXmlListPath();
             _folderPath = string.IsNullOrEmpty(folderPath) ? StdFolderPath : folderPath;
         }
 

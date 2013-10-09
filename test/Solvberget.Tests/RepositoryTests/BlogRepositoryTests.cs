@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
+using FakeItEasy;
+
 using NUnit.Framework;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
@@ -19,7 +22,11 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [SetUp]
         public void InitRepository()
         {
-            _repository = new BlogRepository(PathToBlogsFolder);
+            var fake = A.Fake<IEnvironmentPathProvider>();
+
+            A.CallTo(() => fake.GetBlogFeedPath()).Returns(PathToBlogsFolder);
+
+            _repository = new BlogRepository(fake);
         }
 
         [Test]

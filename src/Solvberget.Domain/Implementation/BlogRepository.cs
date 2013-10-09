@@ -14,8 +14,9 @@ namespace Solvberget.Domain.Implementation
         private const string BlogFeedsFile = @"feeds.xml";
         private readonly string _folderPath;
 
-        public BlogRepository(string folderPath = null)
+        public BlogRepository(IEnvironmentPathProvider environment)
         {
+            var folderPath = environment.GetBlogFeedPath();
             _folderPath = string.IsNullOrEmpty(folderPath) ? StdFolderPath : folderPath;
         }
 

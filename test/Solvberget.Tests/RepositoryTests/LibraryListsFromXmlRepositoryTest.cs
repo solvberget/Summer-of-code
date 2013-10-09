@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+
+using FakeItEasy;
+
 using NUnit.Framework;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
@@ -20,9 +23,15 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [TestFixtureSetUp]
         public void Init()
         {
+            var fake = A.Fake<IEnvironmentPathProvider>();
+
+            A.CallTo(() => fake.GetImageCachePath()).Returns(_imageCache);
+
             var path = Path.Combine(Environment.CurrentDirectory, PathString);
-            var aleph = new AlephRepository(_imageCache);
-            _listRepository = new LibraryListXmlRepository(aleph, new ImageRepository(aleph, _imageCache), path);
+            A.CallTo(() => fake.GetXmlListPath()).Returns(path);
+
+            var aleph = new AlephRepository(fake);
+            _listRepository = new LibraryListXmlRepository(aleph, new ImageRepository(aleph, fake), fake);
         }
 
         [Test]

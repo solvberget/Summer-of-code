@@ -17,10 +17,12 @@ namespace Solvberget.Domain.Implementation
         private readonly IRepository _documentRepository;
         private readonly IImageRepository _imageRepository;
 
-        public LibraryListDynamicRepository(IRepository documentRepository, IImageRepository imageRepository, string xmlFilePath = null)
+        public LibraryListDynamicRepository(IRepository documentRepository, IImageRepository imageRepository, IEnvironmentPathProvider environment)
         {
             this._documentRepository = documentRepository;
             this._imageRepository = imageRepository;
+
+            var xmlFilePath = environment.GetXmlFilePath();
             _xmlFolderPath = string.IsNullOrEmpty(xmlFilePath) ? StdFolderPath : xmlFilePath;
         }
 

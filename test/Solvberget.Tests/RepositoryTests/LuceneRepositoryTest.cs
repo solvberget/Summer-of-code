@@ -7,7 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
+
+using FakeItEasy;
+
 using NUnit.Framework;
+
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
 using Solvberget.Service.Infrastructure;
 
@@ -30,9 +35,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
             _dictPath = Path.Combine(_basepath, @"ordlister\ord_test.txt");
             _indexPath = Path.Combine(_basepath, @"ordlister_index");
 
+            var fake = A.Fake<IEnvironmentPathProvider>();
 
-            var documentRepository = new AlephRepository();
-            _repository = new LuceneRepository(_indexPath, _dictPath, documentRepository);
+            A.CallTo(() => fake.GetDictionaryIndexPath()).Returns(_indexPath);
+            A.CallTo(() => fake.GetSuggestionListPath()).Returns(_dictPath);
+
+            var documentRepository = new AlephRepository(fake);
+            _repository = new LuceneRepository(fake, documentRepository);
 
             DictionaryBuilder.Build(_dictPath, _indexPath);
 

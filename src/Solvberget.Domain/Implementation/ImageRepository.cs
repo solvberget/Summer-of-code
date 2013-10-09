@@ -18,9 +18,9 @@ namespace Solvberget.Domain.Implementation
         private readonly string _xmluri = string.Empty;
         private readonly StorageHelper _storageHelper;
 
-        public ImageRepository(IRepository documentRepository, string pathToImageCache = null)
+        public ImageRepository(IRepository documentRepository, IEnvironmentPathProvider environment)
         {
-
+            var pathToImageCache = environment.GetImageCachePath();
 
             _documentRepository = documentRepository;
 

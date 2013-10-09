@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+
+using FakeItEasy;
+
 using NUnit.Framework;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
@@ -17,9 +20,11 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [SetUp]
         public void InitRepository()
         {
-            
-            _imageRepository = new ImageRepository(new AlephRepository(_imageCache),_imageCache);
-            
+            var fake = A.Fake<IEnvironmentPathProvider>();
+
+            A.CallTo(() => fake.GetImageCachePath()).Returns(_imageCache);
+
+            _imageRepository = new ImageRepository(new AlephRepository(fake), fake);
         }
 
         [Test]

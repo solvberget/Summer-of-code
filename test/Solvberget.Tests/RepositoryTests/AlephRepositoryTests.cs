@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+
+using FakeItEasy;
+
 using NUnit.Framework;
+
+using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Implementation;
 
@@ -20,7 +25,12 @@ namespace Solvberget.Service.Tests.RepositoryTests
         [SetUp]
         public void InitRepository()
         {
-            _repository = new AlephRepository(_imageCache, _pathToRulesFolder);
+            var fake = A.Fake<IEnvironmentPathProvider>();
+
+            A.CallTo(() => fake.GetImageCachePath()).Returns(_imageCache);
+            A.CallTo(() => fake.GetRulesPath()).Returns(_pathToRulesFolder);
+
+            _repository = new AlephRepository(fake);
         }
 
         [Test]

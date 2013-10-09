@@ -26,10 +26,13 @@ namespace Solvberget.Domain.Implementation
 
         private const string UserPinSucessReply = "Passordet er sendt";
 
-        public AlephRepository(string pathToImageCache = null, string pathToRulesFolder = null)
+        public AlephRepository(IEnvironmentPathProvider environment)
         {
+            var pathToImageCache = environment.GetImageCachePath();
+            var pathToRulesFolder = environment.GetRulesPath();
+
             _storageHelper = new StorageHelper(pathToImageCache);
-            _imageRepository = new ImageRepository(null, pathToImageCache);
+            _imageRepository = new ImageRepository(null, environment);
             if (pathToRulesFolder != null)
                 _rulesRepository = new RulesRepository(pathToRulesFolder);
 
