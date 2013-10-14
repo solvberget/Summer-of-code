@@ -1,6 +1,6 @@
 # How to contribute
 
-Here are a few guidelines that everyone should follow so that we have a chance of keeping on top of things.
+Here are a few guidelines based on [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) that everyone should follow so that we have a chance of keeping on top of things.
 
 ## Making Changes
 
