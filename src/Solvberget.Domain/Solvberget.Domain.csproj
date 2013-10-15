@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7EB0D844-7622-4F0D-A103-C326C6FA1293}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Solvberget.Domain</RootNamespace>
+    <AssemblyName>Solvberget.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.4.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\packages\Lucene.Net.2.9.4.1\lib\net40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Analyzers">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Analyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Core">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Highlighter">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Highlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Queries">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Queries.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Snowball">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Snowball.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Spatial">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.FastVectorHighlighter">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.FastVectorHighlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Search.SimpleFacetedSearch">
+      <HintPath>..\..\packages\Lucene.Net.Contrib.2.9.4.1\lib\net40\Lucene.Net.Search.SimpleFacetedSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IEnvironmentPathProvider.cs" />
+    <Compile Include="Abstract\IInformationRepository.cs" />
+    <Compile Include="Abstract\IEventRepository.cs" />
+    <Compile Include="Abstract\IImageRepository.cs" />
+    <Compile Include="Abstract\IListRepositoryStatic.cs" />
+    <Compile Include="Abstract\IBlogRepository.cs" />
+    <Compile Include="Abstract\INewsRepository.cs" />
+    <Compile Include="Abstract\IRatingRepository.cs" />
+    <Compile Include="Abstract\IReviewRepository.cs" />
+    <Compile Include="Abstract\IRootPathProvider.cs" />
+    <Compile Include="Abstract\IRulesRepository.cs" />
+    <Compile Include="Abstract\ISuggestionDictionary.cs" />
+    <Compile Include="Abstract\IListRepository.cs" />
+    <Compile Include="DTO\Blog.cs" />
+    <Compile Include="DTO\BlogEntry.cs" />
+    <Compile Include="DTO\BokElskereBok.cs" />
+    <Compile Include="DTO\ContactPerson.cs" />
+    <Compile Include="DTO\Game.cs" />
+    <Compile Include="DTO\Information.cs" />
+    <Compile Include="DTO\ItemRule.cs" />
+    <Compile Include="DTO\ImdbObject.cs" />
+    <Compile Include="DTO\LanguageCourse.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="DTO\AudioBook.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\AvailabilityInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\BokBasenBook.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Book.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Cd.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\ContactInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\ContactWebPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Document.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\DocumentItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Event.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\ExtensionHelpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Film.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Notification.cs" />
+    <Compile Include="DTO\NewsItem.cs" />
+    <Compile Include="DTO\RequestReply.cs" />
+    <Compile Include="DTO\LastFmAlbum.cs" />
+    <Compile Include="DTO\Fine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Journal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\LibraryList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Loan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\OpeningHoursInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\OpeningHoursWebPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Organization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Person.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Reservation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\RootPathProvider.cs" />
+    <Compile Include="DTO\SheetMusic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\UserInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DTO\Webpage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Implementation\AlephRepository.cs" />
+    <Compile Include="Implementation\BokbasenRepository.cs" />
+    <Compile Include="Implementation\BlogRepository.cs" />
+    <Compile Include="Implementation\BokelskereRepository.cs" />
+    <Compile Include="Implementation\EnvironmentPathProvider.cs" />
+    <Compile Include="Implementation\InformationRepositoryXml.cs" />
+    <Compile Include="Implementation\InformationRepositoryHtml.cs" />
+    <Compile Include="Implementation\NewsRepository.cs" />
+    <Compile Include="Implementation\RulesRepository.cs" />
+    <Compile Include="Implementation\ImdbRepository.cs" />
+    <Compile Include="Implementation\DictionaryBuilder.cs" />
+    <Compile Include="Implementation\ImageRepository.cs" />
+    <Compile Include="Implementation\LastFmRepository.cs" />
+    <Compile Include="Implementation\LibraryListDynamicRepository.cs" />
+    <Compile Include="Implementation\LinticketRepository.cs" />
+    <Compile Include="Implementation\LibraryListXmlRepository.cs" />
+    <Compile Include="Implementation\LuceneRepository.cs" />
+    <Compile Include="Implementation\ReviewRepository.cs" />
+    <Compile Include="Implementation\RatingRepository.cs" />
+    <Compile Include="Utils\StorageHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Utils\RepositoryUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
