@@ -6,7 +6,7 @@
   <UsingTask AssemblyFile="..\tools\xunit\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
   
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">CI</Configuration>
     <Root>$(MSBuildThisFileDirectory)..\</Root>
     <BaseArtifactsPath>$(Root)artifacts\</BaseArtifactsPath>
     <ArtifactsPath>$(BaseArtifactsPath)$(Configuration)\</ArtifactsPath>
