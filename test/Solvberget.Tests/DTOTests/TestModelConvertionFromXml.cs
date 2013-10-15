@@ -1,560 +1,558 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
-using NUnit.Framework;
+
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Implementation;
 
+using Xunit;
+
 namespace Solvberget.Service.Tests.DTOTests
 {
-    [TestFixture]
     public class TestModelConvertionFromXml
     {
-
         private readonly string _pathToRulesFolder = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\bin\App_Data\rules\");
-        private IRulesRepository _repository;
+        private readonly IRulesRepository _repository;
 
-        [SetUp]
-        public void InitRepository()
+        public TestModelConvertionFromXml()
         {
             _repository = new RulesRepository(_pathToRulesFolder);
         }
         
-        [Test]
+        [Fact]
         public void GetDocumentFromXmlTest()
         {
             var media = Document.GetObjectFromFindDocXmlBsMarc(getBookXml());
 
-            Assert.AreEqual("123456789", media.DocumentNumber);
+            Assert.Equal("123456789", media.DocumentNumber);
 
-            Assert.AreEqual("Voksne", media.TargetGroup);
+            Assert.Equal("Voksne", media.TargetGroup);
 
-            Assert.AreEqual("Fiksjon", media.IsFiction);
+            Assert.Equal("Fiksjon", media.IsFiction);
 
-            Assert.AreEqual("Flerspråklig", media.Language);
+            Assert.Equal("Flerspråklig", media.Language);
 
-            Assert.AreEqual("Norsk bokmål", media.Languages.ElementAt(0));
-            Assert.AreEqual("Svensk", media.Languages.ElementAt(1));
-            Assert.AreEqual("Engelsk", media.Languages.ElementAt(2));
+            Assert.Equal("Norsk bokmål", media.Languages.ElementAt(0));
+            Assert.Equal("Svensk", media.Languages.ElementAt(1));
+            Assert.Equal("Engelsk", media.Languages.ElementAt(2));
 
-            Assert.AreEqual("l", media.DocumentType.ElementAt(0));
+            Assert.Equal("l", media.DocumentType.ElementAt(0));
 
-            Assert.AreEqual("LOE", media.LocationCode);
+            Assert.Equal("LOE", media.LocationCode);
 
-            Assert.AreEqual("Naiv. Super", media.Title);
+            Assert.Equal("Naiv. Super", media.Title);
 
-            Assert.AreEqual("Supert", media.SubTitle);
+            Assert.Equal("Supert", media.SubTitle);
 
-            Assert.AreEqual("Erlend Loe", media.ResponsiblePersons.ElementAt(0));
+            Assert.Equal("Erlend Loe", media.ResponsiblePersons.ElementAt(0));
 
-            Assert.AreEqual("[Oslo]", media.PlacePublished);
+            Assert.Equal("[Oslo]", media.PlacePublished);
 
-            Assert.AreEqual("Cappelen Damm", media.Publisher);
+            Assert.Equal("Cappelen Damm", media.Publisher);
 
-            Assert.AreEqual(2010, media.PublishedYear);
+            Assert.Equal(2010, media.PublishedYear);
 
-            Assert.AreEqual("Favoritt", media.SeriesTitle);
+            Assert.Equal("Favoritt", media.SeriesTitle);
 
-            Assert.AreEqual("5", media.SeriesNumber);
+            Assert.Equal("5", media.SeriesNumber);
 
-            Assert.AreEqual("Document", media.DocType);
+            Assert.Equal("Document", media.DocType);
 
         }
 
-        [Test]
+        [Fact]
         public void GetDocumentLightFromXmlTest()
         {
             var media = Document.GetObjectFromFindDocXmlBsMarcLight(getBookXml());
-            Assert.AreEqual("123456789", media.DocumentNumber);
-            Assert.AreEqual("Flerspråklig", media.Language);
-            Assert.AreEqual("l", media.DocumentType.ElementAt(0));
-            Assert.AreEqual("Naiv. Super", media.Title);
-            Assert.AreEqual(2010, media.PublishedYear);
-            Assert.AreEqual("Document", media.DocType);
+            Assert.Equal("123456789", media.DocumentNumber);
+            Assert.Equal("Flerspråklig", media.Language);
+            Assert.Equal("l", media.DocumentType.ElementAt(0));
+            Assert.Equal("Naiv. Super", media.Title);
+            Assert.Equal(2010, media.PublishedYear);
+            Assert.Equal("Document", media.DocType);
         }
 
-        [Test]
+        [Fact]
         public void GetBookFromXmlTest()
         {
             var book = Book.GetObjectFromFindDocXmlBsMarc(getBookXml());
 
-            Assert.AreEqual("978-82-02-33225-9", book.Isbn);
+            Assert.Equal("978-82-02-33225-9", book.Isbn);
 
-            Assert.AreEqual("598.0948", book.ClassificationNr);
+            Assert.Equal("598.0948", book.ClassificationNr);
 
-            Assert.AreEqual("Erlend Loe", book.Author.Name);
-            Assert.AreEqual("1969-", book.Author.LivingYears);
-            Assert.AreEqual("n", book.Author.Nationality);
+            Assert.Equal("Erlend Loe", book.Author.Name);
+            Assert.Equal("1969-", book.Author.LivingYears);
+            Assert.Equal("n", book.Author.Nationality);
 
-            Assert.AreEqual("Super Naiv", book.StdOrOrgTitle);
+            Assert.Equal("Super Naiv", book.StdOrOrgTitle);
 
-            Assert.AreEqual("5", book.Numbering);
+            Assert.Equal("5", book.Numbering);
 
-            Assert.AreEqual("Tittel for del", book.PartTitle);
+            Assert.Equal("Tittel for del", book.PartTitle);
 
-            Assert.AreEqual("5. oppl.", book.Edition);
+            Assert.Equal("5. oppl.", book.Edition);
 
-            Assert.AreEqual("205 s.", book.NumberOfPages);
+            Assert.Equal("205 s.", book.NumberOfPages);
 
-            Assert.AreEqual("Innhold: Et liv i fellesskap ; Bibelens bønnebok", book.Content);
+            Assert.Equal("Innhold: Et liv i fellesskap ; Bibelens bønnebok", book.Content);
 
-            Assert.AreEqual("Kristendom", book.Subject.ElementAt(0));
-            Assert.AreEqual("Buddhisme", book.Subject.ElementAt(1));
-            Assert.AreEqual("Religionsvitenskap", book.Subject.ElementAt(2));
+            Assert.Equal("Kristendom", book.Subject.ElementAt(0));
+            Assert.Equal("Buddhisme", book.Subject.ElementAt(1));
+            Assert.Equal("Religionsvitenskap", book.Subject.ElementAt(2));
 
-            Assert.AreEqual("Norge", book.ReferencedPlaces.ElementAt(0));
-            Assert.AreEqual("Rogaland", book.ReferencedPlaces.ElementAt(1));
+            Assert.Equal("Norge", book.ReferencedPlaces.ElementAt(0));
+            Assert.Equal("Rogaland", book.ReferencedPlaces.ElementAt(1));
 
-            Assert.AreEqual("Action", book.Genre.ElementAt(0));
-            Assert.AreEqual("Komedie", book.Genre.ElementAt(1));
+            Assert.Equal("Action", book.Genre.ElementAt(0));
+            Assert.Equal("Komedie", book.Genre.ElementAt(1));
 
-            Assert.AreEqual(1, book.ReferredPersons.Count());
-            Assert.AreEqual("Knut Hamsun", book.ReferredPersons.ElementAt(0).Name);
-            Assert.AreEqual("1859-1952", book.ReferredPersons.ElementAt(0).LivingYears);
-            Assert.AreEqual("Norsk", book.ReferredPersons.ElementAt(0).Nationality);
-            Assert.AreEqual("Sult", book.ReferredPersons.ElementAt(0).ReferredWork);
+            Assert.Equal(1, book.ReferredPersons.Count());
+            Assert.Equal("Knut Hamsun", book.ReferredPersons.ElementAt(0).Name);
+            Assert.Equal("1859-1952", book.ReferredPersons.ElementAt(0).LivingYears);
+            Assert.Equal("Norsk", book.ReferredPersons.ElementAt(0).Nationality);
+            Assert.Equal("Sult", book.ReferredPersons.ElementAt(0).ReferredWork);
 
-            Assert.AreEqual(1, book.ReferredOrganizations.Count());
-            Assert.AreEqual("Capgemini", book.ReferredOrganizations.ElementAt(0).Name);
-            Assert.AreEqual("B-tech", book.ReferredOrganizations.ElementAt(0).UnderOrganization);
-            Assert.AreEqual("Forklaring", book.ReferredOrganizations.ElementAt(0).FurtherExplanation);
-            Assert.AreEqual("Visjon", book.ReferredOrganizations.ElementAt(0).ReferencedPublication);
+            Assert.Equal(1, book.ReferredOrganizations.Count());
+            Assert.Equal("Capgemini", book.ReferredOrganizations.ElementAt(0).Name);
+            Assert.Equal("B-tech", book.ReferredOrganizations.ElementAt(0).UnderOrganization);
+            Assert.Equal("Forklaring", book.ReferredOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.Equal("Visjon", book.ReferredOrganizations.ElementAt(0).ReferencedPublication);
 
-            Assert.AreEqual(2, book.InvolvedPersons.Count());
-            Assert.AreEqual("Harald V", book.InvolvedPersons.ElementAt(0).Name);
-            Assert.AreEqual("1937-", book.InvolvedPersons.ElementAt(0).LivingYears);
-            Assert.AreEqual("Norsk", book.InvolvedPersons.ElementAt(0).Nationality);
-            Assert.AreEqual("Konge", book.InvolvedPersons.ElementAt(0).Role);
-            Assert.AreEqual("Kjell Inge Røkke", book.InvolvedPersons.ElementAt(1).Name);
-            Assert.AreEqual("1950-", book.InvolvedPersons.ElementAt(1).LivingYears);
-            Assert.AreEqual("Norsk", book.InvolvedPersons.ElementAt(1).Nationality);
-            Assert.AreEqual("Investor", book.InvolvedPersons.ElementAt(1).Role);
+            Assert.Equal(2, book.InvolvedPersons.Count());
+            Assert.Equal("Harald V", book.InvolvedPersons.ElementAt(0).Name);
+            Assert.Equal("1937-", book.InvolvedPersons.ElementAt(0).LivingYears);
+            Assert.Equal("Norsk", book.InvolvedPersons.ElementAt(0).Nationality);
+            Assert.Equal("Konge", book.InvolvedPersons.ElementAt(0).Role);
+            Assert.Equal("Kjell Inge Røkke", book.InvolvedPersons.ElementAt(1).Name);
+            Assert.Equal("1950-", book.InvolvedPersons.ElementAt(1).LivingYears);
+            Assert.Equal("Norsk", book.InvolvedPersons.ElementAt(1).Nationality);
+            Assert.Equal("Investor", book.InvolvedPersons.ElementAt(1).Role);
 
-            Assert.AreEqual(1, book.InvolvedOrganizations.Count());
-            Assert.AreEqual("Cappelen Damm", book.InvolvedOrganizations.ElementAt(0).Name);
-            Assert.AreEqual("Salg", book.InvolvedOrganizations.ElementAt(0).UnderOrganization);
-            Assert.AreEqual("Forklaring", book.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
-            Assert.AreEqual("Forlag", book.InvolvedOrganizations.ElementAt(0).Role);
+            Assert.Equal(1, book.InvolvedOrganizations.Count());
+            Assert.Equal("Cappelen Damm", book.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.Equal("Salg", book.InvolvedOrganizations.ElementAt(0).UnderOrganization);
+            Assert.Equal("Forklaring", book.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.Equal("Forlag", book.InvolvedOrganizations.ElementAt(0).Role);
 
-            Assert.AreEqual("Book", book.DocType);
+            Assert.Equal("Book", book.DocType);
 
-            Assert.AreEqual("Cappelen Damm", book.Publisher);
+            Assert.Equal("Cappelen Damm", book.Publisher);
         }
 
-        [Test]
+        [Fact]
         public void GetBookLightFromXmlTest()
         {
             var book1 = Book.GetObjectFromFindDocXmlBsMarcLight(getBookXml());
-            Assert.AreEqual("Erlend Loe", book1.Author.Name);
-            Assert.AreEqual("1969-", book1.Author.LivingYears);
-            Assert.AreEqual("n", book1.Author.Nationality);
-            Assert.AreEqual("Book", book1.DocType);
+            Assert.Equal("Erlend Loe", book1.Author.Name);
+            Assert.Equal("1969-", book1.Author.LivingYears);
+            Assert.Equal("n", book1.Author.Nationality);
+            Assert.Equal("Book", book1.DocType);
 
             var book2 = Book.GetObjectFromFindDocXmlBsMarcLight(getBookWithOrgXml());
-            Assert.AreEqual("Røde Kors", book2.Author.Name);
-            Assert.AreEqual("Røde Kors", book2.Organization.Name);
-            Assert.AreEqual("Hjelpekorpset", book2.Organization.UnderOrganization);
-            Assert.AreEqual("Hjelper folk", book2.Organization.FurtherExplanation);
+            Assert.Equal("Røde Kors", book2.Author.Name);
+            Assert.Equal("Røde Kors", book2.Organization.Name);
+            Assert.Equal("Hjelpekorpset", book2.Organization.UnderOrganization);
+            Assert.Equal("Hjelper folk", book2.Organization.FurtherExplanation);
 
             var book3 = Book.GetObjectFromFindDocXmlBsMarcLight(getBookWithStdTitleXml());
-            Assert.AreEqual("Røde Kors", book3.StandarizedTitle);
+            Assert.Equal("Røde Kors", book3.StandarizedTitle);
 
         }
 
-        [Test]
+        [Fact]
         public void GetBookWithOrganizationFromXmlTest()
         {
             var book = Book.GetObjectFromFindDocXmlBsMarc(getBookWithOrgXml());
 
-            Assert.AreEqual("Røde Kors", book.Author.Name);
-            Assert.AreEqual("Røde Kors", book.Organization.Name);
-            Assert.AreEqual("Hjelpekorpset", book.Organization.UnderOrganization);
-            Assert.AreEqual("Hjelper folk", book.Organization.FurtherExplanation);
+            Assert.Equal("Røde Kors", book.Author.Name);
+            Assert.Equal("Røde Kors", book.Organization.Name);
+            Assert.Equal("Hjelpekorpset", book.Organization.UnderOrganization);
+            Assert.Equal("Hjelper folk", book.Organization.FurtherExplanation);
 
         }
 
-        [Test]
+        [Fact]
         public void GetBookWithStdTitleFromXmlTest()
         {
             var book = Book.GetObjectFromFindDocXmlBsMarc(getBookWithStdTitleXml());
-            Assert.AreEqual("Røde Kors", book.StandarizedTitle);
+            Assert.Equal("Røde Kors", book.StandarizedTitle);
         }
 
-        [Test]
+        [Fact]
         public void GetFilmFromXmlTest()
         {
             var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
 
-            Assert.AreEqual("Fakta", film.IsFiction);
+            Assert.Equal("Fakta", film.IsFiction);
 
-            Assert.AreEqual("Barn og ungdom", film.TargetGroup);
+            Assert.Equal("Barn og ungdom", film.TargetGroup);
 
-            Assert.AreEqual("7041271735935", film.Ean);
+            Assert.Equal("7041271735935", film.Ean);
 
-            Assert.AreEqual("Norsk bokmål", film.SubtitleLanguage.FirstOrDefault());
-            Assert.AreEqual(4, film.SubtitleLanguage.Count());
+            Assert.Equal("Norsk bokmål", film.SubtitleLanguage.FirstOrDefault());
+            Assert.Equal(4, film.SubtitleLanguage.Count());
 
-            Assert.AreEqual("Max Manus", film.OriginalTitle);
+            Assert.Equal("Max Manus", film.OriginalTitle);
 
-            Assert.AreEqual("1", film.Numbering);
+            Assert.Equal("1", film.Numbering);
 
-            Assert.AreEqual("Max", film.PartTitle);
+            Assert.Equal("Max", film.PartTitle);
 
-            Assert.AreEqual("Collector's edition", film.Edition);
+            Assert.Equal("Collector's edition", film.Edition);
 
-            Assert.AreEqual("2008", film.ProductionYear);
+            Assert.Equal("2008", film.ProductionYear);
 
-            Assert.AreEqual("2 videoplater (DVD-video)(1 t 53 min)", film.TypeAndNumberOfDiscs);
+            Assert.Equal("2 videoplater (DVD-video)(1 t 53 min)", film.TypeAndNumberOfDiscs);
 
-            Assert.AreEqual("Innhold: Lily's theme ; Statues ; Neville the hero ; Courtyard apocalypse ; Severus and Lily ; Harry's sacrifice ; The resurrection stone ; A new beginning ; Lily's lullaby", film.Contents);
+            Assert.Equal("Innhold: Lily's theme ; Statues ; Neville the hero ; Courtyard apocalypse ; Severus and Lily ; Harry's sacrifice ; The resurrection stone ; A new beginning ; Lily's lullaby", film.Contents);
 
-            Assert.AreEqual("Aksel Hennie", film.Actors.ToList()[0].Name);
+            Assert.Equal("Aksel Hennie", film.Actors.ToList()[0].Name);
 
-            Assert.AreEqual("Aldersgrense: 15 år", film.AgeLimit);
+            Assert.Equal("Aldersgrense: 15 år", film.AgeLimit);
 
-            Assert.AreEqual("Max Manus", film.NorwegianTitle);
+            Assert.Equal("Max Manus", film.NorwegianTitle);
 
-            Assert.AreEqual("Undervisning", film.Subject);
+            Assert.Equal("Undervisning", film.Subject);
 
-            Assert.AreEqual("Norge", film.ReferencedPlaces.ElementAt(0));
+            Assert.Equal("Norge", film.ReferencedPlaces.ElementAt(0));
 
-            Assert.AreEqual("Popmusikk", film.CompositionType);
+            Assert.Equal("Popmusikk", film.CompositionType);
 
-            Assert.AreEqual("Drama", film.Genre.ElementAt(0));
+            Assert.Equal("Drama", film.Genre.ElementAt(0));
 
-            Assert.AreEqual(1, film.ReferredPersons.Count());
-            Assert.AreEqual("Knut Hamsun", film.ReferredPersons.ElementAt(0).Name);
-            Assert.AreEqual("1859-1952", film.ReferredPersons.ElementAt(0).LivingYears);
-            Assert.AreEqual("Norsk", film.ReferredPersons.ElementAt(0).Nationality);
-            Assert.AreEqual("Sult", film.ReferredPersons.ElementAt(0).ReferredWork);
+            Assert.Equal(1, film.ReferredPersons.Count());
+            Assert.Equal("Knut Hamsun", film.ReferredPersons.ElementAt(0).Name);
+            Assert.Equal("1859-1952", film.ReferredPersons.ElementAt(0).LivingYears);
+            Assert.Equal("Norsk", film.ReferredPersons.ElementAt(0).Nationality);
+            Assert.Equal("Sult", film.ReferredPersons.ElementAt(0).ReferredWork);
 
-            Assert.AreEqual(1, film.ReferredOrganizations.Count());
-            Assert.AreEqual("Capgemini", film.ReferredOrganizations.ElementAt(0).Name);
-            Assert.AreEqual("B-tech", film.ReferredOrganizations.ElementAt(0).UnderOrganization);
-            Assert.AreEqual("Forklaring", film.ReferredOrganizations.ElementAt(0).FurtherExplanation);
-            Assert.AreEqual("Visjon", film.ReferredOrganizations.ElementAt(0).ReferencedPublication);
+            Assert.Equal(1, film.ReferredOrganizations.Count());
+            Assert.Equal("Capgemini", film.ReferredOrganizations.ElementAt(0).Name);
+            Assert.Equal("B-tech", film.ReferredOrganizations.ElementAt(0).UnderOrganization);
+            Assert.Equal("Forklaring", film.ReferredOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.Equal("Visjon", film.ReferredOrganizations.ElementAt(0).ReferencedPublication);
 
-            Assert.AreEqual(2, film.InvolvedPersons.Count());
-            Assert.AreEqual("Espen Sandberg", film.InvolvedPersons.ElementAt(0).Name);
-            Assert.AreEqual("1971-", film.InvolvedPersons.ElementAt(0).LivingYears);
-            Assert.AreEqual("Norsk", film.InvolvedPersons.ElementAt(0).Nationality);
-            Assert.AreEqual("regissør", film.InvolvedPersons.ElementAt(0).Role);
-            Assert.AreEqual("Joachim Rønning", film.InvolvedPersons.ElementAt(1).Name);
-            Assert.AreEqual("1972-", film.InvolvedPersons.ElementAt(1).LivingYears);
-            Assert.AreEqual("Norsk", film.InvolvedPersons.ElementAt(1).Nationality);
-            Assert.AreEqual("regissør", film.InvolvedPersons.ElementAt(1).Role);
+            Assert.Equal(2, film.InvolvedPersons.Count());
+            Assert.Equal("Espen Sandberg", film.InvolvedPersons.ElementAt(0).Name);
+            Assert.Equal("1971-", film.InvolvedPersons.ElementAt(0).LivingYears);
+            Assert.Equal("Norsk", film.InvolvedPersons.ElementAt(0).Nationality);
+            Assert.Equal("regissør", film.InvolvedPersons.ElementAt(0).Role);
+            Assert.Equal("Joachim Rønning", film.InvolvedPersons.ElementAt(1).Name);
+            Assert.Equal("1972-", film.InvolvedPersons.ElementAt(1).LivingYears);
+            Assert.Equal("Norsk", film.InvolvedPersons.ElementAt(1).Nationality);
+            Assert.Equal("regissør", film.InvolvedPersons.ElementAt(1).Role);
 
-            Assert.AreEqual(1, film.InvolvedOrganizations.Count());
-            Assert.AreEqual("Cappelen Damm", film.InvolvedOrganizations.ElementAt(0).Name);
-            Assert.AreEqual("Salg", film.InvolvedOrganizations.ElementAt(0).UnderOrganization);
-            Assert.AreEqual("Forklaring", film.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
-            Assert.AreEqual("Forlag", film.InvolvedOrganizations.ElementAt(0).Role);
+            Assert.Equal(1, film.InvolvedOrganizations.Count());
+            Assert.Equal("Cappelen Damm", film.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.Equal("Salg", film.InvolvedOrganizations.ElementAt(0).UnderOrganization);
+            Assert.Equal("Forklaring", film.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.Equal("Forlag", film.InvolvedOrganizations.ElementAt(0).Role);
 
-            Assert.AreEqual("Film", film.DocType);
+            Assert.Equal("Film", film.DocType);
 
         }
 
-        [Test]
+        [Fact]
         public void GetFilmLightFromXmlTest()
         {
             var film = Film.GetObjectFromFindDocXmlBsMarcLight(getFilmXml());
-            Assert.AreEqual("Max Manus", film.OriginalTitle);
-            Assert.AreEqual("2008", film.ProductionYear);
-            Assert.AreEqual("Aldersgrense: 15 år", film.AgeLimit);
-            Assert.AreEqual("Drama", film.Genre.ElementAt(0));
-            Assert.AreEqual("Film", film.DocType);
+            Assert.Equal("Max Manus", film.OriginalTitle);
+            Assert.Equal("2008", film.ProductionYear);
+            Assert.Equal("Aldersgrense: 15 år", film.AgeLimit);
+            Assert.Equal("Drama", film.Genre.ElementAt(0));
+            Assert.Equal("Film", film.DocType);
         }
 
-        [Test]
+        [Fact]
         public void GetDocumentTypeFromXml()
         {
             var film = Film.GetObjectFromFindDocXmlBsMarc(getFilmXml());
-            Assert.AreEqual("ee", film.DocumentType.ElementAt(0));
+            Assert.Equal("ee", film.DocumentType.ElementAt(0));
 
         }
 
-        [Test]
+        [Fact]
         public void GetAudioBookFromXmlTest()
         {
             var audioBook = AudioBook.GetObjectFromFindDocXmlBsMarc(getAudioBookXML());
 
-            Assert.AreEqual("978-82-02-29195-2", audioBook.Isbn);
+            Assert.Equal("978-82-02-29195-2", audioBook.Isbn);
 
-            Assert.AreEqual("n781.542", audioBook.ClassificationNumber);
+            Assert.Equal("n781.542", audioBook.ClassificationNumber);
 
-            Assert.AreEqual("J.K. Rowling", audioBook.Author.Name);
+            Assert.Equal("J.K. Rowling", audioBook.Author.Name);
 
-            Assert.AreEqual("1965-", audioBook.Author.LivingYears);
+            Assert.Equal("1965-", audioBook.Author.LivingYears);
 
-            Assert.AreEqual("Engelsk", audioBook.Author.Nationality);
+            Assert.Equal("Engelsk", audioBook.Author.Nationality);
 
-            Assert.AreEqual("III", audioBook.Numbering);
+            Assert.Equal("III", audioBook.Numbering);
 
-            Assert.AreEqual("Atter en konge", audioBook.PartTitle);
+            Assert.Equal("Atter en konge", audioBook.PartTitle);
 
-            Assert.AreEqual("Collector's edition", audioBook.Edition);
+            Assert.Equal("Collector's edition", audioBook.Edition);
 
-            Assert.AreEqual("2 CDer (24 t, 35 min)", audioBook.TypeAndNumberOfDiscs);
+            Assert.Equal("2 CDer (24 t, 35 min)", audioBook.TypeAndNumberOfDiscs);
 
-            Assert.AreEqual("Harry Potter", audioBook.Subject);
+            Assert.Equal("Harry Potter", audioBook.Subject);
 
-            Assert.AreEqual("England", audioBook.ReferencedPlaces.ElementAt(0));
+            Assert.Equal("England", audioBook.ReferencedPlaces.ElementAt(0));
 
-            Assert.AreEqual("Fantasy", audioBook.Genre.ElementAt(0));
+            Assert.Equal("Fantasy", audioBook.Genre.ElementAt(0));
 
-            Assert.AreEqual(1, audioBook.ReferredPersons.Count());
-            Assert.AreEqual("Knut Hamsun", audioBook.ReferredPersons.ElementAt(0).Name);
-            Assert.AreEqual("1859-1952", audioBook.ReferredPersons.ElementAt(0).LivingYears);
-            Assert.AreEqual("Norsk", audioBook.ReferredPersons.ElementAt(0).Nationality);
-            Assert.AreEqual("Sult", audioBook.ReferredPersons.ElementAt(0).ReferredWork);
+            Assert.Equal(1, audioBook.ReferredPersons.Count());
+            Assert.Equal("Knut Hamsun", audioBook.ReferredPersons.ElementAt(0).Name);
+            Assert.Equal("1859-1952", audioBook.ReferredPersons.ElementAt(0).LivingYears);
+            Assert.Equal("Norsk", audioBook.ReferredPersons.ElementAt(0).Nationality);
+            Assert.Equal("Sult", audioBook.ReferredPersons.ElementAt(0).ReferredWork);
 
-            Assert.AreEqual(1, audioBook.ReferredOrganizations.Count());
-            Assert.AreEqual("Capgemini", audioBook.ReferredOrganizations.ElementAt(0).Name);
-            Assert.AreEqual("B-tech", audioBook.ReferredOrganizations.ElementAt(0).UnderOrganization);
-            Assert.AreEqual("Forklaring", audioBook.ReferredOrganizations.ElementAt(0).FurtherExplanation);
-            Assert.AreEqual("Visjon", audioBook.ReferredOrganizations.ElementAt(0).ReferencedPublication);
+            Assert.Equal(1, audioBook.ReferredOrganizations.Count());
+            Assert.Equal("Capgemini", audioBook.ReferredOrganizations.ElementAt(0).Name);
+            Assert.Equal("B-tech", audioBook.ReferredOrganizations.ElementAt(0).UnderOrganization);
+            Assert.Equal("Forklaring", audioBook.ReferredOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.Equal("Visjon", audioBook.ReferredOrganizations.ElementAt(0).ReferencedPublication);
 
-            Assert.AreEqual(2, audioBook.InvolvedPersons.Count());
-            Assert.AreEqual("Harald V", audioBook.InvolvedPersons.ElementAt(0).Name);
-            Assert.AreEqual("1937-", audioBook.InvolvedPersons.ElementAt(0).LivingYears);
-            Assert.AreEqual("Norsk", audioBook.InvolvedPersons.ElementAt(0).Nationality);
-            Assert.AreEqual("Konge", audioBook.InvolvedPersons.ElementAt(0).Role);
-            Assert.AreEqual("Kjell Inge Røkke", audioBook.InvolvedPersons.ElementAt(1).Name);
-            Assert.AreEqual("1950-", audioBook.InvolvedPersons.ElementAt(1).LivingYears);
-            Assert.AreEqual("Norsk", audioBook.InvolvedPersons.ElementAt(1).Nationality);
-            Assert.AreEqual("Investor", audioBook.InvolvedPersons.ElementAt(1).Role);
+            Assert.Equal(2, audioBook.InvolvedPersons.Count());
+            Assert.Equal("Harald V", audioBook.InvolvedPersons.ElementAt(0).Name);
+            Assert.Equal("1937-", audioBook.InvolvedPersons.ElementAt(0).LivingYears);
+            Assert.Equal("Norsk", audioBook.InvolvedPersons.ElementAt(0).Nationality);
+            Assert.Equal("Konge", audioBook.InvolvedPersons.ElementAt(0).Role);
+            Assert.Equal("Kjell Inge Røkke", audioBook.InvolvedPersons.ElementAt(1).Name);
+            Assert.Equal("1950-", audioBook.InvolvedPersons.ElementAt(1).LivingYears);
+            Assert.Equal("Norsk", audioBook.InvolvedPersons.ElementAt(1).Nationality);
+            Assert.Equal("Investor", audioBook.InvolvedPersons.ElementAt(1).Role);
 
-            Assert.AreEqual(1, audioBook.InvolvedOrganizations.Count());
-            Assert.AreEqual("Cappelen Damm", audioBook.InvolvedOrganizations.ElementAt(0).Name);
-            Assert.AreEqual("Salg", audioBook.InvolvedOrganizations.ElementAt(0).UnderOrganization);
-            Assert.AreEqual("Forklaring", audioBook.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
-            Assert.AreEqual("Forlag", audioBook.InvolvedOrganizations.ElementAt(0).Role);
+            Assert.Equal(1, audioBook.InvolvedOrganizations.Count());
+            Assert.Equal("Cappelen Damm", audioBook.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.Equal("Salg", audioBook.InvolvedOrganizations.ElementAt(0).UnderOrganization);
+            Assert.Equal("Forklaring", audioBook.InvolvedOrganizations.ElementAt(0).FurtherExplanation);
+            Assert.Equal("Forlag", audioBook.InvolvedOrganizations.ElementAt(0).Role);
 
-            Assert.AreEqual("AudioBook", audioBook.DocType);
+            Assert.Equal("AudioBook", audioBook.DocType);
 
 
         }
 
-        [Test]
+        [Fact]
         public void GetAudioBookLightFromXmlTest()
         {
             var audioBook1 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookXML());
-            Assert.AreEqual("J.K. Rowling", audioBook1.Author.Name);
-            Assert.AreEqual("1965-", audioBook1.Author.LivingYears);
-            Assert.AreEqual("Engelsk", audioBook1.Author.Nationality);
-            Assert.AreEqual("AudioBook", audioBook1.DocType);
+            Assert.Equal("J.K. Rowling", audioBook1.Author.Name);
+            Assert.Equal("1965-", audioBook1.Author.LivingYears);
+            Assert.Equal("Engelsk", audioBook1.Author.Nationality);
+            Assert.Equal("AudioBook", audioBook1.DocType);
 
             var audioBook2 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithOrgXml());
-            Assert.AreEqual("Røde Kors", audioBook2.Author.Name);
-            Assert.AreEqual("Røde Kors", audioBook2.Organization.Name);
-            Assert.AreEqual("Hjelpekorpset", audioBook2.Organization.UnderOrganization);
-            Assert.AreEqual("Hjelper folk", audioBook2.Organization.FurtherExplanation);
+            Assert.Equal("Røde Kors", audioBook2.Author.Name);
+            Assert.Equal("Røde Kors", audioBook2.Organization.Name);
+            Assert.Equal("Hjelpekorpset", audioBook2.Organization.UnderOrganization);
+            Assert.Equal("Hjelper folk", audioBook2.Organization.FurtherExplanation);
 
             var audioBook3 = AudioBook.GetObjectFromFindDocXmlBsMarcLight(getAudioBookWithStdTitleXml());
-            Assert.AreEqual("Røde Kors", audioBook3.StandarizedTitle);
+            Assert.Equal("Røde Kors", audioBook3.StandarizedTitle);
 
         }
 
-        [Test]
+        [Fact]
         public void GetAudioBookWithOrganizationFromXmlTest()
         {
             var audioBook = AudioBook.GetObjectFromFindDocXmlBsMarc(getAudioBookWithOrgXml());
-            Assert.AreEqual("Røde Kors", audioBook.Author.Name);
-            Assert.AreEqual("Røde Kors", audioBook.Organization.Name);
-            Assert.AreEqual("Hjelpekorpset", audioBook.Organization.UnderOrganization);
-            Assert.AreEqual("Hjelper folk", audioBook.Organization.FurtherExplanation);
+            Assert.Equal("Røde Kors", audioBook.Author.Name);
+            Assert.Equal("Røde Kors", audioBook.Organization.Name);
+            Assert.Equal("Hjelpekorpset", audioBook.Organization.UnderOrganization);
+            Assert.Equal("Hjelper folk", audioBook.Organization.FurtherExplanation);
         }
 
-        [Test]
+        [Fact]
         public void GetAudioBookWithStdTitleFromXmlTest()
         {
             var audioBook = AudioBook.GetObjectFromFindDocXmlBsMarc(getAudioBookWithStdTitleXml());
-            Assert.AreEqual("Røde Kors", audioBook.StandarizedTitle);
+            Assert.Equal("Røde Kors", audioBook.StandarizedTitle);
         }
 
-        [Test]
+        [Fact]
         public void GetJournalFromXmlTest()
         {
             var journal = Journal.GetObjectFromFindDocXmlBsMarc(getJournalXml());
-            Assert.AreEqual("0163-7053", journal.Issn);
-            Assert.AreEqual("51 nummer pr. år", journal.JournalsPerYear);
-            Assert.AreEqual("Biblioteket har: Siste årg.", journal.InventoryInfomation);
-            Assert.AreEqual(2, journal.Subject.Count());
-            Assert.AreEqual("Nyheter", journal.Subject.ElementAt(0));
-            Assert.AreEqual("Tidsskrifter", journal.Subject.ElementAt(1));
-            Assert.IsEmpty(journal.ReferencedPlaces);
-            Assert.AreEqual(0, journal.InvolvedPersons.Count());
-            Assert.AreEqual(0, journal.InvolvedOrganizations.Count());
-            Assert.AreEqual(0, journal.OtherTitles.Count());
+            Assert.Equal("0163-7053", journal.Issn);
+            Assert.Equal("51 nummer pr. år", journal.JournalsPerYear);
+            Assert.Equal("Biblioteket har: Siste årg.", journal.InventoryInfomation);
+            Assert.Equal(2, journal.Subject.Count());
+            Assert.Equal("Nyheter", journal.Subject.ElementAt(0));
+            Assert.Equal("Tidsskrifter", journal.Subject.ElementAt(1));
+            Assert.Empty(journal.ReferencedPlaces);
+            Assert.Equal(0, journal.InvolvedPersons.Count());
+            Assert.Equal(0, journal.InvolvedOrganizations.Count());
+            Assert.Equal(0, journal.OtherTitles.Count());
         }
 
-        [Test]
+        [Fact]
         public void GetJournalLightFromXmlTest()
         {
             var journal = Journal.GetObjectFromFindDocXmlBsMarcLight(getJournalXml());
-            Assert.AreEqual("0163-7053", journal.Issn);
+            Assert.Equal("0163-7053", journal.Issn);
         }
 
-        [Test]
+        [Fact]
         public void GetCdPopularFromXmlTest()
         {
             var cd = Cd.GetObjectFromFindDocXmlBsMarc(getCdPopularMusicGroupXml());
-            Assert.AreEqual("Gje meg litt merr", cd.Title);
-            Assert.AreEqual("Mods", cd.MusicGroup);
-            Assert.IsNull(cd.ExplanatoryAddition);
-            Assert.AreEqual("1 kompaktplate", cd.TypeAndNumberOfDiscs);
-            Assert.AreEqual("Gje meg litt merr", cd.DiscContent.ElementAt(0));
-            Assert.AreEqual("Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen", cd.Performers);
-            Assert.AreEqual(2, cd.CompositionTypeOrGenre.Count());
-            Assert.AreEqual("Popmusikk", cd.CompositionTypeOrGenre.ElementAt(0));
-            Assert.AreEqual("Rock", cd.CompositionTypeOrGenre.ElementAt(1));
-            Assert.AreEqual(7, cd.InvolvedPersons.Count());
-            Assert.IsEmpty(cd.InvolvedMusicGroups);
+            Assert.Equal("Gje meg litt merr", cd.Title);
+            Assert.Equal("Mods", cd.MusicGroup);
+            Assert.Null(cd.ExplanatoryAddition);
+            Assert.Equal("1 kompaktplate", cd.TypeAndNumberOfDiscs);
+            Assert.Equal("Gje meg litt merr", cd.DiscContent.ElementAt(0));
+            Assert.Equal("Utøvere: Kurt Ø. Olsen, Helge Hummervoll, Leif Nilsen, Morten A. Knutsen, Torkild Viig, Runar Bjaalid, Tor Øyvind Syvertsen", cd.Performers);
+            Assert.Equal(2, cd.CompositionTypeOrGenre.Count());
+            Assert.Equal("Popmusikk", cd.CompositionTypeOrGenre.ElementAt(0));
+            Assert.Equal("Rock", cd.CompositionTypeOrGenre.ElementAt(1));
+            Assert.Equal(7, cd.InvolvedPersons.Count());
+            Assert.Empty(cd.InvolvedMusicGroups);
         }
 
-        [Test]
+        [Fact]
         public void GetCdPopularLightFromXmlTest()
         {
             var cd1 = Cd.GetObjectFromFindDocXmlBsMarcLight(getCdPopularMusicGroupXml());
-            Assert.AreEqual("Mods", cd1.MusicGroup);
+            Assert.Equal("Mods", cd1.MusicGroup);
 
             var cd2 = Cd.GetObjectFromFindDocXmlBsMarcLight(getCdPopluarArtistXml());
-            Assert.AreEqual("Morten Abel", cd2.ArtistOrComposer.Name);
+            Assert.Equal("Morten Abel", cd2.ArtistOrComposer.Name);
         }
 
-        [Test]
+        [Fact]
         public void GetLanguageCourseFromXmlTest()
         {
             var languageCourse = LanguageCourse.GetObjectFromFindDocXmlBsMarc(getLanguageCourseXml()); ;
 
-            Assert.AreEqual("Nils Ingnes", languageCourse.Author.Name);
-            Assert.AreEqual("1941-", languageCourse.Author.LivingYears);
-            Assert.AreEqual("Norsk", languageCourse.Author.Nationality);
+            Assert.Equal("Nils Ingnes", languageCourse.Author.Name);
+            Assert.Equal("1941-", languageCourse.Author.LivingYears);
+            Assert.Equal("Norsk", languageCourse.Author.Nationality);
 
-            Assert.AreEqual("439.683", languageCourse.ClassificationNr);
+            Assert.Equal("439.683", languageCourse.ClassificationNr);
 
-            Assert.AreEqual(0, languageCourse.InvolvedOrganizations.Count());
+            Assert.Equal(0, languageCourse.InvolvedOrganizations.Count());
 
-            Assert.AreEqual(0, languageCourse.InvolvedPersons.Count());
+            Assert.Equal(0, languageCourse.InvolvedPersons.Count());
 
-            Assert.AreEqual("Engelsk", languageCourse.Language);
+            Assert.Equal("Engelsk", languageCourse.Language);
 
-            Assert.AreEqual("Språkkurs", languageCourse.Subject.ElementAt(0));
-            Assert.AreEqual("Norsk", languageCourse.Subject.ElementAt(1));
-            Assert.AreEqual(2, languageCourse.Subject.Count());
+            Assert.Equal("Språkkurs", languageCourse.Subject.ElementAt(0));
+            Assert.Equal("Norsk", languageCourse.Subject.ElementAt(1));
+            Assert.Equal(2, languageCourse.Subject.Count());
 
-            Assert.AreEqual(null, languageCourse.TitlesOtherWritingForms);
+            Assert.Equal(null, languageCourse.TitlesOtherWritingForms);
 
-            Assert.AreEqual("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
+            Assert.Equal("4 CD plater og 1 veiledningshefte", languageCourse.TypeAndNumberOfDiscs);
 
-            Assert.AreEqual("LanguageCourse", languageCourse.DocType);
+            Assert.Equal("LanguageCourse", languageCourse.DocType);
 
 
 
             var languageCourse2 = LanguageCourse.GetObjectFromFindDocXmlBsMarc(getLanguageCourseWithIsbnXml());
 
-            Assert.AreEqual("Margaretha Danbolt Simons", languageCourse2.Author.Name);
+            Assert.Equal("Margaretha Danbolt Simons", languageCourse2.Author.Name);
 
-            Assert.AreEqual("439.8283", languageCourse2.ClassificationNr);
+            Assert.Equal("439.8283", languageCourse2.ClassificationNr);
 
-            Assert.AreEqual(0, languageCourse2.InvolvedPersons.Count());
-            Assert.AreEqual(0, languageCourse2.InvolvedOrganizations.Count());
+            Assert.Equal(0, languageCourse2.InvolvedPersons.Count());
+            Assert.Equal(0, languageCourse2.InvolvedOrganizations.Count());
 
-            Assert.AreEqual("978-1-444-10720-3", languageCourse2.Isbn);
+            Assert.Equal("978-1-444-10720-3", languageCourse2.Isbn);
 
-            Assert.AreEqual("Engelsk", languageCourse.Language);
+            Assert.Equal("Engelsk", languageCourse.Language);
 
-            Assert.AreEqual("Norsk", languageCourse2.Subject.ElementAt(0));
-            Assert.AreEqual("Engelsk", languageCourse2.Subject.ElementAt(1));
-            Assert.AreEqual("Språkkurs", languageCourse2.Subject.ElementAt(2));
+            Assert.Equal("Norsk", languageCourse2.Subject.ElementAt(0));
+            Assert.Equal("Engelsk", languageCourse2.Subject.ElementAt(1));
+            Assert.Equal("Språkkurs", languageCourse2.Subject.ElementAt(2));
 
-            Assert.AreEqual(3, languageCourse2.Subject.Count());
+            Assert.Equal(3, languageCourse2.Subject.Count());
 
-            Assert.AreEqual(null, languageCourse2.TitlesOtherWritingForms);
+            Assert.Equal(null, languageCourse2.TitlesOtherWritingForms);
 
-            Assert.AreEqual("1 lærebok, 2 CD-er", languageCourse2.TypeAndNumberOfDiscs);
+            Assert.Equal("1 lærebok, 2 CD-er", languageCourse2.TypeAndNumberOfDiscs);
 
-            Assert.AreEqual("LanguageCourse", languageCourse2.DocType);
+            Assert.Equal("LanguageCourse", languageCourse2.DocType);
 
 
 
             var languageCourse3 = LanguageCourse.GetObjectFromFindDocXmlBsMarc(getLanguageCourseWithInvolvedPersonsXml());
-            Assert.AreEqual("8250804716", languageCourse3.Isbn);
+            Assert.Equal("8250804716", languageCourse3.Isbn);
 
-            Assert.AreEqual("428.3", languageCourse3.ClassificationNr);
+            Assert.Equal("428.3", languageCourse3.ClassificationNr);
 
-            Assert.AreEqual("Brenda Bennett", languageCourse3.Author.Name);
-
-
+            Assert.Equal("Brenda Bennett", languageCourse3.Author.Name);
 
 
-            Assert.AreEqual(1, languageCourse3.InvolvedPersons.Count());
-            Assert.AreEqual("Diana Webster", languageCourse3.InvolvedPersons.ElementAt(0).Name);
-            Assert.IsNull(languageCourse3.InvolvedPersons.ElementAt(0).LivingYears);
 
-            Assert.AreEqual(3, languageCourse3.InvolvedOrganizations.Count());
-            Assert.AreEqual("Norsk rikskringkasting", languageCourse3.InvolvedOrganizations.ElementAt(0).Name);
-            Assert.AreEqual("Folkets brevskole", languageCourse3.InvolvedOrganizations.ElementAt(1).Name);
-            Assert.AreEqual("NKS høgskole", languageCourse3.InvolvedOrganizations.ElementAt(2).Name);
-            Assert.AreEqual("utgiver", languageCourse3.InvolvedOrganizations.ElementAt(0).Role);
-            Assert.AreEqual("LanguageCourse", languageCourse3.DocType);
+
+            Assert.Equal(1, languageCourse3.InvolvedPersons.Count());
+            Assert.Equal("Diana Webster", languageCourse3.InvolvedPersons.ElementAt(0).Name);
+            Assert.Null(languageCourse3.InvolvedPersons.ElementAt(0).LivingYears);
+
+            Assert.Equal(3, languageCourse3.InvolvedOrganizations.Count());
+            Assert.Equal("Norsk rikskringkasting", languageCourse3.InvolvedOrganizations.ElementAt(0).Name);
+            Assert.Equal("Folkets brevskole", languageCourse3.InvolvedOrganizations.ElementAt(1).Name);
+            Assert.Equal("NKS høgskole", languageCourse3.InvolvedOrganizations.ElementAt(2).Name);
+            Assert.Equal("utgiver", languageCourse3.InvolvedOrganizations.ElementAt(0).Role);
+            Assert.Equal("LanguageCourse", languageCourse3.DocType);
         }
 
-        [Test]
+        [Fact]
         public void GetLanguageCourseLightFromXmlTest()
         {
             var languageCourse = LanguageCourse.GetObjectFromFindDocXmlBsMarcLight(getLanguageCourseWithIsbnXml());
-            Assert.AreEqual("Margaretha Danbolt Simons", languageCourse.Author.Name);
+            Assert.Equal("Margaretha Danbolt Simons", languageCourse.Author.Name);
         }
 
-        [Test]
+        [Fact]
         public void GetSheetMusicFromXmlTest()
         {
             var sheetMusic = SheetMusic.GetObjectFromFindDocXmlBsMarc(getSheetMusicXml());
-            Assert.AreEqual("Carl Philipp Emanuel Bach", sheetMusic.Composer.Name);
-            Assert.AreEqual("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
-            Assert.AreEqual("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
-            Assert.AreEqual(2, sheetMusic.MusicalLineup.Count());
-            Assert.AreEqual("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
-            Assert.AreEqual("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
+            Assert.Equal("Carl Philipp Emanuel Bach", sheetMusic.Composer.Name);
+            Assert.Equal("March (fanfare) for 3 trumpets and timpani", sheetMusic.Title);
+            Assert.Equal("b. 4 st.", sheetMusic.NumberOfPagesAndNumberOfParts);
+            Assert.Equal(2, sheetMusic.MusicalLineup.Count());
+            Assert.Equal("Trompet 3", sheetMusic.MusicalLineup.ElementAt(0));
+            Assert.Equal("Pauker", sheetMusic.MusicalLineup.ElementAt(1));
         }
 
-        [Test]
+        [Fact]
         public void GetSheetMusicLightFromXmlTest()
         {
             var sheetMuisc = SheetMusic.GetObjectFromFindDocXmlBsMarcLight(getSheetMusicXml());
-            Assert.AreEqual("Carl Philipp Emanuel Bach", sheetMuisc.Composer.Name);
+            Assert.Equal("Carl Philipp Emanuel Bach", sheetMuisc.Composer.Name);
         }
 
-        [Test]
+        [Fact]
         public void GetDocumentItemsFromXmlTest()
         {
             var documentItems = DocumentItem.GetDocumentItemsFromXml(getDocumentItemsXml(), getDocumentCircItemsXml(), _repository).ToList();
-            Assert.AreEqual(6, documentItems.Count());
+            Assert.Equal(6, documentItems.Count());
 
             var documentItem1 = documentItems.ElementAt(0);
-            Assert.AreEqual("000611167000110", documentItem1.ItemKey);
-            Assert.AreEqual("Hovedbibl.", documentItem1.Branch);
-            Assert.AreEqual("Kulturbiblioteket", documentItem1.Department);
-            Assert.AreEqual("04", documentItem1.ItemStatus);
-            Assert.AreEqual("Skjønnlitteratur", documentItem1.PlacementCode);
-            Assert.IsFalse(documentItem1.OnHold);
-            Assert.IsNull(documentItem1.LoanStatus);
-            Assert.IsFalse(documentItem1.InTransit);
-            Assert.IsNull(documentItem1.LoanDueDate);
+            Assert.Equal("000611167000110", documentItem1.ItemKey);
+            Assert.Equal("Hovedbibl.", documentItem1.Branch);
+            Assert.Equal("Kulturbiblioteket", documentItem1.Department);
+            Assert.Equal("04", documentItem1.ItemStatus);
+            Assert.Equal("Skjønnlitteratur", documentItem1.PlacementCode);
+            Assert.False(documentItem1.OnHold);
+            Assert.Null(documentItem1.LoanStatus);
+            Assert.False(documentItem1.InTransit);
+            Assert.Null(documentItem1.LoanDueDate);
 
             var documentItem2 = documentItems.ElementAt(3);
-            Assert.AreEqual("000611167000180", documentItem2.ItemKey);
-            Assert.AreEqual("Hovedbibl.", documentItem2.Branch);
-            Assert.AreEqual("Kulturbiblioteket", documentItem2.Department);
-            Assert.AreEqual("04", documentItem2.ItemStatus);
-            Assert.AreEqual("Skjønnlitteratur", documentItem2.PlacementCode);
-            Assert.IsFalse(documentItem2.OnHold);
-            Assert.AreEqual("A", documentItem2.LoanStatus);
-            Assert.IsFalse(documentItem2.InTransit);
-            //Assert.AreEqual("13.08.2012 00:00:00", documentItem2.LoanDueDate.ToString());
+            Assert.Equal("000611167000180", documentItem2.ItemKey);
+            Assert.Equal("Hovedbibl.", documentItem2.Branch);
+            Assert.Equal("Kulturbiblioteket", documentItem2.Department);
+            Assert.Equal("04", documentItem2.ItemStatus);
+            Assert.Equal("Skjønnlitteratur", documentItem2.PlacementCode);
+            Assert.False(documentItem2.OnHold);
+            Assert.Equal("A", documentItem2.LoanStatus);
+            Assert.False(documentItem2.InTransit);
+            //Assert.Equal("13.08.2012 00:00:00", documentItem2.LoanDueDate.ToString());
         }
 
         private string getLanguageCourseWithInvolvedPersonsXml()

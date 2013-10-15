@@ -1,15 +1,15 @@
-﻿using NUnit.Framework;
-using Solvberget.Domain.DTO;
+﻿using Solvberget.Domain.DTO;
 
+using Xunit;
 
 namespace Solvberget.Service.Tests.DTOTests
 {
-    [TestFixture]
+    
     public class InformationTest
     {
         private ContactWebPage _contactWebPage = new ContactWebPage();
         private OpeningHoursWebPage _openingHoursWebPage = new OpeningHoursWebPage();
-        [Test]
+        [Fact]
         public void GetHtmlTest()
         {
 
@@ -20,7 +20,7 @@ namespace Solvberget.Service.Tests.DTOTests
 
         }
 
-        [Test]
+        [Fact]
         public void FillPropertiesTest()
         {
 

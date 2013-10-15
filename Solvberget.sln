@@ -18,6 +18,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{033C6A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Nancy", "src\Solvberget.Nancy\Solvberget.Nancy.csproj", "{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{F97EBDA1-96CD-4BAF-9230-5CE9C23B0A28}"
+	ProjectSection(SolutionItems) = preProject
+		build\Build.proj = build\Build.proj
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{05D03379-DFCB-4BE8-A7AE-F774D4E42CB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F84CB1B7-63BB-4254-9E86-C91FB17BB2CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,5 +106,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7EB0D844-7622-4F0D-A103-C326C6FA1293} = {05D03379-DFCB-4BE8-A7AE-F774D4E42CB3}
+		{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04} = {05D03379-DFCB-4BE8-A7AE-F774D4E42CB3}
+		{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF} = {05D03379-DFCB-4BE8-A7AE-F774D4E42CB3}
+		{2165682B-2B4F-416E-B88F-07C70D5BE84D} = {05D03379-DFCB-4BE8-A7AE-F774D4E42CB3}
+		{9426CD77-75BA-4FC1-BB17-19D687AC12EC} = {F84CB1B7-63BB-4254-9E86-C91FB17BB2CB}
 	EndGlobalSection
 EndGlobal

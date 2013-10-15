@@ -3,23 +3,22 @@ using System.IO;
 
 using FakeItEasy;
 
-using NUnit.Framework;
-
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.Implementation;
 
+using Xunit;
+
 namespace Solvberget.Service.Tests.RepositoryTests
 {
-    [TestFixture]
+    
     internal class RatingRepositoryTest
     {
-        private RatingRepository _ratingRepository;
+        private readonly RatingRepository _ratingRepository;
 
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory,
             @"..\..\..\Solvberget.Service\Content\cacheImages\");
 
-        [SetUp]
-        public void InitRepository()
+        public RatingRepositoryTest()
         {
             var fake = A.Fake<IEnvironmentPathProvider>();
 
@@ -28,13 +27,13 @@ namespace Solvberget.Service.Tests.RepositoryTests
             _ratingRepository = new RatingRepository(new AlephRepository(fake));
         }
 
-        [Test]
+        [Fact]
         public void TestGetDocumentRating()
         {
             // 000605680 - Harry Potter og dødstalismanene del 2, size: default (150)
             const string harryPotterMovie = "000605680";
             var hpMovieRating = _ratingRepository.GetDocumentRating(harryPotterMovie);
-            Assert.IsNotNullOrEmpty(hpMovieRating);
+            Assert.NotNull(hpMovieRating);
             //   Assert.True(hpMovieRating.Equals("8.1"));
         }
     }

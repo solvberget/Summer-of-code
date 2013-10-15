@@ -1,41 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using System.Linq;
+
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Implementation;
 
+using Xunit;
+
 namespace Solvberget.Service.Tests.DTOTests
 {
-    [TestFixture]
     public class AvailabilityInformationTest
     {
+        private readonly Document _document;
 
-        private Document _document;
-
-        [SetUp]
-        public void InitDocument()
+        public AvailabilityInformationTest()
         {
             _document = new Document();
             var docItems = DocumentItem.GetDocumentItemsFromXml(getDocumentItemsXml(), getDocumentCircItemsXml(), new RulesRepository());
-            _document.GenerateLocationAndAvailabilityInfo(docItems); 
+            _document.GenerateLocationAndAvailabilityInfo(docItems);   
         }
 
-        [Test]
+        [Fact]
         public void TestDocumentAvailability()
         {
-            Assert.AreEqual(2, _document.AvailabilityInfo.ElementAt(0).AvailableCount);
-            Assert.AreEqual(4, _document.AvailabilityInfo.ElementAt(0).TotalCount);
-            Assert.AreEqual(0, _document.AvailabilityInfo.ElementAt(1).AvailableCount);
-            Assert.AreEqual(1, _document.AvailabilityInfo.ElementAt(1).TotalCount);
+            Assert.Equal(2, _document.AvailabilityInfo.ElementAt(0).AvailableCount);
+            Assert.Equal(4, _document.AvailabilityInfo.ElementAt(0).TotalCount);
+            Assert.Equal(0, _document.AvailabilityInfo.ElementAt(1).AvailableCount);
+            Assert.Equal(1, _document.AvailabilityInfo.ElementAt(1).TotalCount);
             Assert.NotNull(_document.AvailabilityInfo.ElementAt(1).EarliestAvailableDateFormatted);
         }
 
-        [Test]
+        [Fact]
         public void TestDocumentShouldOnlyIncludeTwoBranches()
         {
-            Assert.AreEqual(2, _document.AvailabilityInfo.Count());
+            Assert.Equal(2, _document.AvailabilityInfo.Count());
         }
 
         private string getDocumentItemsXml()

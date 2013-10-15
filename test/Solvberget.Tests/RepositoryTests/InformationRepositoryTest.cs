@@ -1,45 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Solvberget.Domain.Implementation;
+﻿using Solvberget.Domain.Implementation;
+
+using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests
 {
-
-    [TestFixture]
     internal class InformationRepositoryTest
     {
+        private readonly InformationRepositoryHtml _informationRepository;
 
-        private InformationRepositoryHtml _informationRepository;
-
-
-        [SetUp]
-        public void InitRepository()
+        public InformationRepositoryTest()
         {
-
             _informationRepository = new InformationRepositoryHtml();
-
         }
 
-
-        [Test]
+        [Fact]
         public void TestGetContactInformation()
         {
             Assert.NotNull(_informationRepository.GetContactInformation());
-         
-
         }
 
-        [Test]
+        [Fact]
         public void TestGetOpeningHoursInformation()
         {
-
             Assert.NotNull(_informationRepository.GetOpeningHoursInformation());
-         
-
         }
-
     }
 }
