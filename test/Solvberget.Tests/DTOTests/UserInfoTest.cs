@@ -1,80 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using System.Linq;
+
 using Solvberget.Domain.DTO;
+
+using Xunit;
 
 namespace Solvberget.Service.Tests.DTOTests
 {
-    [TestFixture]
     public class UserInfoTest
     {
-
-        [Test]
+        [Fact]
         public void PropertiesTest()
         {
             const string userId = "159222";
             var user = new UserInfo { BorrowerId = userId };
             user.FillProperties(getUserXml());
-            Assert.AreEqual(userId, user.BorrowerId);
-            Assert.AreEqual("STV000060009", user.Id);
+            Assert.Equal(userId, user.BorrowerId);
+            Assert.Equal("STV000060009", user.Id);
 
-            Assert.AreEqual("60.00", user.Balance);
-            Assert.AreEqual("350.00", user.CashLimit);
-            Assert.AreEqual("91562303", user.CellPhoneNumber);
-            Assert.AreEqual("4019 STAVANGER", user.CityAddress);
-            Assert.AreEqual("09.04.1989", user.DateOfBirth);
-            Assert.AreEqual("haaland@gmail.com", user.Email);
-            Assert.AreEqual("Hovedbibl.", user.HomeLibrary);
-            Assert.AreEqual("51536695", user.HomePhoneNumber);
-            Assert.AreEqual("Sindre Haaland", user.Name);
-            Assert.AreEqual("Sindre Haaland", user.PrefixAddress);
-            Assert.AreEqual("Bakkesvingen 8", user.StreetAddress);
-            Assert.AreEqual("4019", user.Zip); 
+            Assert.Equal("60.00", user.Balance);
+            Assert.Equal("350.00", user.CashLimit);
+            Assert.Equal("91562303", user.CellPhoneNumber);
+            Assert.Equal("4019 STAVANGER", user.CityAddress);
+            Assert.Equal("09.04.1989", user.DateOfBirth);
+            Assert.Equal("haaland@gmail.com", user.Email);
+            Assert.Equal("Hovedbibl.", user.HomeLibrary);
+            Assert.Equal("51536695", user.HomePhoneNumber);
+            Assert.Equal("Sindre Haaland", user.Name);
+            Assert.Equal("Sindre Haaland", user.PrefixAddress);
+            Assert.Equal("Bakkesvingen 8", user.StreetAddress);
+            Assert.Equal("4019", user.Zip); 
 
         }
 
-        [Test]
+        [Fact]
         public void FineTest()
         {
             const string userId = "159222";
             var user = new UserInfo { BorrowerId = userId };
             user.FillProperties(getUserXml());
 
-            Assert.AreEqual("08.02.2007", user.Fines.ElementAt(0).Date);
-            Assert.AreEqual("Ikke betalt ", user.Fines.ElementAt(0).Status);
-            Assert.AreEqual('D', user.Fines.ElementAt(0).CreditDebit);
-            Assert.AreEqual(30.00 , user.Fines.ElementAt(0).Sum);
-            Assert.AreEqual("Nytt lånekort", user.Fines.ElementAt(0).Description);
+            Assert.Equal("08.02.2007", user.Fines.ElementAt(0).Date);
+            Assert.Equal("Ikke betalt ", user.Fines.ElementAt(0).Status);
+            Assert.Equal('D', user.Fines.ElementAt(0).CreditDebit);
+            Assert.Equal(30.00 , user.Fines.ElementAt(0).Sum);
+            Assert.Equal("Nytt lånekort", user.Fines.ElementAt(0).Description);
 
 
-            Assert.AreEqual(2, user.Fines.Count());
-            Assert.AreEqual("19.03.2007", user.Fines.ElementAt(1).Date);
-            Assert.AreEqual("For sent levert", user.Fines.ElementAt(1).Description);
-            Assert.AreEqual("000230544", user.Fines.ElementAt(1).DocumentNumber);
-            Assert.AreEqual("Gift", user.Fines.ElementAt(1).DocumentTitle);
+            Assert.Equal(2, user.Fines.Count());
+            Assert.Equal("19.03.2007", user.Fines.ElementAt(1).Date);
+            Assert.Equal("For sent levert", user.Fines.ElementAt(1).Description);
+            Assert.Equal("000230544", user.Fines.ElementAt(1).DocumentNumber);
+            Assert.Equal("Gift", user.Fines.ElementAt(1).DocumentTitle);
 
 
         }
 
-        [Test]
+        [Fact]
         public void LoanTest()
         {
             const string userId = "164916";
             var user = new UserInfo { BorrowerId = userId };
             user.FillProperties(getUserLoansXml());
 
-            Assert.AreEqual("ellenwiig@gmail.com", user.Email);
-            Assert.AreEqual("530185", user.Loans.ElementAt(0).AdminisrtativeDocumentNumber);
-            Assert.AreEqual("1001 filmer du må se før du dør", user.Loans.ElementAt(0).DocumentTitle);
-            Assert.AreEqual("Hovedbiblioteket", user.Loans.ElementAt(0).SubLibrary);
-            Assert.AreEqual("15.08.2012", user.Loans.ElementAt(0).OriginalDueDate);
-            Assert.AreEqual("4 uker", user.Loans.ElementAt(0).ItemStatus);
-            Assert.AreEqual("18.07.2012", user.Loans.ElementAt(0).LoanDate);
-            Assert.AreEqual("15:04", user.Loans.ElementAt(0).LoanHour);
-            Assert.AreEqual("15.08.2012", user.Loans.ElementAt(0).DueDate);
+            Assert.Equal("ellenwiig@gmail.com", user.Email);
+            Assert.Equal("530185", user.Loans.ElementAt(0).AdminisrtativeDocumentNumber);
+            Assert.Equal("1001 filmer du må se før du dør", user.Loans.ElementAt(0).DocumentTitle);
+            Assert.Equal("Hovedbiblioteket", user.Loans.ElementAt(0).SubLibrary);
+            Assert.Equal("15.08.2012", user.Loans.ElementAt(0).OriginalDueDate);
+            Assert.Equal("4 uker", user.Loans.ElementAt(0).ItemStatus);
+            Assert.Equal("18.07.2012", user.Loans.ElementAt(0).LoanDate);
+            Assert.Equal("15:04", user.Loans.ElementAt(0).LoanHour);
+            Assert.Equal("15.08.2012", user.Loans.ElementAt(0).DueDate);
 
         }
 

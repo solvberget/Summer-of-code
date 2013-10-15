@@ -1,71 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using System.Linq;
+
 using Solvberget.Domain.DTO;
+
+using Xunit;
 
 namespace Solvberget.Service.Tests.DTOTests
 {
-    [TestFixture]
     public class BlogTest
     {
-
-        [Test]
+        [Fact]
         public void PropertiesTest()
         {
-
             var blog = Blog.FillBlog(GetBlogFeedXml());
-            Assert.AreEqual(blog.Url, "http://mfblogg.no/feed/");
-            Assert.AreEqual(blog.Priority, 1);
-            Assert.AreEqual(blog.Title, "MFblogg.no");
-            Assert.AreEqual(blog.Description, "Musikk- og filmbiblioteket anbefaler");
-            Assert.AreEqual(blog.ContentType, "rss");
-            Assert.AreEqual(blog.Site, "http://mfblogg.no");
+            Assert.Equal(blog.Url, "http://mfblogg.no/feed/");
+            Assert.Equal(blog.Priority, 1);
+            Assert.Equal(blog.Title, "MFblogg.no");
+            Assert.Equal(blog.Description, "Musikk- og filmbiblioteket anbefaler");
+            Assert.Equal(blog.ContentType, "rss");
+            Assert.Equal(blog.Site, "http://mfblogg.no");
             Assert.Contains("Musikk", blog.Categories.ToList());
             Assert.Contains("Film", blog.Categories.ToList());
             Assert.Contains("Litteratur", blog.Categories.ToList());
             Assert.Contains("Bibliotek", blog.Categories.ToList());
-
         }
 
-        [Test]
+        [Fact]
         public void FillEntriesFromRssTest()
         {
             var entries = BlogEntry.FillEntriesFromRss(GetRssBlogXml());
             Assert.NotNull(entries);
-            Assert.IsNotEmpty(entries);
+            Assert.NotEmpty(entries);
 
             var entry = entries.FirstOrDefault();
             Assert.NotNull(entry);
-            Assert.AreEqual("Rollespillsalong 28. september: Drømmernes selskab", entry.Title);
-            Assert.AreEqual("http://solvbergetspillblogg.wordpress.com/2011/09/26/rollespillsalong-28-september-drommernes-selskab/", entry.Url);
-            Assert.AreEqual("26.09.2011", entry.PublishedDateFormatted);
-            Assert.IsNull(entry.UpdatedDateFormatted);
-            Assert.AreEqual("Helge Risvand", entry.AuthorName);
-            Assert.IsNotEmpty(entry.Description);
-            Assert.IsNotEmpty(entry.Content);
-            Assert.AreEqual(entry.ThumbnailUrl, "http://solvbergetspillblogg.files.wordpress.com/2011/09/society_of_dreamers_cover.jpg?w=219");
+            Assert.Equal("Rollespillsalong 28. september: Drømmernes selskab", entry.Title);
+            Assert.Equal("http://solvbergetspillblogg.wordpress.com/2011/09/26/rollespillsalong-28-september-drommernes-selskab/", entry.Url);
+            Assert.Equal("26.09.2011", entry.PublishedDateFormatted);
+            Assert.Null(entry.UpdatedDateFormatted);
+            Assert.Equal("Helge Risvand", entry.AuthorName);
+            Assert.NotEmpty(entry.Description);
+            Assert.NotEmpty(entry.Content);
+            Assert.Equal(entry.ThumbnailUrl, "http://solvbergetspillblogg.files.wordpress.com/2011/09/society_of_dreamers_cover.jpg?w=219");
 
         }
-        [Test]
+        [Fact]
         public void FillEntriesFromAtomTest()
         {
             var entries = BlogEntry.FillEntriesFromAtom(GetAtomBlogXml());
             Assert.NotNull(entries);
-            Assert.IsNotEmpty(entries);
+            Assert.NotEmpty(entries);
             
             var entry = entries.FirstOrDefault();
        
             Assert.NotNull(entry);
-            Assert.AreEqual("NÃ¥r en trÃ¸r vannet med ord", entry.Title);
-            Assert.AreEqual("http://laschgsinblogg.blogspot.com/2012/07/nar-en-trr-vannet-med-ord.html", entry.Url);
-            Assert.AreEqual("24.07.2012", entry.PublishedDateFormatted);
-            Assert.AreEqual("24.07.2012", entry.UpdatedDateFormatted);
-            Assert.AreEqual("l.g.", entry.AuthorName);
-            Assert.IsNotEmpty(entry.Content);
-            Assert.AreEqual(entry.ThumbnailUrl, "http://3.bp.blogspot.com/-BLGMRF-epHg/UA7Oiku0SgI/AAAAAAAAHeU/A-8Dxus9EyQ/s72-c/topp.jpg");
+            Assert.Equal("NÃ¥r en trÃ¸r vannet med ord", entry.Title);
+            Assert.Equal("http://laschgsinblogg.blogspot.com/2012/07/nar-en-trr-vannet-med-ord.html", entry.Url);
+            Assert.Equal("24.07.2012", entry.PublishedDateFormatted);
+            Assert.Equal("24.07.2012", entry.UpdatedDateFormatted);
+            Assert.Equal("l.g.", entry.AuthorName);
+            Assert.NotEmpty(entry.Content);
+            Assert.Equal(entry.ThumbnailUrl, "http://3.bp.blogspot.com/-BLGMRF-epHg/UA7Oiku0SgI/AAAAAAAAHeU/A-8Dxus9EyQ/s72-c/topp.jpg");
 
 
         }

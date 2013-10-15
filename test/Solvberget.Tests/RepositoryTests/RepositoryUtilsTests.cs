@@ -1,29 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Solvberget.Domain.Implementation;
+
 using Solvberget.Domain.Utils;
+
+using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests
 {
-
-    [TestFixture]
     class RepositoryUtilsTests
     {
-
         private readonly string _imageCache = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Solvberget.Service\Content\cacheImages\");
 
-        [SetUp]
-        public void InitRepository()
+        public RepositoryUtilsTests()
         {
-
+            
         }
 
-
-        [Test]
+        [Fact]
         public void TestGetJsonFromStreamWithParam()
         {
             var imdbObjectAsJson = RepositoryUtils.GetJsonFromStreamWithParam("http://www.imdbapi.com/?t=", "Harry Potter");
@@ -34,10 +27,9 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
         }
 
-        [Test]
+        [Fact]
         public void TestDownloadImageFromUrl()
         {
-
             // Delete cache folder if it exists
             if (Directory.Exists(_imageCache))
                 Directory.Delete(_imageCache, true);
@@ -50,8 +42,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
 
             // Check if file exists
             Assert.True(File.Exists(_imageCache + "MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX640.jpg"));
-
         }
-
     }
 }

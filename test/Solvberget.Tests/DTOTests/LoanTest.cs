@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Solvberget.Domain.DTO;
+﻿using Xunit;
 
 namespace Solvberget.Service.Tests.DTOTests
 {
-    [TestFixture]
     public class LoanTest
     {
-
-        [Test]
+        [Fact]
         public void PropertiesTest()
         {
 
         }
-
-
-
 
         private const string UserXml = @"<?xml version = ""1.0"" encoding = ""UTF-8""?>
 <bor-info>

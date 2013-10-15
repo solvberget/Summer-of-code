@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 
 using FakeItEasy;
 
-using NUnit.Framework;
 using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
 using Solvberget.Domain.Implementation;
+
+using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests
 {
-    [TestFixture]
+    
     class BlogRepositoryTests
     {
 
         private IBlogRepository _repository;
         private const string PathToBlogsFolder = @"..\..\..\Solvberget.Service\bin\App_Data\blogs\";
 
-        [SetUp]
-        public void InitRepository()
+        public BlogRepositoryTests()
         {
             var fake = A.Fake<IEnvironmentPathProvider>();
 
@@ -29,16 +25,16 @@ namespace Solvberget.Service.Tests.RepositoryTests
             _repository = new BlogRepository(fake);
         }
 
-        [Test]
+        [Fact]
         public void TestGetBlogs()
         {
 
             var blogs = _repository.GetBlogs();
             Assert.NotNull(blogs);
-            Assert.IsTrue(blogs.Count > 0);
+            Assert.True(blogs.Count > 0);
 
         }
-        [Test]
+        [Fact]
 
         public void GetBlogWithEntriesTest()
         {
@@ -48,7 +44,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             {
                 var blog = _repository.GetBlogWithEntries(i);
                 Assert.NotNull(blog.Entries);
-                Assert.IsNotEmpty(blog.Entries);
+                Assert.NotEmpty(blog.Entries);
             }
         }
 
