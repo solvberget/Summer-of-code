@@ -1,31 +1,17 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//    Defines the App type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+using Cirrious.CrossCore.IoC;
+
 namespace Solvberget.Core
 {
-    using Cirrious.CrossCore.IoC;
-    using Cirrious.MvvmCross.ViewModels;
-    using Solvberget.Core.ViewModels;
-
-    /// <summary>
-    /// Define the App type.
-    /// </summary>
-    public class App : MvxApplication
+    public class App : Cirrious.MvvmCross.ViewModels.MvxApplication
     {
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
         public override void Initialize()
         {
-            this.CreatableTypes()
+            CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
-            //// Start the app with the First View Model.
-            this.RegisterAppStart<FirstViewModel>();
+				
+            RegisterAppStart<ViewModels.FirstViewModel>();
         }
     }
 }
