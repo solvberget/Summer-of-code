@@ -113,7 +113,6 @@
     <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\IRatingRepository.cs" />
     <Compile Include="Abstract\IReviewRepository.cs" />
-    <Compile Include="Abstract\IRootPathProvider.cs" />
     <Compile Include="Abstract\IRulesRepository.cs" />
     <Compile Include="Abstract\ISuggestionDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
@@ -194,7 +193,6 @@
     <Compile Include="DTO\Reservation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DTO\RootPathProvider.cs" />
     <Compile Include="DTO\SheetMusic.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -208,7 +206,6 @@
     <Compile Include="Implementation\BokbasenRepository.cs" />
     <Compile Include="Implementation\BlogRepository.cs" />
     <Compile Include="Implementation\BokelskereRepository.cs" />
-    <Compile Include="Implementation\EnvironmentPathProvider.cs" />
     <Compile Include="Implementation\InformationRepositoryXml.cs" />
     <Compile Include="Implementation\InformationRepositoryHtml.cs" />
     <Compile Include="Implementation\NewsRepository.cs" />

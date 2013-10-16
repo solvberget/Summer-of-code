@@ -1,8 +1,10 @@
 using System.IO;
 
+using Nancy;
+
 using Solvberget.Domain.Abstract;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Nancy
 {
     public class EnvironmentPathProvider : IEnvironmentPathProvider
     {
@@ -14,7 +16,7 @@ namespace Solvberget.Domain.Implementation
         {
             var rootPath = rootPathProvider.GetRootPath();
 
-            _applicationAppDataPath = Path.Combine(rootPath, @"bin\App_Data");
+            _applicationAppDataPath = Path.Combine(rootPath, @"Data");
             _applicationContentDataPath = Path.Combine(rootPath, @"Content");
         }
 
@@ -35,7 +37,7 @@ namespace Solvberget.Domain.Implementation
 
         public string GetImageCachePath()
         {
-            return Path.Combine(_applicationContentDataPath, @"cacheImages\");
+            return Path.Combine(_applicationContentDataPath, @"CachedImages\");
         }
 
         public string GetSuggestionListPath()
