@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;

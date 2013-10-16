@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
-using Ninject;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Utils;
