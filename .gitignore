@@ -49,6 +49,7 @@ test-results/
 *.userprefs
 *.usertasks
 *.resources
+*.ide
 
 # Visual C++ cache files
 ipch/
