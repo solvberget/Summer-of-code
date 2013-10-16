@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Script.Serialization;
+﻿using System.Linq;
 using System.Xml.Linq;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Utils;
@@ -16,9 +12,7 @@ namespace Solvberget.Domain.Implementation
             if ((cd.ArtistOrComposer != null || cd.MusicGroup != null) && cd.Title != null)
             {
                 var trimmedTitle = cd.Title.Split(';').ToList()[0].Trim();
-
                 var searchString = "autocorrect=1&artist=" + cd.ArtistOrGroupName + "&album=" + trimmedTitle;
-
 
                 return searchString;
             }
@@ -34,12 +28,28 @@ namespace Solvberget.Domain.Implementation
                 var element = lastFmAlbumAsXml.Root.Element("album");
                 if (element != null)
                 {
-                    var lastFmAlbum = new LastFmAlbum();
-                    lastFmAlbum.FillProperties(element);
-                    return lastFmAlbum;
+                    return GenerateAlbumFromXml(element);
                 }
             }
             return null;
+        }
+
+        public static LastFmAlbum GenerateAlbumFromXml(XElement element)
+        {
+            var album = new LastFmAlbum();
+            var name = element.Element("name");
+            if (name != null) album.Name = name.Value;
+
+            var artist = element.Element("artist");
+            if (artist != null) album.Artist = artist.Value;
+
+            var smallimage = element.Elements("image").Where(x => ((string)x.Attribute("size")).Equals("medium")).Select(x => x.Value).FirstOrDefault();
+            album.SmallImageUrl = smallimage;
+
+            var largeimage = element.Elements("image").Where(x => ((string)x.Attribute("size")).Equals("extralarge")).Select(x => x.Value).FirstOrDefault();
+            album.LargeImageUrl = largeimage;
+
+            return album;
         }
     }
 }

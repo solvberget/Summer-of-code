@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Utils;
@@ -31,7 +32,7 @@ namespace Solvberget.Domain.Implementation
         {
             var lists = new ConcurrentBag<LibraryList>();
 
-            Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(LibraryList.GetLibraryListFromXmlFile(file)));
+            Directory.EnumerateFiles(_folderPath, "*.xml").AsParallel().ToList().ForEach(file => lists.Add(GetLibraryListFromXmlFile(file)));
 
             //lists.ToList().ForEach(liblist => { if (liblist != null) AddContentToList(liblist); });
 
@@ -66,6 +67,54 @@ namespace Solvberget.Domain.Implementation
         //        libraryList.Documents.Add(document);
         //    }
         //}
+        public static LibraryList GetLibraryListFromXmlFile(string xmlFilePath)
+        {
+            var xmlDoc = XElement.Load(xmlFilePath);
+            return FillProperties(xmlDoc);
+        }
 
+        public static LibraryList GetLibraryListFromXml(XElement xml)
+        {
+            return FillProperties(xml);
+        }
+
+        private static LibraryList FillProperties(XElement xml)
+        {
+            var libList = new LibraryList();
+            if (xml.Attribute("name") == null)
+                return null;
+            else
+            {
+                var name = xml.Attribute("name");
+                if (name != null) libList.Name = name.Value;
+
+                var pri = xml.Attribute("pri");
+                if (pri != null)
+                {
+                    var priAsString = pri.Value;
+                    int priAsInt;
+                    if (int.TryParse(priAsString, out priAsInt))
+                    {
+                        //Set a lowest priority if priority range is invalid (below 0 or above 10) 
+                        libList.Priority = priAsInt < 1 || priAsInt > 10 ? 10 : priAsInt;
+                    }
+                    else
+                    {
+                        //Set a lowest priority if null or wrong type
+                        libList.Priority = 10;
+                    }
+                }
+
+                var isRanked = xml.Attribute("ranked");
+                if (isRanked != null)
+                {
+                    libList.IsRanked = isRanked.Value.Equals("true") ? true : false;
+                }
+
+                xml.Elements().Where(e => e.Name == "docnumber").ToList().ForEach(element => libList.DocumentNumbers.Add(element.Value, false));
+
+            }
+            return libList;
+        }
     }
 }

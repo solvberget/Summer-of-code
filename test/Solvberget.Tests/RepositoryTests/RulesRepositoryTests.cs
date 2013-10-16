@@ -9,7 +9,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
     class RulesRepositoryTests
     {
         private readonly RulesRepository _rulesRepository;
-        private const string PathToRulesFolder = @"..\..\..\Solvberget.Service\bin\App_Data\rules\";
+        private const string PathToRulesFolder = @"..\..\..\..\src\Solvberget.Nancy\bin\Data\rules\";
 
         public RulesRepositoryTests()
         {

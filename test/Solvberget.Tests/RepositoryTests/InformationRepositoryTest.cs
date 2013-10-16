@@ -1,28 +1,40 @@
 ﻿using Solvberget.Domain.Implementation;
-
 using Xunit;
 
-namespace Solvberget.Service.Tests.RepositoryTests
-{
-    internal class InformationRepositoryTest
-    {
-        private readonly InformationRepositoryHtml _informationRepository;
+﻿// TODO: Enable and make it work
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using NUnit.Framework;
+//using Solvberget.Domain.Implementation;
 
-        public InformationRepositoryTest()
-        {
-            _informationRepository = new InformationRepositoryHtml();
-        }
+//namespace Solvberget.Service.Tests.RepositoryTests
+//{
 
-        [Fact]
-        public void TestGetContactInformation()
-        {
-            Assert.NotNull(_informationRepository.GetContactInformation());
-        }
+//    internal class InformationRepositoryTest
+//    {
 
-        [Fact]
-        public void TestGetOpeningHoursInformation()
-        {
-            Assert.NotNull(_informationRepository.GetOpeningHoursInformation());
-        }
-    }
-}
+//        private InformationRepositoryHtml _informationRepository;
+
+
+//        [Fact]
+//        public InformationRepositoryTest()
+//        {
+//            _informationRepository = new InformationRepositoryHtml();
+//        }
+
+
+//        [Fact]
+//        public void TestGetContactInformation()
+//        {
+//            Assert.NotNull(_informationRepository.GetContactInformation());
+//        }
+
+//        [Fac]
+//        public void TestGetOpeningHoursInformation()
+//        {
+//            Assert.NotNull(_informationRepository.GetOpeningHoursInformation());         
+//        }
+//    }
+//}
