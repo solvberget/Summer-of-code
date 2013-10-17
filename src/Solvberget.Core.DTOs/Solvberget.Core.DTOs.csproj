@@ -44,7 +44,6 @@
     <Compile Include="DTO\Cd.cs" />
     <Compile Include="DTO\ContactInformation.cs" />
     <Compile Include="DTO\ContactPerson.cs" />
-    <Compile Include="DTO\ContactWebPage.cs" />
     <Compile Include="DTO\Document.cs" />
     <Compile Include="DTO\DocumentItem.cs" />
     <Compile Include="DTO\Event.cs" />
@@ -63,7 +62,6 @@
     <Compile Include="DTO\NewsItem.cs" />
     <Compile Include="DTO\Notification.cs" />
     <Compile Include="DTO\OpeningHoursInformation.cs" />
-    <Compile Include="DTO\OpeningHoursWebPage.cs" />
     <Compile Include="DTO\Organization.cs" />
     <Compile Include="DTO\Person.cs" />
     <Compile Include="DTO\RequestReply.cs" />
@@ -71,7 +69,6 @@
     <Compile Include="DTO\ReservationReply.cs" />
     <Compile Include="DTO\SheetMusic.cs" />
     <Compile Include="DTO\UserInfo.cs" />
-    <Compile Include="DTO\Webpage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

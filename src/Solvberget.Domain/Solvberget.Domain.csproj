@@ -134,9 +134,6 @@
     <Compile Include="..\Solvberget.Core.DTOs\DTO\ContactPerson.cs">
       <Link>DTO\ContactPerson.cs</Link>
     </Compile>
-    <Compile Include="..\Solvberget.Core.DTOs\DTO\ContactWebPage.cs">
-      <Link>DTO\ContactWebPage.cs</Link>
-    </Compile>
     <Compile Include="..\Solvberget.Core.DTOs\DTO\Document.cs">
       <Link>DTO\Document.cs</Link>
     </Compile>
@@ -191,9 +188,6 @@
     <Compile Include="..\Solvberget.Core.DTOs\DTO\OpeningHoursInformation.cs">
       <Link>DTO\OpeningHoursInformation.cs</Link>
     </Compile>
-    <Compile Include="..\Solvberget.Core.DTOs\DTO\OpeningHoursWebPage.cs">
-      <Link>DTO\OpeningHoursWebPage.cs</Link>
-    </Compile>
     <Compile Include="..\Solvberget.Core.DTOs\DTO\Organization.cs">
       <Link>DTO\Organization.cs</Link>
     </Compile>
@@ -215,9 +209,6 @@
     <Compile Include="..\Solvberget.Core.DTOs\DTO\UserInfo.cs">
       <Link>DTO\UserInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Solvberget.Core.DTOs\DTO\Webpage.cs">
-      <Link>DTO\Webpage.cs</Link>
-    </Compile>
     <Compile Include="Abstract\IEnvironmentPathProvider.cs" />
     <Compile Include="Abstract\IInformationRepository.cs" />
     <Compile Include="Abstract\IEventRepository.cs" />
@@ -231,6 +222,9 @@
     <Compile Include="Abstract\ISuggestionDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="DTO\ContactWebPage.cs" />
+    <Compile Include="DTO\OpeningHoursWebPage.cs" />
+    <Compile Include="DTO\Webpage.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\AvailabilityRepository.cs" />
     <Compile Include="Implementation\BokbasenRepository.cs" />

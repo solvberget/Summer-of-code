@@ -20,7 +20,6 @@ namespace Solvberget.Domain.Implementation
             if (!items.Any()) return null;
             var availabilityinfo = new List<AvailabilityInformation>();
 
-            // TODO: This should not be commented out
             foreach (var availabilityInfo in AvailabilityInformation.BranchesToHandle.Select(branch => AvailabilityRepository.GenerateInfoFor(doc, branch, items)).Where(availabilityInfo => availabilityInfo != null))
             {
                 availabilityinfo.Add(availabilityInfo);

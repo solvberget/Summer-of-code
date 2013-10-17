@@ -26,7 +26,6 @@ namespace Solvberget.Service.Tests.DTOTests
             _xmluri += "SYSTEM=" + System;
         }
 
-        // TODO: Uncomment
         [Fact(Skip = "This test is failing, determine whether to keep this or not...")]
         public void FillPropertiesTest()
         {

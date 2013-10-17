@@ -22,7 +22,7 @@ namespace Solvberget.Domain.DTO
             return ci;
         }
 
-        private void FillProperties(XContainer xml)
+        public void FillProperties(XContainer xml)
         {
             if (xml == null) return;
 
