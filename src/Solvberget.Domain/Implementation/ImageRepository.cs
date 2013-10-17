@@ -101,6 +101,8 @@ namespace Solvberget.Domain.Implementation
             var isbn = book.Isbn;
             var xmlBook = new BokbasenRepository(_documentRepository).GenerateBookFromXml(_xmluri + "&ISBN=" + isbn);
 
+            if (xmlBook == null) return string.Empty;
+
             if ( fetchThumbnail )
                 return !string.IsNullOrEmpty(xmlBook.Thumb_Cover_Picture) ? xmlBook.Thumb_Cover_Picture : string.Empty;
 
