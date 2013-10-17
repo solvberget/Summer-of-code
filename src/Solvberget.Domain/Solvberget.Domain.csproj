@@ -104,6 +104,111 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\AudioBook.cs">
+      <Link>DTO\AudioBook.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\AvailabilityInformation.cs">
+      <Link>DTO\AvailabilityInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Blog.cs">
+      <Link>DTO\Blog.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\BlogEntry.cs">
+      <Link>DTO\BlogEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\BokBasenBook.cs">
+      <Link>DTO\BokBasenBook.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\BokElskereBok.cs">
+      <Link>DTO\BokElskereBok.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Book.cs">
+      <Link>DTO\Book.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Cd.cs">
+      <Link>DTO\Cd.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\ContactInformation.cs">
+      <Link>DTO\ContactInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\ContactPerson.cs">
+      <Link>DTO\ContactPerson.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Document.cs">
+      <Link>DTO\Document.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\DocumentItem.cs">
+      <Link>DTO\DocumentItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Event.cs">
+      <Link>DTO\Event.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\ExtensionHelpers.cs">
+      <Link>DTO\ExtensionHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Film.cs">
+      <Link>DTO\Film.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Fine.cs">
+      <Link>DTO\Fine.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Game.cs">
+      <Link>DTO\Game.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\ImdbObject.cs">
+      <Link>DTO\ImdbObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Information.cs">
+      <Link>DTO\Information.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\ItemRule.cs">
+      <Link>DTO\ItemRule.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Journal.cs">
+      <Link>DTO\Journal.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\LanguageCourse.cs">
+      <Link>DTO\LanguageCourse.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\LastFmAlbum.cs">
+      <Link>DTO\LastFmAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\LibraryList.cs">
+      <Link>DTO\LibraryList.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Loan.cs">
+      <Link>DTO\Loan.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\NewsItem.cs">
+      <Link>DTO\NewsItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Notification.cs">
+      <Link>DTO\Notification.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\OpeningHoursInformation.cs">
+      <Link>DTO\OpeningHoursInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Organization.cs">
+      <Link>DTO\Organization.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Person.cs">
+      <Link>DTO\Person.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\RequestReply.cs">
+      <Link>DTO\RequestReply.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\Reservation.cs">
+      <Link>DTO\Reservation.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\ReservationReply.cs">
+      <Link>DTO\ReservationReply.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\SheetMusic.cs">
+      <Link>DTO\SheetMusic.cs</Link>
+    </Compile>
+    <Compile Include="..\Solvberget.Core.DTOs\DTO\UserInfo.cs">
+      <Link>DTO\UserInfo.cs</Link>
+    </Compile>
     <Compile Include="Abstract\IEnvironmentPathProvider.cs" />
     <Compile Include="Abstract\IInformationRepository.cs" />
     <Compile Include="Abstract\IEventRepository.cs" />
@@ -116,96 +221,16 @@
     <Compile Include="Abstract\IRulesRepository.cs" />
     <Compile Include="Abstract\ISuggestionDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
-    <Compile Include="DTO\Blog.cs" />
-    <Compile Include="DTO\BlogEntry.cs" />
-    <Compile Include="DTO\BokElskereBok.cs" />
-    <Compile Include="DTO\ContactPerson.cs" />
-    <Compile Include="DTO\Game.cs" />
-    <Compile Include="DTO\Information.cs" />
-    <Compile Include="DTO\ItemRule.cs" />
-    <Compile Include="DTO\ImdbObject.cs" />
-    <Compile Include="DTO\LanguageCourse.cs" />
     <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="DTO\AudioBook.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\AvailabilityInformation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\BokBasenBook.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Book.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Cd.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\ContactInformation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\ContactWebPage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Document.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\DocumentItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Event.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\ExtensionHelpers.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Film.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Notification.cs" />
-    <Compile Include="DTO\NewsItem.cs" />
-    <Compile Include="DTO\RequestReply.cs" />
-    <Compile Include="DTO\LastFmAlbum.cs" />
-    <Compile Include="DTO\Fine.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Journal.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\LibraryList.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Loan.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\OpeningHoursInformation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\OpeningHoursWebPage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Organization.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Person.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Reservation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\SheetMusic.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\UserInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DTO\Webpage.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="DTO\ContactWebPage.cs" />
+    <Compile Include="DTO\OpeningHoursWebPage.cs" />
+    <Compile Include="DTO\Webpage.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
+    <Compile Include="Implementation\AvailabilityRepository.cs" />
     <Compile Include="Implementation\BokbasenRepository.cs" />
     <Compile Include="Implementation\BlogRepository.cs" />
     <Compile Include="Implementation\BokelskereRepository.cs" />
+    <Compile Include="Implementation\DocumentItemRepository.cs" />
     <Compile Include="Implementation\InformationRepositoryXml.cs" />
     <Compile Include="Implementation\InformationRepositoryHtml.cs" />
     <Compile Include="Implementation\NewsRepository.cs" />
@@ -220,6 +245,7 @@
     <Compile Include="Implementation\LuceneRepository.cs" />
     <Compile Include="Implementation\ReviewRepository.cs" />
     <Compile Include="Implementation\RatingRepository.cs" />
+    <Compile Include="Utils\ImageCacheUtils.cs" />
     <Compile Include="Utils\StorageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

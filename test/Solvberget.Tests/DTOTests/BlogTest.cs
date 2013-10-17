@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 
 using Solvberget.Domain.DTO;
+using Solvberget.Domain.Implementation;
 
 using Xunit;
 
@@ -27,7 +28,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Fact]
         public void FillEntriesFromRssTest()
         {
-            var entries = BlogEntry.FillEntriesFromRss(GetRssBlogXml());
+            var entries = BlogRepository.FillEntriesFromRss(GetRssBlogXml());
             Assert.NotNull(entries);
             Assert.NotEmpty(entries);
 
@@ -46,7 +47,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Fact]
         public void FillEntriesFromAtomTest()
         {
-            var entries = BlogEntry.FillEntriesFromAtom(GetAtomBlogXml());
+            var entries = BlogRepository.FillEntriesFromAtom(GetAtomBlogXml());
             Assert.NotNull(entries);
             Assert.NotEmpty(entries);
             

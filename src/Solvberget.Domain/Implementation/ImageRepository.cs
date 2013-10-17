@@ -1,8 +1,6 @@
-﻿using System.Web.Script.Serialization;
-using Solvberget.Domain.Abstract;
+﻿using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Utils;
-using System.Linq;
 
 namespace Solvberget.Domain.Implementation
 {
@@ -99,9 +97,9 @@ namespace Solvberget.Domain.Implementation
         {
 
             var isbn = book.Isbn;
-            var xmlBook = new BokBasenBook();
+            var xmlBook = new BokbasenRepository(_documentRepository).GenerateBookFromXml(_xmluri + "&ISBN=" + isbn);
 
-            xmlBook.FillProperties(_xmluri + "&ISBN="+isbn);
+            if (xmlBook == null) return string.Empty;
 
             if ( fetchThumbnail )
                 return !string.IsNullOrEmpty(xmlBook.Thumb_Cover_Picture) ? xmlBook.Thumb_Cover_Picture : string.Empty;
@@ -114,9 +112,7 @@ namespace Solvberget.Domain.Implementation
         {
 
             var isbn = abook.Isbn;
-            var xmlBook = new BokBasenBook();
-
-            xmlBook.FillProperties(_xmluri + "&ISBN=" + isbn);
+            var xmlBook = new BokbasenRepository(_documentRepository).GenerateBookFromXml(_xmluri + "&ISBN=" + isbn);
 
             if (fetchThumbnail)
                 return !string.IsNullOrEmpty(xmlBook.Thumb_Cover_Picture) ? xmlBook.Thumb_Cover_Picture : string.Empty;
@@ -178,16 +174,13 @@ namespace Solvberget.Domain.Implementation
             if (string.IsNullOrEmpty(externalImageUrl))
                 return string.Empty;
 
-           var imageName = isThumbnail ? "thumb" + id + ".jpg" : id + ".jpg";
+            var imageName = isThumbnail ? "thumb" + id + ".jpg" : id + ".jpg";
 
-            RepositoryUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
+            ImageCacheUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
 
             var localServerUrl = Properties.Settings.Default.ServerUrl;
             var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
             return localServerUrl + localImageCacheFolder + imageName;
-
         }
-
     }
- 
 }

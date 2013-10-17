@@ -24,7 +24,6 @@ namespace Solvberget.Service.Tests.RepositoryTests
             {
                 Assert.True(imdbObjectAsJson.Contains("Harry Potter"));
             }
-
         }
 
         [Fact]
@@ -34,7 +33,7 @@ namespace Solvberget.Service.Tests.RepositoryTests
             if (Directory.Exists(_imageCache))
                 Directory.Delete(_imageCache, true);
 
-            RepositoryUtils.DownloadImageFromUrl("http://ia.media-imdb.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX640.jpg","MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX640.jpg", _imageCache );
+            ImageCacheUtils.DownloadImageFromUrl("http://ia.media-imdb.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX640.jpg","MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX640.jpg", _imageCache );
 
 
             // Check if cache folder exists

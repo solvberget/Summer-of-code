@@ -529,7 +529,7 @@ namespace Solvberget.Service.Tests.DTOTests
         [Fact]
         public void GetDocumentItemsFromXmlTest()
         {
-            var documentItems = DocumentItem.GetDocumentItemsFromXml(getDocumentItemsXml(), getDocumentCircItemsXml(), _repository).ToList();
+            var documentItems = DocumentItemRepository.GetDocumentItemsFromXml(getDocumentItemsXml(), getDocumentCircItemsXml(), _repository).ToList();
             Assert.Equal(6, documentItems.Count());
 
             var documentItem1 = documentItems.ElementAt(0);

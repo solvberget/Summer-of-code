@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Implementation;
 
@@ -14,8 +13,8 @@ namespace Solvberget.Service.Tests.DTOTests
         public AvailabilityInformationTest()
         {
             _document = new Document();
-            var docItems = DocumentItem.GetDocumentItemsFromXml(getDocumentItemsXml(), getDocumentCircItemsXml(), new RulesRepository());
-            _document.GenerateLocationAndAvailabilityInfo(docItems);   
+            var docItems = DocumentItemRepository.GetDocumentItemsFromXml(getDocumentItemsXml(), getDocumentCircItemsXml(), new RulesRepository());
+            _document.AvailabilityInfo = AvailabilityRepository.GenerateLocationAndAvailabilityInfo(docItems, _document); 
         }
 
         [Fact]

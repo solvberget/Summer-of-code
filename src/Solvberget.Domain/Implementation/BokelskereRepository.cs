@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Web.Script.Serialization;
+using System.Linq.Expressions;
+using System.Xml.Linq;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
-using Solvberget.Domain.Utils;
 
 namespace Solvberget.Domain.Implementation
 {
@@ -18,25 +17,15 @@ namespace Solvberget.Domain.Implementation
 
         public BokelskereRepository(IRepository documentRepository)
         {
-
             _documentRepository = documentRepository;
-
             _serveruri = Properties.Settings.Default.BokElskereServerUrl;
-
             _xmluri = _serveruri;
-
         }
 
         public BokElskereBook GetExternalBokelskereBook(string id)
         {
             var doc = _documentRepository.GetDocument(id, true);
-            
-             if (Equals(doc.DocType, typeof(Book).Name))
-             {
-                return GetExternalBokelskereBook(doc as Book);
-             }
-             
-            return null;
+            return Equals(doc.DocType, typeof(Book).Name) ? GetExternalBokelskereBook(doc as Book) : null;
         }
 
        
@@ -49,19 +38,56 @@ namespace Solvberget.Domain.Implementation
                 if (book != null && book.Isbn != null)
                 {
                     var isbn = book.Isbn;
-                  isbn =  isbn.Replace("-", "");
-                    var xmlBook = new BokElskereBook();
+                    isbn =  isbn.Replace("-", "");
+                    
 
-                    xmlBook.FillProperties(_xmluri + "/" + isbn+"/?format=xml");
+                    var xmlBook = FillProperties(_xmluri + "/" + isbn+"/?format=xml");
 
                     return xmlBook;
                 }
             }
-
             return null;
-
         }
 
+        public BokElskereBook FillProperties(string xml)
+        {
+            var book = new BokElskereBook();
+            XDocument xdoc;
+            try
+            {
+                xdoc = XDocument.Load(xml);
+            }
+            catch
+            {
+                return null;
+            }
 
+
+            if (xdoc.Root == null) return null;
+
+            var xElement = xdoc.Element("response");
+            if (xElement == null) return null;
+            book.gjennomsnittelig_terningkast = GetXmlValue(xElement, GetPropertyName(() => book.gjennomsnittelig_terningkast));
+            decimal terningkast;
+            if (Decimal.TryParse(book.gjennomsnittelig_terningkast, NumberStyles.Any, CultureInfo.InvariantCulture, out terningkast))
+            {
+                var gjennomsnittelig_terningkast_decimal = Math.Round(terningkast, 1);
+                book.gjennomsnittelig_terningkast = gjennomsnittelig_terningkast_decimal.ToString(CultureInfo.InvariantCulture);
+            }
+
+            return book;
+        }
+
+        private static string GetXmlValue(XElement node, string tag)
+        {
+            var xElement = node.DescendantsAndSelf(tag.ToLower()).FirstOrDefault();
+            return xElement == null ? string.Empty : xElement.Value;
+        }
+
+        private static string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
+        {
+            var memberExpression = propertyExpression.Body as MemberExpression;
+            return memberExpression != null ? memberExpression.Member.Name : string.Empty;
+        }
     }
 }

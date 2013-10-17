@@ -261,7 +261,7 @@ namespace Solvberget.Domain.Implementation
         private void GenerateDocumentLocationAndAvailabilityInfo(Document document)
         {
             var documentItems = GetDocumentItems(document.DocumentNumber);
-            document.GenerateLocationAndAvailabilityInfo(documentItems);
+            document.AvailabilityInfo = AvailabilityRepository.GenerateLocationAndAvailabilityInfo(documentItems, document);
         }
 
         private IEnumerable<DocumentItem> GetDocumentItems(string documentNumber)
@@ -276,7 +276,7 @@ namespace Solvberget.Domain.Implementation
             url = GetUrl(function, options);
             var docCircItemXml = RepositoryUtils.GetXmlFromStream(url);
 
-            return DocumentItem.GetDocumentItemsFromXml(docItemsXml.ToString(), docCircItemXml.ToString(), _rulesRepository);
+            return DocumentItemRepository.GetDocumentItemsFromXml(docItemsXml.ToString(), docCircItemXml.ToString(), _rulesRepository);
         }
 
         private bool AuthenticateUser(ref UserInfo user, string userId, string verification)

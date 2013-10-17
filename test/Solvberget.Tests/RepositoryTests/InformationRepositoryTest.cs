@@ -1,17 +1,20 @@
 ﻿using Solvberget.Domain.Implementation;
-
 using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests
 {
+
     internal class InformationRepositoryTest
     {
-        private readonly InformationRepositoryHtml _informationRepository;
+
+        private InformationRepositoryHtml _informationRepository;
+
 
         public InformationRepositoryTest()
         {
             _informationRepository = new InformationRepositoryHtml();
         }
+
 
         [Fact]
         public void TestGetContactInformation()
