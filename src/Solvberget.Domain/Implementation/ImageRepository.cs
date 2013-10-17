@@ -1,8 +1,6 @@
-﻿using System.Web.Script.Serialization;
-using Solvberget.Domain.Abstract;
+﻿using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
 using Solvberget.Domain.Utils;
-using System.Linq;
 
 namespace Solvberget.Domain.Implementation
 {
