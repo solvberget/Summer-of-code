@@ -174,6 +174,7 @@
     <AndroidResource Include="Resources\Values-land\integers.xml" />
     <AndroidResource Include="Resources\Values-v11\styles.xml" />
     <AndroidResource Include="Resources\Values-v14\styles.xml" />
+    <AndroidResource Include="Resources\Menu\search_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

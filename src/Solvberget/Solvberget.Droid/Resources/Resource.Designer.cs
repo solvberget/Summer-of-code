@@ -133,6 +133,9 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060004
 			public const int menu_refresh = 2131099652;
 			
+			// aapt resource value: 0x7f060005
+			public const int search = 2131099653;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -193,6 +196,9 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f090000
 			public const int refresh = 2131296256;
 			
+			// aapt resource value: 0x7f090001
+			public const int search_menu = 2131296257;
+			
 			static Menu()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -220,6 +226,9 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f070004
 			public const int menu_refresh = 2131165188;
+			
+			// aapt resource value: 0x7f070005
+			public const int search_title = 2131165189;
 			
 			static String()
 			{

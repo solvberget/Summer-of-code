@@ -17,5 +17,11 @@ namespace Solvberget.Droid.Views.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
             return this.BindingInflate(Resource.Layout.fragment_search, null);
         }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.search_menu, menu);
+        }
     }
 }
