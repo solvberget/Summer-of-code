@@ -1,4 +1,4 @@
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Windows.Input;
 using Android.Widget;
 
@@ -10,7 +10,7 @@ namespace Solvberget.Droid
     {
         public void Include(Button button)
         {
-            button.Click += (s,e) => button.Text = button.Text + "";
+            button.Click += (s, e) => button.Text = button.Text + "";
         }
 
         public void Include(CheckBox checkBox)
@@ -21,7 +21,6 @@ namespace Solvberget.Droid
         public void Include(TextView text)
         {
             text.TextChanged += (sender, args) => text.Text = "" + text.Text;
-			text.Hint = "" + text.Hint;
         }
 
         public void Include(CompoundButton cb)
@@ -36,7 +35,7 @@ namespace Solvberget.Droid
 
         public void Include(INotifyCollectionChanged changed)
         {
-            changed.CollectionChanged += (s,e) => { var test = string.Format("{0}{1}{2}{3}{4}", e.Action,e.NewItems, e.NewStartingIndex, e.OldItems, e.OldStartingIndex); } ;
+            changed.CollectionChanged += (s, e) => { var test = string.Format("{0}{1}{2}{3}{4}", e.Action, e.NewItems, e.NewStartingIndex, e.OldItems, e.OldStartingIndex); };
         }
 
         public void Include(ICommand command)

@@ -1,17 +1,15 @@
-using Cirrious.CrossCore.IoC;
+﻿using Solvberget.Core.ViewModels;
 
 namespace Solvberget.Core
 {
     public class App : Cirrious.MvvmCross.ViewModels.MvxApplication
     {
+
         public override void Initialize()
         {
-            CreatableTypes()
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
-				
-            RegisterAppStart<ViewModels.FirstViewModel>();
+
+            this.RegisterAppStart<HomeViewModel>();
         }
+
     }
 }
