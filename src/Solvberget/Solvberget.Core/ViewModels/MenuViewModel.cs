@@ -4,14 +4,14 @@ namespace Solvberget.Core.ViewModels
 {
     public class MenuViewModel : BaseViewModel 
     {
-        private HomeViewModel.Section m_Section;
+        private HomeViewModel.Section _section;
         public HomeViewModel.Section Section
         {
-            get { return this.m_Section; }
+            get { return _section; }
             set
             {
-                this.m_Section = value;
-                this.Id = (int)this.m_Section; this.RaisePropertyChanged(() => this.Section);
+                _section = value;
+                Id = (int)_section; RaisePropertyChanged(() => Section);
             }
         }
     }

@@ -4,24 +4,24 @@ namespace Solvberget.Core.ViewModels.Base
 {
     public class BaseViewModel : MvxViewModel
     {
-        private long m_Id;
+        private long _id;
         /// <summary>
         /// Gets or sets the unique ID for the menu
         /// </summary>
         public long Id
         {
-            get { return this.m_Id; }
-            set { this.m_Id = value; this.RaisePropertyChanged(() => this.Id); }
+            get { return _id; }
+            set { _id = value; RaisePropertyChanged(() => this.Id); }
         }
 
-        private string m_Title = string.Empty;
+        private string _title = string.Empty;
         /// <summary>
         /// Gets or sets the name of the menu
         /// </summary>
         public string Title
         {
-            get { return this.m_Title; }
-            set { this.m_Title = value; this.RaisePropertyChanged(() => this.Title); }
+            get { return _title; }
+            set { _title = value; RaisePropertyChanged(() => Title); }
         }
     }
 }

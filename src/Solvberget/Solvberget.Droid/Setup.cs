@@ -10,8 +10,7 @@ namespace Solvberget.Droid
 {
     public class Setup : MvxAndroidSetup
     {
-        public Setup(Context applicationContext)
-            : base(applicationContext)
+        public Setup(Context applicationContext) : base(applicationContext)
         {
         }
 

@@ -11,10 +11,11 @@ using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.ViewModels;
 using Solvberget.Droid.Helpers;
+using Solvberget.Droid.Views.Fragments;
 
 namespace Solvberget.Droid.Views
 {
-    [Activity(Label = "Home", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher")]
+    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher")]
     public class HomeView : MvxFragmentActivity, IFragmentHost
 	{
         private DrawerLayout _drawer;
@@ -26,7 +27,7 @@ namespace Solvberget.Droid.Views
 		private HomeViewModel m_ViewModel;
 		public new HomeViewModel ViewModel
 		{
-			get { return this.m_ViewModel ?? (this.m_ViewModel = base.ViewModel as HomeViewModel); }
+			get { return m_ViewModel ?? (m_ViewModel = base.ViewModel as HomeViewModel); }
 		}
 
 
@@ -36,45 +37,45 @@ namespace Solvberget.Droid.Views
 
             SetContentView(Resource.Layout.page_home_view);
 
-            this._title = this._drawerTitle = this.Title;
-            this._drawer = this.FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            this._drawerList = this.FindViewById<MvxListView>(Resource.Id.left_drawer);
+            _title = _drawerTitle = Title;
+            _drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            _drawerList = FindViewById<MvxListView>(Resource.Id.left_drawer);
 
-            this._drawer.SetDrawerShadow(Resource.Drawable.drawer_shadow_dark, (int)GravityFlags.Start);
+            _drawer.SetDrawerShadow(Resource.Drawable.drawer_shadow_dark, (int)GravityFlags.Start);
 
-            this.ActionBar.SetDisplayHomeAsUpEnabled(true);
-            this.ActionBar.SetHomeButtonEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetHomeButtonEnabled(true);
 
             //DrawerToggle is the animation that happens with the indicator next to the
             //ActionBar icon. You can choose not to use this.
-            this._drawerToggle = new MyActionBarDrawerToggle(this, this._drawer,
+            _drawerToggle = new MyActionBarDrawerToggle(this, _drawer,
                                                       Resource.Drawable.ic_drawer_light,
                                                       Resource.String.drawer_open,
                                                       Resource.String.drawer_close);
 
             //You can alternatively use _drawer.DrawerClosed here
-            this._drawerToggle.DrawerClosed += delegate
+            _drawerToggle.DrawerClosed += delegate
             {
-                this.ActionBar.Title = this._title;
-                this.InvalidateOptionsMenu();
+                ActionBar.Title = _title;
+                InvalidateOptionsMenu();
             };
 
 
             //You can alternatively use _drawer.DrawerOpened here
-            this._drawerToggle.DrawerOpened += delegate
+            _drawerToggle.DrawerOpened += delegate
             {
-                this.ActionBar.Title = this._drawerTitle;
-                this.InvalidateOptionsMenu();
+                ActionBar.Title = _drawerTitle;
+                InvalidateOptionsMenu();
             };
 
-            this._drawer.SetDrawerListener(this._drawerToggle);
+            _drawer.SetDrawerListener(_drawerToggle);
 
 
-            this.RegisterForDetailsRequests();
+            RegisterForDetailsRequests();
 
             if (null == savedInstanceState)
             {
-                this.ViewModel.SelectMenuItemCommand.Execute(this.ViewModel.MenuItems[0]);
+                ViewModel.SelectMenuItemCommand.Execute(ViewModel.MenuItems[0]);
             }
  
         }
@@ -87,7 +88,7 @@ namespace Solvberget.Droid.Views
         {
             var customPresenter = Mvx.Resolve<ICustomPresenter>();
             customPresenter.Register(typeof(MyPageViewModel), this);
-
+            customPresenter.Register(typeof(SearchViewModel), this);
         }
 
         /// <summary>
@@ -103,27 +104,30 @@ namespace Solvberget.Droid.Views
             {
                 MvxFragment frag = null;
                 var title = string.Empty;
-                var section = this.ViewModel.GetSectionForViewModelType(request.ViewModelType);
+                var section = ViewModel.GetSectionForViewModelType(request.ViewModelType);
 
                 switch (section)
                 {
                     case HomeViewModel.Section.MyPage:
                         {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MyPageView != null)
+                            {
+                                return true;
+                            }
+
+                            frag = new MyPageView();
+                            title = "Min Side";
                         }
                         break;
                     case HomeViewModel.Section.Search:
                         {
-                        }
-                        break;
-                    case HomeViewModel.Section.Lists:
-                        {
-                            //if (this.SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MyPageView != null)
-                            //{
-                            //    return true;
-                            //}
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as SearchView != null)
+                            {
+                                return true;
+                            }
 
-                            //frag = new MyPageView();
-                            //title = "Profile";
+                            frag = new SearchView();
+                            title = "Søk";
                         }
                         break;
                 }
@@ -131,33 +135,36 @@ namespace Solvberget.Droid.Views
                 var loaderService = Mvx.Resolve<IMvxViewModelLoader>();
                 var viewModel = loaderService.LoadViewModel(request, null /* saved state */);
 
-                frag.ViewModel = viewModel;
+                if (frag != null)
+                {
+                    frag.ViewModel = viewModel;
 
-                this.SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, frag).Commit();
-                this._drawerList.SetItemChecked(this.ViewModel.MenuItems.FindIndex(m=>m.Id == (int)section), true);
-                this.ActionBar.Title = this._title = title;
+                    SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, frag).Commit();
+                }
+                _drawerList.SetItemChecked(ViewModel.MenuItems.FindIndex(m=>m.Id == (int)section), true);
+                ActionBar.Title = _title = title;
 
-                this._drawer.CloseDrawer(this._drawerList);
+                _drawer.CloseDrawer(_drawerList);
 
                 return true;
             }
             finally
             {
-                this._drawer.CloseDrawer(this._drawerList); 
+                _drawer.CloseDrawer(_drawerList); 
             }
         }
 
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
-            this._drawerToggle.SyncState();
+            _drawerToggle.SyncState();
         }
 
 
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            this._drawerToggle.OnConfigurationChanged(newConfig);
+            _drawerToggle.OnConfigurationChanged(newConfig);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -168,7 +175,7 @@ namespace Solvberget.Droid.Views
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
-            var drawerOpen = this._drawer.IsDrawerOpen(this._drawerList);
+            var drawerOpen = _drawer.IsDrawerOpen(_drawerList);
             //when open down't show anything
             for (int i = 0; i < menu.Size(); i++)
                 menu.GetItem(i).SetVisible(!drawerOpen);
@@ -179,7 +186,7 @@ namespace Solvberget.Droid.Views
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (this._drawerToggle.OnOptionsItemSelected(item))
+            if (_drawerToggle.OnOptionsItemSelected(item))
                 return true;
 
             return base.OnOptionsItemSelected(item);

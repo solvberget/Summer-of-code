@@ -23,7 +23,7 @@ namespace Solvberget.Core.ViewModels
 
         public HomeViewModel()
         {
-            this.m_MenuItems = new List<MenuViewModel>
+            _menuItems = new List<MenuViewModel>
                               {
                                   new MenuViewModel
                                       {
@@ -69,19 +69,19 @@ namespace Solvberget.Core.ViewModels
                               };
         }
 
-        private List<MenuViewModel> m_MenuItems;
+        private List<MenuViewModel> _menuItems;
         public List<MenuViewModel> MenuItems
         {
-            get { return this.m_MenuItems; }
-            set { this.m_MenuItems = value; this.RaisePropertyChanged(() => this.MenuItems); }
+            get { return _menuItems; }
+            set { _menuItems = value; RaisePropertyChanged(() => MenuItems); }
         }
 
-        private MvxCommand<MenuViewModel> m_SelectMenuItemCommand;
+        private MvxCommand<MenuViewModel> _selectMenuItemCommand;
         public ICommand SelectMenuItemCommand
         {
             get
             {
-                return this.m_SelectMenuItemCommand ?? (this.m_SelectMenuItemCommand = new MvxCommand<MenuViewModel>(this.ExecuteSelectMenuItemCommand));
+                return _selectMenuItemCommand ?? (_selectMenuItemCommand = new MvxCommand<MenuViewModel>(ExecuteSelectMenuItemCommand));
             }
         }
 
@@ -92,28 +92,22 @@ namespace Solvberget.Core.ViewModels
             {
 
                 case Section.MyPage:
-                    //this.ShowViewModel<MyPageViewModel>();
+                    ShowViewModel<MyPageViewModel>(item.Id);
                     break;
                 case Section.Search:
-                    //this.ShowViewModel<MyPageViewModel>();
+                    ShowViewModel<SearchViewModel>(item.Id);
                     break;
                 case Section.Lists:
-                    //this.ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.Events:
-                    //this.ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.Blogs:
-                    //this.ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.News:
-                    //this.ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.OpeningHours:
-                    //this.ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.Contact:
-                    //this.ShowViewModel<MyPageViewModel>();
                     break;
             }
         }
@@ -123,6 +117,8 @@ namespace Solvberget.Core.ViewModels
 
             if (type == typeof(MyPageViewModel))
                 return Section.MyPage;
+            if (type == typeof(SearchViewModel))
+                return Section.Search;
 
             return Section.Unknown;
         }
