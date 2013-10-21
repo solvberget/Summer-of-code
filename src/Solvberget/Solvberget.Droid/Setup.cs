@@ -1,7 +1,10 @@
 using Android.Content;
-using Cirrious.CrossCore.Platform;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Platform;
+using Cirrious.MvvmCross.Droid.Views;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core;
+using Solvberget.Droid.Helpers;
 
 namespace Solvberget.Droid
 {
@@ -13,12 +16,15 @@ namespace Solvberget.Droid
 
         protected override IMvxApplication CreateApp()
         {
-            return new Core.App();
+            return new App();
         }
-		
-        protected override IMvxTrace CreateDebugTrace()
+
+
+        protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
-            return new DebugTrace();
+            var customPresenter = new CustomPresenter();
+            Mvx.RegisterSingleton<ICustomPresenter>(customPresenter);
+            return customPresenter;
         }
     }
 }

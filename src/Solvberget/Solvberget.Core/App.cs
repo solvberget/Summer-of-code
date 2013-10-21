@@ -1,4 +1,4 @@
-using Cirrious.CrossCore.IoC;
+﻿using Solvberget.Core.ViewModels;
 
 namespace Solvberget.Core
 {
@@ -6,12 +6,7 @@ namespace Solvberget.Core
     {
         public override void Initialize()
         {
-            CreatableTypes()
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
-				
-            RegisterAppStart<ViewModels.FirstViewModel>();
+            RegisterAppStart<HomeViewModel>();
         }
     }
 }
