@@ -175,10 +175,13 @@ namespace Solvberget.Droid
 			public const int item_menu = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int page_home_view = 2130903043;
+			public const int item_searchresult = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int SplashScreen = 2130903044;
+			public const int page_home_view = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int SplashScreen = 2130903045;
 			
 			static Layout()
 			{

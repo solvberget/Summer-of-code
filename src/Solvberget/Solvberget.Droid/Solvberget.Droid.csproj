@@ -136,6 +136,7 @@
     <AndroidResource Include="Resources\Layout\fragment_search.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
