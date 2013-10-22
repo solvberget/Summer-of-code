@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TextView
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name here"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        local:MvxBind="Text Name"
-        android:singleLine="true" />
+        android:src="@drawable/ic_launcher" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            local:MvxBind="Text Name"
+            android:singleLine="true" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                local:MvxBind="Text Type"
+                android:singleLine="true" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Year"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                local:MvxBind="Text Year"
+                android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

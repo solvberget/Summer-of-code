@@ -52,7 +52,9 @@ namespace Solvberget.Core.ViewModels
             Results = from document in results
                 select new SearchResultViewModel()
                 {
-                    Name = document.Title
+                    Name = document.Title,
+                    Type = document.DocType,
+                    Year = document.PublishedYear.ToString("0000")
                 };
         }
     }
@@ -64,6 +66,20 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _name; }
             set { _name = value; RaisePropertyChanged(() => Name);}
+        }
+
+        private string _type;
+        public string Type 
+        {
+            get { return _type; }
+            set { _type = value; RaisePropertyChanged(() => Type);}
+        }
+
+        private string _year;
+        public string Year 
+        {
+            get { return _year; }
+            set { _year = value; RaisePropertyChanged(() => Year);}
         }
     }
 }
