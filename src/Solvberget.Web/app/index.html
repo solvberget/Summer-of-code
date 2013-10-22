@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -26,8 +26,45 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+      <!-- Add your site or application content here -->
+      <div class="viewport">
+          <div class="frame">
+              <div id="menu" class="menu nav-collapse collapse width">
+                  <div class="collapse-inner">
+                      <div class="navbar navbar-inverse">
+                          <div class="navbar-inner">
+                                <input type="text" class="search-query" placeholder="Søk">
+                          </div>
+                      </div>
+                      
+                      <ul class="nav nav-pills nav-stacked">
+                          <li ng-class="{ active: isViewActive('/nyheter')}"><a href="#/nyheter">Nyheter</a></li>
+                          <li ng-class="{ active: isViewActive('/min-side')}"><a href="#/min-side">Min side<span class="badge pull-right">2</span></a></li>
+                          <li ng-class="{ active: isViewActive('/anbefalinger')}"><a href="#/anbefalinger">Anbefalinger</a></li>
+                          <li ng-class="{ active: isViewActive('/blogger')}"><a href="#/blogger">Blogger</a></li>
+                          <li ng-class="{ active: isViewActive('/apningstider')}"><a href="#/apningstider">Åpningstider</a></li>
+                          <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a href="#/kontakt-oss">Kontakt oss</a></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="view">
+                  <div class="navbar navbar-inverse">
+                      <div class="navbar-inner">
+                          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#menu">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                          </button>
+                      </div>
+                  </div>
+                  <div id="content">
+                      <div ng-view></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -66,8 +103,14 @@
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <!-- endbuild -->
+      <script src="scripts/app.js"></script>
+      <script src="scripts/controllers/nyheter.js"></script>
+      <script src="scripts/controllers/anbefalinger.js"></script>
+      <script src="scripts/controllers/apningstider.js"></script>
+      <script src="scripts/controllers/blogger.js"></script>
+      <script src="scripts/controllers/kontaktoss.js"></script>
+      <script src="scripts/controllers/minside.js"></script>
+
+      <!-- endbuild -->
 </body>
 </html>
