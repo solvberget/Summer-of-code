@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services;
 using Solvberget.Core.ViewModels.Base;
@@ -58,7 +57,7 @@ namespace Solvberget.Core.ViewModels
                 };
         }
     }
-
+    
     public class SearchResultViewModel : BaseViewModel
     {
         private string _name;

@@ -1,3 +1,5 @@
+using Android.App;
+using Android.Support.V4.View;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
@@ -20,8 +22,16 @@ namespace Solvberget.Droid.Views.Fragments
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
-            base.OnCreateOptionsMenu(menu, inflater);
             inflater.Inflate(Resource.Menu.search_menu, menu);
+
+            IMenuItem item = menu.FindItem(Resource.Id.search);
+            var sView = (Android.Widget.SearchView)item.ActionView;
+
+            sView.Iconified = false;
+
+
+
+            base.OnCreateOptionsMenu(menu, inflater);
         }
     }
 }
