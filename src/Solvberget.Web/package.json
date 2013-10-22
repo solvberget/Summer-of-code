@@ -1,9 +1,11 @@
 {
   "name": "solvbergetweb",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+	"grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9"
+  },
   "devDependencies": {
-    "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-coffee": "~0.7.0",
@@ -38,8 +40,7 @@
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.2",
-    "karma-ng-html2js-preprocessor": "~0.1.0",
-    "grunt-cli": "~0.1.9"
+    "karma-ng-html2js-preprocessor": "~0.1.0"
   },
   "engines": {
     "node": ">=0.8.0"
