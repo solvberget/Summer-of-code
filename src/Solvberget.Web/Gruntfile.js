@@ -313,6 +313,20 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    compress: {
+      dist: {
+      	options: {
+      	  archive: 'dist/dist.zip'
+      	},
+      	files: [
+      	  { 
+      	  	expand: true, 
+      	  	src: '**/*', 
+      	  	cwd: 'dist/' 
+      	  }
+      	]
+      }
     }
   });
 
@@ -351,7 +365,8 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'compress'
   ]);
 
   grunt.registerTask('default', [
