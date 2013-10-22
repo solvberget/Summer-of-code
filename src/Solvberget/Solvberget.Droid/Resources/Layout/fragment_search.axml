@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="This is the search view.. Everything has inflated correctly."
-        local:MvxBind="Text Title"
+        local:MvxBind="Text Query"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <MvxListView
         android:paddingTop="8dp"

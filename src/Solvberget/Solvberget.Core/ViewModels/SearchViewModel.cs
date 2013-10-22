@@ -15,7 +15,6 @@ namespace Solvberget.Core.ViewModels
         {
             _searchService = searchService;
             Title = "Søk";
-            SearchAndLoad();
         }
 
         private string _query;
