@@ -16,7 +16,7 @@ namespace Solvberget.Core.ViewModels
         {
             _searchService = searchService;
             Title = "Søk";
-            Load();
+            SearchAndLoad();
         }
 
         private string _query;
@@ -38,11 +38,17 @@ namespace Solvberget.Core.ViewModels
         {
             get
             {
-                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<SearchResultViewModel>((vm) => {}));
+                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<SearchResultViewModel>(ExecuteShowDetailsCommand));
             }
         }
 
-        public void Load()
+        private void ExecuteShowDetailsCommand(SearchResultViewModel searchResultViewModel)
+        {
+            ShowViewModel<SearchResultViewModel>(searchResultViewModel);
+        }
+
+        // Loads a a set of Documents retrieved from the service into the results list.
+        public void SearchAndLoad()
         {
             var results = _searchService.Search(Query);
             Results = from document in results
@@ -50,10 +56,7 @@ namespace Solvberget.Core.ViewModels
                 {
                     Name = document.Title
                 };
-             Mvx.Trace("Results #: " + Results.Count());
         }
-
-
     }
 
     public class SearchResultViewModel : BaseViewModel
