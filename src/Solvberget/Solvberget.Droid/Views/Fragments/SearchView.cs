@@ -1,5 +1,3 @@
-using Android.App;
-using Android.Support.V4.View;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
