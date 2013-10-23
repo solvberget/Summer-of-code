@@ -12,6 +12,7 @@ namespace Solvberget.Core.ViewModels
         {
             MyPageLoansViewModel = new MyPageLoansViewModel();
             MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel();
+            MyPageReservationsViewModel = new MyPageReservationsViewModel();
         }
 
         private MyPageLoansViewModel myPageLoansViewModel;
@@ -26,6 +27,13 @@ namespace Solvberget.Core.ViewModels
         {
             get { return myPagePersonaliaViewModel; }
             set { myPagePersonaliaViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
+        }
+
+        private MyPageReservationsViewModel myPageReservationsViewModel;
+        public MyPageReservationsViewModel MyPageReservationsViewModel
+        {
+            get { return myPageReservationsViewModel; }
+            set { myPageReservationsViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
         }
     }
 }

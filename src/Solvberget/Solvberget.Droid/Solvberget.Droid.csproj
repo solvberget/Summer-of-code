@@ -108,8 +108,8 @@
       <SubType>
       </SubType>
     </Compile>
-    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Setup.cs">
       <SubType>
       </SubType>
@@ -123,6 +123,7 @@
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
     <Compile Include="Views\Fragments\MyPageLoansView.cs" />
     <Compile Include="Views\Fragments\MyPagePersonaliaView.cs" />
+    <Compile Include="Views\Fragments\MyPageReservationsView.cs" />
     <Compile Include="Views\Fragments\SearchView.cs" />
     <Compile Include="Views\Fragments\MyPageView.cs" />
     <Compile Include="Views\HomeView.cs" />
@@ -145,7 +146,13 @@
     <AndroidResource Include="Resources\Layout\fragment_profile_personalia.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Layout\fragment_profile_loans_and_reservations.axml">
+    <AndroidResource Include="Resources\Layout\fragment_profile_loans.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_profile_reservations.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_reservation.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

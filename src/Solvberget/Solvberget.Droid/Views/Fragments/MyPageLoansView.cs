@@ -16,7 +16,7 @@ namespace Solvberget.Droid.Views.Fragments
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             //return base.OnCreateView(inflater, container, savedInstanceState);
-            return this.BindingInflate(Resource.Layout.fragment_profile_loans_and_reservations, null);
+            return this.BindingInflate(Resource.Layout.fragment_profile_loans, null);
         }
     }
 }

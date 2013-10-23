@@ -22,10 +22,63 @@
         <TextView
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:paddingBottom="35px"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Dette skal bli en brukerprofil hvis du er logget inn"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:singleLine="false" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            local:MvxBind="Text DateOfBirth"
+            android:hint="Fødselsdato er ikke registrert" />
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:singleLine="true"
+            android:text="Adresse" />
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            local:MvxBind="Text StreetAdress"
+            android:hint="Ingen adresse registrert" />
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="35px"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            local:MvxBind="Text CityAdress"
+            android:hint="adresselinje2" />
+        <TextView
+            android:text="Kontaktinformasjon"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" />
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            local:MvxBind="Text CellPhoneNumber"
+            android:hint="Ingen telefonnumre er registrert" />
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            local:MvxBind="Text Email"
+            android:hint="Ingen epostadresse er registrert" />
     </LinearLayout>
 </ScrollView>

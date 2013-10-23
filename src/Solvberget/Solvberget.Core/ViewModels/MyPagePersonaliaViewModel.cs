@@ -18,6 +18,7 @@ namespace Solvberget.Core.ViewModels
             StreetAdress = user.StreetAddress;
             CityAdress = user.CityAddress;
             CellPhoneNumber = user.CellPhoneNumber;
+            DateOfBirth = user.DateOfBirth;
         }
 
         private string _name;
@@ -86,6 +87,20 @@ namespace Solvberget.Core.ViewModels
             {
                 _cellPhoneNumber = value;
                 RaisePropertyChanged(() => CellPhoneNumber);
+            }
+        }
+
+        private string _dateOfBirth;
+        public string DateOfBirth
+        {
+            get
+            {
+                return _dateOfBirth;
+            }
+            set
+            {
+                _dateOfBirth = value;
+                RaisePropertyChanged(() => DateOfBirth);
             }
         }
     }

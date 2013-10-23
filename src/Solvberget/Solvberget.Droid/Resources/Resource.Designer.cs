@@ -232,8 +232,9 @@ namespace Solvberget.Droid
 			public const int fragment_mediadetail = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-
 			public const int fragment_profile = 2130903041;
+
+			public const int fragment_profile_loans = 2130903041;
 			
 			// aapt resource value: 0x7f030002
 			public const int fragment_search = 2130903042;
@@ -248,12 +249,17 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f030002
 			public const int fragment_profile_personalia = 2130903042;
-			
-			// aapt resource value: 0x7f030005
-			public const int page_home_view = 2130903045;
+
+            public const int fragment_profile_reservations = 2130903043;
 			
 			// aapt resource value: 0x7f030006
-			public const int SplashScreen = 2130903046;
+			public const int item_reservation = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int page_home_view = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int SplashScreen = 2130903048;
 			
 			static Layout()
 			{

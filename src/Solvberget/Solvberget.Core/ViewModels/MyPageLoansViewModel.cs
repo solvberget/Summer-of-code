@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Cirrious.CrossCore;
+using Solvberget.Core.Services;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
@@ -10,12 +9,11 @@ namespace Solvberget.Core.ViewModels
     {
         public MyPageLoansViewModel()
         {
-            
-        }
+            var service = Mvx.Resolve<IUserInformationService>();
+            if (service == null) throw new ArgumentNullException("service");
 
-        private void GetLoans()
-        {
-            throw new NotImplementedException();
+            var user = service.GetUserInformation("id");
+
         }
     }
 }
