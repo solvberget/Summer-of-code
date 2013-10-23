@@ -8,9 +8,9 @@ namespace Solvberget.Nancy.Modules
     {
         public SuggestionModule(ISuggestionDictionary suggestionDictionary) : base("/suggestions")
         {
-            Get["/lookup"] = _ => suggestionDictionary.Lookup(Request.Query.q);
-
             Get["/"] = _ => suggestionDictionary.SuggestionList();
+
+            Get["/lookup"] = _ => suggestionDictionary.Lookup(Request.Query.q);
         }
     }
 }
