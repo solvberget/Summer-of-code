@@ -52,6 +52,9 @@
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\Stubs\DocumentServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />
+    <Compile Include="Utils\BackgroundWorker.cs" />
+    <Compile Include="Utils\SynchronousBackgroundWorker.cs" />
+    <Compile Include="Utils\IBackgroundWorker.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaDetailViewModel.cs" />
     <Compile Include="ViewModels\SearchResultViewModel.cs" />

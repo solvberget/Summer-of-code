@@ -3,6 +3,7 @@ using Cirrious.CrossCore.IoC;
 using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.Services.Stubs;
+using Solvberget.Core.Utils;
 using Solvberget.Core.ViewModels;
 
 namespace Solvberget.Core
@@ -15,6 +16,9 @@ namespace Solvberget.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
+
+            
+            Mvx.LazyConstructAndRegisterSingleton<IBackgroundWorker, BackgroundWorker>();
 
             // Bootstrapping up some stubs while developing. Just remove these lines to start using proper implementations
             Mvx.LazyConstructAndRegisterSingleton<ISearchService, SearchServiceTemporaryStub>();

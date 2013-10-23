@@ -49,15 +49,21 @@ namespace Solvberget.Core.ViewModels
         // Loads a a set of Documents retrieved from the service into the results list.
         public void SearchAndLoad()
         {
-            var results = _searchService.Search(Query);
-            Results = (from document in results
-                select new SearchResultViewModel()
-                {
-                    Name = document.Title,
-                    Type = document.DocType,
-                    Year = document.PublishedYear.ToString("0000"),
-                    DocNumber = document.DocumentNumber
-                }).ToList();
+            IsLoading = true;
+            _searchService.Search(Query, (data) =>
+            {
+                
+                Results = (from document in data
+                           select new SearchResultViewModel()
+                           {
+                               Name = document.Title,
+                               Type = document.DocType,
+                               Year = document.PublishedYear.ToString("0000"),
+                               DocNumber = document.DocumentNumber
+                           }).ToList();
+                IsLoading = false;
+            });
+            
         }
     }
 }

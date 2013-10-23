@@ -1,9 +1,10 @@
-﻿using Solvberget.Domain.DTO;
+﻿using System;
+using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services.Interfaces
 {
     public interface IDocumentService
     {
-        Document Get(string docId);
+        void Get(string docId, Action<Document> callback);
     }
 }

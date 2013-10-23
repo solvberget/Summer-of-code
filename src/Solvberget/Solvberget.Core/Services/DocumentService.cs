@@ -1,14 +1,15 @@
-﻿using Solvberget.Core.Services.Interfaces;
+﻿using System;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services
 {
     class DocumentService : IDocumentService
     {
-        public Document Get(string docId)
+        public void Get(string docId, Action<Document> callback)
         {
             // TODO: Implement
-            return new Document();
+            callback(new Document());
         }
     }
 }
