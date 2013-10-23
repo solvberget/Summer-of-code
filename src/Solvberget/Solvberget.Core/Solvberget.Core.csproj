@@ -54,6 +54,7 @@
     <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaDetailViewModel.cs" />
+    <Compile Include="ViewModels\SearchResultViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\MyPageViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
