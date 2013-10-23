@@ -1,4 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-  <color name="standard_background">#ffd9d9d9</color>
+	<color name="standard_background">#ffd9d9d9</color>
+	<color name="orange_dark">#ffcc3300</color>
+	<color name="orange_light">#ffff9900</color>
+	<color name="green_dark">#ff005522</color>
+	<color name="green_light">#ff88bb00</color>
+	<color name="blue_dark">#ff003366</color>
+	<color name="blue_light">#ff0099cc</color>
+	<color name="purple_dark">#ff330033</color>
+	<color name="purple_light">#ff660066</color>
+	<color name="grey">#ffa28d9a</color>
+	<color name="grey_light">#ffdacfce</color>
+	<color name="grey_dark">#ff5b4350</color>
 </resources>
