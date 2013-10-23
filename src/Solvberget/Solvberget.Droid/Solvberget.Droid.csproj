@@ -119,6 +119,7 @@
       </SubType>
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Fragments\MediaDetailView.cs" />
     <Compile Include="Views\Fragments\SearchView.cs" />
     <Compile Include="Views\Fragments\MyPageView.cs" />
     <Compile Include="Views\HomeView.cs" />
@@ -137,6 +138,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

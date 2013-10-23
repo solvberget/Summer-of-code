@@ -24,8 +24,8 @@ namespace Solvberget.Core.ViewModels
             set { _query = value; RaisePropertyChanged(() => Query);}
         }
 
-        private IEnumerable<SearchResultViewModel> _results;
-        public IEnumerable<SearchResultViewModel> Results 
+        private IList<SearchResultViewModel> _results;
+        public IList<SearchResultViewModel> Results 
         {
             get { return _results; }
             set { _results = value; RaisePropertyChanged(() => Results);}
@@ -42,23 +42,24 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(SearchResultViewModel searchResultViewModel)
         {
-            ShowViewModel<SearchResultViewModel>(searchResultViewModel);
+            ShowViewModel<MediaDetailViewModel>(searchResultViewModel.DocNumber);
         }
 
         // Loads a a set of Documents retrieved from the service into the results list.
         public void SearchAndLoad()
         {
             var results = _searchService.Search(Query);
-            Results = from document in results
+            Results = (from document in results
                 select new SearchResultViewModel()
                 {
                     Name = document.Title,
                     Type = document.DocType,
-                    Year = document.PublishedYear.ToString("0000")
-                };
+                    Year = document.PublishedYear.ToString("0000"),
+                    DocNumber = document.DocumentNumber
+                }).ToList();
         }
     }
-    
+
     public class SearchResultViewModel : BaseViewModel
     {
         private string _name;
@@ -80,6 +81,13 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _year; }
             set { _year = value; RaisePropertyChanged(() => Year);}
+        }
+
+        private string _docNumber;
+        public string DocNumber 
+        {
+            get { return _docNumber; }
+            set { _docNumber = value; RaisePropertyChanged(() => DocNumber);}
         }
     }
 }
