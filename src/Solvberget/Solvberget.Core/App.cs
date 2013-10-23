@@ -1,6 +1,8 @@
 ﻿using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
 using Solvberget.Core.Services;
+using Solvberget.Core.Services.Interfaces;
+using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels;
 
 namespace Solvberget.Core

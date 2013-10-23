@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using Solvberget.Core.Services;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 using Solvberget.Domain.DTO;
 

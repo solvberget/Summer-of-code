@@ -47,7 +47,11 @@
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DocumentService.cs" />
+    <Compile Include="Services\Interfaces\IDocumentService.cs" />
+    <Compile Include="Services\Interfaces\ISearchService.cs" />
     <Compile Include="Services\SearchService.cs" />
+    <Compile Include="Services\Stubs\DocumentServiceTemporaryStub.cs" />
+    <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaDetailViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
