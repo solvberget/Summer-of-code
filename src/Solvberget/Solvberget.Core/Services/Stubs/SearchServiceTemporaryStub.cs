@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.Utils;
 using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services.Stubs
 {
-    class SearchServiceTemporaryStub : ISearchService
+    internal class SearchServiceTemporaryStub : ISearchService
     {
         private readonly IBackgroundWorker _bgWorker;
 
@@ -15,17 +15,30 @@ namespace Solvberget.Core.Services.Stubs
             _bgWorker = bgWorker;
         }
 
-        public void Search(string query, Action<IEnumerable<Document>> callback)
+        public async Task<IEnumerable<Document>> Search(string query)
         {
-            _bgWorker.Invoke(() =>
-                callback(new List<Document>()
+            await TaskEx.Delay(2500); // Simulate some network latency
+            return new List<Document>()
+            {
+                new Document() {Title = "Harry Potter", PublishedYear = 2008},
+                new Film()
                 {
-                    new Document() { Title = "Harry Potter", PublishedYear = 2008},
-                    new Film() {Title = "Harry Potter and the Prisoner from Azkaban", NorwegianTitle = "Harry Potter og fangen fra Azkaban", PublishedYear = 1998},
-                    new Cd() {Title = "The Wall", ArtistOrComposer = new Person(){Name = "Pink Floyd"}, PublishedYear = 1983},
-                    new SheetMusic() {Title ="The Wall", Composer = new Person(){Name="David Gilmour"}, PublishedYear = 1983}
-                })
-            );
+                    Title = "Harry Potter and the Prisoner from Azkaban",
+                    NorwegianTitle = "Harry Potter og fangen fra Azkaban",
+                },
+                new Cd()
+                {
+                    Title = "The Wall",
+                    ArtistOrComposer = new Person() {Name = "Pink Floyd"},
+                    PublishedYear = 1983
+                },
+                new SheetMusic()
+                {
+                    Title = "The Wall",
+                    Composer = new Person() {Name = "David Gilmour"},
+                    PublishedYear = 1983
+                }
+            };
         }
     }
 }

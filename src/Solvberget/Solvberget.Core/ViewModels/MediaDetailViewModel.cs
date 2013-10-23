@@ -20,18 +20,18 @@ namespace Solvberget.Core.ViewModels
             Load(docId);
         }
 
-        private void Load(string docId)
+        private async void Load(string docId)
         {
             IsLoading = true;
-            _docService.Get(docId, document =>
-            {
-                Title = document.Title;
-                Name = document.Title;
-                Year = document.PublishedYear.ToString("0000");
-                Type = document.DocType;
-                Author = document.MainResponsible.ToString();
-                IsLoading = false;
-            });
+
+            var document = await _docService.Get(docId);
+            Title = document.Title;
+            Name = document.Title;
+            Year = document.PublishedYear.ToString("0000");
+            Type = document.DocType;
+            Author = document.MainResponsible.ToString();
+
+            IsLoading = false;
         }
 
         private string _name;

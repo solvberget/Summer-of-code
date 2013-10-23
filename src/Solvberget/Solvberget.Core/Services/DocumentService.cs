@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Domain.DTO;
 
@@ -6,10 +6,11 @@ namespace Solvberget.Core.Services
 {
     class DocumentService : IDocumentService
     {
-        public void Get(string docId, Action<Document> callback)
+        public async Task<Document> Get(string docId)
         {
             // TODO: Implement
-            callback(new Document());
+            await TaskEx.Delay(5000);
+            return new Document();
         }
     }
 }
