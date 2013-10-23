@@ -10,39 +10,22 @@ namespace Solvberget.Core.ViewModels
     {
         public MyPageViewModel()
         {
-            var service = Mvx.Resolve<IUserInformationService>();
-            if (service == null) throw new ArgumentNullException("service");
-
-            service.GetUserInformation("id");
+            MyPageLoansViewModel = new MyPageLoansViewModel();
+            MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel();
         }
 
-        private string _name;
-        public string Name
+        private MyPageLoansViewModel myPageLoansViewModel;
+        public MyPageLoansViewModel MyPageLoansViewModel
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-                RaisePropertyChanged(() => Name);
-            }
+            get { return myPageLoansViewModel; }
+            set { myPageLoansViewModel = value; RaisePropertyChanged(() => MyPageLoansViewModel); }
         }
 
-        private string _email;
-        public string Email
+        private MyPagePersonaliaViewModel myPagePersonaliaViewModel;
+        public MyPagePersonaliaViewModel MyPagePersonaliaViewModel
         {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-                RaisePropertyChanged(() => Email);
-            }
+            get { return myPagePersonaliaViewModel; }
+            set { myPagePersonaliaViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
         }
-
     }
 }

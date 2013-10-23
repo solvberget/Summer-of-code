@@ -121,6 +121,8 @@
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
     <Compile Include="Views\LoadingIndicator.cs" />
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
+    <Compile Include="Views\Fragments\MyPageLoansView.cs" />
+    <Compile Include="Views\Fragments\MyPagePersonaliaView.cs" />
     <Compile Include="Views\Fragments\SearchView.cs" />
     <Compile Include="Views\Fragments\MyPageView.cs" />
     <Compile Include="Views\HomeView.cs" />
@@ -139,7 +141,11 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
-    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
+    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_profile_personalia.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_profile_loans_and_reservations.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
