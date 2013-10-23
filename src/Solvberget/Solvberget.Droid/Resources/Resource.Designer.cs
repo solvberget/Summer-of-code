@@ -62,6 +62,39 @@ namespace Solvberget.Droid
 		public partial class Color
 		{
 			
+			// aapt resource value: 0x7f040005
+			public const int blue_dark = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int blue_light = 2130968582;
+			
+			// aapt resource value: 0x7f040003
+			public const int green_dark = 2130968579;
+			
+			// aapt resource value: 0x7f040004
+			public const int green_light = 2130968580;
+			
+			// aapt resource value: 0x7f040009
+			public const int grey = 2130968585;
+			
+			// aapt resource value: 0x7f04000b
+			public const int grey_dark = 2130968587;
+			
+			// aapt resource value: 0x7f04000a
+			public const int grey_light = 2130968586;
+			
+			// aapt resource value: 0x7f040001
+			public const int orange_dark = 2130968577;
+			
+			// aapt resource value: 0x7f040002
+			public const int orange_light = 2130968578;
+			
+			// aapt resource value: 0x7f040007
+			public const int purple_dark = 2130968583;
+			
+			// aapt resource value: 0x7f040008
+			public const int purple_light = 2130968584;
+			
 			// aapt resource value: 0x7f040000
 			public const int standard_background = 2130968576;
 			
@@ -133,6 +166,9 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060004
 			public const int menu_refresh = 2131099652;
 			
+			// aapt resource value: 0x7f060005
+			public const int search = 2131099653;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -163,19 +199,25 @@ namespace Solvberget.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int fragment_profile = 2130903040;
+			public const int fragment_mediadetail = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int fragment_search = 2130903041;
+			public const int fragment_profile = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int item_menu = 2130903042;
+			public const int fragment_search = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int page_home_view = 2130903043;
+			public const int item_menu = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int SplashScreen = 2130903044;
+			public const int item_searchresult = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int page_home_view = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int SplashScreen = 2130903046;
 			
 			static Layout()
 			{
@@ -192,6 +234,9 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f090000
 			public const int refresh = 2131296256;
+			
+			// aapt resource value: 0x7f090001
+			public const int search_menu = 2131296257;
 			
 			static Menu()
 			{
@@ -220,6 +265,9 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f070004
 			public const int menu_refresh = 2131165188;
+			
+			// aapt resource value: 0x7f070005
+			public const int search_title = 2131165189;
 			
 			static String()
 			{

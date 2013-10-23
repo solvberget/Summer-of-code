@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Solvberget.Metro", "src\Solvberget.Metro\Solvberget.Metro.jsproj", "{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Tests", "test\Solvberget.Tests\Solvberget.Tests.csproj", "{9426CD77-75BA-4FC1-BB17-19D687AC12EC}"

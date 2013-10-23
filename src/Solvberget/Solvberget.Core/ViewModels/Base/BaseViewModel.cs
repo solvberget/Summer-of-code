@@ -23,5 +23,13 @@ namespace Solvberget.Core.ViewModels.Base
             get { return _title; }
             set { _title = value; RaisePropertyChanged(() => Title); }
         }
+
+        private bool _isLoading;
+        public bool IsLoading 
+        {
+            get { return _isLoading; }
+            set { _isLoading = value; RaisePropertyChanged(() => IsLoading);}
+        }
+
     }
 }

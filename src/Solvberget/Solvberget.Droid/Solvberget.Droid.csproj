@@ -119,6 +119,7 @@
       </SubType>
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Fragments\MediaDetailView.cs" />
     <Compile Include="Views\Fragments\SearchView.cs" />
     <Compile Include="Views\Fragments\MyPageView.cs" />
     <Compile Include="Views\HomeView.cs" />
@@ -134,6 +135,10 @@
     <AndroidResource Include="Resources\Layout\item_menu.axml" />
     <AndroidResource Include="Resources\Layout\page_home_view.axml" />
     <AndroidResource Include="Resources\Layout\fragment_search.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -174,6 +179,7 @@
     <AndroidResource Include="Resources\Values-land\integers.xml" />
     <AndroidResource Include="Resources\Values-v11\styles.xml" />
     <AndroidResource Include="Resources\Values-v14\styles.xml" />
+    <AndroidResource Include="Resources\Menu\search_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
