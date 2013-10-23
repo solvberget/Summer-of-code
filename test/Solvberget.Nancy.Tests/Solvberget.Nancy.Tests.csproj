@@ -74,6 +74,8 @@
     <Compile Include="InformationModuleTests.cs" />
     <Compile Include="NewsModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuggestionModuleTests.cs" />
+    <Compile Include="UserModuleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
