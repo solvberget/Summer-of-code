@@ -55,6 +55,6 @@
 		</PropertyGroup>
 
 	    <MakeDir Directories="$(PackageDir)"/>
-    	<Exec Command='"@(MsDeployPath)" -verb:sync -source:iisApp="$(Source)" -dest:package="$(Destination)"'/>
+    	<Exec ContinueOnError="True" Command='"@(MsDeployPath)" -verb:sync -source:iisApp="$(Source)" -dest:package="$(Destination)"'/>
 	</Target>
 </Project>
