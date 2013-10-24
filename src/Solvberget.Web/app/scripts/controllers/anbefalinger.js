@@ -5,4 +5,7 @@ angular.module('Solvberget.WebApp')
 
         $rootScope.pageTitle = 'ANBEFALINGER';
 
+        $scope.items = [{id: 1, title : "Item #1", imageUrl : 'http://placehold.it/60x80'},
+            { id:2, title : "Item #2", imageUrl: 'http://placehold.it/60x80' }];
+
   });

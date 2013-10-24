@@ -11,6 +11,10 @@ angular.module('Solvberget.WebApp', [])
                 templateUrl: 'views/anbefalinger.html',
                 controller: 'AnbefalingerCtrl'
             })
+            .when('/anbefalinger/:id', {
+                template: 'Anbefaling!',
+                controller:''
+            })
             .when('/apningstider', {
                 templateUrl: 'views/apningstider.html',
                 controller: 'ApningstiderCtrl'
