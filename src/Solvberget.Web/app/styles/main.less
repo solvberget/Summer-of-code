@@ -1,4 +1,11 @@
-﻿/** VIEWPORT AND MAIN NAVBAR **/
+﻿@theme-color2: #262626;
+@theme-color: #3D6AA2;
+@theme-color3:#767171;
+@theme-color4:white;
+
+@bg-color: #E9E9E9;
+
+/** VIEWPORT AND MAIN NAVBAR **/
 
 body {
   position: absolute;
@@ -6,7 +13,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-    background: #E9E9E9;
+    background: @bg-color;
 }
 
 body .viewport {
@@ -35,17 +42,15 @@ body .viewport .frame .navbar .navbar-inner {
 body .viewport .frame .navbar .navbar-inner .search-query {
 
     background-color: transparent;
-    border: solid 1px #3D6AA2;
     color: white;
     border-radius: 0;
-
 }
 
 
 
 body .viewport .frame .menu {
   height: 100%;
-  background-color: #3D6AA2;
+  background-color: @theme-color2;
 }
 
 body .viewport .frame .menu a {
@@ -54,7 +59,7 @@ body .viewport .frame .menu a {
 
 body .viewport .frame .menu .nav > li > a:hover, .nav > li > a:focus {
 
-    background-color: black;
+    background-color: @theme-color2;
 
 }
 
@@ -98,11 +103,13 @@ body .viewport .frame .menu .collapse-inner {
   height: 100%; 
 }
 
-body .viewport .frame .menu .navbar .navbar-inner {
-  text-align: center;
-  color: grey;
-  font-size: 1.2em;
-  line-height: 38px;  
+body .viewport .navbar-inner h1 {
+
+  font-size:1.2em;
+  font-weight: bold;
+  margin:0px;
+  text-transform: uppercase;
+  color:white;
 }
 
 body .viewport .frame .menu .nav-stacked {
@@ -127,13 +134,56 @@ body .viewport .frame .view #content {
 
 body .viewport .navbar-inverse .navbar-inner {
 
-    background-color: #262626;
+    background-color: @theme-color2;
+  background-image:none;
+}
+
+body .navbar-inverse .btn-navbar{
+  background-image:none;
+  background:none;
+  border:none;
+  box-shadow:none;
+}
+
+body .viewport .frame .view{
+ overflow-y:scroll;
 }
 
 /** LISTS **/
 
 h2 {
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #767171;     
+  margin:0px;
+  font-size:1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: @theme-color3;
+}
+
+.media-list .media{
+  background-color:@theme-color4;
+  display:table;
+  width:100%;
+  height:80px;
+  cursor:pointer;
+}
+
+.media-list .media>span{
+  width:60px;
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.media-list .media .media-body{
+  display:table-cell;
+  padding-left:10px;
+  padding-right:10px;
+  vertical-align:middle;
+  text-align:left;
+}
+
+.media-list .media .media-body h4{
+  margin:0px;
+  line-height:auto;
+  font-weight:normal;
+  font-size:1.1em;
 }

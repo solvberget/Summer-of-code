@@ -9,23 +9,23 @@ angular.module('Solvberget.WebApp', [])
             })
             .when('/anbefalinger', {
                 templateUrl: 'views/anbefalinger.html',
-                controller: ''
+                controller: 'AnbefalingerCtrl'
             })
             .when('/apningstider', {
                 templateUrl: 'views/apningstider.html',
-                controller: ''
+                controller: 'ApningstiderCtrl'
             })
             .when('/blogger', {
                 templateUrl: 'views/blogger.html',
-                controller: ''
+                controller: 'BloggerCtrl'
             })
             .when('/kontakt-oss', {
                 templateUrl: 'views/kontaktoss.html',
-                controller: ''
+                controller: 'KontaktOssCtrl'
             })
             .when('/nyheter', {
                 templateUrl: 'views/nyheter.html',
-                controller: ''
+                controller: 'NyheterCtrl'
             })
             .otherwise({
                 redirectTo: '/nyheter'
@@ -36,5 +36,7 @@ angular.module('Solvberget.WebApp', [])
         $rootScope.isViewActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
+
+        $rootScope.pageTitle = 'SØLVBERGET';
 
     });
