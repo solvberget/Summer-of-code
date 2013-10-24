@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
-using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -52,7 +51,7 @@ namespace Solvberget.Core.ViewModels
             IsLoading = true;
             var results = await _searchService.Search(Query);
             Results = (from document in results
-                        select new SearchResultViewModel()
+                        select new SearchResultViewModel
                         {
                             Name = document.Title,
                             Type = document.DocType,

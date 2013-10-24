@@ -1,8 +1,6 @@
-﻿using System.Xml.Linq;
-using Solvberget.Core.Services;
+﻿using System;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
-using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -26,9 +24,11 @@ namespace Solvberget.Core.ViewModels
 
             var document = await _docService.Get(docId);
             Title = document.Title;
+            ItemTitle = document.Title;
             Name = document.Title;
             Year = document.PublishedYear.ToString("0000");
             Type = document.DocType;
+            TypeAndYear = String.Format("{0} ({1})", Type, Year);
             Author = document.MainResponsible.ToString();
 
             IsLoading = false;
@@ -61,5 +61,20 @@ namespace Solvberget.Core.ViewModels
             get { return _author; }
             set { _author = value; RaisePropertyChanged(() => Author);}
         }
+
+        private string _itemTitle;
+        public string ItemTitle 
+        {
+            get { return _itemTitle; }
+            set { _itemTitle = value; RaisePropertyChanged(() => ItemTitle);}
+        }
+
+        private string _typeAndYear;
+        public string TypeAndYear 
+        {
+            get { return _typeAndYear; }
+            set { _typeAndYear = value; RaisePropertyChanged(() => TypeAndYear);}
+        }
+
     }
 }

@@ -28,22 +28,22 @@ namespace Solvberget.Droid.Helpers
 
         public override void OnDrawerClosed(View drawerView)
         {
-            if (null != this.DrawerClosed)
-                this.DrawerClosed(this, new ActionBarDrawerEventArgs { DrawerView = drawerView });
+            if (null != DrawerClosed)
+                DrawerClosed(this, new ActionBarDrawerEventArgs { DrawerView = drawerView });
             base.OnDrawerClosed(drawerView);
         }
 
         public override void OnDrawerOpened(View drawerView)
         {
-            if (null != this.DrawerOpened)
-                this.DrawerOpened(this, new ActionBarDrawerEventArgs { DrawerView = drawerView });
+            if (null != DrawerOpened)
+                DrawerOpened(this, new ActionBarDrawerEventArgs { DrawerView = drawerView });
             base.OnDrawerOpened(drawerView);
         }
 
         public override void OnDrawerSlide(View drawerView, float slideOffset)
         {
-            if (null != this.DrawerSlide)
-                this.DrawerSlide(this, new ActionBarDrawerEventArgs
+            if (null != DrawerSlide)
+                DrawerSlide(this, new ActionBarDrawerEventArgs
                 {
                     DrawerView = drawerView,
                     SlideOffset = slideOffset
@@ -53,8 +53,8 @@ namespace Solvberget.Droid.Helpers
 
         public override void OnDrawerStateChanged(int newState)
         {
-            if (null != this.DrawerStateChanged)
-                this.DrawerStateChanged(this, new ActionBarDrawerEventArgs
+            if (null != DrawerStateChanged)
+                DrawerStateChanged(this, new ActionBarDrawerEventArgs
                 {
                     NewState = newState
                 });

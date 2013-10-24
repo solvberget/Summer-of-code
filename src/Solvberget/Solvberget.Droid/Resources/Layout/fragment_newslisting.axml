@@ -10,8 +10,8 @@
         android:paddingBottom="8dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource Results; ItemClick ShowDetailsCommand"
-        local:MvxItemTemplate="@layout/item_searchresult"
+        local:MvxBind="ItemsSource Stories; ItemClick ShowDetailsCommand"
+        local:MvxItemTemplate="@layout/item_news"
         android:divider="@null"
         android:dividerHeight="0dp" />
 </LinearLayout>

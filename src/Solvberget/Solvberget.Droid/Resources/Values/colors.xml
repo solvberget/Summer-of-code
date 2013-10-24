@@ -15,7 +15,11 @@
 
   <color name="ui_black">#ff262626</color>
   <color name="ui_background">#ffE9E9E9</color>
+  <color name="ui_grey">#ffE9E9E9</color>
   <color name="ui_itembackground">#ffF4F4F4</color>
+  <color name="ui_grey_light">#ffF4F4F4</color>
+  <color name="ui_itembackground_dark">#ff595959</color>
+  <color name="ui_grey_dark">#ff595959</color>
   <color name="ui_orange">#ffF4F4F4</color>
   <color name="ui_green">#ff4A8522</color>
 </resources>

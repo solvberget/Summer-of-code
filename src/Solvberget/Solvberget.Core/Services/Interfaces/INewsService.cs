@@ -4,8 +4,8 @@ using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services.Interfaces
 {
-    public interface ISearchService
+    public interface INewsService
     {
-        Task<IEnumerable<Document>> Search(string query);
+        Task<IEnumerable<NewsItem>> GetNews();
     }
 }

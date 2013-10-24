@@ -92,10 +92,10 @@ namespace Solvberget.Core.ViewModels
             {
 
                 case Section.MyPage:
-                    ShowViewModel<MyPageViewModel>(item.Id);
+                    ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.Search:
-                    ShowViewModel<SearchViewModel>(item.Id);
+                    ShowViewModel<SearchViewModel>();
                     break;
                 case Section.Lists:
                     break;
@@ -104,6 +104,7 @@ namespace Solvberget.Core.ViewModels
                 case Section.Blogs:
                     break;
                 case Section.News:
+                    ShowViewModel<NewsListingViewModel>();
                     break;
                 case Section.OpeningHours:
                     break;
@@ -119,6 +120,8 @@ namespace Solvberget.Core.ViewModels
                 return Section.MyPage;
             if (type == typeof(SearchViewModel))
                 return Section.Search;
+            if (type == typeof (NewsListingViewModel))
+                return Section.News;
 
             return Section.Unknown;
         }
