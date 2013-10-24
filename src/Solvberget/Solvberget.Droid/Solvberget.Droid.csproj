@@ -20,7 +20,7 @@
     <RestorePackages>true</RestorePackages>
     <AndroidUseLatestPlatformSdk />
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
-    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a%3bx86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -108,8 +108,8 @@
       <SubType>
       </SubType>
     </Compile>
-    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Setup.cs">
       <SubType>
       </SubType>
@@ -121,6 +121,12 @@
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
     <Compile Include="Views\LoadingIndicator.cs" />
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
+    <Compile Include="Views\Fragments\MyPageFavoritesView.cs" />
+    <Compile Include="Views\Fragments\MyPageFinesView.cs" />
+    <Compile Include="Views\Fragments\MyPageLoansView.cs" />
+    <Compile Include="Views\Fragments\MyPageMessagesView.cs" />
+    <Compile Include="Views\Fragments\MyPagePersonaliaView.cs" />
+    <Compile Include="Views\Fragments\MyPageReservationsView.cs" />
     <Compile Include="Views\Fragments\SearchView.cs" />
     <Compile Include="Views\Fragments\MyPageView.cs" />
     <Compile Include="Views\HomeView.cs" />
@@ -139,9 +145,34 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
-    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
+    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_profile_personalia.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_profile_loans.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_profile_reservations.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_reservation.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_loan.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_fine.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_favorite.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_message.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_profile_favorites.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_profile_fines.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_profile_messages.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
