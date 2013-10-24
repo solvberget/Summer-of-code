@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Cirrious.CrossCore;
 using Solvberget.Core.Services;
 using Solvberget.Core.ViewModels.Base;
 using Solvberget.Domain.DTO;
@@ -9,13 +8,11 @@ namespace Solvberget.Core.ViewModels
 {
     public class MyPageMessagesViewModel : BaseViewModel
     {
-        public MyPageMessagesViewModel()
+        public MyPageMessagesViewModel(IUserInformationService service)
         {
-            var service = Mvx.Resolve<IUserInformationService>();
             if (service == null) throw new ArgumentNullException("service");
 
             Notifications = service.GetUserNotifications("id");
-            var tall = 6;
         }
 
         private List<Notification> _notifications;

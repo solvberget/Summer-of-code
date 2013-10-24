@@ -1,62 +1,59 @@
-﻿using System;
-using Cirrious.CrossCore;
-using Solvberget.Core.Services;
+﻿using Solvberget.Core.Services;
 using Solvberget.Core.ViewModels.Base;
-using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.ViewModels
 {
     public class MyPageViewModel : BaseViewModel
     {
-        public MyPageViewModel()
+        public MyPageViewModel(IUserInformationService service)
         {
-            MyPageLoansViewModel = new MyPageLoansViewModel();
-            MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel();
-            MyPageReservationsViewModel = new MyPageReservationsViewModel();
-            MyPageFinesViewModel = new MyPageFinesViewModel();
-            MyPageMessagesViewModel = new MyPageMessagesViewModel();
-            MyPageFavoritesViewModel = new MyPageFavoritesViewModel();
+            MyPageLoansViewModel = new MyPageLoansViewModel(service);
+            MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service);
+            MyPageReservationsViewModel = new MyPageReservationsViewModel(service);
+            MyPageFinesViewModel = new MyPageFinesViewModel(service);
+            MyPageMessagesViewModel = new MyPageMessagesViewModel(service);
+            MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
         }
 
-        private MyPageLoansViewModel myPageLoansViewModel;
+        private MyPageLoansViewModel _myPageLoansViewModel;
         public MyPageLoansViewModel MyPageLoansViewModel
         {
-            get { return myPageLoansViewModel; }
-            set { myPageLoansViewModel = value; RaisePropertyChanged(() => MyPageLoansViewModel); }
+            get { return _myPageLoansViewModel; }
+            set { _myPageLoansViewModel = value; RaisePropertyChanged(() => MyPageLoansViewModel); }
         }
 
-        private MyPagePersonaliaViewModel myPagePersonaliaViewModel;
+        private MyPagePersonaliaViewModel _myPagePersonaliaViewModel;
         public MyPagePersonaliaViewModel MyPagePersonaliaViewModel
         {
-            get { return myPagePersonaliaViewModel; }
-            set { myPagePersonaliaViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
+            get { return _myPagePersonaliaViewModel; }
+            set { _myPagePersonaliaViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
         }
 
-        private MyPageReservationsViewModel myPageReservationsViewModel;
+        private MyPageReservationsViewModel _myPageReservationsViewModel;
         public MyPageReservationsViewModel MyPageReservationsViewModel
         {
-            get { return myPageReservationsViewModel; }
-            set { myPageReservationsViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
+            get { return _myPageReservationsViewModel; }
+            set { _myPageReservationsViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
         }
 
-        private MyPageFinesViewModel myPageFinesViewModel;
+        private MyPageFinesViewModel _myPageFinesViewModel;
         public MyPageFinesViewModel MyPageFinesViewModel
         {
-            get { return myPageFinesViewModel; }
-            set { myPageFinesViewModel = value; RaisePropertyChanged(() => MyPageFinesViewModel); }
+            get { return _myPageFinesViewModel; }
+            set { _myPageFinesViewModel = value; RaisePropertyChanged(() => MyPageFinesViewModel); }
         }
 
-        private MyPageMessagesViewModel myPageMessagesViewModel;
+        private MyPageMessagesViewModel _myPageMessagesViewModel;
         public MyPageMessagesViewModel MyPageMessagesViewModel
         {
-            get { return myPageMessagesViewModel; }
-            set { myPageMessagesViewModel = value; RaisePropertyChanged(() => MyPageMessagesViewModel); }
+            get { return _myPageMessagesViewModel; }
+            set { _myPageMessagesViewModel = value; RaisePropertyChanged(() => MyPageMessagesViewModel); }
         }
-        private MyPageFavoritesViewModel myPageFavoritesViewModel;
+        private MyPageFavoritesViewModel _myPageFavoritesViewModel;
         public MyPageFavoritesViewModel MyPageFavoritesViewModel
         {
-            get { return myPageFavoritesViewModel; }
-            set { myPageFavoritesViewModel = value; RaisePropertyChanged(() => MyPageFavoritesViewModel); }
+            get { return _myPageFavoritesViewModel; }
+            set { _myPageFavoritesViewModel = value; RaisePropertyChanged(() => MyPageFavoritesViewModel); }
         }
     }
 }

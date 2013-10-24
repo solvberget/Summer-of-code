@@ -14,9 +14,7 @@ namespace Solvberget.Droid.Views.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             return this.BindingInflate(Resource.Layout.fragment_profile_personalia, null);
-            //return base.OnCreateView(inflater, container, savedInstanceState);
         }
     }
 }

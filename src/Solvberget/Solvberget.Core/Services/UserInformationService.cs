@@ -3,7 +3,7 @@ using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services
 {
-    interface IUserInformationService
+    public interface IUserInformationService
     {
         UserInfo GetUserInformation(string userId);
         List<Loan> GetUserLoans(string userId);
@@ -13,7 +13,7 @@ namespace Solvberget.Core.Services
         List<Document> GetUserFavorites(string userId);
     }
 
-    internal class UserInformationService : IUserInformationService
+    public class UserInformationService : IUserInformationService
     {
         public UserInfo GetUserInformation(string userId)
         {

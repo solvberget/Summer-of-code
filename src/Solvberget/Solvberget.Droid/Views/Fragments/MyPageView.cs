@@ -10,11 +10,10 @@ namespace Solvberget.Droid.Views.Fragments
 {
     public class MyPageView : MvxFragment
     {
-        private MyPageViewModel viewModel;
-
+        private MyPageViewModel _viewModel;
         public new MyPageViewModel ViewModel
         {
-            get { return viewModel ?? (viewModel = base.ViewModel as MyPageViewModel); }
+            get { return _viewModel ?? (_viewModel = base.ViewModel as MyPageViewModel); }
         }
 
         private ViewPager _viewPager;
@@ -28,7 +27,6 @@ namespace Solvberget.Droid.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
             SetHasOptionsMenu(true);
-            var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_profile, null);
 
             _viewPager = view.FindViewById<ViewPager>(Resource.Id.viewPager);
@@ -57,13 +55,13 @@ namespace Solvberget.Droid.Views.Fragments
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
                   FragmentType = typeof(MyPageLoansView),
-                  Title = "Mine lån",
+                  Title = "Lån",
                   ViewModel = ViewModel.MyPageLoansViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
                   FragmentType = typeof(MyPageReservationsView),
-                  Title = "Mine reservasjoner",
+                  Title = "Reservasjoner",
                   ViewModel = ViewModel.MyPageReservationsViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
@@ -71,7 +69,7 @@ namespace Solvberget.Droid.Views.Fragments
                   FragmentType = typeof(MyPageFinesView),
                   Title = "Gebyrer",
                   ViewModel = ViewModel.MyPageFinesViewModel
-                },
+                }
               };
 
             _adapter = new MvxViewPagerFragmentAdapter(Activity, ChildFragmentManager, fragments);
