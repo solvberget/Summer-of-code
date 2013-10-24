@@ -119,6 +119,7 @@
       </SubType>
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\LoadingIndicator.cs" />
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
     <Compile Include="Views\Fragments\SearchView.cs" />
     <Compile Include="Views\Fragments\MyPageView.cs" />

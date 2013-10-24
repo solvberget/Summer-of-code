@@ -3,8 +3,6 @@ using Android.Support.V4.App;
 using Android.Views;
 using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
-using Cirrious.MvvmCross.Binding.Droid.BindingContext;
-using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
 
@@ -14,6 +12,8 @@ namespace Solvberget.Droid.Views.Fragments
     [MetaData("android.support.PARENT_ACTIVITY", Value = "solvberget.droid.views.HomeView")]
     public class MediaDetailView : MvxActivity
     {
+        private LoadingIndicator _loadingIndicator;
+
         protected override void OnViewModelSet()
         {
             base.OnViewModelSet();
@@ -22,8 +22,11 @@ namespace Solvberget.Droid.Views.Fragments
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetHomeButtonEnabled(true);
 
+            _loadingIndicator = new LoadingIndicator(this);
+
             var set = this.CreateBindingSet<MediaDetailView, SearchResultViewModel>();
             set.Bind(ActionBar).For(v => v.Title).To(vm => vm.Title).Mode(MvxBindingMode.OneWay);
+            set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
             set.Apply();
         }
 
