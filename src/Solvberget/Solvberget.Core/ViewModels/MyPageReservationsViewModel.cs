@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Cirrious.CrossCore;
 using Solvberget.Core.Services;
 using Solvberget.Core.ViewModels.Base;
@@ -21,15 +20,8 @@ namespace Solvberget.Core.ViewModels
         private List<Reservation> _reservations;
         public List<Reservation> Reservations
         {
-            get
-            {
-                return _reservations;
-            }
-            set
-            {
-                _reservations = value;
-                RaisePropertyChanged(() => Reservations);
-            }
+            get{ return _reservations; }
+            set{ _reservations = value; RaisePropertyChanged(() => Reservations); }
         }
     }
 }

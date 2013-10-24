@@ -44,6 +44,18 @@ namespace Solvberget.Droid.Views.Fragments
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
+                  FragmentType = typeof(MyPageMessagesView),
+                  Title = "Meldinger",
+                  ViewModel = ViewModel.MyPageMessagesViewModel
+                },
+                new MvxViewPagerFragmentAdapter.FragmentInfo
+                {
+                  FragmentType = typeof(MyPageFavoritesView),
+                  Title = "Favoritter",
+                  ViewModel = ViewModel.MyPageFavoritesViewModel
+                },
+                new MvxViewPagerFragmentAdapter.FragmentInfo
+                {
                   FragmentType = typeof(MyPageLoansView),
                   Title = "Mine lån",
                   ViewModel = ViewModel.MyPageLoansViewModel
@@ -53,6 +65,12 @@ namespace Solvberget.Droid.Views.Fragments
                   FragmentType = typeof(MyPageReservationsView),
                   Title = "Mine reservasjoner",
                   ViewModel = ViewModel.MyPageReservationsViewModel
+                },
+                new MvxViewPagerFragmentAdapter.FragmentInfo
+                {
+                  FragmentType = typeof(MyPageFinesView),
+                  Title = "Gebyrer",
+                  ViewModel = ViewModel.MyPageFinesViewModel
                 },
               };
 

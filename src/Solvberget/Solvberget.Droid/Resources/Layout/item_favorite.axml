@@ -4,11 +4,13 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <MvxListView
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+    <TextView
+        android:text="Document title"
+        android:paddingTop="10px"
+        android:paddingLeft="10px"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource Loans"
-        local:MvxItemTemplate="@layout/item_loan" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        local:MvxBind="Text Title" />
 </LinearLayout>

@@ -13,6 +13,9 @@ namespace Solvberget.Core.ViewModels
             MyPageLoansViewModel = new MyPageLoansViewModel();
             MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel();
             MyPageReservationsViewModel = new MyPageReservationsViewModel();
+            MyPageFinesViewModel = new MyPageFinesViewModel();
+            MyPageMessagesViewModel = new MyPageMessagesViewModel();
+            MyPageFavoritesViewModel = new MyPageFavoritesViewModel();
         }
 
         private MyPageLoansViewModel myPageLoansViewModel;
@@ -34,6 +37,26 @@ namespace Solvberget.Core.ViewModels
         {
             get { return myPageReservationsViewModel; }
             set { myPageReservationsViewModel = value; RaisePropertyChanged(() => MyPagePersonaliaViewModel); }
+        }
+
+        private MyPageFinesViewModel myPageFinesViewModel;
+        public MyPageFinesViewModel MyPageFinesViewModel
+        {
+            get { return myPageFinesViewModel; }
+            set { myPageFinesViewModel = value; RaisePropertyChanged(() => MyPageFinesViewModel); }
+        }
+
+        private MyPageMessagesViewModel myPageMessagesViewModel;
+        public MyPageMessagesViewModel MyPageMessagesViewModel
+        {
+            get { return myPageMessagesViewModel; }
+            set { myPageMessagesViewModel = value; RaisePropertyChanged(() => MyPageMessagesViewModel); }
+        }
+        private MyPageFavoritesViewModel myPageFavoritesViewModel;
+        public MyPageFavoritesViewModel MyPageFavoritesViewModel
+        {
+            get { return myPageFavoritesViewModel; }
+            set { myPageFavoritesViewModel = value; RaisePropertyChanged(() => MyPageFavoritesViewModel); }
         }
     }
 }

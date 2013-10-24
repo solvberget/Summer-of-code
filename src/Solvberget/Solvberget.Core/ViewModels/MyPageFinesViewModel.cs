@@ -7,21 +7,22 @@ using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.ViewModels
 {
-    public class MyPageLoansViewModel : BaseViewModel
+    public class MyPageFinesViewModel : BaseViewModel
     {
-        public MyPageLoansViewModel()
+        public MyPageFinesViewModel()
         {
             var service = Mvx.Resolve<IUserInformationService>();
             if (service == null) throw new ArgumentNullException("service");
 
-            Loans = service.GetUserLoans("id");
+            Fines = service.GetUserFines("id");
         }
 
-        private List<Loan> _loans;
-        public List<Loan> Loans
+        private List<Fine> _fines;
+
+        public List<Fine> Fines
         {
-            get { return _loans; }
-            set { _loans = value; RaisePropertyChanged(() => Loans); }
+            get { return _fines; }
+            set { _fines = value; RaisePropertyChanged(() => Fines); }
         } 
     }
 }

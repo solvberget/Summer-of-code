@@ -184,14 +184,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060002
 			public const int pts_main = 2131099650;
 			
-			// aapt resource value: 0x7f060003
-			public const int textView1 = 2131099651;
-			
 			// aapt resource value: 0x7f060004
-			public const int textView2 = 2131099652;
+			public const int textView1 = 2131099652;
 			
 			// aapt resource value: 0x7f060005
-			public const int textView3 = 2131099653;
+			public const int textView2 = 2131099653;
+			
+			// aapt resource value: 0x7f060003
+			public const int textView3 = 2131099651;
 			
 			// aapt resource value: 0x7f060001
 			public const int viewPager = 2131099649;
@@ -251,15 +251,35 @@ namespace Solvberget.Droid
 			public const int fragment_profile_personalia = 2130903042;
 
             public const int fragment_profile_reservations = 2130903043;
+
+			public const int fragment_profile_favorites = 2130903041;
 			
-			// aapt resource value: 0x7f030006
-			public const int item_reservation = 2130903046;
+			// aapt resource value: 0x7f030002
+			public const int fragment_profile_fines = 2130903042;
 			
-			// aapt resource value: 0x7f030007
-			public const int page_home_view = 2130903047;
+			// aapt resource value: 0x7f030004
+			public const int fragment_profile_messages = 2130903044;
 			
 			// aapt resource value: 0x7f030008
-			public const int SplashScreen = 2130903048;
+			public const int item_favorite = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int item_fine = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int item_loan = 2130903050;
+			
+			// aapt resource value: 0x7f03000c
+			public const int item_message = 2130903052;
+			
+			// aapt resource value: 0x7f03000d
+			public const int item_reservation = 2130903053;
+			
+			// aapt resource value: 0x7f03000e
+			public const int page_home_view = 2130903054;
+			
+			// aapt resource value: 0x7f03000f
+			public const int SplashScreen = 2130903055;
 			
 			static Layout()
 			{

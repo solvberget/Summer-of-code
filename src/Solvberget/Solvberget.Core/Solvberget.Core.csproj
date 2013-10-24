@@ -59,7 +59,10 @@
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaDetailViewModel.cs" />
     <Compile Include="ViewModels\SearchResultViewModel.cs" />
+    <Compile Include="ViewModels\MyPageFavoritesViewModel.cs" />
+    <Compile Include="ViewModels\MyPageFinesViewModel.cs" />
     <Compile Include="ViewModels\MyPageLoansViewModel.cs" />
+    <Compile Include="ViewModels\MyPageMessagesViewModel.cs" />
     <Compile Include="ViewModels\MyPagePersonaliaViewModel.cs" />
     <Compile Include="ViewModels\MyPageReservationsViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
