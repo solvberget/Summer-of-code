@@ -27,6 +27,7 @@ namespace Solvberget.Droid.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
             SetHasOptionsMenu(true);
+            base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_profile, null);
 
             _viewPager = view.FindViewById<ViewPager>(Resource.Id.viewPager);
