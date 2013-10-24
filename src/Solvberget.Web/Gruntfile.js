@@ -337,7 +337,7 @@ module.exports = function (grunt) {
     compress: {
       dist: {
       	options: {
-      	  archive: 'dist/dist.zip'
+      	  archive: 'dist/Solvberget.Web.zip'
       	},
       	files: [
       	  { 
