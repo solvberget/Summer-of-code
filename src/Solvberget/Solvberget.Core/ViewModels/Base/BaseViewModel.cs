@@ -11,7 +11,7 @@ namespace Solvberget.Core.ViewModels.Base
         public long Id
         {
             get { return _id; }
-            set { _id = value; RaisePropertyChanged(() => this.Id); }
+            set { _id = value; RaisePropertyChanged(() => Id); }
         }
 
         private string _title = string.Empty;

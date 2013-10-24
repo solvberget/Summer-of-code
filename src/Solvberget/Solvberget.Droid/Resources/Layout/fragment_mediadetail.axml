@@ -3,29 +3,98 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/standard_background">
+    android:background="@color/ui_background">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+        android:layout_height="fill_parent">
+    <!-- dark box on top-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="150.0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/ui_grey_dark">
+            <ImageView
+                android:layout_width="100.0dp"
+                android:layout_height="130.0dp"
+                android:src="@drawable/ic_launcher" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="8dp">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="A Somewhat Long Film Title"
+                    local:MvxBind="Text ItemTitle"
+                    android:paddingBottom="10dp" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Film (2005)"
+                    local:MvxBind="Text TypeAndYear" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Ola Nordmann"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:singleLine="true" />
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Dette skal bli en brukerprofil hvis du er logget inn"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            local:MvxBind="Text Description"
-            android:singleLine="false" />
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="TILGJENGELIGHET"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:singleLine="true" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#E3EFD9"
+                android:text="x av y eksemplarer tilgjengelig"
+                local:MvxBind="Text Availability" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/ui_itembackground" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="FAKTA OM FILMEN"
+                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:singleLine="true"
+                android:id="@+id/textView1" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/ui_itembackground" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -24,22 +24,22 @@ namespace Solvberget.Droid.Views.Adapters
           Context context, FragmentManager fragmentManager, IEnumerable<FragmentInfo> fragments)
             : base(fragmentManager)
         {
-            this._context = context;
-            this.Fragments = fragments;
+            _context = context;
+            Fragments = fragments;
         }
 
         public IEnumerable<FragmentInfo> Fragments { get; private set; }
 
         public override int Count
         {
-            get { return this.Fragments.Count(); }
+            get { return Fragments.Count(); }
         }
 
         public override Fragment GetItem(int position)
         {
-            var frag = this.Fragments.ElementAt(position);
-            var fragment = Fragment.Instantiate(this._context,
-                                                this.FragmentJavaName(frag.FragmentType));
+            var frag = Fragments.ElementAt(position);
+            var fragment = Fragment.Instantiate(_context,
+                                                FragmentJavaName(frag.FragmentType));
             ((MvxFragment)fragment).DataContext = frag.ViewModel;
             return fragment;
         }
@@ -52,6 +52,6 @@ namespace Solvberget.Droid.Views.Adapters
             return namespaceText + fragmentType.Name;
         }
 
-        public override Java.Lang.ICharSequence GetPageTitleFormatted(int p0) { return new Java.Lang.String(this.Fragments.ElementAt(p0).Title); }
+        public override Java.Lang.ICharSequence GetPageTitleFormatted(int p0) { return new Java.Lang.String(Fragments.ElementAt(p0).Title); }
     }
 }

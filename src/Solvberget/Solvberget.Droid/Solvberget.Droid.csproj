@@ -119,7 +119,9 @@
       </SubType>
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Fragments\GenericWebViewView.cs" />
     <Compile Include="Views\LoadingIndicator.cs" />
+    <Compile Include="Views\Fragments\NewsListingView.cs" />
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
     <Compile Include="Views\Fragments\MyPageFavoritesView.cs" />
     <Compile Include="Views\Fragments\MyPageFinesView.cs" />
@@ -173,6 +175,14 @@
     <AndroidResource Include="Resources\Layout\fragment_profile_favorites.axml" />
     <AndroidResource Include="Resources\Layout\fragment_profile_fines.axml" />
     <AndroidResource Include="Resources\Layout\fragment_profile_messages.axml" />
+    <AndroidResource Include="Resources\Layout\item_news.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_newslisting.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -203,7 +213,9 @@
     <AndroidResource Include="Resources\Drawable-xhdpi\ic_menu_refresh.png" />
     <AndroidResource Include="Resources\Drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\Menu\refresh.xml" />
-    <AndroidResource Include="Resources\Values\colors.xml" />
+    <AndroidResource Include="Resources\Values\colors.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Values\integers.xml" />
     <AndroidResource Include="Resources\Values\styles.xml">
       <SubType>Designer</SubType>

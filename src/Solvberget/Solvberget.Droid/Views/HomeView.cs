@@ -24,10 +24,10 @@ namespace Solvberget.Droid.Views
         private string _title;
         private MvxListView _drawerList;
 
-		private HomeViewModel m_ViewModel;
+		private HomeViewModel _viewModel;
 		public new HomeViewModel ViewModel
 		{
-			get { return m_ViewModel ?? (m_ViewModel = base.ViewModel as HomeViewModel); }
+			get { return _viewModel ?? (_viewModel = base.ViewModel as HomeViewModel); }
 		}
 
 
@@ -89,6 +89,7 @@ namespace Solvberget.Droid.Views
             var customPresenter = Mvx.Resolve<ICustomPresenter>();
             customPresenter.Register(typeof(MyPageViewModel), this);
             customPresenter.Register(typeof(SearchViewModel), this);
+            customPresenter.Register(typeof(NewsListingViewModel), this);
         }
 
         /// <summary>
@@ -130,6 +131,17 @@ namespace Solvberget.Droid.Views
                             title = "Søk";
                         }
                         break;
+                    case HomeViewModel.Section.News:
+                        {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as NewsListingView != null)
+                            {
+                                return true;
+                            }
+
+                            frag = new NewsListingView();
+                            title = "Nyheter";
+                        }
+                        break;
                 }
 
                 var loaderService = Mvx.Resolve<IMvxViewModelLoader>();
@@ -165,12 +177,6 @@ namespace Solvberget.Droid.Views
         {
             base.OnConfigurationChanged(newConfig);
             _drawerToggle.OnConfigurationChanged(newConfig);
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            //MenuInflater.Inflate(Resource.Menu.main, menu);
-            return base.OnCreateOptionsMenu(menu);
         }
 
         public override bool OnPrepareOptionsMenu(IMenu menu)

@@ -9,6 +9,7 @@ namespace Solvberget.Droid.Views.Fragments
     public class SearchView : MvxFragment
     {
         private LoadingIndicator _loadingIndicator;
+        private Android.Widget.SearchView _searchView;
 
         public SearchView()
         {
@@ -32,12 +33,11 @@ namespace Solvberget.Droid.Views.Fragments
         {
             inflater.Inflate(Resource.Menu.search_menu, menu);
 
-            IMenuItem item = menu.FindItem(Resource.Id.search);
-            var sView = (Android.Widget.SearchView)item.ActionView;
+            _searchView = (Android.Widget.SearchView)menu.FindItem(Resource.Id.search).ActionView;
 
-            sView.Iconified = false;
-            sView.QueryTextSubmit += sView_QueryTextSubmit;
-            sView.QueryTextChange += sView_QueryTextChange;
+            _searchView.Iconified = false;
+            _searchView.QueryTextSubmit += sView_QueryTextSubmit;
+            _searchView.QueryTextChange += sView_QueryTextChange;
 
 
 
@@ -54,6 +54,11 @@ namespace Solvberget.Droid.Views.Fragments
         {
             var vm = (SearchViewModel)ViewModel;
             vm.SearchAndLoad();
+
+            _searchView.SetQuery("", false);
+            _searchView.Iconified = true;
+
         }
     }
 }
+

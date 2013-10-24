@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services.Interfaces
