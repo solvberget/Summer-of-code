@@ -516,7 +516,6 @@ Global
 		{B061316A-F386-4FE2-93B7-555584234FF8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{B061316A-F386-4FE2-93B7-555584234FF8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{B061316A-F386-4FE2-93B7-555584234FF8}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhone
-		{B061316A-F386-4FE2-93B7-555584234FF8}.Debug|Mixed Platforms.Build.0 = Debug|iPhone
 		{B061316A-F386-4FE2-93B7-555584234FF8}.Debug|x64.ActiveCfg = Debug|iPhone
 		{B061316A-F386-4FE2-93B7-555584234FF8}.Debug|x86.ActiveCfg = Debug|iPhone
 		{B061316A-F386-4FE2-93B7-555584234FF8}.Release|Any CPU.ActiveCfg = Release|iPhone
