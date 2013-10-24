@@ -98,6 +98,21 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f040000
 			public const int standard_background = 2130968576;
 			
+			// aapt resource value: 0x7f04000d
+			public const int ui_background = 2130968589;
+			
+			// aapt resource value: 0x7f04000c
+			public const int ui_black = 2130968588;
+			
+			// aapt resource value: 0x7f040010
+			public const int ui_green = 2130968592;
+			
+			// aapt resource value: 0x7f04000e
+			public const int ui_itembackground = 2130968590;
+			
+			// aapt resource value: 0x7f04000f
+			public const int ui_orange = 2130968591;
+			
 			static Color()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
