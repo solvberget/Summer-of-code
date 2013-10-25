@@ -41,7 +41,8 @@
     "karma": "~0.10.2",
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "grunt-contrib-compress": "~0.5.2",
-    "grunt-recess": "~0.4.0"
+    "grunt-recess": "~0.4.0",
+    "grunt-bower-install": "~0.6.1"
   },
   "engines": {
     "node": ">=0.8.0"
