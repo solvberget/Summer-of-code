@@ -12,7 +12,11 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/bootstrap.css">
+
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <!-- endbower -->
+
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 </head>
@@ -26,44 +30,43 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-      <!-- Add your site or application content here -->
-      <div class="viewport">
-          <div class="frame">
-              <div id="menu" class="menu nav-collapse collapse width">
-                  <div class="collapse-inner">
-                      <div class="navbar navbar-inverse">
-                          <div class="navbar-inner">
-                                <input type="text" class="search-query" placeholder="Søk">
-                          </div>
-                      </div>
-                      
-                      <ul class="nav nav-pills nav-stacked">
-                          <li ng-class="{ active: isViewActive('/nyheter')}"><a href="#/nyheter">Nyheter</a></li>
-                          <li ng-class="{ active: isViewActive('/min-side')}"><a href="#/min-side">Min side<span class="badge pull-right">2</span></a></li>
-                          <li ng-class="{ active: isViewActive('/anbefalinger')}"><a href="#/anbefalinger">Anbefalinger</a></li>
-                          <li ng-class="{ active: isViewActive('/blogger')}"><a href="#/blogger">Blogger</a></li>
-                          <li ng-class="{ active: isViewActive('/apningstider')}"><a href="#/apningstider">Åpningstider</a></li>
-                          <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a href="#/kontakt-oss">Kontakt oss</a></li>
-                      </ul>
-                  </div>
-              </div>
+    <div id="main">
+        <div id="wrap" class="row-fluid wrap">
 
-              <div class="view">
-                  <div class="navbar navbar-inverse">
-                      <div class="navbar-inner">
-                          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#menu">
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                          </button>
-                      </div>
-                  </div>
-                  <div id="content">
-                      <div ng-view></div>
-                  </div>
-              </div>
-          </div>
-      </div>
+            <div class="navbar navbar-default navbar-static-top" id="menu">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand visible-sm visible-md visible-lg">SØLVBERGET</a>
+                        <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{pageTitle}}</span>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NyheterCtrl')}}">Nyheter</a></li>
+                            <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MinSideCtrl')}}">Min side<span class="badge pull-right">2</span></a></li>
+                            <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
+                            <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BloggerCtrl')}}">Blogger</a></li>
+                            <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('ApningstiderCtrl')}}">Åpningstider</a></li>
+                            <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a ng-href="{{path('KontaktOssCtrl')}}">Kontakt oss</a></li>
+
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+
+
+            <div class="container">
+
+                <div ng-view></div>
+
+            </div> <!-- /container -->
+
+        </div>
+    </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -75,25 +78,18 @@
 
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
+
     </script>
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
         <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
+
+        <!-- bower:js -->
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- endbower -->
+
         <!-- endbuild -->
 
         <!-- build:js scripts/modules.js -->
@@ -106,11 +102,37 @@
       <script src="scripts/app.js"></script>
       <script src="scripts/controllers/nyheter.js"></script>
       <script src="scripts/controllers/anbefalinger.js"></script>
+      <script src="scripts/controllers/anbefalinger.detaljer.js"></script>
       <script src="scripts/controllers/apningstider.js"></script>
       <script src="scripts/controllers/blogger.js"></script>
       <script src="scripts/controllers/kontaktoss.js"></script>
       <script src="scripts/controllers/minside.js"></script>
+    <script src="scripts/controllers/media.detaljer.js"></script>
+
+    <script src="scripts/directives/listItem.js"></script>
 
       <!-- endbuild -->
+
+  <script>
+
+      $(document).ready(function() {
+
+          $('body').addClass('js');
+
+          var $menu = $('#side-menu'),
+          $menulink = $('#menu-toggler'),
+          $wrap = $('#wrap');
+
+          $menulink.click(function() {
+
+              console.log("toggle menu");
+
+              $menulink.toggleClass('active');
+              $wrap.toggleClass('active');
+              return false;
+          });
+      });
+
+  </script>
 </body>
 </html>
