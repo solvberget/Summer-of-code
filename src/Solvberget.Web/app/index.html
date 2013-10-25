@@ -42,16 +42,16 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand visible-sm visible-md visible-lg">SØLVBERGET</a>
-                        <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{pageTitle}}</a>
+                        <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{pageTitle}}</span>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li ng-class="{ active: isViewActive('/nyheter')}"><a href="#/nyheter">Nyheter</a></li>
-                            <li ng-class="{ active: isViewActive('/min-side')}"><a href="#/min-side">Min side<span class="badge pull-right">2</span></a></li>
-                            <li ng-class="{ active: isViewActive('/anbefalinger')}"><a href="#/anbefalinger">Anbefalinger</a></li>
-                            <li ng-class="{ active: isViewActive('/blogger')}"><a href="#/blogger">Blogger</a></li>
-                            <li ng-class="{ active: isViewActive('/apningstider')}"><a href="#/apningstider">Åpningstider</a></li>
-                            <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a href="#/kontakt-oss">Kontakt oss</a></li>
+                            <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NyheterCtrl')}}">Nyheter</a></li>
+                            <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MinSideCtrl')}}">Min side<span class="badge pull-right">2</span></a></li>
+                            <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
+                            <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BloggerCtrl')}}">Blogger</a></li>
+                            <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('ApningstiderCtrl')}}">Åpningstider</a></li>
+                            <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a ng-href="{{path('KontaktOssCtrl')}}">Kontakt oss</a></li>
 
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -102,10 +102,12 @@
       <script src="scripts/app.js"></script>
       <script src="scripts/controllers/nyheter.js"></script>
       <script src="scripts/controllers/anbefalinger.js"></script>
+      <script src="scripts/controllers/anbefalinger.detaljer.js"></script>
       <script src="scripts/controllers/apningstider.js"></script>
       <script src="scripts/controllers/blogger.js"></script>
       <script src="scripts/controllers/kontaktoss.js"></script>
       <script src="scripts/controllers/minside.js"></script>
+    <script src="scripts/controllers/media.detaljer.js"></script>
 
     <script src="scripts/directives/listItem.js"></script>
 
