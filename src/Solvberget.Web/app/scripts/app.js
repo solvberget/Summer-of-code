@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Solvberget.WebApp', [])
+angular.module('Solvberget.WebApp', ['ngResource'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/min-side', {

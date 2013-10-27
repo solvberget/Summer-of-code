@@ -8,7 +8,9 @@ namespace Solvberget.Domain.DTO
         public int Priority { get; set; }
         public bool IsRanked { get; set; }
         public Dictionary<string, bool> DocumentNumbers { get; set; }
-        public List<Document> Documents { get; set; } 
+        public List<Document> Documents { get; set; }
+        
+        public string Id { get; set; }
 
         public LibraryList()
         {

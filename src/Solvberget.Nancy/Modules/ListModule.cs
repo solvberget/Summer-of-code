@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Autofac.Features.Indexed;
 using Nancy;
-
+using Nancy.ViewEngines;
 using Solvberget.Domain.Abstract;
 
 namespace Solvberget.Nancy.Modules
@@ -19,7 +20,7 @@ namespace Solvberget.Nancy.Modules
             
             Get["/static"] = _ =>
             {
-                int? limit = Request.Query.limit;
+                int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
 
                 var resultStatic = staticRepository.GetLists(limit);
                 var latestChange = staticRepository.GetTimestampForLatestChange();
@@ -35,7 +36,7 @@ namespace Solvberget.Nancy.Modules
 
             Get["/combined"] = _ =>
             {
-                int? limit = Request.Query.limit;
+                int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
 
                 var resultStatic = staticRepository.GetLists(limit);
                 var resultDynamic = dynamicRepository.GetLists(limit);

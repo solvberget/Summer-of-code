@@ -1,6 +1,8 @@
 <h2>LISTER</h2>
 
 <ul class="media-list">
-    <div ng-repeat="item in items" list-item="item.title" subtext="item.subtext"
-         image-url="item.imageUrl" url="path('AnbefalingerDetaljerCtrl', {id: item.id, title: item.titleUri})" show-chevron="true" />
+    <div ng-repeat="item in items" list-item="item.Name" subtext="item.SubTitle"
+         image-url="''" url="pathFor(item)" show-chevron="true" />
+
+    <img src="/img/ajax-loader.gif" ng-hide="items.length > 0" />
 </ul>
