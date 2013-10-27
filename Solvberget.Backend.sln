@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Nancy", "src\Solvberget.Nancy\Solvberget.Nancy.csproj", "{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Domain", "src\Solvberget.Domain\Solvberget.Domain.csproj", "{7EB0D844-7622-4F0D-A103-C326C6FA1293}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CI|Any CPU = CI|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}.CI|Any CPU.Build.0 = CI|Any CPU
+		{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13FEED6-66AC-4D3F-8A07-1EC40387A0CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.CI|Any CPU.Build.0 = CI|Any CPU
+		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
