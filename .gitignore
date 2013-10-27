@@ -156,3 +156,8 @@ $RECYCLE.BIN/
 
 #GhostDoc
 *.GhostDoc.xml
+
+# =========================
+# Repo Specific
+# =========================
+src/Solvberget.Nancy/Content/

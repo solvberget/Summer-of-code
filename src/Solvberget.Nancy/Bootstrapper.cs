@@ -38,6 +38,11 @@ namespace Solvberget.Nancy
                 builder.RegisterType<EnvironmentPathProvider>()
                     .As<IEnvironmentPathProvider>()
                     .SingleInstance();
+
+
+
+                builder.RegisterType<LibraryListDynamicRepository>().Keyed<IListRepository>(ListRepository.Dynamic);
+                builder.RegisterType<LibraryListXmlRepository>().Keyed<IListRepository>(ListRepository.Static);
             });
         }
 
@@ -45,5 +50,11 @@ namespace Solvberget.Nancy
         {
             config.ResponseProcessors = new[] { typeof(JsonProcessor) };
         }
+    }
+
+    public enum ListRepository
+    {
+        Static,
+        Dynamic
     }
 }
