@@ -7,17 +7,15 @@ using Autofac.Features.Indexed;
 using Nancy;
 using Nancy.ViewEngines;
 using Solvberget.Domain.Abstract;
+using Solvberget.Domain.Implementation;
 
 namespace Solvberget.Nancy.Modules
 {
     public class ListModule : NancyModule
     {
-        public ListModule(IIndex<ListRepository, IListRepository> repositories)
+        public ListModule(LibraryListDynamicRepository dynamicRepository, LibraryListXmlRepository staticRepository)
             : base("/lists")
         {
-            var staticRepository = (IListRepositoryStatic) repositories[ListRepository.Static];
-            var dynamicRepository = repositories[ListRepository.Dynamic];
-            
             Get["/static"] = _ =>
             {
                 int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;

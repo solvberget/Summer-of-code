@@ -11,7 +11,7 @@ namespace Solvberget.Domain.DTO
         public List<Document> Documents { get; set; }
         
         public string Id { get; set; }
-
+        
         public LibraryList()
         {
             DocumentNumbers = new Dictionary<string, bool>();

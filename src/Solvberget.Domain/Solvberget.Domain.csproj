@@ -185,6 +185,7 @@
     <Compile Include="Abstract\ISuggestionDictionary.cs" />
     <Compile Include="Abstract\IListRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\V2\ILibraryListRepository.cs" />
     <Compile Include="DTO\ContactWebPage.cs" />
     <Compile Include="DTO\OpeningHoursWebPage.cs" />
     <Compile Include="DTO\Webpage.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Implementation\LuceneRepository.cs" />
     <Compile Include="Implementation\ReviewRepository.cs" />
     <Compile Include="Implementation\RatingRepository.cs" />
+    <Compile Include="Implementation\V2\LibraryListRepository.cs" />
     <Compile Include="Utils\ImageCacheUtils.cs" />
     <Compile Include="Utils\StorageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

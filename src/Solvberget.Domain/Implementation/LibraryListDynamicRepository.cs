@@ -45,6 +45,8 @@ namespace Solvberget.Domain.Implementation
             {
                 var dynListXml = xmlDoc.Root;
                 var dynamicList = LibraryListXmlRepository.GetLibraryListFromXml(dynListXml);
+                dynamicList.Id = "dynamic_" + Path.GetFileNameWithoutExtension(file);
+
                 var givenTimespanAttr = dynListXml.Attribute("timespan");
                 var givenTimespanString = givenTimespanAttr == null ? "month" : givenTimespanAttr.Value;
                 var timespan = GetTimespan(givenTimespanString);

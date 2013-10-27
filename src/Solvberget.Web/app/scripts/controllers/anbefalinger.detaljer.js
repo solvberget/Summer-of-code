@@ -1,16 +1,15 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-    .controller('AnbefalingerDetaljerCtrl', function ($scope, $rootScope, $routeParams, mediaItemListRepository) {
+    .controller('AnbefalingerDetaljerCtrl', function ($scope, $rootScope, $routeParams, lists) {
 
         $rootScope.pageTitle = 'ANBEFALINGER';
 
-        $scope.list = mediaItemListRepository.get($routeParams.id);
+        $scope.list = lists.get({id : $routeParams.id});
 
         $scope.pathFor = function(item){
 
-            var title = encodeURIComponent(item.title.replace(' ','-').toLowerCase());
-
-            return $rootScope.path(item.type + 'Ctrl', {id: item.id, title : title});
+            var title = encodeURIComponent(item.Title.replace(' ','-').toLowerCase());
+            return $rootScope.path(item.Type + 'Ctrl', {id: item.Id, title : title});
         };
     });

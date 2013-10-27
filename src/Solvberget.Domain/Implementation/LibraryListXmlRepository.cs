@@ -71,7 +71,7 @@ namespace Solvberget.Domain.Implementation
         {
             var xmlDoc = XElement.Load(xmlFilePath);
             var libraryList = FillProperties(xmlDoc);
-            libraryList.Id = Path.GetFileNameWithoutExtension(xmlFilePath);
+            libraryList.Id = "static_" + Path.GetFileNameWithoutExtension(xmlFilePath);
             return libraryList;
         }
 

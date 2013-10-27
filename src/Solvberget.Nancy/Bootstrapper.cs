@@ -52,8 +52,8 @@ namespace Solvberget.Nancy
 
 
 
-                builder.RegisterType<LibraryListDynamicRepository>().Keyed<IListRepository>(ListRepository.Dynamic);
-                builder.RegisterType<LibraryListXmlRepository>().Keyed<IListRepository>(ListRepository.Static);
+                builder.RegisterType<LibraryListDynamicRepository>().AsSelf();
+                builder.RegisterType<LibraryListXmlRepository>().AsSelf();
             });
         }
 
@@ -61,11 +61,5 @@ namespace Solvberget.Nancy
         {
             config.ResponseProcessors = new[] { typeof(JsonProcessor) };
         }
-    }
-
-    public enum ListRepository
-    {
-        Static,
-        Dynamic
     }
 }

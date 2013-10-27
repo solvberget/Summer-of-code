@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Web;
 
 namespace Solvberget.Domain.Utils
 {
@@ -24,8 +25,12 @@ namespace Solvberget.Domain.Utils
             {
                 var imageName = isThumb ? "thumb" + id + ".jpg" : id + ".jpg";
                 var localServerUrl = Properties.Settings.Default.ServerUrl;
-                var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
-                return localServerUrl + localImageCacheFolder + imageName;
+                //var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
+                //return localServerUrl + localImageCacheFolder + imageName;
+
+
+                var url = "/Content/CachedImages/" + imageName;
+                return url;
             }
             return string.Empty;
         }
