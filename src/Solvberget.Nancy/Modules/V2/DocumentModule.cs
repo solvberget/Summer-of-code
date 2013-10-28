@@ -17,10 +17,21 @@ namespace Solvberget.Nancy.Modules.V2
                 return Response.AsRedirect(url);
             };
 
-            Get["/{id}/details"] = args =>
+            Get["/{id}"] = args =>
             {
                 Document document = documents.GetDocument(args.id, true);
-                return Response.AsJson(document);
+                return Response.AsJson(MapToDto(document));
+            };
+        }
+
+        private DocumentDto MapToDto(Document document)
+        {
+            return new DocumentDto
+            {
+                Id = document.DocumentNumber,
+                Type = document.DocType,
+                Title = document.Title,
+                SubTitle = document.SubTitle
             };
         }
     }

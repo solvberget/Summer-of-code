@@ -3,7 +3,9 @@
 angular.module('Solvberget.WebApp')
   .controller('AnbefalingerCtrl', function ($scope, $rootScope, lists) {
 
-        $rootScope.pageTitle = 'ANBEFALINGER';
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Anbefalinger');
+
         $scope.items = lists.query();
 
         $scope.pathFor = function(item){

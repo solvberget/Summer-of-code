@@ -42,7 +42,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand visible-sm visible-md visible-lg">SØLVBERGET</a>
-                        <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{pageTitle}}</span>
+                        <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{breadcrumb.last.title}}</span>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -58,6 +58,9 @@
                 </div>
             </div>
 
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
+            </ol>
 
             <div class="container">
 

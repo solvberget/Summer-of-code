@@ -1,8 +1,11 @@
 'use strict';
 
-var mediaDetaljerCtrl = function ($scope, $routeParams, mediaItemRepository) {
+var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents) {
 
-    $scope.item = mediaItemRepository.get($routeParams.id);
+    $scope.document = documents.get({id : $routeParams.id}, function(){
+
+        $rootScope.breadcrumb.push($scope.document.Title);
+    });
 };
 
 angular.module('Solvberget.WebApp')

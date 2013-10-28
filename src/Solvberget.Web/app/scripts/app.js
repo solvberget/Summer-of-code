@@ -61,10 +61,9 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
             return viewLocation === $location.path();
         };
 
-        $rootScope.pageTitle = 'SØLVBERGET';
-
         $rootScope.path = function(controller, params)
         {
+            if(!controller) return undefined;
             // Iterate over all available routes
 
             for(var path in $route.routes)
@@ -90,5 +89,27 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
 
             return undefined;
         };
+
+        $rootScope.breadcrumb = {
+
+            crumbs : [],
+
+            last : null,
+
+            push : function(title, ctrl, ctrlParams){
+
+                this.last = {title : title, url: $rootScope.path(ctrl, ctrlParams)};
+                this.crumbs.push(this.last);
+            },
+
+            pop : function(){
+                this.last = this.crumbs.pop();
+            },
+
+            clear : function(){
+                this.crumbs = [];
+                this.last = null;
+            }
+        }
 
     });

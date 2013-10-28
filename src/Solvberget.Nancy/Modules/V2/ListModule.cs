@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Autofac.Features.Indexed;
@@ -74,20 +73,5 @@ namespace Solvberget.Nancy.Modules.V2
         {
             return _documents.GetDocument(documentNumber, true);
         }
-    }
-
-    public class LibrarylistDto
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public List<DocumentDto> Documents { get; set; }
-    }
-
-    public class DocumentDto
-    {
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public string SubTitle { get; set; }
-        public string Type { get; set; }
     }
 }
