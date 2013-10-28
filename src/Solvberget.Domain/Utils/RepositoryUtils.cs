@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Linq;
 
@@ -12,15 +13,9 @@ namespace Solvberget.Domain.Utils
         public static XDocument GetXmlFromStream(string url)
         {
             var request = WebRequest.Create(url);
-            WebResponse response;
-            try
-            {
-                response = request.GetResponse();
-            }
-            catch (WebException)
-            {
-                return null;
-            }
+
+            WebResponse response = request.GetResponse();
+            
             var xml = string.Empty;
             using (var stream = response.GetResponseStream())
             {
@@ -69,25 +64,19 @@ namespace Solvberget.Domain.Utils
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = WebRequestMethods.Http.Get;
             request.Accept = "application/json";
-            try
+            
+            var response = request.GetResponse();
+
+            string json = string.Empty;
+            using (var stream = response.GetResponseStream())
             {
-                var response = request.GetResponse();
 
-                string json = string.Empty;
-                using (var stream = response.GetResponseStream())
-                {
+                var readStream = new StreamReader(stream, Encoding.UTF8);
+                json = readStream.ReadToEnd();
 
-                    var readStream = new StreamReader(stream, Encoding.UTF8);
-                    json = readStream.ReadToEnd();
-
-                }
-                return json;
-
-            } catch(Exception)
-            {
-                //Todo add logging here
-                return string.Empty;
             }
+
+            return json;
         }
 
     }

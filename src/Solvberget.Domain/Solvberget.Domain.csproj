@@ -189,6 +189,7 @@
     <Compile Include="DTO\ContactWebPage.cs" />
     <Compile Include="DTO\OpeningHoursWebPage.cs" />
     <Compile Include="DTO\Webpage.cs" />
+    <Compile Include="Implementation\AlephException.cs" />
     <Compile Include="Implementation\AlephRepository.cs" />
     <Compile Include="Implementation\AvailabilityRepository.cs" />
     <Compile Include="Implementation\BokbasenRepository.cs" />

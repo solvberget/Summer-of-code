@@ -29,7 +29,12 @@ namespace Solvberget.Nancy
             /*enable lightningcache, vary by url params id,query,take and skip*/
             this.EnableLightningCache(container.Resolve<IRouteResolver>(), ApplicationPipelines, new[] { "id", "query", "take", "skip" });
 
-            pipelines.OnError.AddItemToEndOfPipeline((z, a) => new TextResponse(a.Message) {StatusCode = HttpStatusCode.InternalServerError});
+            pipelines.OnError.AddItemToEndOfPipeline((z, a) =>
+            {
+                while (null != a.InnerException) a = a.InnerException;
+
+                return new TextResponse(a.Message) {StatusCode = HttpStatusCode.InternalServerError};
+            });
 
         }
 
