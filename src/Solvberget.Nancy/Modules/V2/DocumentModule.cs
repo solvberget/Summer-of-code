@@ -17,10 +17,10 @@ namespace Solvberget.Nancy.Modules.V2
                 return Response.AsRedirect(url);
             };
 
-            Get["{id}/details"] = args =>
+            Get["/{id}/details"] = args =>
             {
                 Document document = documents.GetDocument(args.id, true);
-                return Response.AsJson(document).AsCacheable(DateTime.Now.AddHours(12)); // get cache validity from config..
+                return Response.AsJson(document);
             };
         }
     }

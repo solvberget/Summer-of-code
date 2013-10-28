@@ -25,12 +25,8 @@ namespace Solvberget.Domain.Utils
             {
                 var imageName = isThumb ? "thumb" + id + ".jpg" : id + ".jpg";
                 var localServerUrl = Properties.Settings.Default.ServerUrl;
-                //var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
-                //return localServerUrl + localImageCacheFolder + imageName;
-
-
-                var url = "/Content/CachedImages/" + imageName;
-                return url;
+                var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
+                return localServerUrl + localImageCacheFolder + imageName;
             }
             return string.Empty;
         }

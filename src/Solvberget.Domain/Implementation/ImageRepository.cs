@@ -165,9 +165,6 @@ namespace Solvberget.Domain.Implementation
             return string.Empty;
         }
 
-
-
-
         private string GetLocalImageUrl(string externalImageUrl, string id, bool isThumbnail)
         {
 

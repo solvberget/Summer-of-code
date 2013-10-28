@@ -1,6 +1,6 @@
 namespace Solvberget.Domain.Abstract
 {
-    public interface IEnvironmentPathProvider
+    public interface  IEnvironmentPathProvider
     {
         string GetDictionaryPath();
         string GetDictionaryIndexPath();

@@ -61,6 +61,11 @@
 
             <div class="container">
 
+                <div id="appMessageContainer">
+                    <span id="appMessage"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div>
+
                 <div ng-view></div>
 
             </div> <!-- /container -->
@@ -112,6 +117,7 @@
     <script src="scripts/directives/listItem.js"></script>
 
     <script src="scripts/services/resources.js"></script>
+    <script src="scripts/globalErrorHandling.js"></script>
       <!-- endbuild -->
 
   <script>

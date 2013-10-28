@@ -38,7 +38,7 @@ namespace Solvberget.Nancy.Modules.V2
             };
         }
         
-        private dynamic MapLibraryListToDto(LibraryList list, bool includeDocuments = true)
+        private dynamic MapLibraryListToDto(LibraryList list, bool includeDocuments = false)
         {
             if (includeDocuments)
             {

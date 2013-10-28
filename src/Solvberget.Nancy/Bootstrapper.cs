@@ -1,9 +1,10 @@
 ﻿using System.Web;
 using Autofac;
-
+using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
 using Nancy.LightningCache.Extensions;
+using Nancy.Responses;
 using Nancy.Responses.Negotiation;
 using Nancy.Routing;
 using Newtonsoft.Json;
@@ -27,6 +28,9 @@ namespace Solvberget.Nancy
 
             /*enable lightningcache, vary by url params id,query,take and skip*/
             this.EnableLightningCache(container.Resolve<IRouteResolver>(), ApplicationPipelines, new[] { "id", "query", "take", "skip" });
+
+            pipelines.OnError.AddItemToEndOfPipeline((z, a) => new TextResponse(a.Message) {StatusCode = HttpStatusCode.InternalServerError});
+
         }
 
         protected override void ConfigureApplicationContainer(ILifetimeScope container)

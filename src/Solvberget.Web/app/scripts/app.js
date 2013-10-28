@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Solvberget.WebApp', ['ngResource'])
+angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/min-side', {

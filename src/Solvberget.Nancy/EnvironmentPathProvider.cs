@@ -1,5 +1,6 @@
+using System;
 using System.IO;
-
+using System.Web;
 using Nancy;
 
 using Solvberget.Domain.Abstract;
@@ -11,13 +12,17 @@ namespace Solvberget.Nancy
         private readonly string _applicationAppDataPath;
 
         private readonly string _applicationContentDataPath;
+        private readonly string _rootPath;
+
+        private readonly string _rootUrl;
 
         public EnvironmentPathProvider(IRootPathProvider rootPathProvider)
         {
-            var rootPath = rootPathProvider.GetRootPath();
-
-            _applicationAppDataPath = Path.Combine(rootPath, @"Data");
-            _applicationContentDataPath = Path.Combine(rootPath, @"Content");
+            _rootPath = rootPathProvider.GetRootPath();
+            _rootUrl = "http://localhost:39465/"; // todo: 
+         
+            _applicationAppDataPath = Path.Combine(_rootPath, @"Data");
+            _applicationContentDataPath = Path.Combine(_rootPath, @"Content");
         }
 
         public string GetDictionaryPath()
@@ -78,6 +83,13 @@ namespace Solvberget.Nancy
         public string GetContactInfoAsXmlPath()
         {
             return Path.Combine(_applicationAppDataPath, @"info\contact.xml");
+        }
+
+        public string ResolveUrl(string serverPath)
+        {
+            var relative = serverPath.ToLowerInvariant().Replace(_rootPath.ToLowerInvariant(), "").Replace('\\','/');
+            var absolute = Path.Combine(_rootUrl, relative);
+            return absolute;
         }
     }
 }
