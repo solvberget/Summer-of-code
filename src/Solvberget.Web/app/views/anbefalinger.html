@@ -2,7 +2,7 @@
 
 <ul class="media-list">
     <div ng-repeat="item in items" list-item="item.Name" subtext="item.SubTitle"
-         image-url="''" url="pathFor(item)" show-chevron="true" />
+         image-url="'http://localhost:39465/v2/lists/' + item.Id + '/thumbnail'" url="pathFor(item)" show-chevron="true" />
 
     <img src="/img/ajax-loader.gif" ng-hide="items.length > 0" />
 </ul>

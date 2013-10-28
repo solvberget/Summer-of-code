@@ -35,6 +35,15 @@ namespace Solvberget.Nancy.Modules.V2
                 LibrarylistDto dto = MapLibraryListToDto(lists.Get(args.id), true);
                 return Response.AsJson(dto);
             };
+
+            Get["/{id}/thumbnail"] = args =>
+            {
+                LibraryList list = lists.Get(args.id);
+                
+                var firstDocumentId = list.DocumentNumbers.Keys.FirstOrDefault();
+                string url = images.GetDocumentThumbnailImage(firstDocumentId, "60");
+                return Response.AsRedirect(url);
+            };
         }
         
         private dynamic MapLibraryListToDto(LibraryList list, bool includeDocuments = false)
