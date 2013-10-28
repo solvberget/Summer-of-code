@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Autofac.Features.Indexed;
 using Nancy;
-
+using Nancy.ViewEngines;
 using Solvberget.Domain.Abstract;
+using Solvberget.Domain.Implementation;
 
 namespace Solvberget.Nancy.Modules
 {
     public class ListModule : NancyModule
     {
-        public ListModule(IIndex<ListRepository, IListRepository> repositories)
+        public ListModule(LibraryListDynamicRepository dynamicRepository, LibraryListXmlRepository staticRepository)
             : base("/lists")
         {
-            var staticRepository = (IListRepositoryStatic) repositories[ListRepository.Static];
-            var dynamicRepository = repositories[ListRepository.Dynamic];
-            
             Get["/static"] = _ =>
             {
-                int? limit = Request.Query.limit;
+                int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
 
                 var resultStatic = staticRepository.GetLists(limit);
                 var latestChange = staticRepository.GetTimestampForLatestChange();
@@ -35,7 +34,7 @@ namespace Solvberget.Nancy.Modules
 
             Get["/combined"] = _ =>
             {
-                int? limit = Request.Query.limit;
+                int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
 
                 var resultStatic = staticRepository.GetLists(limit);
                 var resultDynamic = dynamicRepository.GetLists(limit);

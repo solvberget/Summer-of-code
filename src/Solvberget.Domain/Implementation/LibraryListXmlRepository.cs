@@ -70,7 +70,9 @@ namespace Solvberget.Domain.Implementation
         public static LibraryList GetLibraryListFromXmlFile(string xmlFilePath)
         {
             var xmlDoc = XElement.Load(xmlFilePath);
-            return FillProperties(xmlDoc);
+            var libraryList = FillProperties(xmlDoc);
+            libraryList.Id = "static_" + Path.GetFileNameWithoutExtension(xmlFilePath);
+            return libraryList;
         }
 
         public static LibraryList GetLibraryListFromXml(XElement xml)

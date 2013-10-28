@@ -43,10 +43,8 @@ namespace Solvberget.Domain.Implementation
             dynamic result = new ExpandoObject();
             const Operation function = Operation.KeywordSearch;
             var options = new Dictionary<string, string> { { "request", value } };
-
-            var url = GetUrl(function, options);
-
-            var doc = RepositoryUtils.GetXmlFromStream(url);
+            
+            XDocument doc = GetDocumentFromAleph(function, options);
 
             if (doc != null && doc.Root != null)
             {
@@ -55,6 +53,7 @@ namespace Solvberget.Domain.Implementation
                 return result.SetNumber != null ? GetSearchResults(result) : new List<Document>();
 
             }
+
             return new List<Document>();
         }
 
@@ -65,7 +64,7 @@ namespace Solvberget.Domain.Implementation
 
             var url = GetUrl(function, options);
 
-            var doc = RepositoryUtils.GetXmlFromStream(url);
+            XDocument doc = GetDocumentFromAleph(function, options);
 
             if (doc != null && doc.Root != null)
             {
@@ -98,6 +97,19 @@ namespace Solvberget.Domain.Implementation
 
         }
 
+        private XDocument GetDocumentFromAleph(Operation function, Dictionary<string, string> options)
+        {
+            try
+            {
+                var url = GetUrl(function, options);
+                return RepositoryUtils.GetXmlFromStream(url);
+            }
+            catch (WebException ex)
+            {
+                throw new AlephException("Aleph is currently unavailable");
+            }
+        }
+
         public UserInfo GetUserInformation(string userId, string verification)
         {
 
@@ -106,15 +118,11 @@ namespace Solvberget.Domain.Implementation
 
             const Operation function = Operation.UserInformation;
             var options = new Dictionary<string, string> { { "bor_id", userId }, { "verification", verification } };
-            var url = GetUrl(function, options);
-
-            var userXDoc = RepositoryUtils.GetXmlFromStream(url);
+           
+            var userXDoc = GetDocumentFromAleph(function, options);
 
             user.FillProperties(userXDoc.ToString());
-
-
-
-
+            
             return user;
 
         }
@@ -123,8 +131,9 @@ namespace Solvberget.Domain.Implementation
         {
             const Operation function = Operation.CancelReservation;
             var options = new Dictionary<string, string> { { "doc_number", documentItemNumber }, { "item_sequence", documentItemSequence }, { "sequence", cancellationSequence } };
-            var url = GetUrl(function, options);
-            var reservationReplyXml = RepositoryUtils.GetXmlFromStream(url);
+            
+            var reservationReplyXml = GetDocumentFromAleph(function, options);
+
             if (reservationReplyXml != null && reservationReplyXml.Root != null)
             {
 
@@ -159,8 +168,8 @@ namespace Solvberget.Domain.Implementation
         {
             const Operation function = Operation.ReserveDocument;
             var options = new Dictionary<string, string> { { "doc_number", documentAdm }, { "item_sequence", itemSequence }, { "bor_id", userId } };
-            var url = GetUrl(function, options);
-            var docItemsXml = RepositoryUtils.GetXmlFromStream(url);
+            
+            var docItemsXml = GetDocumentFromAleph(function, options);
 
             if (docItemsXml != null && docItemsXml.Root != null)
             {
@@ -233,8 +242,8 @@ namespace Solvberget.Domain.Implementation
         {
             const Operation function = Operation.RenewLoan;
             var options = new Dictionary<string, string> { { "doc_number", documentNr }, { "item_sequence", itemSequence }, { "bor_id", libraryUserId }, { "item_barcode", itemBarcode } };
-            var url = GetUrl(function, options);
-            var docItemsXml = RepositoryUtils.GetXmlFromStream(url);
+            
+            var docItemsXml = GetDocumentFromAleph(function, options);
 
             if (docItemsXml != null && docItemsXml.Root != null)
             {
@@ -268,13 +277,13 @@ namespace Solvberget.Domain.Implementation
         {
             var function = Operation.DocumentItems;
             var options = new Dictionary<string, string> { { "doc_number", documentNumber } };
-            var url = GetUrl(function, options);
-            var docItemsXml = RepositoryUtils.GetXmlFromStream(url);
+            
+            var docItemsXml = GetDocumentFromAleph(function, options);
 
             function = Operation.CircStatus;
             options = new Dictionary<string, string> { { "sys_no", documentNumber } };
-            url = GetUrl(function, options);
-            var docCircItemXml = RepositoryUtils.GetXmlFromStream(url);
+            
+            var docCircItemXml = GetDocumentFromAleph(function, options);
 
             return DocumentItemRepository.GetDocumentItemsFromXml(docItemsXml.ToString(), docCircItemXml.ToString(), _rulesRepository);
         }
@@ -284,9 +293,8 @@ namespace Solvberget.Domain.Implementation
 
             const Operation function = Operation.AuthenticateUser;
             var options = new Dictionary<string, string> { { "bor_id", userId }, { "verification", verification } };
-
-            var url = GetUrl(function, options);
-            var authenticationDoc = RepositoryUtils.GetXmlFromStream(url);
+            
+            var authenticationDoc = GetDocumentFromAleph(function, options);
 
             if (authenticationDoc != null && authenticationDoc.Root != null)
             {
@@ -324,9 +332,9 @@ namespace Solvberget.Domain.Implementation
                 const Operation function = Operation.PresentSetNumber;
                 var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", setEntry } };
 
-                var url = GetUrl(function, options);
+                
 
-                var doc = RepositoryUtils.GetXmlFromStream(url);
+                var doc = GetDocumentFromAleph(function, options);
 
                 if(doc != null)
                 {
@@ -370,8 +378,7 @@ namespace Solvberget.Domain.Implementation
             {
                 returnDocument = Document.GetObjectFromFindDocXmlBsMarcLight(record.ToString());
             }
-            new Thread(() => _imageRepository.GetDocumentImage(returnDocument.DocumentNumber, null, returnDocument,
-                                                               false)).Start();
+            //new Thread(() => _imageRepository.GetDocumentImage(returnDocument.DocumentNumber, null, returnDocument, false)).Start();
             return returnDocument;
         }
 
@@ -445,5 +452,4 @@ namespace Solvberget.Domain.Implementation
         }
 
     }
-
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Solvberget.WebApp', [])
+angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/min-side', {
@@ -11,7 +11,7 @@ angular.module('Solvberget.WebApp', [])
                 templateUrl: 'views/anbefalinger.html',
                 controller: 'AnbefalingerCtrl'
             })
-            .when('/anbefalinger/:id/:title', {
+            .when('/anbefalinger/:id', {
                 templateUrl: 'views/anbefalinger.detaljer.html',
                 controller:'AnbefalingerDetaljerCtrl'
             })
@@ -33,7 +33,7 @@ angular.module('Solvberget.WebApp', [])
             })
             .when('/bok/:id/:title', {
                 templateUrl: 'views/media.bok.html',
-                controller: 'BokCtrl'
+                controller: 'BookCtrl'
             })
             .when('/cd/:id/:title', {
                 templateUrl: 'views/media.cd.html',
@@ -58,13 +58,12 @@ angular.module('Solvberget.WebApp', [])
     }).run(function($rootScope, $location, $route) {
 
         $rootScope.isViewActive = function (viewLocation) {
-            return viewLocation === $location.path();
+            return $location.path().indexOf(viewLocation) === 0;
         };
-
-        $rootScope.pageTitle = 'SØLVBERGET';
 
         $rootScope.path = function(controller, params)
         {
+            if(!controller) return undefined;
             // Iterate over all available routes
 
             for(var path in $route.routes)
@@ -90,5 +89,27 @@ angular.module('Solvberget.WebApp', [])
 
             return undefined;
         };
+
+        $rootScope.breadcrumb = {
+
+            crumbs : [],
+
+            last : null,
+
+            push : function(title, ctrl, ctrlParams){
+
+                this.last = {title : title, url: $rootScope.path(ctrl, ctrlParams)};
+                this.crumbs.push(this.last);
+            },
+
+            pop : function(){
+                this.last = this.crumbs.pop();
+            },
+
+            clear : function(){
+                this.crumbs = [];
+                this.last = null;
+            }
+        }
 
     });

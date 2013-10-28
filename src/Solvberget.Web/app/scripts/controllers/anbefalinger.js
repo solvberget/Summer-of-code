@@ -1,19 +1,14 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('AnbefalingerCtrl', function ($scope, $rootScope) {
+  .controller('AnbefalingerCtrl', function ($scope, $rootScope, lists) {
 
-        $rootScope.pageTitle = 'ANBEFALINGER';
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Anbefalinger');
 
-        $scope.items = [{id: 1,
-            title : "Fredrik's anbefalinger",
-            titleUri: 'fredriks-anbefalinger',
-            subtext: "Lagt til 24. oktober 2013",
-            imageUrl : 'http://placehold.it/60x80'},
-            { id:2,
-                title : "Bestselgere 2013",
-                titleUri:'bestselgere-2013',
-                subtext: "Lagt til 23. oktober 2013",
-                imageUrl: 'http://placehold.it/60x80' }];
+        $scope.items = lists.query();
 
+        $scope.pathFor = function(item){
+            return $rootScope.path('AnbefalingerDetaljerCtrl', {id: item.Id});
+        };
   });

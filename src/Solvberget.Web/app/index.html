@@ -42,10 +42,11 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand visible-sm visible-md visible-lg">SØLVBERGET</a>
-                        <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{pageTitle}}</span>
+                        <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{breadcrumb.last.title}}</span>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
+                            <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SokCtrl')}}">Søk</a></li>
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NyheterCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MinSideCtrl')}}">Min side<span class="badge pull-right">2</span></a></li>
                             <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
@@ -58,8 +59,16 @@
                 </div>
             </div>
 
+            <ol class="breadcrumb visible-sm visible-md visible-lg">
+                <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
+            </ol>
 
             <div class="container">
+
+                <div id="appMessageContainer" style="display:none">
+                    <span id="appMessage"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div>
 
                 <div ng-view></div>
 
@@ -111,6 +120,8 @@
 
     <script src="scripts/directives/listItem.js"></script>
 
+    <script src="scripts/services/resources.js"></script>
+    <script src="scripts/globalErrorHandling.js"></script>
       <!-- endbuild -->
 
   <script>

@@ -57,6 +57,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Nancy.Hosting.Aspnet.0.20.0\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.LightningCache">
+      <HintPath>..\..\packages\Nancy.LightningCache.0.1.2\lib\net40\Nancy.LightningCache.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.5.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -119,6 +122,10 @@
     <Compile Include="Modules\EventModule.cs" />
     <Compile Include="Modules\InformationModule.cs" />
     <Compile Include="Modules\ListModule.cs" />
+    <Compile Include="Modules\V2\DocumentDto.cs" />
+    <Compile Include="Modules\V2\DocumentModule.cs" />
+    <Compile Include="Modules\V2\LibrarylistDto.cs" />
+    <Compile Include="Modules\V2\ListModule.cs" />
     <Compile Include="Modules\NewsModule.cs" />
     <Compile Include="Modules\SuggestionModule.cs" />
     <Compile Include="Modules\UserModule.cs" />
