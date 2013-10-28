@@ -11,7 +11,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
                 templateUrl: 'views/anbefalinger.html',
                 controller: 'AnbefalingerCtrl'
             })
-            .when('/anbefalinger/:id/:title', {
+            .when('/anbefalinger/:id', {
                 templateUrl: 'views/anbefalinger.detaljer.html',
                 controller:'AnbefalingerDetaljerCtrl'
             })
@@ -33,7 +33,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
             })
             .when('/bok/:id/:title', {
                 templateUrl: 'views/media.bok.html',
-                controller: 'BokCtrl'
+                controller: 'BookCtrl'
             })
             .when('/cd/:id/:title', {
                 templateUrl: 'views/media.cd.html',
@@ -58,7 +58,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
     }).run(function($rootScope, $location, $route) {
 
         $rootScope.isViewActive = function (viewLocation) {
-            return viewLocation === $location.path();
+            return $location.path().indexOf(viewLocation) === 0;
         };
 
         $rootScope.path = function(controller, params)

@@ -9,8 +9,6 @@ angular.module('Solvberget.WebApp')
         $scope.items = lists.query();
 
         $scope.pathFor = function(item){
-
-            var title = encodeURIComponent(item.Name.replace(' ','-').toLowerCase());
-            return $rootScope.path('AnbefalingerDetaljerCtrl', {id: item.Id, title: title});
+            return $rootScope.path('AnbefalingerDetaljerCtrl', {id: item.Id});
         };
   });

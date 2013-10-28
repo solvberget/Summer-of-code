@@ -46,6 +46,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
+                            <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SokCtrl')}}">Søk</a></li>
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NyheterCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MinSideCtrl')}}">Min side<span class="badge pull-right">2</span></a></li>
                             <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
