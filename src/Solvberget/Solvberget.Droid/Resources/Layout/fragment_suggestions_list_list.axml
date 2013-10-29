@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <TextView
-        android:text="Dette skal bli en liste over lister"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+    <MvxListView
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:layout_height="fill_parent"
+        local:MvxBind="ItemsSource Lists; ItemClick ShowDetailsCommand"
+        local:MvxItemTemplate="@layout/item_suggestions_list_summary" />
 </LinearLayout>

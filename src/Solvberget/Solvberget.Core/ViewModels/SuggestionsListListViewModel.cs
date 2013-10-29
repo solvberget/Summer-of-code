@@ -1,7 +1,4 @@
-﻿
-//This View Model is for the list of LibraryLists, which is the suggestions lists
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
@@ -25,8 +22,8 @@ namespace Solvberget.Core.ViewModels
             Load();
         }
 
-        private List<SuggestionsListViewModel> _lists;
-        public List<SuggestionsListViewModel> Lists
+        private List<SuggestionListSummaryViewModel> _lists;
+        public List<SuggestionListSummaryViewModel> Lists
         {
             get { return _lists; }
             set { _lists = value; RaisePropertyChanged(() => Lists); }
@@ -46,14 +43,13 @@ namespace Solvberget.Core.ViewModels
             ShowViewModel<SuggestionsListViewModel>(searchResultViewModel.Id);
         }
 
-
-        // Loads a a set of Documents retrieved from the service into the results list.
+        // Loads a a set of Lists retrieved from the service into the results list.
         public async void Load()
         {
             IsLoading = true;
 
             Lists = (from n in await _suggestionsService.GetSuggestionsList()
-                        select new SuggestionsListViewModel
+                     select new SuggestionListSummaryViewModel
                            {
                                Name = n.Name,
                                Documents = n.Documents
