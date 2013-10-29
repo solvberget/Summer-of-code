@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Solvberget.Core.Services;
@@ -17,8 +18,8 @@ namespace Solvberget.Core.Tests.Services
             var results = (await service.GetNews()).ToList();
 
             results.Count().Should().Be(10);
-            results.First().PublishedDate.Should().Be("Publisert: 29.10.2013");
-            results.Last().PublishedDate.Should().Be("Publisert: 14.10.2013");
+            results.First().Published.Date.Should().Be(new DateTime(2013, 10, 29));
+            results.Last().Published.Date.Should().Be(new DateTime(2013, 10, 14));
         }
     }
 }
