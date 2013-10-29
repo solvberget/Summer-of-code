@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
-using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services
 {

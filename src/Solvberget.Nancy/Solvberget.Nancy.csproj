@@ -125,9 +125,7 @@
     <Compile Include="Modules\EventModule.cs" />
     <Compile Include="Modules\InformationModule.cs" />
     <Compile Include="Modules\ListModule.cs" />
-    <Compile Include="Modules\V2\DocumentDto.cs" />
     <Compile Include="Modules\V2\DocumentModule.cs" />
-    <Compile Include="Modules\V2\LibrarylistDto.cs" />
     <Compile Include="Modules\V2\ListModule.cs" />
     <Compile Include="Modules\NewsModule.cs" />
     <Compile Include="Modules\SuggestionModule.cs" />
@@ -144,6 +142,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
+      <Project>{c74b2533-6f19-4047-a4d0-434a1fe5f027}</Project>
+      <Name>Solvberget.Core.DTOs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Solvberget.Domain\Solvberget.Domain.csproj">
       <Project>{7eb0d844-7622-4f0d-a103-c326c6fa1293}</Project>
       <Name>Solvberget.Domain</Name>
