@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-	ToolsVersion="4.0"
-	DefaultTargets="Test">
+    ToolsVersion="4.0"
+    DefaultTargets="Test">
 
-	<UsingTask AssemblyFile="..\tools\xunit\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
+    <UsingTask AssemblyFile="..\tools\xunit\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit" />
 
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">CI</Configuration>
-		<RootPath>$(MSBuildThisFileDirectory)..\</RootPath>
-		<ArtifactsPath>$(RootPath)artifacts\</ArtifactsPath>
-		<SolutionFilePath>$(RootPath)Solvberget.sln</SolutionFilePath>
-		<ToolsPath>$(RootPath)tools\</ToolsPath>
-		<BinPath>$(ArtifactsPath)bin\</BinPath>
-		<PackagePath>$(ArtifactsPath)package\</PackagePath>
-	</PropertyGroup>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">CI</Configuration>
+        <ApplicationPath Condition=" '$(ApplicationPath)' == '' ">C:\inetpub\wwwroot\api</ApplicationPath>
 
-	<Target Name="Clean">
-		<RemoveDir Directories="$(ArtifactsPath)"/>
-	</Target>
+        <RootPath>$(MSBuildThisFileDirectory)..\</RootPath>
+        <ArtifactsPath>$(RootPath)artifacts\</ArtifactsPath>
+        <ToolsPath>$(RootPath)tools\</ToolsPath>
+        <BinPath>$(ArtifactsPath)bin\</BinPath>
+        <PackagePath>$(ArtifactsPath)package\</PackagePath>
 
-	<Target Name="Init" DependsOnTargets="Clean">
-		<MakeDir Directories="$(ArtifactsPath)"/>
-	</Target>
+        <SolutionFilePath>$(RootPath)Solvberget.sln</SolutionFilePath>
+    </PropertyGroup>
 
-	<Target Name="Build" DependsOnTargets="Init">
-	    <MakeDir Directories="$(BinPath)"/>
-		<MSBuild Projects="$(SolutionFilePath)" Targets="Rebuild" Properties="OutDir=$(BinPath);Configuration=$(Configuration)"/>
-	</Target>
+    <Target Name="Clean">
+        <RemoveDir Directories="$(ArtifactsPath)"/>
+    </Target>
 
-	<Target Name="Test" DependsOnTargets="Build">
-		<ItemGroup>
-			<TestAssemblies Include="$(BinPath)**\*.Tests.dll" />
-		</ItemGroup>
+    <Target Name="Init" DependsOnTargets="Clean">
+        <MakeDir Directories="$(ArtifactsPath)"/>
+    </Target>
 
-		<xunit Assemblies="@(TestAssemblies)" TeamCity="true" Xml="$(ArtifactsPath)TestResults.xml" />
-	</Target>
+    <Target Name="Build" DependsOnTargets="Init">
+        <MakeDir Directories="$(BinPath)"/>
+        <MSBuild Projects="$(SolutionFilePath)" Targets="Rebuild" Properties="OutDir=$(BinPath);Configuration=$(Configuration)"/>
+    </Target>
 
-	<ItemGroup>
-		<PackageFilePath Include="$(PackagePath)Solvberget.Nancy.zip" />
-	</ItemGroup>
+    <Target Name="Test" DependsOnTargets="Build">
+        <ItemGroup>
+            <TestAssemblies Include="$(BinPath)**\*.Tests.dll" />
+        </ItemGroup>
 
-	<Target Name="Package" DependsOnTargets="Test">
-		<ItemGroup>
-			<MsDeployPath Include="$(ToolsPath)msdeploy\msdeploy.exe" />
-			<WebsitePath Include="$(BinPath)_PublishedWebsites\Solvberget.Nancy" />
-		</ItemGroup>
+        <xunit Assemblies="@(TestAssemblies)" TeamCity="true" Xml="$(ArtifactsPath)TestResults.xml" />
+    </Target>
 
-		<PropertyGroup>
-	    	<PackageDir>%(PackageFilePath.RootDir)%(PackageFilePath.Directory)</PackageDir>
-	    	<Source>%(WebsitePath.FullPath)</Source>
-	    	<Destination>%(PackageFilePath.FullPath)</Destination>
-		</PropertyGroup>
+    <ItemGroup>
+        <PackageFilePath Include="$(PackagePath)Solvberget.Nancy.zip" />
+    </ItemGroup>
 
-	    <MakeDir Directories="$(PackageDir)"/>
-    	<Exec ContinueOnError="True" Command='"@(MsDeployPath)" -verb:sync -source:iisApp="$(Source)" -dest:package="$(Destination)"'/>
-	</Target>
+    <Target Name="Package" DependsOnTargets="Test">
+        <ItemGroup>
+            <MsDeployPath Include="$(ToolsPath)msdeploy\msdeploy.exe" />
+            <WebsitePath Include="$(BinPath)_PublishedWebsites\Solvberget.Nancy" />
+        </ItemGroup>
+
+        <PropertyGroup>
+            <PackageDir>%(PackageFilePath.RootDir)%(PackageFilePath.Directory)</PackageDir>
+            <Source>%(WebsitePath.FullPath)</Source>
+            <Destination>%(PackageFilePath.FullPath)</Destination>
+        </PropertyGroup>
+
+        <MakeDir Directories="$(PackageDir)"/>
+        <Exec Command='"@(MsDeployPath)" -verb:sync -source:iisApp="$(Source)" -dest:package="$(Destination)"'/>
+    </Target>
+
+    <Target Name="Deploy" DependsOnTargets="Package">
+        <PropertyGroup> 
+            <Source>%(PackageFilePath.FullPath)</Source>
+            <Destination>$(ApplicationPath)</Destination>
+        </PropertyGroup>
+
+        <Exec Command='"@(MsDeployPath)" -verb:sync -source:package="$(Source)" -dest:iisApp="$(Destination)"' />
+    </Target>
 </Project>
