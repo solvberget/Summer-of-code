@@ -111,8 +111,9 @@ namespace Solvberget.Nancy.Tests
         [Fact]
         public void GetRatingShouldFetchRatingFromRepository()
         {
+            var rating = new DocumentRating(){Score = 10};
             // Given
-            A.CallTo(() => _ratingRepository.GetDocumentRating("1234")).Returns("10/10");
+            A.CallTo(() => _ratingRepository.GetDocumentRating("1234")).Returns(rating);
 
             // When
             var response = _browser.Get("/documents/1234/rating", with =>
@@ -122,7 +123,7 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.AsString().ShouldEqual("10/10");
+            response.Body.DeserializeJson<DocumentRating>().Score.ShouldEqual(rating.Score);
         }
 
         [Fact]
