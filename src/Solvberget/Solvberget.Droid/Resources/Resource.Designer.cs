@@ -289,6 +289,7 @@ namespace Solvberget.Droid
 			public const int fragment_profile_reservations = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
+<<<<<<< HEAD
 			public const int fragment_search = 2130903050;
 			
 			// aapt resource value: 0x7f03000b
@@ -320,15 +321,59 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f030014
 			public const int item_searchresult = 2130903060;
+=======
+			public const int fragment_suggestions_list = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int fragment_suggestions_list_list = 2130903051;
+			
+			// aapt resource value: 0x7f03000c
+			public const int item_favorite = 2130903052;
+			
+			// aapt resource value: 0x7f03000d
+			public const int item_fine = 2130903053;
+			
+			// aapt resource value: 0x7f03000e
+			public const int item_loan = 2130903054;
+			
+			// aapt resource value: 0x7f03000f
+			public const int item_menu = 2130903055;
+			
+			// aapt resource value: 0x7f030010
+			public const int item_message = 2130903056;
+			
+			// aapt resource value: 0x7f030011
+			public const int item_news = 2130903057;
+			
+			// aapt resource value: 0x7f030012
+			public const int item_reservation = 2130903058;
+			
+			// aapt resource value: 0x7f030013
+<<<<<<< HEAD
+			public const int page_webview = 2130903059;
+			
+			// aapt resource value: 0x7f030014
+			public const int SplashScreen = 2130903060;
+=======
+			public const int item_searchresult = 2130903059;
+			
+			// aapt resource value: 0x7f030014
+			public const int item_suggestion = 2130903060;
+>>>>>>> Anbefalinger i menyen gar til riktig view
 			
 			// aapt resource value: 0x7f030015
 			public const int page_home_view = 2130903061;
 			
 			// aapt resource value: 0x7f030016
+<<<<<<< HEAD
 			public const int page_webview = 2130903062;
 			
 			// aapt resource value: 0x7f030017
 			public const int SplashScreen = 2130903063;
+=======
+			public const int SplashScreen = 2130903062;
+>>>>>>> Anbefalinger i menyen gar til riktig view
+>>>>>>> Anbefalinger i menyen gar til riktig view
 			
 			static Layout()
 			{

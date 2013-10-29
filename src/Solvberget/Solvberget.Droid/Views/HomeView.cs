@@ -91,6 +91,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof(SearchViewModel), this);
             customPresenter.Register(typeof(NewsListingViewModel), this);
             customPresenter.Register(typeof(OpeningHoursViewModel), this);
+            customPresenter.Register(typeof(SuggestionsListListViewModel), this);
         }
 
         /// <summary>
@@ -143,6 +144,7 @@ namespace Solvberget.Droid.Views
                             title = "Nyheter";
                         }
                         break;
+<<<<<<< HEAD
                     case HomeViewModel.Section.OpeningHours:
                         {
                             if(SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as OpeningHoursView != null)
@@ -151,6 +153,17 @@ namespace Solvberget.Droid.Views
                             }
                             frag = new OpeningHoursView();
                             title = "Åpningstider";
+=======
+                    case HomeViewModel.Section.Lists:
+                        {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as SuggestionsListListView != null)
+                            {
+                                return true;
+                            }
+
+                            frag = new SuggestionsListListView();
+                            title = "Anbefalinger";
+>>>>>>> Anbefalinger i menyen gar til riktig view
                         }
                         break;
                 }
