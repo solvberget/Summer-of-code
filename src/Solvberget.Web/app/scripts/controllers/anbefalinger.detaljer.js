@@ -5,14 +5,14 @@ angular.module('Solvberget.WebApp')
 
         $scope.list = lists.get({id : $routeParams.id}, function(){
 
-            $rootScope.breadcrumb.push($scope.list.Name, 'AnbefalingerDetaljerCtrl', {id: $scope.list.Id});
+            $rootScope.breadcrumb.push($scope.list.name, 'AnbefalingerDetaljerCtrl', {id: $scope.list.id});
         });
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Anbefalinger', 'AnbefalingerCtrl');
 
         $scope.pathFor = function(item){
-            var title = encodeURIComponent(item.Title.replace(' ','-').toLowerCase());
-            return $rootScope.path(item.Type + 'Ctrl', {id: item.Id, title : title});
+            var title = encodeURIComponent(item.title.replace(' ','-').toLowerCase());
+            return $rootScope.path(item.type + 'Ctrl', {id: item.id, title : title});
         };
     });

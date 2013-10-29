@@ -1,13 +1,13 @@
 <div style="background-color:#6B6B6B; margin:-20px; margin-bottom:20px; padding:20px;">
 
     <img ng-src="{{imageUrl}}" style="width:120px; float:left; margin-right:20px" />
-    <h1 style="color:white; font-size:1.6em">{{document.Title}}</h1>
-    <p style="color:white">{{document.SubTitle}}</p>
+    <h1 style="color:white; font-size:1.6em">{{document.title}}</h1>
+    <p style="color:white">{{document.subTitle}}</p>
 
-    <a ng-show="rating.Score" class="document-rating" title="{{rating.Source + ': ' + rating.Score + '/' + rating.MaxScore}}" ng-href="{{rating.SourceUrl}}">
-        <img ng-src="{{'img/' + rating.Source + '-logo.png'}}" style="width:20px; position:relative; top:-2px; padding-right:5px;" />
-        <i ng-repeat="n in range(rating.Score)" class="glyphicon glyphicon-star"/>
-        <i ng-repeat="n in range(rating.MaxScore-rating.Score)" class="glyphicon glyphicon-star empty"/>
+    <a ng-show="rating.score" class="document-rating" title="{{rating.source + ': ' + rating.score + '/' + rating.maxScore}}" ng-href="{{rating.sourceUrl}}">
+        <img ng-src="{{'img/' + rating.source + '-logo.png'}}" style="width:20px; position:relative; top:-2px; padding-right:5px;" />
+        <i ng-repeat="n in range(rating.score)" class="glyphicon glyphicon-star"/>
+        <i ng-repeat="n in range(rating.maxScore-rating.score)" class="glyphicon glyphicon-star empty"/>
     </a>
 
     <div class="clearfix"></div>
@@ -20,23 +20,23 @@
 
 <h2>Tilgjengelighet</h2>
     <div style="margin-bottom:20px; padding:10px; background:white">
-        <strong>{{document.Availability.Branch}}</strong>
+        <strong>{{document.availability.branch}}</strong>
         <div>
-            {{document.Availability.Department}}
+            {{document.availability.department}}
         </div>
         <div>
-            {{document.Availability.Collection}}
+            {{document.availability.collection}}
         </div>
         <div>
-            Finnes på hylle <span ng-show="{{document.Classification}}">{{document.Classification}}</span> {{document.Availability.Location}}
+            Finnes på hylle <span ng-show="{{document.classification}}">{{document.classification}}</span> {{document.availability.location}}
         </div>
         <div>
             <i class="glyphicon glyphicon-ok-sign" style="color:green" ng-hide="{{document.Availability.AvailableCount == 0}}"></i>
             <i class="glyphicon glyphicon-minus-sign" style="color:red" ng-show="{{document.Availability.AvailableCount == 0}}"></i>
-            {{document.Availability.AvailableCount}} av {{document.Availability.TotalCount}} er tilgjengelig for utlån
+            {{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån
         </div>
         <div ng-show="{{document.Availability.EstimatedAvailableDate}}">
-            Tidligst tilgjengelig {{document.Availability.EstimatedAvailableDate}}
+            Tidligst tilgjengelig {{document.availability.estimatedAvailableDate}}
         </div>
     </div>
 </div>
