@@ -120,6 +120,8 @@
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
     <Compile Include="Views\Fragments\GenericWebViewView.cs" />
+    <Compile Include="Views\WebClients\ProgressHandlingWebViewClient.cs" />
+    <Compile Include="Views\WebClients\ProgressUpdatingWebChromeClient.cs" />
     <Compile Include="Views\LoadingIndicator.cs" />
     <Compile Include="Views\Fragments\NewsListingView.cs" />
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
