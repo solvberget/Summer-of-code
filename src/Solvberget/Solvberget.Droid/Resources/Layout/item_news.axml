@@ -5,6 +5,10 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@color/ui_itembackground"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
@@ -18,7 +22,8 @@
         local:MvxBind="Text NewsTitle" />
     <TextView
         android:text="Published: Something something"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/news_published"
