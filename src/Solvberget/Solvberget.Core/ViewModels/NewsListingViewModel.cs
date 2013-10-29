@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System.Linq;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -48,12 +48,13 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
+            var results = _newsService.GetNews();
             Stories = (from n in await _newsService.GetNews()
                 select new NewsViewModel
                 {
-                    Ingress = n.Description,
+                    Ingress = n.Ingress,
                     Uri = n.Link,
-                    Published = n.PublishedDateAsDateTime.ToLocalTime().DateTime,
+                    Published = n.Published,
                     NewsTitle = n.Title
                 }).ToList();
 

@@ -61,18 +61,7 @@ namespace Solvberget.Core.Tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [
-        ///{
-        ///title: &quot;Supertorsdag: Vaage og Michelet &quot;,
-        ///link: &quot;http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet&quot;,
-        ///publishedDateAsDateTime: &quot;2013-10-29T07:50:00+00:00&quot;,
-        ///publishedDate: &quot;Publisert: 29.10.2013&quot;,
-        ///description: &quot;Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00&quot;
-        ///},
-        ///{
-        ///title: &quot;Høstferske ebok-nyheter&quot;,
-        ///link: &quot;http://www.stavanger-kulturhus.no/SOELVBERGET/Hoestferske-ebok-nyheter&quot;,
-        ///publishedDateAsDateTime: &quot;2013-10-28T11:29:00+00: [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;title&quot;:&quot;Supertorsdag: Vaage og Michelet &quot;,&quot;ingress&quot;:&quot;Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00&quot;,&quot;published&quot;:&quot;2013-10-29T07:50:00&quot;,&quot;link&quot;:&quot;http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet&quot;},{&quot;title&quot;:&quot;Høstferske ebok-nyheter&quot;,&quot;ingress&quot;:&quot;Renberg, Solstad, Michelet, Ravatn og Grytten. Flere av høstens mest omtalte bøker er nå tilgjengelig for ebok-utlån.&amp;nbsp;&quot;,&quot;published&quot;:&quot;2013-10-28T11:29:00&quot;,&quot;link&quot;:&quot;http://www.stavanger-kulturhus [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string NewsSampleJson {
             get {

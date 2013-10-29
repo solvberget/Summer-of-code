@@ -118,78 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NewsSampleJson" xml:space="preserve">
-    <value>[
-{
-title: "Supertorsdag: Vaage og Michelet ",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet",
-publishedDateAsDateTime: "2013-10-29T07:50:00+00:00",
-publishedDate: "Publisert: 29.10.2013",
-description: "Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00"
-},
-{
-title: "Høstferske ebok-nyheter",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Hoestferske-ebok-nyheter",
-publishedDateAsDateTime: "2013-10-28T11:29:00+00:00",
-publishedDate: "Publisert: 28.10.2013",
-description: "Renberg, Solstad, Michelet, Ravatn og Grytten. Flere av høstens mest omtalte bøker er nå tilgjengelig for ebok-utlån.&amp;nbsp;"
-},
-{
-title: "Stavanger ønsker ny fribyforfatter velkommen ",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Stavanger-oensker-ny-fribyforfatter-velkommen",
-publishedDateAsDateTime: "2013-10-27T15:17:00+00:00",
-publishedDate: "Publisert: 27.10.2013",
-description: "Forfatter, kunstner og filmskaper Elahe Rahronia fra Iran er Stavangers nye fribyforfatter."
-},
-{
-title: "Endring i innlevering og stengt kulturbibliotek i uke 44",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Endring-i-innlevering-og-stengt-kulturbibliotek-i-uke-44",
-publishedDateAsDateTime: "2013-10-25T10:28:00+00:00",
-publishedDate: "Publisert: 25.10.2013",
-description: "Mellom 28. oktober og 3. november er Kulturbiblioteket stengt. Innlevering av bøker flyttes samme uke til Musikk- og filmbiblioteket.&amp;nbsp;"
-},
-{
-title: "Bibliotekhjelp med Ebbe",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Bibliotekhjelp-med-Ebbe",
-publishedDateAsDateTime: "2013-10-23T10:43:00+00:00",
-publishedDate: "Publisert: 23.10.2013",
-description: "Hvordan låner man en bok? Hvordan leverer man en bok? Ebbe Helberg har svarene. Se video!"
-},
-{
-title: "Stikk innom for dingse- og datahjelp",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Stikk-innom-for-dingse-og-datahjelp",
-publishedDateAsDateTime: "2013-10-22T12:58:00+00:00",
-publishedDate: "Publisert: 22.10.2013",
-description: "Sliter du med å henge med når stadig flere dingser og dippedutter dominerer hverdagen? Snart kan du få enda bedre digital hjelp på biblioteket.&amp;nbsp;"
-},
-{
-title: "FNs tusenårsmål - hva er det?",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/FNs-tusenaarsmaal-hva-er-det",
-publishedDateAsDateTime: "2013-10-22T12:42:00+00:00",
-publishedDate: "Publisert: 22.10.2013",
-description: "I en måned framover kan du lære mer om FN og FNs tusenårsmål. &amp;nbsp;I en utstilling i Faktabiblioteket setter vi søkelys på to av målene hver uke.&amp;nbsp;"
-},
-{
-title: "Gratulerer med dagen! ",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Gratulerer-med-dagen!",
-publishedDateAsDateTime: "2013-10-22T07:30:00+00:00",
-publishedDate: "Publisert: 22.10.2013",
-description: "For hundre år siden, 25. oktober 1913, ble Norsk bibliotekforening stiftet i Stavanger."
-},
-{
-title: "Knask eller knep",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Knask-eller-knep",
-publishedDateAsDateTime: "2013-10-17T12:54:00+00:00",
-publishedDate: "Publisert: 17.10.2013",
-description: "- Det er snart Halloween og jeg gleder meg til å skremme ungene som kommer på døra. Jeg flytter høytalerene ut i gangen og skrur opp volumet så snart de viser seg."
-},
-{
-title: "Fengselsbiblioteket",
-link: "http://www.stavanger-kulturhus.no/SOELVBERGET/SØLVBERGET-A-Å/Fengselsbiblioteket",
-publishedDateAsDateTime: "2013-10-14T19:18:00+00:00",
-publishedDate: "Publisert: 14.10.2013",
-description: "Stavanger bibliotek står for den daglige driften av biblioteket ved Stavanger fengsel. Sissel Kvalvik er nyansatt som fengselsbibliotekar.&amp;nbsp;"
-}
-]</value>
+    <value>[{"title":"Supertorsdag: Vaage og Michelet ","ingress":"Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00","published":"2013-10-29T07:50:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet"},{"title":"Høstferske ebok-nyheter","ingress":"Renberg, Solstad, Michelet, Ravatn og Grytten. Flere av høstens mest omtalte bøker er nå tilgjengelig for ebok-utlån.&amp;nbsp;","published":"2013-10-28T11:29:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Hoestferske-ebok-nyheter"},{"title":"Stavanger ønsker ny fribyforfatter velkommen ","ingress":"Forfatter, kunstner og filmskaper Elahe Rahronia fra Iran er Stavangers nye fribyforfatter.","published":"2013-10-27T15:17:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Stavanger-oensker-ny-fribyforfatter-velkommen"},{"title":"Endring i innlevering og stengt kulturbibliotek i uke 44","ingress":"Mellom 28. oktober og 3. november er Kulturbiblioteket stengt. Innlevering av bøker flyttes samme uke til Musikk- og filmbiblioteket.&amp;nbsp;","published":"2013-10-25T10:28:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Endring-i-innlevering-og-stengt-kulturbibliotek-i-uke-44"},{"title":"Bibliotekhjelp med Ebbe","ingress":"Hvordan låner man en bok? Hvordan leverer man en bok? Ebbe Helberg har svarene. Se video!","published":"2013-10-23T10:43:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Bibliotekhjelp-med-Ebbe"},{"title":"Stikk innom for dingse- og datahjelp","ingress":"Sliter du med å henge med når stadig flere dingser og dippedutter dominerer hverdagen? Snart kan du få enda bedre digital hjelp på biblioteket.&amp;nbsp;","published":"2013-10-22T12:58:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Stikk-innom-for-dingse-og-datahjelp"},{"title":"FNs tusenårsmål - hva er det?","ingress":"I en måned framover kan du lære mer om FN og FNs tusenårsmål. &amp;nbsp;I en utstilling i Faktabiblioteket setter vi søkelys på to av målene hver uke.&amp;nbsp;","published":"2013-10-22T12:42:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/FNs-tusenaarsmaal-hva-er-det"},{"title":"Gratulerer med dagen! ","ingress":"For hundre år siden, 25. oktober 1913, ble Norsk bibliotekforening stiftet i Stavanger.","published":"2013-10-22T07:30:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Gratulerer-med-dagen!"},{"title":"Knask eller knep","ingress":"- Det er snart Halloween og jeg gleder meg til å skremme ungene som kommer på døra. Jeg flytter høytalerene ut i gangen og skrur opp volumet så snart de viser seg.","published":"2013-10-17T12:54:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/Knask-eller-knep"},{"title":"Fengselsbiblioteket","ingress":"Stavanger bibliotek står for den daglige driften av biblioteket ved Stavanger fengsel. Sissel Kvalvik er nyansatt som fengselsbibliotekar.&amp;nbsp;","published":"2013-10-14T19:18:00","link":"http://www.stavanger-kulturhus.no/SOELVBERGET/SØLVBERGET-A-Å/Fengselsbiblioteket"}]</value>
     <comment>Realistic News Sample Output from Nany Services</comment>
   </data>
 </root>
