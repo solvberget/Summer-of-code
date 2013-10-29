@@ -119,376 +119,76 @@
   </resheader>
   <data name="NewsSampleJson" xml:space="preserve">
     <value>[
-  {
-    "Title": "Supertorsdag: Vaage og Michelet ",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1383029400000+0100)/",
-      "UtcDateTime": "/Date(1383033000000)/",
-      "LocalDateTime": "/Date(1383033000000+0100)/",
-      "Date": "/Date(1383001200000+0100)/",
-      "Day": 29,
-      "DayOfWeek": 2,
-      "DayOfYear": 302,
-      "Hour": 7,
-      "Millisecond": 0,
-      "Minute": 50,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635186298000000000,
-      "UtcTicks": 635186298000000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 7,
-        "Minutes": 50,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 29.10.2013",
-    "Description": "Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00"
-  },
-  {
-    "Title": "Høstferske ebok-nyheter",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Hoestferske-ebok-nyheter",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382956140000+0100)/",
-      "UtcDateTime": "/Date(1382959740000)/",
-      "LocalDateTime": "/Date(1382959740000+0100)/",
-      "Date": "/Date(1382914800000+0100)/",
-      "Day": 28,
-      "DayOfWeek": 1,
-      "DayOfYear": 301,
-      "Hour": 11,
-      "Millisecond": 0,
-      "Minute": 29,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635185565400000000,
-      "UtcTicks": 635185565400000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 11,
-        "Minutes": 29,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 28.10.2013",
-    "Description": "Renberg, Solstad, Michelet, Ravatn og Grytten. Flere av høstens mest omtalte bøker er nå tilgjengelig for ebok-utlån.&amp;nbsp;"
-  },
-  {
-    "Title": "Stavanger ønsker ny fribyforfatter velkommen ",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Stavanger-oensker-ny-fribyforfatter-velkommen",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382883420000+0100)/",
-      "UtcDateTime": "/Date(1382887020000)/",
-      "LocalDateTime": "/Date(1382887020000+0100)/",
-      "Date": "/Date(1382824800000+0200)/",
-      "Day": 27,
-      "DayOfWeek": 0,
-      "DayOfYear": 300,
-      "Hour": 15,
-      "Millisecond": 0,
-      "Minute": 17,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635184838200000000,
-      "UtcTicks": 635184838200000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 15,
-        "Minutes": 17,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 27.10.2013",
-    "Description": "Forfatter, kunstner og filmskaper Elahe Rahronia fra Iran er Stavangers nye fribyforfatter."
-  },
-  {
-    "Title": "Endring i innlevering og stengt kulturbibliotek i uke 44",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Endring-i-innlevering-og-stengt-kulturbibliotek-i-uke-44",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382689680000+0200)/",
-      "UtcDateTime": "/Date(1382696880000)/",
-      "LocalDateTime": "/Date(1382696880000+0200)/",
-      "Date": "/Date(1382652000000+0200)/",
-      "Day": 25,
-      "DayOfWeek": 5,
-      "DayOfYear": 298,
-      "Hour": 10,
-      "Millisecond": 0,
-      "Minute": 28,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635182936800000000,
-      "UtcTicks": 635182936800000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 10,
-        "Minutes": 28,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 25.10.2013",
-    "Description": "Mellom 28. oktober og 3. november er Kulturbiblioteket stengt. Innlevering av bøker flyttes samme uke til Musikk- og filmbiblioteket.&amp;nbsp;"
-  },
-  {
-    "Title": "Bibliotekhjelp med Ebbe",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Bibliotekhjelp-med-Ebbe",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382517780000+0200)/",
-      "UtcDateTime": "/Date(1382524980000)/",
-      "LocalDateTime": "/Date(1382524980000+0200)/",
-      "Date": "/Date(1382479200000+0200)/",
-      "Day": 23,
-      "DayOfWeek": 3,
-      "DayOfYear": 296,
-      "Hour": 10,
-      "Millisecond": 0,
-      "Minute": 43,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635181217800000000,
-      "UtcTicks": 635181217800000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 10,
-        "Minutes": 43,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 23.10.2013",
-    "Description": "Hvordan låner man en bok? Hvordan leverer man en bok? Ebbe Helberg har svarene. Se video!"
-  },
-  {
-    "Title": "Stikk innom for dingse- og datahjelp",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Stikk-innom-for-dingse-og-datahjelp",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382439480000+0200)/",
-      "UtcDateTime": "/Date(1382446680000)/",
-      "LocalDateTime": "/Date(1382446680000+0200)/",
-      "Date": "/Date(1382392800000+0200)/",
-      "Day": 22,
-      "DayOfWeek": 2,
-      "DayOfYear": 295,
-      "Hour": 12,
-      "Millisecond": 0,
-      "Minute": 58,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635180434800000000,
-      "UtcTicks": 635180434800000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 12,
-        "Minutes": 58,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 22.10.2013",
-    "Description": "Sliter du med å henge med når stadig flere dingser og dippedutter dominerer hverdagen? Snart kan du få enda bedre digital hjelp på biblioteket.&amp;nbsp;"
-  },
-  {
-    "Title": "FNs tusenårsmål - hva er det?",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/FNs-tusenaarsmaal-hva-er-det",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382438520000+0200)/",
-      "UtcDateTime": "/Date(1382445720000)/",
-      "LocalDateTime": "/Date(1382445720000+0200)/",
-      "Date": "/Date(1382392800000+0200)/",
-      "Day": 22,
-      "DayOfWeek": 2,
-      "DayOfYear": 295,
-      "Hour": 12,
-      "Millisecond": 0,
-      "Minute": 42,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635180425200000000,
-      "UtcTicks": 635180425200000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 12,
-        "Minutes": 42,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 22.10.2013",
-    "Description": "I en måned framover kan du lære mer om FN og FNs tusenårsmål. &amp;nbsp;I en utstilling i Faktabiblioteket setter vi søkelys på to av målene hver uke.&amp;nbsp;"
-  },
-  {
-    "Title": "Gratulerer med dagen! ",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Gratulerer-med-dagen%21",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382419800000+0200)/",
-      "UtcDateTime": "/Date(1382427000000)/",
-      "LocalDateTime": "/Date(1382427000000+0200)/",
-      "Date": "/Date(1382392800000+0200)/",
-      "Day": 22,
-      "DayOfWeek": 2,
-      "DayOfYear": 295,
-      "Hour": 7,
-      "Millisecond": 0,
-      "Minute": 30,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635180238000000000,
-      "UtcTicks": 635180238000000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 7,
-        "Minutes": 30,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 22.10.2013",
-    "Description": "For hundre år siden, 25. oktober 1913, ble Norsk bibliotekforening stiftet i Stavanger."
-  },
-  {
-    "Title": "Knask eller knep",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/Knask-eller-knep",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1382007240000+0200)/",
-      "UtcDateTime": "/Date(1382014440000)/",
-      "LocalDateTime": "/Date(1382014440000+0200)/",
-      "Date": "/Date(1381960800000+0200)/",
-      "Day": 17,
-      "DayOfWeek": 4,
-      "DayOfYear": 290,
-      "Hour": 12,
-      "Millisecond": 0,
-      "Minute": 54,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635176112400000000,
-      "UtcTicks": 635176112400000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 12,
-        "Minutes": 54,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 17.10.2013",
-    "Description": "- Det er snart Halloween og jeg gleder meg til å skremme ungene som kommer på døra. Jeg flytter høytalerene ut i gangen og skrur opp volumet så snart de viser seg."
-  },
-  {
-    "Title": "Fengselsbiblioteket",
-    "Link": "http://www.stavanger-kulturhus.no/SOELVBERGET/S%C3%98LVBERGET-A-%C3%85/Fengselsbiblioteket",
-    "PublishedDateAsDateTime": {
-      "DateTime": "/Date(1381771080000+0200)/",
-      "UtcDateTime": "/Date(1381778280000)/",
-      "LocalDateTime": "/Date(1381778280000+0200)/",
-      "Date": "/Date(1381701600000+0200)/",
-      "Day": 14,
-      "DayOfWeek": 1,
-      "DayOfYear": 287,
-      "Hour": 19,
-      "Millisecond": 0,
-      "Minute": 18,
-      "Month": 10,
-      "Offset": {
-        "Days": 0,
-        "Hours": 0,
-        "Minutes": 0,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Second": 0,
-      "Ticks": 635173750800000000,
-      "UtcTicks": 635173750800000000,
-      "TimeOfDay": {
-        "Days": 0,
-        "Hours": 19,
-        "Minutes": 18,
-        "Seconds": 0,
-        "Milliseconds": 0
-      },
-      "Year": 2013
-    },
-    "PublishedDate": "Publisert: 14.10.2013",
-    "Description": "Stavanger bibliotek står for den daglige driften av biblioteket ved Stavanger fengsel. Sissel Kvalvik er nyansatt som fengselsbibliotekar.&amp;nbsp;"
-  }
+{
+title: "Supertorsdag: Vaage og Michelet ",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet",
+publishedDateAsDateTime: "2013-10-29T07:50:00+00:00",
+publishedDate: "Publisert: 29.10.2013",
+description: "Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00"
+},
+{
+title: "Høstferske ebok-nyheter",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Hoestferske-ebok-nyheter",
+publishedDateAsDateTime: "2013-10-28T11:29:00+00:00",
+publishedDate: "Publisert: 28.10.2013",
+description: "Renberg, Solstad, Michelet, Ravatn og Grytten. Flere av høstens mest omtalte bøker er nå tilgjengelig for ebok-utlån.&amp;nbsp;"
+},
+{
+title: "Stavanger ønsker ny fribyforfatter velkommen ",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Stavanger-oensker-ny-fribyforfatter-velkommen",
+publishedDateAsDateTime: "2013-10-27T15:17:00+00:00",
+publishedDate: "Publisert: 27.10.2013",
+description: "Forfatter, kunstner og filmskaper Elahe Rahronia fra Iran er Stavangers nye fribyforfatter."
+},
+{
+title: "Endring i innlevering og stengt kulturbibliotek i uke 44",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Endring-i-innlevering-og-stengt-kulturbibliotek-i-uke-44",
+publishedDateAsDateTime: "2013-10-25T10:28:00+00:00",
+publishedDate: "Publisert: 25.10.2013",
+description: "Mellom 28. oktober og 3. november er Kulturbiblioteket stengt. Innlevering av bøker flyttes samme uke til Musikk- og filmbiblioteket.&amp;nbsp;"
+},
+{
+title: "Bibliotekhjelp med Ebbe",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Bibliotekhjelp-med-Ebbe",
+publishedDateAsDateTime: "2013-10-23T10:43:00+00:00",
+publishedDate: "Publisert: 23.10.2013",
+description: "Hvordan låner man en bok? Hvordan leverer man en bok? Ebbe Helberg har svarene. Se video!"
+},
+{
+title: "Stikk innom for dingse- og datahjelp",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Stikk-innom-for-dingse-og-datahjelp",
+publishedDateAsDateTime: "2013-10-22T12:58:00+00:00",
+publishedDate: "Publisert: 22.10.2013",
+description: "Sliter du med å henge med når stadig flere dingser og dippedutter dominerer hverdagen? Snart kan du få enda bedre digital hjelp på biblioteket.&amp;nbsp;"
+},
+{
+title: "FNs tusenårsmål - hva er det?",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/FNs-tusenaarsmaal-hva-er-det",
+publishedDateAsDateTime: "2013-10-22T12:42:00+00:00",
+publishedDate: "Publisert: 22.10.2013",
+description: "I en måned framover kan du lære mer om FN og FNs tusenårsmål. &amp;nbsp;I en utstilling i Faktabiblioteket setter vi søkelys på to av målene hver uke.&amp;nbsp;"
+},
+{
+title: "Gratulerer med dagen! ",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Gratulerer-med-dagen!",
+publishedDateAsDateTime: "2013-10-22T07:30:00+00:00",
+publishedDate: "Publisert: 22.10.2013",
+description: "For hundre år siden, 25. oktober 1913, ble Norsk bibliotekforening stiftet i Stavanger."
+},
+{
+title: "Knask eller knep",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/Knask-eller-knep",
+publishedDateAsDateTime: "2013-10-17T12:54:00+00:00",
+publishedDate: "Publisert: 17.10.2013",
+description: "- Det er snart Halloween og jeg gleder meg til å skremme ungene som kommer på døra. Jeg flytter høytalerene ut i gangen og skrur opp volumet så snart de viser seg."
+},
+{
+title: "Fengselsbiblioteket",
+link: "http://www.stavanger-kulturhus.no/SOELVBERGET/SØLVBERGET-A-Å/Fengselsbiblioteket",
+publishedDateAsDateTime: "2013-10-14T19:18:00+00:00",
+publishedDate: "Publisert: 14.10.2013",
+description: "Stavanger bibliotek står for den daglige driften av biblioteket ved Stavanger fengsel. Sissel Kvalvik er nyansatt som fengselsbibliotekar.&amp;nbsp;"
+}
 ]</value>
     <comment>Realistic News Sample Output from Nany Services</comment>
   </data>

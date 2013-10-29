@@ -62,21 +62,17 @@ namespace Solvberget.Core.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to [
-        ///  {
-        ///    &quot;Title&quot;: &quot;Supertorsdag: Vaage og Michelet &quot;,
-        ///    &quot;Link&quot;: &quot;http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet&quot;,
-        ///    &quot;PublishedDateAsDateTime&quot;: {
-        ///      &quot;DateTime&quot;: &quot;/Date(1383029400000+0100)/&quot;,
-        ///      &quot;UtcDateTime&quot;: &quot;/Date(1383033000000)/&quot;,
-        ///      &quot;LocalDateTime&quot;: &quot;/Date(1383033000000+0100)/&quot;,
-        ///      &quot;Date&quot;: &quot;/Date(1383001200000+0100)/&quot;,
-        ///      &quot;Day&quot;: 29,
-        ///      &quot;DayOfWeek&quot;: 2,
-        ///      &quot;DayOfYear&quot;: 302,
-        ///      &quot;Hour&quot;: 7,
-        ///      &quot;Millisecond&quot;: 0,
-        ///      &quot;Minute&quot;: 50,
-        ///   [rest of string was truncated]&quot;;.
+        ///{
+        ///title: &quot;Supertorsdag: Vaage og Michelet &quot;,
+        ///link: &quot;http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet&quot;,
+        ///publishedDateAsDateTime: &quot;2013-10-29T07:50:00+00:00&quot;,
+        ///publishedDate: &quot;Publisert: 29.10.2013&quot;,
+        ///description: &quot;Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00&quot;
+        ///},
+        ///{
+        ///title: &quot;Høstferske ebok-nyheter&quot;,
+        ///link: &quot;http://www.stavanger-kulturhus.no/SOELVBERGET/Hoestferske-ebok-nyheter&quot;,
+        ///publishedDateAsDateTime: &quot;2013-10-28T11:29:00+00: [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string NewsSampleJson {
             get {

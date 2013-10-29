@@ -88,7 +88,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\NanyNewsServiceTests.cs" />
-    <Compile Include="Services\StaticStringFakeDownloader.cs" />
+    <Compile Include="StaticStringFakeDownloader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

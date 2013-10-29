@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Solvberget.Core.Services;
 
-namespace Solvberget.Core.Tests.Services
+namespace Solvberget.Core.Tests
 {
     internal class StaticStringFakeDownloader : IStringDownloader
     {
