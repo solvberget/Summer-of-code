@@ -30,7 +30,7 @@
 
 	<Target Name="Test" DependsOnTargets="Build">
 		<ItemGroup>
-			<TestAssemblies Include="$(BinPath)\**\*.Tests.dll" />
+			<TestAssemblies Include="$(BinPath)**\*.Tests.dll" />
 		</ItemGroup>
 
 		<xunit Assemblies="@(TestAssemblies)" TeamCity="true" Xml="$(ArtifactsPath)TestResults.xml" />
