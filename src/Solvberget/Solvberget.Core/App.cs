@@ -1,5 +1,8 @@
+using System.Resources;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
+using Solvberget.Core.Properties;
+using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels;
@@ -15,10 +18,12 @@ namespace Solvberget.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
+            Mvx.LazyConstructAndRegisterSingleton<IStringDownloader, HttpBodyDownloader>();
+
             // Bootstrapping up some stubs while developing. Just remove these lines to start using proper implementations
             Mvx.LazyConstructAndRegisterSingleton<ISearchService, SearchServiceTemporaryStub>();
             Mvx.LazyConstructAndRegisterSingleton<IDocumentService, DocumentServiceTemporaryStub>();
-            Mvx.LazyConstructAndRegisterSingleton<INewsService, NewsServiceTemporaryStub>();
+            //Mvx.LazyConstructAndRegisterSingleton<INewsService, NewsServiceTemporaryStub>();
 
             RegisterAppStart<HomeViewModel>();
         }
