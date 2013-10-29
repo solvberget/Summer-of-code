@@ -6,6 +6,7 @@ using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.Views.WebClients;
 
 namespace Solvberget.Droid.Views.Fragments
 {

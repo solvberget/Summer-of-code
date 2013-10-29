@@ -1,7 +1,5 @@
-using System.Resources;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
-using Solvberget.Core.Properties;
 using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.Services.Stubs;

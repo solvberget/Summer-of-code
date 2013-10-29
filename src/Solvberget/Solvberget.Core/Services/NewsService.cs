@@ -24,16 +24,7 @@ namespace Solvberget.Core.Services
             try
             {
                 var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_News);
-                var results = JsonConvert.DeserializeObject<JContainer>(response);
-
-                return from r in results
-                                       select new NewsItem
-                                       {
-                                           Title = r["Title"].Value<string>(),
-                                           DescriptionUnescaped = r["Description"].Value<string>(),
-                                           Link = new Uri(r["Link"].Value<string>()),
-                                           PublishedDateAsDateTime = new DateTimeOffset(r["PublishedDateAsDateTime"]["DateTime"].Value<DateTime>())
-                                       };
+                return JsonConvert.DeserializeObject<IList<NewsItem>>(response);
             }
             catch (Exception)
             {

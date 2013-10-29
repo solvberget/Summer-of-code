@@ -1,7 +1,7 @@
 using Android.Webkit;
 using Android.Widget;
 
-namespace Solvberget.Droid.Views.Fragments
+namespace Solvberget.Droid.Views.WebClients
 {
     public class ProgressUpdatingWebChromeClient : WebChromeClient
     {
