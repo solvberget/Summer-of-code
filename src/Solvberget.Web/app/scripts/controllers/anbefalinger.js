@@ -9,6 +9,6 @@ angular.module('Solvberget.WebApp')
         $scope.items = lists.query();
 
         $scope.pathFor = function(item){
-            return $rootScope.path('AnbefalingerDetaljerCtrl', {id: item.Id});
+            return $rootScope.path('AnbefalingerDetaljerCtrl', {id: item.id});
         };
   });
