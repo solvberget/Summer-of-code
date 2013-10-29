@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Solvberget.Domain.Abstract;
@@ -7,6 +8,7 @@ using Solvberget.Domain.DTO;
 
 namespace Solvberget.Domain.Implementation
 {
+
     public class RatingRepository : IRatingRepository
     {
         private readonly BokelskereRepository _bokelskereRepository;
@@ -18,28 +20,29 @@ namespace Solvberget.Domain.Implementation
             _bokelskereRepository = new BokelskereRepository(_documentRepository);
         }
 
-        public string GetDocumentRating(string id)
+        public DocumentRating GetDocumentRating(string id)
         {
             var doc = _documentRepository.GetDocument(id, true);
-            if (doc == null)
-                return string.Empty;
+            if (doc == null) return null;
 
             if (Equals(doc.DocType, typeof(Film).Name))
             {
                 string rating = GetExternalFilmImdbRating(doc as Film);
-                return rating;
+                rating = rating.Replace(".", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
+                
+                return new DocumentRating { Source = "IMDB", MaxScore = 10, Score = Double.Parse(rating), SourceUrl = "http://www.imdb.com" };
             }
 
             if (Equals(doc.DocType, typeof(Book).Name))
             {
                 string rating = GetExternalBookElskereRating(doc as Book);
-                return rating;
+                rating = rating.Replace(".", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
+
+                return new DocumentRating { Source = "Bokelskere", MaxScore = 6, Score = Double.Parse(rating), SourceUrl = "http://www.bokelskere.no" };
             }
 
-            return string.Empty;
+            return null;
         }
-
-       
 
         private string GetExternalBookElskereRating(Book book)
         {

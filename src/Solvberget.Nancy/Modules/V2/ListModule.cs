@@ -39,10 +39,17 @@ namespace Solvberget.Nancy.Modules.V2
             Get["/{id}/thumbnail"] = args =>
             {
                 LibraryList list = lists.Get(args.id);
-                
-                var firstDocumentId = list.DocumentNumbers.Keys.FirstOrDefault();
-                string url = images.GetDocumentThumbnailImage(firstDocumentId, "60");
-                return Response.AsRedirect(url);
+
+                foreach (var docNo in list.DocumentNumbers.Keys)
+                {
+                    var url = images.GetDocumentImage(docNo);
+
+                    if (String.IsNullOrEmpty(url)) continue;
+
+                    return Response.AsRedirect(url);
+                }
+
+                return TextResponse.NoBody;
             };
         }
         

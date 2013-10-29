@@ -2,6 +2,10 @@
 @theme-color: #3D6AA2;
 @theme-color3:#767171;
 @theme-color4:white;
+@theme-color5:#cecece;
+
+@inactive:@theme-color3;
+@active: #FFC200;
 
 @bg-color: #E9E9E9;
 
@@ -74,7 +78,24 @@ h2 {
 }
 
 .glyphicon-star{
-  color:#f5e810;
+  color:@active;
+}
+
+.document-rating{
+  font-size:10px;
+}
+
+.document-rating .glyphicon-star.empty{
+  color:@theme-color5;
+}
+
+.glyphicon-bookmark{
+
+  color:@inactive;
+}
+
+.is-reserved{
+  color:@active;
 }
 
 .breadcrumb{

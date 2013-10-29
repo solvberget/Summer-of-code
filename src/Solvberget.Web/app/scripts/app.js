@@ -61,6 +61,13 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
             return $location.path().indexOf(viewLocation) === 0;
         };
 
+        $rootScope.range = function(n) {
+
+            if(!n || n === NaN) return 0;
+            n = Math.round(1*n);
+            return new Array(n);
+        };
+
         $rootScope.path = function(controller, params)
         {
             if(!controller) return undefined;
