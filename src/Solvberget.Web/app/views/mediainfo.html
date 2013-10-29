@@ -2,27 +2,41 @@
 
     <img ng-src="{{imageUrl}}" style="width:120px; float:left; margin-right:20px" />
     <h1 style="color:white; font-size:1.6em">{{document.Title}}</h1>
-    <p style="color:white">{{document.Type}}</p>
+    <p style="color:white">{{document.SubTitle}}</p>
+
+    <a ng-show="rating.Score" class="document-rating" title="{{rating.Source + ': ' + rating.Score + '/' + rating.MaxScore}}" ng-href="{{rating.SourceUrl}}">
+        <img ng-src="{{'img/' + rating.Source + '-logo.png'}}" style="width:20px; position:relative; top:-2px; padding-right:5px;" />
+        <i ng-repeat="n in range(rating.Score)" class="glyphicon glyphicon-star"/>
+        <i ng-repeat="n in range(rating.MaxScore-rating.Score)" class="glyphicon glyphicon-star empty"/>
+    </a>
+
     <div class="clearfix"></div>
 </div>
 
-<h2>Tilgjengelighet</h2>
-<div style="margin-bottom:20px; padding:10px; background:white">
-    <strong>Hovedbibl.</strong>
-    <br/>
-    Musikkbiblioteket
-    <br/>
-    Film Action/Spenning
-    <br/>
-    Finnes på hylle: OCE
+<div style="margin:-20px; margin-bottom:20px; padding:10px; padding-top:0px; padding-left:20px; background-color:#6B6B6B;">
+    <button type="button" class="btn btn-sm" ng-click="isReserved = !isReserved"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : isReserved }"></i> Reserver</button>
+    <button type="button" class="btn btn-sm" ng-click="isFavorite = !isFavorite"><i class="glyphicon" ng-class="{ 'glyphicon-star' : isFavorite, 'glyphicon-star-empty' : !isFavorite }"></i> Favoritt</button>
 </div>
-<h2>Fakta om boken</h2>
-<div style="margin-bottom:20px; padding:10px; background:white">
-    <strong>Publikasjonsår.</strong>
-    <br/>
-    2004
-    <br/>
-    <strong>Type og antall plater.</strong>
-    <br/>
-    1 videoplate (DVD-video) (2t)
+
+<h2>Tilgjengelighet</h2>
+    <div style="margin-bottom:20px; padding:10px; background:white">
+        <strong>{{document.Availability.Branch}}</strong>
+        <div>
+            {{document.Availability.Department}}
+        </div>
+        <div>
+            {{document.Availability.Collection}}
+        </div>
+        <div>
+            Finnes på hylle <span ng-show="{{document.Classification}}">{{document.Classification}}</span> {{document.Availability.Location}}
+        </div>
+        <div>
+            <i class="glyphicon glyphicon-ok-sign" style="color:green" ng-hide="{{document.Availability.AvailableCount == 0}}"></i>
+            <i class="glyphicon glyphicon-minus-sign" style="color:red" ng-show="{{document.Availability.AvailableCount == 0}}"></i>
+            {{document.Availability.AvailableCount}} av {{document.Availability.TotalCount}} er tilgjengelig for utlån
+        </div>
+        <div ng-show="{{document.Availability.EstimatedAvailableDate}}">
+            Tidligst tilgjengelig {{document.Availability.EstimatedAvailableDate}}
+        </div>
+    </div>
 </div>
