@@ -15,7 +15,7 @@
     android:paddingBottom="10dp">
     <TextView
         android:text="Heading"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/news_newstitle"
