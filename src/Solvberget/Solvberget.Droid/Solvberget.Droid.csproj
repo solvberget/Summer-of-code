@@ -120,6 +120,8 @@
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
     <Compile Include="Views\Fragments\GenericWebViewView.cs" />
+    <Compile Include="Views\WebClients\ProgressHandlingWebViewClient.cs" />
+    <Compile Include="Views\WebClients\ProgressUpdatingWebChromeClient.cs" />
     <Compile Include="Views\LoadingIndicator.cs" />
     <Compile Include="Views\Fragments\NewsListingView.cs" />
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
@@ -180,9 +182,12 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_newslisting.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
+    <AndroidResource Include="Resources\Layout\page_webview.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

@@ -1,11 +1,12 @@
 using Android.App;
-using Android.Support.V4.App;
 using Android.Views;
 using Android.Webkit;
+using Android.Widget;
 using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.Views.WebClients;
 
 namespace Solvberget.Droid.Views.Fragments
 {
@@ -17,27 +18,32 @@ namespace Solvberget.Droid.Views.Fragments
 
         protected override void OnViewModelSet()
         {
-            base.OnViewModelSet();
-
+            Window.RequestFeature(WindowFeatures.Progress);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetHomeButtonEnabled(true);
+
+            base.OnViewModelSet();
+
+            SetContentView(Resource.Layout.page_webview);
+
             
             var set = this.CreateBindingSet<GenericWebViewView, GenericWebViewViewModel>();
             set.Bind(ActionBar).For(v => v.Title).To(vm => vm.Title).Mode(MvxBindingMode.OneWay);
             set.Apply();
 
 
-            _webView = new WebView(this);
-
+            _webView = FindViewById<WebView>(Resource.Id.webView);
             _webView.Settings.JavaScriptEnabled = true;
             _webView.Settings.SetSupportZoom(true);
 
 
-            _webView.LoadUrl(((GenericWebViewViewModel)(ViewModel)).Uri);
-            var webViewClient = new WebViewClient();
+            var progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
+            var webChromeClient = new ProgressUpdatingWebChromeClient(progressBar);
+            var webViewClient = new ProgressHandlingWebViewClient(progressBar);
             _webView.SetWebViewClient(webViewClient);
-
-            SetContentView(_webView);
+            _webView.SetWebChromeClient(webChromeClient);
+    
+            _webView.LoadUrl(((GenericWebViewViewModel)(ViewModel)).Uri);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Web;
-using Autofac;
+﻿using Autofac;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;

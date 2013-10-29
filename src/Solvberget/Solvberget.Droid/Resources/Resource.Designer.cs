@@ -193,8 +193,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060001
 			public const int linearLayout1 = 2131099649;
 			
-			// aapt resource value: 0x7f06000d
-			public const int menu_refresh = 2131099661;
+			// aapt resource value: 0x7f06000f
+			public const int menu_refresh = 2131099663;
 			
 			// aapt resource value: 0x7f060008
 			public const int news_ingress = 2131099656;
@@ -205,11 +205,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060007
 			public const int news_published = 2131099655;
 			
+			// aapt resource value: 0x7f06000d
+			public const int progressBar = 2131099661;
+			
 			// aapt resource value: 0x7f060004
 			public const int pts_main = 2131099652;
 			
-			// aapt resource value: 0x7f06000e
-			public const int search = 2131099662;
+			// aapt resource value: 0x7f060010
+			public const int search = 2131099664;
 			
 			// aapt resource value: 0x7f060002
 			public const int textView1 = 2131099650;
@@ -222,6 +225,9 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f060003
 			public const int viewPager = 2131099651;
+			
+			// aapt resource value: 0x7f06000e
+			public const int webView = 2131099662;
 			
 			static Id()
 			{
@@ -310,7 +316,10 @@ namespace Solvberget.Droid
 			public const int page_home_view = 2130903058;
 			
 			// aapt resource value: 0x7f030013
-			public const int SplashScreen = 2130903059;
+			public const int page_webview = 2130903059;
+			
+			// aapt resource value: 0x7f030014
+			public const int SplashScreen = 2130903060;
 			
 			static Layout()
 			{
