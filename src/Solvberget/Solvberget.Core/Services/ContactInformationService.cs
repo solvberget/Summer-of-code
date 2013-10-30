@@ -24,7 +24,7 @@ namespace Solvberget.Core.Services
                 var json = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Contact);
                 return JsonConvert.DeserializeObject<List<ContactInfoDto>>(json);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new List<ContactInfoDto>
                 {

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Web.Configuration;
+﻿using System.Collections.Generic;
 using Nancy;
 using System.Linq;
 using Solvberget.Core.DTOs;
