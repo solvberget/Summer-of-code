@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="BookDto.cs" />
     <Compile Include="BookSeriesDto.cs" />
+    <Compile Include="ContactInfoDto.cs" />
+    <Compile Include="ContactPersonDto.cs" />
     <Compile Include="Deprecated\DTO\AudioBook.cs" />
     <Compile Include="Deprecated\DTO\AvailabilityInformation.cs" />
     <Compile Include="Deprecated\DTO\Blog.cs" />
