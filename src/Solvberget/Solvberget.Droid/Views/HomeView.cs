@@ -90,6 +90,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof(OpeningHoursViewModel), this);
             customPresenter.Register(typeof(SuggestionsListListViewModel), this);
             customPresenter.Register(typeof(SuggestionsListViewModel), this);
+            customPresenter.Register(typeof(ContactInfoViewModel), this);
         }
 
         /// <summary>
@@ -178,6 +179,16 @@ namespace Solvberget.Droid.Views
                         }
                         break;
                     }
+                    case HomeViewModel.Section.Contact:
+                        {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as ContactInfoView != null)
+                            {
+                                return true;
+                            }
+                            frag = new ContactInfoView();
+                            title = "Kontaktinformasjon";
+                        }
+                        break;
                 }
 
                 var loaderService = Mvx.Resolve<IMvxViewModelLoader>();

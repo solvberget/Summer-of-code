@@ -111,6 +111,7 @@ namespace Solvberget.Core.ViewModels
                     ShowViewModel<OpeningHoursViewModel>();
                     break;
                 case Section.Contact:
+                    ShowViewModel<ContactInfoViewModel>();
                     break;
             }
         }
@@ -128,6 +129,8 @@ namespace Solvberget.Core.ViewModels
                 return Section.OpeningHours;
             if (type == typeof (SuggestionsListListViewModel))
                 return Section.Lists;
+            if (type == typeof (ContactInfoViewModel))
+                return Section.Contact;
 
             return Section.Unknown;
         }
