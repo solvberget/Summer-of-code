@@ -203,6 +203,7 @@
     <AndroidResource Include="Resources\Layout\fragment_contactinfo.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_contactinfobox.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

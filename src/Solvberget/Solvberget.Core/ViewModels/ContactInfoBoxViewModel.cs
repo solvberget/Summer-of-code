@@ -5,13 +5,6 @@ namespace Solvberget.Core.ViewModels
 {
     public class ContactInfoBoxViewModel : BaseViewModel
     {
-        private string _title;
-        public string Title 
-        {
-            get { return _title; }
-            set { _title = value; RaisePropertyChanged(() => Title);}
-        }
-
         private string _phone;
         public string Phone 
         {

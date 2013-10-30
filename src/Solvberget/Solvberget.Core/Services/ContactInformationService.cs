@@ -24,13 +24,13 @@ namespace Solvberget.Core.Services
                 var json = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Contact);
                 return JsonConvert.DeserializeObject<List<ContactInfoDto>>(json);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new List<ContactInfoDto>
                 {
                     new ContactInfoDto
                     {
-                        Title = "Klarte ikke å hente kontaktinformasjon."
+                        Title = "Klarte desverre ikke å hente kontaktinformasjon"
                     }
                 };
             }
