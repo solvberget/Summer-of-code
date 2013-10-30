@@ -1,5 +1,11 @@
 'use strict';
 
+var $$config =  {
+    apiPrefix : 'http://localhost:39465/v2/'
+}
+
+console.log("app $$config:", $$config)
+
 angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
     .config(function ($routeProvider) {
         $routeProvider
@@ -56,6 +62,8 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
             });
 
     }).run(function($rootScope, $location, $route) {
+
+        $rootScope.apiPrefix = $$config.apiPrefix;
 
         $rootScope.isViewActive = function (viewLocation) {
             return $location.path().indexOf(viewLocation) === 0;
