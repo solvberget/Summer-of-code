@@ -24,30 +24,30 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Phone" />
+        local:MvxBind="Text Phone; Visibility Visibility(Phone)" />
     <TextView
         android:text="Something@example.com"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Email" />
+        local:MvxBind="Text Email; Visibility Visibility(Email)" />
     <TextView
         android:text="Street Streetname 4"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Address" />
+        local:MvxBind="Text Address; Visibility Visibility(Address)" />
     <TextView
         android:text="Street Namestreet 10"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text VisitingAddress" />
+        local:MvxBind="Text VisitingAddress; Visibility Visibility(VisitingAddress)" />
     <MvxLinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="ItemsSource ContactPersons"
+        local:MvxBind="ItemsSource ContactPersons; Visibility Visibility(ContactPersons)"
         local:MvxItemTemplate="@layout/item_contactperson"
         android:divider="@null"
         android:dividerHeight="0dp" />
@@ -55,7 +55,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="ItemsSource GenericFields"
+        local:MvxBind="ItemsSource GenericFields; Visibility Visibility(GenericFields)"
         local:MvxItemTemplate="@layout/item_genericfield"
         android:divider="@null"
         android:dividerHeight="0dp" />

@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:background="@color/ui_itembackground"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingRight="10dp"
+    android:paddingBottom="8dp">
     <TextView
         android:text="Key"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -18,17 +19,19 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Position" />
+        local:MvxBind="Text Position; Visibility Visibility(Position)" />
     <TextView
         android:text="Key"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Email" />
+        local:MvxBind="Text Email; Visibility Visibility(Email)" />
     <TextView
         android:text="Key"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Phone" />
+        local:MvxBind="Text Phone; Visibility Visibility(Phone)" />
 </LinearLayout>

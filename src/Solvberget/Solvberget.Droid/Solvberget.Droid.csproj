@@ -86,6 +86,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\MvvmCross.HotTuna.Droid.Fragging.3.0.13\lib\MonoAndroid16\Cirrious.MvvmCross.Droid.Fragging.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Visibility">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.0.13\lib\MonoAndroid16\Cirrious.MvvmCross.Plugins.Visibility.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Visibility.Droid">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.0.13\lib\MonoAndroid16\Cirrious.MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="mscorlib" />
@@ -101,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Helpers\CustomPresenter.cs" />
     <Compile Include="Helpers\MyActionBarDrawerToggle.cs" />
@@ -254,9 +261,7 @@
       <Name>Solvberget.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Bootstrap\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
