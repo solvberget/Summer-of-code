@@ -89,6 +89,9 @@
     <Compile Include="Services\SuggestionsService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ContactInfoBoxViewModel.cs" />
+    <Compile Include="ViewModels\ContactInfoViewModel.cs" />
+    <Compile Include="ViewModels\ContactPersonViewModel.cs" />
     <Compile Include="ViewModels\GenericWebViewViewModel.cs" />
     <Compile Include="ViewModels\NewsListingViewModel.cs" />
     <Compile Include="ViewModels\MediaDetailViewModel.cs" />
