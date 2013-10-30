@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -28,16 +29,28 @@ namespace Solvberget.Core.ViewModels
                 new ContactInfoBoxViewModel
                 {
                     Address = ci.Address,
-                    ContactPersons = new List<ContactPersonViewModel>(),
+                    ContactPersons = MapContactPersons(ci.ContactPersons),
                     Email = ci.Email,
                     Fax = ci.Fax,
-                    GenericFields = new List<string>(),
+                    GenericFields = ci.GenericFields,
                     Phone = ci.Phone,
                     Title = ci.Title,
                     VisitingAddress = ci.VisitingAddress,
                 }).ToList();
 
             IsLoading = false;
+        }
+
+        public List<ContactPersonViewModel> MapContactPersons(IList<ContactPersonDto> contactPersons)
+        {
+            return contactPersons.Select(cp =>
+                new ContactPersonViewModel
+                {
+                    Email = cp.Email,
+                    Name = cp.Name,
+                    Phone = cp.Phone,
+                    Position = cp.Position
+                }).ToList();
         }
 
         private List<ContactInfoBoxViewModel> _infoBoxes;

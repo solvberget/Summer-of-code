@@ -304,46 +304,52 @@ namespace Solvberget.Droid
 			public const int item_contactinfobox = 2130903054;
 			
 			// aapt resource value: 0x7f03000f
-			public const int item_favorite = 2130903055;
+			public const int item_contactperson = 2130903055;
 			
 			// aapt resource value: 0x7f030010
-			public const int item_fine = 2130903056;
+			public const int item_favorite = 2130903056;
 			
 			// aapt resource value: 0x7f030011
-			public const int item_loan = 2130903057;
+			public const int item_fine = 2130903057;
 			
 			// aapt resource value: 0x7f030012
-			public const int item_menu = 2130903058;
+			public const int item_genericfield = 2130903058;
 			
 			// aapt resource value: 0x7f030013
-			public const int item_message = 2130903059;
+			public const int item_loan = 2130903059;
 			
 			// aapt resource value: 0x7f030014
-			public const int item_news = 2130903060;
+			public const int item_menu = 2130903060;
 			
 			// aapt resource value: 0x7f030015
-			public const int item_openinghour_pair = 2130903061;
+			public const int item_message = 2130903061;
 			
 			// aapt resource value: 0x7f030016
-			public const int item_openinghours = 2130903062;
+			public const int item_news = 2130903062;
 			
 			// aapt resource value: 0x7f030017
-			public const int item_reservation = 2130903063;
+			public const int item_openinghour_pair = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int item_searchresult = 2130903064;
+			public const int item_openinghours = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int item_suggestions_list_summary = 2130903065;
+			public const int item_reservation = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int page_home_view = 2130903066;
+			public const int item_searchresult = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int page_webview = 2130903067;
+			public const int item_suggestions_list_summary = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int SplashScreen = 2130903068;
+			public const int page_home_view = 2130903068;
+			
+			// aapt resource value: 0x7f03001d
+			public const int page_webview = 2130903069;
+			
+			// aapt resource value: 0x7f03001e
+			public const int SplashScreen = 2130903070;
 			
 			static Layout()
 			{

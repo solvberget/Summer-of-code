@@ -22,7 +22,7 @@ namespace Solvberget.Nancy.Modules
                     Title = ci.Title,
                     VisitingAddress = ci.VisitingAddress,
                     ContactPersons = MapContactPersons(ci.ContactPersons),
-                    GenericFields = ci.GenericFields
+                    GenericFields = ci.GenericFields.ToList()
                 });
             };
 

@@ -26,29 +26,37 @@
         android:layout_height="wrap_content"
         local:MvxBind="Text Phone" />
     <TextView
-        android:text="Tlf.: 938 39 293"
+        android:text="Something@example.com"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Email" />
     <TextView
-        android:text="Tlf.: 938 39 293"
+        android:text="Street Streetname 4"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Address" />
     <TextView
-        android:text="Tlf.: 938 39 293"
+        android:text="Street Namestreet 10"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text VisitingAddress" />
-<!--<MvxLinearLayout
+    <MvxLinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="ItemsSource Hours"
-        local:MvxItemTemplate="@layout/item_openinghour_pair"
+        local:MvxBind="ItemsSource ContactPersons"
+        local:MvxItemTemplate="@layout/item_contactperson"
         android:divider="@null"
-        android:dividerHeight="0dp" />-->
+        android:dividerHeight="0dp" />
+    <MvxLinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="ItemsSource GenericFields"
+        local:MvxItemTemplate="@layout/item_genericfield"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 </LinearLayout>
