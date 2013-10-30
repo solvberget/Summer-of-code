@@ -75,8 +75,10 @@
     <Compile Include="Services\HttpBodyDownloader.cs" />
     <Compile Include="Services\Interfaces\IDocumentService.cs" />
     <Compile Include="Services\Interfaces\INewsService.cs" />
+    <Compile Include="Services\Interfaces\IOpeningHoursService.cs" />
     <Compile Include="Services\Interfaces\ISearchService.cs" />
     <Compile Include="Services\IStringDownloader.cs" />
+    <Compile Include="Services\OpeningHoursService.cs" />
     <Compile Include="Services\NewsService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\Stubs\DocumentServiceTemporaryStub.cs" />

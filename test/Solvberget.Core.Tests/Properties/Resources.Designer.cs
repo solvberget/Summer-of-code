@@ -68,5 +68,23 @@ namespace Solvberget.Core.Tests.Properties {
                 return ResourceManager.GetString("NewsSampleJson", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;title&quot;:&quot;Kulturhusets foajé&quot;,&quot;locationOrDayOfWeekToTime&quot;:{&quot;mandag-torsdag&quot;:&quot;10.00-22.00&quot;,&quot;fredag og lørdag&quot;:&quot;10.00-23.00&quot;,&quot;søndag&quot;:&quot;12.00-22.00&quot;}},{&quot;title&quot;:&quot;Stavanger bibliotek&quot;,&quot;locationOrDayOfWeekToTime&quot;:{&quot;mandag - torsdag&quot;:&quot;&quot;,&quot;musikk- og filmbiblioteket&quot;:&quot;10.00 - 21.00&quot;,&quot;kultur- og faktabiblioteket&quot;:&quot;10.00 - 19.00&quot;,&quot;barne- og ungdomsbiblioteket&quot;:&quot;10.00 - 19.00&quot;,&quot;fredag (alle avdelinger)&quot;:&quot;10.00 - 17.00&quot;,&quot;lørdag (alle avdelinger)&quot;:&quot;10.00 - 16.00&quot;,&quot;søndag (alle avdelinger)&quot;:&quot;12.00 - 16.00&quot;}},{&quot;title&quot;:&quot;Ma [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string OpeningHoursSampleJson {
+            get {
+                return ResourceManager.GetString("OpeningHoursSampleJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;title&quot;:&quot;Kulturhusets foajé&quot;,&quot;hours&quot;:{&quot;mandag-torsdag&quot;:&quot;10.00-22.00&quot;,&quot;fredag og lørdag&quot;:&quot;10.00-23.00&quot;,&quot;søndag&quot;:&quot;12.00-22.00&quot;}},{&quot;title&quot;:&quot;Stavanger bibliotek&quot;,&quot;hours&quot;:{&quot;mandag - torsdag&quot;:&quot;&quot;,&quot;musikk- og filmbiblioteket&quot;:&quot;10.00 - 21.00&quot;,&quot;kultur- og faktabiblioteket&quot;:&quot;10.00 - 19.00&quot;,&quot;barne- og ungdomsbiblioteket&quot;:&quot;10.00 - 19.00&quot;,&quot;fredag (alle avdelinger)&quot;:&quot;10.00 - 17.00&quot;,&quot;lørdag (alle avdelinger)&quot;:&quot;10.00 - 16.00&quot;,&quot;søndag (alle avdelinger)&quot;:&quot;12.00 - 16.00&quot;}},{&quot;title&quot;:&quot;Madla bibliotek&quot;,&quot;hours&quot;:{&quot;mandag - Torsda [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string String {
+            get {
+                return ResourceManager.GetString("String", resourceCulture);
+            }
+        }
     }
 }

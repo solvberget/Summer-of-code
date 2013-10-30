@@ -77,5 +77,14 @@ namespace Solvberget.Core.Properties {
                 return ResourceManager.GetString("ServiceUrl_News", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/openinghours.json.
+        /// </summary>
+        internal static string ServiceUrl_OpeningHours {
+            get {
+                return ResourceManager.GetString("ServiceUrl_OpeningHours", resourceCulture);
+            }
+        }
     }
 }

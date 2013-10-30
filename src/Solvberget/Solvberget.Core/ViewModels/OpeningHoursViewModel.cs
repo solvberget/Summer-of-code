@@ -1,13 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class OpeningHoursViewModel : BaseViewModel
     {
+        private readonly IOpeningHoursService _openingHoursService;
+
+        public OpeningHoursViewModel(IOpeningHoursService openingHoursService)
+        {
+            _openingHoursService = openingHoursService;
+        }
+
         public void Init()
         {
             Title = "Åpningstider";
@@ -24,28 +34,16 @@ namespace Solvberget.Core.ViewModels
         public async Task Load()
         {
             IsLoading = true;
-            await TaskEx.Delay(750);
-            Locations = new List<OpeningHoursLocationViewModel>
-            {
+            Locations = (await _openingHoursService.GetOpeningHours()).Select(oh => 
                 new OpeningHoursLocationViewModel
                 {
-                    LocationName = "Kulturhusets Foajé",
-                    Phone = "51 51 07 00",
-                    Hours = new Dictionary<string, string> {{"Mandag - Torsdag", "10.00-22.00"}, {"Fredag og Lørdag", "10.00-23.00"},{"Søndag", "12.00-22.00"}}
-                },
-                new OpeningHoursLocationViewModel
-                {
-                    LocationName = "SF Kino Stavanger, Billettluke",
-                    Phone = "51 51 07 00",
-                    Hours = new Dictionary<string, string> {{"Mandag - Torsdag", "11.30 - 21.30"}, {"Fredag", "11.30 - 22.30"}, {"Lørdag", "12.00 - 22.30"}, {"Søndag", "12.00 - 21.30"}}
-                },
-                new OpeningHoursLocationViewModel
-                {
-                    LocationName = "Choco Boco",
-                    Phone = "51 86 33 08",
-                    Hours = new Dictionary<string, string> {{"Mandag - Torsdag", "10.00 - 22.00"}, {"Fredag", "10.00 - 24.00"}, {"Lørdag", "11.00 - 24.00"}, {"Søndag", "12.00 - 21.30"}}
-                }
-            };
+                    Hours = oh.Hours,
+                    LocationName = oh.Title,
+                    Phone = oh.Phone,
+                    Title = oh.Title,
+                    Url = oh.Url,
+                    UrlText = oh.UrlText
+                }).ToList();
             IsLoading = false;
         }
 
@@ -66,6 +64,19 @@ namespace Solvberget.Core.ViewModels
 
     public class OpeningHoursLocationViewModel : BaseViewModel
     {
+        private string _title;
+        public new string Title 
+        {
+            get { return _title; }
+            set 
+            {
+                _title = value;
+                LocationName = value;
+                RaisePropertyChanged(() => Title);
+            }
+        }
+
+
         private string _locationName;
         public string LocationName
         {

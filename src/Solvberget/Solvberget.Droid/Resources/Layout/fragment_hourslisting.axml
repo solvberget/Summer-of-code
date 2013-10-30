@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_background">
-    <MvxListView
+    <Mvx.MvxLinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:background="@color/ui_background"
         local:MvxBind="ItemsSource Locations; ItemClick ShowDetailsCommand"
-        local:MvxItemTemplate="@layout/item_openinghours"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
-</LinearLayout>
+        local:MvxItemTemplate="@layout/item_openinghours" />
+</ScrollView>
