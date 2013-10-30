@@ -1,55 +1,89 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using Autofac.Features.Indexed;
 using Nancy;
-using Nancy.ViewEngines;
+using Nancy.Responses;
 using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
+using Solvberget.Domain.Abstract.V2;
+using Solvberget.Domain.DTO;
 
 namespace Solvberget.Nancy.Modules
 {
     public class ListModule : NancyModule
     {
-        public ListModule(LibraryListDynamicRepository dynamicRepository, LibraryListXmlRepository staticRepository)
+        private readonly IRepository _documents;
+
+        public ListModule(ILibraryListRepository lists, IRepository documents, IImageRepository images)
             : base("/lists")
         {
-            Get["/static"] = _ =>
+            _documents = documents;
+            
+            Get["/"] = _ =>
             {
                 int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
-
-                var resultStatic = staticRepository.GetLists(limit);
-                var latestChange = staticRepository.GetTimestampForLatestChange();
-
-                var timestamp = GetTimestamp(latestChange);
-
-                return new { Timestamp = timestamp, Lists = resultStatic };
+                
+                var results = lists.GetAll().Select(doc => MapLibraryListToDto(doc));
+                
+                return Response.AsJson(results); //.AsCacheable(DateTime.Now.AddSeconds(30)); // fucks up CORS...
             };
 
-            Get["/static/last-modified"] = _ => GetTimestamp(staticRepository.GetTimestampForLatestChange());
-
-            Get["/dynamic"] = _ => dynamicRepository.GetLists(Request.Query.limit);
-
-            Get["/combined"] = _ =>
+            Get["/{id}"] = args =>
             {
-                int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
+                LibrarylistDto dto = MapLibraryListToDto(lists.Get(args.id), true);
+                return Response.AsJson(dto);
+            };
 
-                var resultStatic = staticRepository.GetLists(limit);
-                var resultDynamic = dynamicRepository.GetLists(limit);
+            Get["/{id}/thumbnail"] = args =>
+            {
+                LibraryList list = lists.Get(args.id);
 
-                var totalResult = resultStatic.Union(resultDynamic).OrderBy(x => x.Priority);
+                foreach (var docNo in list.DocumentNumbers.Keys)
+                {
+                    var url = images.GetDocumentImage(docNo);
 
-                var timestamp = GetTimestamp(staticRepository.GetTimestampForLatestChange());
-                
-                return new { TimestampForStatic = timestamp, Lists = totalResult };
+                    if (String.IsNullOrEmpty(url)) continue;
+
+                    return Response.AsRedirect(url);
+                }
+
+                return TextResponse.NoBody;
+            };
+        }
+        
+        private dynamic MapLibraryListToDto(LibraryList list, bool includeDocuments = false)
+        {
+            if (includeDocuments)
+            {
+                return new LibrarylistDto()
+                {
+                    Id = list.Id,
+                    Name = list.Name,
+                    Documents = list.Documents.Count > 0
+                        ? list.Documents.Select(MapDocumentToDto).ToList()
+                        : list.DocumentNumbers.Keys.Select(dn => MapDocumentToDto(FetchDocument(dn))).ToList()
+                };
+            }
+
+            return new
+            {
+                list.Id,
+                list.Name
             };
         }
 
-        private static string GetTimestamp(DateTime? latestChange)
+        private DocumentDto MapDocumentToDto(Document document)
         {
-            return latestChange.HasValue ? latestChange.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
+            return new DocumentDto
+            {
+                Id = document.DocumentNumber,
+                Title = document.Title,
+                SubTitle = document.SubTitle,
+                Type = document.DocType
+            };
+        }
+
+        private Document FetchDocument(string documentNumber)
+        {
+            return _documents.GetDocument(documentNumber, true);
         }
     }
 }

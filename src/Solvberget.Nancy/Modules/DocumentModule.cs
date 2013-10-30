@@ -1,57 +1,88 @@
-﻿using Nancy;
-using Nancy.ModelBinding;
-
+﻿using System;
+using System.Linq;
+using Nancy;
 using Solvberget.Domain.Abstract;
+using Solvberget.Domain.DTO;
+using Solvberget.Nancy.Modules.V2;
 
 namespace Solvberget.Nancy.Modules
 {
     public class DocumentModule : NancyModule
     {
-        public DocumentModule(
-            IRepository documentRepository,
-            IImageRepository imageRepository,
-            IRatingRepository ratingRepository,
-            IReviewRepository reviewRepository) : base("/documents")
+        public DocumentModule(IRepository documents, IImageRepository images, IRatingRepository ratings)
+            : base("/documents")
         {
-            Get["/search"] = _ => documentRepository.Search(Request.Query.q);
-
-            Get["/{id}"] = args => documentRepository.GetDocument(args.id, Request.Query.light ?? false);
-            
-            Get["/{id}/review"] = args => reviewRepository.GetDocumentReview(args.id);
-            
-            Post["/{id}/reservation"] = args =>
+            Get["/{id}/thumbnail"] = args =>
             {
-                var model = this.Bind();
-                return documentRepository.RequestReservation(args.id, model.userId, model.branch);
+                string url = images.GetDocumentImage(args.id);
+                return Response.AsRedirect(url);
             };
 
-            Delete["/{id}/reservation"] = args =>
+            Get["/{id}"] = args =>
             {
-                var model = this.Bind();
-                return documentRepository.CancelReservation(args.id, model.itemSequence, model.cancellationSequence);
-            };
-            
-            Post["/{id}/renew"] = args =>
-            {
-                var model = this.Bind();
-                return documentRepository.RequestRenewalOfLoan(args.id,
-                    model.itemSequence,
-                    model.barcode,
-                    model.userId);
+                Document document = documents.GetDocument(args.id, false);
+                return Response.AsJson(MapToDto(document));
             };
 
-            Get["/{id}/rating"] = args => ratingRepository.GetDocumentRating(args.id);
-
-            Get["/{id}/image"] = args =>
+            Get["/{id}/rating"] = args =>
             {
-                bool isThumbnail = Request.Query.thumb ?? false;
-                if (isThumbnail)
+                DocumentRating rating = ratings.GetDocumentRating(args.id);
+                return Response.AsJson(rating);
+            };
+        }
+
+        private object MapToDto(Document document)
+        {
+            DocumentDto dto;
+
+            if (document is Book)
+            {
+                var book = (Book) document;
+                var bookDto = new BookDto();
+                dto = bookDto;
+                bookDto.Classification = book.ClassificationNr;
+            }
+            else
+            {
+                dto = new DocumentDto(); // todo other types
+            }
+
+            dto.Id = document.DocumentNumber;
+            dto.Type = document.DocType;
+            dto.Title = document.Title;
+            dto.SubTitle = document.CompressedSubTitle;
+            dto.Availability = MapToAvailabilityDto(document);
+
+            return dto;
+        }
+
+        private DocumentAvailabilityDto MapToAvailabilityDto(Document document)
+        {
+            var availability = document.AvailabilityInfo.FirstOrDefault();
+
+            if (null == availability) return null;
+
+            return new DocumentAvailabilityDto
+            {
+                Branch = availability.Branch,
+                AvailableCount = availability.AvailableCount,
+                TotalCount = availability.TotalCount,
+                
+                Department = availability.Department.Aggregate((acc, dep) =>
                 {
-                    return imageRepository.GetDocumentThumbnailImage(args.id, Request.Query.size);
-                }
+                    if (String.IsNullOrEmpty(acc)) return dep;
+                    return acc + " - " + dep;
+                }),
 
-                return imageRepository.GetDocumentImage(args.id);
+                Collection = availability.PlacementCode,
+                Location = document.LocationCode,
+                EstimatedAvailableDate = availability.EarliestAvailableDateFormatted
             };
         }
     }
 }
+
+    public class BookDto : DocumentDto
+    {
+        public string Classification { get; set; }
+    }
