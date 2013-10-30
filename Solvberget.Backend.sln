@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Nancy", "src\Sol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Domain", "src\Solvberget.Domain\Solvberget.Domain.csproj", "{7EB0D844-7622-4F0D-A103-C326C6FA1293}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Core.DTOs", "src\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj", "{C74B2533-6F19-4047-A4D0-434A1FE5F027}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CI|Any CPU = CI|Any CPU
@@ -53,6 +55,21 @@ Global
 		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.Release|ARM.ActiveCfg = Release|Any CPU
 		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.Release|x64.ActiveCfg = Release|Any CPU
 		{7EB0D844-7622-4F0D-A103-C326C6FA1293}.Release|x86.ActiveCfg = Release|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.CI|Any CPU.Build.0 = CI|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.CI|ARM.ActiveCfg = CI|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.CI|x64.ActiveCfg = CI|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.CI|x86.ActiveCfg = CI|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Release|x64.ActiveCfg = Release|Any CPU
+		{C74B2533-6F19-4047-A4D0-434A1FE5F027}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

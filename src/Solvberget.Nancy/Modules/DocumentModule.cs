@@ -1,57 +1,36 @@
-﻿using Nancy;
-using Nancy.ModelBinding;
-
+﻿using System;
+using System.Linq;
+using Nancy;
+using Solvberget.Core.DTOs;
 using Solvberget.Domain.Abstract;
+using Solvberget.Domain.DTO;
+using Solvberget.Nancy.Mapping;
 
 namespace Solvberget.Nancy.Modules
 {
     public class DocumentModule : NancyModule
     {
-        public DocumentModule(
-            IRepository documentRepository,
-            IImageRepository imageRepository,
-            IRatingRepository ratingRepository,
-            IReviewRepository reviewRepository) : base("/documents")
+        public DocumentModule(IRepository documents, IImageRepository images, IRatingRepository ratings)
+            : base("/documents")
         {
-            Get["/search"] = _ => documentRepository.Search(Request.Query.q);
-
-            Get["/{id}"] = args => documentRepository.GetDocument(args.id, Request.Query.light ?? false);
-            
-            Get["/{id}/review"] = args => reviewRepository.GetDocumentReview(args.id);
-            
-            Post["/{id}/reservation"] = args =>
+            Get["/{id}/thumbnail"] = args =>
             {
-                var model = this.Bind();
-                return documentRepository.RequestReservation(args.id, model.userId, model.branch);
+                string url = images.GetDocumentImage(args.id);
+                return Response.AsRedirect(url);
             };
 
-            Delete["/{id}/reservation"] = args =>
+            Get["/{id}"] = args =>
             {
-                var model = this.Bind();
-                return documentRepository.CancelReservation(args.id, model.itemSequence, model.cancellationSequence);
-            };
-            
-            Post["/{id}/renew"] = args =>
-            {
-                var model = this.Bind();
-                return documentRepository.RequestRenewalOfLoan(args.id,
-                    model.itemSequence,
-                    model.barcode,
-                    model.userId);
+                Document document = documents.GetDocument(args.id, false);
+                return Response.AsJson(DtoMaps.Map(document));
             };
 
-            Get["/{id}/rating"] = args => ratingRepository.GetDocumentRating(args.id);
-
-            Get["/{id}/image"] = args =>
+            Get["/{id}/rating"] = args =>
             {
-                bool isThumbnail = Request.Query.thumb ?? false;
-                if (isThumbnail)
-                {
-                    return imageRepository.GetDocumentThumbnailImage(args.id, Request.Query.size);
-                }
-
-                return imageRepository.GetDocumentImage(args.id);
+                DocumentRating rating = ratings.GetDocumentRating(args.id);
+                return Response.AsJson(rating);
             };
         }
+
     }
 }

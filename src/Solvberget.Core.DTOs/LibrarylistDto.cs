@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Solvberget.Nancy.Modules.V2
+namespace Solvberget.Core.DTOs
 {
     public class LibrarylistDto
     {

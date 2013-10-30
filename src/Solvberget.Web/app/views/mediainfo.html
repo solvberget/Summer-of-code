@@ -1,25 +1,24 @@
-<div style="background-color:#6B6B6B; margin:-20px; margin-bottom:20px; padding:20px;">
+<header class="media-item-details">
 
-    <img ng-src="{{imageUrl}}" style="width:120px; float:left; margin-right:20px" />
-    <h1 style="color:white; font-size:1.6em">{{document.title}}</h1>
-    <p style="color:white">{{document.subTitle}}</p>
+    <img ng-src="{{imageUrl}}" />
+    <h1>{{document.title}}</h1>
+    <p>{{document.subTitle}}</p>
 
     <a ng-show="rating.score" class="document-rating" title="{{rating.source + ': ' + rating.score + '/' + rating.maxScore}}" ng-href="{{rating.sourceUrl}}">
-        <img ng-src="{{'img/' + rating.source + '-logo.png'}}" style="width:20px; position:relative; top:-2px; padding-right:5px;" />
-        <i ng-repeat="n in range(rating.score)" class="glyphicon glyphicon-star"/>
-        <i ng-repeat="n in range(rating.maxScore-rating.score)" class="glyphicon glyphicon-star empty"/>
+        <img ng-src="{{'img/' + rating.source + '-logo.png'}}" />
+        <i ng-repeat="n in range(rating.score)" class="glyphicon glyphicon-star"/><i ng-repeat="n in range(rating.maxScore-rating.score)" class="glyphicon glyphicon-star empty"/>
     </a>
 
     <div class="clearfix"></div>
-</div>
+</header>
 
-<div style="margin:-20px; margin-bottom:20px; padding:10px; padding-top:0px; padding-left:20px; background-color:#6B6B6B;">
+<div class="media-item-details-actions">
     <button type="button" class="btn btn-sm" ng-click="isReserved = !isReserved"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : isReserved }"></i> Reserver</button>
     <button type="button" class="btn btn-sm" ng-click="isFavorite = !isFavorite"><i class="glyphicon" ng-class="{ 'glyphicon-star' : isFavorite, 'glyphicon-star-empty' : !isFavorite }"></i> Favoritt</button>
 </div>
 
 <h2>Tilgjengelighet</h2>
-    <div style="margin-bottom:20px; padding:10px; background:white">
+    <div class="media-item-info-box">
         <strong>{{document.availability.branch}}</strong>
         <div>
             {{document.availability.department}}

@@ -1,45 +1,41 @@
 ﻿using System;
 using System.Linq;
-using Nancy;
-using Nancy.LightningCache.Extensions;
+using Solvberget.Core.DTOs;
 using Solvberget.Domain.Abstract;
 using Solvberget.Domain.DTO;
-using Solvberget.Domain.Implementation;
-using Solvberget.Nancy.Modules.V2;
 
-namespace Solvberget.Nancy.Modules.V2
+namespace Solvberget.Nancy.Mapping
 {
-    public class DocumentModule : NancyModule
+    public static class DtoMaps
     {
-        public DocumentModule(IRepository documents, IImageRepository images, IRatingRepository ratings)
-            : base("/v2/documents")
+        public static LibrarylistDto Map(LibraryList list, IRepository documents = null)
         {
-            Get["/{id}/thumbnail"] = args =>
+            if (null != documents)
             {
-                string url = images.GetDocumentImage(args.id);
-                return Response.AsRedirect(url);
-            };
+                return new LibrarylistDto
+                {
+                    Id = list.Id,
+                    Name = list.Name,
+                    Documents = list.Documents.Count > 0
+                        ? list.Documents.Select(Map).ToList()
+                        : list.DocumentNumbers.Keys.Select(dn => Map(documents.GetDocument(dn, true))).ToList()
+                };
+            }
 
-            Get["/{id}"] = args =>
+            return new LibrarylistDto
             {
-                Document document = documents.GetDocument(args.id, false);
-                return Response.AsJson(MapToDto(document));
-            };
-
-            Get["/{id}/rating"] = args =>
-            {
-                DocumentRating rating = ratings.GetDocumentRating(args.id);
-                return Response.AsJson(rating);
+                Id = list.Id,
+                Name = list.Name
             };
         }
-
-        private object MapToDto(Document document)
+        
+        public static DocumentDto Map(Document document)
         {
             DocumentDto dto;
 
             if (document is Book)
             {
-                var book = (Book) document;
+                var book = (Book)document;
                 var bookDto = new BookDto();
                 dto = bookDto;
                 bookDto.Classification = book.ClassificationNr;
@@ -53,12 +49,12 @@ namespace Solvberget.Nancy.Modules.V2
             dto.Type = document.DocType;
             dto.Title = document.Title;
             dto.SubTitle = document.CompressedSubTitle;
-            dto.Availability = MapToAvailabilityDto(document);
+            dto.Availability = MapAvailability(document);
 
             return dto;
         }
 
-        private DocumentAvailabilityDto MapToAvailabilityDto(Document document)
+        private static DocumentAvailabilityDto MapAvailability(Document document)
         {
             var availability = document.AvailabilityInfo.FirstOrDefault();
 
@@ -69,7 +65,7 @@ namespace Solvberget.Nancy.Modules.V2
                 Branch = availability.Branch,
                 AvailableCount = availability.AvailableCount,
                 TotalCount = availability.TotalCount,
-                
+
                 Department = availability.Department.Aggregate((acc, dep) =>
                 {
                     if (String.IsNullOrEmpty(acc)) return dep;
@@ -83,8 +79,3 @@ namespace Solvberget.Nancy.Modules.V2
         }
     }
 }
-
-    public class BookDto : DocumentDto
-    {
-        public string Classification { get; set; }
-    }

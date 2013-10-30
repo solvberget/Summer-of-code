@@ -1,7 +1,7 @@
 'use strict';
 
 var $$config =  {
-    apiPrefix : 'http://localhost:39465/v2/'
+    apiPrefix : 'http://localhost:39465/'
 }
 
 console.log("app $$config:", $$config)

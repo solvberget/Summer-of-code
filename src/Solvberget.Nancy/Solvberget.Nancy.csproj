@@ -120,13 +120,12 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Extensions\ComponentContextExtensions.cs" />
     <Compile Include="EnvironmentPathProvider.cs" />
+    <Compile Include="Mapping\DtoMaps.cs" />
     <Compile Include="Modules\BlogModule.cs" />
-    <Compile Include="Modules\DocumentModule.cs" />
     <Compile Include="Modules\EventModule.cs" />
     <Compile Include="Modules\InformationModule.cs" />
+    <Compile Include="Modules\DocumentModule.cs" />
     <Compile Include="Modules\ListModule.cs" />
-    <Compile Include="Modules\V2\DocumentModule.cs" />
-    <Compile Include="Modules\V2\ListModule.cs" />
     <Compile Include="Modules\NewsModule.cs" />
     <Compile Include="Modules\SuggestionModule.cs" />
     <Compile Include="Modules\UserModule.cs" />

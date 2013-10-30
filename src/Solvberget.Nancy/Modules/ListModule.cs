@@ -1,55 +1,52 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using Autofac.Features.Indexed;
 using Nancy;
-using Nancy.ViewEngines;
+using Nancy.Responses;
+using Solvberget.Core.DTOs;
 using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
+using Solvberget.Domain.Abstract.V2;
+using Solvberget.Domain.DTO;
+using Solvberget.Nancy.Mapping;
 
 namespace Solvberget.Nancy.Modules
 {
     public class ListModule : NancyModule
     {
-        public ListModule(LibraryListDynamicRepository dynamicRepository, LibraryListXmlRepository staticRepository)
+        private readonly IRepository _documents;
+
+        public ListModule(ILibraryListRepository lists, IRepository documents, IImageRepository images)
             : base("/lists")
         {
-            Get["/static"] = _ =>
+            _documents = documents;
+            
+            Get["/"] = _ =>
             {
-                int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
-
-                var resultStatic = staticRepository.GetLists(limit);
-                var latestChange = staticRepository.GetTimestampForLatestChange();
-
-                var timestamp = GetTimestamp(latestChange);
-
-                return new { Timestamp = timestamp, Lists = resultStatic };
+                var results = lists.GetAll().Select(doc => DtoMaps.Map(doc));
+                return Response.AsJson(results); //.AsCacheable(DateTime.Now.AddSeconds(30)); // fucks up CORS...
             };
 
-            Get["/static/last-modified"] = _ => GetTimestamp(staticRepository.GetTimestampForLatestChange());
-
-            Get["/dynamic"] = _ => dynamicRepository.GetLists(Request.Query.limit);
-
-            Get["/combined"] = _ =>
+            Get["/{id}"] = args =>
             {
-                int? limit = Request.Query.limit.HasValue ? Request.Query.limit : null;
+                LibrarylistDto dto = DtoMaps.Map(lists.Get(args.id), _documents);
+                return Response.AsJson(dto);
+            };
 
-                var resultStatic = staticRepository.GetLists(limit);
-                var resultDynamic = dynamicRepository.GetLists(limit);
+            Get["/{id}/thumbnail"] = args =>
+            {
+                LibraryList list = lists.Get(args.id);
 
-                var totalResult = resultStatic.Union(resultDynamic).OrderBy(x => x.Priority);
+                foreach (var docNo in list.DocumentNumbers.Keys)
+                {
+                    var url = images.GetDocumentImage(docNo);
 
-                var timestamp = GetTimestamp(staticRepository.GetTimestampForLatestChange());
-                
-                return new { TimestampForStatic = timestamp, Lists = totalResult };
+                    if (String.IsNullOrEmpty(url)) continue;
+
+                    return Response.AsRedirect(url);
+                }
+
+                return TextResponse.NoBody;
             };
         }
-
-        private static string GetTimestamp(DateTime? latestChange)
-        {
-            return latestChange.HasValue ? latestChange.Value.Ticks.ToString(CultureInfo.InvariantCulture) : "0";
-        }
+        
     }
 }
