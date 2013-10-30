@@ -2,93 +2,97 @@
 using System.Threading.Tasks;
 using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Services.Interfaces;
+using Solvberget.Nancy.Modules.V2;
 
 namespace Solvberget.Core.Services.Stubs
 {
     public class SuggestionsServiceTemporaryStub : ISuggestionsService
     {
 
-        public async Task<List<Document>> GetList(string id)
+        public async Task<LibrarylistDto> GetList(string id)
         {
             await TaskEx.Delay(2000);
 
-            return new List<Document>
+            return new LibrarylistDto
+            {
+                Documents = new List<DocumentDto>
+                {
+                    new DocumentDto {Title = "Harry Potter", Year = "2008"},
+                    new DocumentDto()
                     {
-                        new Document {Title = "Harry Potter", PublishedYear = 2008},
-                        new Film
-                        {
-                            Title = "Harry Potter and the Prisoner from Azkaban",
-                            NorwegianTitle = "Harry Potter og fangen fra Azkaban",
-                        },
-                        new Cd
-                        {
-                            Title = "The Wall",
-                            ArtistOrComposer = new Person {Name = "Pink Floyd"},
-                            PublishedYear = 1983
-                        },
-                        new SheetMusic
-                        {
-                            Title = "The Wall",
-                            Composer = new Person {Name = "David Gilmour"},
-                            PublishedYear = 1983
-                        }
+                        Title = "Harry Potter and the Prisoner from Azkaban",
+                        SubTitle = "Harry Potter og fangen fra Azkaban",
+                    },
+                    new DocumentDto()
+                    {
+                        Title = "The Wall",
+                        SubTitle = "Pink Floyd",
+                        Year = "1983"
+                    },
+                    new DocumentDto()
+                    {
+                        Title = "The Wall",
+                        SubTitle = "David Gilmour",
+                        Year = "1983"
+                    }
+                }
             };
         }
 
-        public async Task<List<LibraryList>> GetSuggestionsLists()
+        public async Task<List<LibrarylistDto>> GetSuggestionsLists()
         {
             await TaskEx.Delay(200);
 
-            return new List<LibraryList>
+            return new List<LibrarylistDto>
             {
-                new LibraryList
+                new LibrarylistDto
                 {
                     Name = "Harry Potter er kul",
-                    Documents = new List<Document>
+                    Documents = new List<DocumentDto>
                     {
-                        new Document {Title = "Harry Potter", PublishedYear = 2008},
-                        new Film
+                        new DocumentDto {Title = "Harry Potter", Year = "2008"},
+                        new DocumentDto()
                         {
                             Title = "Harry Potter and the Prisoner from Azkaban",
-                            NorwegianTitle = "Harry Potter og fangen fra Azkaban",
+                            SubTitle = "Harry Potter og fangen fra Azkaban",
                         },
-                        new Cd
+                        new DocumentDto()
                         {
                             Title = "The Wall",
-                            ArtistOrComposer = new Person {Name = "Pink Floyd"},
-                            PublishedYear = 1983
+                            SubTitle = "Pink Floyd",
+                            Year = "1983"
                         },
-                        new SheetMusic
+                        new DocumentDto()
                         {
                             Title = "The Wall",
-                            Composer = new Person {Name = "David Gilmour"},
-                            PublishedYear = 1983
+                            SubTitle = "David Gilmour",
+                            Year = "1983"
                         }
                     }
                 },
-                new LibraryList
+                new LibrarylistDto
                 {
-                    Name = "Det finnes andre morsomme ting..",
-                    Documents = new List<Document>
+                    Name = "Harry Potter er kul",
+                    Documents = new List<DocumentDto>
                     {
-                        new Document {Title = "Harry Potter", PublishedYear = 2008},
-                        new Film
+                        new DocumentDto {Title = "Harry Potter", Year = "2008"},
+                        new DocumentDto()
                         {
                             Title = "Harry Potter and the Prisoner from Azkaban",
-                            NorwegianTitle = "Harry Potter og fangen fra Azkaban",
+                            SubTitle = "Harry Potter og fangen fra Azkaban",
                         },
-                        new Cd
+                        new DocumentDto()
                         {
                             Title = "The Wall",
-                            ArtistOrComposer = new Person {Name = "Pink Floyd"},
-                            PublishedYear = 1983
+                            SubTitle = "Pink Floyd",
+                            Year = "1983"
                         },
-                        new SheetMusic
+                        new DocumentDto()
                         {
                             Title = "The Wall",
-                            Composer = new Person {Name = "David Gilmour"},
-                            PublishedYear = 1983
-                        }                        
+                            SubTitle = "David Gilmour",
+                            Year = "1983"
+                        }
                     }
                 }
             };

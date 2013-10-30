@@ -17,9 +17,10 @@ namespace Solvberget.Core.ViewModels
             _suggestionsService = suggestionsService;
         }
 
-        public void Init(string Name)
+        public void Init(string Name, string Id)
         {
             this.Name = Name;
+            this.Id = Id;
             Title = Name;
             Load();
         }
@@ -31,11 +32,11 @@ namespace Solvberget.Core.ViewModels
             set { _name = value; RaisePropertyChanged(() => Name); }
         }
 
-        private List<Document> _documents;
-        public List<Document> Documents
+        private string _id;
+        public new string Id
         {
-            get { return _documents; }
-            set { _documents = value; RaisePropertyChanged(() => Documents); }
+            get { return _id; }
+            set { _id = value; RaisePropertyChanged(() => Id); }
         }
 
         private List<SearchResultViewModel> _docs;
@@ -63,16 +64,16 @@ namespace Solvberget.Core.ViewModels
         // Loads a a set of Documents retrieved from the service into the results list.
         public async void Load()
         {
-            //var libList = await _suggestionsService.GetList("");
-            //Documents = libList;
             IsLoading = true;
-            Docs = (from n in await  _suggestionsService.GetList("")
+            var list = await _suggestionsService.GetList(Id);
+            Docs = (from n in list.Documents
                     select new SearchResultViewModel
                            {
-                               Title = n.Title,
-                               Type = n.DocType,
-                               Year = n.PublishedYear.ToString(),
-                               DocNumber = n.DocumentNumber,
+                               Name = n.Title,
+                               Type = n.Type,
+                               Year = n.Year,
+                               DocNumber = n.Id,
+                               Title = n.SubTitle
                            }).ToList();
             IsLoading = false;
 

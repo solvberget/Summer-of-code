@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Solvberget.Core.DTOs.Deprecated.DTO;
+using Solvberget.Nancy.Modules.V2;
 
 namespace Solvberget.Core.Services.Interfaces
 {
     public interface ISuggestionsService
     {
-        Task<List<LibraryList>> GetSuggestionsLists();
-        Task<List<Document>> GetList(string id);
+        Task<List<LibrarylistDto>> GetSuggestionsLists();
+        Task<LibrarylistDto> GetList(string id);
     }
 }

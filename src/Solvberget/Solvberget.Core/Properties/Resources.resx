@@ -120,6 +120,12 @@
   <data name="ServiceUrl" xml:space="preserve">
     <value />
   </data>
+  <data name="ServiceUrl_List" xml:space="preserve">
+    <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/lists/</value>
+  </data>
+  <data name="ServiceUrl_Lists" xml:space="preserve">
+    <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/lists.json</value>
+  </data>
   <data name="ServiceUrl_News" xml:space="preserve">
     <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/news.json</value>
   </data>

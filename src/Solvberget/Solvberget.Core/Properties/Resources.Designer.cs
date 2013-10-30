@@ -70,6 +70,24 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/lists/.
+        /// </summary>
+        internal static string ServiceUrl_List {
+            get {
+                return ResourceManager.GetString("ServiceUrl_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/lists.json.
+        /// </summary>
+        internal static string ServiceUrl_Lists {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Lists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/news.json.
         /// </summary>
         internal static string ServiceUrl_News {
