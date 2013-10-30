@@ -70,6 +70,15 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/contact.json.
+        /// </summary>
+        internal static string ServiceUrl_Contact {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/lists/.
         /// </summary>
         internal static string ServiceUrl_List {
