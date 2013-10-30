@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
-using Solvberget.Domain.Implementation;
+using Solvberget.Domain.Aleph;
 
 namespace Solvberget.WindowsService
 {

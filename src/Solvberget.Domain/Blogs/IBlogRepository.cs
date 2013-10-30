@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Solvberget.Domain.DTO;
-
-namespace Solvberget.Domain.Abstract
+namespace Solvberget.Domain.Blogs
 {
     public interface IBlogRepository
     {

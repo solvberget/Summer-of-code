@@ -3,14 +3,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents.Images;
 using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Lists
 {
     public class LibraryListXmlRepository : IListRepositoryStatic
     {

@@ -2,10 +2,9 @@
 using System.IO;
 
 using FakeItEasy;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
-
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents.Ratings;
+using Solvberget.Domain.Utils;
 using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests

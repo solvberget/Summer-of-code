@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Solvberget.Domain.Documents;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Events
 {
     public class LanguageCourse : Document
     {

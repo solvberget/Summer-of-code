@@ -87,6 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\NancyOpeningHoursServiceTests.cs" />
     <Compile Include="Services\NanyNewsServiceTests.cs" />
     <Compile Include="StaticStringFakeDownloader.cs" />
   </ItemGroup>

@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml.Linq;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Blogs
 {
     public class BlogRepository : IBlogRepository
     {

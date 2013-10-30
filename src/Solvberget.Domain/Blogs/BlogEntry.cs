@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Blogs
 {
     public class BlogEntry
     {

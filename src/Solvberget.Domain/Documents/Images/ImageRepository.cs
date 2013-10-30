@@ -1,8 +1,10 @@
-﻿using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+﻿using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Integrations.BokBasen;
+using Solvberget.Domain.Integrations.Imdb;
+using Solvberget.Domain.Integrations.LastFM;
 using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Documents.Images
 {
     public class ImageRepository : IImageRepository
     {

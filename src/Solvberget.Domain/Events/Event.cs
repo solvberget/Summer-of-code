@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Events
 {
 
     public class Event

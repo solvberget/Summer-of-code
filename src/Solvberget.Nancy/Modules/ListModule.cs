@@ -3,10 +3,10 @@ using System.Linq;
 using Nancy;
 using Nancy.Responses;
 using Solvberget.Core.DTOs;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Abstract.V2;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents.Images;
 using Solvberget.Nancy.Mapping;
+using Solvberget.Domain.Lists;
 
 namespace Solvberget.Nancy.Modules
 {

@@ -8,9 +8,9 @@ using Nancy.Responses.Negotiation;
 using Nancy.Routing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Lists;
+using Solvberget.Domain.Utils;
 
 namespace Solvberget.Nancy
 {

@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Solvberget.Domain.Abstract.V2;
-using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain.Implementation.V2
+namespace Solvberget.Domain.Lists
 {
 
     public class LibraryListRepository : ILibraryListRepository

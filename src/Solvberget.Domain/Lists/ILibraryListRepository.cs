@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain.Abstract.V2
+namespace Solvberget.Domain.Lists
 {
     public interface ILibraryListRepository
     {

@@ -1,0 +1,40 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Solvberget.Core.DTOs;
+using Solvberget.Core.Properties;
+using Solvberget.Core.Services.Interfaces;
+
+namespace Solvberget.Core.Services
+{
+    public class OpeningHoursService : IOpeningHoursService
+    {
+        private readonly IStringDownloader _dowloader;
+
+        public OpeningHoursService(IStringDownloader dowloader)
+        {
+            _dowloader = dowloader;
+        }
+
+        public async Task<IList<OpeningHoursDto>> GetOpeningHours()
+        {
+            try
+            {
+                var openingHoursJson =
+                    await _dowloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_OpeningHours);
+                return JsonConvert.DeserializeObject<List<OpeningHoursDto>>(openingHoursJson);
+            }
+            catch
+            {
+                return new List<OpeningHoursDto>
+                {
+                    new OpeningHoursDto
+                    {
+                        Title = "Ingen åpningstider",
+                        Hours = new Dictionary<string, string>()
+                    }
+                };
+            }
+        }
+    }
+}

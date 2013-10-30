@@ -3,10 +3,10 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Xml.Linq;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Integrations.Bokelskere
 {
     public class BokelskereRepository
     {

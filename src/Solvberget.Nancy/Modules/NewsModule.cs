@@ -4,8 +4,7 @@ using System.Web.Configuration;
 using Nancy;
 using System.Linq;
 using Solvberget.Core.DTOs;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Info;
 
 namespace Solvberget.Nancy.Modules
 {

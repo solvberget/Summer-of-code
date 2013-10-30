@@ -119,6 +119,7 @@
       </SubType>
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Fragments\OpeningHoursView.cs" />
     <Compile Include="Views\Fragments\GenericWebViewView.cs" />
     <Compile Include="Views\WebClients\ProgressHandlingWebViewClient.cs" />
     <Compile Include="Views\WebClients\ProgressUpdatingWebChromeClient.cs" />
@@ -188,6 +189,11 @@
     <AndroidResource Include="Resources\Layout\page_webview.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_hourslisting.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_openinghours.axml" />
+    <AndroidResource Include="Resources\Layout\item_openinghour_pair.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

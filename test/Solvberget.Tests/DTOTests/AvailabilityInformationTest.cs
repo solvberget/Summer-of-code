@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using Solvberget.Domain.DTO;
-using Solvberget.Domain.Implementation;
-
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents;
 using Xunit;
 
 namespace Solvberget.Service.Tests.DTOTests

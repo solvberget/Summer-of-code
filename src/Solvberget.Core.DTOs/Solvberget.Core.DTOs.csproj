@@ -87,6 +87,7 @@
     <Compile Include="DocumentDto.cs" />
     <Compile Include="LibrarylistDto.cs" />
     <Compile Include="NewsStoryDto.cs" />
+    <Compile Include="OpeningHoursDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

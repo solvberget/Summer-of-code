@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
 using System.Text;
-using System.Threading.Tasks;
-using Lucene.Net.Index;
 using Lucene.Net.Store;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Utils;
-using SpellChecker.Net.Search.Spell;
 
-using Directory = System.IO.Directory;
-
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Search
 {
 
 

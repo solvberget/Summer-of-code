@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Solvberget.Core.DTOs;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents;
+using Solvberget.Domain.Lists;
 
 namespace Solvberget.Nancy.Mapping
 {

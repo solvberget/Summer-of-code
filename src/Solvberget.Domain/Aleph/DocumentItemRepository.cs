@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Aleph
 {
     public class DocumentItemRepository
     {

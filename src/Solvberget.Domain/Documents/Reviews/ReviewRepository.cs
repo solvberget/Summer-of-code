@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+﻿using System.Web;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Integrations.BokBasen;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Documents.Reviews
 {
     public class ReviewRepository : IReviewRepository
     {

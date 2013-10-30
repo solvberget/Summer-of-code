@@ -1,4 +1,4 @@
-﻿namespace Solvberget.Domain.DTO
+﻿namespace Solvberget.Domain.Integrations.Imdb
 {
     class ImdbObject
     {

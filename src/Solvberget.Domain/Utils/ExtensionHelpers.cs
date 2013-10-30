@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Utils
 {
     public static class ExtensionHelpers
     {

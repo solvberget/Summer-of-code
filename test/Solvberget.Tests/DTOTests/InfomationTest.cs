@@ -1,5 +1,4 @@
-﻿using Solvberget.Domain.DTO;
-using Xunit;
+﻿using Xunit;
 
 
 //namespace Solvberget.Service.Tests.DTOTests

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Aleph
 {
     public class RulesRepository : IRulesRepository
     {

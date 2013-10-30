@@ -1,5 +1,4 @@
-﻿using Solvberget.Domain.Implementation;
-using Xunit;
+﻿using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests
 {

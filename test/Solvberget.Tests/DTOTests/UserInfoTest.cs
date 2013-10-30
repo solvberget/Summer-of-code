@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-
-using Solvberget.Domain.DTO;
-
+using Solvberget.Domain.Users;
 using Xunit;
 
 namespace Solvberget.Service.Tests.DTOTests

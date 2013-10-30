@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-
-using Solvberget.Domain.Implementation;
-
+using Solvberget.Domain.Aleph;
 using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests

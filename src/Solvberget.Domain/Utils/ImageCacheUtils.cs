@@ -3,40 +3,43 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 
-public static class ImageCacheUtils
+namespace Solvberget.Domain.Utils
 {
-    public static void DownloadImageFromUrl(string imageUrl, string imageName, string pathToCache)
+    public static class ImageCacheUtils
     {
-        System.Drawing.Image image = null;
-
-        if (!Directory.Exists(pathToCache))
-            Directory.CreateDirectory(pathToCache);
-
-        var fileName = Path.Combine(pathToCache, imageName);
-        if (File.Exists(fileName))
-            return;
-
-
-        try
+        public static void DownloadImageFromUrl(string imageUrl, string imageName, string pathToCache)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(imageUrl);
-            webRequest.AllowWriteStreamBuffering = true;
-            webRequest.Timeout = 30000;
+            System.Drawing.Image image = null;
 
-            var webResponse = webRequest.GetResponse();
+            if (!Directory.Exists(pathToCache))
+                Directory.CreateDirectory(pathToCache);
 
-            var stream = webResponse.GetResponseStream();
+            var fileName = Path.Combine(pathToCache, imageName);
+            if (File.Exists(fileName))
+                return;
 
-            image = Image.FromStream(stream);
 
-            webResponse.Close();
+            try
+            {
+                var webRequest = (HttpWebRequest)WebRequest.Create(imageUrl);
+                webRequest.AllowWriteStreamBuffering = true;
+                webRequest.Timeout = 30000;
 
-            image.Save(fileName);
+                var webResponse = webRequest.GetResponse();
+
+                var stream = webResponse.GetResponseStream();
+
+                image = Image.FromStream(stream);
+
+                webResponse.Close();
+
+                image.Save(fileName);
+            }
+            catch (Exception)
+            {
+                //Todo add logging here
+            }
+
         }
-        catch (Exception)
-        {
-            //Todo add logging here
-        }
-
     }
 }

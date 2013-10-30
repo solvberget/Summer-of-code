@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Integrations.Bokelskere;
+using Solvberget.Domain.Integrations.Imdb;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Documents.Ratings
 {
 
     public class RatingRepository : IRatingRepository

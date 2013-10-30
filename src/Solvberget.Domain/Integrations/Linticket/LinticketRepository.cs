@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
-using Solvberget.Domain.Utils;
+﻿using System.Collections.Generic;
 using System.Web.Script.Serialization;
+using Solvberget.Domain.Events;
+using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Integrations.Linticket
 {
     public class LinticketRepository : IEventRepository
 

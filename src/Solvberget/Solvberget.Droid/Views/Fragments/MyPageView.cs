@@ -56,7 +56,7 @@ namespace Solvberget.Droid.Views.Fragments
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
                   FragmentType = typeof(MyPageLoansView),
-                  Title = "L�n",
+                  Title = "Lån",
                   ViewModel = ViewModel.MyPageLoansViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo

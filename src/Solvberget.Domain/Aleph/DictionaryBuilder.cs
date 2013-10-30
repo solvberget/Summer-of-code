@@ -4,7 +4,7 @@ using Lucene.Net.Store;
 using SpellChecker.Net.Search.Spell;
 using Directory = System.IO.Directory;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Aleph
 {
     public class DictionaryBuilder
     {

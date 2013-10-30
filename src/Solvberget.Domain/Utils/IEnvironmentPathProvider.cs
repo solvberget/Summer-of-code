@@ -1,4 +1,4 @@
-namespace Solvberget.Domain.Abstract
+namespace Solvberget.Domain.Utils
 {
     public interface  IEnvironmentPathProvider
     {

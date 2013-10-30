@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Info
 {
     public class OpeningHoursInformation : Information
     {

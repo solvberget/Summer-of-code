@@ -2,8 +2,7 @@ using System;
 using System.IO;
 using System.Web;
 using Nancy;
-
-using Solvberget.Domain.Abstract;
+using Solvberget.Domain.Utils;
 
 namespace Solvberget.Nancy
 {
