@@ -193,16 +193,11 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060001
 			public const int linearLayout1 = 2131099649;
 			
-<<<<<<< HEAD
-			// aapt resource value: 0x7f06000f
-			public const int menu_refresh = 2131099663;
-=======
 			// aapt resource value: 0x7f06000a
 			public const int listsummary_name = 2131099658;
 			
-			// aapt resource value: 0x7f06000e
-			public const int menu_refresh = 2131099662;
->>>>>>> Lister vises, og dokumenter vises innen hver liste.
+			// aapt resource value: 0x7f060010
+			public const int menu_refresh = 2131099664;
 			
 			// aapt resource value: 0x7f060008
 			public const int news_ingress = 2131099656;
@@ -213,19 +208,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060007
 			public const int news_published = 2131099655;
 			
-			// aapt resource value: 0x7f06000d
-			public const int progressBar = 2131099661;
+			// aapt resource value: 0x7f06000e
+			public const int progressBar = 2131099662;
 			
 			// aapt resource value: 0x7f060004
 			public const int pts_main = 2131099652;
 			
-<<<<<<< HEAD
-			// aapt resource value: 0x7f060010
-			public const int search = 2131099664;
-=======
-			// aapt resource value: 0x7f06000f
-			public const int search = 2131099663;
->>>>>>> Lister vises, og dokumenter vises innen hver liste.
+			// aapt resource value: 0x7f060011
+			public const int search = 2131099665;
 			
 			// aapt resource value: 0x7f060002
 			public const int textView1 = 2131099650;
@@ -239,8 +229,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060003
 			public const int viewPager = 2131099651;
 			
-			// aapt resource value: 0x7f06000e
-			public const int webView = 2131099662;
+			// aapt resource value: 0x7f06000f
+			public const int webView = 2131099663;
 			
 			static Id()
 			{
@@ -362,12 +352,6 @@ namespace Solvberget.Droid
 			public const int item_reservation = 2130903058;
 			
 			// aapt resource value: 0x7f030013
-<<<<<<< HEAD
-			public const int page_webview = 2130903059;
-			
-			// aapt resource value: 0x7f030014
-			public const int SplashScreen = 2130903060;
-=======
 			public const int item_searchresult = 2130903059;
 			
 			// aapt resource value: 0x7f030014
@@ -383,14 +367,20 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f030016
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Fikset referanset
 			public const int page_webview = 2130903062;
 			
 			// aapt resource value: 0x7f030017
 			public const int SplashScreen = 2130903063;
+<<<<<<< HEAD
 =======
 			public const int SplashScreen = 2130903062;
 >>>>>>> Anbefalinger i menyen gar til riktig view
 >>>>>>> Anbefalinger i menyen gar til riktig view
+=======
+>>>>>>> Fikset referanset
 			
 			static Layout()
 			{

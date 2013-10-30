@@ -188,7 +188,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
-    <AndroidResource Include="Resources\Layout\page_webview.axml">
+    <AndroidResource Include="Resources\Layout\page_webview.axml"/>
     <AndroidResource Include="Resources\Layout\fragment_suggestions_list.axml" />
     <AndroidResource Include="Resources\Layout\fragment_suggestions_list_list.axml" />
     <AndroidResource Include="Resources\Layout\item_suggestions_list_summary.axml">

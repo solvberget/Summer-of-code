@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.ViewModels.Base;
-using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.ViewModels
 {

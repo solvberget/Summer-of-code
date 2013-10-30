@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Services.Interfaces;
-using Solvberget.Domain.DTO;
 
 namespace Solvberget.Core.Services.Stubs
 {

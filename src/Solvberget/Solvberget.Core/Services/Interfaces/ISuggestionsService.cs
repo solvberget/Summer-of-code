@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Solvberget.Domain.DTO;
+using Solvberget.Core.DTOs.Deprecated.DTO;
 
 namespace Solvberget.Core.Services.Interfaces
 {
