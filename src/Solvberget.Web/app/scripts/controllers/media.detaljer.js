@@ -4,7 +4,7 @@ var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, d
 
     $scope.document = documents.get({id : $routeParams.id}, function(){
         $rootScope.breadcrumb.push($scope.document.title);
-        $scope.imageUrl = $rootScope.apiPrefix + 'documents/' + $scope.document.id + '/thumbnail';
+        $scope.imageUrl = $$config.apiPrefix + 'documents/' + $scope.document.id + '/thumbnail';
     });
 
     $scope.rating = documentRating.get({id : $routeParams.id}, function(){
