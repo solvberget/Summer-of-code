@@ -36,10 +36,7 @@ namespace Solvberget.Nancy.Mapping
 
             if (document is Book)
             {
-                var book = (Book)document;
-                var bookDto = new BookDto();
-                dto = bookDto;
-                bookDto.Classification = book.ClassificationNr;
+                dto = Map((Book)document);
             }
             else
             {
@@ -53,6 +50,28 @@ namespace Solvberget.Nancy.Mapping
             dto.Availability = MapAvailability(document);
 
             return dto;
+        }
+
+        private static DocumentDto Map(Book book)
+        {
+            var bookDto = new BookDto();
+            bookDto.Classification = book.ClassificationNr;
+
+            bookDto.AuthorName = book.Author.Name;
+            bookDto.Language = book.Language;
+            bookDto.PublicationYear = book.PublishedYear;
+            bookDto.Publisher = book.Publisher;
+
+            if (!String.IsNullOrEmpty(book.SeriesTitle))
+            {
+                bookDto.Series = new BookSeriesDto
+                {
+                    Title = book.SeriesTitle,
+                    SequenceNo = book.SeriesNumber
+                };
+            }
+
+            return bookDto;
         }
 
         private static DocumentAvailabilityDto MapAvailability(Document document)
@@ -69,7 +88,7 @@ namespace Solvberget.Nancy.Mapping
                 AvailableCount = availability.AvailableCount,
                 TotalCount = availability.TotalCount,
 
-                Department = availability.Department.Aggregate((acc, dep) =>
+                Department = availability.Department.DefaultIfEmpty("").Aggregate((acc, dep) =>
                 {
                     if (String.IsNullOrEmpty(acc)) return dep;
                     return acc + " - " + dep;
