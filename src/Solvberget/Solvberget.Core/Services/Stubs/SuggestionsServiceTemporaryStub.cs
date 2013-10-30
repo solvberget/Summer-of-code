@@ -7,9 +7,37 @@ namespace Solvberget.Core.Services.Stubs
 {
     public class SuggestionsServiceTemporaryStub : ISuggestionsService
     {
-        public async Task<List<LibraryList>> GetSuggestionsList()
+
+        public async Task<List<Document>> GetList(string id)
         {
-            await TaskEx.Delay(1200);
+            await TaskEx.Delay(2000);
+
+            return new List<Document>
+                    {
+                        new Document {Title = "Harry Potter", PublishedYear = 2008},
+                        new Film
+                        {
+                            Title = "Harry Potter and the Prisoner from Azkaban",
+                            NorwegianTitle = "Harry Potter og fangen fra Azkaban",
+                        },
+                        new Cd
+                        {
+                            Title = "The Wall",
+                            ArtistOrComposer = new Person {Name = "Pink Floyd"},
+                            PublishedYear = 1983
+                        },
+                        new SheetMusic
+                        {
+                            Title = "The Wall",
+                            Composer = new Person {Name = "David Gilmour"},
+                            PublishedYear = 1983
+                        }
+            };
+        }
+
+        public async Task<List<LibraryList>> GetSuggestionsLists()
+        {
+            await TaskEx.Delay(200);
 
             return new List<LibraryList>
             {

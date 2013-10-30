@@ -6,6 +6,7 @@ namespace Solvberget.Core.Services.Interfaces
 {
     public interface ISuggestionsService
     {
-        Task<List<LibraryList>> GetSuggestionsList();
+        Task<List<LibraryList>> GetSuggestionsLists();
+        Task<List<Document>> GetList(string id);
     }
 }

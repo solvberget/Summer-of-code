@@ -5,13 +5,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_background">
+    <TextView
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
     <MvxListView
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource Stories; ItemClick ShowDetailsCommand"
-        local:MvxItemTemplate="@layout/item_news"
+        local:MvxBind="ItemsSource Docs; ItemClick ShowDetailsCommand"
+        local:MvxItemTemplate="@layout/item_searchresult"
         android:divider="@null"
         android:dividerHeight="0dp" />
 </LinearLayout>

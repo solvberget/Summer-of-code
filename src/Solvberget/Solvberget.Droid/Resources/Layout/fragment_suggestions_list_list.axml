@@ -11,6 +11,6 @@
         android:paddingBottom="8dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource Lists; ItemClick ShowDetailsCommand"
+        local:MvxBind="ItemsSource Lists; ItemClick ShowListCommand"
         local:MvxItemTemplate="@layout/item_suggestions_list_summary" />
 </LinearLayout>

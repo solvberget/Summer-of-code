@@ -8,10 +8,16 @@ namespace Solvberget.Core.Services
 {
     public class SuggestionsService : ISuggestionsService
     {
-        public async Task<List<LibraryList>> GetSuggestionsList()
+        public async Task<List<LibraryList>> GetSuggestionsLists()
         {
             await TaskEx.Delay(200);
             throw new NotImplementedException();
         }
+
+        public async Task<List<Document>> GetList(string id)
+        {
+            await TaskEx.Delay(200);
+            throw new NotImplementedException();
+        } 
     }
 }

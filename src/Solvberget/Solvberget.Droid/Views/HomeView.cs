@@ -1,7 +1,9 @@
+using System;
 using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
+using Android.Renderscripts;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Cirrious.CrossCore;
@@ -92,6 +94,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof(NewsListingViewModel), this);
             customPresenter.Register(typeof(OpeningHoursViewModel), this);
             customPresenter.Register(typeof(SuggestionsListListViewModel), this);
+            customPresenter.Register(typeof(SuggestionsListViewModel), this);
         }
 
         /// <summary>
@@ -166,6 +169,14 @@ namespace Solvberget.Droid.Views
 >>>>>>> Anbefalinger i menyen gar til riktig view
                         }
                         break;
+                    case HomeViewModel.Section.Unknown:
+                    {
+                        if (request.ViewModelType == typeof(SuggestionsListViewModel))
+                        {
+                            frag = new SuggestionsListView();
+                        }
+                        break;
+                    }
                 }
 
                 var loaderService = Mvx.Resolve<IMvxViewModelLoader>();

@@ -19,6 +19,12 @@ namespace Solvberget.Core.ViewModels
             get { return _documents; }
             set { _documents = value; RaisePropertyChanged(() => Documents); }  
         }
- 
+
+        private string _id;
+        public new string Id
+        {
+            get { return _id; }
+            set { _id = value; RaisePropertyChanged(() => Id); }  
+        }
     }
 }

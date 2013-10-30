@@ -34,13 +34,14 @@ namespace Solvberget.Core.ViewModels
         {
             get
             {
+                var cmd = new MvxCommand<SuggestionListSummaryViewModel>(ExecuteShowListCommand);
                 return _showListCommand ?? (_showListCommand = new MvxCommand<SuggestionListSummaryViewModel>(ExecuteShowListCommand));
             }
         }
 
-        private void ExecuteShowListCommand(SuggestionListSummaryViewModel searchResultViewModel)
+        private void ExecuteShowListCommand(SuggestionListSummaryViewModel suggestionsListSummary)
         {
-            ShowViewModel<SuggestionsListViewModel>(searchResultViewModel.Id);
+            ShowViewModel<SuggestionsListViewModel>(new { suggestionsListSummary.Name });
         }
 
         // Loads a a set of Lists retrieved from the service into the results list.
@@ -48,11 +49,10 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
-            Lists = (from n in await _suggestionsService.GetSuggestionsList()
+            Lists = (from n in await _suggestionsService.GetSuggestionsLists()
                      select new SuggestionListSummaryViewModel
                            {
-                               Name = n.Name,
-                               Documents = n.Documents
+                               Name = n.Name
                            }).ToList();
 
             IsLoading = false;
