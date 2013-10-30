@@ -1,7 +1,7 @@
 using FakeItEasy;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
-using Solvberget.Domain.Implementation;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Integrations.BokBasen;
+using Solvberget.Domain.Utils;
 using Xunit;
 
 namespace Solvberget.Service.Tests.DTOTests

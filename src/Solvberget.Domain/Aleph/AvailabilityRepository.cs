@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Documents;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Aleph
 {
     public class AvailabilityRepository
     {

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
-using System.Text;
 using System.Xml;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Info
 {
     public class NewsRepository : INewsRepository
     {

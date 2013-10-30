@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Documents;
 using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Integrations.LastFM
 {
     class LastFmRepository
     {

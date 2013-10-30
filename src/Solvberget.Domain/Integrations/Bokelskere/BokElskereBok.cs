@@ -1,4 +1,4 @@
-﻿namespace Solvberget.Domain.DTO
+﻿namespace Solvberget.Domain.Integrations.Bokelskere
 {
     public sealed class BokElskereBook
     {

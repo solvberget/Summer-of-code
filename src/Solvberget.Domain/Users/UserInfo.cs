@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Users
 {
     public class UserInfo
     {

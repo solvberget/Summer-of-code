@@ -3,9 +3,8 @@
 using Nancy.Testing;
 
 using Should;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Users;
 using Solvberget.Nancy.Modules;
 
 using Xunit;

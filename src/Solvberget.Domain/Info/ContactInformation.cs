@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Info
 {
     public sealed class ContactInformation : Information
     {

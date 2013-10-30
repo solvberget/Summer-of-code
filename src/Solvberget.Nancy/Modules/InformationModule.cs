@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Nancy;
 using Solvberget.Core.DTOs;
-using Solvberget.Domain.Abstract;
+using Solvberget.Domain.Info;
 
 namespace Solvberget.Nancy.Modules
 {

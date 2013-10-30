@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Nancy;
-using Solvberget.Core.DTOs;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
-using Solvberget.Nancy.Mapping;
+﻿using Solvberget.Domain.Documents;
+﻿using Solvberget.Nancy.Mapping;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents.Images;
+using Solvberget.Domain.Documents.Ratings;
 
 namespace Solvberget.Nancy.Modules
 {

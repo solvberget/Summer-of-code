@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Info
 {
     public class InformationRepositoryXml : IInformationRepository
     {

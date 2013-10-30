@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Solvberget.Domain.Implementation
+namespace Solvberget.Domain.Aleph
 {
     public class AlephException : Exception
     {

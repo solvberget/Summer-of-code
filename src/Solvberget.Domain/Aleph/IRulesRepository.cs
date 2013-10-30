@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain.Abstract
+namespace Solvberget.Domain.Aleph
 {
     public interface IRulesRepository
     {

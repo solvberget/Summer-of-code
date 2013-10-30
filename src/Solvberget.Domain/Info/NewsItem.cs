@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Info
 {
     public class NewsItem
     {

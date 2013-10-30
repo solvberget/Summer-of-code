@@ -5,9 +5,12 @@ using FakeItEasy;
 using Nancy.Testing;
 
 using Should;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain;
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents;
+using Solvberget.Domain.Documents.Images;
+using Solvberget.Domain.Documents.Ratings;
+using Solvberget.Domain.Documents.Reviews;
 using Solvberget.Nancy.Modules;
 
 using Xunit;

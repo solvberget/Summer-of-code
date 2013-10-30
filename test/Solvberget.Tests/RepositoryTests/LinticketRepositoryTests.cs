@@ -1,8 +1,6 @@
 ﻿using System.Linq;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
-
+using Solvberget.Domain.Events;
+using Solvberget.Domain.Integrations.Linticket;
 using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests

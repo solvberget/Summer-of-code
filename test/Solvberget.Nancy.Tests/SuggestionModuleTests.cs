@@ -3,8 +3,7 @@
 using Nancy.Testing;
 
 using Should;
-
-using Solvberget.Domain.Abstract;
+using Solvberget.Domain.Search;
 using Solvberget.Nancy.Modules;
 
 using Xunit;

@@ -1,10 +1,8 @@
 ﻿using System.Linq;
 
 using FakeItEasy;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
-
+using Solvberget.Domain.Blogs;
+using Solvberget.Domain.Utils;
 using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests

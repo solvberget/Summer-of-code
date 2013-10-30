@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-
-namespace Solvberget.Domain.DTO
+﻿namespace Solvberget.Domain.Integrations.LastFM
 {
     class LastFmAlbum
     {

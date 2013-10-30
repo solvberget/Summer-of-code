@@ -1,6 +1,5 @@
 ﻿using Nancy;
-
-using Solvberget.Domain.Abstract;
+using Solvberget.Domain.Events;
 
 namespace Solvberget.Nancy.Modules
 {

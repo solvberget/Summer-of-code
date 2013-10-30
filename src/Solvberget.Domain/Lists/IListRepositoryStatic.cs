@@ -1,7 +1,6 @@
 ﻿using System;
-using Solvberget.Domain.DTO;
 
-namespace Solvberget.Domain.Abstract
+namespace Solvberget.Domain.Lists
 {
     public interface IListRepositoryStatic : IListRepository
     {

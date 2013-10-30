@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Documents;
+using Solvberget.Domain.Users;
 
-namespace Solvberget.Domain.Abstract
+namespace Solvberget.Domain.Aleph
 {
     public interface IRepository
     {

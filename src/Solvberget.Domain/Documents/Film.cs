@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Documents
 {
     public class Film : Document
     {

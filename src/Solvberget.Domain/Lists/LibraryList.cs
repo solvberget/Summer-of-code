@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Solvberget.Domain.Documents;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Lists
 {
     public class LibraryList
     {

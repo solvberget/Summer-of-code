@@ -1,8 +1,7 @@
 ﻿using FakeItEasy;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
-
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents.Reviews;
+using Solvberget.Domain.Utils;
 using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests

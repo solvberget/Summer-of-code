@@ -5,9 +5,7 @@ using FakeItEasy;
 using Nancy.Testing;
 
 using Should;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.DTO;
+using Solvberget.Domain.Events;
 using Solvberget.Nancy.Modules;
 
 using Xunit;

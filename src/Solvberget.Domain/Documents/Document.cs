@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Solvberget.Domain.Events;
+using Solvberget.Domain.Utils;
 
-namespace Solvberget.Domain.DTO
+namespace Solvberget.Domain.Documents
 {
     public class Document
     {

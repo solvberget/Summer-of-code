@@ -3,10 +3,10 @@ using System.IO;
 using System.Linq;
 
 using FakeItEasy;
-
-using Solvberget.Domain.Abstract;
-using Solvberget.Domain.Implementation;
-
+using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Documents.Images;
+using Solvberget.Domain.Lists;
+using Solvberget.Domain.Utils;
 using Xunit;
 
 namespace Solvberget.Service.Tests.RepositoryTests
