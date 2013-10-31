@@ -57,6 +57,8 @@ namespace Solvberget.Nancy.Mapping
 
         private static DocumentAvailabilityDto MapAvailability(Document document)
         {
+            if (null == document.AvailabilityInfo) return null;
+
             var availability = document.AvailabilityInfo.FirstOrDefault();
 
             if (null == availability) return null;

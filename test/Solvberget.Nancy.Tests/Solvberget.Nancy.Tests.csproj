@@ -23,7 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CI|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CI|AnyCPU'">
     <OutputPath>bin\CI\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
@@ -90,6 +90,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
+      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Name>Solvberget.Core.DTOs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Solvberget.Domain\Solvberget.Domain.csproj">
       <Project>{7EB0D844-7622-4F0D-A103-C326C6FA1293}</Project>
       <Name>Solvberget.Domain</Name>
