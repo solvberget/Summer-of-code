@@ -109,7 +109,7 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.AsString().ShouldEqual("Awesome!");
+            response.Body.DeserializeJson<DocumentReviewDto>().Review.ShouldEqual("Awesome!");
         }
 
         [Fact]
