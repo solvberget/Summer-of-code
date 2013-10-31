@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 
 using FakeItEasy;
-
+using Nancy;
 using Nancy.Testing;
 
 using Should;
+using Solvberget.Core.DTOs;
 using Solvberget.Domain;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Documents;
@@ -46,7 +47,7 @@ namespace Solvberget.Nancy.Tests
             });
         }
 
-        [Fact]
+        [Fact(Skip="Search is not yet implemented in refactored API")]
         public void SearchShouldQueryDocumentRepository()
         {
             // Given
@@ -80,7 +81,7 @@ namespace Solvberget.Nancy.Tests
         public void GetWithIdShouldFetchDocumentFromRepository()
         {
             // Given
-            A.CallTo(() => _documentRepository.GetDocument("1234", true)).Returns(new Cd { Title = "Black Album" });
+            A.CallTo(() => _documentRepository.GetDocument("1234", false)).Returns(new Cd { Title = "Black Album" });
 
             // When
             var response = _browser.Get("/documents/1234", with =>
@@ -91,7 +92,7 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.DeserializeJson<Document>().Title.ShouldEqual("Black Album");
+            response.Body.DeserializeJson<DocumentDto>().Title.ShouldEqual("Black Album");
         }
 
         [Fact]
@@ -130,39 +131,22 @@ namespace Solvberget.Nancy.Tests
         }
 
         [Fact]
-        public void GetImageShouldReturnThumbnailIfQueryStringIsSpecified()
-        {
-            // Given
-            A.CallTo(() => _imageRepository.GetDocumentThumbnailImage("1234", "200")).Returns("image-200x200.png");
-
-            // When
-            var response = _browser.Get("/documents/1234/image", with =>
-            {
-                with.Query("size", "200");
-                with.Query("thumb", "true");
-                with.Accept("application/json");
-                with.HttpRequest();
-            });
-
-            // Then
-            response.Body.AsString().ShouldEqual("image-200x200.png"); 
-        }
-
-        [Fact]
-        public void GetImageShouldReturnImageName()
+        public void GetThumbnailShouldRedirectToThumbnail()
         {
             // Given
             A.CallTo(() => _imageRepository.GetDocumentImage("1234")).Returns("image.png");
 
             // When
-            var response = _browser.Get("/documents/1234/image", with =>
+            var response = _browser.Get("/documents/1234/thumbnail", with =>
             {
                 with.Accept("application/json");
                 with.HttpRequest();
             });
 
             // Then
-            response.Body.AsString().ShouldEqual("image.png");
+            response.StatusCode.ShouldEqual(HttpStatusCode.SeeOther);
+            response.Headers.Keys.ShouldContain("Location");
+            response.Headers["Location"].ShouldEqual("image.png");
         }
     }
 }
