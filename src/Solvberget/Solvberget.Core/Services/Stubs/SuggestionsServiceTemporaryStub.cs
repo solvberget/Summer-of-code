@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Solvberget.Core.DTOs.Deprecated.DTO;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
-using Solvberget.Nancy.Modules.V2;
 
 namespace Solvberget.Core.Services.Stubs
 {
@@ -18,18 +17,18 @@ namespace Solvberget.Core.Services.Stubs
                 Documents = new List<DocumentDto>
                 {
                     new DocumentDto {Title = "Harry Potter", Year = "2008"},
-                    new DocumentDto()
+                    new DocumentDto
                     {
                         Title = "Harry Potter and the Prisoner from Azkaban",
                         SubTitle = "Harry Potter og fangen fra Azkaban",
                     },
-                    new DocumentDto()
+                    new DocumentDto
                     {
                         Title = "The Wall",
                         SubTitle = "Pink Floyd",
                         Year = "1983"
                     },
-                    new DocumentDto()
+                    new DocumentDto
                     {
                         Title = "The Wall",
                         SubTitle = "David Gilmour",
@@ -51,18 +50,18 @@ namespace Solvberget.Core.Services.Stubs
                     Documents = new List<DocumentDto>
                     {
                         new DocumentDto {Title = "Harry Potter", Year = "2008"},
-                        new DocumentDto()
+                        new DocumentDto
                         {
                             Title = "Harry Potter and the Prisoner from Azkaban",
                             SubTitle = "Harry Potter og fangen fra Azkaban",
                         },
-                        new DocumentDto()
+                        new DocumentDto
                         {
                             Title = "The Wall",
                             SubTitle = "Pink Floyd",
                             Year = "1983"
                         },
-                        new DocumentDto()
+                        new DocumentDto
                         {
                             Title = "The Wall",
                             SubTitle = "David Gilmour",
@@ -76,18 +75,18 @@ namespace Solvberget.Core.Services.Stubs
                     Documents = new List<DocumentDto>
                     {
                         new DocumentDto {Title = "Harry Potter", Year = "2008"},
-                        new DocumentDto()
+                        new DocumentDto
                         {
                             Title = "Harry Potter and the Prisoner from Azkaban",
                             SubTitle = "Harry Potter og fangen fra Azkaban",
                         },
-                        new DocumentDto()
+                        new DocumentDto
                         {
                             Title = "The Wall",
                             SubTitle = "Pink Floyd",
                             Year = "1983"
                         },
-                        new DocumentDto()
+                        new DocumentDto
                         {
                             Title = "The Wall",
                             SubTitle = "David Gilmour",

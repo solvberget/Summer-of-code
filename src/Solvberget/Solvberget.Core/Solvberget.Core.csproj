@@ -143,7 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
-      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Project>{c74b2533-6f19-4047-a4d0-434a1fe5f027}</Project>
       <Name>Solvberget.Core.DTOs</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">

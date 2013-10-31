@@ -1,9 +1,7 @@
-using System;
 using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
-using Android.Renderscripts;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Cirrious.CrossCore;
@@ -31,7 +29,6 @@ namespace Solvberget.Droid.Views
 		{
 			get { return _viewModel ?? (_viewModel = base.ViewModel as HomeViewModel); }
 		}
-
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -79,9 +76,7 @@ namespace Solvberget.Droid.Views
             {
                 ViewModel.SelectMenuItemCommand.Execute(ViewModel.MenuItems[0]);
             }
- 
         }
-
 
         /// <summary>
         /// Use the custom presenter to determine if we can navigate forward.
@@ -147,28 +142,31 @@ namespace Solvberget.Droid.Views
                             title = "Nyheter";
                         }
                         break;
-<<<<<<< HEAD
                     case HomeViewModel.Section.OpeningHours:
+                    {
+                        if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as OpeningHoursView !=
+                            null)
                         {
-                            if(SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as OpeningHoursView != null)
-                            {
-                                return true;
-                            }
-                            frag = new OpeningHoursView();
-                            title = "Åpningstider";
-=======
+                            return true;
+                        }
+                        frag = new OpeningHoursView();
+                        title = "Åpningstider";
+                        break;
+                    }
                     case HomeViewModel.Section.Lists:
                         {
-                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as SuggestionsListListView != null)
+                            if (
+                                SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as
+                                    SuggestionsListListView != null)
                             {
                                 return true;
                             }
 
                             frag = new SuggestionsListListView();
                             title = "Anbefalinger";
->>>>>>> Anbefalinger i menyen gar til riktig view
                         }
                         break;
+                    
                     case HomeViewModel.Section.Unknown:
                     {
                         if (request.ViewModelType == typeof(SuggestionsListViewModel))

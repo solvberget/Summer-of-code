@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Solvberget.Nancy.Modules.V2;
+using Solvberget.Core.DTOs;
 
 namespace Solvberget.Core.Services.Interfaces
 {
