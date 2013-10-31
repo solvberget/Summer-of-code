@@ -1,15 +1,14 @@
 'use strict';
 
-var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, documentRating) {
+var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, documentRating, documentReview) {
 
     $scope.document = documents.get({id : $routeParams.id}, function(){
         $rootScope.breadcrumb.push($scope.document.title);
         $scope.imageUrl = $$config.apiPrefix + 'documents/' + $scope.document.id + '/thumbnail';
     });
 
-    $scope.rating = documentRating.get({id : $routeParams.id}, function(){
-        console.log("rating:", $scope.rating);
-    });
+    $scope.rating = documentRating.get({id : $routeParams.id});
+    $scope.review = documentReview.get({id : $routeParams.id});
 };
 
 angular.module('Solvberget.WebApp')

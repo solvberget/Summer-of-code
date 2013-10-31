@@ -13,4 +13,9 @@ angular.module('Solvberget.WebApp')
 
         var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
         return $resource(apiPrefix + 'documents/:id/rating');
+    })
+    .factory('documentReview', function($resource){
+
+        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
+        return $resource(apiPrefix + 'documents/:id/review');
     });
