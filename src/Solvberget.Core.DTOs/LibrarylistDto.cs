@@ -6,6 +6,7 @@ namespace Solvberget.Core.DTOs
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public string SubTitle { get; set; }
         public List<DocumentDto> Documents { get; set; }
     }
 }

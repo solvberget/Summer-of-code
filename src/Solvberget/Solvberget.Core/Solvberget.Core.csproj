@@ -79,11 +79,14 @@
     <Compile Include="Services\Interfaces\ISearchService.cs" />
     <Compile Include="Services\IStringDownloader.cs" />
     <Compile Include="Services\OpeningHoursService.cs" />
+    <Compile Include="Services\Interfaces\ISuggestionsService.cs" />
     <Compile Include="Services\NewsService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\Stubs\DocumentServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\NewsServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />
+    <Compile Include="Services\Stubs\SuggestionsServiceTemporaryStub.cs" />
+    <Compile Include="Services\SuggestionsService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\GenericWebViewViewModel.cs" />
@@ -102,6 +105,10 @@
     <Compile Include="ViewModels\MyPageViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\SuggestionListSummaryViewModel.cs" />
+    <Compile Include="ViewModels\SuggestionsListListViewModel.cs" />
+    <Compile Include="ViewModels\SuggestionsListViewModel.cs" />
+    <Compile Include="ViewModels\SuggestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -136,13 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
-      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Project>{c74b2533-6f19-4047-a4d0-434a1fe5f027}</Project>
       <Name>Solvberget.Core.DTOs</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
-      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Project>{c74b2533-6f19-4047-a4d0-434a1fe5f027}</Project>
       <Name>Solvberget.Core.DTOs</Name>
     </ProjectReference>
   </ItemGroup>

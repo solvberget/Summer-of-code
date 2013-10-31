@@ -30,7 +30,6 @@ namespace Solvberget.Droid.Views
 			get { return _viewModel ?? (_viewModel = base.ViewModel as HomeViewModel); }
 		}
 
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -77,9 +76,7 @@ namespace Solvberget.Droid.Views
             {
                 ViewModel.SelectMenuItemCommand.Execute(ViewModel.MenuItems[0]);
             }
- 
         }
-
 
         /// <summary>
         /// Use the custom presenter to determine if we can navigate forward.
@@ -91,6 +88,8 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof(SearchViewModel), this);
             customPresenter.Register(typeof(NewsListingViewModel), this);
             customPresenter.Register(typeof(OpeningHoursViewModel), this);
+            customPresenter.Register(typeof(SuggestionsListListViewModel), this);
+            customPresenter.Register(typeof(SuggestionsListViewModel), this);
         }
 
         /// <summary>
@@ -102,6 +101,7 @@ namespace Solvberget.Droid.Views
         /// <returns></returns>
         public bool Show(MvxViewModelRequest request)
         {
+            
             try
             {
                 MvxFragment frag = null;
@@ -144,15 +144,40 @@ namespace Solvberget.Droid.Views
                         }
                         break;
                     case HomeViewModel.Section.OpeningHours:
+                    {
+                        if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as OpeningHoursView !=
+                            null)
                         {
-                            if(SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as OpeningHoursView != null)
+                            return true;
+                        }
+                        frag = new OpeningHoursView();
+                        title = "Åpningstider";
+                        break;
+                    }
+                    case HomeViewModel.Section.Lists:
+                        {
+                            if (
+                                SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as
+                                    SuggestionsListListView != null)
                             {
                                 return true;
                             }
-                            frag = new OpeningHoursView();
-                            title = "Åpningstider";
+
+                            frag = new SuggestionsListListView();
+                            title = "Anbefalinger";
                         }
                         break;
+                    
+                    case HomeViewModel.Section.Unknown:
+                    {
+                        if (request.ViewModelType == typeof(SuggestionsListViewModel))
+                        {
+                            ActionBar.SetDisplayHomeAsUpEnabled(true);
+                            ActionBar.SetHomeButtonEnabled(true);
+                            frag = new SuggestionsListView();
+                        }
+                        break;
+                    }
                 }
 
                 var loaderService = Mvx.Resolve<IMvxViewModelLoader>();

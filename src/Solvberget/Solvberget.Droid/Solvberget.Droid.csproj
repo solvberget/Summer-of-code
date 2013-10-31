@@ -123,6 +123,8 @@
     <Compile Include="Views\Fragments\GenericWebViewView.cs" />
     <Compile Include="Views\WebClients\ProgressHandlingWebViewClient.cs" />
     <Compile Include="Views\WebClients\ProgressUpdatingWebChromeClient.cs" />
+    <Compile Include="Views\Fragments\SuggestionsListListView.cs" />
+    <Compile Include="Views\Fragments\SuggestionsListView.cs" />
     <Compile Include="Views\LoadingIndicator.cs" />
     <Compile Include="Views\Fragments\NewsListingView.cs" />
     <Compile Include="Views\Fragments\MediaDetailView.cs" />
@@ -186,7 +188,10 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
-    <AndroidResource Include="Resources\Layout\page_webview.axml">
+    <AndroidResource Include="Resources\Layout\page_webview.axml"/>
+    <AndroidResource Include="Resources\Layout\fragment_suggestions_list.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_suggestions_list_list.axml" />
+    <AndroidResource Include="Resources\Layout\item_suggestions_list_summary.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_hourslisting.axml">
