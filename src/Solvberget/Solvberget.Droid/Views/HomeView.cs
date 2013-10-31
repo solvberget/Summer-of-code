@@ -101,6 +101,7 @@ namespace Solvberget.Droid.Views
         /// <returns></returns>
         public bool Show(MvxViewModelRequest request)
         {
+            
             try
             {
                 MvxFragment frag = null;
@@ -171,6 +172,8 @@ namespace Solvberget.Droid.Views
                     {
                         if (request.ViewModelType == typeof(SuggestionsListViewModel))
                         {
+                            ActionBar.SetDisplayHomeAsUpEnabled(true);
+                            ActionBar.SetHomeButtonEnabled(true);
                             frag = new SuggestionsListView();
                         }
                         break;

@@ -26,10 +26,10 @@ namespace Solvberget.Core.ViewModels
             Title = document.Title;
             ItemTitle = document.Title;
             Name = document.Title;
-            Year = document.PublishedYear.ToString("0000");
-            Type = document.DocType;
+            Year = "0000";
+            Type = document.Type;
             TypeAndYear = String.Format("{0} ({1})", Type, Year);
-            Author = document.MainResponsible.ToString();
+            Author = document.MainContributor;
 
             IsLoading = false;
         }

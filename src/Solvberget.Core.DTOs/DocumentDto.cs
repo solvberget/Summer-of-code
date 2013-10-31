@@ -7,6 +7,8 @@
         public string SubTitle { get; set; }
         public string Type { get; set; }
         public string Year { get; set; }
+        public string MainContributor { get; set; }
+        public string Publisher { get; set; }
         public DocumentAvailabilityDto Availability { get; set; }
     }
 }
