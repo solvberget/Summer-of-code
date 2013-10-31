@@ -1,8 +1,7 @@
 ﻿using System;
-
 using Autofac;
 
-namespace Solvberget.Nancy
+namespace Solvberget.Nancy.Extensions
 {
     public static class ComponentContextExtensions
     {

@@ -61,6 +61,15 @@ namespace Solvberget.Core.Tests.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [{&quot;title&quot;:&quot;Informasjonen og servicetelefonen&quot;,&quot;phone&quot;:&quot;(+47) 51 50 74 65 – åpen mandag-fredag 10.00-15.00&quot;,&quot;fax&quot;:&quot;(+47) 51 50 70 25&quot;,&quot;email&quot;:&quot;biblioteket@stavanger-kulturhus.no&quot;,&quot;address&quot;:&quot;Postboks 310, 4002 STAVANGER&quot;,&quot;visitingAddress&quot;:&quot;Sølvberggata 2.&quot;,&quot;contactPersons&quot;:[]},{&quot;title&quot;:&quot;Pressekontakter&quot;,&quot;contactPersons&quot;:[{&quot;name&quot;:&quot;Dorthe Stramrud&quot;,&quot;position&quot;:&quot;Kommunikasjonsrådgiver&quot;,&quot;email&quot;:&quot;dorthe.h.stramrud@stavanger-kulturhus.no&quot;,&quot;phone&quot;:&quot;902 06 908&quot;},{&quot;name&quot;:&quot;Øyvind Berekvam&quot;,&quot;position&quot;:&quot;Nettredaktør&quot;,&quot;ema [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ContactInfoSampleJson {
+            get {
+                return ResourceManager.GetString("ContactInfoSampleJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [{&quot;title&quot;:&quot;Supertorsdag: Vaage og Michelet &quot;,&quot;ingress&quot;:&quot;Supertorsdag 31. oktober: Møt Lars Amund Vaage klokken 12.00 og Jon Michelet klokken 20.00&quot;,&quot;published&quot;:&quot;2013-10-29T07:50:00&quot;,&quot;link&quot;:&quot;http://www.stavanger-kulturhus.no/SOELVBERGET/Supertorsdag-Vaage-og-Michelet&quot;},{&quot;title&quot;:&quot;Høstferske ebok-nyheter&quot;,&quot;ingress&quot;:&quot;Renberg, Solstad, Michelet, Ravatn og Grytten. Flere av høstens mest omtalte bøker er nå tilgjengelig for ebok-utlån.&amp;nbsp;&quot;,&quot;published&quot;:&quot;2013-10-28T11:29:00&quot;,&quot;link&quot;:&quot;http://www.stavanger-kulturhus [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string NewsSampleJson {
@@ -75,15 +84,6 @@ namespace Solvberget.Core.Tests.Properties {
         internal static string OpeningHoursSampleJson {
             get {
                 return ResourceManager.GetString("OpeningHoursSampleJson", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [{&quot;title&quot;:&quot;Kulturhusets foajé&quot;,&quot;hours&quot;:{&quot;mandag-torsdag&quot;:&quot;10.00-22.00&quot;,&quot;fredag og lørdag&quot;:&quot;10.00-23.00&quot;,&quot;søndag&quot;:&quot;12.00-22.00&quot;}},{&quot;title&quot;:&quot;Stavanger bibliotek&quot;,&quot;hours&quot;:{&quot;mandag - torsdag&quot;:&quot;&quot;,&quot;musikk- og filmbiblioteket&quot;:&quot;10.00 - 21.00&quot;,&quot;kultur- og faktabiblioteket&quot;:&quot;10.00 - 19.00&quot;,&quot;barne- og ungdomsbiblioteket&quot;:&quot;10.00 - 19.00&quot;,&quot;fredag (alle avdelinger)&quot;:&quot;10.00 - 17.00&quot;,&quot;lørdag (alle avdelinger)&quot;:&quot;10.00 - 16.00&quot;,&quot;søndag (alle avdelinger)&quot;:&quot;12.00 - 16.00&quot;}},{&quot;title&quot;:&quot;Madla bibliotek&quot;,&quot;hours&quot;:{&quot;mandag - Torsda [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string String {
-            get {
-                return ResourceManager.GetString("String", resourceCulture);
             }
         }
     }

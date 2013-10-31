@@ -126,10 +126,13 @@
   <data name="ServiceUrl_Lists" xml:space="preserve">
     <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/lists.json</value>
   </data>
+  <data name="ServiceUrl_Contact" xml:space="preserve">
+    <value>http://dl.dropboxusercontent.com/u/7343226/solvberget/contactinfo.json</value>
+  </data>
   <data name="ServiceUrl_News" xml:space="preserve">
-    <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/news.json</value>
+    <value>http://dl.dropboxusercontent.com/u/7343226/solvberget/news.json</value>
   </data>
   <data name="ServiceUrl_OpeningHours" xml:space="preserve">
-    <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/openinghours.json</value>
+    <value>http://dl.dropboxusercontent.com/u/7343226/solvberget/openinghours.json</value>
   </data>
 </root>

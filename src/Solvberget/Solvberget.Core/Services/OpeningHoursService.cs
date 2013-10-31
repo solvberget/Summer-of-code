@@ -9,11 +9,11 @@ namespace Solvberget.Core.Services
 {
     public class OpeningHoursService : IOpeningHoursService
     {
-        private readonly IStringDownloader _dowloader;
+        private readonly IStringDownloader _downloader;
 
-        public OpeningHoursService(IStringDownloader dowloader)
+        public OpeningHoursService(IStringDownloader downloader)
         {
-            _dowloader = dowloader;
+            _downloader = downloader;
         }
 
         public async Task<IList<OpeningHoursDto>> GetOpeningHours()
@@ -21,7 +21,7 @@ namespace Solvberget.Core.Services
             try
             {
                 var openingHoursJson =
-                    await _dowloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_OpeningHours);
+                    await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_OpeningHours);
                 return JsonConvert.DeserializeObject<List<OpeningHoursDto>>(openingHoursJson);
             }
             catch

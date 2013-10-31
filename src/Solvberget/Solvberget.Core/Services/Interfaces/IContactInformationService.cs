@@ -4,8 +4,8 @@ using Solvberget.Core.DTOs;
 
 namespace Solvberget.Core.Services.Interfaces
 {
-    public interface IOpeningHoursService
+    public interface IContactInformationService
     {
-        Task<IList<OpeningHoursDto>> GetOpeningHours();
+        Task<IList<ContactInfoDto>> GetContactInfo();
     }
 }
