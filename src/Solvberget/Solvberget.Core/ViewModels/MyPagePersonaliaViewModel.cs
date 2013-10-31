@@ -1,22 +1,47 @@
-﻿using System;
-using Solvberget.Core.Services;
+﻿using Cirrious.CrossCore;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class MyPagePersonaliaViewModel : BaseViewModel
     {
-        public MyPagePersonaliaViewModel(IUserInformationService service)
-        {
-            if (service == null) throw new ArgumentNullException("service");
+        private readonly IUserService _service;
 
-            var user = service.GetUserInformation("id");
-            Name = user.Name;
-            Email = user.Email;
-            StreetAdress = user.StreetAddress;
-            CityAdress = user.CityAddress;
-            CellPhoneNumber = user.CellPhoneNumber;
-            DateOfBirth = user.DateOfBirth;
+        public MyPagePersonaliaViewModel(IUserService service)
+        {
+
+            _service = service;
+            Id = service.GetUserId();
+            Load();
+
+            //if (service == null) throw new ArgumentNullException("service");
+
+            //var user = await service.GetUserInformation("id");
+            //Name = user.Name;
+            //Email = user.Email;
+            //StreetAdress = user.StreetAddress;
+            //CityAdress = user.CityAddress;
+            //CellPhoneNumber = user.CellPhoneNumber;
+            //DateOfBirth = user.DateOfBirth;
+        }
+
+        public void Init()
+        {
+            Mvx.Trace("=============================Init!=============================");
+            Load();
+        }
+
+        private string _id;
+
+        public new string Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                RaisePropertyChanged(() => Id);
+            }
         }
 
         private string _name;
@@ -100,6 +125,19 @@ namespace Solvberget.Core.ViewModels
                 _dateOfBirth = value;
                 RaisePropertyChanged(() => DateOfBirth);
             }
+        }
+
+        public async void Load()
+        {
+            IsLoading = true;
+            var user = await _service.GetUserInformation(Id);
+            DateOfBirth = user.DateOfBirth;
+            CellPhoneNumber = user.CellPhoneNumber;
+            CityAdress = user.CityAddress;
+            StreetAdress = user.StreetAddress;
+            Email = user.Email;
+            Name = user.Name;
+            IsLoading = false;
         }
     }
 }

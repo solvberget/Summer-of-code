@@ -1,105 +1,68 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Solvberget.Core.DTOs.Deprecated.DTO;
+using Solvberget.Core.Properties;
+using Solvberget.Core.Services.Interfaces;
 
 namespace Solvberget.Core.Services
 {
-    public interface IUserInformationService
+    public class UserInformationService : IUserService
     {
-        UserInfo GetUserInformation(string userId);
-        List<Loan> GetUserLoans(string userId);
-        List<Reservation> GetUserReservations(string userId);
-        List<Notification> GetUserNotifications(string userId);
-        List<Fine> GetUserFines(string userId);
-        List<Document> GetUserFavorites(string userId);
-    }
+        
+        private IStringDownloader _downloader;
 
-    public class UserInformationService : IUserInformationService
-    {
-        public UserInfo GetUserInformation(string userId)
+        public UserInformationService(IStringDownloader downloader)
         {
-            return new UserInfo
-            {
-                Name = "Ellen Wiig Andresen",
-                DateOfBirth = "01.01.0001",
-                Email = "l@n.no",
-                CellPhoneNumber = "81549300",
-                StreetAddress = "Veigata 9",
-                CityAddress = "1234 Byen",
-                Id = "STV000209626",
-                HomeLibrary = "Hovedbibl."
-            };
+             _downloader = downloader;
         }
 
-        public List<Loan> GetUserLoans(string userId)
+        public string GetUserId()
         {
-            var userLoans = new List<Loan>();
-
-            userLoans.Add(new Loan
-            {
-                DocumentTitle = "Ringenes Herre - Atter en konge",
-                LoanDate = "01.11.2013",    
-                DueDate = "01.01.2014"
-            });
-
-            return userLoans;
+            return "164916";
         }
 
-        public List<Reservation> GetUserReservations(string userId)
+        public async Task<UserInfo> GetUserInformation(string userId)
         {
-            var userReservations = new List<Reservation>();
-
-            userReservations.Add(new Reservation
+            var url = "https://dl.dropboxusercontent.com/u/19550193/User_info/164916.json";
+            try
             {
-                DocumentTitle = "Harry Potter og Fangen fra Azkaban",
-                Status = "Ikke klar til henting"
-            });
-
-            userReservations.Add(new Reservation
+                var response = await _downloader.Download(url);
+                return JsonConvert.DeserializeObject<UserInfo>(response);
+            }
+            catch (Exception)
             {
-                DocumentTitle = "Harry Potter og Mysteriekammeret",
-                Status = "Klar for henting hos Hovedbiblioteket"
-            });
-
-            return userReservations;
+                return new UserInfo
+                {
+                    Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
+                };
+            }
         }
 
-        public List<Notification> GetUserNotifications(string userId)
+        public Task<List<Loan>> GetUserLoans(string userId)
         {
-            var notifications = new List<Notification>();
-
-            notifications.Add(new Notification
-            {
-                Title = "Hentemelding",
-                Content = "Harry Potter og Mysteriekammeret er klar for henting hos Hovedbiblioteket"
-            });
-
-            return notifications;
+            throw new NotImplementedException();
         }
 
-        public List<Fine> GetUserFines(string userId)
+        public Task<List<Reservation>> GetUserReservations(string userId)
         {
-            var fines = new List<Fine>();
-
-            fines.Add(new Fine
-            {
-                Description = "Du har ikke levert boka di!",
-                Sum = 50.0,
-                
-            });
-
-            return fines;
+            throw new NotImplementedException();
         }
 
-        public List<Document> GetUserFavorites(string userId)
+        public Task<List<Notification>> GetUserNotifications(string userId)
         {
-            var favorites = new List<Document>();
+            throw new NotImplementedException();
+        }
 
-            favorites.Add(new Book
-            {
-                Title = "Harry Potter og De Vises Stein",
-            });
+        public Task<List<Fine>> GetUserFines(string userId)
+        {
+            throw new NotImplementedException();
+        }
 
-            return favorites;
+        public Task<List<Document>> GetUserFavorites(string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

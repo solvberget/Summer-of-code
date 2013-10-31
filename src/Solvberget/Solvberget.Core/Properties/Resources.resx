@@ -148,4 +148,7 @@
     <value>/blogs/{0}/{1}</value>
     <comment>0 =Blog Id, 1=Post Id</comment>
   </data>
+  <data name="ServiceUrl_UserInfo" xml:space="preserve">
+    <value>https://www.dropbox.com/sh/o58cm0caauulidy/user_info/</value>
+  </data>
 </root>
