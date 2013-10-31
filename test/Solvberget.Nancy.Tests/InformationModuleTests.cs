@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 using FakeItEasy;
 
 using Nancy.Testing;
 
 using Should;
+
+using Solvberget.Core.DTOs;
 using Solvberget.Domain.Info;
 using Solvberget.Nancy.Modules;
 
@@ -46,7 +51,7 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.DeserializeJson<List<ContactInformation>>().Count.ShouldEqual(2);
+            response.Body.DeserializeJson<List<ContactInfoDto>>().Count().ShouldEqual(2);
         }
 
         [Fact]

@@ -10,7 +10,7 @@ namespace Solvberget.Core.DTOs
         public string Email { get; set; }
         public string Address { get; set; }
         public string VisitingAddress { get; set; }
-        public IList<ContactPersonDto> ContactPersons { get; set; }
-        public List<string> GenericFields { get; set; }
+        public IEnumerable<ContactPersonDto> ContactPersons { get; set; }
+        public IEnumerable<string> GenericFields { get; set; }
     }
 }

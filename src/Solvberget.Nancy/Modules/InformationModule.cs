@@ -22,7 +22,7 @@ namespace Solvberget.Nancy.Modules
                     Title = ci.Title,
                     VisitingAddress = ci.VisitingAddress,
                     ContactPersons = MapContactPersons(ci.ContactPersons),
-                    GenericFields = ci.GenericFields.ToList()
+                    GenericFields = ci.GenericFields
                 });
             };
 
@@ -42,18 +42,18 @@ namespace Solvberget.Nancy.Modules
             };
         }
 
-        private static IList<ContactPersonDto> MapContactPersons(IEnumerable<ContactPerson> contactPersons)
+        private static IEnumerable<ContactPersonDto> MapContactPersons(IEnumerable<ContactPerson> contactPersons)
         {
             if (contactPersons == null)
-                return new List<ContactPersonDto>();
+                return Enumerable.Empty<ContactPersonDto>();
 
-            return (contactPersons.Select(cp => new ContactPersonDto
+            return contactPersons.Select(cp => new ContactPersonDto
             {
                 Email = cp.Email,
                 Name = cp.Name,
                 Phone = cp.Phone,
                 Position = cp.Position
-            })).ToList();
+            });
         }
     }
 }

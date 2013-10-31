@@ -29,10 +29,10 @@ namespace Solvberget.Core.ViewModels
                 new ContactInfoBoxViewModel
                 {
                     Address = ci.Address,
-                    ContactPersons = MapContactPersons(ci.ContactPersons),
+                    ContactPersons = MapContactPersons(ci.ContactPersons).ToList(),
                     Email = ci.Email,
                     Fax = ci.Fax,
-                    GenericFields = ci.GenericFields,
+                    GenericFields = ci.GenericFields.NullSafeToList(),
                     Phone = ci.Phone,
                     Title = ci.Title,
                     VisitingAddress = ci.VisitingAddress,
@@ -41,16 +41,18 @@ namespace Solvberget.Core.ViewModels
             IsLoading = false;
         }
 
-        public List<ContactPersonViewModel> MapContactPersons(IList<ContactPersonDto> contactPersons)
+        public IEnumerable<ContactPersonViewModel> MapContactPersons(IEnumerable<ContactPersonDto> contactPersons)
         {
-            return contactPersons.Select(cp =>
-                new ContactPersonViewModel
-                {
-                    Email = cp.Email,
-                    Name = cp.Name,
-                    Phone = cp.Phone,
-                    Position = cp.Position
-                }).ToList();
+            if (contactPersons == null)
+                return Enumerable.Empty<ContactPersonViewModel>();
+
+            return contactPersons.Select(cp => new ContactPersonViewModel
+            {
+                Email = cp.Email,
+                Name = cp.Name,
+                Phone = cp.Phone,
+                Position = cp.Position
+            });
         }
 
         private List<ContactInfoBoxViewModel> _infoBoxes;
