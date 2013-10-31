@@ -18,24 +18,48 @@
 </div>
 
 <h2>Tilgjengelighet</h2>
-    <div class="media-item-info-box">
-        <strong>{{document.availability.branch}}</strong>
-        <div>
-            {{document.availability.department}}
+
+<div class="media-item-info-box">
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Filial</div>
+            <strong>{{document.availability.branch}}</strong>
         </div>
-        <div>
-            {{document.availability.collection}}
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Finnes på hylle</div>
+            <div class="meta-value">
+                {{document.classification}} {{document.availability.location}}
+                <span class="meta-value placeholder" ng-hide="document.classification || document.availability.location">-</span>
+            </div>
         </div>
-        <div>
-            Finnes på hylle <span ng-show="{{document.classification}}">{{document.classification}}</span> {{document.availability.location}}
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Avdeling</div>
+            <div class="meta-value">{{document.availability.department}}
+                <span class="meta-value placeholder" ng-hide="document.availability.department">-</span>
+            </div>
         </div>
-        <div>
-            <i class="glyphicon glyphicon-ok-sign" style="color:green" ng-hide="{{document.Availability.AvailableCount == 0}}"></i>
-            <i class="glyphicon glyphicon-minus-sign" style="color:red" ng-show="{{document.Availability.AvailableCount == 0}}"></i>
-            {{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Samling</div>
+            <div class="meta-value">{{document.availability.collection}}
+                <span class="meta-value placeholder" ng-hide="document.availability.collection">-</span>
+            </div>
         </div>
-        <div ng-show="{{document.Availability.EstimatedAvailableDate}}">
-            Tidligst tilgjengelig {{document.availability.estimatedAvailableDate}}
-        </div>
+    </div>
+    <div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="meta-label">Tilgjengelighet</div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <i class="glyphicon glyphicon-ok-sign" style="color:green" ng-hide="{{document.Availability.AvailableCount == 0}}"></i>
+        <i class="glyphicon glyphicon-minus-sign" style="color:red" ng-show="{{document.Availability.AvailableCount == 0}}"></i>
+        {{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån
+    </div>
+    <div class="col-xs-12 col-md-6" ng-show="{{document.Availability.EstimatedAvailableDate}}">
+        Tidligst tilgjengelig {{document.availability.estimatedAvailableDate}}
+    </div>
     </div>
 </div>
