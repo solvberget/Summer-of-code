@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Nancy;
-﻿using Solvberget.Domain.Documents;
+using Solvberget.Core.DTOs;
+using Solvberget.Domain.Documents;
 using Solvberget.Domain.Documents.Reviews;
 using Solvberget.Nancy.Mapping;
 using Solvberget.Domain.Aleph;
@@ -36,7 +37,7 @@ namespace Solvberget.Nancy.Modules
             Get["/{id}/review"] = args =>
             {
                 string review = reviews.GetDocumentReview(args.id);
-                return review;
+                return new DocumentReviewDto{ Review = review, Url = "" };
             };
         }
 

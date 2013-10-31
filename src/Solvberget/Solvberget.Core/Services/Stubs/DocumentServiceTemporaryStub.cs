@@ -13,7 +13,7 @@ namespace Solvberget.Core.Services.Stubs
             {
                 Id = docId,
                 Title = "Hello World Media",
-                Year = "2003",
+                Year = 2003,
                 Publisher = "Harris Media Information Publishing House",
                 MainContributor = "Harris Ford"
             };

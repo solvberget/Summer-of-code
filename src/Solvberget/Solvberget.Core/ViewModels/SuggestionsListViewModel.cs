@@ -71,7 +71,7 @@ namespace Solvberget.Core.ViewModels
                            {
                                Name = n.Title,
                                Type = n.Type,
-                               Year = n.Year,
+                               Year = n.Year.ToString(),
                                DocNumber = n.Id,
                                Title = n.SubTitle
                            }).ToList();
