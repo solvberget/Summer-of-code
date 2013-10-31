@@ -8,8 +8,8 @@ using Solvberget.Core.ViewModels;
 
 namespace Solvberget.iOS.Views
 {
-    [Register("FirstView")]
-    public class FirstView : MvxViewController
+    [Register("HomeView")]
+    public class HomeView : MvxViewController
     {
         public override void ViewDidLoad()
         {
@@ -19,8 +19,7 @@ namespace Solvberget.iOS.Views
             var uiLabel = new UILabel(new RectangleF(0, 0, 320, 100));
             View.AddSubview(uiLabel);
 
-            this.CreateBinding(uiLabel).To<FirstViewModel>(vm => vm.Hello).Apply();
-
+			uiLabel.Text = "Hello World";
             // Perform any additional setup after loading the view
         }
     }

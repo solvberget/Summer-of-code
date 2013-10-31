@@ -36,6 +36,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +64,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -152,11 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
-      <Project>{c74b2533-6f19-4047-a4d0-434a1fe5f027}</Project>
-      <Name>Solvberget.Core.DTOs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
-      <Project>{c74b2533-6f19-4047-a4d0-434a1fe5f027}</Project>
+      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
       <Name>Solvberget.Core.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
