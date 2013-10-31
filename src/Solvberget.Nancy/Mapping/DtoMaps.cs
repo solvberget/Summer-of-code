@@ -59,7 +59,7 @@ namespace Solvberget.Nancy.Mapping
 
             bookDto.AuthorName = book.Author.Name;
             bookDto.Language = book.Language;
-            bookDto.PublicationYear = book.PublishedYear;
+            bookDto.Year = book.PublishedYear;
             bookDto.Publisher = book.Publisher;
 
             if (!String.IsNullOrEmpty(book.SeriesTitle))

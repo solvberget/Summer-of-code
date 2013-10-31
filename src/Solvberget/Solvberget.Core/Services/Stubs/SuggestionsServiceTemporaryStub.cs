@@ -16,7 +16,7 @@ namespace Solvberget.Core.Services.Stubs
             {
                 Documents = new List<DocumentDto>
                 {
-                    new DocumentDto {Title = "Harry Potter", Year = "2008"},
+                    new DocumentDto {Title = "Harry Potter", Year = 2008},
                     new DocumentDto
                     {
                         Title = "Harry Potter and the Prisoner from Azkaban",
@@ -26,13 +26,13 @@ namespace Solvberget.Core.Services.Stubs
                     {
                         Title = "The Wall",
                         SubTitle = "Pink Floyd",
-                        Year = "1983"
+                        Year = 1983
                     },
                     new DocumentDto
                     {
                         Title = "The Wall",
                         SubTitle = "David Gilmour",
-                        Year = "1983"
+                        Year = 1983
                     }
                 }
             };
@@ -49,7 +49,7 @@ namespace Solvberget.Core.Services.Stubs
                     Name = "Harry Potter er kul",
                     Documents = new List<DocumentDto>
                     {
-                        new DocumentDto {Title = "Harry Potter", Year = "2008"},
+                        new DocumentDto {Title = "Harry Potter", Year = 2008},
                         new DocumentDto
                         {
                             Title = "Harry Potter and the Prisoner from Azkaban",
@@ -59,13 +59,13 @@ namespace Solvberget.Core.Services.Stubs
                         {
                             Title = "The Wall",
                             SubTitle = "Pink Floyd",
-                            Year = "1983"
+                            Year = 1983
                         },
                         new DocumentDto
                         {
                             Title = "The Wall",
                             SubTitle = "David Gilmour",
-                            Year = "1983"
+                            Year = 1983
                         }
                     }
                 },
@@ -74,7 +74,7 @@ namespace Solvberget.Core.Services.Stubs
                     Name = "Harry Potter er kul",
                     Documents = new List<DocumentDto>
                     {
-                        new DocumentDto {Title = "Harry Potter", Year = "2008"},
+                        new DocumentDto {Title = "Harry Potter", Year = 2008},
                         new DocumentDto
                         {
                             Title = "Harry Potter and the Prisoner from Azkaban",
@@ -84,13 +84,13 @@ namespace Solvberget.Core.Services.Stubs
                         {
                             Title = "The Wall",
                             SubTitle = "Pink Floyd",
-                            Year = "1983"
+                            Year = 1983
                         },
                         new DocumentDto
                         {
                             Title = "The Wall",
                             SubTitle = "David Gilmour",
-                            Year = "1983"
+                            Year = 1983
                         }
                     }
                 }
