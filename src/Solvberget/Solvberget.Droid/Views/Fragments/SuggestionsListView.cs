@@ -1,9 +1,6 @@
 using Android.Views;
-using Android.Widget;
-using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
-using Solvberget.Core.ViewModels;
 
 namespace Solvberget.Droid.Views.Fragments
 {
@@ -20,13 +17,6 @@ namespace Solvberget.Droid.Views.Fragments
         {
             SetHasOptionsMenu(true);
             base.OnCreateView(inflater, container, savedInstanceState);
-
-            //_loadingIndicator = new LoadingIndicator(Activity);
-            //var set = this.CreateBindingSet<SuggestionsListView, SuggestionsListViewModel>();
-            ////set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
-            //set.Apply();
-
-            //_loadingIndicator.Visible = true;
 
             return this.BindingInflate(Resource.Layout.fragment_suggestions_list, null);
         }
