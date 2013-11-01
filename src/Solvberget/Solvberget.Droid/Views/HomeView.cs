@@ -94,6 +94,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (ContactInfoViewModel), this);
             customPresenter.Register(typeof (BlogOverviewViewModel), this);
             customPresenter.Register(typeof (BlogViewModel), this);
+            customPresenter.Register(typeof (BlogPostViewModel), this);
         }
 
         /// <summary>
@@ -179,13 +180,11 @@ namespace Solvberget.Droid.Views
                     case HomeViewModel.Section.Unknown:
                     {
                         if (request.ViewModelType == typeof (SuggestionsListViewModel))
-                        {
                             frag = new SuggestionsListView();
-                        }
                         if (request.ViewModelType == typeof(BlogViewModel))
-                        {
                             frag = new BlogView();
-                        }
+                        if (request.ViewModelType == typeof (BlogPostViewModel))
+                            frag = new BlogPostView();
                         break;
                     }
                 }
