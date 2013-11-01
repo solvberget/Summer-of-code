@@ -1,31 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class BlogViewModel : BaseViewModel
     {
-        public void Init(string id)
+        private readonly IBlogService _blogService;
+
+        public BlogViewModel(IBlogService blogService)
         {
-            Load();
+            _blogService = blogService;
         }
 
-        private async Task Load()
+        public void Init(long id)
         {
-            // TODO: Implement
-            IsLoading = true;
-            await TaskEx.Delay(500);
+            Load(id);
+        }
 
-            Posts = new List<BlogPostViewModel>
+        private async Task Load(long id)
+        {
+            IsLoading = true;
+            Posts = (await _blogService.GetBlogPostListing(id)).Select(p => new BlogPostViewModel(_blogService)
             {
-                new BlogPostViewModel {Author = "Ole Olsen", Description = "Les denne spennende posten", Published = DateTime.Today, Id = 1},
-                new BlogPostViewModel {Author = "Ole Olsen", Description = "Les denne spennende posten", Published = DateTime.Today, Id = 2},
-                new BlogPostViewModel {Author = "Ole Olsen", Description = "Les denne spennende posten", Published = DateTime.Today, Id = 3}
-            };
+                Author = p.Author,
+                Content = p.Description,
+                Description = p.Description,
+                Title = p.Title,
+                Published = p.Published,
+                Url = "",
+            }).ToList();
 
             IsLoading = false;
         }

@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BlogDto.cs" />
+    <Compile Include="BlogPostDto.cs" />
+    <Compile Include="BlogPostOverviewDto.cs" />
     <Compile Include="BookDto.cs" />
     <Compile Include="BookSeriesDto.cs" />
     <Compile Include="ContactInfoDto.cs" />

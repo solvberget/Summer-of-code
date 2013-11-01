@@ -1,10 +1,36 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class BlogPostViewModel : BaseViewModel
     {
+        private readonly IBlogService _blogService;
+
+        public BlogPostViewModel(IBlogService blogService)
+        {
+            _blogService = blogService;
+        }
+
+        public void Init(string blogId, string postId)
+        {
+            Load(blogId, postId);
+        }
+
+        private async Task Load(string blogId, string postId)
+        {
+            IsLoading = true;
+
+            var blogPost = await _blogService.GetBlogPost(blogId, postId);
+            Author = blogPost.Author;
+            Published = blogPost.Published;
+            Content = blogPost.Content;
+
+            IsLoading = false;
+        }
+
         private string _author;
         public string Author 
         {

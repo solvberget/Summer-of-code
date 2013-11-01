@@ -75,9 +75,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\ContactInformationService.cs" />
     <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\HttpBodyDownloader.cs" />
+    <Compile Include="Services\Interfaces\IBlogService.cs" />
     <Compile Include="Services\Interfaces\IContactInformationService.cs" />
     <Compile Include="Services\Interfaces\IDocumentService.cs" />
     <Compile Include="Services\Interfaces\INewsService.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Services\SuggestionsService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BlogItemViewModel.cs" />
     <Compile Include="ViewModels\BlogOverviewViewModel.cs" />
     <Compile Include="ViewModels\BlogPostViewModel.cs" />
     <Compile Include="ViewModels\BlogViewModel.cs" />

@@ -1,50 +1,56 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class BlogOverviewViewModel : BaseViewModel
     {
+        private readonly IBlogService _blogService;
+
+        public BlogOverviewViewModel(IBlogService _blogService)
+        {
+            this._blogService = _blogService;
+        }
+
         public void Init()
         {
             Load();
-            
         }
 
         private async Task Load()
         {
-            // TODO: Implement
             IsLoading = true;
-            await TaskEx.Delay(500);
-            Blogs = new List<BlogViewModel>
+            Blogs = (await _blogService.GetBlogListing()).Select(b => new BlogItemViewModel
             {
-                new BlogViewModel() {Description = "Hello", Title =  "Title", },
-                new BlogViewModel() {Description = "Hello 2", Title =  "Title 2", },
-                new BlogViewModel() {Description = "Hello 3", Title =  "Title 3", },
-            };
+                Description = b.Description,
+                Id = b.Id,
+                Title = b.Title
+            }).ToList();
             IsLoading = false;
         }
 
-        private List<BlogViewModel> _blogs;
-        public List<BlogViewModel> Blogs 
+        private List<BlogItemViewModel> _blogs;
+        public List<BlogItemViewModel> Blogs 
         {
             get { return _blogs; }
             set { _blogs = value; RaisePropertyChanged(() => Blogs);}
         }
 
-        private MvxCommand<BlogViewModel> _showDetailsCommand;
+        private MvxCommand<BlogItemViewModel> _showDetailsCommand;
         public ICommand ShowDetailsCommand
         {
             get
             {
-                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<BlogViewModel>(ExecuteShowDetailsCommand));
+                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<BlogItemViewModel>(ExecuteShowDetailsCommand));
             }
         }
 
-        private void ExecuteShowDetailsCommand(BlogViewModel blog)
+        private void ExecuteShowDetailsCommand(BlogItemViewModel blog)
         {
             ShowViewModel<BlogViewModel>(new { id = blog.Id });
         }
