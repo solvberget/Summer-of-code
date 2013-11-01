@@ -5,6 +5,11 @@ namespace Solvberget.Core.ViewModels
 {
     public class BlogViewModel : BaseViewModel
     {
+        public void Init(string id)
+        {
+            // TODO: Load correct blog
+        }
+
         private BlogPostViewModel _posts;
         public BlogPostViewModel Posts 
         {

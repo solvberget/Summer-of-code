@@ -6,11 +6,11 @@ using Solvberget.Core.ViewModels;
 
 namespace Solvberget.Droid.Views.Fragments
 {
-    public class BlogOverviewView : MvxFragment
+    public class BlogView : MvxFragment
     {
         private LoadingIndicator _loadingIndicator;
 
-        public BlogOverviewView()
+        public BlogView()
         {
             RetainInstance = true;
         }
@@ -21,11 +21,11 @@ namespace Solvberget.Droid.Views.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
             _loadingIndicator = new LoadingIndicator(Activity);
 
-            var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
+            var set = this.CreateBindingSet<BlogView, BlogViewModel>();
             set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
             set.Apply();
 
-            return this.BindingInflate(Resource.Layout.fragment_blogoverview, null);
+            return this.BindingInflate(Resource.Layout.fragment_blog, null);
         }
     }
 }

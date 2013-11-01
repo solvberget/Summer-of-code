@@ -93,6 +93,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (SuggestionsListViewModel), this);
             customPresenter.Register(typeof (ContactInfoViewModel), this);
             customPresenter.Register(typeof (BlogOverviewViewModel), this);
+            customPresenter.Register(typeof (BlogViewModel), this);
         }
 
         /// <summary>
@@ -119,8 +120,8 @@ namespace Solvberget.Droid.Views
 
                         frag = new MyPageView();
                         title = "Min Side";
-                    }
                         break;
+                    }
                     case HomeViewModel.Section.Search:
                     {
                         if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as SearchView != null)
@@ -128,8 +129,8 @@ namespace Solvberget.Droid.Views
 
                         frag = new SearchView();
                         title = "Søk";
-                    }
                         break;
+                    }
                     case HomeViewModel.Section.News:
                     {
                         if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as NewsListingView != null)
@@ -137,8 +138,8 @@ namespace Solvberget.Droid.Views
 
                         frag = new NewsListingView();
                         title = "Nyheter";
-                    }
                         break;
+                    }
                     case HomeViewModel.Section.OpeningHours:
                     {
                         if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as OpeningHoursView != null)
@@ -155,8 +156,8 @@ namespace Solvberget.Droid.Views
 
                         frag = new SuggestionsListListView();
                         title = "Anbefalinger";
-                    }
                         break;
+                    }
                     case HomeViewModel.Section.Contact:
                     {
                         if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as ContactInfoView != null)
@@ -164,8 +165,8 @@ namespace Solvberget.Droid.Views
                         
                         frag = new ContactInfoView();
                         title = "Kontaktinformasjon";
-                    }
                         break;
+                    }
                     case HomeViewModel.Section.Blogs:
                     {
                         if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as BlogOverviewView != null) 
@@ -173,15 +174,17 @@ namespace Solvberget.Droid.Views
                         
                         frag = new BlogOverviewView();
                         title = "Blogger";
-                    }
                         break;
+                    }
                     case HomeViewModel.Section.Unknown:
                     {
                         if (request.ViewModelType == typeof (SuggestionsListViewModel))
                         {
-                            ActionBar.SetDisplayHomeAsUpEnabled(true);
-                            ActionBar.SetHomeButtonEnabled(true);
                             frag = new SuggestionsListView();
+                        }
+                        if (request.ViewModelType == typeof(BlogViewModel))
+                        {
+                            frag = new BlogView();
                         }
                         break;
                     }
