@@ -95,7 +95,7 @@
     <Compile Include="Services\SuggestionsService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
-    <Compile Include="ViewModels\BlogOveviewViewModel.cs" />
+    <Compile Include="ViewModels\BlogOverviewViewModel.cs" />
     <Compile Include="ViewModels\BlogPostViewModel.cs" />
     <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="ViewModels\ContactInfoBoxViewModel.cs" />

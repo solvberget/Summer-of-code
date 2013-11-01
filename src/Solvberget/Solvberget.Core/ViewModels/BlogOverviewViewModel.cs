@@ -3,7 +3,7 @@ using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
-    public class BlogOveviewViewModel : BaseViewModel
+    public class BlogOverviewViewModel : BaseViewModel
     {
         private List<BlogViewModel> _blogs;
         public List<BlogViewModel> Blogs 
