@@ -19,6 +19,12 @@ namespace Solvberget.Nancy.Modules
             Get["/{id}/thumbnail"] = args =>
             {
                 string url = images.GetDocumentImage(args.id);
+
+                if (String.IsNullOrEmpty(url))
+                {
+                    return Response.AsJson(new {}, HttpStatusCode.NotFound);
+                }
+
                 return Response.AsRedirect(url);
             };
 
