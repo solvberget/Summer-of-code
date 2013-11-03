@@ -1,1 +1,28 @@
 <div ng-include="'views/mediainfo.html'" />
+<h2>Fakta om CDen</h2>
+<div class="media-item-info-box">
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Artist eller komponist</div>
+            <div class="meta-value">{{document.artistOrComposerName}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Komposisjonstype eller sjanger</div>
+            <div class="meta-value"><span ng-repeat="p in document.compositionTypesOrGenres">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Språk</div>
+            <div class="meta-value">{{document.language}}</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Label/utgiver</div>
+            <div class="meta-value">{{document.publisher}}</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Publikasjonsår</div>
+            <div class="meta-value">{{document.year}}</div>
+        </div>
+    </div>
+</div>

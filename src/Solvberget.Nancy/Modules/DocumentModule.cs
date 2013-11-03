@@ -39,6 +39,15 @@ namespace Solvberget.Nancy.Modules
                 string review = reviews.GetDocumentReview(args.id);
                 return new DocumentReviewDto{ Review = review, Url = "" };
             };
+
+            Get["/search"] = _ =>
+            {
+                string query = Request.Query.query.HasValue ? Request.Query.query : null;
+
+                if (null == query) throw new InvalidOperationException("Ingenting å søke etter.");
+
+                return documents.Search(query).Select(DtoMaps.Map).ToArray();
+            };
         }
 
     }

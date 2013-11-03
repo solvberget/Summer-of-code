@@ -9,6 +9,10 @@ console.log("app $$config:", $$config)
 angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
     .config(function ($routeProvider) {
         $routeProvider
+            .when('/sok', {
+                templateUrl: 'views/search.html',
+                controller: 'SearchCtrl'
+            })
             .when('/min-side', {
                 templateUrl: 'views/minside.html',
                 controller: 'MinSideCtrl'
