@@ -135,4 +135,15 @@
   <data name="ServiceUrl_OpeningHours" xml:space="preserve">
     <value>http://dl.dropboxusercontent.com/u/7343226/solvberget/openinghours.json</value>
   </data>
+  <data name="ServiceUrl_BlogDetails" xml:space="preserve">
+    <value>/blogs/{1}</value>
+    <comment>1 = Blog Id</comment>
+  </data>
+  <data name="ServiceUrl_BlogListing" xml:space="preserve">
+    <value>/blogs/</value>
+  </data>
+  <data name="ServiceUrl_BlogPost" xml:space="preserve">
+    <value>/blogs/{1}/{2}</value>
+    <comment>1 =Blog Id, 2=Post Id</comment>
+  </data>
 </root>
