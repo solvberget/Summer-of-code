@@ -68,7 +68,7 @@ namespace Solvberget.Nancy.Mapping
         {
             var cdDto = new CdDto();
 
-            cdDto.ArtistOrComposerName = cd.ArtistOrComposer.Name;
+            if(null != cd.ArtistOrComposer) cdDto.ArtistOrComposerName = cd.ArtistOrComposer.Name;
             if(null != cd.CompositionTypeOrGenre) cdDto.CompositionTypesOrGenres = cd.CompositionTypeOrGenre.ToArray();
 
             return cdDto;
