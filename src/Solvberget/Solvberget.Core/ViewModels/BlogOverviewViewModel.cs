@@ -12,9 +12,9 @@ namespace Solvberget.Core.ViewModels
     {
         private readonly IBlogService _blogService;
 
-        public BlogOverviewViewModel(IBlogService _blogService)
+        public BlogOverviewViewModel(IBlogService blogService)
         {
-            this._blogService = _blogService;
+            _blogService = blogService;
         }
 
         public void Init()

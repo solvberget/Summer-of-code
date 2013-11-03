@@ -90,6 +90,7 @@
     <Compile Include="Services\Interfaces\ISuggestionsService.cs" />
     <Compile Include="Services\NewsService.cs" />
     <Compile Include="Services\SearchService.cs" />
+    <Compile Include="Services\Stubs\BlogServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\DocumentServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\NewsServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />

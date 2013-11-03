@@ -34,7 +34,6 @@ namespace Solvberget.Core.ViewModels
         {
             get
             {
-                var cmd = new MvxCommand<SuggestionListSummaryViewModel>(ExecuteShowListCommand);
                 return _showListCommand ?? (_showListCommand = new MvxCommand<SuggestionListSummaryViewModel>(ExecuteShowListCommand));
             }
         }
