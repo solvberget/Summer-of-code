@@ -28,6 +28,7 @@ namespace Solvberget.Core.ViewModels
             IsLoading = true;
             Posts = (await _blogService.GetBlogPostListing(id)).Select(p => new BlogPostViewModel(_blogService)
             {
+                Id = p.Id,
                 Author = p.Author,
                 Content = p.Description,
                 Description = p.Description,
@@ -78,6 +79,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(BlogPostViewModel post)
         {
+            // TODO: Send both post id and blog id.
             ShowViewModel<BlogPostViewModel>(new { id = post.Id });
         }
     }

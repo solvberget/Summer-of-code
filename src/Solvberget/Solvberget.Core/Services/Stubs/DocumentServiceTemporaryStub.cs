@@ -8,8 +8,8 @@ namespace Solvberget.Core.Services.Stubs
     {
         public async Task<DocumentDto> Get(string docId)
         {
-            await TaskEx.Delay(2500); // Simulate some network latency
-            return new DocumentDto()
+            await TaskEx.Delay(1000); // Simulate some network latency
+            return new DocumentDto
             {
                 Id = docId,
                 Title = "Hello World Media",

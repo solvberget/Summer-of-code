@@ -33,7 +33,7 @@ namespace Solvberget.Nancy.Modules
                     {
                         Author = bp.AuthorName,
                         Description = bp.Description,
-                        Id = index.ToString(),
+                        Id = index,
                         Published = bp.PublishedDate,
                         Title = bp.Title
                     });
