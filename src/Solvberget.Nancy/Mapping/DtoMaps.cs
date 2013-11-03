@@ -38,6 +38,10 @@ namespace Solvberget.Nancy.Mapping
             {
                 dto = Map((Book)document);
             }
+            else if (document is Film)
+            {
+                dto = Map((Film) document);
+            }
             else
             {
                 dto = new DocumentDto(); // todo other types
@@ -48,8 +52,33 @@ namespace Solvberget.Nancy.Mapping
             dto.Title = document.Title;
             dto.SubTitle = document.CompressedSubTitle;
             dto.Availability = MapAvailability(document);
+            dto.Year = document.PublishedYear;
+            dto.Publisher = document.Publisher;
+            dto.Language = document.Language;
+            dto.Languages = null != document.Languages ? document.Languages.ToArray() : new string[0];
 
             return dto;
+        }
+
+        public static DocumentDto Map(Film film)
+        {
+            var filmDto = new FilmDto();
+            
+            if(null != film.Actors) filmDto.ActorNames = film.Actors.Select(a => a.Name).ToArray();
+            
+            filmDto.AgeLimit = film.AgeLimit;
+            
+            if(null != film.Genre) filmDto.Genres = film.Genre.ToArray();
+            
+            filmDto.MediaInfo = film.TypeAndNumberOfDiscs;
+            
+            if(null != film.ReferredPersons) filmDto.ReferredPeopleNames = film.ReferredPersons.Select(p => p.Name).ToArray();
+            if(null != film.ReferencedPlaces) filmDto.ReferencedPlaces = film.ReferencedPlaces.ToArray();
+            if(null != film.SubtitleLanguage) filmDto.SubtitleLanguages = film.SubtitleLanguage.ToArray();
+            if(null != film.InvolvedPersons) filmDto.InvolvedPersonNames = film.InvolvedPersons.Select(p => string.Format("{0} ({1})", p.Name, p.Role)).ToArray();
+            if(null != film.ResponsiblePersons) filmDto.ResponsiblePersonNames = film.ResponsiblePersons.ToArray();
+
+            return filmDto;
         }
 
         private static DocumentDto Map(Book book)
@@ -59,8 +88,6 @@ namespace Solvberget.Nancy.Mapping
 
             bookDto.AuthorName = book.Author.Name;
             bookDto.Language = book.Language;
-            bookDto.Year = book.PublishedYear;
-            bookDto.Publisher = book.Publisher;
 
             if (!String.IsNullOrEmpty(book.SeriesTitle))
             {

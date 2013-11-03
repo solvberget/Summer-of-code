@@ -44,7 +44,7 @@
                         <a class="navbar-brand visible-sm visible-md visible-lg">SØLVBERGET</a>
                         <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{breadcrumb.last.title}}</span>
                     </div>
-                    <div class="navbar-collapse collapse">
+                    <div id="menu-collapse" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SokCtrl')}}">Søk</a></li>
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NyheterCtrl')}}">Nyheter</a></li>
@@ -126,21 +126,10 @@
 
   <script>
 
-      $(document).ready(function() {
-
-          $('body').addClass('js');
-
-          var $menu = $('#side-menu'),
-          $menulink = $('#menu-toggler'),
-          $wrap = $('#wrap');
-
-          $menulink.click(function() {
-
-              console.log("toggle menu");
-
-              $menulink.toggleClass('active');
-              $wrap.toggleClass('active');
-              return false;
+      // collapse menu when menu item is clicked
+      $(document).ready(function () {
+          $("#menu li a").click(function(event) {
+              $("#menu-collapse").removeClass("in").addClass("collapse");
           });
       });
 
