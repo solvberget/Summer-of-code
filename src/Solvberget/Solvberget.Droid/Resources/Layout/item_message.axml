@@ -3,23 +3,23 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
     <TextView
         android:text="Meldingstittel"
-        android:paddingTop="10px"
-        android:paddingLeft="10px"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
         local:MvxBind="Text Title" />
     <TextView
         android:text="Meldingsinnhold"
-        android:paddingTop="10px"
-        android:paddingLeft="10px"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
         local:MvxBind="Text Content" />
 </LinearLayout>

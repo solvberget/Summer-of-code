@@ -93,14 +93,20 @@
     <Compile Include="Deprecated\DTO\ReservationReply.cs" />
     <Compile Include="Deprecated\DTO\SheetMusic.cs" />
     <Compile Include="Deprecated\DTO\UserInfo.cs" />
+    <Compile Include="Deprecated\Reservation.cs" />
     <Compile Include="DocumentAvailabilityDto.cs" />
     <Compile Include="DocumentDto.cs" />
     <Compile Include="DocumentReviewDto.cs" />
     <Compile Include="FilmDto.cs" />
+    <Compile Include="FineDto.cs" />
     <Compile Include="LibrarylistDto.cs" />
+    <Compile Include="LoanDto.cs" />
     <Compile Include="NewsStoryDto.cs" />
+    <Compile Include="NotificationDto.cs" />
     <Compile Include="OpeningHoursDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservationDto.cs" />
+    <Compile Include="UserInfoDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xml.Linq" />

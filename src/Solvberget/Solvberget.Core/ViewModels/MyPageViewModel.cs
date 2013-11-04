@@ -1,5 +1,4 @@
-﻿using Solvberget.Core.Services;
-using Solvberget.Core.Services.Interfaces;
+﻿using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels

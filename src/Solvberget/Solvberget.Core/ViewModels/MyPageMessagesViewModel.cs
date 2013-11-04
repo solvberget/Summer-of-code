@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
-using Solvberget.Core.DTOs.Deprecated.DTO;
-using Solvberget.Core.Services;
+using System.Linq;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -9,18 +8,39 @@ namespace Solvberget.Core.ViewModels
 {
     public class MyPageMessagesViewModel : BaseViewModel
     {
+        private readonly IUserService _service;
+
         public MyPageMessagesViewModel(IUserService service)
         {
-            if (service == null) throw new ArgumentNullException("service");
-
-            //Notifications = service.GetUserNotifications("id");
+            _service = service;
+            Load();
         }
 
-        private List<Notification> _notifications;
-        public List<Notification> Notifications
+        private List<NotificationDto> _notifications;
+        public List<NotificationDto> Notifications
         {
             get { return _notifications; }
             set { _notifications = value; RaisePropertyChanged(() => Notifications); }
-        } 
+        }
+
+        public async void Load()
+        {
+            var user = await _service.GetUserInformation(_service.GetUserId());
+
+            Notifications = user.Notifications == null ? new List<NotificationDto>() : user.Notifications.ToList();
+
+            if (Notifications.Count == 0)
+            {
+                Notifications = new List<NotificationDto>
+                {
+                    new NotificationDto
+                    {
+                        Title = "Du har ingen meldinger",
+                        Content = "Du får beskjed når lån forfaller, når noe er klart til henting, og når du får et gebyr"
+                    }
+                };
+            }
+            IsLoading = false;
+        }
     }
 }

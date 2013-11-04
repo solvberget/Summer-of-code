@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Solvberget.Core.DTOs.Deprecated.DTO;
-using Solvberget.Core.Properties;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 
 namespace Solvberget.Core.Services
@@ -11,7 +9,7 @@ namespace Solvberget.Core.Services
     public class UserInformationService : IUserService
     {
         
-        private IStringDownloader _downloader;
+        private readonly IStringDownloader _downloader;
 
         public UserInformationService(IStringDownloader downloader)
         {
@@ -23,46 +21,64 @@ namespace Solvberget.Core.Services
             return "164916";
         }
 
-        public async Task<UserInfo> GetUserInformation(string userId)
+        public async Task<UserInfoDto> GetUserInformation(string userId)
         {
-            var url = "https://dl.dropboxusercontent.com/u/19550193/User_info/164916.json";
+            const string url = "https://dl.dropboxusercontent.com/u/19550193/User_info/164916.json";
             try
             {
                 var response = await _downloader.Download(url);
-                return JsonConvert.DeserializeObject<UserInfo>(response);
+                return JsonConvert.DeserializeObject<UserInfoDto>(response);
             }
             catch (Exception)
             {
-                return new UserInfo
+                return new UserInfoDto
                 {
                     Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
                 };
             }
         }
 
-        public Task<List<Loan>> GetUserLoans(string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<List<Loan>> GetUserLoans(string userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<List<Reservation>> GetUserReservations(string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<List<Reservation>> GetUserReservations(string userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<List<Notification>> GetUserNotifications(string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<List<Notification>> GetUserNotifications(string userId)
+        //{
+        //    var url = "https://dl.dropboxusercontent.com/u/19550193/User_info/164916.json";
 
-        public Task<List<Fine>> GetUserFines(string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //    try
+        //    {
+        //        var response = await _downloader.Download(url);
+        //        return JsonConvert.DeserializeObject<List<Notification>>(response);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new List<Notification>
+        //        {
+        //            new Notification
+        //            {
+        //                Title = "Ingen meldinger ble funnet",
+        //                Content = e.Message
+        //            }
+                    
+        //        };
+        //    }
+        //}
 
-        public Task<List<Document>> GetUserFavorites(string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<List<Fine>> GetUserFines(string userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task<List<Document>> GetUserFavorites(string userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
