@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using FakeItEasy;
 
 using Nancy.Testing;
 
 using Should;
+using Solvberget.Core.DTOs;
 using Solvberget.Domain.Info;
 using Solvberget.Nancy.Modules;
 
@@ -55,7 +57,25 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.DeserializeJson<List<NewsItem>>().Count.ShouldEqual(2);
+            response.Body.DeserializeJson<List<NewsStoryDto>>().Count.ShouldEqual(2);
+        }
+
+        [Fact]
+        public void Should_handle_requests_without_specific_amount_limit_and_default_to_a_reasonable_amount()
+        {
+            A.CallTo(() => _repository.GetNewsItems(10)).Returns(new List<NewsItem>
+            {
+                new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, 
+                new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, new NewsItem { Title = "Foo", DescriptionUnescaped = "Bar"}, 
+            });
+
+            var response = _browser.Get("/news", with =>
+            {
+                with.Accept("application/json");
+                with.HttpRequest();
+            });
+
+            response.Body.DeserializeJson<List<NewsStoryDto>>().Count.ShouldEqual(10);
         }
     }
 }
