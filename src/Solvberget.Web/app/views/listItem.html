@@ -1,5 +1,6 @@
-<li class='media'>
-    <a href="{{url}}"><img class='list-item-thumb' ng-src='{{imageUrl}}' err-src="{{'img/' + type + '-placeholder.png'}}"></a>
+<li class='listitem'>
+    <div>
+    <a href="{{url}}"><span><img class='list-item-thumb' ng-src='{{imageUrl}}' err-src="{{'img/' + type + '-placeholder.png'}}"></span></a>
     <div class='media-body'>
         <a href="{{url}}"><h4 class='media-heading'>{{title}}</h4></a>
         <p ng-show="subtext">{{subtext}}</p>
@@ -7,6 +8,7 @@
     <span class='list-item-actions'>
         <span class='glyphicon glyphicon-star' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
         <span class='glyphicon glyphicon-star-empty' ng-show="showFavorite && !isFavorite" ng-click="toggleFavorite()" />
-        <a href="{{url}}" class='glyphicon glyphicon-chevron-right' ng-show="showChevron" ng-click='open()' />
     </span>
+    </div>
+    <div class="gutter"><span ng-show="gutterText">{{gutterText}}</span></div>
 </li>

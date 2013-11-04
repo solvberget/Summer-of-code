@@ -4,6 +4,9 @@
 @theme-color4:white;
 @theme-color5:#cecece;
 
+@gutter: #f9f9f9;
+@gutter2: #aaa;
+
 @inactive:@theme-color3;
 @active: #FFC200;
 
@@ -28,37 +31,61 @@ h2 {
   color: @theme-color3;
 }
 
-.media-list .media{
+.media-list .listitem>div:first-of-type{
   background-color:@theme-color4;
   display:table;
   width:100%;
-  height:80px;
 }
 
-.media-list .media>a{
+.media-list .listitem>div:first-of-type>a{
   width:60px;
   display:table-cell;
   vertical-align:middle;
 }
 
-.media-list .media .media-body{
-  display:table-cell;
+.media-list .listitem>div:first-of-type>a>span{
+
+  display:inline-block;
+  position:relative;
+  left:-4px;
+  padding-top:4px;
+  padding-bottom:4px;
+
+  background-image:url('../img/thumb-shadow.png');
+  background-position:bottom left;
+  background-repeat:no-repeat;
+}
+
+.media-list .listitem>div:first-of-type>a>span>img{
+ }
+
+.listitem .gutter{
+  color:@gutter2;
+  background-color:@gutter;
+  font-size:0.8em;
+  padding:2px;
   padding-left:10px;
-  padding-right:10px;
+}
+
+.listitem{
+  margin-bottom:10px;
+}
+
+.media-list .listitem>div:first-of-type .media-body{
+  display:table-cell;
+  padding:10px;
   vertical-align:middle;
   text-align:left;
 }
 
-.media-list .media .media-body h4{
+.media-list .listitem>div:first-of-type .media-body h4{
   margin:0px;
   line-height:auto;
-  font-weight:normal;
-  font-size:1.1em;
+  font-size:1.2em;
 }
 
-.media-list .media .media-body p{
-  font-size:0.8em;
-  margin-top:2px;
+.media-list .listitem>div:first-of-type .media-body p{
+  margin-top:4px;
   margin-bottom:-5px;
   opacity:0.75;
 }
@@ -88,6 +115,10 @@ h2 {
 .breadcrumb{
   margin-top: -20px;
   border-radius: 0px;
+}
+
+.breadcrumb .glyphicon-home{
+  color:@theme-color;
 }
 
 /* media item detail view */

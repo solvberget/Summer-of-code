@@ -9,7 +9,8 @@ angular.module('Solvberget.WebApp')
                 showChevron:"=showChevron",
                 showFavorite:"=showFavorite",
                 isFavorite:"=isFavorite",
-                type:"=documentType"
+                type:"=documentType",
+                gutterText:"=gutterText"
             },
             controller: function($scope, $location) {
 

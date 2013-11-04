@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('NyheterCtrl', function ($scope, $rootScope) {
+    .controller('NewsCtrl', function ($scope, $routeParams, $rootScope, news) {
 
-        console.log("nyheter ctrl");
-        $rootScope.pageTitle = 'NYHETER';
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Nyheter', 'NewsCtrl');
 
-  });
+        $scope.items = news.query();
+
+        $scope.toDate = function(dateStr){
+            return new Date(dateStr).toLocaleString();
+        }
+    });
