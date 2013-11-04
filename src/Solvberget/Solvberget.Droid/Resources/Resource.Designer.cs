@@ -182,6 +182,7 @@ namespace Solvberget.Droid
 			public const int MvxBindingTagUnique = 2131099648;
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
 			// aapt resource value: 0x7f06000e
 			public const int content_frame = 2131099662;
 			
@@ -194,16 +195,29 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f06000c
 			public const int content_frame = 2131099660;
 			
+=======
+>>>>>>> Fiks paa design
 			// aapt resource value: 0x7f06000b
-			public const int drawer_layout = 2131099659;
+			public const int button1 = 2131099659;
 			
 			// aapt resource value: 0x7f06000d
+<<<<<<< HEAD
 			public const int left_drawer = 2131099661;
 >>>>>>> MyPage er koblet til service, og viser til dels meldinger nr det ikke finnes data
+=======
+			public const int content_frame = 2131099661;
+			
+			// aapt resource value: 0x7f06000c
+			public const int drawer_layout = 2131099660;
+			
+			// aapt resource value: 0x7f06000e
+			public const int left_drawer = 2131099662;
+>>>>>>> Fiks paa design
 			
 			// aapt resource value: 0x7f060001
 			public const int linearLayout1 = 2131099649;
 			
+<<<<<<< HEAD
 <<<<<<< HEAD
 			// aapt resource value: 0x7f060012
 			public const int menu_refresh = 2131099666;
@@ -222,6 +236,10 @@ namespace Solvberget.Droid
 =======
 			// aapt resource value: 0x7f060010
 			public const int menu_refresh = 2131099664;
+=======
+			// aapt resource value: 0x7f060011
+			public const int menu_refresh = 2131099665;
+>>>>>>> Fiks paa design
 			
 			// aapt resource value: 0x7f060009
 			public const int news_ingress = 2131099657;
@@ -232,13 +250,19 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060008
 			public const int news_published = 2131099656;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f06000e
 			public const int progressBar = 2131099662;
 >>>>>>> MyPage er koblet til service, og viser til dels meldinger nr det ikke finnes data
+=======
+			// aapt resource value: 0x7f06000f
+			public const int progressBar = 2131099663;
+>>>>>>> Fiks paa design
 			
 			// aapt resource value: 0x7f060004
 			public const int pts_main = 2131099652;
 			
+<<<<<<< HEAD
 <<<<<<< HEAD
 			// aapt resource value: 0x7f060013
 			public const int search = 2131099667;
@@ -255,6 +279,10 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060011
 			public const int search = 2131099665;
 >>>>>>> MyPage er koblet til service, og viser til dels meldinger nr det ikke finnes data
+=======
+			// aapt resource value: 0x7f060012
+			public const int search = 2131099666;
+>>>>>>> Fiks paa design
 			
 			// aapt resource value: 0x7f060002
 			public const int textView1 = 2131099650;
@@ -277,12 +305,17 @@ namespace Solvberget.Droid
 			public const int viewPager = 2131099651;
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
 			// aapt resource value: 0x7f060011
 			public const int webView = 2131099665;
 =======
 			// aapt resource value: 0x7f06000f
 			public const int webView = 2131099663;
 >>>>>>> MyPage er koblet til service, og viser til dels meldinger nr det ikke finnes data
+=======
+			// aapt resource value: 0x7f060010
+			public const int webView = 2131099664;
+>>>>>>> Fiks paa design
 			
 			static Id()
 			{
