@@ -19,14 +19,17 @@ namespace Solvberget.Core.Services.Stubs
             };
         }
 
-        public async Task<List<BlogPostOverviewDto>> GetBlogPostListing(long blogId)
+        public async Task<BlogWithPostsDto> GetBlogPostListing(long blogId)
         {
             await TaskEx.Delay(200);
-            return new List<BlogPostOverviewDto>
+            return new BlogWithPostsDto
             {
-                new BlogPostOverviewDto { Author = "Ola Normann", Description = "En spennende post", Title = "Spennende post", Published = DateTime.Now, Id = 1},
-                new BlogPostOverviewDto { Author = "Kari Normann", Description = "En helt ok post", Title = "Byråkratiets meritter", Published = DateTime.Now, Id = 2},
-                new BlogPostOverviewDto { Author = "Per Svenske", Description = "En litt kjedelig post", Title = "Heisan", Published = DateTime.Now, Id = 2},
+                Posts = new[]
+                {
+                    new BlogPostOverviewDto {Author = "Ola Normann", Description = "En spennende post", Title = "Spennende post", Published = DateTime.Now, Id = 1},
+                    new BlogPostOverviewDto {Author = "Kari Normann", Description = "En helt ok post", Title = "Byråkratiets meritter", Published = DateTime.Now, Id = 2},
+                    new BlogPostOverviewDto {Author = "Per Svenske", Description = "En litt kjedelig post", Title = "Heisan", Published = DateTime.Now, Id = 2},
+                }
             };
         }
 

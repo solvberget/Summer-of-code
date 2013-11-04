@@ -7,7 +7,7 @@ namespace Solvberget.Core.Services.Interfaces
     public interface IBlogService
     {
         Task<List<BlogDto>> GetBlogListing();
-        Task<List<BlogPostOverviewDto>> GetBlogPostListing(long blogId);
+        Task<BlogWithPostsDto> GetBlogPostListing(long blogId);
         Task<BlogPostDto> GetBlogPost(string blogId, string postId);
     }
 }

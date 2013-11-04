@@ -70,7 +70,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /blogs/{1}.
+        ///   Looks up a localized string similar to /blogs/{0}.
         /// </summary>
         internal static string ServiceUrl_BlogDetails {
             get {
@@ -88,7 +88,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /blogs/{1}/{2}.
+        ///   Looks up a localized string similar to /blogs/{0}/{1}.
         /// </summary>
         internal static string ServiceUrl_BlogPost {
             get {
@@ -106,7 +106,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /lists/{1}.
+        ///   Looks up a localized string similar to /lists/{0}.
         /// </summary>
         internal static string ServiceUrl_List {
             get {

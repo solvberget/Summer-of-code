@@ -40,23 +40,24 @@ namespace Solvberget.Core.Services
 
         }
 
-        public async Task<List<BlogPostOverviewDto>> GetBlogPostListing(long blogId)
+        public async Task<BlogWithPostsDto> GetBlogPostListing(long blogId)
         {
             try
             {
                 var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_BlogDetails, blogId));
-                var blog = JsonConvert.DeserializeObject<BlogWithPostsDto>(response);
-                return blog.Posts.ToList();
+                return JsonConvert.DeserializeObject<BlogWithPostsDto>(response);
             }
             catch (Exception)
             {
-
-                return new List<BlogPostOverviewDto>
+                return new BlogWithPostsDto
                 {
-                    new BlogPostOverviewDto
+                    Posts = new[]
                     {
-                        Title = "Ikke funnet",
-                        Description = "Kunne desverre ikke finne noen bloggposter"
+                        new BlogPostOverviewDto
+                        {
+                            Title = "Ikke funnet",
+                            Description = "Kunne desverre ikke finne noen bloggposter"
+                        }
                     }
                 };
             }

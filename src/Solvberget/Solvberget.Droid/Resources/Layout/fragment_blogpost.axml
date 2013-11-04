@@ -30,9 +30,8 @@
             android:layout_height="fill_parent"
             local:MvxBind="Text Published" />
         <TextView
-            android:text="Published date"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            local:MvxBind="Text Content" />
+            local:MvxBind="TextFormatted StringToHtml(Content)" />
     </LinearLayout>
 </ScrollView>

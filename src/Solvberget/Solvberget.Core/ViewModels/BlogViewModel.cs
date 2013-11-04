@@ -26,7 +26,9 @@ namespace Solvberget.Core.ViewModels
         private async Task Load(long id)
         {
             IsLoading = true;
-            Posts = (await _blogService.GetBlogPostListing(id)).Select(p => new BlogPostViewModel(_blogService)
+            Id = id;
+            
+            Posts = (await _blogService.GetBlogPostListing(id)).Posts.Select(p => new BlogPostViewModel(_blogService)
             {
                 Id = p.Id,
                 Author = p.Author,
@@ -34,7 +36,7 @@ namespace Solvberget.Core.ViewModels
                 Description = p.Description,
                 Title = p.Title,
                 Published = p.Published,
-                Url = "",
+                Url = "", // TODO: Do we want blog post urls?
             }).ToList();
 
             IsLoading = false;
@@ -79,8 +81,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(BlogPostViewModel post)
         {
-            // TODO: Send both post id and blog id.
-            ShowViewModel<BlogPostViewModel>(new { id = post.Id });
+            ShowViewModel<BlogPostViewModel>(new { blogId = Id, postId = post.Id });
         }
     }
 }

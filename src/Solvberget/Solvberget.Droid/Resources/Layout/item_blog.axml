@@ -20,14 +20,14 @@
         android:layout_height="wrap_content"
         local:MvxBind="Text Title" />
     <TextView
-        android:text="Published: Something something"
+        android:text="Url of the blog"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         local:MvxBind="Text Url" />
     <TextView
-        android:text="News Story here"
+        android:text="Blog description here"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Description" />
