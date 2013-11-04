@@ -32,7 +32,7 @@ namespace Solvberget.Nancy.Modules
                 return results.Select(oh => new OpeningHoursDto
                 {
                     Title = oh.Title,
-                    Hours = oh.LocationOrDayOfWeekToTime,
+                    Hours = null != oh.LocationOrDayOfWeekToTime ? oh.LocationOrDayOfWeekToTime.Select(kvp => new OpeningHourInfoDto{Title = kvp.Key, Hours = kvp.Value}).ToArray() : new OpeningHourInfoDto[0],
                     Phone = oh.Phone,
                     Location = oh.Location,
                     SubTitle = oh.SubTitle,

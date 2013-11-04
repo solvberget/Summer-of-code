@@ -1,1 +1,14 @@
-Åpningstider view
+<div class="row">
+    <div class="col-sm-6" ng-repeat="item in items">
+
+        <div class="media-item-info-box">
+            <h2>{{item.title}}</h2>
+            <table class="table">
+            <tr class="row" ng-repeat="h in item.hours">
+                <td class="col-xs-7">{{h.title}}</div>
+                <td class="col-xs-5 text-right">{{h.hours}}</div>
+            </tr>
+            </table>
+        </div>
+    </div>
+</div>

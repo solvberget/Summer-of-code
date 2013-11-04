@@ -31,7 +31,7 @@ namespace Solvberget.Core.Services
                     new OpeningHoursDto
                     {
                         Title = "Ingen åpningstider",
-                        Hours = new Dictionary<string, string>()
+                        Hours = new OpeningHourInfoDto[0]
                     }
                 };
             }
