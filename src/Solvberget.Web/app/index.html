@@ -46,7 +46,7 @@
                     </div>
                     <div id="menu-collapse" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SokCtrl')}}">Søk</a></li>
+                            <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SearchCtrl')}}">Søk</a></li>
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NyheterCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MinSideCtrl')}}">Min side<span class="badge pull-right">2</span></a></li>
                             <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
@@ -116,9 +116,11 @@
       <script src="scripts/controllers/blogger.js"></script>
       <script src="scripts/controllers/kontaktoss.js"></script>
       <script src="scripts/controllers/minside.js"></script>
+    <script src="scripts/controllers/search.js"></script>
     <script src="scripts/controllers/media.detaljer.js"></script>
 
     <script src="scripts/directives/listItem.js"></script>
+    <script src="scripts/directives/errSrc.js"></script>
 
     <script src="scripts/services/resources.js"></script>
     <script src="scripts/globalErrorHandling.js"></script>

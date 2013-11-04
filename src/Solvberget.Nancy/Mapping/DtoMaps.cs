@@ -42,6 +42,10 @@ namespace Solvberget.Nancy.Mapping
             {
                 dto = Map((Film) document);
             }
+            else if (document is Cd)
+            {
+                dto = Map((Cd) document);
+            }
             else
             {
                 dto = new DocumentDto(); // todo other types
@@ -58,6 +62,16 @@ namespace Solvberget.Nancy.Mapping
             dto.Languages = null != document.Languages ? document.Languages.ToArray() : new string[0];
 
             return dto;
+        }
+
+        public static DocumentDto Map(Cd cd)
+        {
+            var cdDto = new CdDto();
+
+            if(null != cd.ArtistOrComposer) cdDto.ArtistOrComposerName = cd.ArtistOrComposer.Name;
+            if(null != cd.CompositionTypeOrGenre) cdDto.CompositionTypesOrGenres = cd.CompositionTypeOrGenre.ToArray();
+
+            return cdDto;
         }
 
         public static DocumentDto Map(Film film)

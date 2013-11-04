@@ -20,3 +20,4 @@ angular.module('Solvberget.WebApp')
             templateUrl: 'views/listItem.html'
         };
     });
+

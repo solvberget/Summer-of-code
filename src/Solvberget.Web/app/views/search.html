@@ -1,0 +1,34 @@
+
+<header class="media-item-details row">
+    <div class="col-md-6 col-xs-12">
+        <form ng-submit="search()">
+            <input type="search" class="form-control" ng-model="searchQuery" placeholder="Søk her..." />
+        </form>
+    </div>
+    <div class="col-md-4 visible-md">
+        <button ng-click="search()" class="btn btn-small">Search</button>
+    </div>
+</header>
+<div class="row">
+    <div class="col-md-12" ng-show="allCount >= 0">
+        <h2>{{allCount}} RESULTATER</h2>
+    </div>
+    <div class="col-md-12" style="margin-bottom:10px">
+        <ul class="nav nav-pills">
+            <li ng-show="allCount > 0" ng-click="selectType(null)" ng-class="{ active : selectedType == null }"><a>Alle ({{allCount}})</a></li>
+            <li ng-show="bookCount > 0" ng-click="selectType('Book')" ng-class="{ active : selectedType == 'Book' }"><a>Bøker ({{bookCount}})</a></li>
+            <li ng-show="filmCount > 0" ng-click="selectType('Film')" ng-class="{ active : selectedType == 'Film' }"><a>Filmer ({{filmCount}})</a></li>
+            <li ng-show="audioBookCount> 0" ng-click="selectType('AudioBook')" ng-class="{ active : selectedType == 'AudioBook' }"><a>Lydbøker ({{audioBookCount}})</a></li>
+            <li ng-show="cdCount > 0" ng-click="selectType('CD')" ng-class="{ active : selectedType == 'CD' }"><a>CDer ({{cdCount}})</a></li>
+            <li ng-show="sheetMusicCount> 0" ng-click="selectType('SheetMusic')" ng-class="{ active : selectedType == 'SheetMusic' }"><a>Noter ({{sheetMusicCount}})</a></li>
+        </ul>
+    </div>
+</div>
+<div>
+    <img src="/img/ajax-loader.gif" ng-show="isSearching" />
+
+    <ul class="media-list row">
+        <div ng-repeat="item in results | filter:resultFilter" list-item="item.title" subtext="item.subTitle"
+             image-url="apiPrefix + 'documents/' + item.id + '/thumbnail'" url="pathFor(item)" show-chevron="true" />
+    </ul>
+</div>

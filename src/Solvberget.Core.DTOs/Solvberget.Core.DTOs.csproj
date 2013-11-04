@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="BookDto.cs" />
     <Compile Include="BookSeriesDto.cs" />
+    <Compile Include="CdDto.cs" />
     <Compile Include="ContactInfoDto.cs" />
     <Compile Include="ContactPersonDto.cs" />
     <Compile Include="Deprecated\DTO\AudioBook.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="DocumentAvailabilityDto.cs" />
     <Compile Include="DocumentDto.cs" />
     <Compile Include="DocumentReviewDto.cs" />
+    <Compile Include="FilmDto.cs" />
     <Compile Include="LibrarylistDto.cs" />
     <Compile Include="NewsStoryDto.cs" />
     <Compile Include="OpeningHoursDto.cs" />
