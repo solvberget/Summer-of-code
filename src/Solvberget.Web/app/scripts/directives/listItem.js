@@ -8,7 +8,8 @@ angular.module('Solvberget.WebApp')
                 subtext:"=subtext",
                 showChevron:"=showChevron",
                 showFavorite:"=showFavorite",
-                isFavorite:"=isFavorite"
+                isFavorite:"=isFavorite",
+                type:"=documentType"
             },
             controller: function($scope, $location) {
 

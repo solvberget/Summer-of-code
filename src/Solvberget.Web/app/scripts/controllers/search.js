@@ -12,6 +12,11 @@ angular.module('Solvberget.WebApp')
             $scope.selectedType = type;
 
             if(null == type) delete $scope.resultFilter;
+            else if(type == 'Other') {
+                $scope.resultFilter = function(item){
+                    return item.type != 'Book' && item.type != 'Film' && item.type != 'AudioBook' && item.type != 'CD' && item.type != 'SheetMusic';
+                }
+            }
             else $scope.resultFilter = {type : type};
         }
 
@@ -27,6 +32,7 @@ angular.module('Solvberget.WebApp')
                 $scope.audioBookCount = $scope.results.filter(function(item){ return item.type == 'AudioBook'}).length;
                 $scope.cdCount = $scope.results.filter(function(item){ return item.type == 'CD'}).length;
                 $scope.sheetMusicCount = $scope.results.filter(function(item){ return item.type == 'SheetMusic'}).length;
+                $scope.otherCount = $scope.allCount - $scope.bookCount - $scope.filmCount - $scope.audioBookCount - $scope.cdCount - $scope.sheetMusicCount;
 
                 $scope.isSearching = false;
             });

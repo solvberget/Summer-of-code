@@ -1,6 +1,6 @@
 <h2>{{list.title}}</h2>
 
 <ul class="media-list">
-    <div ng-repeat="doc in list.documents" list-item="doc.title" subtext="doc.subTitle"
+    <div ng-repeat="doc in list.documents" list-item="doc.title" subtext="doc.subTitle" document-type="doc.type"
          image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-favorite="true" is-favorite="doc.isFavorite" url="pathFor(doc)"/>
 </ul>
