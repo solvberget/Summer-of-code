@@ -155,4 +155,8 @@
     <value>/documents/search?query={0}</value>
     <comment>0 =Search term</comment>
   </data>
+  <data name="ServiceUrl_Document" xml:space="preserve">
+    <value>/documents/{0}</value>
+    <comment>0=DocumentID</comment>
+  </data>
 </root>

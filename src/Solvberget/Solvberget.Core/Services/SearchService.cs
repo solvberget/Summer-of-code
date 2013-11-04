@@ -25,7 +25,7 @@ namespace Solvberget.Core.Services
                 var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Search, query));
                 return JsonConvert.DeserializeObject<List<DocumentDto>>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new List<DocumentDto>
                 {
@@ -33,6 +33,23 @@ namespace Solvberget.Core.Services
                     {
                         Title = "Kunne ikke hente resultater"
                     }
+                };
+            }
+        }
+
+        public async Task<DocumentDto> Get(string docId)
+        {
+            try
+            {
+                var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Document, docId));
+                return JsonConvert.DeserializeObject<DocumentDto>(response);
+
+            }
+            catch (Exception)
+            {
+                return new DocumentDto
+                {
+                    Title = "Kunne ikke laste dokument"
                 };
             }
         }

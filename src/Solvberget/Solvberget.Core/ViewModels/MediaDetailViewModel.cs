@@ -6,11 +6,11 @@ namespace Solvberget.Core.ViewModels
 {
     public class MediaDetailViewModel : BaseViewModel
     {
-        private readonly IDocumentService _docService;
+        private readonly ISearchService _searchService;
 
-        public MediaDetailViewModel(IDocumentService docService)
+        public MediaDetailViewModel(ISearchService searchService)
         {
-            _docService = docService;
+            _searchService = searchService;
         }
 
         public void Init(string docId)
@@ -22,11 +22,11 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
-            var document = await _docService.Get(docId);
+            var document = await _searchService.Get(docId);
             Title = document.Title;
             ItemTitle = document.Title;
             Name = document.Title;
-            Year = "0000";
+            Year = document.Year.ToString("0000");
             Type = document.Type;
             TypeAndYear = String.Format("{0} ({1})", Type, Year);
             Author = document.MainContributor;
@@ -75,6 +75,5 @@ namespace Solvberget.Core.ViewModels
             get { return _typeAndYear; }
             set { _typeAndYear = value; RaisePropertyChanged(() => TypeAndYear);}
         }
-
     }
 }

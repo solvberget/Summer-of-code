@@ -20,7 +20,6 @@ namespace Solvberget.Core
 
             // Bootstrapping up some stubs while developing. Just remove these lines to start using proper implementations
             //Mvx.LazyConstructAndRegisterSingleton<ISearchService, SearchServiceTemporaryStub>();
-            Mvx.LazyConstructAndRegisterSingleton<IDocumentService, DocumentServiceTemporaryStub>();
             //Mvx.LazyConstructAndRegisterSingleton<IBlogService, BlogServiceTemporaryStub>();
             //Mvx.LazyConstructAndRegisterSingleton<INewsService, NewsServiceTemporaryStub>();
             //Mvx.LazyConstructAndRegisterSingleton<ISuggestionsService, SuggestionsServiceTemporaryStub>();

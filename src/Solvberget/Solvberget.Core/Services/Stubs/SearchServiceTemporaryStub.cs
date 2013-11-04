@@ -19,5 +19,14 @@ namespace Solvberget.Core.Services.Stubs
                 new DocumentDto {Title = "The Wall", Type = "Cd"}
             };
         }
+
+        public async Task<DocumentDto> Get(string docId)
+        {
+            await TaskEx.Delay(200);
+            return new DocumentDto
+            {
+                Title = "Hello World"
+            };
+        }
     }
 }
