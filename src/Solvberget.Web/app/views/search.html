@@ -21,6 +21,7 @@
             <li ng-show="audioBookCount> 0" ng-click="selectType('AudioBook')" ng-class="{ active : selectedType == 'AudioBook' }"><a>Lydbøker ({{audioBookCount}})</a></li>
             <li ng-show="cdCount > 0" ng-click="selectType('CD')" ng-class="{ active : selectedType == 'CD' }"><a>CDer ({{cdCount}})</a></li>
             <li ng-show="sheetMusicCount> 0" ng-click="selectType('SheetMusic')" ng-class="{ active : selectedType == 'SheetMusic' }"><a>Noter ({{sheetMusicCount}})</a></li>
+            <li ng-show="otherCount> 0" ng-click="selectType('Other')" ng-class="{ active : selectedType == 'Other' }"><a>Annet ({{otherCount}})</a></li>
         </ul>
     </div>
 </div>
@@ -28,7 +29,7 @@
     <img src="/img/ajax-loader.gif" ng-show="isSearching" />
 
     <ul class="media-list row">
-        <div ng-repeat="item in results | filter:resultFilter" list-item="item.title" subtext="item.subTitle"
+        <div ng-repeat="item in results | filter:resultFilter" list-item="item.title" subtext="item.subTitle" document-type="item.type"
              image-url="apiPrefix + 'documents/' + item.id + '/thumbnail'" url="pathFor(item)" show-chevron="true" />
     </ul>
 </div>
