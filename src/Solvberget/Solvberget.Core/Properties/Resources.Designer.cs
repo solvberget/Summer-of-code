@@ -151,19 +151,20 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
-        ///   Looks up a localized string similar to https://www.dropbox.com/sh/o58cm0caauulidy/user_info/.
-        /// </summary>
-        internal static string ServiceUrl_UserInfo {
-            get {
-                return ResourceManager.GetString("ServiceUrl_UserInfo", resourceCulture);
-=======
         ///   Looks up a localized string similar to /documents/search?query={0}.
         /// </summary>
         internal static string ServiceUrl_Search {
             get {
                 return ResourceManager.GetString("ServiceUrl_Search", resourceCulture);
->>>>>>> Search now integrates with nancy services to look up results
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.dropbox.com/sh/o58cm0caauulidy/user_info/.
+        /// </summary>
+        internal static string ServiceUrl_UserInfo {
+            get {
+                return ResourceManager.GetString("ServiceUrl_UserInfo", resourceCulture);
             }
         }
     }
