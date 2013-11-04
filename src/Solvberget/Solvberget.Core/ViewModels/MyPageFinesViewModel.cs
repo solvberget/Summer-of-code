@@ -1,25 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using Solvberget.Core.DTOs.Deprecated.DTO;
-using Solvberget.Core.Services;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Solvberget.Core.DTOs;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class MyPageFinesViewModel : BaseViewModel
     {
-        public MyPageFinesViewModel(IUserInformationService service)
-        {
-            if (service == null) throw new ArgumentNullException("service");
+        private readonly IUserService _service;
 
-            Fines = service.GetUserFines("id");
+        public MyPageFinesViewModel(IUserService service)
+        {
+            _service = service;
+            Load();
         }
 
-        private List<Fine> _fines;
-        public List<Fine> Fines
+        private List<FineDto> _fines;
+        public List<FineDto> Fines
         {
             get { return _fines; }
             set { _fines = value; RaisePropertyChanged(() => Fines); }
-        } 
+        }
+
+        public async void Load()
+        {
+            var user = await _service.GetUserInformation(_service.GetUserId());
+
+            Fines = user.Fines == null ? new List<FineDto>() : user.Fines.ToList();
+
+            if (Fines.Count == 0)
+            {
+                Fines = new List<FineDto>
+                {
+                    new FineDto
+                    {
+                        Description =
+                            "Du har ingen gebyrer! Det kan du for eksempel få hvis du leverer noe for sent eller mister noe"
+                    }
+                };
+            }
+            else
+            {
+                for (var i = 0; i < Fines.Count; i++)
+                {
+                    if (Fines.ElementAt(i).Status.Equals("Cancelled"))
+                    {
+                        Fines.Remove(Fines.ElementAt(i));
+                        i--;
+                    }
+                }
+            }
+            IsLoading = false;
+        }
     }
 }

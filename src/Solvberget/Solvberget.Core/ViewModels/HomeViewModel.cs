@@ -92,7 +92,7 @@ namespace Solvberget.Core.ViewModels
             {
 
                 case Section.MyPage:
-                    ShowViewModel<MyPageViewModel>();
+                    ShowViewModel<MyPageViewModel>(new {id = "164916"});
                     break;
                 case Section.Search:
                     ShowViewModel<SearchViewModel>();

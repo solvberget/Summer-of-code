@@ -1,25 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using Solvberget.Core.DTOs.Deprecated.DTO;
-using Solvberget.Core.Services;
+﻿using System.Collections.Generic;
+using Solvberget.Core.DTOs;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class MyPageFavoritesViewModel : BaseViewModel
     {
-        public MyPageFavoritesViewModel(IUserInformationService service)
-        {
-            if (service == null) throw new ArgumentNullException("service");
+        private readonly IUserService _service;
 
-            Favorites = service.GetUserFavorites("id");
+        public MyPageFavoritesViewModel(IUserService service)
+        {
+            _service = service;
+            Load();
         }
 
-        private List<Document> _favorites;
-        public List<Document> Favorites
+        private List<DocumentDto> _favorites;
+        public List<DocumentDto> Favorites
         {
             get{ return _favorites; }
             set{ _favorites = value; RaisePropertyChanged(() => Favorites); }
+        }
+
+        public async void Load()
+        {
+            IsLoading = true;
+
+            var user = await _service.GetUserInformation(_service.GetUserId());
+
+            //Favorites = user..ToList();
+
+            IsLoading = false;
         }
     }
 }

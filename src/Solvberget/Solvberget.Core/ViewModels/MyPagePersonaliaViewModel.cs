@@ -1,22 +1,16 @@
-﻿using System;
-using Solvberget.Core.Services;
+﻿using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class MyPagePersonaliaViewModel : BaseViewModel
     {
-        public MyPagePersonaliaViewModel(IUserInformationService service)
-        {
-            if (service == null) throw new ArgumentNullException("service");
+        private readonly IUserService _service;
 
-            var user = service.GetUserInformation("id");
-            Name = user.Name;
-            Email = user.Email;
-            StreetAdress = user.StreetAddress;
-            CityAdress = user.CityAddress;
-            CellPhoneNumber = user.CellPhoneNumber;
-            DateOfBirth = user.DateOfBirth;
+        public MyPagePersonaliaViewModel(IUserService service)
+        {
+            _service = service;
+            Load();
         }
 
         private string _name;
@@ -100,6 +94,18 @@ namespace Solvberget.Core.ViewModels
                 _dateOfBirth = value;
                 RaisePropertyChanged(() => DateOfBirth);
             }
+        }
+
+        public async void Load()
+        {
+            var user = await _service.GetUserInformation(_service.GetUserId());
+
+            DateOfBirth = user.DateOfBirth;
+            CellPhoneNumber = user.CellPhoneNumber;
+            CityAdress = user.CityAddress;
+            StreetAdress = user.StreetAddress;
+            Email = user.Email;
+            Name = user.Name;
         }
     }
 }

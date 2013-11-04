@@ -7,6 +7,7 @@
     <MvxListView
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
+        android:divider="@null"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         local:MvxBind="ItemsSource Favorites"

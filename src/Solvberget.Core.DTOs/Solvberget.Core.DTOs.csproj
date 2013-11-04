@@ -97,10 +97,15 @@
     <Compile Include="DocumentDto.cs" />
     <Compile Include="DocumentReviewDto.cs" />
     <Compile Include="FilmDto.cs" />
+    <Compile Include="FineDto.cs" />
     <Compile Include="LibrarylistDto.cs" />
+    <Compile Include="LoanDto.cs" />
     <Compile Include="NewsStoryDto.cs" />
+    <Compile Include="NotificationDto.cs" />
     <Compile Include="OpeningHoursDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservationDto.cs" />
+    <Compile Include="UserInfoDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xml.Linq" />

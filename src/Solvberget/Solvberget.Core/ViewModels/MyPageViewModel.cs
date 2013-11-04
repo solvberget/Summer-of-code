@@ -1,11 +1,11 @@
-﻿using Solvberget.Core.Services;
+﻿using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class MyPageViewModel : BaseViewModel
     {
-        public MyPageViewModel(IUserInformationService service)
+        public MyPageViewModel(IUserService service)
         {
             MyPageLoansViewModel = new MyPageLoansViewModel(service);
             MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service);
