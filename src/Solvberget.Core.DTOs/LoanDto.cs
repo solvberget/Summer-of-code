@@ -1,4 +1,6 @@
-﻿namespace Solvberget.Core.DTOs
+﻿using System;
+
+namespace Solvberget.Core.DTOs
 {
     public class LoanDto
     {
@@ -8,11 +10,11 @@
         public string Barcode { get; set; }
         public string DocumentTitle { get; set; }
         public string SubLibrary { get; set; }
-        public string OriginalDueDate { get; set; }
+        public DateTime OriginalDueDate { get; set; }
         public string ItemStatus { get; set; }
-        public string LoanDate { get; set; }
+        public DateTime LoanDate { get; set; }
         public string LoanHour { get; set; }
         public string Material { get; set; }
-        public string DueDate { get; set; }
+        public DateTime DueDate { get; set; }
     }
 }

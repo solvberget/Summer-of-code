@@ -93,7 +93,6 @@
     <Compile Include="Deprecated\DTO\ReservationReply.cs" />
     <Compile Include="Deprecated\DTO\SheetMusic.cs" />
     <Compile Include="Deprecated\DTO\UserInfo.cs" />
-    <Compile Include="Deprecated\Reservation.cs" />
     <Compile Include="DocumentAvailabilityDto.cs" />
     <Compile Include="DocumentDto.cs" />
     <Compile Include="DocumentReviewDto.cs" />
