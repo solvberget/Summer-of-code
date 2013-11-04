@@ -22,7 +22,7 @@
 
                 <div class="meta-label">Telefon</div>
                 <div class="meta-value">{{person.phone}}</div>
-                <div class="btn btn-default"><a ng-href="'mailto:' + person.email">Send epost</a></div>
+                <div class="btn btn-default"><a ng-href="{{'mailto:' + person.email}}">Send epost</a></div>
             </div>
             <div ng-repeat="g in nfo.genericFields">
                 {{g}}
