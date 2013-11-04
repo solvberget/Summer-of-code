@@ -28,7 +28,18 @@ namespace Solvberget.Core.ViewModels
         public IList<SearchResultViewModel> Results 
         {
             get { return _results; }
-            set { _results = value; RaisePropertyChanged(() => Results);}
+            set { 
+                _results = value; 
+                RaisePropertyChanged(() => Results);
+                RaisePropertyChanged(() => BookResults);
+                RaisePropertyChanged(() => MovieResults);
+                RaisePropertyChanged(() => AudioBookResults);
+                RaisePropertyChanged(() => CDResults);
+                RaisePropertyChanged(() => SheetMusicResults);
+                RaisePropertyChanged(() => OtherResults);
+                RaisePropertyChanged(() => MagazineResults);
+                RaisePropertyChanged(() => GameResults);
+            }
         }
 
         private MvxCommand<SearchResultViewModel> _showDetailsCommand;
@@ -59,6 +70,39 @@ namespace Solvberget.Core.ViewModels
                             DocNumber = document.DocumentNumber
                         }).ToList();
             IsLoading = false;
+        }
+
+        public IList<SearchResultViewModel> BookResults 
+        {
+            get { return _results.Where(r => r.Type == "Book" || r.Type == "Document").ToList(); }
+        }
+        public IList<SearchResultViewModel> MovieResults
+        {
+            get { return _results.Where(r => r.Type == "Film").ToList(); }
+        }
+        public IList<SearchResultViewModel> AudioBookResults
+        {
+            get { return _results.Where(r => r.Type == "AudioBook").ToList(); }
+        }
+        public IList<SearchResultViewModel> CDResults
+        {
+            get { return _results.Where(r => r.Type == "Cd").ToList(); }
+        }
+        public IList<SearchResultViewModel> MagazineResults
+        {
+            get { return _results.Where(r => r.Type == "Journal").ToList(); }
+        }
+        public IList<SearchResultViewModel> SheetMusicResults
+        {
+            get { return _results.Where(r => r.Type == "SheetMusic").ToList(); }
+        }
+        public IList<SearchResultViewModel> GameResults
+        {
+            get { return _results.Where(r => r.Type == "Game").ToList(); }
+        }
+        public IList<SearchResultViewModel> OtherResults
+        {
+            get { return _results.Where(r => r.Type == "Other").ToList(); }
         }
     }
 }

@@ -1,35 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Android.Content;
 using Android.Support.V4.App;
-using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Droid.Views.Fragments;
 
 namespace Solvberget.Droid.Views.Adapters
 {
-    public class MvxViewPagerFragmentAdapter
-      : FragmentPagerAdapter
+    public class MvxViewPagerSearchResultFragmentAdapter : FragmentPagerAdapter
     {
-        public class FragmentInfo
+        public class SearchResultFragmentInfo
         {
             public string Title { get; set; }
-            public Type FragmentType { get; set; }
             public IMvxViewModel ViewModel { get; set; }
+            public string BindableProperty { get; set; }
         }
 
         private readonly Context _context;
 
-        public MvxViewPagerFragmentAdapter(
-          Context context, FragmentManager fragmentManager, IEnumerable<FragmentInfo> fragments)
+        public MvxViewPagerSearchResultFragmentAdapter(
+          Context context, FragmentManager fragmentManager, IEnumerable<SearchResultFragmentInfo> fragments)
             : base(fragmentManager)
         {
             _context = context;
             Fragments = fragments;
         }
 
-        public IEnumerable<FragmentInfo> Fragments { get; private set; }
+        public IEnumerable<SearchResultFragmentInfo> Fragments { get; private set; }
 
         public override int Count
         {
@@ -39,9 +37,10 @@ namespace Solvberget.Droid.Views.Adapters
         public override Fragment GetItem(int position)
         {
             var frag = Fragments.ElementAt(position);
-            var fragment = Fragment.Instantiate(_context,
-                                                FragmentJavaName(frag.FragmentType));
-            ((MvxFragment)fragment).DataContext = frag.ViewModel;
+            var fragment = Fragment.Instantiate(_context, FragmentJavaName(typeof(SearchResultCategoryView))) as SearchResultCategoryView;
+            fragment.DataContext = frag.ViewModel;
+            fragment.BindableProperty = frag.BindableProperty;
+            
             return fragment;
         }
 

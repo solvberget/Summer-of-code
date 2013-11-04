@@ -181,44 +181,53 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060000
 			public const int MvxBindingTagUnique = 2131099648;
 			
-			// aapt resource value: 0x7f06000b
-			public const int content_frame = 2131099659;
+			// aapt resource value: 0x7f06000e
+			public const int content_frame = 2131099662;
 			
-			// aapt resource value: 0x7f06000a
-			public const int drawer_layout = 2131099658;
+			// aapt resource value: 0x7f06000d
+			public const int drawer_layout = 2131099661;
 			
-			// aapt resource value: 0x7f06000c
-			public const int left_drawer = 2131099660;
+			// aapt resource value: 0x7f06000f
+			public const int left_drawer = 2131099663;
 			
 			// aapt resource value: 0x7f060001
 			public const int linearLayout1 = 2131099649;
 			
-			// aapt resource value: 0x7f06000f
-			public const int menu_refresh = 2131099663;
+			// aapt resource value: 0x7f060012
+			public const int menu_refresh = 2131099666;
 			
-			// aapt resource value: 0x7f060008
-			public const int news_ingress = 2131099656;
+			// aapt resource value: 0x7f06000b
+			public const int news_ingress = 2131099659;
 			
-			// aapt resource value: 0x7f060006
-			public const int news_newstitle = 2131099654;
+			// aapt resource value: 0x7f060009
+			public const int news_newstitle = 2131099657;
 			
-			// aapt resource value: 0x7f060007
-			public const int news_published = 2131099655;
+			// aapt resource value: 0x7f06000a
+			public const int news_published = 2131099658;
 			
-			// aapt resource value: 0x7f06000d
-			public const int progressBar = 2131099661;
+			// aapt resource value: 0x7f060010
+			public const int progressBar = 2131099664;
 			
 			// aapt resource value: 0x7f060004
 			public const int pts_main = 2131099652;
 			
-			// aapt resource value: 0x7f060010
-			public const int search = 2131099664;
+			// aapt resource value: 0x7f060013
+			public const int search = 2131099667;
+			
+			// aapt resource value: 0x7f060008
+			public const int searchResultsList = 2131099656;
+			
+			// aapt resource value: 0x7f060006
+			public const int searchViewPager = 2131099654;
+			
+			// aapt resource value: 0x7f060007
+			public const int searchViewPagerTabStrip = 2131099655;
 			
 			// aapt resource value: 0x7f060002
 			public const int textView1 = 2131099650;
 			
-			// aapt resource value: 0x7f060009
-			public const int textView2 = 2131099657;
+			// aapt resource value: 0x7f06000c
+			public const int textView2 = 2131099660;
 			
 			// aapt resource value: 0x7f060005
 			public const int textView3 = 2131099653;
@@ -226,8 +235,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060003
 			public const int viewPager = 2131099651;
 			
-			// aapt resource value: 0x7f06000e
-			public const int webView = 2131099662;
+			// aapt resource value: 0x7f060011
+			public const int webView = 2131099665;
 			
 			static Id()
 			{
@@ -304,67 +313,70 @@ namespace Solvberget.Droid
 			public const int fragment_search = 2130903054;
 			
 			// aapt resource value: 0x7f03000f
-			public const int fragment_suggestions_list = 2130903055;
+			public const int fragment_searchresults = 2130903055;
 			
 			// aapt resource value: 0x7f030010
-			public const int fragment_suggestions_list_list = 2130903056;
+			public const int fragment_suggestions_list = 2130903056;
 			
 			// aapt resource value: 0x7f030011
-			public const int item_blog = 2130903057;
+			public const int fragment_suggestions_list_list = 2130903057;
 			
 			// aapt resource value: 0x7f030012
-			public const int item_blogpost = 2130903058;
+			public const int item_blog = 2130903058;
 			
 			// aapt resource value: 0x7f030013
-			public const int item_contactinfobox = 2130903059;
+			public const int item_blogpost = 2130903059;
 			
 			// aapt resource value: 0x7f030014
-			public const int item_contactperson = 2130903060;
+			public const int item_contactinfobox = 2130903060;
 			
 			// aapt resource value: 0x7f030015
-			public const int item_favorite = 2130903061;
+			public const int item_contactperson = 2130903061;
 			
 			// aapt resource value: 0x7f030016
-			public const int item_fine = 2130903062;
+			public const int item_favorite = 2130903062;
 			
 			// aapt resource value: 0x7f030017
-			public const int item_genericfield = 2130903063;
+			public const int item_fine = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int item_loan = 2130903064;
+			public const int item_genericfield = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int item_menu = 2130903065;
+			public const int item_loan = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int item_message = 2130903066;
+			public const int item_menu = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int item_news = 2130903067;
+			public const int item_message = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int item_openinghour_pair = 2130903068;
+			public const int item_news = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int item_openinghours = 2130903069;
+			public const int item_openinghour_pair = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int item_reservation = 2130903070;
+			public const int item_openinghours = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int item_searchresult = 2130903071;
+			public const int item_reservation = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int item_suggestions_list_summary = 2130903072;
+			public const int item_searchresult = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int page_home_view = 2130903073;
+			public const int item_suggestions_list_summary = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int page_webview = 2130903074;
+			public const int page_home_view = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int SplashScreen = 2130903075;
+			public const int page_webview = 2130903075;
+			
+			// aapt resource value: 0x7f030024
+			public const int SplashScreen = 2130903076;
 			
 			static Layout()
 			{
