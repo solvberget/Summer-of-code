@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
@@ -44,7 +45,8 @@ namespace Solvberget.Core.Services
             try
             {
                 var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_BlogDetails, blogId));
-                return JsonConvert.DeserializeObject<List<BlogPostOverviewDto>>(response);
+                var blog = JsonConvert.DeserializeObject<BlogWithPostsDto>(response);
+                return blog.Posts.ToList();
             }
             catch (Exception)
             {
