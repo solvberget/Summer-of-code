@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('KontaktOssCtrl', function ($scope, $rootScope) {
+  .controller('KontaktOssCtrl', function ($scope, $rootScope, contactDetails) {
 
-        $rootScope.pageTitle = 'KONTAKT OSS';
+
+        $rootScope.breadcrumb.push('Kontakt oss', 'KontaktOssCtrl');
+        $scope.contacts = contactDetails.query();
 
   });
