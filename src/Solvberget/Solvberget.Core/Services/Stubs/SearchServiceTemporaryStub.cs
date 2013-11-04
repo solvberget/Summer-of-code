@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Services.Interfaces;
 
@@ -7,29 +8,24 @@ namespace Solvberget.Core.Services.Stubs
 {
     internal class SearchServiceTemporaryStub : ISearchService
     {
-        public async Task<IEnumerable<Document>> Search(string query)
+        public async Task<IEnumerable<DocumentDto>> Search(string query)
         {
             await TaskEx.Delay(2500); // Simulate some network latency
-            return new List<Document>
+            return new List<DocumentDto>
             {
-                new Document {Title = "Harry Potter", PublishedYear = 2008},
-                new Film
-                {
-                    Title = "Harry Potter and the Prisoner from Azkaban",
-                    NorwegianTitle = "Harry Potter og fangen fra Azkaban",
-                },
-                new Cd
-                {
-                    Title = "The Wall",
-                    ArtistOrComposer = new Person {Name = "Pink Floyd"},
-                    PublishedYear = 1983
-                },
-                new SheetMusic
-                {
-                    Title = "The Wall",
-                    Composer = new Person {Name = "David Gilmour"},
-                    PublishedYear = 1983
-                }
+                new DocumentDto {Title = "Harry Potter", Type = "Book"},
+                new DocumentDto {Title = "Harry Potter and the Prisoner from Azkaban", Type = "Film" },
+                new DocumentDto {Title = "The Wall", Type ="Sheet Music" },
+                new DocumentDto {Title = "The Wall", Type = "Cd"}
+            };
+        }
+
+        public async Task<DocumentDto> Get(string docId)
+        {
+            await TaskEx.Delay(200);
+            return new DocumentDto
+            {
+                Title = "Hello World"
             };
         }
     }

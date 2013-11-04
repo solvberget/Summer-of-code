@@ -106,6 +106,15 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /documents/{0}.
+        /// </summary>
+        internal static string ServiceUrl_Document {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Document", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /lists/{0}.
         /// </summary>
         internal static string ServiceUrl_List {
@@ -138,6 +147,15 @@ namespace Solvberget.Core.Properties {
         internal static string ServiceUrl_OpeningHours {
             get {
                 return ResourceManager.GetString("ServiceUrl_OpeningHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /documents/search?query={0}.
+        /// </summary>
+        internal static string ServiceUrl_Search {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Search", resourceCulture);
             }
         }
         

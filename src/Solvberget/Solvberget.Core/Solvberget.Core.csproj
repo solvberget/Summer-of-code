@@ -77,11 +77,9 @@
     </Compile>
     <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\ContactInformationService.cs" />
-    <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\HttpBodyDownloader.cs" />
     <Compile Include="Services\Interfaces\IBlogService.cs" />
     <Compile Include="Services\Interfaces\IContactInformationService.cs" />
-    <Compile Include="Services\Interfaces\IDocumentService.cs" />
     <Compile Include="Services\Interfaces\INewsService.cs" />
     <Compile Include="Services\Interfaces\IOpeningHoursService.cs" />
     <Compile Include="Services\Interfaces\ISearchService.cs" />
@@ -92,7 +90,6 @@
     <Compile Include="Services\NewsService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\Stubs\BlogServiceTemporaryStub.cs" />
-    <Compile Include="Services\Stubs\DocumentServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\NewsServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SuggestionsServiceTemporaryStub.cs" />

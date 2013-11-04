@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Solvberget.Core.DTOs.Deprecated.DTO;
+using Solvberget.Core.DTOs;
 
 namespace Solvberget.Core.Services.Interfaces
 {
     public interface ISearchService
     {
-        Task<IEnumerable<Document>> Search(string query);
+        Task<IEnumerable<DocumentDto>> Search(string query);
+        Task<DocumentDto> Get(string docId);
     }
 }
