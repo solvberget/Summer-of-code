@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using Android.Support.V4.View;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.Views.Adapters;
 
 namespace Solvberget.Droid.Views.Fragments
 {
@@ -10,6 +13,8 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private LoadingIndicator _loadingIndicator;
         private Android.Widget.SearchView _searchView;
+        private ViewPager _viewPager;
+        private MvxViewPagerSearchResultFragmentAdapter _adapter;
 
         public SearchView()
         {
@@ -20,13 +25,79 @@ namespace Solvberget.Droid.Views.Fragments
         {
             SetHasOptionsMenu(true);
             base.OnCreateView(inflater, container, savedInstanceState);
+            var view = this.BindingInflate(Resource.Layout.fragment_search, null);
+
             _loadingIndicator = new LoadingIndicator(Activity);
 
             var set = this.CreateBindingSet<SearchView, SearchViewModel>();
             set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
             set.Apply();
 
-            return this.BindingInflate(Resource.Layout.fragment_search, null);
+            _viewPager = view.FindViewById<ViewPager>(Resource.Id.searchViewPager);
+            _viewPager.OffscreenPageLimit = 4;
+
+            var fragments = new List<MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo>
+              {
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Alle",
+                      ViewModel = ViewModel,
+                      BindableProperty = "Results"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Bøker",
+                      ViewModel = ViewModel,
+                      BindableProperty = "BookResults"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Filmer",
+                      ViewModel = ViewModel,
+                      BindableProperty = "MovieResults"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Lydbøker",
+                      ViewModel = ViewModel,
+                      BindableProperty = "AudioBookResults"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "CDer",
+                      ViewModel = ViewModel,
+                      BindableProperty = "CDResults"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Tidsskrift",
+                      ViewModel = ViewModel,
+                      BindableProperty = "MagazineResults"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Noter",
+                      ViewModel = ViewModel,
+                      BindableProperty = "SheetMusicResults"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Spill",
+                      ViewModel = ViewModel,
+                      BindableProperty = "GameResults"
+                  },
+                  new MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo
+                  {
+                      Title = "Annet",
+                      ViewModel = ViewModel,
+                      BindableProperty = "OtherResults"
+                  },
+              };
+
+            _adapter = new MvxViewPagerSearchResultFragmentAdapter(Activity, ChildFragmentManager, fragments);
+            _viewPager.Adapter = _adapter;
+
+            return view;
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -38,8 +109,6 @@ namespace Solvberget.Droid.Views.Fragments
             _searchView.Iconified = false;
             _searchView.QueryTextSubmit += sView_QueryTextSubmit;
             _searchView.QueryTextChange += sView_QueryTextChange;
-
-
 
             base.OnCreateOptionsMenu(menu, inflater);
         }

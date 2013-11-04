@@ -126,11 +126,13 @@
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="Views\Adapters\MvxViewPagerSearchResultAdapter.cs" />
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
     <Compile Include="Views\Fragments\ContactInfoView.cs" />
     <Compile Include="Views\Fragments\BlogOverviewView.cs" />
     <Compile Include="Views\Fragments\BlogView.cs" />
     <Compile Include="Views\Fragments\BlogPostView.cs" />
+    <Compile Include="Views\Fragments\SearchResultCategoryView.cs" />
     <Compile Include="Views\Fragments\OpeningHoursView.cs" />
     <Compile Include="Views\Fragments\GenericWebViewView.cs" />
     <Compile Include="Views\WebClients\ProgressHandlingWebViewClient.cs" />
@@ -228,6 +230,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_blogpost.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_searchresults.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
