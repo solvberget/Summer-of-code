@@ -65,9 +65,9 @@ namespace Solvberget.Core.ViewModels
                         select new SearchResultViewModel
                         {
                             Name = document.Title,
-                            Type = document.DocType,
-                            Year = document.PublishedYear.ToString("0000"),
-                            DocNumber = document.DocumentNumber
+                            Type = document.Type,
+                            Year = document.Year.ToString("0000"),
+                            DocNumber = document.Id,
                         }).ToList();
             IsLoading = false;
         }

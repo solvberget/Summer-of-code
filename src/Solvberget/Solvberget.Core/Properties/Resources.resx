@@ -151,4 +151,8 @@
   <data name="ServiceUrl_UserInfo" xml:space="preserve">
     <value>https://www.dropbox.com/sh/o58cm0caauulidy/user_info/</value>
   </data>
+  <data name="ServiceUrl_Search" xml:space="preserve">
+    <value>/documents/search?query={0}</value>
+    <comment>0 =Search term</comment>
+  </data>
 </root>
