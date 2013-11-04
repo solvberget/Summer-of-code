@@ -27,6 +27,7 @@ namespace Solvberget.Core.ViewModels
             Author = blogPost.Author;
             Published = blogPost.Published;
             Content = blogPost.Content;
+            Title = blogPost.Title;
 
             IsLoading = false;
         }
