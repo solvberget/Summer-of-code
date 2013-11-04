@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 using FakeItEasy;
 
 using Nancy.Testing;
 
 using Should;
+using Solvberget.Core.DTOs;
 using Solvberget.Domain.Blogs;
 using Solvberget.Nancy.Modules;
 
@@ -53,7 +54,7 @@ namespace Solvberget.Nancy.Tests
         public void GetWithIdShouldFetchSingleBlogFromRepository()
         {
             // Given
-            A.CallTo(() => _repository.GetBlogWithEntries(1234)).Returns(new Blog { Title = "Test Blog" });
+            A.CallTo(() => _repository.GetBlogWithEntries(1234)).Returns(new Blog { Title = "Test Blog", Entries = new List<BlogEntry> { new BlogEntry {Title = "Foo"}}});
 
             // When
             var response = _browser.Get("/blogs/1234", with =>
@@ -63,7 +64,7 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.DeserializeJson<Blog>().Title.ShouldEqual("Test Blog");
+            response.Body.DeserializeJson<List<BlogPostOverviewDto>>().First().Title.ShouldEqual("Foo");
         }
     }
 }

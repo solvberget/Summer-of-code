@@ -103,6 +103,7 @@ namespace Solvberget.Core.ViewModels
                 case Section.Events:
                     break;
                 case Section.Blogs:
+                    ShowViewModel<BlogOverviewViewModel>();
                     break;
                 case Section.News:
                     ShowViewModel<NewsListingViewModel>();
@@ -131,6 +132,8 @@ namespace Solvberget.Core.ViewModels
                 return Section.Lists;
             if (type == typeof (ContactInfoViewModel))
                 return Section.Contact;
+            if (type == typeof (BlogOverviewViewModel))
+                return Section.Blogs;
 
             return Section.Unknown;
         }

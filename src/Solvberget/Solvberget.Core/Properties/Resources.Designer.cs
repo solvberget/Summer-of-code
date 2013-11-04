@@ -61,7 +61,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to http://80.203.160.221:3535/api.
         /// </summary>
         internal static string ServiceUrl {
             get {
@@ -70,7 +70,34 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://dl.dropboxusercontent.com/u/7343226/solvberget/contactinfo.json.
+        ///   Looks up a localized string similar to /blogs/{1}.
+        /// </summary>
+        internal static string ServiceUrl_BlogDetails {
+            get {
+                return ResourceManager.GetString("ServiceUrl_BlogDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /blogs/.
+        /// </summary>
+        internal static string ServiceUrl_BlogListing {
+            get {
+                return ResourceManager.GetString("ServiceUrl_BlogListing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /blogs/{1}/{2}.
+        /// </summary>
+        internal static string ServiceUrl_BlogPost {
+            get {
+                return ResourceManager.GetString("ServiceUrl_BlogPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /info/contact.
         /// </summary>
         internal static string ServiceUrl_Contact {
             get {
@@ -79,7 +106,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/lists/.
+        ///   Looks up a localized string similar to /lists/{1}.
         /// </summary>
         internal static string ServiceUrl_List {
             get {
@@ -88,7 +115,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/lists.json.
+        ///   Looks up a localized string similar to /lists.
         /// </summary>
         internal static string ServiceUrl_Lists {
             get {
@@ -97,7 +124,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://dl.dropboxusercontent.com/u/7343226/solvberget/news.json.
+        ///   Looks up a localized string similar to /news.
         /// </summary>
         internal static string ServiceUrl_News {
             get {
@@ -106,7 +133,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://dl.dropboxusercontent.com/u/7343226/solvberget/openinghours.json.
+        ///   Looks up a localized string similar to /info/opening-hours.
         /// </summary>
         internal static string ServiceUrl_OpeningHours {
             get {

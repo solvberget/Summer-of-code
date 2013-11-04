@@ -127,6 +127,9 @@
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
     <Compile Include="Views\Fragments\ContactInfoView.cs" />
+    <Compile Include="Views\Fragments\BlogOverviewView.cs" />
+    <Compile Include="Views\Fragments\BlogView.cs" />
+    <Compile Include="Views\Fragments\BlogPostView.cs" />
     <Compile Include="Views\Fragments\OpeningHoursView.cs" />
     <Compile Include="Views\Fragments\GenericWebViewView.cs" />
     <Compile Include="Views\WebClients\ProgressHandlingWebViewClient.cs" />
@@ -196,7 +199,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
-    <AndroidResource Include="Resources\Layout\page_webview.axml"/>
+    <AndroidResource Include="Resources\Layout\page_webview.axml" />
     <AndroidResource Include="Resources\Layout\fragment_suggestions_list.axml" />
     <AndroidResource Include="Resources\Layout\fragment_suggestions_list_list.axml" />
     <AndroidResource Include="Resources\Layout\item_suggestions_list_summary.axml">
@@ -213,6 +216,17 @@
     <AndroidResource Include="Resources\Layout\item_contactinfobox.axml" />
     <AndroidResource Include="Resources\Layout\item_contactperson.axml" />
     <AndroidResource Include="Resources\Layout\item_genericfield.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_blogoverview.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_blog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_blog.axml" />
+    <AndroidResource Include="Resources\Layout\fragment_blogpost.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_blogpost.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

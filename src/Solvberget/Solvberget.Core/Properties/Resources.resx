@@ -118,21 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ServiceUrl" xml:space="preserve">
-    <value />
+    <value>http://80.203.160.221:3535/api</value>
+    <comment>Base API URL</comment>
   </data>
   <data name="ServiceUrl_List" xml:space="preserve">
-    <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/lists/</value>
+    <value>/lists/{1}</value>
+    <comment>1=List id</comment>
   </data>
   <data name="ServiceUrl_Lists" xml:space="preserve">
-    <value>https://dl.dropboxusercontent.com/u/7343226/solvberget/lists.json</value>
+    <value>/lists</value>
   </data>
   <data name="ServiceUrl_Contact" xml:space="preserve">
-    <value>http://dl.dropboxusercontent.com/u/7343226/solvberget/contactinfo.json</value>
+    <value>/info/contact</value>
   </data>
   <data name="ServiceUrl_News" xml:space="preserve">
-    <value>http://dl.dropboxusercontent.com/u/7343226/solvberget/news.json</value>
+    <value>/news</value>
   </data>
   <data name="ServiceUrl_OpeningHours" xml:space="preserve">
-    <value>http://dl.dropboxusercontent.com/u/7343226/solvberget/openinghours.json</value>
+    <value>/info/opening-hours</value>
+  </data>
+  <data name="ServiceUrl_BlogDetails" xml:space="preserve">
+    <value>/blogs/{1}</value>
+    <comment>1 = Blog Id</comment>
+  </data>
+  <data name="ServiceUrl_BlogListing" xml:space="preserve">
+    <value>/blogs/</value>
+  </data>
+  <data name="ServiceUrl_BlogPost" xml:space="preserve">
+    <value>/blogs/{1}/{2}</value>
+    <comment>1 =Blog Id, 2=Post Id</comment>
   </data>
 </root>

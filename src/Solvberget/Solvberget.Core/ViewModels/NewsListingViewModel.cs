@@ -48,7 +48,6 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
-            var results = _newsService.GetNews();
             Stories = (from n in await _newsService.GetNews()
                 select new NewsViewModel
                 {
