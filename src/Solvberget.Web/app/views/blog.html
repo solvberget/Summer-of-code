@@ -1,0 +1,9 @@
+<h2>{{blog.title}}</h2>
+<p>{{blog.description}}</p>
+
+<ul class="media-list">
+    <div ng-repeat="post in blog.posts" list-item="post.title" subtext="post.description" document-type="'Blog'"
+         image-url="post.thumbnailUrl" url="post.url" show-chevron="true" />
+
+    <img src="/img/ajax-loader.gif" ng-hide="items.length > 0" />
+</ul>

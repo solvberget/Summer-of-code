@@ -64,7 +64,7 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.DeserializeJson<List<BlogPostOverviewDto>>().First().Title.ShouldEqual("Foo");
+            response.Body.DeserializeJson<BlogWithPostsDto>().Posts.First().Title.ShouldEqual("Foo");
         }
     }
 }

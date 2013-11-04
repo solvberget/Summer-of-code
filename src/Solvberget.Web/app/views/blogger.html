@@ -1,1 +1,8 @@
-Blogger view
+<h2>Blogger</h2>
+
+<ul class="media-list">
+    <div ng-repeat="item in items" list-item="item.title" subtext="item.description" document-type="'Blog'"
+         image-url="apiPrefix + 'img/blog-placeholder.png'" url="pathFor(item)" show-chevron="true" />
+
+    <img src="/img/ajax-loader.gif" ng-hide="items.length > 0" />
+</ul>

@@ -33,6 +33,10 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
                 templateUrl: 'views/blogger.html',
                 controller: 'BloggerCtrl'
             })
+            .when('/blogg/:id', {
+                templateUrl: 'views/blog.html',
+                controller: 'BlogCtrl'
+            })
             .when('/kontakt-oss', {
                 templateUrl: 'views/kontaktoss.html',
                 controller: 'KontaktOssCtrl'
