@@ -27,7 +27,7 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
             Id = id;
-            Posts = (await _blogService.GetBlogPostListing(id)).Select(p => new BlogPostViewModel(_blogService)
+            Posts = (await _blogService.GetBlogPostListing(id)).Posts.Select(p => new BlogPostViewModel(_blogService)
             {
                 Id = p.Id,
                 Author = p.Author,
