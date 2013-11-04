@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('ApningstiderCtrl', function ($scope, $rootScope) {
+  .controller('ApningstiderCtrl', function ($scope, $rootScope, openingHours) {
 
-        $rootScope.pageTitle = 'ÅPNINGSTIDER';
-
+        $rootScope.breadcrumb.push('Åpningstider', 'ApningstiderCtrl');
+        $scope.items = openingHours.query();
   });

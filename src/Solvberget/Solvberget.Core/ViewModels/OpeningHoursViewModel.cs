@@ -37,7 +37,7 @@ namespace Solvberget.Core.ViewModels
             Locations = (await _openingHoursService.GetOpeningHours()).Select(oh => 
                 new OpeningHoursLocationViewModel
                 {
-                    Hours = oh.Hours,
+                    Hours = oh.Hours.ToDictionary(k => k.Title, v => v.Hours),
                     LocationName = oh.Title,
                     Phone = oh.Phone,
                     Title = oh.Title,
