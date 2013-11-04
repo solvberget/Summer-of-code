@@ -1,9 +1,11 @@
 <h2>{{blog.title}}</h2>
-<p>{{blog.description}}</p>
+<p>{{blog.description}} <a href='{{blog.url}}'>Besøk bloggen.</a></p>
+
+<h2>Siste bloggposter</h2>
 
 <ul class="media-list">
     <div ng-repeat="post in blog.posts" list-item="post.title" subtext="post.description" document-type="'Blog'"
          image-url="post.thumbnailUrl" url="post.url" show-chevron="true" />
 
-    <img src="/img/ajax-loader.gif" ng-hide="items.length > 0" />
+    <img src="/img/ajax-loader.gif" ng-hide="blog" />
 </ul>

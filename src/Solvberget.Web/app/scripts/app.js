@@ -43,7 +43,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
             })
             .when('/nyheter', {
                 templateUrl: 'views/nyheter.html',
-                controller: 'NyheterCtrl'
+                controller: 'NewsCtrl'
             })
             .when('/bok/:id/:title', {
                 templateUrl: 'views/media.bok.html',
