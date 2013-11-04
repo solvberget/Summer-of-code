@@ -26,6 +26,7 @@ namespace Solvberget.Core.ViewModels
         private async Task Load(long id)
         {
             IsLoading = true;
+            Id = id;
             Posts = (await _blogService.GetBlogPostListing(id)).Select(p => new BlogPostViewModel(_blogService)
             {
                 Id = p.Id,
@@ -79,8 +80,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(BlogPostViewModel post)
         {
-            // TODO: Send both post id and blog id.
-            ShowViewModel<BlogPostViewModel>(new { id = post.Id });
+            ShowViewModel<BlogPostViewModel>(new { blogId = Id, id = post.Id });
         }
     }
 }
