@@ -26,8 +26,7 @@ namespace Solvberget.Nancy.Modules
 
             Get["/{id}"] = args =>
             {
-                IEnumerable<Blog> blogs = repository.GetBlogWithEntries(args.id);
-                Blog blog = Enumerable.ElementAt(blogs, args.id);
+                Blog blog = repository.GetBlogWithEntries(args.id);
                 return blog.Entries.Select((bp, index) =>
                     new BlogPostOverviewDto
                     {
