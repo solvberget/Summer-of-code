@@ -122,8 +122,8 @@
     <comment>Base API URL</comment>
   </data>
   <data name="ServiceUrl_List" xml:space="preserve">
-    <value>/lists/{1}</value>
-    <comment>1=List id</comment>
+    <value>/lists/{0}</value>
+    <comment>0 =List id</comment>
   </data>
   <data name="ServiceUrl_Lists" xml:space="preserve">
     <value>/lists</value>
@@ -138,14 +138,14 @@
     <value>/info/opening-hours</value>
   </data>
   <data name="ServiceUrl_BlogDetails" xml:space="preserve">
-    <value>/blogs/{1}</value>
-    <comment>1 = Blog Id</comment>
+    <value>/blogs/{0}</value>
+    <comment>0 = Blog Id</comment>
   </data>
   <data name="ServiceUrl_BlogListing" xml:space="preserve">
     <value>/blogs/</value>
   </data>
   <data name="ServiceUrl_BlogPost" xml:space="preserve">
-    <value>/blogs/{1}/{2}</value>
-    <comment>1 =Blog Id, 2=Post Id</comment>
+    <value>/blogs/{0}/{1}</value>
+    <comment>0 =Blog Id, 1=Post Id</comment>
   </data>
 </root>

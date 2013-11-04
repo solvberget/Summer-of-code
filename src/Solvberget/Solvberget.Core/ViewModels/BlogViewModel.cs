@@ -34,7 +34,7 @@ namespace Solvberget.Core.ViewModels
                 Description = p.Description,
                 Title = p.Title,
                 Published = p.Published,
-                Url = "",
+                Url = "", // TODO: Do we want blog post urls?
             }).ToList();
 
             IsLoading = false;

@@ -50,7 +50,6 @@ namespace Solvberget.Core.Services
             }
             catch (Exception)
             {
-
                 return new List<BlogPostOverviewDto>
                 {
                     new BlogPostOverviewDto
