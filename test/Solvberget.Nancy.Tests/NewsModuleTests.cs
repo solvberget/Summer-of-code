@@ -57,5 +57,24 @@ namespace Solvberget.Nancy.Tests
             // Then
             response.Body.DeserializeJson<List<NewsItem>>().Count.ShouldEqual(2);
         }
+
+        [Fact]
+        public void Should_handle_requests_without_specific_amount_limit_and_default_to_a_reasonable_amount()
+        {
+            A.CallTo(() => _repository.GetNewsItems(30)).Returns(new List<NewsItem>
+            {
+                new NewsItem(), new NewsItem(), new NewsItem(), new NewsItem(), new NewsItem(),
+                new NewsItem(), new NewsItem(), new NewsItem(), new NewsItem(), new NewsItem(),
+                new NewsItem(), new NewsItem(),
+            });
+
+            var response = _browser.Get("/news", with =>
+            {
+                with.Accept("application/json");
+                with.HttpRequest();
+            });
+
+            response.Body.DeserializeJson<List<NewsItem>>().Count.ShouldEqual(10);
+        }
     }
 }

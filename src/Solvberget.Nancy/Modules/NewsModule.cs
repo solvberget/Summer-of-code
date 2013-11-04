@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Nancy;
 using System.Linq;
 using Solvberget.Core.DTOs;
@@ -12,6 +13,11 @@ namespace Solvberget.Nancy.Modules
         {
             Get["/"] = args =>
             {
+                if (!((IDictionary<string, Object>) (Request.Query)).ContainsKey("limit"))
+                {
+                    Request.Query.limit = 10;
+                }
+
                 IList<NewsItem> results = newsRepository.GetNewsItems(Request.Query.limit);
                 return results.Select(ni => new NewsStoryDto
                 {
