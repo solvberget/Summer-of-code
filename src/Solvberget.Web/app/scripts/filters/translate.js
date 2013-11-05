@@ -5,6 +5,7 @@ angular.module('Solvberget.WebApp')
             'AudioBook' : 'Lydbok',
             'Blog' : 'Blogg',
             'Book' : 'Bok',
+            'Game' : 'Spill',
             'Journal' : 'Journal',
             'LanguageCourse' : 'Språkkurs',
             'Other' : 'Annen media',

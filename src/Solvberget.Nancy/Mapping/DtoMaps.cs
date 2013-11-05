@@ -55,6 +55,10 @@ namespace Solvberget.Nancy.Mapping
             {
                 dto = Map((SheetMusic) document);
             }
+            else if (document is Game)
+            {
+                dto = Map((Game) document);
+            }
             else
             {
                 dto = new DocumentDto(); // todo other types
@@ -70,6 +74,13 @@ namespace Solvberget.Nancy.Mapping
             dto.Language = document.Language;
             dto.Languages = null != document.Languages ? document.Languages.ToArray() : new string[0];
 
+            return dto;
+        }
+
+        public static DocumentDto Map(Game game)
+        {
+            var dto = new GameDto();
+            dto.Platform = game.LocationCode; // nope
             return dto;
         }
 
