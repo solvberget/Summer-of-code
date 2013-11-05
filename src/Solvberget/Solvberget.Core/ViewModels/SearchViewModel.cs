@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -66,6 +67,7 @@ namespace Solvberget.Core.ViewModels
                         {
                             Name = document.Title,
                             Type = document.Type,
+                            Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, document.Id),
                             Year = document.Year.ToString("0000"),
                             DocNumber = document.Id,
                         }).ToList();

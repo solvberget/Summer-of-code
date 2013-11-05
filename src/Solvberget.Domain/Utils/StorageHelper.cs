@@ -24,9 +24,7 @@ namespace Solvberget.Domain.Utils
             if (File.Exists(fileName))
             {
                 var imageName = isThumb ? "thumb" + id + ".jpg" : id + ".jpg";
-                var localServerUrl = Properties.Settings.Default.ServerUrl;
-                var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
-                return localServerUrl + localImageCacheFolder + imageName;
+                return imageName;
             }
             return string.Empty;
         }

@@ -12,6 +12,7 @@ using Solvberget.Domain.Documents;
 using Solvberget.Domain.Documents.Images;
 using Solvberget.Domain.Documents.Ratings;
 using Solvberget.Domain.Documents.Reviews;
+using Solvberget.Domain.Utils;
 using Solvberget.Nancy.Modules;
 
 using Xunit;
@@ -28,6 +29,8 @@ namespace Solvberget.Nancy.Tests
 
         private readonly IReviewRepository _reviewRepository;
 
+        private IEnvironmentPathProvider _pathProvider;
+
         private readonly Browser _browser;
 
         public DocumentModuleTests()
@@ -36,6 +39,7 @@ namespace Solvberget.Nancy.Tests
             _imageRepository = A.Fake<IImageRepository>();
             _ratingRepository = A.Fake<IRatingRepository>();
             _reviewRepository = A.Fake<IReviewRepository>();
+            _pathProvider = A.Fake<IEnvironmentPathProvider>();
 
             _browser = new Browser(with =>
             {
@@ -44,6 +48,7 @@ namespace Solvberget.Nancy.Tests
                 with.Dependency(_imageRepository);
                 with.Dependency(_ratingRepository);
                 with.Dependency(_reviewRepository);
+                with.Dependency(_pathProvider);
             });
         }
 
@@ -135,6 +140,7 @@ namespace Solvberget.Nancy.Tests
         {
             // Given
             A.CallTo(() => _imageRepository.GetDocumentImage("1234")).Returns("image.png");
+            A.CallTo(() => _pathProvider.ResolveUrl("http://", "image.png")).Returns("image.png");
 
             // When
             var response = _browser.Get("/documents/1234/thumbnail", with =>

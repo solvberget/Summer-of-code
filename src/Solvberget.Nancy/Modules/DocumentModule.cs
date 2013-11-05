@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Nancy;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Documents;
 using Solvberget.Domain.Documents.Reviews;
+using Solvberget.Domain.Utils;
 using Solvberget.Nancy.Mapping;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Documents.Images;
@@ -13,12 +15,12 @@ namespace Solvberget.Nancy.Modules
 {
     public class DocumentModule : NancyModule
     {
-        public DocumentModule(IRepository documents, IImageRepository images, IRatingRepository ratings, IReviewRepository reviews)
+        public DocumentModule(IRepository documents, IImageRepository images, IRatingRepository ratings, IReviewRepository reviews, IEnvironmentPathProvider pathProvider)
             : base("/documents")
         {
             Get["/{id}/thumbnail"] = args =>
             {
-                string url = images.GetDocumentImage(args.id);
+                string url = pathProvider.ResolveUrl(Request.Url.SiteBase, Path.Combine(pathProvider.GetImageCachePath(), images.GetDocumentImage(args.id)));
 
                 if (String.IsNullOrEmpty(url))
                 {

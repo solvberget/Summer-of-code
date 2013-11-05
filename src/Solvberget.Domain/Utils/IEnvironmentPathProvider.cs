@@ -14,5 +14,7 @@ namespace Solvberget.Domain.Utils
         string GetBlogFeedPath();
         string GetOpeningInfoAsXmlPath();
         string GetContactInfoAsXmlPath();
+        string ResolveUrl(string path);
+        string ResolveUrl(string baseUrl, string serverPath);
     }
 }

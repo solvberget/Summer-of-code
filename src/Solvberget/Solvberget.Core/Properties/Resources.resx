@@ -159,4 +159,8 @@
     <value>/documents/{0}</value>
     <comment>0=DocumentID</comment>
   </data>
+  <data name="ServiceUrl_MediaImage" xml:space="preserve">
+    <value>/documents/{0}/thumbnail</value>
+    <comment>0 =Document Id</comment>
+  </data>
 </root>

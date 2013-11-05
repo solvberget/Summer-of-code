@@ -88,5 +88,12 @@ namespace Solvberget.Nancy
             var absolute = Path.Combine(_rootUrl, relative);
             return absolute;
         }
+
+        public string ResolveUrl(string baseUrl, string serverPath)
+        {
+            var relative = serverPath.ToLowerInvariant().Replace(_rootPath.ToLowerInvariant(), "").Replace('\\', '/');
+            var absolute = Path.Combine(baseUrl, relative);
+            return absolute;
+        }
     }
 }
