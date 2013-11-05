@@ -31,13 +31,14 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textAppearance="?android:attr/textAppearanceLargeInverse"
                     android:text="A Somewhat Long Film Title"
                     local:MvxBind="Text ItemTitle"
                     android:paddingBottom="10dp" />
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
                     android:text="Film (2005)"
                     local:MvxBind="Text TypeAndYear" />
             </LinearLayout>
@@ -56,7 +57,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="TILGJENGELIGHET"
-                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true" />
             <TextView
                 android:paddingLeft="8dp"
@@ -82,7 +83,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="FAKTA OM FILMEN"
-                android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true"
                 android:id="@+id/textView1" />
             <LinearLayout

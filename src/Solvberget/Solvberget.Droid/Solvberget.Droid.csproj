@@ -180,8 +180,12 @@
     <AndroidResource Include="Resources\Layout\fragment_search.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
-    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml" />
+    <AndroidResource Include="Resources\Layout\item_searchresult.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_profile_personalia.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
