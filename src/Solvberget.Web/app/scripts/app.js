@@ -68,7 +68,11 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
                 templateUrl: 'views/media.game.html',
                 controller: 'GameCtrl'
             })
-            .when('AnnenMedia/:id/:title', {
+            .when('/journal/:id/:title', {
+                templateUrl : 'views/media.journal.html',
+                controller: 'OtherMediaCtrl'
+            })
+            .when('/annet/:id/:title', {
                 templateUrl : 'views/media.other.html',
                 controller: 'OtherMediaCtrl'
             })

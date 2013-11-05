@@ -100,6 +100,7 @@
     <Compile Include="FilmDto.cs" />
     <Compile Include="FineDto.cs" />
     <Compile Include="GameDto.cs" />
+    <Compile Include="JournalDto.cs" />
     <Compile Include="LibrarylistDto.cs" />
     <Compile Include="LoanDto.cs" />
     <Compile Include="NewsStoryDto.cs" />

@@ -59,6 +59,10 @@ namespace Solvberget.Nancy.Mapping
             {
                 dto = Map((Game) document);
             }
+            else if (document is Journal)
+            {
+                dto = Map((Journal) document);
+            }
             else
             {
                 dto = new DocumentDto(); // todo other types
@@ -74,6 +78,14 @@ namespace Solvberget.Nancy.Mapping
             dto.Language = document.Language;
             dto.Languages = null != document.Languages ? document.Languages.ToArray() : new string[0];
 
+            return dto;
+        }
+
+        public static DocumentDto Map(Journal journal)
+        {
+            var dto = new JournalDto();
+            dto.Subjects = journal.Subject.ToArray();
+            
             return dto;
         }
 

@@ -1,38 +1,41 @@
 <div ng-include="'views/mediainfo.html'" />
 <h2>Fakta om notehefte</h2>
-<div class="row">
-    <div class="col-xs-6 col-md-3">
-        <div class="meta-label">Komponist</div>
-        <div class="meta-value">{{document.composerName}}</div>
-    </div>
 
-    <div class="col-xs-6 col-md-3">
-        <div class="meta-label">Sidetall, type note og antall stemmer</div>
-        <div class="meta-value">{{document.numberOfPagesAndParts}}</div>
-    </div>
+<div class="media-item-info-box">
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Komponist</div>
+            <div class="meta-value">{{document.composerName}}</div>
+        </div>
 
-    <div class="col-xs-6 col-md-3">
-        <div class="meta-label">Komposisjonstype</div>
-        <div class="meta-value">{{document.compositionType}}</div>
-    </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Sidetall, type note og antall stemmer</div>
+            <div class="meta-value">{{document.numberOfPagesAndParts}}</div>
+        </div>
 
-    <div class="col-xs-6 col-md-3">
-        <div class="meta-label">Besetning</div>
-        <div class="meta-value"><span ng-repeat="p in document.musicalLineup">{{p}}<span ng-show=" ! $last ">, </span></span></div>
-    </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Komposisjonstype</div>
+            <div class="meta-value">{{document.compositionType}}</div>
+        </div>
 
-    <div class="col-xs-6 col-md-3">
-        <div class="meta-label">Undertittel</div>
-        <div class="meta-value">{{document.subTitle}}</div>
-    </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Besetning</div>
+            <div class="meta-value"><span ng-repeat="p in document.musicalLineup">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
 
-    <div class="col-xs-6 col-md-3">
-        <div class="meta-label">Forlag</div>
-        <div class="meta-value">{{document.publisher}}</div>
-    </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Undertittel</div>
+            <div class="meta-value">{{document.subTitle}}</div>
+        </div>
 
-    <div class="col-xs-6 col-md-3">
-        <div class="meta-label">Publikasjonsår</div>
-        <div class="meta-value">{{document.year}}</div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Forlag</div>
+            <div class="meta-value">{{document.publisher}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Publikasjonsår</div>
+            <div class="meta-value">{{document.year}}</div>
+        </div>
     </div>
 </div>
