@@ -41,8 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="Type"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="8dp"
-                local:MvxBind="Text Image"
+                local:MvxBind="Text PresentableType"
                 android:singleLine="true" />
             <TextView
                 android:paddingLeft="8dp"
