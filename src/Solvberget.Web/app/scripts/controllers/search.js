@@ -37,6 +37,8 @@ angular.module('Solvberget.WebApp')
                 $scope.audioBookCount = $scope.results.filter(function(item){ return item.type == 'AudioBook'}).length;
                 $scope.cdCount = $scope.results.filter(function(item){ return item.type == 'CD'}).length;
                 $scope.sheetMusicCount = $scope.results.filter(function(item){ return item.type == 'SheetMusic'}).length;
+                $scope.journalCount = $scope.results.filter(function(item){ return item.type == 'Journal'}).length;
+                $scope.gameCount = $scope.results.filter(function(item){ return item.type == 'Game'}).length;
                 $scope.otherCount = $scope.allCount - $scope.bookCount - $scope.filmCount - $scope.audioBookCount - $scope.cdCount - $scope.sheetMusicCount;
 
                 $scope.isSearching = false;

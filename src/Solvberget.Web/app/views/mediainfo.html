@@ -55,12 +55,10 @@
         <div class="meta-label">Tilgjengelighet</div>
     </div>
     <div class="col-xs-12 col-md-6">
-        <i class="glyphicon glyphicon-ok-sign text-success" ng-hide="{{document.Availability.AvailableCount == 0}}"></i>
-        <i class="glyphicon glyphicon-minus-sign text-error" ng-show="{{document.Availability.AvailableCount == 0}}"></i>
-        {{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån
-    </div>
-    <div class="col-xs-12 col-md-6" ng-show="{{document.Availability.EstimatedAvailableDate}}">
-        Tidligst tilgjengelig {{document.availability.estimatedAvailableDate}}
+        <i class="glyphicon glyphicon-ok-sign text-success" ng-hide="document.availability.availableCount == 0"></i>
+        <i class="glyphicon glyphicon-minus-sign text-error" ng-show="document.availability.availableCount == 0"></i>
+        {{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån.
+        <span ng-show="document.availability.estimatedAvailableDate">Tidligst tilgjengelig {{document.availability.estimatedAvailableDate|date:mediumDate}}</span>
     </div>
     </div>
 </div>

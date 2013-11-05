@@ -5,7 +5,8 @@
 
 <ul class="media-list">
     <div ng-repeat="post in blog.posts" list-item="post.title" subtext="post.description" document-type="'Blog'"
-         image-url="post.thumbnailUrl" url="post.url" show-chevron="true" />
+         image-url="post.thumbnailUrl" url="post.url" show-chevron="true"
+         gutter-text-prefix="'Publisert '" gutter-text="post.published|date:mediumDate"/>
 
     <img src="/img/ajax-loader.gif" ng-hide="blog" />
 </ul>

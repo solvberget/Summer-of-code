@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
@@ -50,6 +51,10 @@ namespace Solvberget.Nancy.Mapping
             {
                 dto = Map((AudioBook) document);
             }
+            else if (document is SheetMusic)
+            {
+                dto = Map((SheetMusic) document);
+            }
             else
             {
                 dto = new DocumentDto(); // todo other types
@@ -58,12 +63,25 @@ namespace Solvberget.Nancy.Mapping
             dto.Id = document.DocumentNumber;
             dto.Type = document.DocType;
             dto.Title = document.Title;
-            dto.SubTitle = document.CompressedSubTitle;
+            if(null == dto.SubTitle) dto.SubTitle = document.CompressedSubTitle; // default only if specific type does not map it
             dto.Availability = MapAvailability(document);
             dto.Year = document.PublishedYear;
             dto.Publisher = document.Publisher;
             dto.Language = document.Language;
             dto.Languages = null != document.Languages ? document.Languages.ToArray() : new string[0];
+
+            return dto;
+        }
+
+        public static DocumentDto Map(SheetMusic sheetMusic)
+        {
+            var dto = new SheetMusicDto();
+
+            if(null != sheetMusic.Composer) dto.ComposerName = sheetMusic.Composer.Name;
+            dto.CompositionType = sheetMusic.CompositionType;
+            dto.NumberOfPagesAndParts = sheetMusic.NumberOfPagesAndNumberOfParts;
+            if(null != sheetMusic.MusicalLineup) dto.MusicalLineup = sheetMusic.MusicalLineup.ToArray();
+            dto.SubTitle = sheetMusic.SubTitle;
 
             return dto;
         }
@@ -102,42 +120,36 @@ namespace Solvberget.Nancy.Mapping
         private static DocumentDto Map(Book book)
         {
             var bookDto = new BookDto();
+
             bookDto.Classification = book.ClassificationNr;
-
-            bookDto.AuthorName = book.Author.Name;
-            bookDto.Language = book.Language;
-
-            if (!String.IsNullOrEmpty(book.SeriesTitle))
-            {
-                bookDto.Series = new BookSeriesDto
-                {
-                    Title = book.SeriesTitle,
-                    SequenceNo = book.SeriesNumber
-                };
-            }
+            MapBookProperties(book, bookDto);
 
             return bookDto;
         }
 
         private static DocumentDto Map(AudioBook audioBook)
         {
-            var bookDto = new BookDto();
+            var bookDto = new AudioBookDto();
 
             bookDto.Classification = audioBook.ClassificationNumber;
+            MapBookProperties(audioBook, bookDto);
 
-            bookDto.AuthorName = audioBook.Author.Name;
-            bookDto.Language = audioBook.Language;
+            return bookDto;
+        }
 
-            if (!String.IsNullOrEmpty(audioBook.SeriesTitle))
+        private static void MapBookProperties(dynamic bookOrAudioBook, BookDto bookDto)
+        {
+            bookDto.AuthorName = bookOrAudioBook.Author.Name;
+            bookDto.Language = bookOrAudioBook.Language;
+
+            if (!String.IsNullOrEmpty(bookOrAudioBook.SeriesTitle))
             {
                 bookDto.Series = new BookSeriesDto
                 {
-                    Title = audioBook.SeriesTitle,
-                    SequenceNo = audioBook.SeriesNumber
+                    Title = bookOrAudioBook.SeriesTitle,
+                    SequenceNo = bookOrAudioBook.SeriesNumber
                 };
             }
-
-            return bookDto;
         }
 
         private static DocumentAvailabilityDto MapAvailability(Document document)
@@ -148,7 +160,7 @@ namespace Solvberget.Nancy.Mapping
 
             if (null == availability) return null;
 
-            return new DocumentAvailabilityDto
+            var dto = new DocumentAvailabilityDto
             {
                 Branch = availability.Branch,
                 AvailableCount = availability.AvailableCount,
@@ -161,9 +173,17 @@ namespace Solvberget.Nancy.Mapping
                 }),
 
                 Collection = availability.PlacementCode,
-                Location = document.LocationCode,
-                EstimatedAvailableDate = availability.EarliestAvailableDateFormatted
+                Location = document.LocationCode
             };
+            
+            DateTime date;
+            
+            if (DateTime.TryParseExact(availability.EarliestAvailableDateFormatted, "dd.MM.yyyy", null, DateTimeStyles.None, out date))
+            {
+                dto.EstimatedAvailableDate = date;
+            }
+
+            return dto;
         }
     }
 }

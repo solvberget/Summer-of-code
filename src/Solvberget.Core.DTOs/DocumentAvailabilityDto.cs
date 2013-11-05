@@ -1,4 +1,6 @@
-﻿namespace Solvberget.Core.DTOs
+﻿using System;
+
+namespace Solvberget.Core.DTOs
 {
     public class DocumentAvailabilityDto
     {
@@ -8,6 +10,6 @@
         public string Department { get; set; }
         public string Collection { get; set; }
         public string Location { get; set; }
-        public string EstimatedAvailableDate { get; set; }
+        public DateTime? EstimatedAvailableDate { get; set; }
     }
 }

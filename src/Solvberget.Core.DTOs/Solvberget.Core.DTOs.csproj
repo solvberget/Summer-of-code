@@ -50,6 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AudioBookDto.cs" />
     <Compile Include="BlogDto.cs" />
     <Compile Include="BlogPostDto.cs" />
     <Compile Include="BlogPostOverviewDto.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="OpeningHoursDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservationDto.cs" />
+    <Compile Include="SheetMusicDto.cs" />
     <Compile Include="UserInfoDto.cs" />
   </ItemGroup>
   <ItemGroup>

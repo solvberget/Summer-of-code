@@ -6,7 +6,7 @@ var $$config =  {
 
 console.log("app $$config:", $$config)
 
-angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
+angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/sok', {
@@ -62,9 +62,9 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
                 templateUrl: 'views/media.bok.html',
                 controller: 'AudioBookCtrl'
             })
-            .when('/notehefte/:id/:title', {
-                templateUrl: 'views/media.notehefte.html',
-                controller: 'NotehefteCtrl'
+            .when('/noter/:id/:title', {
+                templateUrl: 'views/media.sheetmusic.html',
+                controller: 'SheetMusicCtrl'
             })
             .when('AnnenMedia/:id/:title', {
                 templateUrl : 'views/media.other.html',
