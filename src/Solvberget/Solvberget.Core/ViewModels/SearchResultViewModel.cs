@@ -15,7 +15,20 @@ namespace Solvberget.Core.ViewModels
         public string Type 
         {
             get { return _type; }
-            set { _type = value; RaisePropertyChanged(() => Type); }
+            set
+            {
+                _type = value; 
+                RaisePropertyChanged(() => Type);
+                RaisePropertyChanged(() => PresentableType);
+            }
+        }
+
+        public string PresentableType
+        {
+            get
+            {
+                return ConvertMediaTypeToNiceString(Type);
+            }
         }
 
         private string _year;
@@ -30,6 +43,30 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _docNumber; }
             set { _docNumber = value; RaisePropertyChanged(() => DocNumber); }
+        }
+
+        private static string ConvertMediaTypeToNiceString(string type)
+        {
+            switch (type)
+            {
+                case "Document":
+                case "Book":
+                    return "Bok";
+                case "Film":
+                    return "Film";
+                case "AudioBook":
+                    return "Lydbok";
+                case "Cd":
+                    return "CD";
+                case "Journal":
+                    return "Tidsskrift";
+                case "SheetMusic":
+                    return "Noter";
+                case "Game":
+                    return "Spill";
+                default:
+                    return "Annet";
+            }
         }
     }
 }
