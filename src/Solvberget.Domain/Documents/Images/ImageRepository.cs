@@ -177,9 +177,7 @@ namespace Solvberget.Domain.Documents.Images
 
             ImageCacheUtils.DownloadImageFromUrl(externalImageUrl, imageName, _pathToImageCache);
 
-            var localServerUrl = Properties.Settings.Default.ServerUrl;
-            var localImageCacheFolder = Properties.Settings.Default.ImageCacheFolder;
-            return localServerUrl + localImageCacheFolder + imageName;
+            return imageName;
         }
     }
 }
