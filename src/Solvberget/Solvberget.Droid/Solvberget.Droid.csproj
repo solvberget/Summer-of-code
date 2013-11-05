@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerSearchResultAdapter.cs" />
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Components\MediaDetailInformationView.cs" />
     <Compile Include="Views\Components\CustomImageView.cs" />
     <Compile Include="Views\Fragments\ContactInfoView.cs" />
     <Compile Include="Views\Fragments\BlogOverviewView.cs" />
