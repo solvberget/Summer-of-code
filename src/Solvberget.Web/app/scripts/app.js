@@ -4,8 +4,6 @@ var $$config =  {
     apiPrefix : 'http://localhost:39465/'
 }
 
-console.log("app $$config:", $$config)
-
 angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
     .config(function ($routeProvider) {
         $routeProvider
@@ -120,21 +118,10 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
 
         $rootScope.pathForDocument = function(document){
 
-            console.log('pathForDocument type=' + document.type);
             var title = encodeURIComponent(document.title.replace(' ','-').toLowerCase());
             var documentPath = $rootScope.path(document.type + 'Ctrl', {id: document.id, title : title});
 
-            console.log('path=' + documentPath);
-
-            if(!documentPath) {
-
-                console.log('fallback to OtherMediaCtrl');
-
-                documentPath = $rootScope.path('OtherMediaCtrl', {id: document.id, title : title});
-
-                console.log('path=' + documentPath);
-            }
-
+            if(!documentPath) documentPath = $rootScope.path('OtherMediaCtrl', {id: document.id, title : title});
 
             return documentPath;
         };
