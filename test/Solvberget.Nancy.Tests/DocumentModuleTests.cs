@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Net.Mime;
 using FakeItEasy;
 using Nancy;
 using Nancy.Testing;
@@ -133,26 +133,6 @@ namespace Solvberget.Nancy.Tests
 
             // Then
             response.Body.DeserializeJson<DocumentRating>().Score.ShouldEqual(rating.Score);
-        }
-
-        [Fact]
-        public void GetThumbnailShouldRedirectToThumbnail()
-        {
-            // Given
-            A.CallTo(() => _imageRepository.GetDocumentImage("1234")).Returns("image.png");
-            A.CallTo(() => _pathProvider.ResolveUrl("http://", "image.png")).Returns("image.png");
-
-            // When
-            var response = _browser.Get("/documents/1234/thumbnail", with =>
-            {
-                with.Accept("application/json");
-                with.HttpRequest();
-            });
-
-            // Then
-            response.StatusCode.ShouldEqual(HttpStatusCode.SeeOther);
-            response.Headers.Keys.ShouldContain("Location");
-            response.Headers["Location"].ShouldEqual("image.png");
         }
     }
 }
