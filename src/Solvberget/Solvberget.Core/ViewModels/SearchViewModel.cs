@@ -76,7 +76,7 @@ namespace Solvberget.Core.ViewModels
 
         public IList<SearchResultViewModel> BookResults 
         {
-            get { return _results.Where(r => r.Type == "Book" || r.Type == "Document").ToList(); }
+            get { return _results.Where(r => r.Type == "Book").ToList(); }
         }
         public IList<SearchResultViewModel> MovieResults
         {
@@ -104,7 +104,7 @@ namespace Solvberget.Core.ViewModels
         }
         public IList<SearchResultViewModel> OtherResults
         {
-            get { return _results.Where(r => r.Type == "Other").ToList(); }
+            get { return _results.Where(r => r.Type == "Other" || r.Type == "Other").ToList(); }
         }
     }
 }

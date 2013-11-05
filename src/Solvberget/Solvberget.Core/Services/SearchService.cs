@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
@@ -42,7 +43,19 @@ namespace Solvberget.Core.Services
             try
             {
                 var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Document, docId));
-                return JsonConvert.DeserializeObject<DocumentDto>(response);
+                var doc = JsonConvert.DeserializeObject<DocumentDto>(response);
+
+                switch (doc.Type)
+                {
+                    case "Cd":
+                        return JsonConvert.DeserializeObject<CdDto>(response);
+                    case "Film":
+                        return JsonConvert.DeserializeObject<FilmDto>(response);
+                    case "Book":
+                        return JsonConvert.DeserializeObject<BookDto>(response);
+                    default:
+                        return doc;
+                }
 
             }
             catch (Exception)
