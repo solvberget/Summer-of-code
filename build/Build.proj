@@ -66,5 +66,6 @@
         </PropertyGroup>
 
         <Exec Command='"@(MsDeployPath)" -verb:sync -source:package="$(Source)" -dest:iisApp="$(Destination)"' />
+        <MakeDir Directories="$(Destination)\Content\ImageCache" />
     </Target>
 </Project>
