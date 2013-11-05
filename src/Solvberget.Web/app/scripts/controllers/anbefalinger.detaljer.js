@@ -10,9 +10,4 @@ angular.module('Solvberget.WebApp')
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Anbefalinger', 'AnbefalingerCtrl');
-
-        $scope.pathFor = function(item){
-            var title = encodeURIComponent(item.title.replace(' ','-').toLowerCase());
-            return $rootScope.path(item.type + 'Ctrl', {id: item.id, title : title});
-        };
     });

@@ -3,6 +3,7 @@
     <img ng-src="{{imageUrl}}" err-src="{{'img/' + document.type + '-placeholder.png'}}" />
     <h1>{{document.title}}</h1>
     <p>{{document.subTitle}}</p>
+    <p>{{document.type|translate}}</p>
 
     <a ng-show="rating.score" class="document-rating" title="{{rating.source + ': ' + rating.score + '/' + rating.maxScore}}" ng-href="{{rating.sourceUrl}}">
         <img ng-src="{{'img/' + rating.source + '-logo.png'}}" />

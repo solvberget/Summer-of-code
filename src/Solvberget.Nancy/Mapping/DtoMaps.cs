@@ -46,6 +46,10 @@ namespace Solvberget.Nancy.Mapping
             {
                 dto = Map((Cd) document);
             }
+            else if (document is AudioBook)
+            {
+                dto = Map((AudioBook) document);
+            }
             else
             {
                 dto = new DocumentDto(); // todo other types
@@ -109,6 +113,27 @@ namespace Solvberget.Nancy.Mapping
                 {
                     Title = book.SeriesTitle,
                     SequenceNo = book.SeriesNumber
+                };
+            }
+
+            return bookDto;
+        }
+
+        private static DocumentDto Map(AudioBook audioBook)
+        {
+            var bookDto = new BookDto();
+
+            bookDto.Classification = audioBook.ClassificationNumber;
+
+            bookDto.AuthorName = audioBook.Author.Name;
+            bookDto.Language = audioBook.Language;
+
+            if (!String.IsNullOrEmpty(audioBook.SeriesTitle))
+            {
+                bookDto.Series = new BookSeriesDto
+                {
+                    Title = audioBook.SeriesTitle,
+                    SequenceNo = audioBook.SeriesNumber
                 };
             }
 

@@ -11,7 +11,8 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
         $routeProvider
             .when('/sok', {
                 templateUrl: 'views/search.html',
-                controller: 'SearchCtrl'
+                controller: 'SearchCtrl',
+                reloadOnSearch: false
             })
             .when('/min-side', {
                 templateUrl: 'views/minside.html',
@@ -58,12 +59,16 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
                 controller: 'FilmCtrl'
             })
             .when('/lydbok/:id/:title', {
-                templateUrl: 'views/media.lydbok.html',
-                controller: 'LydbokCtrl'
+                templateUrl: 'views/media.bok.html',
+                controller: 'AudioBookCtrl'
             })
             .when('/notehefte/:id/:title', {
                 templateUrl: 'views/media.notehefte.html',
                 controller: 'NotehefteCtrl'
+            })
+            .when('AnnenMedia/:id/:title', {
+                templateUrl : 'views/media.other.html',
+                controller: 'OtherMediaCtrl'
             })
             .otherwise({
                 redirectTo: '/nyheter'
@@ -111,6 +116,27 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
             // No such controller in route definitions
 
             return undefined;
+        };
+
+        $rootScope.pathForDocument = function(document){
+
+            console.log('pathForDocument type=' + document.type);
+            var title = encodeURIComponent(document.title.replace(' ','-').toLowerCase());
+            var documentPath = $rootScope.path(document.type + 'Ctrl', {id: document.id, title : title});
+
+            console.log('path=' + documentPath);
+
+            if(!documentPath) {
+
+                console.log('fallback to OtherMediaCtrl');
+
+                documentPath = $rootScope.path('OtherMediaCtrl', {id: document.id, title : title});
+
+                console.log('path=' + documentPath);
+            }
+
+
+            return documentPath;
         };
 
         $rootScope.breadcrumb = {
