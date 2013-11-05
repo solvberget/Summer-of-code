@@ -14,6 +14,7 @@ var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, d
 angular.module('Solvberget.WebApp')
     .controller('BookCtrl', mediaDetaljerCtrl)
     .controller('FilmCtrl', mediaDetaljerCtrl)
-    .controller('LydbokCtrl', mediaDetaljerCtrl)
+    .controller('AudioBookCtrl', mediaDetaljerCtrl)
     .controller('CdCtrl', mediaDetaljerCtrl)
-    .controller('NotehefteCtrl', mediaDetaljerCtrl);
+    .controller('NotehefteCtrl', mediaDetaljerCtrl)
+    .controller('OtherMediaCtrl', mediaDetaljerCtrl)

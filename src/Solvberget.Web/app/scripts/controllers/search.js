@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-    .controller('SearchCtrl', function ($scope, $rootScope, $filter, documentSearch) {
+    .controller('SearchCtrl', function ($scope, $rootScope, $filter, $location, documentSearch) {
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Søk');
@@ -11,16 +11,21 @@ angular.module('Solvberget.WebApp')
         $scope.selectType = function(type){
             $scope.selectedType = type;
 
-            if(null == type) delete $scope.resultFilter;
+            if(null == type) {
+                delete $scope.resultFilter; // no filter
+            }
             else if(type == 'Other') {
                 $scope.resultFilter = function(item){
                     return item.type != 'Book' && item.type != 'Film' && item.type != 'AudioBook' && item.type != 'CD' && item.type != 'SheetMusic';
                 }
             }
-            else $scope.resultFilter = {type : type};
+            else $scope.resultFilter = function(item){ return item.type == type};
         }
 
         $scope.search = function(){
+
+            $location.search('query', $scope.searchQuery);
+            $location.replace();
 
             $scope.isSearching = true;
 
@@ -38,9 +43,7 @@ angular.module('Solvberget.WebApp')
             });
         }
 
-        $scope.pathFor = function(item){
-            var title = encodeURIComponent(item.title.replace(' ','-').toLowerCase());
-            return $rootScope.path(item.type + 'Ctrl', {id: item.id, title : title});
-        };
-
+        // initialize search from query string in url, if present
+        $scope.searchQuery = $location.search()['query'];
+        if($scope.searchQuery) $scope.search();
     });
