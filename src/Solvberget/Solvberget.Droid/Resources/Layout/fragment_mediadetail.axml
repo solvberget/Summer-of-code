@@ -18,10 +18,11 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:background="@color/ui_grey_dark">
-            <ImageView
+            <Solvberget.Droid.Views.Components.CustomImageView
                 android:layout_width="100.0dp"
                 android:layout_height="130.0dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/ic_launcher"
+                local:MvxBind="ImageUrl Image" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
@@ -59,14 +60,6 @@
                 android:text="TILGJENGELIGHET"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true" />
-            <TextView
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#E3EFD9"
-                android:text="x av y eksemplarer tilgjengelig"
-                local:MvxBind="Text Availability" />
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
@@ -76,7 +69,75 @@
                 android:id="@+id/linearLayout1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:background="@color/ui_itembackground" />
+                android:background="@color/ui_itembackground">
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E3EFD9"
+                    local:MvxBind="Text AvailabilitySummary" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Filial" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text Availability.Branch" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Avdeling" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text Availability.Department" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Samling" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text Availability.Collection" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Finnes på hylle" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text Availability.Location" />
+            </LinearLayout>
             <TextView
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
