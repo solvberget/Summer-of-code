@@ -20,7 +20,7 @@ namespace Solvberget.Nancy.Modules
         {
             Get["/{id}/thumbnail"] = args =>
             {
-                string url = pathProvider.ResolveUrl(Path.Combine(pathProvider.GetImageCachePath(), images.GetDocumentImage(args.id)));
+                string url = pathProvider.ResolveUrl(Request.Url.SiteBase, Path.Combine(pathProvider.GetImageCachePath(), images.GetDocumentImage(args.id)));
 
                 if (String.IsNullOrEmpty(url))
                 {
