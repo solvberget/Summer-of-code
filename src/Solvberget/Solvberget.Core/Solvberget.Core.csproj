@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\MediaDetailViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
     <Compile Include="ViewModels\OpeningHoursViewModel.cs" />
+    <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="ViewModels\SearchResultViewModel.cs" />
     <Compile Include="ViewModels\MyPageFavoritesViewModel.cs" />
     <Compile Include="ViewModels\MyPageFinesViewModel.cs" />

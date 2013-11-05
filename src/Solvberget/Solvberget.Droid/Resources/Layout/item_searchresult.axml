@@ -42,7 +42,6 @@
                 android:text="Type"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textSize="8dp"
-                <!--local:MvxBind="Text PresentableType"-->
                 local:MvxBind="Text Image"
                 android:singleLine="true" />
             <TextView
