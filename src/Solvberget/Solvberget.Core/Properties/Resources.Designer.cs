@@ -133,6 +133,15 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /documents/{0}/thumbnail.
+        /// </summary>
+        internal static string ServiceUrl_MediaImage {
+            get {
+                return ResourceManager.GetString("ServiceUrl_MediaImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /news.
         /// </summary>
         internal static string ServiceUrl_News {

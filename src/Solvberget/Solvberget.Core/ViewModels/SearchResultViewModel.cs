@@ -45,6 +45,13 @@ namespace Solvberget.Core.ViewModels
             set { _docNumber = value; RaisePropertyChanged(() => DocNumber); }
         }
 
+        private string _image;
+        public string Image 
+        {
+            get { return _image; }
+            set { _image = value; RaisePropertyChanged(() => Image);}
+        }
+
         private static string ConvertMediaTypeToNiceString(string type)
         {
             switch (type)

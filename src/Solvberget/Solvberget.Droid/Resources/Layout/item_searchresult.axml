@@ -13,10 +13,10 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+  <Solvberget.Droid.Views.Components.CustomImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        local:MvxBind="ImageUrl Image"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -41,7 +41,9 @@
                 android:layout_height="wrap_content"
                 android:text="Type"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                local:MvxBind="Text PresentableType"
+                android:textSize="8dp"
+                <!--local:MvxBind="Text PresentableType"-->
+                local:MvxBind="Text Image"
                 android:singleLine="true" />
             <TextView
                 android:paddingLeft="8dp"
