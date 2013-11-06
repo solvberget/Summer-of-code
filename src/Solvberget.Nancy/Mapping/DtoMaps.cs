@@ -4,6 +4,7 @@ using System.Linq;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Documents;
+using Solvberget.Domain.Events;
 using Solvberget.Domain.Lists;
 
 namespace Solvberget.Nancy.Mapping

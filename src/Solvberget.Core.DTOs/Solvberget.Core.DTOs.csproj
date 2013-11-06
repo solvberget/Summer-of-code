@@ -97,6 +97,7 @@
     <Compile Include="DocumentAvailabilityDto.cs" />
     <Compile Include="DocumentDto.cs" />
     <Compile Include="DocumentReviewDto.cs" />
+    <Compile Include="EventDto.cs" />
     <Compile Include="FilmDto.cs" />
     <Compile Include="FineDto.cs" />
     <Compile Include="GameDto.cs" />

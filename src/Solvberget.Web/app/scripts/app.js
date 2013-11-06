@@ -76,6 +76,14 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
                 templateUrl : 'views/media.other.html',
                 controller: 'OtherMediaCtrl'
             })
+            .when('/arrangementer', {
+                templateUrl : 'views/events.html',
+                controller: 'EventsCtrl'
+            })
+            .when('/arrangementer/:id', {
+                templateUrl : 'views/event.details.html',
+                controller: 'EventDetailsCtrl'
+            })
             .otherwise({
                 redirectTo: '/nyheter'
             });

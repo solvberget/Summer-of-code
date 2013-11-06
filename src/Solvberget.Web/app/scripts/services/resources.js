@@ -43,4 +43,9 @@ angular.module('Solvberget.WebApp')
 
         var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
         return $resource(apiPrefix + 'info/contact');
+    })
+    .factory('events', function($resource){
+
+        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
+        return $resource(apiPrefix + 'events/:id');
     });
