@@ -41,21 +41,31 @@ namespace Solvberget.Core.ViewModels
                     DocumentTitle = l.DocumentTitle,
                     DueDate = l.DueDate,
                     Material = l.Material,
-                    SubLibrary = l.SubLibrary
+                    SubLibrary = l.SubLibrary,
+                    ButtonVisible = true
                 });
             }
 
-            //if (Loans.Count == 0)
-            //{
-            //    Loans = new List<LoanDto>
-            //    {
-            //        new LoanDto
-            //        {
-            //            DocumentTitle = "Ingen regisrterte lån! Ta en tur til biblioteket og finn deg noe!"
-            //        }
-            //    };
-            //}
+            if (Loans.Count == 0)
+            {
+                Loans.Add(new LoanViewModel
+                {
+                    DocumentTitle = "Ingen registrerte lån, ta deg en tur på biblioteket",
+                    ButtonVisible = false
+
+                });
+            }
             IsLoading = false;
+        }
+
+        public void RemoveReservation(LoanViewModel loanViewModel)
+        {
+            Loans.Remove(loanViewModel);
+        }
+
+        public void AddReservation(LoanViewModel loanViewModel)
+        {
+            Loans.Add(loanViewModel);
         }
     }
 }

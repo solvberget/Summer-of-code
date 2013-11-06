@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
@@ -47,6 +49,44 @@ namespace Solvberget.Core.ViewModels
                 _material = value;
                 RaisePropertyChanged(() => Material);
             }
+        }
+
+        private MyPageLoansViewModel _parent;
+        public MyPageLoansViewModel Parent
+        {
+            get { return _parent; }
+            set
+            {
+                _parent = value;
+                RaisePropertyChanged(() => Parent);
+            }
+        }
+
+        private bool _buttonVisible;
+        public bool ButtonVisible
+        {
+            get { return _buttonVisible; }
+            set
+            {
+                _buttonVisible = value;
+                RaisePropertyChanged(() => ButtonVisible);
+            }
+        }
+
+        private MvxCommand<LoanViewModel> _showDetailsCommand;
+        public ICommand ShowDetailsCommand
+        {
+            get
+            {
+                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<LoanViewModel>(ExecuteShowDetailsCommand));
+            }
+        }
+
+        private void ExecuteShowDetailsCommand(LoanViewModel loan)
+        {
+
+            //Send request to expand due date, give feedback on result.
+            
         }
     }
 }

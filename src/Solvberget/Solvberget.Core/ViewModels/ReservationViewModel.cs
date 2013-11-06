@@ -9,7 +9,6 @@ namespace Solvberget.Core.ViewModels
     public class ReservationViewModel : BaseViewModel
     {
         private string _documentNumber;
-
         public string DocumentNumber
         {
             get { return _documentNumber; }
@@ -21,7 +20,6 @@ namespace Solvberget.Core.ViewModels
         }
 
         private string _documentTitle;
-
         public string DocumentTitle
         {
             get { return _documentTitle; }
@@ -33,7 +31,6 @@ namespace Solvberget.Core.ViewModels
         }
 
         private string _pickupLocation;
-
         public string PickupLocation
         {
             get { return _pickupLocation; }
@@ -45,7 +42,6 @@ namespace Solvberget.Core.ViewModels
         }
 
         private DateTime? _holdRequestFrom;
-
         public DateTime? HoldRequestFrom
         {
             get { return _holdRequestFrom; }
@@ -57,7 +53,6 @@ namespace Solvberget.Core.ViewModels
         }
 
         private string _status;
-
         public string Status
         {
             get { return _status; }
@@ -69,7 +64,6 @@ namespace Solvberget.Core.ViewModels
         }
 
         private MyPageReservationsViewModel _parent;
-
         public MyPageReservationsViewModel Parent
         {
             get { return _parent; }
@@ -80,7 +74,16 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        
+        private bool _buttonVisible;
+        public bool ButtonVisible
+        {
+            get { return _buttonVisible; }
+            set
+            {
+                _buttonVisible = value;
+                RaisePropertyChanged(() => ButtonVisible);
+            }
+        }
 
         private MvxCommand<ReservationViewModel> _showDetailsCommand;
         public ICommand ShowDetailsCommand
@@ -94,6 +97,17 @@ namespace Solvberget.Core.ViewModels
         private void ExecuteShowDetailsCommand(ReservationViewModel reservation)
         {
             Parent.RemoveReservation(this);
+
+            if (Parent.Reservations.Count == 0)
+            {
+                Parent.AddReservation(new ReservationViewModel
+                {
+                    DocumentTitle = "Du har ingen reservasjoner",
+                    Status = "Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene.",
+                    ButtonVisible = false
+
+                });
+            }
         }
     }
 }

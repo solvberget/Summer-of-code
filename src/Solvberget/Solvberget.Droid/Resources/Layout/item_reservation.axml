@@ -35,7 +35,6 @@
             android:id="@+id/textView1"
             local:MvxBind="Text DocumentTitle" />
         <TextView
-            android:text="Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene."
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -50,7 +49,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/button1"
         android:gravity="center"
-        android:layout_weight="1"
-        android:width="0dip"
+        android:width="80dp"
         local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(ButtonVisible)" />
 </LinearLayout>
