@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
@@ -16,8 +17,8 @@ namespace Solvberget.Core.ViewModels
             Load();
         }
 
-        private List<LoanDto> _loans;
-        public List<LoanDto> Loans
+        private ObservableCollection<LoanViewModel> _loans;
+        public ObservableCollection<LoanViewModel> Loans
         {
             get { return _loans; }
             set { _loans = value; RaisePropertyChanged(() => Loans); }
@@ -29,18 +30,31 @@ namespace Solvberget.Core.ViewModels
 
             var user = await _service.GetUserInformation(_service.GetUserId());
 
-            Loans = user.Loans == null ? new List<LoanDto>() : user.Loans.ToList();
+            var loansList = user.Loans == null ? new List<LoanDto>() : user.Loans.ToList();
 
-            if (Loans.Count == 0)
+            Loans = new ObservableCollection<LoanViewModel>();
+
+            foreach (LoanDto l in loansList)
             {
-                Loans = new List<LoanDto>
+                Loans.Add(new LoanViewModel
                 {
-                    new LoanDto
-                    {
-                        DocumentTitle = "Ingen regisrterte lån! Ta en tur til biblioteket og finn deg noe!"
-                    }
-                };
+                    DocumentTitle = l.DocumentTitle,
+                    DueDate = l.DueDate,
+                    Material = l.Material,
+                    SubLibrary = l.SubLibrary
+                });
             }
+
+            //if (Loans.Count == 0)
+            //{
+            //    Loans = new List<LoanDto>
+            //    {
+            //        new LoanDto
+            //        {
+            //            DocumentTitle = "Ingen regisrterte lån! Ta en tur til biblioteket og finn deg noe!"
+            //        }
+            //    };
+            //}
             IsLoading = false;
         }
     }
