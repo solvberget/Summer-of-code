@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Cirrious.CrossCore;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.DTOs.Deprecated.DTO;
@@ -26,8 +27,9 @@ namespace Solvberget.Core.Services
                 var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Search, query));
                 return JsonConvert.DeserializeObject<List<DocumentDto>>(response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Mvx.Trace(e.Message);
                 return new List<DocumentDto>
                 {
                     new DocumentDto
@@ -66,8 +68,9 @@ namespace Solvberget.Core.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Mvx.Trace(e.Message);
                 return new DocumentDto
                 {
                     Title = "Kunne ikke laste dokument"
