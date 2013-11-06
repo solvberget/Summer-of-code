@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            local:MvxBind="Text Status" />
+            local:MvxBind="Text DueDate" />
     </LinearLayout>
     <Button
         android:text="Utvid lånet"
