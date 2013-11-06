@@ -29,27 +29,25 @@ namespace Solvberget.Core.ViewModels
 
             Fines = user.Fines == null ? new List<FineDto>() : user.Fines.ToList();
 
-            if (Fines.Count == 0)
-            {
-                Fines = new List<FineDto>
-                {
-                    new FineDto
-                    {
-                        Description =
-                            "Du har ingen gebyrer! Det kan du for eksempel få hvis du leverer noe for sent eller mister noe"
-                    }
-                };
-            }
-            else
+            if (Fines.Count != 0)
             {
                 for (var i = 0; i < Fines.Count; i++)
                 {
-                    if (Fines.ElementAt(i).Status.Equals("Cancelled"))
+                    if (Fines.ElementAt(i).Status.Equals("Cancelled") || Fines.ElementAt(i).Status.Equals("Paid"))
                     {
                         Fines.Remove(Fines.ElementAt(i));
                         i--;
                     }
                 }
+            }
+
+            if (Fines.Count == 0)
+            {
+                Fines.Add(new FineDto
+                    {
+                        Description =
+                            "Du har ingen gebyrer! Det kan du for eksempel få hvis du leverer noe for sent eller mister noe"
+                    });
             }
             IsLoading = false;
         }

@@ -181,8 +181,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060000
 			public const int MvxBindingTagUnique = 2131099648;
 			
-			// aapt resource value: 0x7f06000e
-			public const int button1 = 2131099662;
+			// aapt resource value: 0x7f06000b
+			public const int button1 = 2131099659;
 			
 			// aapt resource value: 0x7f060010
 			public const int content_frame = 2131099664;
@@ -199,14 +199,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060014
 			public const int menu_refresh = 2131099668;
 			
+			// aapt resource value: 0x7f06000e
+			public const int news_ingress = 2131099662;
+			
 			// aapt resource value: 0x7f06000c
-			public const int news_ingress = 2131099660;
+			public const int news_newstitle = 2131099660;
 			
-			// aapt resource value: 0x7f06000a
-			public const int news_newstitle = 2131099658;
-			
-			// aapt resource value: 0x7f06000b
-			public const int news_published = 2131099659;
+			// aapt resource value: 0x7f06000d
+			public const int news_published = 2131099661;
 			
 			// aapt resource value: 0x7f060012
 			public const int progressBar = 2131099666;
@@ -229,8 +229,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060002
 			public const int textView1 = 2131099650;
 			
-			// aapt resource value: 0x7f06000d
-			public const int textView2 = 2131099661;
+			// aapt resource value: 0x7f06000a
+			public const int textView2 = 2131099658;
 			
 			// aapt resource value: 0x7f060006
 			public const int textView3 = 2131099654;

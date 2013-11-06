@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -15,8 +14,8 @@ namespace Solvberget.Core.ViewModels
             Load();
         }
 
-        private List<DocumentDto> _favorites;
-        public List<DocumentDto> Favorites
+        private List<FavoriteViewModel> _favorites;
+        public List<FavoriteViewModel> Favorites
         {
             get{ return _favorites; }
             set{ _favorites = value; RaisePropertyChanged(() => Favorites); }
@@ -30,7 +29,29 @@ namespace Solvberget.Core.ViewModels
 
             //Favorites = user..ToList();
 
+            Favorites = new List<FavoriteViewModel>();
+
+            if (Favorites.Count == 0)
+            {
+                Favorites.Add(new FavoriteViewModel
+                {
+                    Name = "Du har ingen registrerte favoritter",
+                    ButtonVisible = false
+
+                });
+            }
+
             IsLoading = false;
+        }
+
+        public void RemoveFavorite(FavoriteViewModel favoriteViewModel)
+        {
+            Favorites.Remove(favoriteViewModel);
+        }
+
+        public void AddFavorite(FavoriteViewModel favoriteViewModel)
+        {
+            Favorites.Add(favoriteViewModel);
         }
     }
 }

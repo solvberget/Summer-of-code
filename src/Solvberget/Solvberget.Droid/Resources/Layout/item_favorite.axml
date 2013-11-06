@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TextView
-        android:text="Document title"
-        android:paddingTop="10px"
-        android:paddingLeft="10px"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/ui_itembackground"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:gravity="center"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        local:MvxBind="Text Title" />
+        android:src="@drawable/ic_launcher"
+        android:layout_weight="1"
+        android:width="0dip" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="300"
+        android:layout_width="fill_parent"
+        android:width="0dip"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            local:MvxBind="Text Name" />
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            local:MvxBind="Text Year" />
+    </LinearLayout>
+    <Button
+        android:text="Fjern"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1"
+        android:gravity="center"
+        android:width="80dp"
+        local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(ButtonVisible)" />
 </LinearLayout>

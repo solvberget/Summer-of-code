@@ -32,7 +32,6 @@ namespace Solvberget.Core.ViewModels
 
             var res = user.Reservations == null ? new List<ReservationDto>() : user.Reservations.ToList();
 
-
             Reservations = new ObservableCollection<ReservationViewModel>();
 
             foreach (ReservationDto r in res)
@@ -44,7 +43,19 @@ namespace Solvberget.Core.ViewModels
                     HoldRequestFrom = r.HoldRequestFrom,
                     Status = r.Status,
                     PickupLocation = r.PickupLocation,
-                    Parent = this
+                    Parent = this,
+                    ButtonVisible = true
+                });
+            }
+
+            if (Reservations.Count == 0)
+            {
+                Reservations.Add(new ReservationViewModel
+                {
+                    DocumentTitle = "Du har ingen reservasjoner",
+                    Status = "Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene.",
+                    ButtonVisible = false
+
                 });
             }
         }
@@ -52,6 +63,11 @@ namespace Solvberget.Core.ViewModels
         public void RemoveReservation(ReservationViewModel reservationViewModel)
         {
             Reservations.Remove(reservationViewModel);
+        }
+
+        public void AddReservation(ReservationViewModel reservationViewModel)
+        {
+            Reservations.Add(reservationViewModel);
         }
     }
 }
