@@ -8,7 +8,7 @@ namespace Solvberget.Nancy.Modules
     {
         public LoginModule(NancyContextAuthenticator authenticator) : base("/login")
         {
-            Post["/"] = _ =>
+            Get["/"] = _ =>
             {
                 var userIdentity = authenticator.Authenticate(Context);
 

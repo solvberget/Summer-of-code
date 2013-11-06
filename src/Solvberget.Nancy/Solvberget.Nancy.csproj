@@ -127,6 +127,7 @@
     <Compile Include="Authentication\TEST_AlwaysAuthenticateProvider.cs" />
     <Compile Include="Authentication\IAuthenticationProvider.cs" />
     <Compile Include="Authentication\UserIdentity.cs" />
+    <Compile Include="Authentication\UserIdentityCache.cs" />
     <Compile Include="Authentication\UserInfoContextExtensions.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Extensions\ComponentContextExtensions.cs" />

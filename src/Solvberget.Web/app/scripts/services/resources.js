@@ -48,4 +48,37 @@ angular.module('Solvberget.WebApp')
 
         var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
         return $resource(apiPrefix + 'events/:id');
+    })
+    .factory('favorites', function($resource){
+
+        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
+        return $resource(apiPrefix + 'favorites/:documentId');
+    })
+    .factory('login', function($resource){
+
+        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
+        return $resource(apiPrefix + 'login');
+    })
+    .config(function($httpProvider){
+
+        $httpProvider.interceptors.push(function() {
+            return {
+                'request': function(config) {
+
+                    if(config.url.indexOf('login') > 0 || !$$config.username || !$$config.password) return config;
+
+                    if(config.url.indexOf('?') < 0) config.url += '?';
+                    config.url += '&username=' + $$config.username + '&password=' + $$config.password;
+                    return config;
+                },
+                'responseError': function(response) {
+
+                    if(response.status == 401){
+                        window.location = './#/login?redirect=' + window.location.hash.substring(1);
+                    }
+
+                    return response;
+                }
+            };
+        });
     });

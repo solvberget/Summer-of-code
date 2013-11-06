@@ -1,6 +1,6 @@
 'use strict';
 
-var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, documentRating, documentReview) {
+var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, documentRating, documentReview, favorites) {
 
     $scope.document = documents.get({id : $routeParams.id}, function(){
         $rootScope.breadcrumb.push($scope.document.title);
@@ -9,6 +9,16 @@ var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, d
 
     $scope.rating = documentRating.get({id : $routeParams.id});
     $scope.review = documentReview.get({id : $routeParams.id});
+
+    $scope.toggleFavorite = function(){
+
+        var args = {documentId : $routeParams.id};
+
+        if($scope.isFavorite) favorites.delete(args);
+        else favorites.put(args)
+
+        $scope.isFavorite = !$scope.isFavorite;
+    }
 };
 
 angular.module('Solvberget.WebApp')

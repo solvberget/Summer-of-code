@@ -99,6 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Documents\Ratings\DocumentRating.cs" />
+    <Compile Include="Favorites\Favorite.cs" />
+    <Compile Include="Favorites\FavoritesRepository.cs" />
+    <Compile Include="Favorites\IFavoritesRepository.cs" />
     <Compile Include="Utils\IEnvironmentPathProvider.cs" />
     <Compile Include="Info\IInformationRepository.cs" />
     <Compile Include="Events\IEventRepository.cs" />

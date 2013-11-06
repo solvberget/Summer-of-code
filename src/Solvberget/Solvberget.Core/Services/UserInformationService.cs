@@ -20,8 +20,8 @@ namespace Solvberget.Core.Services
         public string GetUserId()
         {
             //return "N000708254";
-            //return "123456";
-            return "164916";
+            return "123456";
+            //return "164916";
         }
 
         public async Task<UserInfoDto> GetUserInformation(string userId)
@@ -40,48 +40,5 @@ namespace Solvberget.Core.Services
                 };
             }
         }
-
-        //public Task<List<Loan>> GetUserLoans(string userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<List<Reservation>> GetUserReservations(string userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public async Task<List<Notification>> GetUserNotifications(string userId)
-        //{
-        //    var url = "https://dl.dropboxusercontent.com/u/19550193/User_info/164916.json";
-
-        //    try
-        //    {
-        //        var response = await _downloader.Download(url);
-        //        return JsonConvert.DeserializeObject<List<Notification>>(response);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return new List<Notification>
-        //        {
-        //            new Notification
-        //            {
-        //                Title = "Ingen meldinger ble funnet",
-        //                Content = e.Message
-        //            }
-                    
-        //        };
-        //    }
-        //}
-
-        //public Task<List<Fine>> GetUserFines(string userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<List<Document>> GetUserFavorites(string userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

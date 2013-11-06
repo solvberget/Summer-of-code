@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web;
-using System.Web.Configuration;
-using System.Web.Security;
 using Nancy;
 using Nancy.Security;
 
@@ -11,6 +8,7 @@ namespace Solvberget.Nancy.Authentication
     public class NancyContextAuthenticator
     {
         private readonly IAuthenticationProvider _provider;
+        private UserIdentityCache _cache = new UserIdentityCache();
 
         public NancyContextAuthenticator(IAuthenticationProvider provider)
         {
@@ -22,12 +20,12 @@ namespace Solvberget.Nancy.Authentication
             string username, password;
             if (!TryGetCredentialsFromRequest(context.Request, out username, out password)) return null;
 
-            var userIdentity = GetCachedIdentityFor(username, password);
+            var userIdentity = _cache.GetCachedIdentityFor(username, password);
 
             if (null == userIdentity)
             {
                 userIdentity = _provider.Authenticate(username, password);
-                CacheUserIdentity(userIdentity, password);
+                _cache.CacheUserIdentity(userIdentity, password);
             }
 
             return userIdentity;
@@ -41,24 +39,5 @@ namespace Solvberget.Nancy.Authentication
             return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
         }
 
-        private void CacheUserIdentity(IUserIdentity userIdentity, string password)
-        {
-            if (null == userIdentity) return;
-            _cachedIdentities[GetCacheKeyFor(userIdentity.UserName, password)] = userIdentity;
-        }
-
-        readonly Dictionary<string, IUserIdentity> _cachedIdentities = new Dictionary<string, IUserIdentity>(); 
-
-        private IUserIdentity GetCachedIdentityFor(string username, string password)
-        {
-            IUserIdentity identity;
-            _cachedIdentities.TryGetValue(GetCacheKeyFor(username, password), out identity);
-            return identity;
-        }
-
-        private static string GetCacheKeyFor(string username, string password)
-        {
-            return "UID:" + FormsAuthentication.HashPasswordForStoringInConfigFile(username + password, FormsAuthPasswordFormat.SHA1.ToString());
-        }
     }
 }
