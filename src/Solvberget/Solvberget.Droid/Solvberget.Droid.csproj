@@ -117,6 +117,7 @@
       <Private>True</Private>
       <HintPath>..\..\..\packages\MvvmCross.PortableSupport.3.0.13\lib\MonoAndroid16\System.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
@@ -253,6 +254,13 @@
     <AndroidResource Include="Resources\Layout\fragment_searchresults.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\mediadetail_film.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_book.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_cd.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_audiobook.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_sheetmusic.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_game.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_journal.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -299,6 +307,10 @@
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
       <Project>{747706F4-ECBF-4D50-8D72-B0DDCC18395C}</Project>
       <Name>Solvberget.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
+      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Name>Solvberget.Core.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

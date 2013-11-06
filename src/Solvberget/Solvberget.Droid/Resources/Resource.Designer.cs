@@ -376,13 +376,34 @@ namespace Solvberget.Droid
 			public const int item_suggestions_list_summary = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int page_home_view = 2130903074;
+			public const int mediadetail_audiobook = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int page_webview = 2130903075;
+			public const int mediadetail_book = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int SplashScreen = 2130903076;
+			public const int mediadetail_cd = 2130903076;
+			
+			// aapt resource value: 0x7f030025
+			public const int mediadetail_film = 2130903077;
+			
+			// aapt resource value: 0x7f030026
+			public const int mediadetail_game = 2130903078;
+			
+			// aapt resource value: 0x7f030027
+			public const int mediadetail_journal = 2130903079;
+			
+			// aapt resource value: 0x7f030028
+			public const int mediadetail_sheetmusic = 2130903080;
+			
+			// aapt resource value: 0x7f030029
+			public const int page_home_view = 2130903081;
+			
+			// aapt resource value: 0x7f03002a
+			public const int page_webview = 2130903082;
+			
+			// aapt resource value: 0x7f03002b
+			public const int SplashScreen = 2130903083;
 			
 			static Layout()
 			{

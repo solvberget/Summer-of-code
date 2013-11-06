@@ -53,6 +53,14 @@ namespace Solvberget.Core.Services
                         return JsonConvert.DeserializeObject<FilmDto>(response);
                     case "Book":
                         return JsonConvert.DeserializeObject<BookDto>(response);
+                    case "Journal":
+                        return JsonConvert.DeserializeObject<JournalDto>(response);
+                    case "Game":
+                        return JsonConvert.DeserializeObject<GameDto>(response);
+                    case "SheetMusic":
+                        return JsonConvert.DeserializeObject<SheetMusicDto>(response);
+                    case "AudioBook":
+                        return JsonConvert.DeserializeObject<AudioBookDto>(response);
                     default:
                         return doc;
                 }

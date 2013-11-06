@@ -28,6 +28,7 @@ namespace Solvberget.Core.ViewModels
 
             var document = await _searchService.Get(docId);
             Title = document.Title;
+            SubTitle = document.SubTitle;
             ItemTitle = document.Title;
             Name = document.Title;
             Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, docId);
@@ -36,8 +37,27 @@ namespace Solvberget.Core.ViewModels
             TypeAndYear = String.Format("{0} ({1})", Type, Year);
             Author = document.MainContributor;
             Availability = document.Availability;
+            RawDto = document;
 
             IsLoading = false;
+        }
+
+        private DocumentDto _rawDto;
+        public DocumentDto RawDto 
+        {
+            get { return _rawDto; }
+            set { _rawDto = value; RaisePropertyChanged(() => RawDto);}
+        }
+
+        private string _subTitle;
+        public string SubTitle
+        {
+            get { return _subTitle; }
+            set
+            {
+                _subTitle = value;
+                RaisePropertyChanged(() => SubTitle);
+            }
         }
 
         private DocumentAvailabilityDto _availability;
