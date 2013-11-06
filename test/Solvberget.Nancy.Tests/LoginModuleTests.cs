@@ -30,7 +30,7 @@ namespace Solvberget.Nancy.Tests
         {
             A.CallTo(() => _provider.Authenticate(null, "password")).Returns(null);
 
-            var response = _browser.Post("/login", with =>
+            var response = _browser.Get("/login", with =>
             {
                 with.Query("password", "password");
                 with.Accept("application/json");
@@ -45,7 +45,7 @@ namespace Solvberget.Nancy.Tests
         {
             A.CallTo(() => _provider.Authenticate("username", null)).Returns(null);
 
-            var response = _browser.Post("/login", with =>
+            var response = _browser.Get("/login", with =>
             {
                 with.Query("username", null);
                 with.Accept("application/json");
@@ -60,7 +60,7 @@ namespace Solvberget.Nancy.Tests
         {
             A.CallTo(() => _provider.Authenticate("username", "incorrect password")).Returns(null);
 
-            var response = _browser.Post("/login", with =>
+            var response = _browser.Get("/login", with =>
             {
                 with.Query("username", "username");
                 with.Query("password", "incorrect password");
@@ -76,7 +76,7 @@ namespace Solvberget.Nancy.Tests
         {
             A.CallTo(() => _provider.Authenticate("username", "correct password")).Returns(new UserIdentity("username"));
 
-            var response = _browser.Post("/login", with =>
+            var response = _browser.Get("/login", with =>
             {
                 with.Query("username", "username");
                 with.Query("password", "correct password");

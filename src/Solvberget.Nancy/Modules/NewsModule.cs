@@ -11,8 +11,6 @@ namespace Solvberget.Nancy.Modules
     {
         public NewsModule(INewsRepository newsRepository) : base("/news")
         {
-            this.RequiresAuthentication();
-
             Get["/"] = args =>
             {
                 int limit = Request.Query.limit.HasValue ? Request.Query.limit : 10;
