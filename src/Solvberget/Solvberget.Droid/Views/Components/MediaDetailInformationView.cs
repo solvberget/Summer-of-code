@@ -19,41 +19,39 @@ namespace Solvberget.Droid.Views.Components
             get { return _bindingContext.DataContext; }
             set
             {
-                if (value != null)
+                if (value == null) return;
+                _bindingContext.DataContext = value;
+
+                View view = null;
+
+                if (DataContext is BookDto)
                 {
-                    _bindingContext.DataContext = value;
+                    view = this.BindingInflate(Resource.Layout.mediadetail_book, null);
+                }
+                else if (DataContext is FilmDto)
+                {
+                    view = this.BindingInflate(Resource.Layout.mediadetail_film, null);
+                }
+                else if (DataContext is CdDto)
+                {
+                    view = this.BindingInflate(Resource.Layout.mediadetail_cd, null);
+                }
+                else if (DataContext is SheetMusicDto)
+                {
+                    view = this.BindingInflate(Resource.Layout.mediadetail_sheetmusic, null);
+                }
+                else if (DataContext is GameDto)
+                {
+                    view = this.BindingInflate(Resource.Layout.mediadetail_game, null);
+                }
+                else if (DataContext is JournalDto)
+                {
+                    view = this.BindingInflate(Resource.Layout.mediadetail_journal, null);
+                }
 
-                    View view = null;
-
-                    if (DataContext is BookDto)
-                    {
-                        view = this.BindingInflate(Resource.Layout.mediadetail_book, null);
-                    }
-                    else if (DataContext is FilmDto)
-                    {
-                        view = this.BindingInflate(Resource.Layout.mediadetail_film, null);
-                    }
-                    else if (DataContext is CdDto)
-                    {
-                        view = this.BindingInflate(Resource.Layout.mediadetail_cd, null);
-                    }
-                    else if (DataContext is SheetMusicDto)
-                    {
-                        view = this.BindingInflate(Resource.Layout.mediadetail_sheetmusic, null);
-                    }
-                    else if (DataContext is GameDto)
-                    {
-                        view = this.BindingInflate(Resource.Layout.mediadetail_game, null);
-                    }
-                    else if (DataContext is JournalDto)
-                    {
-                        view = this.BindingInflate(Resource.Layout.mediadetail_journal, null);
-                    }
-
-                    if (view != null)
-                    {
-                        AddView(view);
-                    }
+                if (view != null)
+                {
+                    AddView(view);
                 }
             }
         }
