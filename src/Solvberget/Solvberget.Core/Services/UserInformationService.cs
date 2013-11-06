@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
+using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 
 namespace Solvberget.Core.Services
@@ -18,22 +19,24 @@ namespace Solvberget.Core.Services
 
         public string GetUserId()
         {
+            //return "N000708254";
+            //return "123456";
             return "164916";
         }
 
         public async Task<UserInfoDto> GetUserInformation(string userId)
         {
-            const string url = "https://dl.dropboxusercontent.com/u/19550193/User_info/164916.json";
             try
             {
-                var response = await _downloader.Download(url);
+                var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_UserInfo, GetUserId()));
                 return JsonConvert.DeserializeObject<UserInfoDto>(response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new UserInfoDto
                 {
-                    Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
+                    Name = e.Message
+                    //Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
                 };
             }
         }

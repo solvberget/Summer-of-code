@@ -169,7 +169,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.dropbox.com/sh/o58cm0caauulidy/user_info/.
+        ///   Looks up a localized string similar to /user/{0}/info.
         /// </summary>
         internal static string ServiceUrl_UserInfo {
             get {

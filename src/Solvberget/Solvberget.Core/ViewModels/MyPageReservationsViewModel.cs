@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System.Linq;
+
 
 namespace Solvberget.Core.ViewModels
 {
@@ -16,29 +18,40 @@ namespace Solvberget.Core.ViewModels
             Load();
         }
 
-        private List<ReservationDto> _reservations;
-        public List<ReservationDto> Reservations
+        private ObservableCollection<ReservationViewModel> _reservations;
+        public ObservableCollection<ReservationViewModel> Reservations
         {
             get{ return _reservations; }
             set{ _reservations = value; RaisePropertyChanged(() => Reservations); }
         }
 
+
         public async void Load()
         {
             var user = await _service.GetUserInformation(_service.GetUserId());
 
-            Reservations = user.Reservations == null ? new List<ReservationDto>() : user.Reservations.ToList();
+            var res = user.Reservations == null ? new List<ReservationDto>() : user.Reservations.ToList();
 
-            if (Reservations.Count == 0)
+
+            Reservations = new ObservableCollection<ReservationViewModel>();
+
+            foreach (ReservationDto r in res)
             {
-                Reservations = new List<ReservationDto>
+                Reservations.Add(new ReservationViewModel
                 {
-                    new ReservationDto
-                    {
-                        DocumentTitle = "Ingen reservasjoner. Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene."
-                    }
-                };
+                    DocumentTitle = r.DocumentTitle,
+                    DocumentNumber = r.DocumentNumber,
+                    HoldRequestFrom = r.HoldRequestFrom,
+                    Status = r.Status,
+                    PickupLocation = r.PickupLocation,
+                    Parent = this
+                });
             }
+        }
+
+        public void RemoveReservation(ReservationViewModel reservationViewModel)
+        {
+            Reservations.Remove(reservationViewModel);
         }
     }
 }

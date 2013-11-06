@@ -3,6 +3,7 @@
 using Nancy.Testing;
 
 using Should;
+using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Users;
 using Solvberget.Nancy.Modules;
@@ -46,7 +47,7 @@ namespace Solvberget.Nancy.Tests
             });
 
             // Then
-            response.Body.DeserializeJson<UserInfo>().Name.ShouldEqual("Chuck Norris");
+            response.Body.DeserializeJson<UserInfoDto>().Name.ShouldEqual("Chuck Norris");
         }
 
         [Fact]

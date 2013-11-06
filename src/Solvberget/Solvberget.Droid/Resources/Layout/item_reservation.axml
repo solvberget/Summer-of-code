@@ -22,7 +22,7 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Document title that is very long"
+            android:hint="Du har ingen reservasjoner"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -31,7 +31,7 @@
             android:id="@+id/textView1"
             local:MvxBind="Text DocumentTitle" />
         <TextView
-            android:hint="More information"
+            android:hint="Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene."
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -45,5 +45,6 @@
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:id="@+id/button1"
-        android:gravity="left" />
+        android:gravity="left"
+        local:MvxBind="Click ShowDetailsCommand" />
 </LinearLayout>

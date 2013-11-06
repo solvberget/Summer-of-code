@@ -10,11 +10,11 @@ namespace Solvberget.Core.DTOs
         public string Barcode { get; set; }
         public string DocumentTitle { get; set; }
         public string SubLibrary { get; set; }
-        public DateTime OriginalDueDate { get; set; }
+        public DateTime? OriginalDueDate { get; set; }
         public string ItemStatus { get; set; }
-        public DateTime LoanDate { get; set; }
+        public DateTime? LoanDate { get; set; }
         public string LoanHour { get; set; }
         public string Material { get; set; }
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
     }
 }
