@@ -1,6 +1,6 @@
 ﻿namespace Solvberget.Domain.Documents
 {
-    class Game : Document
+    public class Game : Document
     {
 
         public new static Game GetObjectFromFindDocXmlBsMarc(string xml)

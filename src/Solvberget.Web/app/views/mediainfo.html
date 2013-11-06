@@ -1,6 +1,6 @@
 <header class="media-item-details">
 
-    <img ng-src="{{imageUrl}}" err-src="{{'img/' + document.type + '-placeholder.png'}}" />
+    <img ng-src="{{imageUrl}}" err-src="{{'img/placeholder/' + document.type + '.png'}}" />
     <h1>{{document.title}}</h1>
     <p>{{document.subTitle}}</p>
     <p>{{document.type|translate}}</p>
@@ -26,27 +26,28 @@
         <div class="col-xs-6 col-md-3">
             <div class="meta-label">Filial</div>
             <strong>{{document.availability.branch}}</strong>
+            <span class="meta-value placeholder" ng-hide="document.availability.branch">Ukjent</span>
         </div>
 
         <div class="col-xs-6 col-md-3">
             <div class="meta-label">Finnes på hylle</div>
             <div class="meta-value">
                 {{document.classification}} {{document.availability.location}}
-                <span class="meta-value placeholder" ng-hide="document.classification || document.availability.location">-</span>
+                <span class="meta-value placeholder" ng-hide="document.classification || document.availability.location">Ukjent</span>
             </div>
         </div>
 
         <div class="col-xs-6 col-md-3">
             <div class="meta-label">Avdeling</div>
             <div class="meta-value">{{document.availability.department}}
-                <span class="meta-value placeholder" ng-hide="document.availability.department">-</span>
+                <span class="meta-value placeholder" ng-hide="document.availability.department">Ukjent</span>
             </div>
         </div>
 
         <div class="col-xs-6 col-md-3">
             <div class="meta-label">Samling</div>
             <div class="meta-value">{{document.availability.collection}}
-                <span class="meta-value placeholder" ng-hide="document.availability.collection">-</span>
+                <span class="meta-value placeholder" ng-hide="document.availability.collection">Ukjent</span>
             </div>
         </div>
     </div>
@@ -55,12 +56,11 @@
         <div class="meta-label">Tilgjengelighet</div>
     </div>
     <div class="col-xs-12 col-md-6">
-        <i class="glyphicon glyphicon-ok-sign text-success" ng-hide="{{document.Availability.AvailableCount == 0}}"></i>
-        <i class="glyphicon glyphicon-minus-sign text-error" ng-show="{{document.Availability.AvailableCount == 0}}"></i>
-        {{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån
-    </div>
-    <div class="col-xs-12 col-md-6" ng-show="{{document.Availability.EstimatedAvailableDate}}">
-        Tidligst tilgjengelig {{document.availability.estimatedAvailableDate}}
+        <i class="glyphicon glyphicon-ok-sign text-success" ng-hide="!document.availability || document.availability.availableCount == 0"></i>
+        <i class="glyphicon glyphicon-minus-sign text-error" ng-show="document.availability.availableCount == 0"></i>
+        <span ng-show="document.availability">{{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån.</span>
+        <span ng-show="document.availability.estimatedAvailableDate">Tidligst tilgjengelig {{document.availability.estimatedAvailableDate|date:mediumDate}}</span>
+        <span class="meta-value placeholder" ng-hide="document.availability">Ukjent</span>
     </div>
     </div>
 </div>

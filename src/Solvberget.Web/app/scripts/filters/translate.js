@@ -5,6 +5,7 @@ angular.module('Solvberget.WebApp')
             'AudioBook' : 'Lydbok',
             'Blog' : 'Blogg',
             'Book' : 'Bok',
+            'Game' : 'Spill',
             'Journal' : 'Journal',
             'LanguageCourse' : 'Språkkurs',
             'Other' : 'Annen media',
@@ -18,4 +19,8 @@ angular.module('Solvberget.WebApp')
 
         return output;
     }
+}).filter('trustAsHtml', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
 });

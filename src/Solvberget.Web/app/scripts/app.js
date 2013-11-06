@@ -4,9 +4,7 @@ var $$config =  {
     apiPrefix : 'http://localhost:39465/'
 }
 
-console.log("app $$config:", $$config)
-
-angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
+angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/sok', {
@@ -62,11 +60,19 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
                 templateUrl: 'views/media.bok.html',
                 controller: 'AudioBookCtrl'
             })
-            .when('/notehefte/:id/:title', {
-                templateUrl: 'views/media.notehefte.html',
-                controller: 'NotehefteCtrl'
+            .when('/noter/:id/:title', {
+                templateUrl: 'views/media.sheetmusic.html',
+                controller: 'SheetMusicCtrl'
             })
-            .when('AnnenMedia/:id/:title', {
+            .when('/spill/:id/:title', {
+                templateUrl: 'views/media.game.html',
+                controller: 'GameCtrl'
+            })
+            .when('/journal/:id/:title', {
+                templateUrl : 'views/media.journal.html',
+                controller: 'OtherMediaCtrl'
+            })
+            .when('/annet/:id/:title', {
                 templateUrl : 'views/media.other.html',
                 controller: 'OtherMediaCtrl'
             })
@@ -120,21 +126,10 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource'])
 
         $rootScope.pathForDocument = function(document){
 
-            console.log('pathForDocument type=' + document.type);
             var title = encodeURIComponent(document.title.replace(' ','-').toLowerCase());
             var documentPath = $rootScope.path(document.type + 'Ctrl', {id: document.id, title : title});
 
-            console.log('path=' + documentPath);
-
-            if(!documentPath) {
-
-                console.log('fallback to OtherMediaCtrl');
-
-                documentPath = $rootScope.path('OtherMediaCtrl', {id: document.id, title : title});
-
-                console.log('path=' + documentPath);
-            }
-
+            if(!documentPath) documentPath = $rootScope.path('OtherMediaCtrl', {id: document.id, title : title});
 
             return documentPath;
         };

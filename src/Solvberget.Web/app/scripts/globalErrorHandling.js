@@ -2,8 +2,6 @@ angular
     .module('globalErrors', [])
     .config(function($provide, $httpProvider, $compileProvider) {
 
-        console.log("config globalErrors");
-
         var showMessage = function(content, cl) {
 
             var container = $("#appMessageContainer")
@@ -33,7 +31,6 @@ angular
                             showMessage('You don\'t have the right to do this', 'alert-danger');
                             break;
                         case 500:
-                            console.log(errorResponse);
                             showMessage('Server internal error: ' + errorResponse.data, 'alert-danger');
                             break;
                         default:

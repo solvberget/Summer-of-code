@@ -10,6 +10,7 @@ angular.module('Solvberget.WebApp')
                 showFavorite:"=showFavorite",
                 isFavorite:"=isFavorite",
                 type:"=documentType",
+                gutterTextPrefix:"=gutterTextPrefix",
                 gutterText:"=gutterText"
             },
             controller: function($scope, $location) {

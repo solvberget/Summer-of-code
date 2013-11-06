@@ -27,8 +27,11 @@ namespace Solvberget.Domain.Documents.Ratings
             {
                 string rating = GetExternalFilmImdbRating(doc as Film);
                 rating = rating.Replace(".", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
-                
-                return new DocumentRating { Source = "IMDB", MaxScore = 10, Score = Double.Parse(rating), SourceUrl = "http://www.imdb.com" };
+
+                double score;
+                if (!Double.TryParse(rating, out score)) return null;
+
+                return new DocumentRating { Source = "IMDB", MaxScore = 10, Score = score, SourceUrl = "http://www.imdb.com" };
             }
 
             if (Equals(doc.DocType, typeof(Book).Name))
@@ -36,7 +39,10 @@ namespace Solvberget.Domain.Documents.Ratings
                 string rating = GetExternalBookElskereRating(doc as Book);
                 rating = rating.Replace(".", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
 
-                return new DocumentRating { Source = "Bokelskere", MaxScore = 6, Score = Double.Parse(rating), SourceUrl = "http://www.bokelskere.no" };
+                double score;
+                if (!Double.TryParse(rating, out score)) return null;
+
+                return new DocumentRating { Source = "Bokelskere", MaxScore = 6, Score = score, SourceUrl = "http://www.bokelskere.no" };
             }
 
             return null;

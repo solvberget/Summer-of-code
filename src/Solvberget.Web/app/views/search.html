@@ -21,6 +21,8 @@
             <li ng-show="audioBookCount> 0" ng-click="selectType('AudioBook')" ng-class="{ active : selectedType == 'AudioBook' }"><a>Lydbøker ({{audioBookCount}})</a></li>
             <li ng-show="cdCount > 0" ng-click="selectType('CD')" ng-class="{ active : selectedType == 'CD' }"><a>CDer ({{cdCount}})</a></li>
             <li ng-show="sheetMusicCount> 0" ng-click="selectType('SheetMusic')" ng-class="{ active : selectedType == 'SheetMusic' }"><a>Noter ({{sheetMusicCount}})</a></li>
+            <li ng-show="gameCount> 0" ng-click="selectType('Game')" ng-class="{ active : selectedType == 'Game' }"><a>Spill ({{gameCount}})</a></li>
+            <li ng-show="journalCount> 0" ng-click="selectType('Journal')" ng-class="{ active : selectedType == 'Journal' }"><a>Journaler ({{journalCount}})</a></li>
             <li ng-show="otherCount> 0" ng-click="selectType('Other')" ng-class="{ active : selectedType == 'Other' }"><a>Annet ({{otherCount}})</a></li>
         </ul>
     </div>

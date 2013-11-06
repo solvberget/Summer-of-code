@@ -50,6 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AudioBookDto.cs" />
     <Compile Include="BlogDto.cs" />
     <Compile Include="BlogPostDto.cs" />
     <Compile Include="BlogPostOverviewDto.cs" />
@@ -98,6 +99,8 @@
     <Compile Include="DocumentReviewDto.cs" />
     <Compile Include="FilmDto.cs" />
     <Compile Include="FineDto.cs" />
+    <Compile Include="GameDto.cs" />
+    <Compile Include="JournalDto.cs" />
     <Compile Include="LibrarylistDto.cs" />
     <Compile Include="LoanDto.cs" />
     <Compile Include="NewsStoryDto.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="OpeningHoursDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservationDto.cs" />
+    <Compile Include="SheetMusicDto.cs" />
     <Compile Include="UserInfoDto.cs" />
   </ItemGroup>
   <ItemGroup>
