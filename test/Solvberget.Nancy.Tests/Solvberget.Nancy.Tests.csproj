@@ -79,6 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginModuleTests.cs" />
     <Compile Include="BlogModuleTests.cs" />
     <Compile Include="DocumentModuleTests.cs" />
     <Compile Include="EventModuleTests.cs" />
