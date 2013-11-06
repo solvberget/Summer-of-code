@@ -32,7 +32,6 @@ namespace Solvberget.Core.ViewModels
 
             var res = user.Reservations == null ? new List<ReservationDto>() : user.Reservations.ToList();
 
-
             Reservations = new ObservableCollection<ReservationViewModel>();
 
             foreach (ReservationDto r in res)
