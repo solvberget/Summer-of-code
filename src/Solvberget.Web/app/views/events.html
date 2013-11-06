@@ -1,8 +1,8 @@
 <h2>Arrangementer</h2>
 
 <ul class="media-list">
-    <div ng-repeat="event in events" list-item="event.name" subtext="event.description" document-type="'Event'"
-         image-url="apiPrefix + 'event/' + event.id + '/thumbnail'" url="pathFor(event)" show-chevron="true" />
+    <div ng-repeat="event in events" list-item="event.name" subtext="getSubText(event)" document-type="'Event'"
+         image-url="event.imageUrl" url="event.ticketUrl" show-chevron="true" />
 
     <img src="/img/ajax-loader.gif" ng-hide="events.length > 0" />
 </ul>
