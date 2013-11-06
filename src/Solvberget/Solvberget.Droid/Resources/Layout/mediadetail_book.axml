@@ -1,10 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+  <TextView
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Forfatter"
+      local:MvxBind="Visbility Visibility(AuthorName)"/>
+  <TextView
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:textSize="10dp"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text AuthorName; Visbility Visibility(AuthorName)" />
+
+  <TextView
+    android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="BOOK" />
-</merge>
+    android:layout_height="wrap_content"
+    android:text="Sjanger"
+    local:MvxBind="Visbility Visibility(Classification)"/>
+  <TextView
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:textSize="10dp"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text Classification; Visbility Visibility(Classification)" />
+
+  <TextView
+  android:textAppearance="?android:attr/textAppearanceSmall"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="Del av serie"
+  local:MvxBind="Visbility Visibility(Series.Title)"/>
+  <TextView
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:textSize="10dp"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text Series.Title; Visbility Visibility(Series.Title)" />
+
+  <TextView
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Nummer i serie"
+      local:MvxBind="Visbility Visibility(Series.SequenceNo)"/>
+  <TextView
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:textSize="10dp"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text Series.SequenceNo; Visbility Visibility(Series.SequenceNo)" />
+</LinearLayout>
