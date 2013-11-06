@@ -85,7 +85,7 @@ namespace Solvberget.Nancy.Mapping
         public static DocumentDto Map(Journal journal)
         {
             var dto = new JournalDto();
-            dto.Subjects = journal.Subject.ToArray();
+            if (journal.Subject != null) dto.Subjects = journal.Subject.ToArray();
             
             return dto;
         }
