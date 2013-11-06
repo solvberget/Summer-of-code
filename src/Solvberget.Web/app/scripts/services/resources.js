@@ -65,13 +65,17 @@ angular.module('Solvberget.WebApp')
             return {
                 'request': function(config) {
 
-                    if(config.url.indexOf('login') > 0) return config;
+                    if(config.url.indexOf('login') > 0 || !$$config.username || !$$config.password) return config;
 
                     if(config.url.indexOf('?') < 0) config.url += '?';
                     config.url += '&username=' + $$config.username + '&password=' + $$config.password;
                     return config;
                 },
-                'response': function(response) {
+                'responseError': function(response) {
+
+                    if(response.status == 401){
+                        window.location = './#/login?redirect=' + window.location.hash.substring(1);
+                    }
 
                     return response;
                 }
