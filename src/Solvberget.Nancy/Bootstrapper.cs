@@ -1,16 +1,20 @@
-﻿using Autofac;
+﻿using System.Collections.Generic;
+using Autofac;
 using Nancy;
+using Nancy.Authentication.Stateless;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
 using Nancy.LightningCache.Extensions;
 using Nancy.Responses;
 using Nancy.Responses.Negotiation;
 using Nancy.Routing;
+using Nancy.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Lists;
 using Solvberget.Domain.Utils;
+using Solvberget.Nancy.Authentication;
 using Solvberget.Nancy.Extensions;
 
 namespace Solvberget.Nancy
@@ -29,6 +33,10 @@ namespace Solvberget.Nancy
             /*enable lightningcache, vary by url params id,query,take and skip*/
             this.EnableLightningCache(container.Resolve<IRouteResolver>(), ApplicationPipelines, new[] { "id", "query", "take", "skip" });
 
+            var statelessAuthConfiguration = new StatelessAuthenticationConfiguration(ctx => container.Resolve<NancyContextAuthenticator>().Authenticate(ctx));
+
+            StatelessAuthentication.Enable(pipelines, statelessAuthConfiguration);
+
             pipelines.OnError.AddItemToEndOfPipeline((z, a) =>
             {
                 while (null != a.InnerException) a = a.InnerException;
@@ -37,7 +45,7 @@ namespace Solvberget.Nancy
             });
 
         }
-
+        
         protected override void ConfigureApplicationContainer(ILifetimeScope container)
         {
             var jsonSettings = new JsonSerializerSettings
@@ -60,6 +68,8 @@ namespace Solvberget.Nancy
                     .SingleInstance();
 
 
+                builder.RegisterType<TEST_AlwaysAuthenticateProvider>().As<IAuthenticationProvider>();
+                builder.RegisterType<NancyContextAuthenticator>().AsSelf().SingleInstance();
 
                 builder.RegisterType<LibraryListDynamicRepository>().AsSelf();
                 builder.RegisterType<LibraryListXmlRepository>().AsSelf();

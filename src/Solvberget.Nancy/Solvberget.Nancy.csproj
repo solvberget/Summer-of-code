@@ -49,6 +49,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Nancy.0.21.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.Authentication.Stateless">
+      <HintPath>..\..\packages\Nancy.Authentication.Stateless.0.21.1\lib\net40\Nancy.Authentication.Stateless.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy.Bootstrappers.Autofac, Version=0.21.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Nancy.Bootstrappers.Autofac.0.21.1\lib\net40\Nancy.Bootstrappers.Autofac.dll</HintPath>
@@ -118,15 +121,24 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\AlephAuthenticationProvider.cs" />
+    <Compile Include="Authentication\AlephUserIdentity.cs" />
+    <Compile Include="Authentication\NancyContextAuthenticator.cs" />
+    <Compile Include="Authentication\TEST_AlwaysAuthenticateProvider.cs" />
+    <Compile Include="Authentication\IAuthenticationProvider.cs" />
+    <Compile Include="Authentication\UserIdentity.cs" />
+    <Compile Include="Authentication\UserInfoContextExtensions.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Extensions\ComponentContextExtensions.cs" />
     <Compile Include="EnvironmentPathProvider.cs" />
     <Compile Include="Mapping\DtoMaps.cs" />
     <Compile Include="Modules\BlogModule.cs" />
     <Compile Include="Modules\EventModule.cs" />
+    <Compile Include="Modules\FavoritesModule.cs" />
     <Compile Include="Modules\InformationModule.cs" />
     <Compile Include="Modules\DocumentModule.cs" />
     <Compile Include="Modules\ListModule.cs" />
+    <Compile Include="Modules\LoginModule.cs" />
     <Compile Include="Modules\NewsModule.cs" />
     <Compile Include="Modules\SuggestionModule.cs" />
     <Compile Include="Modules\UserModule.cs" />
