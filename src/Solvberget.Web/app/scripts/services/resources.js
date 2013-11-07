@@ -1,58 +1,40 @@
 angular.module('Solvberget.WebApp')
     .factory('lists',function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1'); // workaround to escape port number : so it doesn't get interpreted as a variable by $resource
-        return $resource(apiPrefix + 'lists/:id', { limit: 10});
+        return $resource($$config.apiPrefixEscaped() + 'lists/:id', { limit: 10});
     })
     .factory('documents',function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'documents/:id', { limit: 10});
+        return $resource($$config.apiPrefixEscaped() + 'documents/:id', { limit: 10});
     })
     .factory('documentRating', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'documents/:id/rating');
+        return $resource($$config.apiPrefixEscaped() + 'documents/:id/rating');
     })
     .factory('documentReview', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'documents/:id/review');
+        return $resource($$config.apiPrefixEscaped() + 'documents/:id/review');
     })
     .factory('documentSearch', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'documents/search');
+        return $resource($$config.apiPrefixEscaped() + 'documents/search');
     })
     .factory('blogs', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'blogs/:id');
+        return $resource($$config.apiPrefixEscaped() + 'blogs/:id');
     })
     .factory('news', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'news');
+        return $resource($$config.apiPrefixEscaped() + 'news');
     })
     .factory('openingHours', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'info/opening-hours');
+        return $resource($$config.apiPrefixEscaped() + 'info/opening-hours');
     })
     .factory('contactDetails', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'info/contact');
+        return $resource($$config.apiPrefixEscaped() + 'info/contact');
     })
     .factory('events', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'events/:id');
+        return $resource($$config.apiPrefixEscaped() + 'events/:id');
     })
     .factory('favorites', function($resource){
-
-        var apiPrefix = $$config.apiPrefix.replace(/:(\d+)/,'\\:$1');
-        return $resource(apiPrefix + 'favorites/:documentId');
+        return $resource($$config.apiPrefixEscaped() + 'favorites/:documentId', { documentId: '@documentId'}, {
+            add: {method:'PUT'},
+            remove: {method:'DELETE'},
+            get: {method:'GET', isArray:true}
+        });
     })
     .config(function($httpProvider){
 

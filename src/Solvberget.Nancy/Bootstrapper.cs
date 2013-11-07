@@ -12,6 +12,7 @@ using Nancy.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Favorites;
 using Solvberget.Domain.Lists;
 using Solvberget.Domain.Utils;
 using Solvberget.Nancy.Authentication;
@@ -67,6 +68,8 @@ namespace Solvberget.Nancy
                     .As<IEnvironmentPathProvider>()
                     .SingleInstance();
 
+
+                builder.RegisterType<FavoritesRepository>().As<IFavoritesRepository>().SingleInstance(); // todo: singleton while its impl only keeps favorite state in-memory.
 
                 builder.RegisterType<TEST_AlwaysAuthenticateProvider>().As<IAuthenticationProvider>();
                 builder.RegisterType<NancyContextAuthenticator>().AsSelf().SingleInstance();

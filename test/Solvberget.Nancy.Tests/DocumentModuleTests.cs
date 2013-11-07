@@ -12,6 +12,7 @@ using Solvberget.Domain.Documents;
 using Solvberget.Domain.Documents.Images;
 using Solvberget.Domain.Documents.Ratings;
 using Solvberget.Domain.Documents.Reviews;
+using Solvberget.Domain.Favorites;
 using Solvberget.Domain.Utils;
 using Solvberget.Nancy.Modules;
 
@@ -40,7 +41,7 @@ namespace Solvberget.Nancy.Tests
             _ratingRepository = A.Fake<IRatingRepository>();
             _reviewRepository = A.Fake<IReviewRepository>();
             _pathProvider = A.Fake<IEnvironmentPathProvider>();
-
+            
             _browser = new Browser(with =>
             {
                 with.Module<DocumentModule>();
@@ -49,6 +50,7 @@ namespace Solvberget.Nancy.Tests
                 with.Dependency(_ratingRepository);
                 with.Dependency(_reviewRepository);
                 with.Dependency(_pathProvider);
+                with.Dependency(A.Fake<IFavoritesRepository>());
             });
         }
 

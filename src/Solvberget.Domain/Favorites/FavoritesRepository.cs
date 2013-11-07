@@ -6,7 +6,7 @@ using Solvberget.Domain.Users;
 
 namespace Solvberget.Domain.Favorites
 {
-    class FavoritesRepository : IFavoritesRepository
+    public class FavoritesRepository : IFavoritesRepository
     {
         private IRepository _documents;
 
@@ -32,6 +32,11 @@ namespace Solvberget.Domain.Favorites
         public void RemoveFavorite(Document document, UserInfo user)
         {
             GetFavoritesForUser(user).Remove(document.DocumentNumber);
+        }
+
+        public bool IsFavorite(Document document, UserInfo user)
+        {
+            return GetFavoritesForUser(user).Contains(document.DocumentNumber);
         }
 
         private List<string> GetFavoritesForUser(UserInfo user)
