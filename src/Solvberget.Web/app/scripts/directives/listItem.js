@@ -11,12 +11,17 @@ angular.module('Solvberget.WebApp')
                 isFavorite:"=isFavorite",
                 type:"=documentType",
                 gutterTextPrefix:"=gutterTextPrefix",
-                gutterText:"=gutterText"
+                gutterText:"=gutterText",
+                documentId:"=documentId"
             },
-            controller: function($scope, $location) {
+            controller: function($scope, favorites) {
 
                 $scope.toggleFavorite = function(){
-                    $scope.isFavorite = !$scope.isFavorite;
+
+                    if($scope.isFavorite) favorites.remove({documentId : $scope.documentId});
+                    else favorites.add({documentId : $scope.documentId});
+
+                    $scope.isFavorite = !$scope.isFavorite; // todo: handle failure
                 }
             },
             replace:true,

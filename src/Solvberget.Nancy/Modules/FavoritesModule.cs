@@ -35,12 +35,12 @@ namespace Solvberget.Nancy.Modules
             };
         }
 
-        private object MapToDto(Favorite favorite)
+        private FavoriteDto MapToDto(Favorite favorite)
         {
-            return new FavoriteDto
-            {
-                Document = DtoMaps.Map(favorite.Document)
-            };
+            var dto = new FavoriteDto { Document = DtoMaps.Map(favorite.Document) };
+            dto.Document.IsFavorite = true;
+            
+            return dto;
         }
     }
 }
