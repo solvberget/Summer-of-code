@@ -19,8 +19,9 @@ namespace Solvberget.Core.ViewModels
             _searchService = searchService;
         }
 
-        public void Init(string docId)
+        public void Init(string title, string docId)
         {
+            Title = title;
             Load(docId);
         }
 

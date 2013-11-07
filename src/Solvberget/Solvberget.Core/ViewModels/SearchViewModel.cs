@@ -54,7 +54,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(SearchResultViewModel searchResultViewModel)
         {
-            ShowViewModel<MediaDetailViewModel>(new { docId = searchResultViewModel.DocNumber});
+            ShowViewModel<MediaDetailViewModel>(new { title = searchResultViewModel.Name, docId = searchResultViewModel.DocNumber});
         }
 
         // Loads a a set of Documents retrieved from the service into the results list.

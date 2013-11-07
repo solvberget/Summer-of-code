@@ -1,8 +1,12 @@
 using Android.App;
+using Android.Content;
 using Android.Support.V4.App;
 using Android.Views;
+using Android.Widget;
 using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using Cirrious.MvvmCross.Droid.Fragging;
+using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
 
@@ -13,6 +17,7 @@ namespace Solvberget.Droid.Views.Fragments
     public class MediaDetailView : MvxActivity
     {
         private LoadingIndicator _loadingIndicator;
+        private ShareActionProvider _shareActionProvider;
 
         protected override void OnViewModelSet()
         {
@@ -22,6 +27,14 @@ namespace Solvberget.Droid.Views.Fragments
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetHomeButtonEnabled(true);
 
+            BindLoadingIndicator();
+
+
+
+        }
+
+        private void BindLoadingIndicator()
+        {
             _loadingIndicator = new LoadingIndicator(this);
 
             var set = this.CreateBindingSet<MediaDetailView, SearchResultViewModel>();
@@ -37,8 +50,43 @@ namespace Solvberget.Droid.Views.Fragments
                 case Android.Resource.Id.Home:
                     NavUtils.NavigateUpFromSameTask(this);
                     break;
+                case Resource.Menu.star:
+                    
+                    break;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.star, menu);
+            MenuInflater.Inflate(Resource.Menu.share, menu);
+            // Locate MenuItem with ShareActionProvider
+            IMenuItem shareMenuItem = menu.FindItem(Resource.Id.menu_share);
+            _shareActionProvider = (ShareActionProvider) shareMenuItem.ActionProvider;
+
+            CreateShareMenu();
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        private void CreateShareMenu()
+        {
+            if (_shareActionProvider != null)
+            {
+                var playStoreLink = "https://play.google.com/store/apps/details?id=" + PackageName;
+                var shareTextBody = string.Format(
+                    "Jeg søkte og fant {0} hos Sølvberget. Last ned appen på Google Play for muligheten til å låne den du også. {1}",
+                    ((MediaDetailViewModel) ViewModel).Title,
+                    playStoreLink);
+
+                var shareIntent = ShareCompat.IntentBuilder.From(this)
+                    .SetType("text/plain")
+                    .SetText(shareTextBody)
+                    .SetSubject("Sølvberget")
+                    .Intent;
+                _shareActionProvider.SetShareIntent(shareIntent);
+            }
         }
     }
 }

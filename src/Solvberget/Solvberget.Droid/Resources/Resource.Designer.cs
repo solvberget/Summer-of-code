@@ -163,7 +163,13 @@ namespace Solvberget.Droid
 			public const int ic_menu_refresh = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int splash = 2130837512;
+			public const int ic_menu_share = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int ic_menu_star = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int splash = 2130837514;
 			
 			static Drawable()
 			{
@@ -198,6 +204,12 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f060014
 			public const int menu_refresh = 2131099668;
+			
+			// aapt resource value: 0x7f060016
+			public const int menu_share = 2131099670;
+			
+			// aapt resource value: 0x7f060017
+			public const int menu_star = 2131099671;
 			
 			// aapt resource value: 0x7f06000e
 			public const int news_ingress = 2131099662;
@@ -427,6 +439,12 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f090001
 			public const int search_menu = 2131296257;
 			
+			// aapt resource value: 0x7f090002
+			public const int share = 2131296258;
+			
+			// aapt resource value: 0x7f090003
+			public const int star = 2131296259;
+			
 			static Menu()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -455,8 +473,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f070004
 			public const int menu_refresh = 2131165188;
 			
+			// aapt resource value: 0x7f070006
+			public const int menu_share = 2131165190;
+			
 			// aapt resource value: 0x7f070005
-			public const int search_title = 2131165189;
+			public const int menu_star = 2131165189;
+			
+			// aapt resource value: 0x7f070007
+			public const int search_title = 2131165191;
 			
 			static String()
 			{

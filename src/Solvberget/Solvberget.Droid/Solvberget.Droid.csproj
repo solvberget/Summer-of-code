@@ -305,6 +305,12 @@
     <AndroidResource Include="Resources\Values-v11\styles.xml" />
     <AndroidResource Include="Resources\Values-v14\styles.xml" />
     <AndroidResource Include="Resources\Menu\search_menu.xml" />
+    <AndroidResource Include="Resources\Menu\share.xml" />
+    <AndroidResource Include="Resources\Menu\star.xml" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_menu_share.png" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_menu_star.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_menu_share.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_menu_star.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
