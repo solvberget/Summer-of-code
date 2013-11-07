@@ -4,7 +4,7 @@ var $$config =  {
     apiPrefix : 'http://localhost:39465/'
 }
 
-angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
+angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'ngSanitize'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/sok', {
@@ -79,10 +79,6 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute'])
             .when('/arrangementer', {
                 templateUrl : 'views/events.html',
                 controller: 'EventsCtrl'
-            })
-            .when('/arrangementer/:id', {
-                templateUrl : 'views/event.details.html',
-                controller: 'EventDetailsCtrl'
             })
             .when('/login', {
                 templateUrl : 'views/login.html',
