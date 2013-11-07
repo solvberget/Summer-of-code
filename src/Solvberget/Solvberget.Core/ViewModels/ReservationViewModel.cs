@@ -84,6 +84,32 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
+        private bool _readyForPickup;
+
+        public bool ReadyForPickup
+        {
+            get { return _readyForPickup; }
+            set
+            {
+                _readyForPickup = value;
+                RaisePropertyChanged(() => ReadyForPickup);
+            }
+        }
+
+        private string _ready;
+
+        public string Ready
+        {
+            get { return _ready; }
+            set
+            {
+                _ready = value;
+                RaisePropertyChanged(() => Ready);
+            }
+        }
+
+        
+
         private MvxCommand<ReservationViewModel> _showDetailsCommand;
         public ICommand ShowDetailsCommand
         {

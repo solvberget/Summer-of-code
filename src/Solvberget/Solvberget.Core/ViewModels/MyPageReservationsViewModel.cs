@@ -41,10 +41,11 @@ namespace Solvberget.Core.ViewModels
                     DocumentTitle = r.DocumentTitle,
                     DocumentNumber = r.DocumentNumber,
                     HoldRequestFrom = r.HoldRequestFrom,
-                    Status = r.Status,
-                    PickupLocation = r.PickupLocation,
+                    ReadyForPickup = !r.Status.Equals("In processz38-status"),
+                    PickupLocation = r.PickupLocation.Equals("Hovedbibl.") ? "Hovedbiblioteket" : r.PickupLocation,
                     Parent = this,
-                    ButtonVisible = true
+                    ButtonVisible = true,
+                    Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei"
                 });
             }
 
