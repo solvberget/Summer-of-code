@@ -4,12 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <TextView
+  <TextView
+          android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Aldersgrense" 
         local:MvxBind="Visibility Visibility(AgeLimit)"/>
-    <TextView
+  <TextView
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text AgeLimit; Visibility Visibility(AgeLimit)" />

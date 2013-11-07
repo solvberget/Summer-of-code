@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</merge>
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+  <TextView
+  android:textAppearance="?android:attr/textAppearanceSmall"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="Plattform"
+  local:MvxBind="Visibility Visibility(Platform)"/>
+  <TextView
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:textSize="10dp"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text Platform; Visibility Visibility(Platform)" />
+</LinearLayout>

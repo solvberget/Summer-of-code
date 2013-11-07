@@ -9,25 +9,25 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Artist / Komponist"
-      local:MvxBind="Visbility Visibility(ArtistOrComposerName)"/>
+      local:MvxBind="Visibility(ArtistOrComposerName)"/>
   <TextView
       android:textAppearance="?android:attr/textAppearanceSmall"
       android:textSize="10dp"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      local:MvxBind="Text ArtistOrComposerName; Visbility Visibility(ArtistOrComposerName)" />
+      local:MvxBind="Text ArtistOrComposerName; Visibility Visibility(ArtistOrComposerName)" />
 
   <TextView
       android:textAppearance="?android:attr/textAppearanceSmall"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Sjangre" 
-      local:MvxBind="Visbility Visibility(CompositionTypesOrGenres)"/>
+      local:MvxBind="Visibility Visibility(CompositionTypesOrGenres)"/>
   <Mvx.MvxLinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource CompositionTypesOrGenres; Visbility Visibility(CompositionTypesOrGenres)"
+        local:MvxBind="ItemsSource CompositionTypesOrGenres; Visibility Visibility(CompositionTypesOrGenres)"
         local:MvxItemTemplate="@layout/item_genrestring"/>
 </LinearLayout>
