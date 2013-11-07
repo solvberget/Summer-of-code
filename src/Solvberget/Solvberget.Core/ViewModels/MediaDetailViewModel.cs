@@ -49,7 +49,7 @@ namespace Solvberget.Core.ViewModels
             EstimatedAvailableDate = "Ukjent";
             if (document.Availability != null && document.Availability.EstimatedAvailableDate.HasValue)
             {
-                EstimatedAvailableDate = document.Availability.EstimatedAvailableDate.Value.ToString("dd-MM-yyyy");
+                EstimatedAvailableDate = document.Availability.EstimatedAvailableDate.Value.ToString("dd.MM.yyyy");
             }
 
             IsLoading = false;
