@@ -1,7 +1,11 @@
 'use strict';
 
 var $$config =  {
-    apiPrefix : 'http://localhost:39465/'
+    apiPrefix : 'http://localhost:39465/',
+
+    apiPrefixEscaped : function(){
+        return this.apiPrefix.replace(/:(\d+)/,'\\:$1'); // workaround to escape port number : so it doesn't get interpreted as a variable by $resource
+    }
 }
 
 angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'ngSanitize'])
