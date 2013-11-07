@@ -96,6 +96,7 @@
     <Compile Include="Deprecated\DTO\UserInfo.cs" />
     <Compile Include="DocumentAvailabilityDto.cs" />
     <Compile Include="DocumentDto.cs" />
+    <Compile Include="DocumentRatingDto.cs" />
     <Compile Include="DocumentReviewDto.cs" />
     <Compile Include="EventDto.cs" />
     <Compile Include="FavoriteDto.cs" />
