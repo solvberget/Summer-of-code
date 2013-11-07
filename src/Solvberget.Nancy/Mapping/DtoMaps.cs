@@ -210,7 +210,7 @@ namespace Solvberget.Nancy.Mapping
             
             DateTime date;
             
-            if (DateTime.TryParseExact(availability.EarliestAvailableDateFormatted, "dd.MM.yyyy", null, DateTimeStyles.None, out date))
+            if (DateTime.TryParse(availability.EarliestAvailableDateFormatted, out date))
             {
                 dto.EstimatedAvailableDate = date;
             }
