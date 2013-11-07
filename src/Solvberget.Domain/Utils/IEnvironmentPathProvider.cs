@@ -16,5 +16,6 @@ namespace Solvberget.Domain.Utils
         string GetContactInfoAsXmlPath();
         string ResolveUrl(string path);
         string ResolveUrl(string baseUrl, string serverPath);
+        string GetPlaceHolderImagesPath();
     }
 }
