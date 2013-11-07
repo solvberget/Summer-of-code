@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Resources;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.DTOs.Deprecated.DTO;
@@ -38,6 +40,10 @@ namespace Solvberget.Core.ViewModels
             Author = document.MainContributor;
             Availability = document.Availability;
             RawDto = document;
+            Language = document.Language;
+            Languages = document.Languages.ToList();
+            Publisher = document.Publisher;
+            MainContributor = document.MainContributor;
 
             IsLoading = false;
         }
@@ -130,6 +136,35 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _typeAndYear; }
             set { _typeAndYear = value; RaisePropertyChanged(() => TypeAndYear);}
+        }
+
+        private string _language;
+        public string Language 
+        {
+            get { return _language; }
+            set { _language = value; RaisePropertyChanged(() => Language);}
+        }
+
+        private List<string> _languages;
+        public List<string> Languages 
+        {
+            get { return _languages; }
+            set { _languages = value; RaisePropertyChanged(() => Languages);}
+        }
+
+
+        private string _mainContributor;
+        public string MainContributor 
+        {
+            get { return _mainContributor; }
+            set { _mainContributor = value; RaisePropertyChanged(() => MainContributor);}
+        }
+
+        private string _publisher;
+        public string Publisher 
+        {
+            get { return _publisher; }
+            set { _publisher = value; RaisePropertyChanged(() => Publisher);}
         }
     }
 }

@@ -158,6 +158,74 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:background="@color/ui_itembackground">
+
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="8dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="Språk"
+          local:MvxBind="Visibility Visibility(Language)"/>
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="10dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:textSize="10dp"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          local:MvxBind="Text Language; Visibility Visibility(Language)" />
+
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="8dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="Alternative språk"
+          local:MvxBind="Visibility Visibility(Languages)"/>
+        <Mvx.MvxLinearLayout
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:background="@color/ui_itembackground"
+          local:MvxBind="ItemsSource Languages; Visibility Visibility(Languages)"
+          local:MvxItemTemplate="@layout/item_genrestring" />
+
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="8dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="Utgiver"
+          local:MvxBind="Visibility Visibility(Publisher)"/>
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="10dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:textSize="10dp"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          local:MvxBind="Text Publisher; Visibility Visibility(Publisher)" />
+
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="8dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="Opphavsperson"
+          local:MvxBind="Visibility Visibility(MainContributor)"/>
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="10dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:textSize="10dp"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          local:MvxBind="Text MainContributor; Visibility Visibility(MainContributor)" />
+        
         <Solvberget.Droid.Views.Components.MediaDetailInformationView
           android:paddingLeft="8dp"
           android:paddingRight="8dp"

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using Cirrious.CrossCore;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
-using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 
@@ -75,6 +73,19 @@ namespace Solvberget.Core.Services
                 {
                     Title = "Kunne ikke laste dokument"
                 };
+            }
+        }
+
+        public async Task<DocumentRatingDto> GetRating(string docId)
+        {
+            try
+            {
+                var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Rating, docId));
+                return JsonConvert.DeserializeObject<DocumentRatingDto>(response);
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
     }

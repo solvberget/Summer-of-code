@@ -160,6 +160,15 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /documents/{0}/rating.
+        /// </summary>
+        internal static string ServiceUrl_Rating {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /documents/search?query={0}.
         /// </summary>
         internal static string ServiceUrl_Search {
