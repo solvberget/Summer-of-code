@@ -3,7 +3,7 @@
     <a href="{{url}}"><span><img class='list-item-thumb' ng-src='{{imageUrl}}' err-src="{{'img/placeholder/' + type + '.png'}}"></span></a>
     <div class='media-body'>
         <a href="{{url}}"><h4 class='media-heading'>{{title}}</h4></a>
-        <p ng-show="subtext">{{subtext|trustAsHtml}}</p>
+        <p ng-show="subtext" ng-bind-html="subtext|trustAsHtml"></p>
     </div>
     <span class='list-item-actions'>
         <span class='glyphicon glyphicon-star' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
