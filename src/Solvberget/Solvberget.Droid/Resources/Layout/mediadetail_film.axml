@@ -1,123 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/res-auto"
+              xmlns:local="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+  <TextView
+    android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:text="Aldersgrense"
+    local:MvxBind="Visibility Visibility(AgeLimit)" />
   <TextView
-          android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Aldersgrense" 
-        local:MvxBind="Visibility Visibility(AgeLimit)"/>
-  <TextView
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        local:MvxBind="Text AgeLimit; Visibility Visibility(AgeLimit)" />
-  <TextView
-          android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Format"
-        local:MvxBind="Visibility Visibility(MediaInfo)"/>
-  <TextView
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        local:MvxBind="Text MediaInfo; Visibility Visibility(MediaInfo)" />
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textSize="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    local:MvxBind="Text AgeLimit; Visibility Visibility(AgeLimit)" />
   
+  <TextView
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Format"
+    local:MvxBind="Visibility Visibility(MediaInfo)" />
+  <TextView
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textSize="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    local:MvxBind="Text MediaInfo; Visibility Visibility(MediaInfo)" />
+
   <TextView
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Skuespillere"
-    local:MvxBind="Visibility Visibility(ActorNames)"/>
+    local:MvxBind="Visibility Visibility(ActorNames)" />
   <Mvx.MvxLinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource ActorNames; Visibility Visibility(ActorNames)"
-        local:MvxItemTemplate="@layout/item_genrestring"/>
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_itembackground"
+    local:MvxBind="ItemsSource ActorNames; Visibility Visibility(ActorNames)"
+    local:MvxItemTemplate="@layout/item_genrestring" />
+  
   <TextView
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Undertekster"
-    local:MvxBind="Visibility Visibility(SubtitleLanguages)"/>
+    local:MvxBind="Visibility Visibility(SubtitleLanguages)" />
   <Mvx.MvxLinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource SubtitleLanguages; Visibility Visibility(SubtitleLanguages)"
-        local:MvxItemTemplate="@layout/item_genrestring"/>
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_itembackground"
+    local:MvxBind="ItemsSource SubtitleLanguages; Visibility Visibility(SubtitleLanguages)"
+    local:MvxItemTemplate="@layout/item_genrestring" />
+  
   <TextView
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Refererte Personer"
-    local:MvxBind="Visibility Visibility(ReferredPeopleNames)"/>
+    local:MvxBind="Visibility Visibility(ReferredPeopleNames)" />
   <Mvx.MvxLinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource ReferredPeopleNames; Visibility Visibility(ReferredPeopleNames)"
-        local:MvxItemTemplate="@layout/item_genrestring"/>
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_itembackground"
+    local:MvxBind="ItemsSource ReferredPeopleNames; Visibility Visibility(ReferredPeopleNames)"
+    local:MvxItemTemplate="@layout/item_genrestring" />
+  
   <TextView
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Omtalte Steder"
-    local:MvxBind="Visibility Visibility(ReferencedPlaces)"/>
+    local:MvxBind="Visibility Visibility(ReferencedPlaces)" />
   <Mvx.MvxLinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource ReferencedPlaces; Visibility Visibility(ReferencedPlaces)"
-        local:MvxItemTemplate="@layout/item_genrestring"/>
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_itembackground"
+    local:MvxBind="ItemsSource ReferencedPlaces; Visibility Visibility(ReferencedPlaces)"
+    local:MvxItemTemplate="@layout/item_genrestring" />
+  
   <TextView
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Sjangre"
-    local:MvxBind="Visibility Visibility(Genres)"/>
+    local:MvxBind="Visibility Visibility(Genres)" />
   <Mvx.MvxLinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource Genres; Visibility Visibility(Genres)"
-        local:MvxItemTemplate="@layout/item_genrestring"/>
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_itembackground"
+    local:MvxBind="ItemsSource Genres; Visibility Visibility(Genres)"
+    local:MvxItemTemplate="@layout/item_genrestring" />
+  
   <TextView
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Involverte Personer"
-    local:MvxBind="Visibility Visibility(InvolvedPersonNames)"/>
+    local:MvxBind="Visibility Visibility(InvolvedPersonNames)" />
   <Mvx.MvxLinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource InvolvedPersonNames; Visibility Visibility(InvolvedPersonNames)"
-        local:MvxItemTemplate="@layout/item_genrestring"/>
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_itembackground"
+    local:MvxBind="ItemsSource InvolvedPersonNames; Visibility Visibility(InvolvedPersonNames)"
+    local:MvxItemTemplate="@layout/item_genrestring" />
+  
   <TextView
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Ansvarlige Personer"
-    local:MvxBind="Visibility Visibility(ResponsiblePersonNames)"/>
+    local:MvxBind="Visibility Visibility(ResponsiblePersonNames)" />
   <Mvx.MvxLinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ui_itembackground"
-        local:MvxBind="ItemsSource ResponsiblePersonNames; Visibility Visibility(ResponsiblePersonNames)"
-        local:MvxItemTemplate="@layout/item_genrestring"/>
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_itembackground"
+    local:MvxBind="ItemsSource ResponsiblePersonNames; Visibility Visibility(ResponsiblePersonNames)"
+    local:MvxItemTemplate="@layout/item_genrestring" />
 </LinearLayout>
