@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -25,11 +26,26 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
-            var user = await _service.GetUserInformation(_service.GetUserId());
+            var favs = await _service.GetUserFavorites();
+
+            //var user = await _service.GetUserInformation(_service.GetUserId());
+
+
 
             //Favorites = user..ToList();
 
             Favorites = new List<FavoriteViewModel>();
+
+            foreach (FavoriteDto f in favs)
+            {
+                Favorites.Add(new FavoriteViewModel
+                {
+                    ButtonVisible = true,
+                    Name = f.Document.Title,
+                    Year = f.Document.Year,
+                    Parent = this
+                });
+            }
 
             if (Favorites.Count == 0)
             {

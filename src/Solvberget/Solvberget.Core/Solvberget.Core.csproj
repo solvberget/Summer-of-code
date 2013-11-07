@@ -85,6 +85,7 @@
     <Compile Include="Services\Interfaces\ISearchService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\IStringDownloader.cs" />
+    <Compile Include="Services\IUserAuthenticationDataService.cs" />
     <Compile Include="Services\OpeningHoursService.cs" />
     <Compile Include="Services\Interfaces\ISuggestionsService.cs" />
     <Compile Include="Services\NewsService.cs" />

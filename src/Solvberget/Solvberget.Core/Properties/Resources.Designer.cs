@@ -115,6 +115,15 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /favorites.
+        /// </summary>
+        internal static string ServiceUrl_Favorites {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Favorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /lists/{0}.
         /// </summary>
         internal static string ServiceUrl_List {

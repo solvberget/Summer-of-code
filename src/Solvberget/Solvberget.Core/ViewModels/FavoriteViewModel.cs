@@ -14,8 +14,8 @@ namespace Solvberget.Core.ViewModels
             set { _name = value; RaisePropertyChanged(() => Name); }
         }
 
-        private string _year;
-        public string Year
+        private int _year;
+        public int Year
         {
             get { return _year; }
             set { _year = value; RaisePropertyChanged(() => Year); }
@@ -85,6 +85,8 @@ namespace Solvberget.Core.ViewModels
 
                 });
             }
+
+            //Remove from list on server
         }
     }
 }
