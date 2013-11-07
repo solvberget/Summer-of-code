@@ -5,6 +5,21 @@ var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, d
     $scope.document = documents.get({id : $routeParams.id}, function(){
         $rootScope.breadcrumb.push($scope.document.title);
         $scope.imageUrl = $$config.apiPrefix + 'documents/' + $scope.document.id + '/thumbnail';
+
+        var ogTypes = {
+            'AudioBook' : 'book',
+            'Book' : 'book',
+            'Game' : 'object',
+            'Journal' : 'book',
+            'LanguageCourse' : 'event',
+            'SheetMusic' : 'book'
+        }
+
+        $scope.ogUrl = $$config.appUrlPrefix + $rootScope.pathForDocument($scope.document);
+
+        $scope.ogType = ogTypes[$scope.document.type];
+        if(!$scope.ogType) $scope.ogType = 'object';
+
     });
 
     $scope.rating = documentRating.get({id : $routeParams.id});
