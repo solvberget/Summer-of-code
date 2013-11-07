@@ -32,7 +32,7 @@ namespace Solvberget.Nancy.Tests
 
             var response = _browser.Get("/login", with =>
             {
-                with.Query("password", "password");
+                with.FormValue("password", "password");
                 with.Accept("application/json");
                 with.HttpRequest();
             });
@@ -47,7 +47,7 @@ namespace Solvberget.Nancy.Tests
 
             var response = _browser.Get("/login", with =>
             {
-                with.Query("username", null);
+                with.FormValue("username", null);
                 with.Accept("application/json");
                 with.HttpRequest();
             });
@@ -62,8 +62,8 @@ namespace Solvberget.Nancy.Tests
 
             var response = _browser.Get("/login", with =>
             {
-                with.Query("username", "username");
-                with.Query("password", "incorrect password");
+                with.FormValue("username", "username");
+                with.FormValue("password", "incorrect password");
                 with.Accept("application/json");
                 with.HttpRequest();
             });
@@ -78,8 +78,8 @@ namespace Solvberget.Nancy.Tests
 
             var response = _browser.Get("/login", with =>
             {
-                with.Query("username", "username");
-                with.Query("password", "correct password");
+                with.FormValue("username", "username");
+                with.FormValue("password", "correct password");
                 with.Accept("application/json");
                 with.HttpRequest();
             });
