@@ -65,10 +65,8 @@ angular.module('Solvberget.WebApp')
             return {
                 'request': function(config) {
 
-                    if(config.url.indexOf('login') > 0 || !$$config.username || !$$config.password) return config;
+                    if($$config.username && $$config.password) config.headers.Authorization = $$config.username +  ':' + $$config.password;
 
-                    if(config.url.indexOf('?') < 0) config.url += '?';
-                    config.url += '&username=' + $$config.username + '&password=' + $$config.password;
                     return config;
                 },
                 'responseError': function(response) {
