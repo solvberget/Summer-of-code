@@ -1,0 +1,4 @@
+{
+    "apiPrefix" : "http://localhost:39465/",
+    "appUrlPrefix" : "http://localhost:9000/"
+}

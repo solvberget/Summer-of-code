@@ -96,9 +96,17 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'n
                 redirectTo: '/nyheter'
             });
 
-    }).run(function($rootScope, $location, $route) {
+    }).run(function($rootScope, $location, $route, $http) {
 
-        $rootScope.apiPrefix = $$config.apiPrefix;
+        $http({method: 'GET', url: '/app.config.json'}).
+            success(function(data) {
+                console.log("app.config.json loaded", data);
+
+                $$config.apiPrefix = data.apiPrefix;
+                $$config.appUrlPrefix = data.appUrlPrefix;
+
+                $rootScope.apiPrefix = $$config.apiPrefix;
+            });
 
         $rootScope.isViewActive = function (viewLocation) {
             return $location.path().indexOf(viewLocation) === 0;
