@@ -16,7 +16,7 @@ namespace Solvberget.Nancy.Modules
         {
             this.RequiresAuthentication();
 
-            Get["/"] = _ => favorites.GetFavorites(Context.GetUserInfo()).Select(MapToDto);
+            Get["/"] = _ => favorites.GetFavorites(Context.GetUserInfo()).Select(MapToDto).ToArray();
 
             Delete["/{documentId}"] = args =>
             {

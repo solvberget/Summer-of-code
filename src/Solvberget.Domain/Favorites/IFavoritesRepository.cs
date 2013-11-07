@@ -11,5 +11,6 @@ namespace Solvberget.Domain.Favorites
         IEnumerable<Favorite> GetFavorites(UserInfo user);
         void AddFavorite(Document document, UserInfo user);
         void RemoveFavorite(Document document, UserInfo user);
+        bool IsFavorite(Document document, UserInfo user);
     }
 }

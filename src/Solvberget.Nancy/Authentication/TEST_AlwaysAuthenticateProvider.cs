@@ -1,4 +1,5 @@
 ﻿using Nancy.Security;
+using Solvberget.Domain.Users;
 
 namespace Solvberget.Nancy.Authentication
 {
@@ -6,7 +7,7 @@ namespace Solvberget.Nancy.Authentication
     {
         public IUserIdentity Authenticate(string username, string password)
         {
-            return new UserIdentity(username);
+            return new AlephUserIdentity(username, new UserInfo{Id = username}); // test user
         }
     }
 }

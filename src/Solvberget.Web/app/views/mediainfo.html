@@ -15,7 +15,7 @@
 
 <div class="media-item-details-actions">
     <button type="button" class="btn btn-sm" ng-click="isReserved = !isReserved"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : isReserved }"></i> Reserver</button>
-    <button type="button" class="btn btn-sm" ng-click="toggleFavorite()"><i class="glyphicon" ng-class="{ 'glyphicon-star' : isFavorite, 'glyphicon-star-empty' : !isFavorite }"></i> Favoritt</button>
+    <button type="button" class="btn btn-sm" ng-click="toggleFavorite()"><i class="glyphicon" ng-class="{ 'glyphicon-star' : document.isFavorite, 'glyphicon-star-empty' : !document.isFavorite }"></i> Favoritt</button>
 </div>
 
 <h2>Tilgjengelighet</h2>

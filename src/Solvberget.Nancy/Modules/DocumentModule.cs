@@ -5,7 +5,9 @@ using Nancy;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Documents;
 using Solvberget.Domain.Documents.Reviews;
+using Solvberget.Domain.Favorites;
 using Solvberget.Domain.Utils;
+using Solvberget.Nancy.Authentication;
 using Solvberget.Nancy.Mapping;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Documents.Images;
@@ -15,7 +17,7 @@ namespace Solvberget.Nancy.Modules
 {
     public class DocumentModule : NancyModule
     {
-        public DocumentModule(IRepository documents, IImageRepository images, IRatingRepository ratings, IReviewRepository reviews, IEnvironmentPathProvider pathProvider)
+        public DocumentModule(IRepository documents, IImageRepository images, IRatingRepository ratings, IReviewRepository reviews, IFavoritesRepository favorites, IEnvironmentPathProvider pathProvider)
             : base("/documents")
         {
             Get["/{id}/thumbnail"] = args =>
@@ -33,7 +35,7 @@ namespace Solvberget.Nancy.Modules
             Get["/{id}"] = args =>
             {
                 Document document = documents.GetDocument(args.id, false);
-                return Response.AsJson(DtoMaps.Map(document));
+                return Response.AsJson(DtoMaps.Map(document, favorites, Context.GetUserInfo()));
             };
 
             Get["/{id}/rating"] = args =>
@@ -54,7 +56,7 @@ namespace Solvberget.Nancy.Modules
 
                 if (null == query) throw new InvalidOperationException("Ingenting å søke etter.");
 
-                return documents.Search(query).Select(DtoMaps.Map).ToArray();
+                return documents.Search(query).Select(doc => DtoMaps.Map(doc, favorites, Context.GetUserInfo())).ToArray();
             };
         }
 

@@ -30,7 +30,11 @@ angular.module('Solvberget.WebApp')
         return $resource($$config.apiPrefixEscaped() + 'events/:id');
     })
     .factory('favorites', function($resource){
-        return $resource($$config.apiPrefixEscaped() + 'favorites/:documentId');
+        return $resource($$config.apiPrefixEscaped() + 'favorites/:documentId', { documentId: '@documentId'}, {
+            add: {method:'PUT'},
+            remove: {method:'DELETE'},
+            get: {method:'GET', isArray:true}
+        });
     })
     .config(function($httpProvider){
 

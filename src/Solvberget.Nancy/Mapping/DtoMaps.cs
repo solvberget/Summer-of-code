@@ -5,7 +5,9 @@ using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Documents;
 using Solvberget.Domain.Events;
+using Solvberget.Domain.Favorites;
 using Solvberget.Domain.Lists;
+using Solvberget.Domain.Users;
 
 namespace Solvberget.Nancy.Mapping
 {
@@ -31,8 +33,13 @@ namespace Solvberget.Nancy.Mapping
                 Name = list.Name
             };
         }
-        
+
         public static DocumentDto Map(Document document)
+        {
+            return Map(document, null, null);
+        }
+
+        public static DocumentDto Map(Document document, IFavoritesRepository favorites, UserInfo user)
         {
             DocumentDto dto;
 
@@ -78,6 +85,7 @@ namespace Solvberget.Nancy.Mapping
             dto.Publisher = document.Publisher;
             dto.Language = document.Language;
             dto.Languages = null != document.Languages ? document.Languages.ToArray() : new string[0];
+            if(null != user && null != favorites) dto.IsFavorite = favorites.IsFavorite(document, user);
 
             return dto;
         }

@@ -20,6 +20,10 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'n
                 templateUrl: 'views/minside.html',
                 controller: 'MinSideCtrl'
             })
+            .when('/min-side/favoritter', {
+                templateUrl: 'views/my.favorites.html',
+                controller: 'MyFavoritesCtrl'
+            })
             .when('/anbefalinger', {
                 templateUrl: 'views/anbefalinger.html',
                 controller: 'AnbefalingerCtrl'
@@ -100,11 +104,19 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'n
             return $location.path().indexOf(viewLocation) === 0;
         };
 
+        function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
         $rootScope.range = function(n) {
 
-            if(!n || n === NaN) return 0;
             n = Math.round(1*n);
-            return new Array(n);
+
+            if(!isNumber(n)) n = 0;
+
+            var array = [];
+            for(var i=0; i<n; i++) array.push(i);
+            return array;
         };
 
         $rootScope.path = function(controller, params)
