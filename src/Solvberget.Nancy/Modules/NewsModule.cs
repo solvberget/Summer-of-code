@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Nancy;
 using System.Linq;
+using Nancy.Security;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Info;
 
