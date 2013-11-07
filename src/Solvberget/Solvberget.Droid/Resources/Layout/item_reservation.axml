@@ -34,14 +34,46 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
             local:MvxBind="Text DocumentTitle" />
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="300"
+            android:layout_width="fill_parent"
+            android:width="0dip"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            local:MvxBind="Text Status" />
+            local:MvxBind="Visibility Visibility(ReadyForPickup)">
+            <TextView
+                android:text="Kan hentes hos "
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1" />
+            <TextView
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                local:MvxBind="Text PickupLocation" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="300"
+            android:layout_width="fill_parent"
+            android:width="0dip"
+            android:layout_height="wrap_content"
+            local:MvxBind="Visibility InvertedVisibility(ReadyForPickup)">
+            <TextView
+                android:text="Ikke klar for henting"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1" />
+        </LinearLayout>
     </LinearLayout>
     <Button
         android:text="Fjern"

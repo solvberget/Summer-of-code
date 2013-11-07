@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
-using Solvberget.Core.DTOs;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
@@ -84,6 +83,32 @@ namespace Solvberget.Core.ViewModels
                 RaisePropertyChanged(() => ButtonVisible);
             }
         }
+
+        private bool _readyForPickup;
+
+        public bool ReadyForPickup
+        {
+            get { return _readyForPickup; }
+            set
+            {
+                _readyForPickup = value;
+                RaisePropertyChanged(() => ReadyForPickup);
+            }
+        }
+
+        private string _ready;
+
+        public string Ready
+        {
+            get { return _ready; }
+            set
+            {
+                _ready = value;
+                RaisePropertyChanged(() => Ready);
+            }
+        }
+
+        
 
         private MvxCommand<ReservationViewModel> _showDetailsCommand;
         public ICommand ShowDetailsCommand
