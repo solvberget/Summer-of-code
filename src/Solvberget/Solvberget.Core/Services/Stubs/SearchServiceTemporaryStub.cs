@@ -28,5 +28,10 @@ namespace Solvberget.Core.Services.Stubs
                 Title = "Hello World"
             };
         }
+
+        public async Task<DocumentRatingDto> GetRating(string docId)
+        {
+            return new DocumentRatingDto{MaxScore = 10.0, Score = 10.0, Source = "IMDB", SourceUrl = "imdb.com"};
+        }
     }
 }

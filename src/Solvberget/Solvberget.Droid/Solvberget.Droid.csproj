@@ -117,6 +117,7 @@
       <Private>True</Private>
       <HintPath>..\..\..\packages\MvvmCross.PortableSupport.3.0.13\lib\MonoAndroid16\System.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
@@ -142,6 +143,7 @@
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerSearchResultAdapter.cs" />
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Components\MediaDetailInformationView.cs" />
     <Compile Include="Views\Components\CustomImageView.cs" />
     <Compile Include="Views\Fragments\ContactInfoView.cs" />
     <Compile Include="Views\Fragments\BlogOverviewView.cs" />
@@ -180,8 +182,12 @@
     <AndroidResource Include="Resources\Layout\fragment_search.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Layout\item_searchresult.axml" />
-    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml" />
+    <AndroidResource Include="Resources\Layout\item_searchresult.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_profile_personalia.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -248,6 +254,16 @@
     <AndroidResource Include="Resources\Layout\fragment_searchresults.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\mediadetail_film.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_book.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_cd.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_audiobook.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_sheetmusic.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_game.axml" />
+    <AndroidResource Include="Resources\Layout\mediadetail_journal.axml" />
+    <AndroidResource Include="Resources\Layout\item_genrestring.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -289,11 +305,21 @@
     <AndroidResource Include="Resources\Values-v11\styles.xml" />
     <AndroidResource Include="Resources\Values-v14\styles.xml" />
     <AndroidResource Include="Resources\Menu\search_menu.xml" />
+    <AndroidResource Include="Resources\Menu\share.xml" />
+    <AndroidResource Include="Resources\Menu\star.xml" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_menu_share.png" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_menu_star.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_menu_share.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_menu_star.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
       <Project>{747706F4-ECBF-4D50-8D72-B0DDCC18395C}</Project>
       <Name>Solvberget.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
+      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Name>Solvberget.Core.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

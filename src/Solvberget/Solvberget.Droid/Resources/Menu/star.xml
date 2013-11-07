@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+          android:id="@+id/menu_star"
+          android:icon="@drawable/ic_menu_star"
+          android:showAsAction="ifRoom"
+          android:title="@string/menu_star" />
+</menu>

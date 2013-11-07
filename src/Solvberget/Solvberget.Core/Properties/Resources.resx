@@ -163,4 +163,8 @@
     <value>/documents/{0}/thumbnail</value>
     <comment>0 =Document Id</comment>
   </data>
+  <data name="ServiceUrl_Rating" xml:space="preserve">
+    <value>/documents/{0}/rating</value>
+    <comment>0 = Document Id</comment>
+  </data>
 </root>

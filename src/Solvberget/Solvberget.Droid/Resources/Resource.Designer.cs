@@ -163,7 +163,13 @@ namespace Solvberget.Droid
 			public const int ic_menu_refresh = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int splash = 2130837512;
+			public const int ic_menu_share = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int ic_menu_star = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int splash = 2130837514;
 			
 			static Drawable()
 			{
@@ -198,6 +204,12 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f060014
 			public const int menu_refresh = 2131099668;
+			
+			// aapt resource value: 0x7f060016
+			public const int menu_share = 2131099670;
+			
+			// aapt resource value: 0x7f060017
+			public const int menu_star = 2131099671;
 			
 			// aapt resource value: 0x7f06000e
 			public const int news_ingress = 2131099662;
@@ -349,40 +361,64 @@ namespace Solvberget.Droid
 			public const int item_genericfield = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int item_loan = 2130903065;
+			public const int item_genrestring = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int item_menu = 2130903066;
+			public const int item_loan = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int item_message = 2130903067;
+			public const int item_menu = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int item_news = 2130903068;
+			public const int item_message = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int item_openinghour_pair = 2130903069;
+			public const int item_news = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int item_openinghours = 2130903070;
+			public const int item_openinghour_pair = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int item_reservation = 2130903071;
+			public const int item_openinghours = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int item_searchresult = 2130903072;
+			public const int item_reservation = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int item_suggestions_list_summary = 2130903073;
+			public const int item_searchresult = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int page_home_view = 2130903074;
+			public const int item_suggestions_list_summary = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int page_webview = 2130903075;
+			public const int mediadetail_audiobook = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int SplashScreen = 2130903076;
+			public const int mediadetail_book = 2130903076;
+			
+			// aapt resource value: 0x7f030025
+			public const int mediadetail_cd = 2130903077;
+			
+			// aapt resource value: 0x7f030026
+			public const int mediadetail_film = 2130903078;
+			
+			// aapt resource value: 0x7f030027
+			public const int mediadetail_game = 2130903079;
+			
+			// aapt resource value: 0x7f030028
+			public const int mediadetail_journal = 2130903080;
+			
+			// aapt resource value: 0x7f030029
+			public const int mediadetail_sheetmusic = 2130903081;
+			
+			// aapt resource value: 0x7f03002a
+			public const int page_home_view = 2130903082;
+			
+			// aapt resource value: 0x7f03002b
+			public const int page_webview = 2130903083;
+			
+			// aapt resource value: 0x7f03002c
+			public const int SplashScreen = 2130903084;
 			
 			static Layout()
 			{
@@ -402,6 +438,12 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f090001
 			public const int search_menu = 2131296257;
+			
+			// aapt resource value: 0x7f090002
+			public const int share = 2131296258;
+			
+			// aapt resource value: 0x7f090003
+			public const int star = 2131296259;
 			
 			static Menu()
 			{
@@ -431,8 +473,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f070004
 			public const int menu_refresh = 2131165188;
 			
+			// aapt resource value: 0x7f070006
+			public const int menu_share = 2131165190;
+			
 			// aapt resource value: 0x7f070005
-			public const int search_title = 2131165189;
+			public const int menu_star = 2131165189;
+			
+			// aapt resource value: 0x7f070007
+			public const int search_title = 2131165191;
 			
 			static String()
 			{
