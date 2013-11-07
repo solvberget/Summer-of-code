@@ -22,6 +22,7 @@ namespace Solvberget.Core.ViewModels
         public void Init(string title, string docId)
         {
             Title = title;
+            Availability = new DocumentAvailabilityDto {AvailableCount = 1};
             Load(docId);
         }
 
