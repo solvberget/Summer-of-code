@@ -143,7 +143,7 @@
                   android:paddingRight="8dp"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:text="FAKTA OM FILMEN"
+                  android:text="FAKTA"
                   android:textAppearance="?android:attr/textAppearanceMedium"
                   android:singleLine="true"
                   android:id="@+id/textView1" />
