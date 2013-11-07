@@ -47,15 +47,15 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
         <TextView
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            local:MvxBind="Text Sum; Visibility Visibility(Sum)" />
-        <TextView
-            android:text=" kroner"
+            android:text="Beløp: "
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             local:MvxBind="Visibility Visibility(Sum)" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            local:MvxBind="Text Sum; Visibility Visibility(Sum)" />
     </LinearLayout>
 </LinearLayout>
