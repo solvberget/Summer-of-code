@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
 using System.Web;
 using Nancy;
 using Nancy.Security;
@@ -15,11 +17,8 @@ namespace Solvberget.Nancy.Authentication
             _provider = provider;
         }
 
-        public IUserIdentity Authenticate(NancyContext context)
+        public IUserIdentity Authenticate(string username, string password)
         {
-            string username, password;
-            if (!TryGetCredentialsFromRequest(context.Request, out username, out password)) return null;
-
             var userIdentity = _cache.GetCachedIdentityFor(username, password);
 
             if (null == userIdentity)
@@ -31,13 +30,28 @@ namespace Solvberget.Nancy.Authentication
             return userIdentity;
         }
 
+        public IUserIdentity Authenticate(NancyContext context)
+        {
+            string username, password;
+            if (!TryGetCredentialsFromRequest(context.Request, out username, out password)) return null;
+
+            return Authenticate(username, password);
+        }
+
         private static bool TryGetCredentialsFromRequest(Request request, out string username, out string password)
         {
-            username = request.Form.username.HasValue ? request.Form.username : request.Query.username;
-            password = request.Form.password.HasValue ? request.Form.username : request.Query.password;
+            username = password = null;
+
+            var header = request.Headers["Authorization"].ToList().SingleOrDefault();
+            if (null == header) return false;
+
+            var values = header.Split(':');
+            if (values.Length != 2) return false;
+
+            username = values[0];
+            password = values[1];
 
             return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
         }
-
     }
 }

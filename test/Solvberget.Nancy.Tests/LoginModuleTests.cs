@@ -24,30 +24,14 @@ namespace Solvberget.Nancy.Tests
                 config.Dependency(_provider);
             });
         }
-
-        [Fact]
-        public void Should_fail_when_no_username()
-        {
-            A.CallTo(() => _provider.Authenticate(null, "password")).Returns(null);
-
-            var response = _browser.Get("/login", with =>
-            {
-                with.Query("password", "password");
-                with.Accept("application/json");
-                with.HttpRequest();
-            });
-
-            response.StatusCode.ShouldEqual(HttpStatusCode.Unauthorized);
-        }
         
         [Fact]
-        public void Should_fail_when_no_password()
+        public void Should_fail_when_no_credentials()
         {
-            A.CallTo(() => _provider.Authenticate("username", null)).Returns(null);
+            A.CallTo(() => _provider.Authenticate(null,null)).Returns(null);
 
-            var response = _browser.Get("/login", with =>
+            var response = _browser.Post("/login", with =>
             {
-                with.Query("username", null);
                 with.Accept("application/json");
                 with.HttpRequest();
             });
@@ -60,10 +44,10 @@ namespace Solvberget.Nancy.Tests
         {
             A.CallTo(() => _provider.Authenticate("username", "incorrect password")).Returns(null);
 
-            var response = _browser.Get("/login", with =>
+            var response = _browser.Post("/login", with =>
             {
-                with.Query("username", "username");
-                with.Query("password", "incorrect password");
+                with.FormValue("username", "username");
+                with.FormValue("password", "incorrect password");
                 with.Accept("application/json");
                 with.HttpRequest();
             });
@@ -76,10 +60,10 @@ namespace Solvberget.Nancy.Tests
         {
             A.CallTo(() => _provider.Authenticate("username", "correct password")).Returns(new UserIdentity("username"));
 
-            var response = _browser.Get("/login", with =>
+            var response = _browser.Post("/login", with =>
             {
-                with.Query("username", "username");
-                with.Query("password", "correct password");
+                with.FormValue("username", "username");
+                with.FormValue("password", "correct password");
                 with.Accept("application/json");
                 with.HttpRequest();
             });

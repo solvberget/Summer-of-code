@@ -8,9 +8,9 @@ namespace Solvberget.Nancy.Modules
     {
         public LoginModule(NancyContextAuthenticator authenticator) : base("/login")
         {
-            Get["/"] = _ =>
+            Post["/"] = _ =>
             {
-                var userIdentity = authenticator.Authenticate(Context);
+                var userIdentity = authenticator.Authenticate(Request.Form.Username, Request.Form.Password);
 
                 return null == userIdentity ? 
                       Response.AsJson(new {message = "Feil brukernavn eller passord"}, HttpStatusCode.Unauthorized) 
