@@ -1,4 +1,5 @@
 <h2>Mine Favoritter</h2>
-<ul>
-    <li ng-repeat="fav in favorites">{{fav.document.id}}</li>
+<ul class="media-list">
+    <div ng-repeat="fav in favorites" list-item="fav.document.title" subtext="fav.document.subTitle" document-type="fav.document.type" document-id="fav.document.id"
+         image-url="apiPrefix + 'documents/' + fav.document.id + '/thumbnail'" show-favorite="true" is-favorite="fav.document.isFavorite" url="pathForDocument(fav.document)"/>
 </ul>

@@ -31,7 +31,7 @@
     <img src="/img/ajax-loader.gif" ng-show="isSearching" />
 
     <ul class="media-list row">
-        <div ng-repeat="item in results | filter:resultFilter" list-item="item.title" subtext="item.subTitle" document-type="item.type"
+        <div ng-repeat="item in results | filter:resultFilter" list-item="item.title" subtext="item.subTitle" document-type="item.type" document-id="item.id"
              image-url="apiPrefix + 'documents/' + item.id + '/thumbnail'" url="pathForDocument(item)" show-chevron="true" />
     </ul>
 </div>

@@ -12,10 +12,10 @@ var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, d
 
     $scope.toggleFavorite = function(){
 
-        $scope.document.isFavorite = !$scope.document.isFavorite; // todo: handle failure
-
-        if($scope.isFavorite) favorites.remove({documentId : $scope.document.id});
+        if($scope.document.isFavorite) favorites.remove({documentId : $scope.document.id});
         else favorites.add({documentId : $scope.document.id});
+
+        $scope.document.isFavorite = !$scope.document.isFavorite; // todo: handle failure
     }
 };
 
