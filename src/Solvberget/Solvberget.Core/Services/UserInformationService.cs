@@ -32,12 +32,11 @@ namespace Solvberget.Core.Services
                 var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_UserInfo, GetUserId()));
                 return JsonConvert.DeserializeObject<UserInfoDto>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new UserInfoDto
                 {
-                    Name = e.Message
-                    //Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
+                    Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
                 };
             }
         }
@@ -49,7 +48,7 @@ namespace Solvberget.Core.Services
                 var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites);
                 return JsonConvert.DeserializeObject<List<FavoriteDto>>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new List<FavoriteDto>
                 {
@@ -57,25 +56,30 @@ namespace Solvberget.Core.Services
                     {
                         Document = new DocumentDto
                         {
-                            Title = e.Message
-                            //Title = "Feil ved lasting, kunne desverre ikke finne listen. Prøv igjen senere.",
+                            Title = "Feil ved lasting, kunne desverre ikke finne listen. Prøv igjen senere.",
                         }
                     }
                 };
             }
         }
 
-        public Task<string> AddUserFavorite(string documentNumber)
+        public async Task<string> AddUserFavorite(string documentNumber)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "PUT");
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
         public async Task<string> RemoveUserFavorite(string documentNumber)
         {
-            //throw new NotImplementedException();
             try
             {
-                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + "/" + documentNumber, "DELETE");
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "DELETE");
             }
             catch (Exception e)
             {

@@ -2,7 +2,6 @@
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Solvberget.Core.Services.Interfaces;
 
 namespace Solvberget.Core.Services
 {

@@ -168,6 +168,6 @@
     <value>/documents/{0}/rating</value>
     <comment>0 = Document Id</comment>
   <data name="ServiceUrl_Favorites" xml:space="preserve">
-    <value>/favorites</value>
+    <value>/favorites/</value>
   </data>
 </root>

@@ -115,7 +115,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /favorites.
+        ///   Looks up a localized string similar to /favorites/.
         /// </summary>
         internal static string ServiceUrl_Favorites {
             get {

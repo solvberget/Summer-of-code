@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -28,12 +27,6 @@ namespace Solvberget.Core.ViewModels
             IsLoading = true;
 
             var favs = await _service.GetUserFavorites();
-
-            //var user = await _service.GetUserInformation(_service.GetUserId());
-
-
-
-            //Favorites = user..ToList();
 
             Favorites = new ObservableCollection<FavoriteViewModel>();
 
@@ -66,7 +59,6 @@ namespace Solvberget.Core.ViewModels
         {
             Favorites.Remove(favorite);
             await _service.RemoveUserFavorite(documentNumber);
-            var hoppsidais = "";
         }
 
         public void AddFavorite(FavoriteViewModel favoriteViewModel)
