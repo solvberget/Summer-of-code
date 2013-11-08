@@ -95,5 +95,10 @@ namespace Solvberget.Nancy
             var absolute = Path.Combine(baseUrl, relative);
             return absolute;
         }
+
+        public string GetPlaceHolderImagesPath()
+        {
+            return Path.Combine(_applicationAppDataPath, @"placeholder_images\");
+        }
     }
 }
