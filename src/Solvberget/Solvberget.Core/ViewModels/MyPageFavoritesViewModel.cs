@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -14,8 +15,8 @@ namespace Solvberget.Core.ViewModels
             Load();
         }
 
-        private List<FavoriteViewModel> _favorites;
-        public List<FavoriteViewModel> Favorites
+        private ObservableCollection<FavoriteViewModel> _favorites;
+        public ObservableCollection<FavoriteViewModel> Favorites
         {
             get{ return _favorites; }
             set{ _favorites = value; RaisePropertyChanged(() => Favorites); }
@@ -25,11 +26,21 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
-            var user = await _service.GetUserInformation(_service.GetUserId());
+            var favs = await _service.GetUserFavorites();
 
-            //Favorites = user..ToList();
+            Favorites = new ObservableCollection<FavoriteViewModel>();
 
-            Favorites = new List<FavoriteViewModel>();
+            foreach (FavoriteDto f in favs)
+            {
+                Favorites.Add(new FavoriteViewModel
+                {
+                    ButtonVisible = true,
+                    Name = f.Document.Title,
+                    Year = f.Document.Year,
+                    Parent = this,
+                    DocumentNumber = f.Document.Id
+                });
+            }
 
             if (Favorites.Count == 0)
             {
@@ -44,9 +55,10 @@ namespace Solvberget.Core.ViewModels
             IsLoading = false;
         }
 
-        public void RemoveFavorite(FavoriteViewModel favoriteViewModel)
+        public async void RemoveFavorite(string documentNumber, FavoriteViewModel favorite)
         {
-            Favorites.Remove(favoriteViewModel);
+            Favorites.Remove(favorite);
+            await _service.RemoveUserFavorite(documentNumber);
         }
 
         public void AddFavorite(FavoriteViewModel favoriteViewModel)

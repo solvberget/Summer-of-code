@@ -150,6 +150,7 @@
   </data>
   <data name="ServiceUrl_UserInfo" xml:space="preserve">
     <value>/user/{0}/info</value>
+    <comment>0 = User Id</comment>
   </data>
   <data name="ServiceUrl_Search" xml:space="preserve">
     <value>/documents/search?query={0}</value>
@@ -166,5 +167,8 @@
   <data name="ServiceUrl_Rating" xml:space="preserve">
     <value>/documents/{0}/rating</value>
     <comment>0 = Document Id</comment>
+    </data>
+  <data name="ServiceUrl_Favorites" xml:space="preserve">
+    <value>/favorites/</value>
   </data>
 </root>

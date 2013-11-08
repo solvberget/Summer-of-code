@@ -17,5 +17,10 @@ namespace Solvberget.Core.Tests
             await TaskEx.Delay(10);
             return _toBeReturned;
         }
+
+        public Task<string> Download(string url, string method)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

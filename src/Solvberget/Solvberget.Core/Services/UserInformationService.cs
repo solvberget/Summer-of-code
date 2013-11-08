@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
@@ -31,13 +32,58 @@ namespace Solvberget.Core.Services
                 var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_UserInfo, GetUserId()));
                 return JsonConvert.DeserializeObject<UserInfoDto>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new UserInfoDto
                 {
-                    Name = e.Message
-                    //Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
+                    Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
                 };
+            }
+        }
+
+        public async Task<List<FavoriteDto>> GetUserFavorites()
+        {
+            try
+            {
+                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites);
+                return JsonConvert.DeserializeObject<List<FavoriteDto>>(response);
+            }
+            catch (Exception)
+            {
+                return new List<FavoriteDto>
+                {
+                    new FavoriteDto
+                    {
+                        Document = new DocumentDto
+                        {
+                            Title = "Feil ved lasting, kunne desverre ikke finne listen. Prøv igjen senere.",
+                        }
+                    }
+                };
+            }
+        }
+
+        public async Task<string> AddUserFavorite(string documentNumber)
+        {
+            try
+            {
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "PUT");
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public async Task<string> RemoveUserFavorite(string documentNumber)
+        {
+            try
+            {
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "DELETE");
+            }
+            catch (Exception e)
+            {
+                return e.Message;
             }
         }
     }
