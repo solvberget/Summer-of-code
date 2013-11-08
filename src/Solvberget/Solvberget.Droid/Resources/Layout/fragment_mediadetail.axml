@@ -77,6 +77,24 @@
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           local:MvxBind="Text AvailabilitySummary; BackgroundColor AvailabilityAmountToColor(Availability.AvailableCount)" />
+
+        <TextView
+         android:paddingLeft="8dp"
+         android:paddingRight="8dp"
+         android:textAppearance="?android:attr/textAppearanceSmall"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:text="Forventet tilgjengelig"
+         local:MvxBind="Visibility InvertedVisibility(Availability.AvailableCount)"/>
+        <TextView
+          android:paddingLeft="8dp"
+          android:paddingRight="10dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:textSize="10dp"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          local:MvxBind="Text EstimatedAvailableDate; Visibility InvertedVisibility(Availability.AvailableCount)" />
+        
         <TextView
           android:paddingLeft="8dp"
           android:paddingRight="8dp"

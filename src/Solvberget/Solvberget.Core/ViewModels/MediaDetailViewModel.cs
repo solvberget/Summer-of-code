@@ -46,6 +46,11 @@ namespace Solvberget.Core.ViewModels
             Languages = document.Languages.ToList();
             Publisher = document.Publisher;
             MainContributor = document.MainContributor;
+            EstimatedAvailableDate = "Ukjent";
+            if (document.Availability != null && document.Availability.EstimatedAvailableDate.HasValue)
+            {
+                EstimatedAvailableDate = document.Availability.EstimatedAvailableDate.Value.ToString("dd.MM.yyyy");
+            }
 
             IsLoading = false;
         }
@@ -87,6 +92,13 @@ namespace Solvberget.Core.ViewModels
             {
                 return string.Format("{0} av {1} tilgjengelig", Availability.AvailableCount, Availability.TotalCount);
             }
+        }
+
+        private string _estimatedAvailableDate;
+        public string EstimatedAvailableDate 
+        {
+            get { return _estimatedAvailableDate; }
+            set { _estimatedAvailableDate = value; RaisePropertyChanged(() => EstimatedAvailableDate);}
         }
 
 
