@@ -1,6 +1,8 @@
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
 using Solvberget.Core.Services;
+using Solvberget.Core.Services.Interfaces;
+using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels;
 
 namespace Solvberget.Core
@@ -21,6 +23,7 @@ namespace Solvberget.Core
             // Mvx.LazyConstructAndRegisterSingleton<IBlogService, BlogServiceTemporaryStub>();
             // Mvx.LazyConstructAndRegisterSingleton<INewsService, NewsServiceTemporaryStub>();
             // Mvx.LazyConstructAndRegisterSingleton<ISuggestionsService, SuggestionsServiceTemporaryStub>();
+            Mvx.LazyConstructAndRegisterSingleton<IUserAuthenticationDataService, UserAuthenticationTemporaryStub>();
 
             RegisterAppStart<HomeViewModel>();
         }

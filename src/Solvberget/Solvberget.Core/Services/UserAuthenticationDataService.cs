@@ -1,29 +1,22 @@
-﻿namespace Solvberget.Core.Services
-{
-    public interface IUserAuthenticationDataService
-    {
-        bool UserInfoRegistered();
-        string GetUserId();
-        string GetUserPassword();
-        void SetUser(string userId);
-        void SetPassword(string password);
-    }
+﻿using Solvberget.Core.Services.Interfaces;
 
+namespace Solvberget.Core.Services
+{
     public class UserAuthenticationDataService : IUserAuthenticationDataService
     {
         public bool UserInfoRegistered()
         {
-            return true;
+            throw new System.NotImplementedException();
         }
 
         public string GetUserId()
         {
-            return "164916";
+            throw new System.NotImplementedException();
         }
 
         public string GetUserPassword()
         {
-            return "9236";
+            throw new System.NotImplementedException();
         }
 
         public void SetUser(string userId)

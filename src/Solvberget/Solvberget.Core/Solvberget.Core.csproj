@@ -83,9 +83,9 @@
     <Compile Include="Services\Interfaces\INewsService.cs" />
     <Compile Include="Services\Interfaces\IOpeningHoursService.cs" />
     <Compile Include="Services\Interfaces\ISearchService.cs" />
+    <Compile Include="Services\Interfaces\IUserAuthenticationDataService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\IStringDownloader.cs" />
-    <Compile Include="Services\IUserAuthenticationDataService.cs" />
     <Compile Include="Services\OpeningHoursService.cs" />
     <Compile Include="Services\Interfaces\ISuggestionsService.cs" />
     <Compile Include="Services\NewsService.cs" />
@@ -94,7 +94,9 @@
     <Compile Include="Services\Stubs\NewsServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SuggestionsServiceTemporaryStub.cs" />
+    <Compile Include="Services\Stubs\UserAuthenticationTemporaryStub.cs" />
     <Compile Include="Services\SuggestionsService.cs" />
+    <Compile Include="Services\UserAuthenticationDataService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\BlogItemViewModel.cs" />
