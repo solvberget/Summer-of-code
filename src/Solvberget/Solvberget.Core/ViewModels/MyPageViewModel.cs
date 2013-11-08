@@ -1,18 +1,33 @@
-﻿using Solvberget.Core.Services.Interfaces;
+﻿using System;
+using System.Text;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class MyPageViewModel : BaseViewModel
     {
+        private readonly IUserService _service;
+
         public MyPageViewModel(IUserService service)
         {
-            MyPageLoansViewModel = new MyPageLoansViewModel(service);
-            MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service);
-            MyPageReservationsViewModel = new MyPageReservationsViewModel(service);
-            MyPageFinesViewModel = new MyPageFinesViewModel(service);
-            MyPageMessagesViewModel = new MyPageMessagesViewModel(service);
-            MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
+            _service = service;
+
+            if (String.IsNullOrWhiteSpace(_service.GetUserId()))
+            {
+                LoggedIn = false;
+            }
+
+            else
+            {
+                LoggedIn = true;
+                MyPageLoansViewModel = new MyPageLoansViewModel(service);
+                MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service);
+                MyPageReservationsViewModel = new MyPageReservationsViewModel(service);
+                MyPageFinesViewModel = new MyPageFinesViewModel(service);
+                MyPageMessagesViewModel = new MyPageMessagesViewModel(service);
+                MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
+            } 
         }
 
         private MyPageLoansViewModel _myPageLoansViewModel;
@@ -55,5 +70,14 @@ namespace Solvberget.Core.ViewModels
             get { return _myPageFavoritesViewModel; }
             set { _myPageFavoritesViewModel = value; RaisePropertyChanged(() => MyPageFavoritesViewModel); }
         }
+
+        private bool _loggedIn;
+        public bool LoggedIn
+        {
+            get { return _loggedIn; }
+            set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
+        }
+
+        
     }
 }

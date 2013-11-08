@@ -110,6 +110,7 @@
     <Compile Include="ViewModels\FineViewModel.cs" />
     <Compile Include="ViewModels\GenericWebViewViewModel.cs" />
     <Compile Include="ViewModels\LoanViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NewsListingViewModel.cs" />
     <Compile Include="ViewModels\MediaDetailViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Services;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
+        private IUserService _userService;
+
         public enum Section
         {
             MyPage,
@@ -25,6 +29,11 @@ namespace Solvberget.Core.ViewModels
         {
             _menuItems = new List<MenuViewModel>
                               {
+                                  new MenuViewModel
+                                      {
+                                          Section = Section.OpeningHours,
+                                          Title = "Åpningstider"
+                                      },
                                   new MenuViewModel
                                       {
                                           Section = Section.MyPage,
@@ -54,11 +63,6 @@ namespace Solvberget.Core.ViewModels
                                       {
                                           Section = Section.News,
                                           Title = "Nyheter"
-                                      },
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.OpeningHours,
-                                          Title = "Åpningstider"
                                       },
                                   new MenuViewModel
                                       {
@@ -92,7 +96,7 @@ namespace Solvberget.Core.ViewModels
             {
 
                 case Section.MyPage:
-                    ShowViewModel<MyPageViewModel>(new {id = "164916"});
+                    ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.Search:
                     ShowViewModel<SearchViewModel>();

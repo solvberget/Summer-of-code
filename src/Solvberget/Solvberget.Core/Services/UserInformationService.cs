@@ -22,7 +22,8 @@ namespace Solvberget.Core.Services
         {
             //return "N000708254";
             //return "123456";
-            return "164916";
+            //return "164916";
+            return "";
         }
 
         public async Task<UserInfoDto> GetUserInformation(string userId)

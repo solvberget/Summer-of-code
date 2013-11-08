@@ -151,6 +151,7 @@
     <Compile Include="Views\Fragments\BlogOverviewView.cs" />
     <Compile Include="Views\Fragments\BlogView.cs" />
     <Compile Include="Views\Fragments\BlogPostView.cs" />
+    <Compile Include="Views\Fragments\LoginView.cs" />
     <Compile Include="Views\Fragments\SearchResultCategoryView.cs" />
     <Compile Include="Views\Fragments\OpeningHoursView.cs" />
     <Compile Include="Views\Fragments\GenericWebViewView.cs" />
@@ -264,6 +265,9 @@
     <AndroidResource Include="Resources\Layout\mediadetail_game.axml" />
     <AndroidResource Include="Resources\Layout\mediadetail_journal.axml" />
     <AndroidResource Include="Resources\Layout\item_genrestring.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\login.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -28,12 +28,17 @@ namespace Solvberget.Droid.Views.Fragments
         {
             SetHasOptionsMenu(true);
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.fragment_profile, null);
 
-            _viewPager = view.FindViewById<ViewPager>(Resource.Id.viewPager);
-            _viewPager.OffscreenPageLimit = 4;
+            View view;
 
-            var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
+            if (ViewModel.LoggedIn)
+            {
+                view = this.BindingInflate(Resource.Layout.fragment_profile, null);
+
+                _viewPager = view.FindViewById<ViewPager>(Resource.Id.viewPager);
+                _viewPager.OffscreenPageLimit = 4;
+
+                var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
               {
                   new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
@@ -73,8 +78,16 @@ namespace Solvberget.Droid.Views.Fragments
                 }
               };
 
-            _adapter = new MvxViewPagerFragmentAdapter(Activity, ChildFragmentManager, fragments);
-            _viewPager.Adapter = _adapter;
+                _adapter = new MvxViewPagerFragmentAdapter(Activity, ChildFragmentManager, fragments);
+                _viewPager.Adapter = _adapter;   
+            }
+            else
+            {
+                view = this.BindingInflate(Resource.Layout.login, null);
+
+            }
+
+            
 
             return view;
         }
