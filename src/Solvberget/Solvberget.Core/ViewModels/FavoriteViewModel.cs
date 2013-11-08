@@ -63,6 +63,15 @@ namespace Solvberget.Core.ViewModels
             set { _parent = value; RaisePropertyChanged(() => Parent); }
         }
 
+        private string _documentNumber;
+        public string DocumentNumber
+        {
+            get { return _documentNumber; }
+            set { _documentNumber = value; RaisePropertyChanged(() => DocumentNumber); }
+        }
+
+        
+
         private MvxCommand<FavoriteViewModel> _showDetailsCommand;
         public ICommand ShowDetailsCommand
         {
@@ -74,7 +83,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(FavoriteViewModel favorite)
         {
-            Parent.RemoveFavorite(this);
+            Parent.RemoveFavorite(DocumentNumber, this);
 
             if (Parent.Favorites.Count == 0)
             {
@@ -85,8 +94,6 @@ namespace Solvberget.Core.ViewModels
 
                 });
             }
-
-            //Remove from list on server
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Solvberget.Core.Services.Interfaces
         string GetUserId();
         Task<UserInfoDto> GetUserInformation(string userId);
         Task<List<FavoriteDto>> GetUserFavorites();
-        void AddUserFavorite(FavoriteDto favorite);
-        void RemoveUserFavorite(FavoriteDto favorite);
+        Task<string> AddUserFavorite(string documentNumber);
+        Task<string> RemoveUserFavorite(string documentNumber);
     }
 }

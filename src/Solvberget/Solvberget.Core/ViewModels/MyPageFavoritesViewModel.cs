@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -15,8 +16,8 @@ namespace Solvberget.Core.ViewModels
             Load();
         }
 
-        private List<FavoriteViewModel> _favorites;
-        public List<FavoriteViewModel> Favorites
+        private ObservableCollection<FavoriteViewModel> _favorites;
+        public ObservableCollection<FavoriteViewModel> Favorites
         {
             get{ return _favorites; }
             set{ _favorites = value; RaisePropertyChanged(() => Favorites); }
@@ -34,7 +35,7 @@ namespace Solvberget.Core.ViewModels
 
             //Favorites = user..ToList();
 
-            Favorites = new List<FavoriteViewModel>();
+            Favorites = new ObservableCollection<FavoriteViewModel>();
 
             foreach (FavoriteDto f in favs)
             {
@@ -43,7 +44,8 @@ namespace Solvberget.Core.ViewModels
                     ButtonVisible = true,
                     Name = f.Document.Title,
                     Year = f.Document.Year,
-                    Parent = this
+                    Parent = this,
+                    DocumentNumber = f.Document.Id
                 });
             }
 
@@ -60,9 +62,11 @@ namespace Solvberget.Core.ViewModels
             IsLoading = false;
         }
 
-        public void RemoveFavorite(FavoriteViewModel favoriteViewModel)
+        public async void RemoveFavorite(string documentNumber, FavoriteViewModel favorite)
         {
-            Favorites.Remove(favoriteViewModel);
+            Favorites.Remove(favorite);
+            await _service.RemoveUserFavorite(documentNumber);
+            var hoppsidais = "";
         }
 
         public void AddFavorite(FavoriteViewModel favoriteViewModel)

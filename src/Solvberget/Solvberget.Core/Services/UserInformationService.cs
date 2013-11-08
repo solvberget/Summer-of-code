@@ -65,14 +65,22 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public void AddUserFavorite(FavoriteDto favorite)
+        public Task<string> AddUserFavorite(string documentNumber)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveUserFavorite(FavoriteDto favorite)
+        public async Task<string> RemoveUserFavorite(string documentNumber)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            try
+            {
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + "/" + documentNumber, "DELETE");
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }
