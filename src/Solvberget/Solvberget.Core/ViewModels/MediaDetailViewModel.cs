@@ -31,6 +31,7 @@ namespace Solvberget.Core.ViewModels
             IsLoading = true;
 
             var review = _searchService.GetReview(docId);
+            var rating = _searchService.GetRating(docId);
 
             var document = await _searchService.Get(docId);
             Title = document.Title;
@@ -60,9 +61,9 @@ namespace Solvberget.Core.ViewModels
                 Review = reviewDto.Review;
             }
 
-            IsLoading = false;
+            Rating = await rating;
 
-            Rating = await _searchService.GetRating(docId);
+            IsLoading = false;
         }
 
         private DocumentRatingDto _rating;
