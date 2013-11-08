@@ -123,6 +123,7 @@
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Converters\AvailabilityAmountToColorConverter.cs" />
     <Compile Include="Converters\StringToHtmlConverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Helpers\CustomPresenter.cs" />
@@ -143,6 +144,7 @@
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerSearchResultAdapter.cs" />
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Components\BackgroundColorBindableTextView.cs" />
     <Compile Include="Views\Components\MediaDetailInformationView.cs" />
     <Compile Include="Views\Components\CustomImageView.cs" />
     <Compile Include="Views\Fragments\ContactInfoView.cs" />

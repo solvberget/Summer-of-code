@@ -71,13 +71,12 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:background="@color/ui_itembackground">
-        <TextView
+        <Solvberget.Droid.Views.Components.BackgroundColorBindableTextView
           android:paddingLeft="8dp"
           android:paddingRight="8dp"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:background="#E3EFD9"
-          local:MvxBind="Text AvailabilitySummary" />
+          local:MvxBind="Text AvailabilitySummary; BackgroundColor AvailabilityAmountToColor(Availability.AvailableCount)" />
         <TextView
           android:paddingLeft="8dp"
           android:paddingRight="8dp"
