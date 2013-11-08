@@ -53,6 +53,15 @@ namespace Solvberget.Core.ViewModels
             }
 
             IsLoading = false;
+
+            Rating = await _searchService.GetRating(docId);
+        }
+
+        private DocumentRatingDto _rating;
+        public DocumentRatingDto Rating 
+        {
+            get { return _rating; }
+            set { _rating = value; RaisePropertyChanged(() => Rating);}
         }
 
         private DocumentDto _rawDto;
