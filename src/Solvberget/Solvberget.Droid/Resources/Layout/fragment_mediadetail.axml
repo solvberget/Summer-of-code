@@ -12,21 +12,21 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="150.0dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:background="@color/ui_grey_dark">
+            android:background="@color/ui_grey_dark"
+            android:layout_height="160dp">
             <Solvberget.Droid.Views.Components.CustomImageView
                 android:layout_width="100.0dp"
-                android:layout_height="130.0dp"
+                android:layout_height="140.0dp"
                 android:src="@drawable/ic_launcher"
                 local:MvxBind="ImageUrl Image" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="130.00dp"
+                android:layout_height="140.00dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="8dp">
                 <TextView
