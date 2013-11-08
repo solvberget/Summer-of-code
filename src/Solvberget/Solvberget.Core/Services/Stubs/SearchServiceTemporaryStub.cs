@@ -33,5 +33,14 @@ namespace Solvberget.Core.Services.Stubs
         {
             return new DocumentRatingDto{MaxScore = 10.0, Score = 10.0, Source = "IMDB", SourceUrl = "imdb.com"};
         }
+
+        public async Task<DocumentReviewDto> GetReview(string docId)
+        {
+            return new DocumentReviewDto
+            {
+                Review = "Dette er en anmeldelse av en film eller en bok eller et eller anent",
+                Url = ""
+            };
+        }
     }
 }

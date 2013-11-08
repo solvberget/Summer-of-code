@@ -30,6 +30,8 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
+            var review = _searchService.GetReview(docId);
+
             var document = await _searchService.Get(docId);
             Title = document.Title;
             SubTitle = document.SubTitle;
@@ -52,6 +54,12 @@ namespace Solvberget.Core.ViewModels
                 EstimatedAvailableDate = document.Availability.EstimatedAvailableDate.Value.ToString("dd.MM.yyyy");
             }
 
+            var reviewDto = await review;
+            if (reviewDto != null && !string.IsNullOrEmpty(reviewDto.Review))
+            {
+                Review = reviewDto.Review;
+            }
+
             IsLoading = false;
 
             Rating = await _searchService.GetRating(docId);
@@ -62,6 +70,13 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _rating; }
             set { _rating = value; RaisePropertyChanged(() => Rating);}
+        }
+
+        private string _review = "";
+        public string Review 
+        {
+            get { return _review; }
+            set { _review = value; RaisePropertyChanged(() => Review);}
         }
 
         private DocumentDto _rawDto;

@@ -174,6 +174,30 @@
                 android:paddingRight="8dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:text="ANMELDELSE"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:singleLine="true"
+                local:MvxBind="Visibility Visibility(Review)" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/ui_itembackground"
+                local:MvxBind="Visibility Visibility(Review)">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    local:MvxBind="TextFormatted StringToHtml(Review); Visibility Visibility(Review)" />
+            </LinearLayout>
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="FAKTA"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true"

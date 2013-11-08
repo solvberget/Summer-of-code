@@ -28,9 +28,6 @@ namespace Solvberget.Droid.Views.Fragments
             ActionBar.SetHomeButtonEnabled(true);
 
             BindLoadingIndicator();
-
-
-
         }
 
         private void BindLoadingIndicator()
