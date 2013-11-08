@@ -88,5 +88,18 @@ namespace Solvberget.Core.Services
                 return null;
             }
         }
+
+        public async Task<DocumentReviewDto> GetReview(string docId)
+        {
+            try
+            {
+                var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Review, docId));
+                return JsonConvert.DeserializeObject<DocumentReviewDto>(response);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

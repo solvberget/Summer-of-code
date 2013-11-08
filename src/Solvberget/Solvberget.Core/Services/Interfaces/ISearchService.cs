@@ -9,5 +9,6 @@ namespace Solvberget.Core.Services.Interfaces
         Task<IEnumerable<DocumentDto>> Search(string query);
         Task<DocumentDto> Get(string docId);
         Task<DocumentRatingDto> GetRating(string docId);
+        Task<DocumentReviewDto> GetReview(string docId);
     }
 }

@@ -171,4 +171,8 @@
   <data name="ServiceUrl_Favorites" xml:space="preserve">
     <value>/favorites/</value>
   </data>
+  <data name="ServiceUrl_Review" xml:space="preserve">
+    <value>/documents/{0}/review</value>
+    <comment>0 =Document Id</comment>
+  </data>
 </root>
