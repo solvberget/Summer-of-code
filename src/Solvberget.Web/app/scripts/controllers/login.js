@@ -3,6 +3,18 @@
 angular.module('Solvberget.WebApp')
   .controller('LoginCtrl', function ($scope, $rootScope, $routeParams, $location, $http, $cookies) {
 
+        $scope.logout = function(){
+
+            delete $$config.username;
+            delete $$config.password;
+            delete $cookies.username;
+            delete $cookies.password;
+
+            $scope.isLoggedIn = false;
+        }
+
+        $scope.isLoggedIn = $$config.username && $$config.password;
+
         $scope.login = function(){
 
             $http({
@@ -11,6 +23,10 @@ angular.module('Solvberget.WebApp')
                 data : $.param({username : $scope.username, password: $scope.password}),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function(data, status, headers, config) {
+
+                    console.log(status);
+
+                    if(status != 200) return;
 
                     $$config.username = $cookies.username = $scope.username;
                     $$config.password = $cookies.password = $scope.password;

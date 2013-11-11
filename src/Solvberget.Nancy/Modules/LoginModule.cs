@@ -12,7 +12,7 @@ namespace Solvberget.Nancy.Modules
             Post["/"] = _ =>
             {
                 var userIdentity = authenticator.Authenticate(Request.Form.Username, Request.Form.Password);
-
+                
                 return null == userIdentity ? 
                       Response.AsJson(new {message = "Feil brukernavn eller passord"}, HttpStatusCode.Unauthorized) 
                     : Response.AsJson(new {message = "Autentisering vellykket."});
