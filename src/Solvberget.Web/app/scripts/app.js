@@ -8,7 +8,7 @@ var $$config =  {
     }
 }
 
-angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'ngSanitize'])
+angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/sok', {
@@ -100,7 +100,10 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'n
                 redirectTo: '/nyheter'
             });
 
-    }).run(function($rootScope, $location, $route, $http) {
+    }).run(function($rootScope, $location, $route, $http, $cookies) {
+
+        $$config.username = $cookies.username;
+        $$config.password = $cookies.password;
 
         $http({method: 'GET', url: '/app.config.json'}).
             success(function(data) {
