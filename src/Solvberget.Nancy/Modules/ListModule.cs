@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Nancy;
 using Nancy.Responses;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Documents.Images;
+using Solvberget.Domain.Utils;
 using Solvberget.Nancy.Mapping;
 using Solvberget.Domain.Lists;
 
@@ -14,7 +16,7 @@ namespace Solvberget.Nancy.Modules
     {
         private readonly IRepository _documents;
 
-        public ListModule(ILibraryListRepository lists, IRepository documents, IImageRepository images)
+        public ListModule(ILibraryListRepository lists, IRepository documents, IImageRepository images, IEnvironmentPathProvider pathProvider)
             : base("/lists")
         {
             _documents = documents;
@@ -37,14 +39,14 @@ namespace Solvberget.Nancy.Modules
 
                 foreach (var docNo in list.DocumentNumbers.Keys)
                 {
-                    var url = images.GetDocumentImage(docNo);
+                    var img = images.GetDocumentImage(docNo);
 
-                    if (String.IsNullOrEmpty(url)) continue;
+                    if (String.IsNullOrEmpty(img)) continue;
 
-                    return Response.AsRedirect(url);
+                    return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img));
                 }
 
-                return TextResponse.NoBody;
+                return TextResponse.NoBody; // todo: placeholder img
             };
         }
         
