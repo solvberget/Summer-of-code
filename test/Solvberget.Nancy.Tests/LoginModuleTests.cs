@@ -1,6 +1,7 @@
 ﻿using FakeItEasy;
 using Nancy;
 using Should;
+using Solvberget.Domain.Aleph;
 using Solvberget.Nancy.Authentication;
 using Solvberget.Nancy.Modules;
 
@@ -13,15 +14,18 @@ namespace Solvberget.Nancy.Tests
     {
         private readonly Browser _browser;
         private readonly IAuthenticationProvider _provider;
+        private readonly IRepository _repository;
 
         public LoginModuleTests()
         {
             _provider = A.Fake<IAuthenticationProvider>();
+            _repository = A.Fake<IRepository>();
 
             _browser = new Browser(config =>
             {
                 config.Module<LoginModule>();
                 config.Dependency(_provider);
+                config.Dependency(_repository);
             });
         }
         
@@ -69,6 +73,28 @@ namespace Solvberget.Nancy.Tests
             });
 
             response.StatusCode.ShouldEqual(HttpStatusCode.OK);
+        }
+
+
+        [Fact]
+        public void GetPinShouldRequestNewPinFromRepository()
+        {
+            // Given
+            A.CallTo(() => _repository.RequestPinCodeToSms("1234")).Returns(new RequestReply
+            {
+                Success = true,
+                Reply = "Great success!"
+            });
+
+            // When
+            var response = _browser.Get("/login/forgot/1234", with =>
+            {
+                with.Accept("application/json");
+                with.HttpRequest();
+            });
+
+            // Then
+            response.Body.DeserializeJson<RequestReply>().Reply.ShouldEqual("Great success!");
         }
     }
 }
