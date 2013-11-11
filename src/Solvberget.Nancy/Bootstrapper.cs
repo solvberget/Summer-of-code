@@ -71,7 +71,7 @@ namespace Solvberget.Nancy
 
                 builder.RegisterType<FavoritesRepository>().As<IFavoritesRepository>().SingleInstance(); // todo: singleton while its impl only keeps favorite state in-memory.
 
-                builder.RegisterType<TEST_AlwaysAuthenticateProvider>().As<IAuthenticationProvider>();
+                builder.RegisterType<AlephAuthenticationProvider>().As<IAuthenticationProvider>();
                 builder.RegisterType<NancyContextAuthenticator>().AsSelf().SingleInstance();
 
                 builder.RegisterType<LibraryListDynamicRepository>().AsSelf();

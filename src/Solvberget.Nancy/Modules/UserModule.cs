@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Nancy;
+using Nancy.Security;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Users;
+using Solvberget.Nancy.Authentication;
 
 namespace Solvberget.Nancy.Modules
 {
@@ -13,9 +15,11 @@ namespace Solvberget.Nancy.Modules
     {
         public UserModule(IRepository repository) : base("/user")
         {
-            Get["/{userId}/info"] = args =>
+            this.RequiresAuthentication();
+
+            Get["/info"] = _ =>
             {
-                UserInfo results = repository.GetUserInformation(args.userId, Request.Query.verify);
+                UserInfo results = Context.GetUserInfo();
 
                 var reservationsList = results.Reservations ?? new List<Reservation>();
                 var finesList = results.Fines ?? new List<Fine>();

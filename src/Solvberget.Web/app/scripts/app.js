@@ -24,6 +24,10 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngResource', 'ngRoute', 'n
                 templateUrl: 'views/my.favorites.html',
                 controller: 'MyFavoritesCtrl'
             })
+            .when('/min-side/detaljer', {
+                templateUrl: 'views/my.details.html',
+                controller: 'MyDetailsCtrl'
+            })
             .when('/anbefalinger', {
                 templateUrl: 'views/anbefalinger.html',
                 controller: 'AnbefalingerCtrl'

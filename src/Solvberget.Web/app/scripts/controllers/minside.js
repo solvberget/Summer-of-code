@@ -14,4 +14,13 @@ angular.module('Solvberget.WebApp')
 
         $scope.favorites = favorites.get();
 
+    }).controller('MyDetailsCtrl', function ($scope, $rootScope, userInfo) {
+
+        $scope.userInfo = userInfo.get();
+
+        //$rootScope.breadcrumb.clear();
+        //$rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        //$rootScope.breadcrumb.push('Favoritter', 'MyFavoritesCtrl');
+
+
     });
