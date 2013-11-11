@@ -13,7 +13,7 @@ namespace Solvberget.Nancy.Modules
 {
     public class UserModule : NancyModule
     {
-        public UserModule(IRepository repository) : base("/user")
+        public UserModule() : base("/user")
         {
             this.RequiresAuthentication();
 
@@ -103,8 +103,6 @@ namespace Solvberget.Nancy.Modules
                 return userDto;
 
             };
-            
-            Get["/{userId}/pin"] = args => repository.RequestPinCodeToSms(args.userId);
         }
 
         private static DateTime? ParseDateString(string dateString)
