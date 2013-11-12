@@ -10,26 +10,20 @@ namespace Solvberget.Core.Services
 {
     public class UserInformationService : IUserService
     {
-        
         private readonly IStringDownloader _downloader;
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public UserInformationService(IStringDownloader downloader)
+        public UserInformationService(IStringDownloader downloader, IUserAuthenticationDataService userAuthenticationService)
         {
              _downloader = downloader;
-        }
-
-        public string GetUserId()
-        {
-            //return "N000708254";
-            //return "123456";
-            return "164916";
+            _userAuthenticationService = userAuthenticationService;
         }
 
         public async Task<UserInfoDto> GetUserInformation(string userId)
         {
             try
             {
-                var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_UserInfo, GetUserId()));
+                var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_UserInfo, _userAuthenticationService.GetUserId()));
                 return JsonConvert.DeserializeObject<UserInfoDto>(response);
             }
             catch (Exception)
@@ -84,6 +78,31 @@ namespace Solvberget.Core.Services
             catch (Exception e)
             {
                 return e.Message;
+            }
+        }
+
+        public async Task<MessageDto> Login(string userId, string userPin)
+        {
+            try
+            {
+                var formData = new Dictionary<string, string>
+                {
+                    {"Username", userId},
+                    {"Password", userPin}
+                };
+
+
+
+                var response = await _downloader.PostForm(Resources.ServiceUrl + Resources.ServiceUrl_Login, formData);
+
+                return JsonConvert.DeserializeObject<MessageDto>(response);
+            }
+            catch (Exception e)
+            {
+                return new MessageDto
+                {
+                    Message = e.Message
+                };
             }
         }
     }

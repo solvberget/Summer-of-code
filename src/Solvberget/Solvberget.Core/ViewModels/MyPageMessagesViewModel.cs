@@ -9,9 +9,11 @@ namespace Solvberget.Core.ViewModels
     public class MyPageMessagesViewModel : BaseViewModel
     {
         private readonly IUserService _service;
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public MyPageMessagesViewModel(IUserService service)
+        public MyPageMessagesViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+            _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
         }
@@ -25,7 +27,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
-            var user = await _service.GetUserInformation(_service.GetUserId());
+            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
 
             Notifications = user.Notifications == null ? new List<NotificationDto>() : user.Notifications.ToList();
 

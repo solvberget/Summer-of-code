@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Services;
+using Solvberget.Core.Services.Interfaces;
+using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
+
         public enum Section
         {
             MyPage,
@@ -21,10 +26,16 @@ namespace Solvberget.Core.ViewModels
             Unknown
         }
 
-        public HomeViewModel()
+        public HomeViewModel(UserAuthenticationDataService userAuthenticationDataService)
         {
+            _userAuthenticationService = userAuthenticationDataService;
             _menuItems = new List<MenuViewModel>
                               {
+                                  new MenuViewModel
+                                      {
+                                          Section = Section.OpeningHours,
+                                          Title = "Åpningstider"
+                                      },
                                   new MenuViewModel
                                       {
                                           Section = Section.MyPage,
@@ -57,15 +68,9 @@ namespace Solvberget.Core.ViewModels
                                       },
                                   new MenuViewModel
                                       {
-                                          Section = Section.OpeningHours,
-                                          Title = "Åpningstider"
-                                      },
-                                  new MenuViewModel
-                                      {
                                           Section = Section.Contact,
                                           Title = "Kontakt oss"
                                       },
-
                               };
         }
 
@@ -90,9 +95,11 @@ namespace Solvberget.Core.ViewModels
             //navigate if we have to, pass the id so we can grab from cache... or not
             switch (item.Section)
             {
-
                 case Section.MyPage:
-                    ShowViewModel<MyPageViewModel>(new {id = "164916"});
+                    if (_userAuthenticationService.GetUserId().Equals("Fant ikke brukerid"))
+                        ShowViewModel<LoginViewModel>();
+                    else
+                        ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.Search:
                     ShowViewModel<SearchViewModel>();
@@ -119,7 +126,6 @@ namespace Solvberget.Core.ViewModels
 
         public Section GetSectionForViewModelType(Type type)
         {
-
             if (type == typeof(MyPageViewModel))
                 return Section.MyPage;
             if (type == typeof(SearchViewModel))
@@ -136,6 +142,11 @@ namespace Solvberget.Core.ViewModels
                 return Section.Blogs;
 
             return Section.Unknown;
+        }
+
+        public bool IsAuthenticated()
+        {
+            return _userAuthenticationService.UserInfoRegistered();
         }
     }
 }

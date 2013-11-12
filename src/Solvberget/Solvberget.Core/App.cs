@@ -23,7 +23,7 @@ namespace Solvberget.Core
             // Mvx.LazyConstructAndRegisterSingleton<IBlogService, BlogServiceTemporaryStub>();
             // Mvx.LazyConstructAndRegisterSingleton<INewsService, NewsServiceTemporaryStub>();
             // Mvx.LazyConstructAndRegisterSingleton<ISuggestionsService, SuggestionsServiceTemporaryStub>();
-            Mvx.LazyConstructAndRegisterSingleton<IUserAuthenticationDataService, UserAuthenticationTemporaryStub>();
+            //Mvx.LazyConstructAndRegisterSingleton<IUserAuthenticationDataService, UserAuthenticationTemporaryStub>();
 
             RegisterAppStart<HomeViewModel>();
         }

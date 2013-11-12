@@ -190,26 +190,35 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f06000b
 			public const int button1 = 2131099659;
 			
+			// aapt resource value: 0x7f060011
+			public const int buttonSignIn = 2131099665;
+			
+			// aapt resource value: 0x7f060013
+			public const int content_frame = 2131099667;
+			
+			// aapt resource value: 0x7f060012
+			public const int drawer_layout = 2131099666;
+			
 			// aapt resource value: 0x7f060010
-			public const int content_frame = 2131099664;
+			public const int editTextPasswordToLogin = 2131099664;
 			
 			// aapt resource value: 0x7f06000f
-			public const int drawer_layout = 2131099663;
+			public const int editTextUserNameToLogin = 2131099663;
 			
-			// aapt resource value: 0x7f060011
-			public const int left_drawer = 2131099665;
+			// aapt resource value: 0x7f060014
+			public const int left_drawer = 2131099668;
 			
 			// aapt resource value: 0x7f060001
 			public const int linearLayout1 = 2131099649;
 			
-			// aapt resource value: 0x7f060014
-			public const int menu_refresh = 2131099668;
-			
-			// aapt resource value: 0x7f060016
-			public const int menu_share = 2131099670;
-			
 			// aapt resource value: 0x7f060017
-			public const int menu_star = 2131099671;
+			public const int menu_refresh = 2131099671;
+			
+			// aapt resource value: 0x7f060019
+			public const int menu_share = 2131099673;
+			
+			// aapt resource value: 0x7f06001a
+			public const int menu_star = 2131099674;
 			
 			// aapt resource value: 0x7f06000e
 			public const int news_ingress = 2131099662;
@@ -220,14 +229,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f06000d
 			public const int news_published = 2131099661;
 			
-			// aapt resource value: 0x7f060012
-			public const int progressBar = 2131099666;
+			// aapt resource value: 0x7f060015
+			public const int progressBar = 2131099669;
 			
 			// aapt resource value: 0x7f060004
 			public const int pts_main = 2131099652;
 			
-			// aapt resource value: 0x7f060015
-			public const int search = 2131099669;
+			// aapt resource value: 0x7f060018
+			public const int search = 2131099672;
 			
 			// aapt resource value: 0x7f060009
 			public const int searchResultsList = 2131099657;
@@ -253,8 +262,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060003
 			public const int viewPager = 2131099651;
 			
-			// aapt resource value: 0x7f060013
-			public const int webView = 2131099667;
+			// aapt resource value: 0x7f060016
+			public const int webView = 2131099670;
 			
 			static Id()
 			{
@@ -391,34 +400,37 @@ namespace Solvberget.Droid
 			public const int item_suggestions_list_summary = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int mediadetail_audiobook = 2130903075;
+			public const int login = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int mediadetail_book = 2130903076;
+			public const int mediadetail_audiobook = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int mediadetail_cd = 2130903077;
+			public const int mediadetail_book = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int mediadetail_film = 2130903078;
+			public const int mediadetail_cd = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int mediadetail_game = 2130903079;
+			public const int mediadetail_film = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int mediadetail_journal = 2130903080;
+			public const int mediadetail_game = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int mediadetail_sheetmusic = 2130903081;
+			public const int mediadetail_journal = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int page_home_view = 2130903082;
+			public const int mediadetail_sheetmusic = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int page_webview = 2130903083;
+			public const int page_home_view = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int SplashScreen = 2130903084;
+			public const int page_webview = 2130903084;
+			
+			// aapt resource value: 0x7f03002d
+			public const int SplashScreen = 2130903085;
 			
 			static Layout()
 			{

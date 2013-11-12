@@ -28,53 +28,54 @@ namespace Solvberget.Droid.Views.Fragments
         {
             SetHasOptionsMenu(true);
             base.OnCreateView(inflater, container, savedInstanceState);
+
             var view = this.BindingInflate(Resource.Layout.fragment_profile, null);
 
             _viewPager = view.FindViewById<ViewPager>(Resource.Id.viewPager);
             _viewPager.OffscreenPageLimit = 4;
 
             var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
-              {
-                  new MvxViewPagerFragmentAdapter.FragmentInfo
+            {
+                new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
-                  FragmentType = typeof(MyPagePersonaliaView),
-                  Title = "Personalia",
-                  ViewModel = ViewModel.MyPagePersonaliaViewModel
+                    FragmentType = typeof(MyPagePersonaliaView),
+                    Title = "Personalia",
+                    ViewModel = ViewModel.MyPagePersonaliaViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
-                  FragmentType = typeof(MyPageMessagesView),
-                  Title = "Meldinger",
-                  ViewModel = ViewModel.MyPageMessagesViewModel
+                    FragmentType = typeof(MyPageMessagesView),
+                    Title = "Meldinger",
+                    ViewModel = ViewModel.MyPageMessagesViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
-                  FragmentType = typeof(MyPageFavoritesView),
-                  Title = "Favoritter",
-                  ViewModel = ViewModel.MyPageFavoritesViewModel
+                    FragmentType = typeof(MyPageFavoritesView),
+                    Title = "Favoritter",
+                    ViewModel = ViewModel.MyPageFavoritesViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
-                  FragmentType = typeof(MyPageLoansView),
-                  Title = "Lån",
-                  ViewModel = ViewModel.MyPageLoansViewModel
+                    FragmentType = typeof(MyPageLoansView),
+                    Title = "Lån",
+                    ViewModel = ViewModel.MyPageLoansViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
-                  FragmentType = typeof(MyPageReservationsView),
-                  Title = "Reservasjoner",
-                  ViewModel = ViewModel.MyPageReservationsViewModel
+                    FragmentType = typeof(MyPageReservationsView),
+                    Title = "Reservasjoner",
+                    ViewModel = ViewModel.MyPageReservationsViewModel
                 },
                 new MvxViewPagerFragmentAdapter.FragmentInfo
                 {
-                  FragmentType = typeof(MyPageFinesView),
-                  Title = "Gebyrer",
-                  ViewModel = ViewModel.MyPageFinesViewModel
+                    FragmentType = typeof(MyPageFinesView),
+                    Title = "Gebyrer",
+                    ViewModel = ViewModel.MyPageFinesViewModel
                 }
-              };
+            };
 
             _adapter = new MvxViewPagerFragmentAdapter(Activity, ChildFragmentManager, fragments);
-            _viewPager.Adapter = _adapter;
+            _viewPager.Adapter = _adapter;   
 
             return view;
         }

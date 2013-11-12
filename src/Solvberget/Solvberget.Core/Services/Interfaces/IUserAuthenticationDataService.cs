@@ -7,5 +7,7 @@
         string GetUserPassword();
         void SetUser(string userId);
         void SetPassword(string password);
+        void RemoveUser();
+        void RemovePassword();
     }
 }

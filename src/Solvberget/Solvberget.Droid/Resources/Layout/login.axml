@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/ui_itembackground"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:gravity="center"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+    <EditText
+        android:layout_marginTop="15dp"
+        android:id="@+id/editTextUserNameToLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User Name"
+        android:ems="10"
+        local:MvxBind="Text UserName">
+        <requestFocus />
+    </EditText>
+    <EditText
+        android:id="@+id/editTextPasswordToLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password"
+        local:MvxBind="Text Pin" />
+    <Button
+        android:id="@+id/buttonSignIn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        local:MvxBind="Click LoginCommand" />
+</LinearLayout>

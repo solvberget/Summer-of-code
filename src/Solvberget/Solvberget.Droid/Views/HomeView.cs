@@ -95,6 +95,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (BlogOverviewViewModel), this);
             customPresenter.Register(typeof (BlogViewModel), this);
             customPresenter.Register(typeof (BlogPostViewModel), this);
+            customPresenter.Register(typeof(LoginViewModel), this);
         }
 
         /// <summary>
@@ -116,11 +117,22 @@ namespace Solvberget.Droid.Views
                 {
                     case HomeViewModel.Section.MyPage:
                     {
-                        if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MyPageView != null)
-                            return true;
+                        if (ViewModel.IsAuthenticated())
+                        {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as LoginView != null)
+                                return true;
 
-                        frag = new MyPageView();
-                        title = "Min Side";
+                            frag = new LoginView();
+                            title = "Logg inn";
+                        }
+                        else
+                        {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MyPageView != null)
+                                return true;
+
+                            frag = new MyPageView();
+                            title = "Min Side";
+                            }
                         break;
                     }
                     case HomeViewModel.Section.Search:
@@ -185,6 +197,8 @@ namespace Solvberget.Droid.Views
                             frag = new BlogView();
                         if (request.ViewModelType == typeof (BlogPostViewModel))
                             frag = new BlogPostView();
+                        if (request.ViewModelType == typeof(LoginViewModel))
+                            frag = new LoginView();
                         break;
                     }
                 }
@@ -230,8 +244,7 @@ namespace Solvberget.Droid.Views
             //when open down't show anything
             for (int i = 0; i < menu.Size(); i++)
                 menu.GetItem(i).SetVisible(!drawerOpen);
-
-
+            
             return base.OnPrepareOptionsMenu(menu);
         }
 
