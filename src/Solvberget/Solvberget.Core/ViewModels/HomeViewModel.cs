@@ -10,7 +10,6 @@ namespace Solvberget.Core.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        private readonly IUserService _userService;
         private readonly IUserAuthenticationDataService _userAuthenticationService = new UserAuthenticationTemporaryStub();
 
         public enum Section
@@ -70,7 +69,6 @@ namespace Solvberget.Core.ViewModels
                                           Section = Section.Contact,
                                           Title = "Kontakt oss"
                                       },
-
                               };
         }
 
@@ -95,7 +93,6 @@ namespace Solvberget.Core.ViewModels
             //navigate if we have to, pass the id so we can grab from cache... or not
             switch (item.Section)
             {
-
                 case Section.MyPage:
                     if (_userAuthenticationService.GetUserId().Equals("Fant ikke brukerid"))
                         ShowViewModel<LoginViewModel>();

@@ -10,18 +10,18 @@ namespace Solvberget.Core.Services.Stubs
 
         public bool UserInfoRegistered()
         {
-            return true;
+            string output;
+
+            var read = _fileStore.TryReadTextFile(GetPathForUserId(), out output);
+
+            return read;
         }
 
         public string GetUserId()
         {
-            //return "164916";
-
             string userId;
 
-            var path = GetPathForUserId();
-
-            var read = _fileStore.TryReadTextFile(path, out userId);
+            var read = _fileStore.TryReadTextFile(GetPathForUserId(), out userId);
 
             return read ? userId : "Fant ikke brukerid";
         }
@@ -43,6 +43,16 @@ namespace Solvberget.Core.Services.Stubs
         public void SetPassword(string password)
         {
             _fileStore.WriteFile(GetPathForPin(), password);
+        }
+
+        public void RemoveUser()
+        {
+            _fileStore.DeleteFile(GetPathForUserId());
+        }
+
+        public void RemovePassword()
+        {
+            _fileStore.DeleteFile(GetPathForPin());
         }
 
         private string GetPathForUserId()

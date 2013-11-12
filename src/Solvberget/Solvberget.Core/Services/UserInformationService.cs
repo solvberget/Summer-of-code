@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cirrious.MvvmCross.Plugins.File;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
@@ -13,29 +12,12 @@ namespace Solvberget.Core.Services
     {
         private readonly IStringDownloader _downloader;
         private readonly IUserAuthenticationDataService _userAuthenticationService;
-        private MvxFileStore _fileStore;
 
         public UserInformationService(IStringDownloader downloader, IUserAuthenticationDataService userAuthenticationService)
         {
              _downloader = downloader;
             _userAuthenticationService = userAuthenticationService;
         }
-
-        //public string GetUserId()
-        //{
-
-        //    //var userId = "164916";
-
-        //    //_fileStore.WriteFile("/Solvberget/userId", userId);
-
-        //    var readId = "";
-
-        //    //var read = _fileStore.TryReadTextFile("", out readId);
-        //    //return "N000708254";
-        //    //return "123456";
-        //    //return "164916";
-        //    return readId;
-        //}
 
         public async Task<UserInfoDto> GetUserInformation(string userId)
         {

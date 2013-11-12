@@ -28,5 +28,15 @@ namespace Solvberget.Core.Services
         {
             throw new System.NotImplementedException();
         }
+
+        public void RemoveUser()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void RemovePassword()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

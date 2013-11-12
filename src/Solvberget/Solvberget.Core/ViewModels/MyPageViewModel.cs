@@ -5,30 +5,14 @@ namespace Solvberget.Core.ViewModels
 {
     public class MyPageViewModel : BaseViewModel
     {
-        private readonly IUserService _service;
-        private readonly IUserAuthenticationDataService _userAuthenticationService;
-
         public MyPageViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationDataService)
         {
-            _service = service;
-            _userAuthenticationService = userAuthenticationDataService;
-
-            var user = _userAuthenticationService.GetUserId();
-
-            //if (_userAuthenticationService.GetUserId().Equals("Fant ikke brukerid"))
-            //{
-            //    ShowViewModel<LoginViewModel>();
-            //}
-
-            //else
-            //{
             MyPageLoansViewModel = new MyPageLoansViewModel(service, userAuthenticationDataService);
             MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service, userAuthenticationDataService);
-                MyPageReservationsViewModel = new MyPageReservationsViewModel(service, userAuthenticationDataService);
-                MyPageFinesViewModel = new MyPageFinesViewModel(service, userAuthenticationDataService);
-                MyPageMessagesViewModel = new MyPageMessagesViewModel(service, userAuthenticationDataService);
-                MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
-            //} 
+            MyPageReservationsViewModel = new MyPageReservationsViewModel(service, userAuthenticationDataService);
+            MyPageFinesViewModel = new MyPageFinesViewModel(service, userAuthenticationDataService);
+            MyPageMessagesViewModel = new MyPageMessagesViewModel(service, userAuthenticationDataService);
+            MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
         }
 
         private MyPageLoansViewModel _myPageLoansViewModel;

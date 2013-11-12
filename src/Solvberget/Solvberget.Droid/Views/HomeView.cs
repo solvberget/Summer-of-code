@@ -9,7 +9,6 @@ using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Fragging;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.ViewModels;
-using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels;
@@ -26,7 +25,7 @@ namespace Solvberget.Droid.Views
         private string _drawerTitle;
         private string _title;
         private MvxListView _drawerList;
-        private IUserAuthenticationDataService _userAuthenticationService = new UserAuthenticationTemporaryStub();
+        private readonly IUserAuthenticationDataService _userAuthenticationService = new UserAuthenticationTemporaryStub();
 
         private HomeViewModel _viewModel;
 
@@ -248,8 +247,7 @@ namespace Solvberget.Droid.Views
             //when open down't show anything
             for (int i = 0; i < menu.Size(); i++)
                 menu.GetItem(i).SetVisible(!drawerOpen);
-
-
+            
             return base.OnPrepareOptionsMenu(menu);
         }
 

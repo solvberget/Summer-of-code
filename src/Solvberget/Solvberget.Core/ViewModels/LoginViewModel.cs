@@ -7,12 +7,12 @@ namespace Solvberget.Core.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        //private readonly IUserService _service;
+        private readonly IUserService _service;
         private readonly IUserAuthenticationDataService _userAuthenticationService;
 
         public LoginViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationDataService)
         {
-            //_service = service;
+            _service = service;
             _userAuthenticationService = userAuthenticationDataService;
         }
 
@@ -37,20 +37,6 @@ namespace Solvberget.Core.ViewModels
             set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
         }
 
-        //private string _userId;
-        //public string UserId
-        //{
-        //    get { return _userId; }
-        //    set { _userId = value; RaisePropertyChanged(() => UserId); }
-        //}
-
-        //private string _userPin;
-        //public string UserPin
-        //{
-        //    get { return _userPin; }
-        //    set { _userPin = value; RaisePropertyChanged(() => UserPin); }
-        //}
-
         private MvxCommand<MyPageViewModel> _loginCommand;
         public ICommand LoginCommand
         {
@@ -65,20 +51,18 @@ namespace Solvberget.Core.ViewModels
             _userAuthenticationService.SetUser(UserName);
             _userAuthenticationService.SetPassword(Pin);
 
-            //var response = _service.Login(UserId, UserPin).Result;
+            var response = _service.Login(UserName, Pin).Result;
 
-            //if (response.Equals("Success"))
-            //{
-
-            ShowViewModel<MyPageViewModel>();
-            //new MyPageViewModel(_service, _userAuthenticationService);
-            //}
-            //else
-            //{
-            //    //Popup: Login Failed!
-            //}
-
-
+            if (response.Equals("Success"))
+            {
+                ShowViewModel<MyPageViewModel>();
+            }
+            else
+            {
+                //Popup: Login Failed!
+                _userAuthenticationService.RemoveUser();
+                _userAuthenticationService.RemovePassword();
+            }
         }
     }
 }
