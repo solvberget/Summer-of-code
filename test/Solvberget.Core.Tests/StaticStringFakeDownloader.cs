@@ -24,7 +24,7 @@ namespace Solvberget.Core.Tests
             throw new System.NotImplementedException();
         }
 
-        public Task<string> Download(string url, Dictionary<string, string> formData)
+        public Task<string> PostForm(string url, Dictionary<string, string> formData)
         {
             throw new System.NotImplementedException();
         }

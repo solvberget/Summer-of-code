@@ -7,6 +7,6 @@ namespace Solvberget.Core.Services
     {
         Task<string> Download(string url);
         Task<string> Download(string url, string method);
-        Task<string> Download(string url, Dictionary<string, string> formData);
+        Task<string> PostForm(string url, Dictionary<string, string> formData);
     }
 }

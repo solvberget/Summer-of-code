@@ -36,7 +36,7 @@ namespace Solvberget.Core.Services
             return new StreamReader(result.GetResponseStream(), Encoding.UTF8).ReadToEnd();
         }
 
-        public async Task<string> Download(string url, Dictionary<string, string> formData)
+        public async Task<string> PostForm(string url, Dictionary<string, string> formData)
         {
             var request = HttpWebRequest.Create(url);
             if (_userAuthSerice.UserInfoRegistered())

@@ -93,7 +93,7 @@ namespace Solvberget.Core.Services
 
 
 
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Login, formData);
+                var response = await _downloader.PostForm(Resources.ServiceUrl + Resources.ServiceUrl_Login, formData);
 
                 return JsonConvert.DeserializeObject<MessageDto>(response);
             }
