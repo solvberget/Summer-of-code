@@ -81,17 +81,28 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<string> Login(string userId, string userPin)
+        public async Task<MessageDto> Login(string userId, string userPin)
         {
             try
             {
-                var result =  await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Login, "POST");
+                var formData = new Dictionary<string, string>
+                {
+                    {"Username", userId},
+                    {"Password", userPin}
+                };
 
-                return result;
+
+
+                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Login, formData);
+
+                return JsonConvert.DeserializeObject<MessageDto>(response);
             }
             catch (Exception e)
             {
-                return e.Message;
+                return new MessageDto
+                {
+                    Message = e.Message
+                };
             }
         }
     }

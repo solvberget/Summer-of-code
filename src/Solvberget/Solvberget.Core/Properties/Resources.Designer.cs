@@ -142,7 +142,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /login.
+        ///   Looks up a localized string similar to /login/.
         /// </summary>
         internal static string ServiceUrl_Login {
             get {

@@ -11,6 +11,6 @@ namespace Solvberget.Core.Services.Interfaces
         Task<List<FavoriteDto>> GetUserFavorites();
         Task<string> AddUserFavorite(string documentNumber);
         Task<string> RemoveUserFavorite(string documentNumber);
-        Task<string> Login(string userId, string userPin);
+        Task<MessageDto> Login(string userId, string userPin);
     }
 }

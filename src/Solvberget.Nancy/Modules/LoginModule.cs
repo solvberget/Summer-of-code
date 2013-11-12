@@ -20,6 +20,5 @@ namespace Solvberget.Nancy.Modules
 
             Get["/forgot/{userId}"] = args => repository.RequestPinCodeToSms(args.userId);
         }
-         
     }
 }

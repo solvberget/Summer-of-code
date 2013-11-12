@@ -106,6 +106,7 @@
     <Compile Include="JournalDto.cs" />
     <Compile Include="LibrarylistDto.cs" />
     <Compile Include="LoanDto.cs" />
+    <Compile Include="MessageDto.cs" />
     <Compile Include="NewsStoryDto.cs" />
     <Compile Include="NotificationDto.cs" />
     <Compile Include="OpeningHoursDto.cs" />

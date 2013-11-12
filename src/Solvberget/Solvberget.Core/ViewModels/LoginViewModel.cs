@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -46,14 +47,14 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        private void ExecuteLoginCommand(MyPageViewModel page)
+        private async void ExecuteLoginCommand(MyPageViewModel page)
         {
             _userAuthenticationService.SetUser(UserName);
             _userAuthenticationService.SetPassword(Pin);
 
-            var response = _service.Login(UserName, Pin).Result;
+            var response = await _service.Login(UserName, Pin);
 
-            if (response.Equals("Success"))
+            if (response.Message.Equals("Autentisering vellykket."))
             {
                 ShowViewModel<MyPageViewModel>();
             }
