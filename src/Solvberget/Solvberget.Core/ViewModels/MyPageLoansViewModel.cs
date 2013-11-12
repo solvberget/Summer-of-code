@@ -10,9 +10,11 @@ namespace Solvberget.Core.ViewModels
     public class MyPageLoansViewModel : BaseViewModel
     {
         private readonly IUserService _service;
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public MyPageLoansViewModel(IUserService service)
+        public MyPageLoansViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+            _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
         }
@@ -28,7 +30,7 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
-            var user = await _service.GetUserInformation(_service.GetUserId());
+            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
 
             var loansList = user.Loans == null ? new List<LoanDto>() : user.Loans.ToList();
 

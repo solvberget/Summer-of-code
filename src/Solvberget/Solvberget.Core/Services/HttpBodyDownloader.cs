@@ -33,5 +33,18 @@ namespace Solvberget.Core.Services
 
             return new StreamReader(result.GetResponseStream(), Encoding.UTF8).ReadToEnd();
         }
+
+        public async Task<string> Download(string url, string method, string userId, string userPin)
+        {
+            var request = HttpWebRequest.Create(url);
+            if (_userAuthSerice.UserInfoRegistered())
+            {
+                request.Headers["Authorization"] = userId + ":" + userPin;
+            }
+            request.Method = method;
+            var result = await request.GetResponseAsync();
+
+            return new StreamReader(result.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+        }
     }
 }

@@ -142,6 +142,15 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /login.
+        /// </summary>
+        internal static string ServiceUrl_Login {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /documents/{0}/thumbnail.
         /// </summary>
         internal static string ServiceUrl_MediaImage {

@@ -10,9 +10,11 @@ namespace Solvberget.Core.ViewModels
     public class MyPageFinesViewModel : BaseViewModel
     {
         private readonly IUserService _service;
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public MyPageFinesViewModel(IUserService service)
+        public MyPageFinesViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+            _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
         }
@@ -26,7 +28,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
-            var user = await _service.GetUserInformation(_service.GetUserId());
+            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
 
             var finesDtos = user.Fines == null ? new List<FineDto>() : user.Fines.ToList();
 

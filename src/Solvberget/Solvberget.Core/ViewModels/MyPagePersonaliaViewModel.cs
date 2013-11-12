@@ -6,9 +6,11 @@ namespace Solvberget.Core.ViewModels
     public class MyPagePersonaliaViewModel : BaseViewModel
     {
         private readonly IUserService _service;
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public MyPagePersonaliaViewModel(IUserService service)
+        public MyPagePersonaliaViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+            _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
         }
@@ -98,7 +100,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
-            var user = await _service.GetUserInformation(_service.GetUserId());
+            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
 
             DateOfBirth = user.DateOfBirth;
             CellPhoneNumber = user.CellPhoneNumber;

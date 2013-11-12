@@ -167,12 +167,14 @@
   <data name="ServiceUrl_Rating" xml:space="preserve">
     <value>/documents/{0}/rating</value>
     <comment>0 = Document Id</comment>
-    </data>
+  </data>
   <data name="ServiceUrl_Favorites" xml:space="preserve">
     <value>/favorites/</value>
   </data>
   <data name="ServiceUrl_Review" xml:space="preserve">
     <value>/documents/{0}/review</value>
     <comment>0 =Document Id</comment>
+  <data name="ServiceUrl_Login" xml:space="preserve">
+    <value>/login</value>
   </data>
 </root>

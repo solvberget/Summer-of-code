@@ -9,6 +9,9 @@ using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Fragging;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.DTOs.Deprecated.DTO;
+using Solvberget.Core.Services.Interfaces;
+using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels;
 using Solvberget.Droid.Helpers;
 using Solvberget.Droid.Views.Fragments;
@@ -23,6 +26,7 @@ namespace Solvberget.Droid.Views
         private string _drawerTitle;
         private string _title;
         private MvxListView _drawerList;
+        private IUserAuthenticationDataService _userAuthenticationService = new UserAuthenticationTemporaryStub();
 
         private HomeViewModel _viewModel;
 
@@ -95,6 +99,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (BlogOverviewViewModel), this);
             customPresenter.Register(typeof (BlogViewModel), this);
             customPresenter.Register(typeof (BlogPostViewModel), this);
+            customPresenter.Register(typeof(LoginViewModel), this);
         }
 
         /// <summary>
@@ -116,11 +121,22 @@ namespace Solvberget.Droid.Views
                 {
                     case HomeViewModel.Section.MyPage:
                     {
-                        if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MyPageView != null)
-                            return true;
+                        if (_userAuthenticationService.GetUserId().Equals("Fant ikke brukerid"))
+                        {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as LoginView != null)
+                                return true;
 
-                        frag = new MyPageView();
-                        title = "Min Side";
+                            frag = new LoginView();
+                            title = "Logg inn";
+                        }
+                        else
+                        {
+                            if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MyPageView != null)
+                                return true;
+
+                            frag = new MyPageView();
+                            title = "Min Side";
+                            }
                         break;
                     }
                     case HomeViewModel.Section.Search:
@@ -185,6 +201,8 @@ namespace Solvberget.Droid.Views
                             frag = new BlogView();
                         if (request.ViewModelType == typeof (BlogPostViewModel))
                             frag = new BlogPostView();
+                        if (request.ViewModelType == typeof(LoginViewModel))
+                            frag = new LoginView();
                         break;
                     }
                 }

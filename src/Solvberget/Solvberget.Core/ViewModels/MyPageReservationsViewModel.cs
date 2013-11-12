@@ -11,9 +11,11 @@ namespace Solvberget.Core.ViewModels
     public class MyPageReservationsViewModel : BaseViewModel
     {
         private readonly IUserService _service;
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public MyPageReservationsViewModel(IUserService service)
+        public MyPageReservationsViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+            _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
         }
@@ -28,7 +30,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
-            var user = await _service.GetUserInformation(_service.GetUserId());
+            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
 
             var res = user.Reservations == null ? new List<ReservationDto>() : user.Reservations.ToList();
 

@@ -144,6 +144,12 @@
     <Reference Include="Cirrious.MvvmCross">
       <HintPath>..\..\..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.0.13\lib\portable-win+net45+MonoAndroid16+MonoTouch40+sl40+wp71\Cirrious.MvvmCross.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.File">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.File.3.0.13\lib\portable-win+net45+MonoAndroid16+MonoTouch40+sl40+wp71\Cirrious.MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.File.Droid">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.File.3.0.13\lib\MonoAndroid16\Cirrious.MvvmCross.Plugins.File.Droid.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.Visibility">
       <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.0.13\lib\portable-win+net45+MonoAndroid16+MonoTouch40+sl40+wp71\Cirrious.MvvmCross.Plugins.Visibility.dll</HintPath>
     </Reference>

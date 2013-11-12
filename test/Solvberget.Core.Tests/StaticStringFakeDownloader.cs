@@ -22,5 +22,10 @@ namespace Solvberget.Core.Tests
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<string> Download(string url, string method, string userId, string userPin)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

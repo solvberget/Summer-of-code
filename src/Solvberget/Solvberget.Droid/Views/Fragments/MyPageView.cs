@@ -31,8 +31,8 @@ namespace Solvberget.Droid.Views.Fragments
 
             View view;
 
-            if (ViewModel.LoggedIn)
-            {
+            //if (ViewModel.LoggedIn)
+            //{
                 view = this.BindingInflate(Resource.Layout.fragment_profile, null);
 
                 _viewPager = view.FindViewById<ViewPager>(Resource.Id.viewPager);
@@ -80,15 +80,11 @@ namespace Solvberget.Droid.Views.Fragments
 
                 _adapter = new MvxViewPagerFragmentAdapter(Activity, ChildFragmentManager, fragments);
                 _viewPager.Adapter = _adapter;   
-            }
-            else
-            {
-                view = this.BindingInflate(Resource.Layout.login, null);
-
-            }
-
-            
-
+            //}
+            //else
+            //{
+            //    view = this.BindingInflate(Resource.Layout.login, null);
+            //}
             return view;
         }
 

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
-using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
+using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
+        private readonly IUserAuthenticationDataService _userAuthenticationService = new UserAuthenticationTemporaryStub();
 
         public enum Section
         {
@@ -96,7 +97,10 @@ namespace Solvberget.Core.ViewModels
             {
 
                 case Section.MyPage:
-                    ShowViewModel<MyPageViewModel>();
+                    if (_userAuthenticationService.GetUserId().Equals("Fant ikke brukerid"))
+                        ShowViewModel<LoginViewModel>();
+                    else
+                        ShowViewModel<MyPageViewModel>();
                     break;
                 case Section.Search:
                     ShowViewModel<SearchViewModel>();
@@ -123,7 +127,6 @@ namespace Solvberget.Core.ViewModels
 
         public Section GetSectionForViewModelType(Type type)
         {
-
             if (type == typeof(MyPageViewModel))
                 return Section.MyPage;
             if (type == typeof(SearchViewModel))

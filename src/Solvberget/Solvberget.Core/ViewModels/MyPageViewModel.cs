@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using Solvberget.Core.Services.Interfaces;
+﻿using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
@@ -8,26 +6,29 @@ namespace Solvberget.Core.ViewModels
     public class MyPageViewModel : BaseViewModel
     {
         private readonly IUserService _service;
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public MyPageViewModel(IUserService service)
+        public MyPageViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationDataService)
         {
             _service = service;
+            _userAuthenticationService = userAuthenticationDataService;
 
-            if (String.IsNullOrWhiteSpace(_service.GetUserId()))
-            {
-                LoggedIn = false;
-            }
+            var user = _userAuthenticationService.GetUserId();
 
-            else
-            {
-                LoggedIn = true;
-                MyPageLoansViewModel = new MyPageLoansViewModel(service);
-                MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service);
-                MyPageReservationsViewModel = new MyPageReservationsViewModel(service);
-                MyPageFinesViewModel = new MyPageFinesViewModel(service);
-                MyPageMessagesViewModel = new MyPageMessagesViewModel(service);
+            //if (_userAuthenticationService.GetUserId().Equals("Fant ikke brukerid"))
+            //{
+            //    ShowViewModel<LoginViewModel>();
+            //}
+
+            //else
+            //{
+            MyPageLoansViewModel = new MyPageLoansViewModel(service, userAuthenticationDataService);
+            MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service, userAuthenticationDataService);
+                MyPageReservationsViewModel = new MyPageReservationsViewModel(service, userAuthenticationDataService);
+                MyPageFinesViewModel = new MyPageFinesViewModel(service, userAuthenticationDataService);
+                MyPageMessagesViewModel = new MyPageMessagesViewModel(service, userAuthenticationDataService);
                 MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
-            } 
+            //} 
         }
 
         private MyPageLoansViewModel _myPageLoansViewModel;
@@ -70,14 +71,5 @@ namespace Solvberget.Core.ViewModels
             get { return _myPageFavoritesViewModel; }
             set { _myPageFavoritesViewModel = value; RaisePropertyChanged(() => MyPageFavoritesViewModel); }
         }
-
-        private bool _loggedIn;
-        public bool LoggedIn
-        {
-            get { return _loggedIn; }
-            set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
-        }
-
-        
     }
 }
