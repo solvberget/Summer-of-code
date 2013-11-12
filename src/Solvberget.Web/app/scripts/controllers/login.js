@@ -1,7 +1,19 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, $routeParams, $location, $http) {
+  .controller('LoginCtrl', function ($scope, $rootScope, $routeParams, $location, $http, $cookies) {
+
+        $scope.logout = function(){
+
+            delete $$config.username;
+            delete $$config.password;
+            delete $cookies.username;
+            delete $cookies.password;
+
+            $scope.isLoggedIn = false;
+        }
+
+        $scope.isLoggedIn = $$config.username && $$config.password;
 
         $scope.login = function(){
 
@@ -12,8 +24,12 @@ angular.module('Solvberget.WebApp')
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function(data, status, headers, config) {
 
-                    $$config.username = $scope.username;
-                    $$config.password = $scope.password;
+                    console.log(status);
+
+                    if(status != 200) return;
+
+                    $$config.username = $cookies.username = $scope.username;
+                    $$config.password = $cookies.password = $scope.password;
 
                     if($routeParams.redirect) {
                         $location.search('redirect', null);

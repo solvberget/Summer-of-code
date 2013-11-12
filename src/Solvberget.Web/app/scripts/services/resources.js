@@ -29,6 +29,9 @@ angular.module('Solvberget.WebApp')
     .factory('events', function($resource){
         return $resource($$config.apiPrefixEscaped() + 'events/:id');
     })
+    .factory('userInfo', function($resource){
+        return $resource($$config.apiPrefixEscaped() + 'user/info');
+    })
     .factory('favorites', function($resource){
         return $resource($$config.apiPrefixEscaped() + 'favorites/:documentId', { documentId: '@documentId'}, {
             add: {method:'PUT'},

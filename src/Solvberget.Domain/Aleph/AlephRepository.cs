@@ -111,9 +111,12 @@ namespace Solvberget.Domain.Aleph
 
         public UserInfo GetUserInformation(string userId, string verification)
         {
-
             var user = new UserInfo { BorrowerId = userId };
-            AuthenticateUser(ref user, userId, verification);
+            
+            if (!AuthenticateUser(ref user, userId, verification))
+            {
+                return null;
+            }
 
             const Operation function = Operation.UserInformation;
             var options = new Dictionary<string, string> { { "bor_id", userId }, { "verification", verification } };
