@@ -1,0 +1,182 @@
+/// Copyright (C) 2013 Pat Laplante & Frank Caico
+///
+///	Permission is hereby granted, free of charge, to  any person obtaining a copy 
+/// of this software and associated documentation files (the "Software"), to deal 
+/// in the Software without  restriction, including without limitation the rights 
+/// to use, copy,  modify,  merge, publish,  distribute,  sublicense, and/or sell 
+/// copies of the  Software,  and  to  permit  persons  to   whom the Software is 
+/// furnished to do so, subject to the following conditions:
+///
+///		The above  copyright notice  and this permission notice shall be included 
+///     in all copies or substantial portions of the Software.
+///
+///		THE  SOFTWARE  IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+///     OR   IMPLIED,   INCLUDING  BUT   NOT  LIMITED   TO   THE   WARRANTIES  OF 
+///     MERCHANTABILITY,  FITNESS  FOR  A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+///     IN NO EVENT SHALL  THE AUTHORS  OR COPYRIGHT  HOLDERS  BE  LIABLE FOR ANY 
+///     CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT 
+///     OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION  WITH THE SOFTWARE OR 
+///     THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+/// -----------------------------------------------------------------------------
+
+using System;
+using MonoTouch.UIKit;
+using System.Drawing;
+
+namespace SlidingPanels.Lib.PanelContainers
+{
+	/// <summary>
+	/// Container class for Sliding Panels located on the left edge of the device screen
+	/// </summary>
+	public class LeftPanelContainer : PanelContainer
+	{
+		#region Data Members
+
+		/// <summary>
+		/// starting X Coordinate of the top view
+		/// </summary>
+		private float _topViewStartXPosition = 0.0f;
+
+		/// <summary>
+		/// X coordinate where the user touched when starting a slide operation
+		/// </summary>
+		private float _touchPositionStartXPosition = 0.0f;
+
+		#endregion
+
+		#region Construction
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SlidingPanels.Lib.PanelContainers.LeftPanelContainer"/> class.
+		/// </summary>
+		/// <param name="panel">Panel.</param>
+		public LeftPanelContainer (UIViewController panel) : base(panel, PanelType.LeftPanel)
+		{
+		}
+
+		#endregion
+
+		#region View Lifecycle
+
+		/// <summary>
+		/// Called after the Panel is loaded for the first time
+		/// </summary>
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			PanelVC.View.Frame = new RectangleF 
+			{
+				X = View.Frame.X,
+				Y = -View.Frame.Y,
+				Width = Size.Width,
+				Height = View.Frame.Height
+			};
+		}
+
+		#endregion
+
+		#region Position Methods
+
+		/// <summary>
+		/// Returns a rectangle representing the location and size of the top view 
+		/// when this Panel is showing
+		/// </summary>
+		/// <returns>The top view position when slider is visible.</returns>
+		/// <param name="topViewCurrentFrame">Top view current frame.</param>
+		public override RectangleF GetTopViewPositionWhenSliderIsVisible(RectangleF topViewCurrentFrame)
+		{
+			topViewCurrentFrame.X = Size.Width;
+			return topViewCurrentFrame;
+		}
+
+		/// <summary>
+		/// Returns a rectangle representing the location and size of the top view 
+		/// when this Panel is hidden
+		/// </summary>
+		/// <returns>The top view position when slider is visible.</returns>
+		/// <param name="topViewCurrentFrame">Top view current frame.</param>
+		public override RectangleF GetTopViewPositionWhenSliderIsHidden(RectangleF topViewCurrentFrame)
+		{
+			topViewCurrentFrame.X = 0;
+			return topViewCurrentFrame;
+		}
+
+		#endregion
+
+		#region Sliding Methods
+
+		/// <summary>
+		/// Determines whether this instance can start sliding given the touch position and the 
+		/// current location/size of the top view. 
+		/// Note that touchPosition is in Screen coordinate.
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		/// <param name="touchPosition">Touch position.</param>
+		/// <param name="topViewCurrentFrame">Top view's current frame.</param>
+		public override bool CanStartSliding(PointF touchPosition, RectangleF topViewCurrentFrame)
+		{
+			if (!IsVisible)
+			{
+				return (touchPosition.X >= 0.0f && touchPosition.X <= EdgeTolerance);
+			}
+			else
+			{
+				return topViewCurrentFrame.Contains (touchPosition);
+			}
+		}
+
+		/// <summary>
+		/// Called when sliding has started on this Panel
+		/// </summary>
+		/// <param name="touchPosition">Touch position.</param>
+		/// <param name="topViewCurrentFrame">Top view current frame.</param>
+		public override void SlidingStarted (PointF touchPosition, RectangleF topViewCurrentFrame)
+		{
+			_touchPositionStartXPosition = touchPosition.X;
+			_topViewStartXPosition = topViewCurrentFrame.X;
+		}
+
+		/// <summary>
+		/// Called while the user is sliding this Panel
+		/// </summary>
+		/// <param name="touchPosition">Touch position.</param>
+		/// <param name="topViewCurrentFrame">Top view current frame.</param>
+		public override RectangleF Sliding (PointF touchPosition, RectangleF topViewCurrentFrame)
+		{
+			float panelWidth = Size.Width;
+			float translation = touchPosition.X - _touchPositionStartXPosition;
+
+			RectangleF frame = topViewCurrentFrame;
+
+			frame.X = _topViewStartXPosition + translation;
+			if (frame.X <= 0) 
+			{ 
+				frame.X = 0; 
+			}
+
+			if (frame.X >= panelWidth) 
+			{ 
+				frame.X = panelWidth; 
+			}
+
+			return frame;
+		}
+
+		/// <summary>
+		/// Determines if a slide is complete
+		/// </summary>
+		/// <returns>true</returns>
+		/// <c>false</c>
+		/// <param name="touchPosition">Touch position.</param>
+		/// <param name="topViewCurrentFrame">Top view current frame.</param>
+		public override bool SlidingEnded (PointF touchPosition, RectangleF topViewCurrentFrame)
+		{
+			return (topViewCurrentFrame.X > (Size.Width / 2));
+		}
+
+		#endregion
+	}
+}
+
