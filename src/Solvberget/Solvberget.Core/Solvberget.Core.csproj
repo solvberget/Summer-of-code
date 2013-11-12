@@ -94,7 +94,6 @@
     <Compile Include="Services\Stubs\NewsServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SearchServiceTemporaryStub.cs" />
     <Compile Include="Services\Stubs\SuggestionsServiceTemporaryStub.cs" />
-    <Compile Include="Services\Stubs\UserAuthenticationTemporaryStub.cs" />
     <Compile Include="Services\SuggestionsService.cs" />
     <Compile Include="Services\UserAuthenticationDataService.cs" />
     <Compile Include="Services\UserInformationService.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels.Base;
@@ -10,7 +11,7 @@ namespace Solvberget.Core.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        private readonly IUserAuthenticationDataService _userAuthenticationService = new UserAuthenticationTemporaryStub();
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
         public enum Section
         {
@@ -25,8 +26,9 @@ namespace Solvberget.Core.ViewModels
             Unknown
         }
 
-        public HomeViewModel()
+        public HomeViewModel(UserAuthenticationDataService userAuthenticationDataService)
         {
+            _userAuthenticationService = userAuthenticationDataService;
             _menuItems = new List<MenuViewModel>
                               {
                                   new MenuViewModel
@@ -140,6 +142,11 @@ namespace Solvberget.Core.ViewModels
                 return Section.Blogs;
 
             return Section.Unknown;
+        }
+
+        public bool IsAuthenticated()
+        {
+            return _userAuthenticationService.UserInfoRegistered();
         }
     }
 }

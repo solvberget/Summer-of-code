@@ -9,8 +9,6 @@ using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Fragging;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.ViewModels;
-using Solvberget.Core.Services.Interfaces;
-using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels;
 using Solvberget.Droid.Helpers;
 using Solvberget.Droid.Views.Fragments;
@@ -25,7 +23,6 @@ namespace Solvberget.Droid.Views
         private string _drawerTitle;
         private string _title;
         private MvxListView _drawerList;
-        private readonly IUserAuthenticationDataService _userAuthenticationService = new UserAuthenticationTemporaryStub();
 
         private HomeViewModel _viewModel;
 
@@ -120,7 +117,7 @@ namespace Solvberget.Droid.Views
                 {
                     case HomeViewModel.Section.MyPage:
                     {
-                        if (_userAuthenticationService.GetUserId().Equals("Fant ikke brukerid"))
+                        if (ViewModel.IsAuthenticated())
                         {
                             if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as LoginView != null)
                                 return true;
