@@ -1,9 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//    Defines the AppDelegate type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-namespace Solvberget.iOS
+﻿namespace Solvberget.iOS
 {
     using Cirrious.CrossCore;
     using Cirrious.MvvmCross.Touch.Platform;
@@ -35,12 +30,11 @@ namespace Solvberget.iOS
         {
             this.window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            MvxTouchViewPresenter presenter = new MvxTouchViewPresenter(this, this.window);
-
-            Setup setup = new Setup(this, presenter);
+            var presenter = new MvxSlidingPanelsTouchViewPresenter(this, this.window);
+            var setup = new Setup(this, presenter);
             setup.Initialize();
 
-            IMvxAppStart startup = Mvx.Resolve<IMvxAppStart>();
+            var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
 
             this.window.MakeKeyAndVisible();
