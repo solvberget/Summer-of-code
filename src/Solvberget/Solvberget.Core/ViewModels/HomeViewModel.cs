@@ -4,7 +4,6 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
-using Solvberget.Core.Services.Stubs;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
@@ -26,7 +25,7 @@ namespace Solvberget.Core.ViewModels
             Unknown
         }
 
-        public HomeViewModel(UserAuthenticationDataService userAuthenticationDataService)
+        public HomeViewModel(IUserAuthenticationDataService userAuthenticationDataService)
         {
             _userAuthenticationService = userAuthenticationDataService;
             _menuItems = new List<MenuViewModel>
