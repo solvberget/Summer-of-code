@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Solvberget.Core.Services;
 
 namespace Solvberget.Core.Tests
@@ -19,6 +20,11 @@ namespace Solvberget.Core.Tests
         }
 
         public Task<string> Download(string url, string method)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<string> Download(string url, Dictionary<string, string> formData)
         {
             throw new System.NotImplementedException();
         }
