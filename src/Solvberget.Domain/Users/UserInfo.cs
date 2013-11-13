@@ -129,7 +129,7 @@ namespace Solvberget.Domain.Users
                     var docTitle = GetXmlValue(xElementField, "z13-title");
 
 
-                    var reservation = new Reservation()
+                    var reservation = new Reservation
                     {
                         Status = reservationStatus,
                         DocumentNumber = docNumber,
@@ -220,7 +220,7 @@ namespace Solvberget.Domain.Users
         
                         docTitle = GetXmlValue(xElementField, "z13-title");
                     }
-                    var loan = new Loan()
+                    var loan = new Loan
                                    {
                                        DocumentNumber = docNumber,
                                        AdminisrtativeDocumentNumber = adminDocNumber,
@@ -303,7 +303,7 @@ namespace Solvberget.Domain.Users
                         docTitle = GetXmlValue(xElementField, "z13-title");
                     }
 
-                    var fine = new Fine()
+                    var fine = new Fine
                                    {
                                        Date = date,
                                        Status = status,

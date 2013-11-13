@@ -179,6 +179,7 @@
     <Compile Include="Modules\ListModule.cs" />
     <Compile Include="Modules\LoginModule.cs" />
     <Compile Include="Modules\NewsModule.cs" />
+    <Compile Include="Modules\ReservationsModule.cs" />
     <Compile Include="Modules\SuggestionModule.cs" />
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

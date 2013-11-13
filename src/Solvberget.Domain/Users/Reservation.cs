@@ -1,4 +1,6 @@
-﻿namespace Solvberget.Domain.Users
+﻿using System;
+
+namespace Solvberget.Domain.Users
 {
     public class Reservation
     {

@@ -106,5 +106,15 @@ namespace Solvberget.Core.Services
                 };
             }
         }
+
+        public Task<string> AddReservation(string userId, string documentNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> RemoveReservation(string documentNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
