@@ -93,7 +93,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticationTest.cs" />
     <Compile Include="LoginModuleTests.cs" />
     <Compile Include="BlogModuleTests.cs" />
     <Compile Include="DocumentModuleTests.cs" />
