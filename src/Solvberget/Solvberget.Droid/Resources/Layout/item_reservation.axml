@@ -36,7 +36,6 @@
             local:MvxBind="Text DocumentTitle" />
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_weight="300"
             android:layout_width="fill_parent"
             android:width="0dip"
             android:layout_height="wrap_content"
@@ -58,7 +57,6 @@
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_weight="300"
             android:layout_width="fill_parent"
             android:width="0dip"
             android:layout_height="wrap_content"
@@ -74,27 +72,27 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_weight="300"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:width="0dip"
-        android:layout_height="wrap_content">
+        android:layout_weight="600"
+        android:layout_height="wrap_content"
+        local:MvxBind="">
         <Button
-            android:text="Fjern"
-            android:layout_width="65dp"
+            android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:id="@+id/button1"
             android:gravity="center"
             android:width="80dp"
-            local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(ButtonVisible); Text ButtonText" />
+            local:MvxBind="Click ShowDetailsCommand; Text ButtonText; Visibility Visibility(ButtonVisible)" />
         <Button
             android:text="Avbryt"
-            android:visibility="gone"
-            android:layout_width="65dp"
+            android:layout_width="78dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:id="@+id/button1"
             android:gravity="center"
             android:width="80dp"
-            local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(CancellationButtonVisible); Text ButtonText" />
+            local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(CancellationButtonVisible)" />
     </LinearLayout>
 </LinearLayout>

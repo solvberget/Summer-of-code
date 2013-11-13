@@ -47,8 +47,9 @@ namespace Solvberget.Core.ViewModels
                     PickupLocation = r.PickupLocation.Equals("Hovedbibl.") ? "Hovedbiblioteket" : r.PickupLocation,
                     Parent = this,
                     ButtonVisible = true,
-                    Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei",
-                    CancellationButtonVisible = false
+                    //Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei",
+                    CancellationButtonVisible = false,
+                    ButtonText = "Fjern"
                 });
             }
 
@@ -67,6 +68,9 @@ namespace Solvberget.Core.ViewModels
         public void RemoveReservation(ReservationViewModel reservationViewModel)
         {
             Reservations.Remove(reservationViewModel);
+
+            //Fjern fra Aleph
+
         }
 
         public void AddReservation(ReservationViewModel reservationViewModel)
