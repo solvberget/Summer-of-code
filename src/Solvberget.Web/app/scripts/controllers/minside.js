@@ -40,9 +40,9 @@ angular.module('Solvberget.WebApp')
             var text = "Reservert: " + toDate(reservation.reserved, 'shortDate') + '<br/>';
 
             if(reservation.readyForPickup) {
-                text += "Klar til henting: Ja<br/>Hentefrist: " + toDate(reservation.pickupDeadline, 'shortDate');
+                text += "<strong class='text-success'>Klar til henting nå. Hentefrist: " + toDate(reservation.pickupDeadline, 'shortDate') + "</strong>";
             }
-            else text += "Klar til henting: Nei";
+            else text += "Ikke klar til henting.";
 
             return text;
         }
