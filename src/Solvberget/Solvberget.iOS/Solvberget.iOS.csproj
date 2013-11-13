@@ -103,6 +103,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
     <Compile Include="MvxSlidingPanelsTouchViewPresenter.cs" />
+    <Compile Include="Views\HomeView.cs" />
+    <Compile Include="Views\HomeView.designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -142,6 +146,24 @@
     <Reference Include="System.Windows">
       <HintPath>..\..\packages\MvvmCross.PortableSupport.3.0.6\lib\MonoTouch40\System.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.File.Touch">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.File.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.File.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.File">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.File.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Visibility.Touch">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.Visibility.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Visibility">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.Visibility.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.DownloadCache.Touch">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.DownloadCache.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.DownloadCache.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.DownloadCache">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.DownloadCache.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.DownloadCache.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />
@@ -153,4 +175,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\HomeView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\HomeView_iPad.xib" />
+  </ItemGroup>
 </Project>
