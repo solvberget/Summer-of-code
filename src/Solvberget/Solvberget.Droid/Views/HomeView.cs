@@ -96,6 +96,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (BlogViewModel), this);
             customPresenter.Register(typeof (BlogPostViewModel), this);
             customPresenter.Register(typeof (LoginViewModel), this);
+            customPresenter.Register(typeof (EventListViewModel), this);
         }
 
         /// <summary>
@@ -160,6 +161,15 @@ namespace Solvberget.Droid.Views
 
                         frag = new OpeningHoursView();
                         title = "Åpningstider";
+                        break;
+                    }
+                    case HomeViewModel.Section.Events:
+                    {
+                        if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as EventListView != null)
+                            return true;
+
+                        frag = new EventListView();
+                        title = "Arrangement";
                         break;
                     }
                     case HomeViewModel.Section.Lists:
