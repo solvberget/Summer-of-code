@@ -1,6 +1,15 @@
-<h2>Mine lån</h2>
+<div class="row">
+    <div class="btn-group btn-group-justified">
+        <a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a>
+        <a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Personlige detaljer</a>
+        <a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default">Mine meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a>
+        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default active">Mine lån</a>
+        <a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Mine reservasjoner</a>
+    </div>
+</div>
 <ul class="media-list">
     <div ng-repeat="doc in userInfo.loans" list-item="doc.title" subtext="doc.subTitle" document-type="doc.type" document-id="doc.id"
          image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-favorite="true" is-favorite="doc.isFavorite" url="pathForDocument(doc)"/>
 </ul>
-<div ng-hide="userinfo.loans.length == 0">Du har ingen lån.</div>
+<div ng-show="userInfo.loans.length == 0">Du har ingen lån.</div>
+<img src="/img/ajax-loader.gif" ng-hide="userInfo.loans.length >= 0" />

@@ -1,6 +1,15 @@
-<h2>Mine meldinger</h2>
+<div class="row">
+    <div class="btn-group btn-group-justified">
+        <a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a>
+        <a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Personlige detaljer</a>
+        <a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default active">Mine meldinger</a>
+        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Mine lån</a>
+        <a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Mine reservasjoner</a>
+    </div>
+</div>
 <ul class="media-list">
     <div ng-repeat="msg in userInfo.notifications" list-item="msg.title" subtext="msg.content"
          image-url="'img/placeholder/Message.png'" />
 </ul>
 <div ng-show="userInfo.notifications.length == 0">Du har ingen meldinger.</div>
+<img src="/img/ajax-loader.gif" ng-hide="userInfo.notifications.length >= 0" />

@@ -1,15 +1,10 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('MinSideCtrl', function ($scope, $rootScope) {
+    .controller('MyFavoritesCtrl', function ($scope, $rootScope, favorites) {
 
         $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
-
-  }).controller('MyFavoritesCtrl', function ($scope, $rootScope, favorites) {
-
-        $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Min side');
         $rootScope.breadcrumb.push('Favoritter', 'MyFavoritesCtrl');
 
         $scope.favorites = favorites.get();
@@ -19,15 +14,17 @@ angular.module('Solvberget.WebApp')
         $scope.userInfo = userInfo.get();
 
         $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Min side');
         $rootScope.breadcrumb.push('Personlige detaljer', 'MyDetailsCtrl');
 
     }).controller('MyMessagesCtrl', function ($scope, $rootScope, userInfo) {
 
         $scope.userInfo = userInfo.get();
 
+        $rootScope.newMessagesCount = 0;
+
         $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Min side');
         $rootScope.breadcrumb.push('Mine meldinger', 'MyMessagesCtrl');
 
     }).controller('MyLoansCtrl', function ($scope, $rootScope, userInfo) {
@@ -35,7 +32,7 @@ angular.module('Solvberget.WebApp')
         $scope.userInfo = userInfo.get();
 
         $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Min side');
         $rootScope.breadcrumb.push('Mine lån', 'MyLoansCtrl');
 
     }).controller('MyReservationsCtrl', function ($scope, $rootScope, $filter, userInfo) {
@@ -57,7 +54,7 @@ angular.module('Solvberget.WebApp')
         $scope.userInfo = userInfo.get();
 
         $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Min side');
         $rootScope.breadcrumb.push('Mine reservasjoner', 'MyReservationsCtrl');
 
 
