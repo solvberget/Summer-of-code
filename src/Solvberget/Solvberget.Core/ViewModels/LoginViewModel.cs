@@ -54,6 +54,8 @@ namespace Solvberget.Core.ViewModels
 
             var response = await _service.Login(UserName, Pin);
 
+            var boms = _userAuthenticationService.GetUserId();
+
             if (response.Message.Equals("Autentisering vellykket."))
             {
                 ShowViewModel<MyPageViewModel>();

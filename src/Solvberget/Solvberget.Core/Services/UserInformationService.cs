@@ -23,14 +23,15 @@ namespace Solvberget.Core.Services
         {
             try
             {
-                var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_UserInfo, _userAuthenticationService.GetUserId()));
+                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_UserInfo);
                 return JsonConvert.DeserializeObject<UserInfoDto>(response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new UserInfoDto
                 {
-                    Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
+                    //Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
+                    Name = e.Message
                 };
             }
         }

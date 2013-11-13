@@ -95,7 +95,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (BlogOverviewViewModel), this);
             customPresenter.Register(typeof (BlogViewModel), this);
             customPresenter.Register(typeof (BlogPostViewModel), this);
-            customPresenter.Register(typeof(LoginViewModel), this);
+            customPresenter.Register(typeof (LoginViewModel), this);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Solvberget.Droid.Views
                 {
                     case HomeViewModel.Section.MyPage:
                     {
-                        if (ViewModel.IsAuthenticated())
+                        if (!ViewModel.IsAuthenticated())
                         {
                             if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as LoginView != null)
                                 return true;

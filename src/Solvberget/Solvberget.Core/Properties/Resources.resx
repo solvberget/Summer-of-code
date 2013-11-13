@@ -149,7 +149,7 @@
     <comment>0 =Blog Id, 1=Post Id</comment>
   </data>
   <data name="ServiceUrl_UserInfo" xml:space="preserve">
-    <value>/user/{0}/info</value>
+    <value>/user/info</value>
     <comment>0 = User Id</comment>
   </data>
   <data name="ServiceUrl_Search" xml:space="preserve">

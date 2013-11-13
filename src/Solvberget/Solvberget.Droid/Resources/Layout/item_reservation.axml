@@ -73,12 +73,28 @@
                 android:id="@+id/textView1" />
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:text="Fjern"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:gravity="center"
-        android:width="80dp"
-        local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(ButtonVisible)" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="300"
+        android:layout_width="fill_parent"
+        android:width="0dip"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="Fjern"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1"
+            android:gravity="center"
+            android:width="80dp"
+            local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(ButtonVisible); Text ButtonText" />
+        <Button
+            android:text="Avbryt"
+            android:visibility="gone"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1"
+            android:gravity="center"
+            android:width="80dp"
+            local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(CancellationButtonVisible); Text ButtonText" />
+    </LinearLayout>
 </LinearLayout>
