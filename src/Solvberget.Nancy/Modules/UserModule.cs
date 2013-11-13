@@ -8,12 +8,13 @@ using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Users;
 using Solvberget.Nancy.Authentication;
+using Solvberget.Nancy.Mapping;
 
 namespace Solvberget.Nancy.Modules
 {
     public class UserModule : NancyModule
     {
-        public UserModule() : base("/user")
+        public UserModule(IRepository documents) : base("/user")
         {
             this.RequiresAuthentication();
 
@@ -26,19 +27,7 @@ namespace Solvberget.Nancy.Modules
                 var loansList = results.Loans ?? new List<Loan>();
                 var notificationList = results.Notifications ?? new List<Notification>();
 
-                var reservations = reservationsList.Select(r => new ReservationDto
-                {
-                    DocumentTitle = r.DocumentTitle,
-                    DocumentNumber = r.DocumentNumber,
-                    CancellationSequence = r.CancellationSequence,
-                    HoldRequestEnd = ParseDateString(r.HoldRequestEnd),
-                    HoldRequestFrom = ParseDateString(r.HoldRequestFrom),
-                    PickupLocation = r.PickupLocation,
-                    Status = r.Status,
-                    HoldRequestTo = ParseDateString(r.HoldRequestTo),
-                    ItemDocumentNumber = r.ItemDocumentNumber,
-                    ItemSeq = r.ItemSeq
-                });
+                var reservations = reservationsList.Select(r => DtoMaps.Map(r, documents));
 
                 var fines = finesList.Select(f => new FineDto
                 {

@@ -1,18 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Solvberget.Core.DTOs
 {
     public class ReservationDto
     {
-        public string DocumentNumber { get; set; }
-        public string DocumentTitle { get; set; }
+        public DocumentDto Document { get; set; }
+
+        public DateTime Reserved { get; set; }
+
+        public bool ReadyForPickup { get; set; }
+
+        public DateTime? PickupDeadline { get; set; }
         public string PickupLocation { get; set; }
-        public DateTime? HoldRequestFrom { get; set; }
-        public DateTime? HoldRequestTo { get; set; }
-        public string CancellationSequence { get; set; }
-        public string ItemSeq { get; set; }
-        public string ItemDocumentNumber { get; set; }
-        public string Status { get; set; }
-        public DateTime? HoldRequestEnd { get; set; }
     }
 }
