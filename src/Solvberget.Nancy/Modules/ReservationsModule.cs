@@ -41,8 +41,8 @@ namespace Solvberget.Nancy.Modules
             DateTime holdTo;
 
             DateTime.TryParse(reservation.HoldRequestEnd, out holdEnd);
-            DateTime.TryParse(reservation.HoldRequestEnd, out holdFrom);
-            DateTime.TryParse(reservation.HoldRequestEnd, out holdTo);
+            DateTime.TryParse(reservation.HoldRequestFrom, out holdFrom);
+            DateTime.TryParse(reservation.HoldRequestTo, out holdTo);
 
             return new ReservationDto
             {
