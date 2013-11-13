@@ -20,7 +20,7 @@ namespace Solvberget.iOS
             get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
         }
 
-        public HomeView()
+		public HomeView()
 			: base (UserInterfaceIdiomIsPhone ? "HomeView_iPhone" : "HomeView_iPad", null)
         {
         }

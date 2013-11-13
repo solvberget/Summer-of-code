@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.ViewModels.Base;
+using Solvberget.Core.DTOs;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -13,8 +13,8 @@ namespace Solvberget.Core.ViewModels
             set { _name = value; RaisePropertyChanged(() => Name); }
         }
 
-        private List<Document> _documents;
-        public List<Document> Documents
+		private List<DocumentDto> _documents;
+		public List<DocumentDto> Documents
         {
             get { return _documents; }
             set { _documents = value; RaisePropertyChanged(() => Documents); }  

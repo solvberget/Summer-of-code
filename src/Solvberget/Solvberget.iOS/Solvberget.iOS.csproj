@@ -107,6 +107,7 @@
     <Compile Include="Views\HomeView.designer.cs">
       <DependentUpon>HomeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
