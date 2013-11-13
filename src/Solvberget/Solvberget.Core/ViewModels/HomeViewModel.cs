@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
-using Solvberget.Core.Services;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
