@@ -5,7 +5,6 @@ angular.module('Solvberget.WebApp')
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
-        $rootScope.breadcrumb.push('Favoritter', 'MyFavoritesCtrl');
 
         $scope.favorites = favorites.get();
 
@@ -15,7 +14,6 @@ angular.module('Solvberget.WebApp')
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
-        $rootScope.breadcrumb.push('Personlige detaljer', 'MyDetailsCtrl');
 
     }).controller('MyMessagesCtrl', function ($scope, $rootScope, userInfo) {
 
@@ -25,7 +23,6 @@ angular.module('Solvberget.WebApp')
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
-        $rootScope.breadcrumb.push('Mine meldinger', 'MyMessagesCtrl');
 
     }).controller('MyLoansCtrl', function ($scope, $rootScope, userInfo) {
 
@@ -33,7 +30,6 @@ angular.module('Solvberget.WebApp')
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
-        $rootScope.breadcrumb.push('Mine lån', 'MyLoansCtrl');
 
     }).controller('MyReservationsCtrl', function ($scope, $rootScope, $filter, userInfo) {
 
@@ -55,7 +51,6 @@ angular.module('Solvberget.WebApp')
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
-        $rootScope.breadcrumb.push('Mine reservasjoner', 'MyReservationsCtrl');
 
 
     });
