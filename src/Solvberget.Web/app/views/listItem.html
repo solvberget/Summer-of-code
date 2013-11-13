@@ -8,6 +8,7 @@
     <span class='list-item-actions'>
         <span class='glyphicon glyphicon-star' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
         <span class='glyphicon glyphicon-star-empty' ng-show="showFavorite && !isFavorite" ng-click="toggleFavorite()" />
+        <span class='glyphicon glyphicon-remove' ng-show="showDelete" ng-click="delete()" />
     </span>
     </div>
     <div class="gutter"><span ng-show="gutterText || gutterTextPrefix">{{gutterTextPrefix}}{{gutterText}}</span></div>

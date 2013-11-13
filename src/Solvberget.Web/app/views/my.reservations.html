@@ -1,0 +1,9 @@
+<h2>Mine reservasjoner</h2>
+<ul class="media-list">
+    <div ng-repeat="reservation in userInfo.reservations" list-item="reservation.document.title"
+         subtext="getSubtext(reservation)"
+         document-type="reservation.document.type" document-id="reservation.document.id"
+         image-url="apiPrefix + 'documents/' + reservation.document.id + '/thumbnail'"
+         show-delete="true" url="pathForDocument(reservation.document)"/>
+</ul>
+<div ng-show="userInfo.reservations.length == 0">Du har ingen reservasjoner.</div>

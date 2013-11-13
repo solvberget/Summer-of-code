@@ -1,0 +1,6 @@
+<h2>Mine lån</h2>
+<ul class="media-list">
+    <div ng-repeat="doc in userInfo.loans" list-item="doc.title" subtext="doc.subTitle" document-type="doc.type" document-id="doc.id"
+         image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-favorite="true" is-favorite="doc.isFavorite" url="pathForDocument(doc)"/>
+</ul>
+<div ng-hide="userinfo.loans.length == 0">Du har ingen lån.</div>

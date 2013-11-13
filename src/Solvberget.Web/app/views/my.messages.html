@@ -1,1 +1,6 @@
 <h2>Mine meldinger</h2>
+<ul class="media-list">
+    <div ng-repeat="msg in userInfo.notifications" list-item="msg.title" subtext="msg.content"
+         image-url="'img/placeholder/Message.png'" />
+</ul>
+<div ng-show="userInfo.notifications.length == 0">Du har ingen meldinger.</div>
