@@ -95,7 +95,7 @@
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Forventet tilgjengelig"
@@ -103,68 +103,63 @@
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text EstimatedAvailableDate; Visibility InvertedVisibility(Availability.AvailableCount)" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Filial" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text Availability.Branch" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Avdeling" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text Availability.Department" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Samling" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text Availability.Collection" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Finnes på hylle" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text Availability.Location" />
@@ -215,7 +210,7 @@
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Språk"
@@ -223,20 +218,21 @@
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text Language; Visibility Visibility(Language)" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Alternative språk"
                     local:MvxBind="Visibility Visibility(Languages)" />
-                <Mvx.MvxLinearLayout
+              <Mvx.MvxLinearLayout
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -246,7 +242,7 @@
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Utgiver"
@@ -254,15 +250,14 @@
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text Publisher; Visibility Visibility(Publisher)" />
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Opphavsperson"
@@ -270,8 +265,7 @@
                 <TextView
                     android:paddingLeft="8dp"
                     android:paddingRight="10dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text MainContributor; Visibility Visibility(MainContributor)" />

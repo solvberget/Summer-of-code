@@ -8,8 +8,7 @@
         android:text="Sjanger"
         android:paddingTop="10px"
         android:paddingLeft="10px"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="10dp"
+        android:textAppearance="@style/MediaDetailFieldContent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text" />

@@ -6,14 +6,13 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Plattform"
     local:MvxBind="Visibility Visibility(Platform)" />
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textSize="10dp"
+    android:textAppearance="@style/MediaDetailFieldContent"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     local:MvxBind="Text Platform; Visibility Visibility(Platform)" />
