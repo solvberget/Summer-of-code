@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,16 +38,18 @@ namespace Solvberget.Core.Services
         public async Task<string> PostForm(string url, Dictionary<string, string> formData)
         {
             var request = HttpWebRequest.Create(url);
-            if (_userAuthSerice.UserInfoRegistered())
-            {
-                request.Headers["Authorization"] = _userAuthSerice.GetUserId() + ":" +
-                                                    _userAuthSerice.GetUserPassword();
-            }
+
             request.Method = "POST";
 
             request.ContentType = "application/x-www-form-urlencoded";
 
-            var parameters = string.Join("&", formData.Select((k, v) => string.Format("{0}={1}", k, v)));
+            var parameters = "";
+
+            foreach (var pair in formData)
+            {
+                parameters += pair.Key + "=" + pair.Value + "&";
+            }
+
             var byteContent = Encoding.UTF8.GetBytes(parameters);
             
             var contentStream = await request.GetRequestStreamAsync();

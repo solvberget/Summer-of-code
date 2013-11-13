@@ -205,7 +205,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /user/{0}/info.
+        ///   Looks up a localized string similar to /user/info.
         /// </summary>
         internal static string ServiceUrl_UserInfo {
             get {

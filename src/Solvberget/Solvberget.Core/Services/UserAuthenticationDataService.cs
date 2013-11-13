@@ -1,17 +1,21 @@
 ﻿using Cirrious.MvvmCross.Plugins.File;
-using Cirrious.MvvmCross.Plugins.File.Droid;
 using Solvberget.Core.Services.Interfaces;
 
 namespace Solvberget.Core.Services
 {
     public class UserAuthenticationDataService : IUserAuthenticationDataService
     {
-        private readonly MvxFileStore _fileStore = new MvxAndroidFileStore();
+        private readonly IMvxFileStore _fileStore;
+
+        public UserAuthenticationDataService(IMvxFileStore fileStore)
+        {
+            _fileStore = fileStore;
+        }
 
         public bool UserInfoRegistered()
         {
             string output;
-
+            
             var read = _fileStore.TryReadTextFile(GetPathForUserId(), out output);
 
             return read;

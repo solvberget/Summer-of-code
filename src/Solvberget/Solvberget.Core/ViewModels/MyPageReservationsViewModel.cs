@@ -47,7 +47,8 @@ namespace Solvberget.Core.ViewModels
                     PickupLocation = r.PickupLocation.Equals("Hovedbibl.") ? "Hovedbiblioteket" : r.PickupLocation,
                     Parent = this,
                     ButtonVisible = true,
-                    Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei"
+                    Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei",
+                    CancellationButtonVisible = false
                 });
             }
 
