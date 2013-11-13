@@ -8,9 +8,9 @@ angular.module('Solvberget.WebApp')
 
   }).controller('MyFavoritesCtrl', function ($scope, $rootScope, favorites) {
 
-        //$rootScope.breadcrumb.clear();
-        //$rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
-        //$rootScope.breadcrumb.push('Favoritter', 'MyFavoritesCtrl');
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Favoritter', 'MyFavoritesCtrl');
 
         $scope.favorites = favorites.get();
 
@@ -18,9 +18,16 @@ angular.module('Solvberget.WebApp')
 
         $scope.userInfo = userInfo.get();
 
-        //$rootScope.breadcrumb.clear();
-        //$rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
-        //$rootScope.breadcrumb.push('Favoritter', 'MyFavoritesCtrl');
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Personlige detaljer', 'MyDetailsCtrl');
 
+    }).controller('MyMessagesCtrl', function ($scope, $rootScope, userInfo) {
+
+        $scope.userInfo = userInfo.get();
+
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Min side', 'MinSideCtrl');
+        $rootScope.breadcrumb.push('Mine meldinger', 'MyMessagesCtrl');
 
     });

@@ -28,6 +28,10 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 templateUrl: 'views/my.details.html',
                 controller: 'MyDetailsCtrl'
             })
+            .when('/min-side/meldinger', {
+                templateUrl: 'views/my.messages.html',
+                controller: 'MyMessagesCtrl'
+            })
             .when('/anbefalinger', {
                 templateUrl: 'views/anbefalinger.html',
                 controller: 'AnbefalingerCtrl'
