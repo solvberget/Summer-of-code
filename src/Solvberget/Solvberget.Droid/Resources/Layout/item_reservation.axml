@@ -84,7 +84,7 @@
             android:id="@+id/button1"
             android:gravity="center"
             android:width="80dp"
-            local:MvxBind="Click ShowDetailsCommand; Text ButtonText; Visibility Visibility(ButtonVisible)" />
+            local:MvxBind="Click RemoveReservationCommand; Text ButtonText; Visibility Visibility(ButtonVisible)" />
         <Button
             android:text="Avbryt"
             android:layout_width="78dp"
@@ -93,6 +93,6 @@
             android:id="@+id/button1"
             android:gravity="center"
             android:width="80dp"
-            local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(CancellationButtonVisible)" />
+            local:MvxBind="Click CancelRemoveCommand; Visibility Visibility(CancellationButtonVisible)" />
     </LinearLayout>
 </LinearLayout>

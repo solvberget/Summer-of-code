@@ -11,27 +11,38 @@ namespace Solvberget.Nancy.Modules
 {
     public class ReservationsModule : NancyModule
     {
-        public ReservationsModule(IReservationsRepository reservations, IRepository documents)
+        public ReservationsModule(IRepository repository)
             : base("/reservations")
         {
             this.RequiresAuthentication();
 
-            Get["/"] = _ => reservations.GetReservations(Context.GetUserInfo()).Select(MapToDto).ToArray();
+            Get["/"] = _ =>
+            {
+                var pin = Request.Headers.Authorization.Split(':')[1];
+                var userName = Request.Headers.Authorization.Split(':')[0];
+
+                return repository.GetUserInformation(userName, pin).Reservations.Select(MapToDto).ToArray();
+            };
 
             Delete["/{documentId}"] = args =>
             {
-                var document = documents.GetDocument(args.documentId, true);
-                reservations.RemoveReservation(document, Context.GetUserInfo());
+                var pin = Request.Headers.Authorization.Split(':')[1];
+                var userName = Request.Headers.Authorization.Split(':')[0];
+                var userReservations = repository.GetUserInformation(userName, pin).Reservations;
+                var resToRemove = userReservations.FirstOrDefault(r => r.DocumentNumber == args.documentId);
 
-                return new { Success = true };
+                if (resToRemove != null)
+                    return repository.CancelReservation(resToRemove.ItemDocumentNumber, resToRemove.ItemSeq, resToRemove.CancellationSequence);
+                
+                return "Kunne ikke finne dokument i liste over reservasjoner";
             };
 
             Put["/{documentId}"] = args =>
             {
-                var document = documents.GetDocument(args.documentId, true);
-                reservations.AddReservation(document, Context.GetUserInfo());
+                //Hvordan få med andeling (=branch)?
+                var response = repository.RequestReservation(args.documentId, Context.GetUserInfo().Id, "Hovedbibl.");
 
-                return new { Success = true };
+                return response;
             };
         }
         private ReservationDto MapToDto(Reservation reservation)

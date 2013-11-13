@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Solvberget.Domain.Documents;
 
 namespace Solvberget.Domain.Users
 {
@@ -17,7 +18,15 @@ namespace Solvberget.Domain.Users
 
         public void RemoveReservation(Reservation res, UserInfo user)
         {
+            var reservations = GetReservationsForUser(user);
+
+            reservations.Remove(res);
+
             GetReservationsForUser(user).Remove(res);
+
+            var flkjgd = GetReservationsForUser(user);
+
+            var ldkjgf = "";
         }
 
         public bool IsReserved(Reservation res, UserInfo user)

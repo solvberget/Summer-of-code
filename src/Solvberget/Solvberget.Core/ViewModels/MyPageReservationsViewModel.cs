@@ -70,7 +70,7 @@ namespace Solvberget.Core.ViewModels
         {
             Reservations.Remove(reservationViewModel);
 
-            var response = await _service.RemoveUserFavorite(reservationViewModel.DocumentNumber);
+            var response = await _service.RemoveReservation(reservationViewModel.DocumentNumber);
 
             var bomtibom = "hoi";
         }

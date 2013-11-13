@@ -178,4 +178,7 @@
   <data name="ServiceUrl_Login" xml:space="preserve">
     <value>/login/</value>
   </data>
+  <data name="ServiceUrl_Reservations" xml:space="preserve">
+    <value>/reservations/</value>
+  </data>
 </root>

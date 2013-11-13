@@ -71,13 +71,6 @@ namespace Solvberget.Core.ViewModels
             set { _readyForPickup = value; RaisePropertyChanged(() => ReadyForPickup); }
         }
 
-        //private string _ready;
-        //public string Ready
-        //{
-        //    get { return _ready; }
-        //    set { _ready = value; RaisePropertyChanged(() => Ready); }
-        //}
-
         private bool _confirmed;
         public bool Confirmed
         {
@@ -102,16 +95,16 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        private MvxCommand<ReservationViewModel> _showDetailsCommand;
-        public ICommand ShowDetailsCommand
+        private MvxCommand<ReservationViewModel> _removeReservationCommand;
+        public ICommand RemoveReservationCommand
         {
             get
             {
-                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<ReservationViewModel>(ExecuteShowDetailsCommand));
+                return _removeReservationCommand ?? (_removeReservationCommand = new MvxCommand<ReservationViewModel>(ExecuteRemoveReservationCommand));
             }
         }
 
-        private void ExecuteShowDetailsCommand(ReservationViewModel reservation)
+        private void ExecuteRemoveReservationCommand(ReservationViewModel reservation)
         {
             Confirmed = ButtonText.Equals("Bekreft");
 

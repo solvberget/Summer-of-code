@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Solvberget.Domain.Documents;
 
 namespace Solvberget.Domain.Users
 {
