@@ -183,7 +183,7 @@
   </data>
   <data name="ServiceUrl_Event" xml:space="preserve">
     <value>/events/{0}</value>
-    <comment>0 =Event Id</comment>
+    <comment>0 =Events Id</comment>
   </data>
   <data name="ServiceUrl_Events" xml:space="preserve">
     <value>/events</value>
