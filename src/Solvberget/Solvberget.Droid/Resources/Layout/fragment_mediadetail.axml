@@ -230,7 +230,9 @@
                     android:layout_height="wrap_content"
                     android:text="Alternative språk"
                     local:MvxBind="Visibility Visibility(Languages)" />
-                <Mvx.MvxLinearLayout
+              <Mvx.MvxLinearLayout
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
