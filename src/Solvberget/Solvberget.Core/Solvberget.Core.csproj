@@ -77,9 +77,11 @@
     </Compile>
     <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\ContactInformationService.cs" />
+    <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\HttpBodyDownloader.cs" />
     <Compile Include="Services\Interfaces\IBlogService.cs" />
     <Compile Include="Services\Interfaces\IContactInformationService.cs" />
+    <Compile Include="Services\Interfaces\IEventService.cs" />
     <Compile Include="Services\Interfaces\INewsService.cs" />
     <Compile Include="Services\Interfaces\IOpeningHoursService.cs" />
     <Compile Include="Services\Interfaces\ISearchService.cs" />
