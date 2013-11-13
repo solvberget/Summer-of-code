@@ -92,8 +92,6 @@ namespace Solvberget.Core.Services
                     {"Password", userPin}
                 };
 
-
-
                 var response = await _downloader.PostForm(Resources.ServiceUrl + Resources.ServiceUrl_Login, formData);
 
                 return JsonConvert.DeserializeObject<MessageDto>(response);
@@ -104,6 +102,30 @@ namespace Solvberget.Core.Services
                 {
                     Message = e.Message
                 };
+            }
+        }
+
+        public async Task<string> AddReservation(string userId, string documentNumber)
+        {
+            try
+            {
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber, "PUT");
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public async Task<string> RemoveReservation(string documentNumber)
+        {
+            try
+            {
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber, "DELETE");
+            }
+            catch (Exception e)
+            {
+                return e.Message;
             }
         }
     }

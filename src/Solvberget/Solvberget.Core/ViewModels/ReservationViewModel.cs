@@ -71,13 +71,6 @@ namespace Solvberget.Core.ViewModels
             set { _readyForPickup = value; RaisePropertyChanged(() => ReadyForPickup); }
         }
 
-        private string _ready;
-        public string Ready
-        {
-            get { return _ready; }
-            set { _ready = value; RaisePropertyChanged(() => Ready); }
-        }
-
         private bool _confirmed;
         public bool Confirmed
         {
@@ -102,25 +95,17 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        
-
-        private MvxCommand<ReservationViewModel> _showDetailsCommand;
-        public ICommand ShowDetailsCommand
+        private MvxCommand<ReservationViewModel> _removeReservationCommand;
+        public ICommand RemoveReservationCommand
         {
             get
             {
-                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<ReservationViewModel>(ExecuteShowDetailsCommand));
+                return _removeReservationCommand ?? (_removeReservationCommand = new MvxCommand<ReservationViewModel>(ExecuteRemoveReservationCommand));
             }
         }
 
-        private void ExecuteShowDetailsCommand(ReservationViewModel reservation)
+        private void ExecuteRemoveReservationCommand(ReservationViewModel reservation)
         {
-            //Først: Gjør denne om til et spørsmål om bruker er sikker, uten å snakke med service.
-            //Etterpå: Fjern denne, pluss send forespørel til server.
-
-
-
-
             Confirmed = ButtonText.Equals("Bekreft");
 
             if (Confirmed)
@@ -134,7 +119,6 @@ namespace Solvberget.Core.ViewModels
                         DocumentTitle = "Du har ingen reservasjoner",
                         Status = "Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene.",
                         ButtonVisible = false
-
                     });
                 }
             }
@@ -146,14 +130,13 @@ namespace Solvberget.Core.ViewModels
                 Status = "Da mister du din plass i køen for å låne denne!";
 
                 CancellationButtonVisible = true;
-
+                ReadyForPickup = false;
             }
         }
 
         private void ExecuteCancelReservationCommand(ReservationViewModel reservation)
         {
             Parent.Load();
-         //Ikke fjern reservasjon likevel; last inn reservasjoner på nytt   
         }
     }
 }

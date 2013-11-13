@@ -102,6 +102,8 @@
     <Compile Include="Favorites\Favorite.cs" />
     <Compile Include="Favorites\FavoritesRepository.cs" />
     <Compile Include="Favorites\IFavoritesRepository.cs" />
+    <Compile Include="Users\IReservationsRepository.cs" />
+    <Compile Include="Users\ReservationsRepository.cs" />
     <Compile Include="Utils\IEnvironmentPathProvider.cs" />
     <Compile Include="Info\IInformationRepository.cs" />
     <Compile Include="Events\IEventRepository.cs" />

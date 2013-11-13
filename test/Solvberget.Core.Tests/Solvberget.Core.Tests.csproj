@@ -51,6 +51,9 @@
     <Reference Include="Cirrious.MvvmCross">
       <HintPath>..\..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.0.13\lib\net45\Cirrious.MvvmCross.dll</HintPath>
     </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\..\packages\FakeItEasy.1.14.0\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="FluentAssertions">
       <HintPath>..\..\packages\FluentAssertions.2.1.0.0\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Security;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -47,8 +48,9 @@ namespace Solvberget.Core.ViewModels
                     PickupLocation = r.PickupLocation.Equals("Hovedbibl.") ? "Hovedbiblioteket" : r.PickupLocation,
                     Parent = this,
                     ButtonVisible = true,
-                    Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei",
-                    CancellationButtonVisible = false
+                    //Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei",
+                    CancellationButtonVisible = false,
+                    ButtonText = "Fjern"
                 });
             }
 
@@ -64,9 +66,13 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        public void RemoveReservation(ReservationViewModel reservationViewModel)
+        public async void RemoveReservation(ReservationViewModel reservationViewModel)
         {
             Reservations.Remove(reservationViewModel);
+
+            var response = await _service.RemoveReservation(reservationViewModel.DocumentNumber);
+
+            var bomtibom = "hoi";
         }
 
         public void AddReservation(ReservationViewModel reservationViewModel)
