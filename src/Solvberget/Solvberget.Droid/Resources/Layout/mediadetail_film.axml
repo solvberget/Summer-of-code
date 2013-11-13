@@ -6,33 +6,31 @@
               android:layout_height="wrap_content"
               android:orientation="vertical">
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Aldersgrense"
     local:MvxBind="Visibility Visibility(AgeLimit)" />
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textSize="10dp"
+    android:textAppearance="@style/MediaDetailFieldContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     local:MvxBind="Text AgeLimit; Visibility Visibility(AgeLimit)" />
   
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Format"
     local:MvxBind="Visibility Visibility(MediaInfo)" />
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textSize="10dp"
+    android:textAppearance="@style/MediaDetailFieldContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     local:MvxBind="Text MediaInfo; Visibility Visibility(MediaInfo)" />
 
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Skuespillere"
@@ -46,7 +44,7 @@
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Undertekster"
@@ -60,7 +58,7 @@
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Refererte Personer"
@@ -74,7 +72,7 @@
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Omtalte Steder"
@@ -88,7 +86,7 @@
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Sjangre"
@@ -102,7 +100,7 @@
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Involverte Personer"
@@ -116,7 +114,7 @@
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Ansvarlige Personer"

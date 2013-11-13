@@ -6,7 +6,7 @@
               android:layout_height="wrap_content"
               android:orientation="vertical">
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Kategorier"

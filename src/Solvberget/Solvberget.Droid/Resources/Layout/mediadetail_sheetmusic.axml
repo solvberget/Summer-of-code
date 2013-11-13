@@ -6,46 +6,43 @@
               android:layout_height="wrap_content"
               android:orientation="vertical">
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Komponist"
     local:MvxBind="Visibility Visibility(ComposerName)" />
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textSize="10dp"
+    android:textAppearance="@style/MediaDetailFieldContent"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     local:MvxBind="Text ComposerName; Visibility Visibility(ComposerName)" />
 
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Komposisjonstype"
     local:MvxBind="Visibility Visibility(CompositionType)" />
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textSize="10dp"
+    android:textAppearance="@style/MediaDetailFieldContent"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     local:MvxBind="Text CompositionType; Visibility Visibility(CompositionType)" />
 
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Sidetall, type noter og antall stemmer"
     local:MvxBind="Visibility Visibility(NumberOfPagesAndParts)" />
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textSize="10dp"
+    android:textAppearance="@style/MediaDetailFieldContent"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     local:MvxBind="Text NumberOfPagesAndParts; Visibility Visibility(NumberOfPagesAndParts)" />
 
   <TextView
-    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textAppearance="@style/MediaDetailFieldName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Besetning"
