@@ -40,19 +40,18 @@ namespace Solvberget.Core.Services
         {
             try
             {
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_List + id + ".json");
+                var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_List, id));
                 return JsonConvert.DeserializeObject<LibrarylistDto>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                var test = Resources.ServiceUrl + Resources.ServiceUrl_List + id + ".json";
                 return new LibrarylistDto
                 {
 
                     Documents = {new DocumentDto
                     {
-                        Title = test,
-                        SubTitle = e.Message
+                        Title = "Feil",
+                        SubTitle = "Kunne ikke laste listen"
                     }}
                 };
             }

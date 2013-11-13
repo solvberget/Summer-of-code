@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@color/ui_background">
     <TextView
-        android:text="Large Text"
+        local:MvxBind="Text Title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
