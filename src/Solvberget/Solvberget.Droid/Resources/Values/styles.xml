@@ -12,7 +12,7 @@
             backward-compatibility can go here.
         -->
   </style>
-
+  
   <!-- Application theme. -->
   <style name="MyTheme" parent="MyBaseTheme">
     <!--
@@ -31,4 +31,18 @@
     <item name="android:windowBackground">@drawable/splash</item>
     <item name="android:windowNoTitle">true</item>
   </style>
+  
+  
+  
+   <style name="MediaDetailFieldContent" parent="@android:style/TextAppearance.Small">
+  </style>
+  
+  <style name="MediaDetailFieldName" parent="@style/MediaDetailFieldContent">
+    <item name="android:textSize">10dp</item>
+  </style>
+
+ 
+  
+  
+  
 </resources>

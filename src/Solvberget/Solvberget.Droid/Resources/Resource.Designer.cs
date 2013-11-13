@@ -507,6 +507,12 @@ namespace Solvberget.Droid
 		public partial class Style
 		{
 			
+			// aapt resource value: 0x7f080003
+			public const int MediaDetailFieldContent = 2131230723;
+			
+			// aapt resource value: 0x7f080004
+			public const int MediaDetailFieldName = 2131230724;
+			
 			// aapt resource value: 0x7f080000
 			public const int MyBaseTheme = 2131230720;
 			
