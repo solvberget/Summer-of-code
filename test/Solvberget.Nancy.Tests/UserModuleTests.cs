@@ -51,6 +51,14 @@ namespace Solvberget.Nancy.Tests
                     HomeLibrary = "Sølvberget KF"
                 }));
 
+            
+            A.CallTo(() => _repository.GetUserInformation("1234", "verification"))
+                .Returns(new UserInfo
+                {
+                    Name = "Chuck Norris",
+                    HomeLibrary = "Sølvberget KF"
+                });
+
             // When
             var response = _browser.Get("/user/info", with =>
             {
