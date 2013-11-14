@@ -41,14 +41,14 @@ namespace Solvberget.Droid.Views
             _drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
             _drawerList = FindViewById<MvxListView>(Resource.Id.left_drawer);
-            
+
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetHomeButtonEnabled(true);
+
             if (_drawer != null)
             {
 
                 _drawer.SetDrawerShadow(Resource.Drawable.drawer_shadow_dark, (int)GravityFlags.Start);
-
-                ActionBar.SetDisplayHomeAsUpEnabled(true);
-                ActionBar.SetHomeButtonEnabled(true);
 
                 //DrawerToggle is the animation that happens with the indicator next to the
                 //ActionBar icon. You can choose not to use this.
