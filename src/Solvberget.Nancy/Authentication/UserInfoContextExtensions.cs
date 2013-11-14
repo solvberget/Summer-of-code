@@ -12,5 +12,13 @@ namespace Solvberget.Nancy.Authentication
 
             return alephUserInfo.UserInfo;
         }
+
+        public static AlephUserIdentity GetAlephUserIdentity(this NancyContext context)
+        {
+            var alephUserInfo = context.CurrentUser as AlephUserIdentity;
+            if (null == alephUserInfo) return null;
+
+            return alephUserInfo;
+        }
     }
 }

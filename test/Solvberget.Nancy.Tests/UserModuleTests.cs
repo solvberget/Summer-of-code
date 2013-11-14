@@ -45,7 +45,7 @@ namespace Solvberget.Nancy.Tests
         {
 
             A.CallTo(() => _provider.Authenticate("1234", "verification"))
-                .Returns(new AlephUserIdentity("1234", new UserInfo
+                .Returns(new AlephUserIdentity("1234", "verification", new UserInfo
                 {
                     Name = "Chuck Norris",
                     HomeLibrary = "Sølvberget KF"

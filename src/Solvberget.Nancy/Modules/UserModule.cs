@@ -20,7 +20,8 @@ namespace Solvberget.Nancy.Modules
 
             Get["/info"] = _ =>
             {
-                UserInfo results = Context.GetUserInfo();
+                var user = Context.GetAlephUserIdentity();
+                UserInfo results = documents.GetUserInformation(user.UserName, user.Password);
 
                 var reservationsList = results.Reservations ?? new List<Reservation>();
                 var finesList = results.Fines ?? new List<Fine>();

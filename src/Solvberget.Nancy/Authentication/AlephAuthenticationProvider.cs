@@ -18,7 +18,7 @@ namespace Solvberget.Nancy.Authentication
 
             if (null == userInfo) return null;
 
-            return new AlephUserIdentity(username, userInfo);
+            return new AlephUserIdentity(username, password, userInfo);
         }
     }
 }

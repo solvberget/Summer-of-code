@@ -62,7 +62,7 @@ namespace Solvberget.Nancy.Tests
         [Fact]
         public void Should_succeed_when_correct_crredentials()
         {
-            A.CallTo(() => _provider.Authenticate("username", "correct password")).Returns(new AlephUserIdentity("username", null));
+            A.CallTo(() => _provider.Authenticate("username", "correct password")).Returns(new AlephUserIdentity("username", "correct password", null));
 
             var response = _browser.Post("/login", with =>
             {
