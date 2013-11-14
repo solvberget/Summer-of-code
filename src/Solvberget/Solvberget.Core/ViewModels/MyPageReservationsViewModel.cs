@@ -41,16 +41,16 @@ namespace Solvberget.Core.ViewModels
             {
                 Reservations.Add(new ReservationViewModel
                 {
-                    DocumentTitle = r.DocumentTitle,
-                    DocumentNumber = r.DocumentNumber,
-                    HoldRequestFrom = r.HoldRequestFrom,
-                    ReadyForPickup = !r.Status.Equals("In processz38-status"),
+                    DocumentTitle = r.Document.Title,
+                    DocumentNumber = r.Document.Id,
+                    HoldRequestFrom = r.Reserved,
+                    ReadyForPickup = r.ReadyForPickup,
                     PickupLocation = r.PickupLocation.Equals("Hovedbibl.") ? "Hovedbiblioteket" : r.PickupLocation,
                     Parent = this,
                     ButtonVisible = true,
-                    //Ready = !r.Status.Equals("In processz38-status") ? "Ja" : "Nei",
                     CancellationButtonVisible = false,
-                    ButtonText = "Fjern"
+                    ButtonText = "Fjern",
+                    //Ready = r.ReadyForPickup ? "Ja" : "Nei",
                 });
             }
 

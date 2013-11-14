@@ -17,8 +17,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 reloadOnSearch: false
             })
             .when('/min-side', {
-                templateUrl: 'views/minside.html',
-                controller: 'MinSideCtrl'
+                redirectTo: '/minside/favoritter'
             })
             .when('/min-side/favoritter', {
                 templateUrl: 'views/my.favorites.html',
@@ -27,6 +26,18 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
             .when('/min-side/detaljer', {
                 templateUrl: 'views/my.details.html',
                 controller: 'MyDetailsCtrl'
+            })
+            .when('/min-side/meldinger', {
+                templateUrl: 'views/my.messages.html',
+                controller: 'MyMessagesCtrl'
+            })
+            .when('/min-side/lan', {
+                templateUrl: 'views/my.loans.html',
+                controller: 'MyLoansCtrl'
+            })
+            .when('/min-side/reservasjoner', {
+                templateUrl: 'views/my.reservations.html',
+                controller: 'MyReservationsCtrl'
             })
             .when('/anbefalinger', {
                 templateUrl: 'views/anbefalinger.html',
@@ -104,6 +115,8 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
 
         $$config.username = $cookies.username;
         $$config.password = $cookies.password;
+
+        $rootScope.newMessagesCount = 2;
 
         $http({method: 'GET', url: '/app.config.json'}).
             success(function(data) {

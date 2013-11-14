@@ -7,6 +7,7 @@ angular.module('Solvberget.WebApp')
                 url:"=url",
                 subtext:"=subtext",
                 showChevron:"=showChevron",
+                showDelete:"=showDelete",
                 showFavorite:"=showFavorite",
                 isFavorite:"=isFavorite",
                 type:"=documentType",

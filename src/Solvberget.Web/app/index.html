@@ -60,7 +60,7 @@
                             <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SearchCtrl')}}">Søk</a></li>
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NewsCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/arrangementer')}"><a ng-href="{{path('EventsCtrl')}}">Arrangementer</a></li>
-                            <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MinSideCtrl')}}">Min side<span class="badge pull-right">2</span></a></li>
+                            <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MyFavoritesCtrl')}}">Min side<span ng-show="newMessagesCount > 0" class="badge pull-right">{{newMessagesCount}}</span></a></li>
                             <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
                             <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BloggerCtrl')}}">Blogger</a></li>
                             <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('ApningstiderCtrl')}}">Åpningstider</a></li>

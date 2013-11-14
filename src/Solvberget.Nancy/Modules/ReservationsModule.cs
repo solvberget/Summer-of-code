@@ -6,6 +6,7 @@ using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Domain.Users;
 using Solvberget.Nancy.Authentication;
+using Solvberget.Nancy.Mapping;
 
 namespace Solvberget.Nancy.Modules
 {
@@ -21,7 +22,7 @@ namespace Solvberget.Nancy.Modules
                 var pin = Request.Headers.Authorization.Split(':')[1];
                 var userName = Request.Headers.Authorization.Split(':')[0];
 
-                return repository.GetUserInformation(userName, pin).Reservations.Select(MapToDto).ToArray();
+                return repository.GetUserInformation(userName, pin).Reservations.Select(r => DtoMaps.Map(r, repository)).ToArray();
             };
 
             Delete["/{documentId}"] = args =>
@@ -45,29 +46,7 @@ namespace Solvberget.Nancy.Modules
                 return response;
             };
         }
-        private ReservationDto MapToDto(Reservation reservation)
-        {
-            DateTime holdEnd;
-            DateTime holdFrom;
-            DateTime holdTo;
 
-            DateTime.TryParse(reservation.HoldRequestEnd, out holdEnd);
-            DateTime.TryParse(reservation.HoldRequestFrom, out holdFrom);
-            DateTime.TryParse(reservation.HoldRequestTo, out holdTo);
-
-            return new ReservationDto
-            {
-                DocumentNumber = reservation.DocumentNumber,
-                DocumentTitle = reservation.DocumentTitle,
-                HoldRequestEnd = holdEnd,
-                HoldRequestFrom = holdFrom,
-                HoldRequestTo = holdTo,
-                ItemDocumentNumber = reservation.ItemDocumentNumber,
-                ItemSeq = reservation.ItemSeq,
-                PickupLocation = reservation.PickupLocation,
-                Status = reservation.Status,
-                CancellationSequence = reservation.CancellationSequence
-            };
-        }
+        
     }
 }

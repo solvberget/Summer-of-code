@@ -1,29 +1,27 @@
 <div class="row">
     <div class="btn-group btn-group-justified hidden-xs">
-        <a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default active">Favoritter</a>
+        <a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a>
         <a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Personlige detaljer</a>
         <a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default">Mine meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a>
-        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Mine lån</a>
+        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default active">Mine lån</a>
         <a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Mine reservasjoner</a>
     </div>
     <div class="btn-group btn-group-justified visible-xs">
         <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Favoritter
+            Mine lån
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
+            <li><a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a></li>
             <li><a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Personlige detaljer</a></li>
             <li><a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default">Mine meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a></li>
-            <li><a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Mine lån</a></li>
             <li><a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Mine reservasjoner</a></li>
         </ul>
     </div>
 </div>
-
 <ul class="media-list">
-    <div ng-repeat="fav in favorites" list-item="fav.document.title" subtext="fav.document.subTitle" document-type="fav.document.type" document-id="fav.document.id"
-         image-url="apiPrefix + 'documents/' + fav.document.id + '/thumbnail'" show-favorite="true" is-favorite="fav.document.isFavorite" url="pathForDocument(fav.document)"/>
+    <div ng-repeat="doc in userInfo.loans" list-item="doc.title" subtext="doc.subTitle" document-type="doc.type" document-id="doc.id"
+         image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-favorite="true" is-favorite="doc.isFavorite" url="pathForDocument(doc)"/>
 </ul>
-
-<div ng-show="favorites.length ==0">Du har ingen favoritter.</div>
-<img src="/img/ajax-loader.gif" ng-hide="favorites.length >= 0" />
+<div ng-show="userInfo.loans.length == 0">Du har ingen lån.</div>
+<img src="/img/ajax-loader.gif" ng-hide="userInfo.loans.length >= 0" />
