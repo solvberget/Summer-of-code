@@ -128,5 +128,29 @@ namespace Solvberget.Core.Services
                 return e.Message;
             }
         }
+
+        public async Task<List<ReservationDto>> GetUerReservations()
+        {
+            try
+            {
+
+                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations, "GET");
+
+                return JsonConvert.DeserializeObject<List<ReservationDto>>(response);
+            }
+            catch (Exception e)
+            {
+                return new List<ReservationDto>
+                {
+                    new ReservationDto
+                    {
+                        Document = new DocumentDto
+                        {
+                            Title = e.Message,
+                        }
+                    }
+                };
+            }
+        }
     }
 }

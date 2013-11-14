@@ -14,5 +14,6 @@ namespace Solvberget.Core.Services.Interfaces
         Task<MessageDto> Login(string userId, string userPin);
         Task<string> AddReservation(string userId, string documentNumber);
         Task<string> RemoveReservation(string documentNumber);
+        Task<List<ReservationDto>> GetUerReservations();
     }
 }

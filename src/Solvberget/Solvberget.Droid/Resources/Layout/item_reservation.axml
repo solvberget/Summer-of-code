@@ -35,7 +35,7 @@
             android:id="@+id/textView1"
             local:MvxBind="Text DocumentTitle" />
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:width="0dip"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView1" />
             <TextView
-                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView1" />
+                android:id="@+id/textView1"
+                local:MvxBind="Text Status" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -79,7 +80,7 @@
         android:layout_height="wrap_content"
         local:MvxBind="">
         <Button
-            android:layout_width="78dp"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:id="@+id/button1"
             android:gravity="center"
@@ -87,7 +88,7 @@
             local:MvxBind="Click RemoveReservationCommand; Text ButtonText; Visibility Visibility(ButtonVisible)" />
         <Button
             android:text="Avbryt"
-            android:layout_width="78dp"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:id="@+id/button1"

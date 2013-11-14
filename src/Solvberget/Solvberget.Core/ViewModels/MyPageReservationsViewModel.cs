@@ -31,9 +31,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
-            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
-
-            var res = user.Reservations == null ? new List<ReservationDto>() : user.Reservations.ToList();
+            var res = await _service.GetUerReservations() ?? new List<ReservationDto>();
 
             Reservations = new ObservableCollection<ReservationViewModel>();
 
@@ -50,7 +48,7 @@ namespace Solvberget.Core.ViewModels
                     ButtonVisible = true,
                     CancellationButtonVisible = false,
                     ButtonText = "Fjern",
-                    //Ready = r.ReadyForPickup ? "Ja" : "Nei",
+                    Status = r.ReadyForPickup ? "" : "Ikke klar for henting"
                 });
             }
 

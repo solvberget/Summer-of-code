@@ -85,6 +85,15 @@ namespace Solvberget.Core.ViewModels
             set { _cancellationButtonVisible = value; RaisePropertyChanged(() => CancellationButtonVisible); }
         }
 
+        private string _itemDocumentNumber;
+        public string ItemDocumentNumber
+        {
+            get { return _itemDocumentNumber; }
+            set { _itemDocumentNumber = value; RaisePropertyChanged(() => ItemDocumentNumber); }
+        }
+
+        
+
         private MvxCommand<ReservationViewModel> _cancelRemoveCommand;
         public ICommand CancelRemoveCommand
         {
