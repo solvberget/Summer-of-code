@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 using System.Linq;
@@ -28,7 +29,14 @@ namespace Solvberget.Core.ViewModels
             Events = (from ev in await _eventService.GetList()
                 select new EventViewModel
                 {
-                    Title = ev.Name
+                    Description = ev.Description,
+                    Title = ev.Name,
+                    ImageUrl = ev.ImageUrl,
+                    Location = ev.Location,
+                    Price = "Kr. " + ev.TicketPrice.ToString("0.##"),
+                    Date = ev.Start.ToString("dd.MM.yyyy"),
+                    Time =  "kl. " + ev.Start.ToString("HH:mm") + " - kl. " + ev.End.ToString("HH:mm"),
+                    Url = ev.TicketUrl
                 }).ToList();
 
             IsLoading = false;
@@ -52,7 +60,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(EventViewModel ev)
         {
-            ShowViewModel<GenericWebViewViewModel>(new { uri = ev.Uri, title = ev.Title });
+            ShowViewModel<GenericWebViewViewModel>(new { uri = ev.Url, title = ev.Title });
         }
     }
 }
