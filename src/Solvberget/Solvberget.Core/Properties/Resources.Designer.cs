@@ -115,6 +115,24 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /events/{0}.
+        /// </summary>
+        internal static string ServiceUrl_Event {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /events.
+        /// </summary>
+        internal static string ServiceUrl_Events {
+            get {
+                return ResourceManager.GetString("ServiceUrl_Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /favorites/.
         /// </summary>
         internal static string ServiceUrl_Favorites {
