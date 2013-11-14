@@ -49,12 +49,13 @@ namespace Solvberget.Core.ViewModels
 
         private async void ExecuteLoginCommand(MyPageViewModel page)
         {
+            IsLoading = true;
             _userAuthenticationService.SetUser(UserName);
             _userAuthenticationService.SetPassword(Pin);
 
             var response = await _service.Login(UserName, Pin);
+            IsLoading = false;
 
-            var boms = _userAuthenticationService.GetUserId();
 
             if (response.Message.Equals("Autentisering vellykket."))
             {
