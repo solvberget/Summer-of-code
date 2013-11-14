@@ -33,7 +33,7 @@ namespace Solvberget.Nancy.Modules
                 {
                     Date = f.Date,
                     Description = f.Description,
-                    Document = DtoMaps.Map(documents.GetDocument(f.DocumentNumber, true)),
+                    Document = String.IsNullOrEmpty(f.DocumentNumber) ? null : DtoMaps.Map(documents.GetDocument(f.DocumentNumber, true)),
                     Status = f.Status,
                     Sum = f.Sum
                 });
