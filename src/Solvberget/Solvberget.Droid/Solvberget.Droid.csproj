@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="Views\Adapters\MvxViewPagerSearchResultAdapter.cs" />
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
+    <Compile Include="Views\Components\BackgroundBindableLinearLayout.cs" />
     <Compile Include="Views\Components\BackgroundColorBindableTextView.cs" />
     <Compile Include="Views\Components\IconTextView.cs" />
     <Compile Include="Views\Components\MediaDetailInformationView.cs" />
