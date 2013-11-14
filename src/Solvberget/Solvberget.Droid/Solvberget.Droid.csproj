@@ -145,6 +145,7 @@
     <Compile Include="Views\Adapters\MvxViewPagerSearchResultAdapter.cs" />
     <Compile Include="Views\Adapters\MvxViewPagerFragmentAdapter.cs" />
     <Compile Include="Views\Components\BackgroundColorBindableTextView.cs" />
+    <Compile Include="Views\Components\IconTextView.cs" />
     <Compile Include="Views\Components\MediaDetailInformationView.cs" />
     <Compile Include="Views\Components\CustomImageView.cs" />
     <Compile Include="Views\Fragments\ContactInfoView.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Views\HomeView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\icons.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
