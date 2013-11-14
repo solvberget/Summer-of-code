@@ -39,37 +39,37 @@ namespace Solvberget.Droid.Views
 
             _title = _drawerTitle = Title;
             _drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            _drawerList = FindViewById<MvxListView>(Resource.Id.left_drawer);
-
-            _drawer.SetDrawerShadow(Resource.Drawable.drawer_shadow_dark, (int) GravityFlags.Start);
-
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetHomeButtonEnabled(true);
-
-            //DrawerToggle is the animation that happens with the indicator next to the
-            //ActionBar icon. You can choose not to use this.
-            _drawerToggle = new MyActionBarDrawerToggle(this, _drawer,
-                Resource.Drawable.ic_drawer_light,
-                Resource.String.drawer_open,
-                Resource.String.drawer_close);
-
-            //You can alternatively use _drawer.DrawerClosed here
-            _drawerToggle.DrawerClosed += delegate
+            
+            if (_drawer != null)
             {
-                ActionBar.Title = _title;
-                InvalidateOptionsMenu();
-            };
+                _drawerList = FindViewById<MvxListView>(Resource.Id.left_drawer);
+
+                _drawer.SetDrawerShadow(Resource.Drawable.drawer_shadow_dark, (int)GravityFlags.Start);
+
+                //DrawerToggle is the animation that happens with the indicator next to the
+                //ActionBar icon. You can choose not to use this.
+                _drawerToggle = new MyActionBarDrawerToggle(this, _drawer,
+                    Resource.Drawable.ic_drawer_light,
+                    Resource.String.drawer_open,
+                    Resource.String.drawer_close);
+
+                //You can alternatively use _drawer.DrawerClosed here
+                _drawerToggle.DrawerClosed += delegate
+                {
+                    ActionBar.Title = _title;
+                    InvalidateOptionsMenu();
+                };
 
 
-            //You can alternatively use _drawer.DrawerOpened here
-            _drawerToggle.DrawerOpened += delegate
-            {
-                ActionBar.Title = _drawerTitle;
-                InvalidateOptionsMenu();
-            };
+                //You can alternatively use _drawer.DrawerOpened here
+                _drawerToggle.DrawerOpened += delegate
+                {
+                    ActionBar.Title = _drawerTitle;
+                    InvalidateOptionsMenu();
+                };
 
-            _drawer.SetDrawerListener(_drawerToggle);
-
+                _drawer.SetDrawerListener(_drawerToggle);
+            }
 
             RegisterForDetailsRequests();
 
@@ -222,46 +222,66 @@ namespace Solvberget.Droid.Views
 
                     SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, frag).Commit();
                 }
-                _drawerList.SetItemChecked(ViewModel.MenuItems.FindIndex(m => m.Id == (int) section), true);
                 ActionBar.Title = _title = title;
 
-                _drawer.CloseDrawer(_drawerList);
+                if (_drawer != null)
+                {
+                    _drawerList.SetItemChecked(ViewModel.MenuItems.FindIndex(m => m.Id == (int) section), true);
+                    _drawer.CloseDrawer(_drawerList);
+                }
+                
 
                 return true;
             }
             finally
             {
-                _drawer.CloseDrawer(_drawerList);
+                if (_drawer != null)
+                {
+                    _drawer.CloseDrawer(_drawerList);
+                }
             }
         }
 
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
-            _drawerToggle.SyncState();
+            if (_drawer != null)
+            {
+                _drawerToggle.SyncState();
+            }
         }
 
 
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            _drawerToggle.OnConfigurationChanged(newConfig);
+            if (_drawer != null)
+            {
+                _drawerToggle.OnConfigurationChanged(newConfig);
+            }
         }
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
-            var drawerOpen = _drawer.IsDrawerOpen(_drawerList);
-            //when open down't show anything
-            for (int i = 0; i < menu.Size(); i++)
-                menu.GetItem(i).SetVisible(!drawerOpen);
+            if (_drawer != null)
+            {
+                var drawerOpen = _drawer.IsDrawerOpen(_drawerList);
+                //when open down't show anything
+                for (int i = 0; i < menu.Size(); i++)
+                    menu.GetItem(i).SetVisible(!drawerOpen);
+            }
+            
             
             return base.OnPrepareOptionsMenu(menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (_drawerToggle.OnOptionsItemSelected(item))
-                return true;
+            if (_drawer != null)
+            {
+                if (_drawerToggle.OnOptionsItemSelected(item))
+                    return true;
+            }
 
             return base.OnOptionsItemSelected(item);
         }
