@@ -48,7 +48,7 @@ namespace Solvberget.Core.ViewModels
                     ButtonVisible = true,
                     CancellationButtonVisible = false,
                     ButtonText = "Fjern",
-                    //Ready = r.ReadyForPickup ? "Ja" : "Nei",
+                    Status = r.ReadyForPickup ? "" : "Ikke klar for henting"
                 });
             }
 
