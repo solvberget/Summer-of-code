@@ -1,9 +1,9 @@
 <div class="row">
     <div class="btn-group btn-group-justified hidden-xs">
-        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default active">Lån</a>
+        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Lån</a>
         <a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Reservasjoner</a>
         <a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a>
-        <a ng-href="{{path('MyFinesCtrl')}}" type="button" class="btn btn-default">Gebyrer</a>
+        <a ng-href="{{path('MyFinesCtrl')}}" type="button" class="btn btn-default active">Gebyrer</a>
         <a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default">Meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a>
         <a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Profil</a>
     </div>
@@ -22,9 +22,12 @@
         </ul>
     </div>
 </div>
+<h2 style="margin-top:20px">Balanse</h2>
+{{userInfo.balance}},-
+<h2 style="margin-top:20px">Gebyrer</h2>
+<div ng-show="userInfo.fines.length ==0">Du har ingen gebyrer.</div>
 <ul class="media-list">
-    <div ng-repeat="doc in userInfo.loans" list-item="doc.title" subtext="doc.subTitle" document-type="doc.type" document-id="doc.id"
-         image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-favorite="true" is-favorite="doc.isFavorite" url="pathForDocument(doc)"/>
+    <div ng-repeat="fine in userInfo.fines" list-item="fine.document.title" subtext="fine.description + '<br/>' + fine.sum + ',-'" document-type="fine.document.type" document-id="fine.document.id"
+         image-url="'img/placeholder/Fine.png'" url="pathForDocument(fine.document)"/>
 </ul>
-<div ng-show="userInfo.loans.length == 0">Du har ingen lån.</div>
-<img src="/img/ajax-loader.gif" ng-hide="userInfo.loans.length >= 0" />
+<img src="img/ajax-loader.gif" ng-hide="userInfo.fines.length >= 0" />

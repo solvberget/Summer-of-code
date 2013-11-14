@@ -20,7 +20,8 @@ namespace Solvberget.Nancy.Modules
 
             Get["/info"] = _ =>
             {
-                UserInfo results = Context.GetUserInfo();
+                var user = Context.GetAlephUserIdentity();
+                UserInfo results = documents.GetUserInformation(user.UserName, user.Password);
 
                 var reservationsList = results.Reservations ?? new List<Reservation>();
                 var finesList = results.Fines ?? new List<Fine>();
@@ -30,11 +31,9 @@ namespace Solvberget.Nancy.Modules
 
                 var fines = finesList.Select(f => new FineDto
                 {
-                    CreditDebit = f.CreditDebit,
                     Date = f.Date,
                     Description = f.Description,
-                    DocumentNumber = f.DocumentNumber,
-                    DocumentTitle = f.DocumentTitle,
+                    Document = DtoMaps.Map(documents.GetDocument(f.DocumentNumber, true)),
                     Status = f.Status,
                     Sum = f.Sum
                 });

@@ -31,6 +31,13 @@ angular.module('Solvberget.WebApp')
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
 
+    }).controller('MyFinesCtrl', function ($scope, $rootScope, userInfo) {
+
+        $scope.userInfo = userInfo.get();
+
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Min side');
+
     }).controller('MyReservationsCtrl', function ($scope, $rootScope, $filter, userInfo) {
 
         $scope.getSubtext = function(reservation){

@@ -1,21 +1,24 @@
 <div class="row">
     <div class="btn-group btn-group-justified hidden-xs">
+        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Lån</a>
+        <a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Reservasjoner</a>
         <a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a>
-        <a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Personlige detaljer</a>
-        <a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default active">Mine meldinger</a>
-        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Mine lån</a>
-        <a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Mine reservasjoner</a>
+        <a ng-href="{{path('MyFinesCtrl')}}" type="button" class="btn btn-default">Gebyrer</a>
+        <a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default active">Meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a>
+        <a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Profil</a>
     </div>
     <div class="btn-group btn-group-justified visible-xs">
         <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Mine meldinger
+            Meldinger
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
+            <li><a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Lån</a></li>
+            <li><a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Reservasjoner</a></li>
             <li><a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a></li>
-            <li><a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Personlige detaljer</a></li>
-            <li><a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Mine lån</a></li>
-            <li><a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Mine reservasjoner</a></li>
+            <li><a ng-href="{{path('MyFinesCtrl')}}" type="button" class="btn btn-default">Gebyrer</a></li>
+            <li><a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default">Meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a></li>
+            <li><a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Profil</a></li>
         </ul>
     </div>
 </div>

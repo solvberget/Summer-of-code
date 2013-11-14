@@ -163,7 +163,6 @@
     <Compile Include="Authentication\AlephAuthenticationProvider.cs" />
     <Compile Include="Authentication\AlephUserIdentity.cs" />
     <Compile Include="Authentication\NancyContextAuthenticator.cs" />
-    <Compile Include="Authentication\TEST_AlwaysAuthenticateProvider.cs" />
     <Compile Include="Authentication\IAuthenticationProvider.cs" />
     <Compile Include="Authentication\UserIdentityCache.cs" />
     <Compile Include="Authentication\UserInfoContextExtensions.cs" />

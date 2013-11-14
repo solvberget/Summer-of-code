@@ -39,7 +39,7 @@ namespace Solvberget.Core.ViewModels
                 Fines.Add(new FineViewModel
                 {
                     Description = f.Description,
-                    DocumentTitle = f.DocumentTitle,
+                    DocumentTitle = f.Document.Title,
                     Sum = Convert.ToInt32(f.Sum) + ",-",
                     Status = f.Status
                 });
