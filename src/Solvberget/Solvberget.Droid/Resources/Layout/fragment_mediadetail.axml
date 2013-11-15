@@ -88,6 +88,8 @@
                     android:orientation="horizontal"
                     android:minWidth="25px"
                     android:minHeight="25px"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/linearLayout1"
@@ -109,13 +111,14 @@
                         android:layout_height="wrap_content"
                         android:gravity="right">
                         <Button
-                            android:text="Reserver"
                             android:layout_width="100dp"
+                            android:text="Reserver"
                             android:layout_height="wrap_content"
                             android:id="@+id/button1"
+                            android:textSize="17dp"
                             android:gravity="center"
-                            android:color="@color/ui_itembackground"
-                            local:MvxBind="Click PlaceHoldRequestCommand; Enabled LoggedIn" />
+                            android:background="@color/ui_background"
+                            local:MvxBind="Click PlaceHoldRequestCommand; Enabled LoggedIn; Text ButtonText" />
                     </LinearLayout>
                 </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
                 <TextView

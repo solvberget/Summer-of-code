@@ -15,5 +15,6 @@ namespace Solvberget.Core.Services.Interfaces
         Task<string> AddReservation(string documentNumber);
         Task<string> RemoveReservation(string documentNumber);
         Task<List<ReservationDto>> GetUerReservations();
+        Task<List<string>> GetUserReserverdDocuments();
     }
 }

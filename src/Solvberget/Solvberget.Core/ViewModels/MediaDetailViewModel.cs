@@ -41,6 +41,24 @@ namespace Solvberget.Core.ViewModels
 
             LoggedIn = _userAuthService.UserInfoRegistered();
 
+            var docsReservedByUser = await _userService.GetUserReserverdDocuments();
+
+            IsReservedByUser = docsReservedByUser.Contains(docId);
+            ButtonEnabled = !IsReservedByUser && LoggedIn;
+
+            if (!LoggedIn)
+            {
+                ButtonText = "Logg inn for å reservere";
+            } 
+            else if (IsReservedByUser)
+            {
+                ButtonText = "Reservert";
+            }
+            else
+            {
+                ButtonText = "Reserver";
+            }
+
             var document = await _searchService.Get(docId);
             DocId = docId;
             Title = document.Title;
@@ -242,6 +260,27 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _publisher; }
             set { _publisher = value; RaisePropertyChanged(() => Publisher);}
+        }
+
+        private bool _isReservedByUser;
+        public bool IsReservedByUser
+        {
+            get { return _isReservedByUser; }
+            set { _isReservedByUser = value; RaisePropertyChanged(() => IsReservedByUser); }
+        }
+
+        private string _buttonText;
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set { _buttonText = value; RaisePropertyChanged(() => ButtonText); }
+        }
+
+        private bool _buttonEnabled;
+        public bool ButtonEnabled
+        {
+            get { return _buttonEnabled; }
+            set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
         }
     }
 }
