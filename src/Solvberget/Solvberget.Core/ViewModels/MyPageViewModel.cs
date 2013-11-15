@@ -9,7 +9,7 @@ namespace Solvberget.Core.ViewModels
         {
             MyPageLoansViewModel = new MyPageLoansViewModel(service, userAuthenticationDataService);
             MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service, userAuthenticationDataService);
-            MyPageReservationsViewModel = new MyPageReservationsViewModel(service, userAuthenticationDataService);
+            MyPageReservationsViewModel = new MyPageReservationsViewModel(service);
             MyPageFinesViewModel = new MyPageFinesViewModel(service, userAuthenticationDataService);
             MyPageMessagesViewModel = new MyPageMessagesViewModel(service, userAuthenticationDataService);
             MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);

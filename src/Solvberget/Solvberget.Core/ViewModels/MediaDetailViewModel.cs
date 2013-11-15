@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
+using System.Windows.Input;
+using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Properties;
@@ -13,9 +15,13 @@ namespace Solvberget.Core.ViewModels
     public class MediaDetailViewModel : BaseViewModel
     {
         private readonly ISearchService _searchService;
+        private readonly IUserService _userService;
+        private readonly IUserAuthenticationDataService _userAuthService;
 
-        public MediaDetailViewModel(ISearchService searchService)
+        public MediaDetailViewModel(ISearchService searchService, IUserService userService, IUserAuthenticationDataService userAuthService)
         {
+            _userAuthService = userAuthService;
+            _userService = userService;
             _searchService = searchService;
         }
 
@@ -33,7 +39,28 @@ namespace Solvberget.Core.ViewModels
             var review = _searchService.GetReview(docId);
             var rating = _searchService.GetRating(docId);
 
+            LoggedIn = _userAuthService.UserInfoRegistered();
+
+            var docsReservedByUser = await _userService.GetUserReserverdDocuments();
+
+            IsReservedByUser = docsReservedByUser.Contains(docId);
+            ButtonEnabled = !IsReservedByUser && LoggedIn;
+
+            if (!LoggedIn)
+            {
+                ButtonText = "Logg inn for å reservere";
+            } 
+            else if (IsReservedByUser)
+            {
+                ButtonText = "Reservert";
+            }
+            else
+            {
+                ButtonText = "Reserver";
+            }
+
             var document = await _searchService.Get(docId);
+            DocId = docId;
             Title = document.Title;
             SubTitle = document.SubTitle;
             ItemTitle = document.Title;
@@ -64,6 +91,35 @@ namespace Solvberget.Core.ViewModels
             Rating = await rating;
 
             IsLoading = false;
+        }
+
+        private MvxCommand<MediaDetailViewModel> _placeHoldRequestCommand;
+        public ICommand PlaceHoldRequestCommand
+        {
+            get
+            {
+                return _placeHoldRequestCommand ??
+                       (_placeHoldRequestCommand = new MvxCommand<MediaDetailViewModel>(ExecutePlaceHoldRequestCommand));
+            }
+        }
+
+        private void ExecutePlaceHoldRequestCommand(MediaDetailViewModel media)
+        {
+            var response = _userService.AddReservation(DocId);
+        }
+
+        private bool _loggedIn;
+        public bool LoggedIn
+        {
+            get { return _loggedIn; }
+            set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
+        }
+
+        private string _docId;
+        public string DocId
+        {
+            get { return _docId; }
+            set { _docId = value; RaisePropertyChanged(() => DocId); }
         }
 
         private DocumentRatingDto _rating;
@@ -204,6 +260,27 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _publisher; }
             set { _publisher = value; RaisePropertyChanged(() => Publisher);}
+        }
+
+        private bool _isReservedByUser;
+        public bool IsReservedByUser
+        {
+            get { return _isReservedByUser; }
+            set { _isReservedByUser = value; RaisePropertyChanged(() => IsReservedByUser); }
+        }
+
+        private string _buttonText;
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set { _buttonText = value; RaisePropertyChanged(() => ButtonText); }
+        }
+
+        private bool _buttonEnabled;
+        public bool ButtonEnabled
+        {
+            get { return _buttonEnabled; }
+            set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
         }
     }
 }

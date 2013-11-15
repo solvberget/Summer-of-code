@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
@@ -105,7 +106,7 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<string> AddReservation(string userId, string documentNumber)
+        public async Task<string> AddReservation(string documentNumber)
         {
             try
             {
@@ -152,5 +153,14 @@ namespace Solvberget.Core.Services
                 };
             }
         }
+
+        public async Task<List<string>> GetUserReserverdDocuments()
+        {
+            var reservations = await GetUerReservations();
+
+            var docs = reservations.Select(r => r.Document.Id).ToList();
+
+            return docs;
+        } 
     }
 }
