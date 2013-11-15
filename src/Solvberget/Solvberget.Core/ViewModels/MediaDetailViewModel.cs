@@ -49,14 +49,17 @@ namespace Solvberget.Core.ViewModels
             if (!LoggedIn)
             {
                 ButtonText = "Logg inn for å reservere";
+                IsReservable = false;
             } 
             else if (IsReservedByUser)
             {
                 ButtonText = "Reservert";
+                IsReservable = false;
             }
             else
             {
                 ButtonText = "Reserver";
+                IsReservable = true;
             }
 
             var document = await _searchService.Get(docId);
@@ -105,6 +108,7 @@ namespace Solvberget.Core.ViewModels
         private void ExecutePlaceHoldRequestCommand(MediaDetailViewModel media)
         {
             var response = _userService.AddReservation(DocId);
+            Load(DocId);
         }
 
         private bool _loggedIn;
@@ -277,6 +281,19 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _buttonEnabled; }
             set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
+        }
+
+        public void AddFavorite()
+        {
+            _userService.AddUserFavorite(DocId);
+        }
+
+        private bool _isReservable;
+
+        public bool IsReservable
+        {
+            get { return _isReservable; }
+            set { _isReservable = value; RaisePropertyChanged(() => IsReservable); }
         }
     }
 }

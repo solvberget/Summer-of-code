@@ -48,7 +48,7 @@ namespace Solvberget.Droid.Views.Fragments
                     NavUtils.NavigateUpFromSameTask(this);
                     break;
                 case Resource.Menu.star:
-                    
+                    ((MediaDetailViewModel) ViewModel).AddFavorite();
                     break;
             }
             return base.OnOptionsItemSelected(item);
