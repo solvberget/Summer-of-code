@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:local="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  orientation="horizontal">
+  orientation="horizontal"
+  local:MvxBind="BackgroundColor SelectedMenuItemBackground(IsSelected)">
 
   <Solvberget.Droid.Views.Components.IconTextView
     android:paddingLeft="16dp"
@@ -14,7 +15,7 @@
     android:textAppearance="?android:attr/textAppearanceListItem"
     android:textColor="#fff"
     local:MvxBind="Text IconChar" />
-  
+
   <TextView
     android:id="@android:id/text1"
     android:layout_width="match_parent"
@@ -29,4 +30,4 @@
     android:background="?android:attr/activatedBackgroundIndicator"
     android:minHeight="?android:attr/listPreferredItemHeight" />
 
-</LinearLayout>
+</Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>

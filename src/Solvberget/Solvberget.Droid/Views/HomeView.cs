@@ -1,3 +1,4 @@
+using System.Linq;
 using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
@@ -228,7 +229,8 @@ namespace Solvberget.Droid.Views
                 }
                 ActionBar.Title = _title = title;
 
-                _drawerList.SetItemChecked(ViewModel.MenuItems.FindIndex(m => m.Id == (int)section), true);
+                ClearAndHighlightActiveMenuItem(section);
+
                 if (_drawer != null)
                 {
                     _drawer.CloseDrawer(_drawerList);
@@ -244,6 +246,17 @@ namespace Solvberget.Droid.Views
                     _drawer.CloseDrawer(_drawerList);
                 }
             }
+        }
+
+        private void ClearAndHighlightActiveMenuItem(HomeViewModel.Section section)
+        {
+            foreach (var menuItem in ViewModel.MenuItems)
+            {
+                menuItem.IsSelected = false;
+            }
+            var selectedMenuItem = ViewModel.MenuItems.SingleOrDefault(m => m.Id == (int) section);
+            if (selectedMenuItem != null)
+                selectedMenuItem.IsSelected = true;
         }
 
         protected override void OnPostCreate(Bundle savedInstanceState)

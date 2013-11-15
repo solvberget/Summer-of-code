@@ -124,6 +124,7 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Converters\AvailabilityAmountToColorConverter.cs" />
+    <Compile Include="Converters\SelectedMenuItemBackgroundConverter.cs" />
     <Compile Include="Converters\StringToHtmlConverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Helpers\CustomPresenter.cs" />
