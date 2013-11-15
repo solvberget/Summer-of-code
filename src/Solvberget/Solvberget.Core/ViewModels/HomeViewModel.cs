@@ -32,42 +32,50 @@ namespace Solvberget.Core.ViewModels
                                   new MenuViewModel
                                       {
                                           Section = Section.OpeningHours,
-                                          Title = "Åpningstider"
+                                          Title = "Åpningstider",
+                                          IconChar = "å"
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.MyPage,
-                                          Title = "Min Side"
+                                          Title = "Min Side",
+                                          IconChar = "m"
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.Search,
-                                          Title = "Søk"
+                                          Title = "Søk",
+                                          IconChar = "s"
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.Lists,
-                                          Title = "Anbefalinger"
+                                          Title = "Anbefalinger",
+                                          IconChar = "h"
                                       },
                                  new MenuViewModel
                                       {
                                           Section = Section.Events,
-                                          Title = "Arrangementer"
+                                          Title = "Arrangementer",
+                                          IconChar = "a"
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.Blogs,
-                                          Title = "Blogger"
+                                          Title = "Blogger",
+                                          IconChar = "e"
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.News,
-                                          Title = "Nyheter"
+                                          Title = "Nyheter",
+                                          IconChar = "n"
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.Contact,
-                                          Title = "Kontakt oss"
+                                          Title = "Kontakt oss",
+                                          IconChar = "c"
                                       },
                               };
         }

@@ -14,5 +14,12 @@ namespace Solvberget.Core.ViewModels
                 Id = (int)_section; RaisePropertyChanged(() => Section);
             }
         }
+
+        private string _iconChar;
+        public string IconChar 
+        {
+            get { return _iconChar; }
+            set { _iconChar = value; RaisePropertyChanged(() => IconChar);}
+        }
     }
 }
