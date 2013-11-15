@@ -105,7 +105,7 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<string> AddReservation(string userId, string documentNumber)
+        public async Task<string> AddReservation(string documentNumber)
         {
             try
             {

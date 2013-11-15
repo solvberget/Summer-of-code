@@ -104,6 +104,7 @@
                         android:orientation="vertical"
                         android:layout_width="fill_parent"
                         android:width="0dip"
+                        android:paddingRight="18dp"
                         android:layout_weight="600"
                         android:layout_height="wrap_content"
                         android:gravity="right">
@@ -112,7 +113,9 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/button1"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            android:color="@color/ui_itembackground"
+                            local:MvxBind="Click PlaceHoldRequestCommand; Enabled LoggedIn" />
                     </LinearLayout>
                 </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
                 <TextView

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Security;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
-using System.Linq;
 
 
 namespace Solvberget.Core.ViewModels
@@ -12,11 +10,9 @@ namespace Solvberget.Core.ViewModels
     public class MyPageReservationsViewModel : BaseViewModel
     {
         private readonly IUserService _service;
-        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public MyPageReservationsViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
+        public MyPageReservationsViewModel(IUserService service)
         {
-            _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
         }
@@ -69,8 +65,6 @@ namespace Solvberget.Core.ViewModels
             Reservations.Remove(reservationViewModel);
 
             var response = await _service.RemoveReservation(reservationViewModel.DocumentNumber);
-
-            var bomtibom = "hoi";
         }
 
         public void AddReservation(ReservationViewModel reservationViewModel)
