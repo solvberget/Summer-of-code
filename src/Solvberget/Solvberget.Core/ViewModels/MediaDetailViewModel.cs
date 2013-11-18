@@ -68,9 +68,8 @@ namespace Solvberget.Core.ViewModels
             Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, docId);
             Year = document.Year.ToString("0000");
             Type = document.Type;
-            TypeAndYear = String.Format("{0} ({1})", Type, Year);
             Author = document.MainContributor;
-            Availability = document.Availability;
+            Availability = document.Availability ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};
             RawDto = document;
             Language = document.Language;
             Languages = document.Languages.ToList();
@@ -171,7 +170,11 @@ namespace Solvberget.Core.ViewModels
         {
             get
             {
-                return string.Format("{0} av {1} tilgjengelig", Availability.AvailableCount, Availability.TotalCount);
+                if (Availability != null)
+                {
+                    return string.Format("{0} av {1} tilgjengelig", Availability.AvailableCount, Availability.TotalCount);  
+                }
+                return "Tilgjengelighet er ikke kjent";
             }
         }
 
@@ -224,13 +227,6 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _itemTitle; }
             set { _itemTitle = value; RaisePropertyChanged(() => ItemTitle);}
-        }
-
-        private string _typeAndYear;
-        public string TypeAndYear 
-        {
-            get { return _typeAndYear; }
-            set { _typeAndYear = value; RaisePropertyChanged(() => TypeAndYear);}
         }
 
         private string _language;
