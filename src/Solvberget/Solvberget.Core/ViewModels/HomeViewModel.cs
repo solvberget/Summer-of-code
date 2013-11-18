@@ -135,6 +135,8 @@ namespace Solvberget.Core.ViewModels
         {
             if (type == typeof(MyPageViewModel))
                 return Section.MyPage;
+            if (type == typeof (LoginViewModel))
+                return Section.MyPage;
             if (type == typeof(SearchViewModel))
                 return Section.Search;
             if (type == typeof (NewsListingViewModel))
@@ -143,9 +145,15 @@ namespace Solvberget.Core.ViewModels
                 return Section.OpeningHours;
             if (type == typeof (SuggestionsListListViewModel))
                 return Section.Lists;
+            if (type == typeof (SuggestionsListViewModel))
+                return Section.Lists;
             if (type == typeof (ContactInfoViewModel))
                 return Section.Contact;
             if (type == typeof (BlogOverviewViewModel))
+                return Section.Blogs;
+            if (type == typeof (BlogViewModel))
+                return Section.Blogs;
+            if (type == typeof (BlogPostViewModel))
                 return Section.Blogs;
             if (type == typeof (EventListViewModel))
                 return Section.Events;

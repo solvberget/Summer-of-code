@@ -21,5 +21,12 @@ namespace Solvberget.Core.ViewModels
             get { return _iconChar; }
             set { _iconChar = value; RaisePropertyChanged(() => IconChar);}
         }
+
+        private bool _isSelected;
+        public bool IsSelected 
+        {
+            get { return _isSelected; }
+            set { _isSelected = value; RaisePropertyChanged(() => IsSelected);}
+        }
     }
 }
