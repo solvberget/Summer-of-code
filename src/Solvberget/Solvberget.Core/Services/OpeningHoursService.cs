@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
-using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 
 namespace Solvberget.Core.Services

@@ -3,7 +3,10 @@ using MonoTouch.UIKit;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Touch.Platform;
+using Cirrious.MvvmCross;
 using Solvberget.Core;
+using Cirrious.CrossCore;
+using Solvberget.Core.ViewModels;
 
 namespace Solvberget.iOS
 {

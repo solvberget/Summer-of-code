@@ -1,4 +1,6 @@
-﻿namespace Solvberget.iOS
+﻿using Solvberget.Core.ViewModels;
+
+namespace Solvberget.iOS
 {
     using Cirrious.CrossCore;
     using Cirrious.MvvmCross.Touch.Platform;
@@ -33,6 +35,9 @@
             var presenter = new MvxSlidingPanelsTouchViewPresenter(this, this.window);
             var setup = new Setup(this, presenter);
             setup.Initialize();
+
+			var appStart = new MvxAppStart<NewsListingViewModel>();
+			Mvx.RegisterSingleton<IMvxAppStart>(appStart);
 
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();

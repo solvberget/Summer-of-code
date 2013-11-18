@@ -103,11 +103,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
     <Compile Include="MvxSlidingPanelsTouchViewPresenter.cs" />
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\HomeView.designer.cs">
       <DependentUpon>HomeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
+    <Compile Include="Views\NewsListingView.cs" />
+    <Compile Include="Views\NewsListingView.designer.cs">
+      <DependentUpon>NewsListingView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -169,15 +173,26 @@
   <ItemGroup>
     <Folder Include="Bootstrap\" />
     <Folder Include="Views\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppDelegate.cs.txt" />
-    <Content Include="ToDo-MvvmCross\_ Touch UI.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView_iPhone.xib" />
     <InterfaceDefinition Include="Views\HomeView_iPad.xib" />
+    <InterfaceDefinition Include="Views\NewsListingView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\NewsListingView_iPad.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\LeftArrow.png" />
+    <BundleResource Include="Images\RightArrow.png" />
+    <BundleResource Include="Images\SlideLeft20.png" />
+    <BundleResource Include="Images\SlideLeft40.png" />
+    <BundleResource Include="Images\SlideRight20.png" />
+    <BundleResource Include="Images\SlideRight40.png" />
+    <BundleResource Include="Images\UpArrow.png" />
   </ItemGroup>
 </Project>

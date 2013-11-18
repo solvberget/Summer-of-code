@@ -9,6 +9,7 @@ using Cirrious.CrossCore.Exceptions;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Views;
 using System.Drawing;
+using Solvberget.Core.ViewModels;
 
 namespace Solvberget.iOS
 {
@@ -89,7 +90,7 @@ namespace Solvberget.iOS
             RootController.View.AddSubview (SlidingPanelsController.View);
 
             // use the first view to create the sliding panels 
-           // AddPanel<LeftPanelViewModel>(PanelType.LeftPanel, viewController as MvxViewController);
+			AddPanel<HomeViewModel>(PanelType.LeftPanel, viewController as MvxViewController);
            // AddPanel<RightPanelViewModel>(PanelType.RightPanel, viewController as MvxViewController);
            // AddPanel<BottomPanelViewModel>(PanelType.BottomPanel, viewController as MvxViewController);
         }
