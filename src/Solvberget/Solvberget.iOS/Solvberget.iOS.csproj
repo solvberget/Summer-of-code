@@ -136,6 +136,10 @@
     </Compile>
     <Compile Include="LoadingOverlay.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Views\OpeningHoursView.cs" />
+    <Compile Include="Views\OpeningHoursView.designer.cs">
+      <DependentUpon>OpeningHoursView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -198,6 +202,7 @@
     <Folder Include="Bootstrap\" />
     <Folder Include="Views\" />
     <Folder Include="Images\" />
+    <Folder Include="Views\TableViewCells\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppDelegate.cs.txt" />
