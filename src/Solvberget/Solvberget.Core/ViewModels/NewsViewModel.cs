@@ -34,19 +34,5 @@ namespace Solvberget.Core.ViewModels
             get { return _uri; }
             set { _uri = value; RaisePropertyChanged(() => Uri);}
         }
-
-        private MvxCommand<NewsViewModel> _selectedInListCommand;
-        public ICommand SelectedInListCommand
-        {
-            get
-            {
-                return _selectedInListCommand ?? (_selectedInListCommand = new MvxCommand<NewsViewModel>(ExecuteSelectedInListCommand));
-            }
-        }
-
-        private void ExecuteSelectedInListCommand(NewsViewModel newsStory)
-        {
-            ShowViewModel<GenericWebViewViewModel>(new {uri = newsStory.Uri.ToString(), title = newsStory.NewsTitle});
-        }
     }
 }
