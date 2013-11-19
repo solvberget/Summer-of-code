@@ -72,6 +72,22 @@ namespace Solvberget.iOS
             base.ChangePresentation(hint);
         }
 
+		public override void Show(MvxViewModelRequest request) {
+			ClearBackStack();
+
+			Show(this.CreateViewControllerFor(request));
+		}
+
+		public void ClearBackStack()
+		{
+			if (MasterNavigationController == null)
+				return;
+
+			MasterNavigationController.PopToRootViewController (true);
+			MasterNavigationController = null;
+		}
+
+
         /// <summary>
         /// Shows the first view.
         /// This method has been overridden to automatically create the sliding panels view controller.

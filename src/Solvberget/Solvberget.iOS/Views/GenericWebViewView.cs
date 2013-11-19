@@ -56,8 +56,11 @@ namespace Solvberget.iOS
 
 		public override void ViewWillDisappear (bool animated)
 		{
-			_webView.StopLoading ();
-			_webView.Delegate = null;
+			if (_webView != null)
+			{
+				_webView.StopLoading ();
+				_webView.Delegate = null;
+			}
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		}
     }
