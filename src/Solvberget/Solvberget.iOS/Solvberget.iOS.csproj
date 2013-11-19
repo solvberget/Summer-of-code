@@ -114,6 +114,10 @@
     </Compile>
     <Compile Include="Bootstrap\DownloadCacheBootstrap.cs" />
     <Compile Include="Views\GenericWebViewView.cs" />
+    <Compile Include="Views\EventListView.cs" />
+    <Compile Include="Views\EventListView.designer.cs">
+      <DependentUpon>EventListView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

@@ -36,7 +36,7 @@ namespace Solvberget.iOS
             var setup = new Setup(this, presenter);
             setup.Initialize();
 
-			var appStart = new MvxAppStart<NewsListingViewModel>();
+			var appStart = new MvxAppStart<EventListViewModel>();
 			Mvx.RegisterSingleton<IMvxAppStart>(appStart);
 
             var startup = Mvx.Resolve<IMvxAppStart>();
