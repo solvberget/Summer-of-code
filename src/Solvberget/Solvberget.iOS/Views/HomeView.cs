@@ -8,10 +8,11 @@ using SlidingPanels.Lib;
 using System.Collections.Generic;
 using SlidingPanels.Lib.PanelContainers;
 using Solvberget.Core.ViewModels;
+using Cirrious.MvvmCross.Binding.Touch.Views;
 
-namespace MvxSlidingPanels.Touch.Views
+namespace Solvberget.iOS
 {
-	public partial class FirstView : MvxViewController
+	public partial class HomeView : MvxViewController
 	{
 		public new HomeViewModel ViewModel
 		{
@@ -42,8 +43,7 @@ namespace MvxSlidingPanels.Touch.Views
 			return new UIBarButtonItem(button);
 		}
 
-		public FirstView ()
-			: base (UserInterfaceIdiomIsPhone ? "HomeView_iPhone" : "HomeView_iPad", null)
+		public HomeView() : base ("HomeView", null)
 		{
 			NavigationItem.LeftBarButtonItem = CreateSliderButton("Images/SlideRight40.png", PanelType.LeftPanel);
 		}
@@ -60,16 +60,18 @@ namespace MvxSlidingPanels.Touch.Views
 		{
 			base.ViewDidLoad();
 
-//			this.AddBindings(
-//				new Dictionary<object, string>()
-//				{
-//					{this, "Title DisplayName"},
-//					{CenterText, "Text CenterText"},
-//					{NavigateText, "Text DoNextLabel"},
-//					{NavigateButton, "TouchUpInside DoNextCommand"}
-//				});
+			var source = new MvxStandardTableViewSource(MenuTableView, UITableViewCellStyle.Default, new NSString("TableViewCell"), "TitleText Title;", UITableViewCellAccessory.None);
 
-			//NavigationController.NavigationBar.TintColor = UIColor.Black;
+			MenuTableView.Source = source;
+
+			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
+			set.Bind(source).To(vm => vm.MenuItems);
+			//set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.);
+			set.Apply();
+
+			MenuTableView.ReloadData();
+
+			View.AddSubview(MenuTableView);
 		}
 
 
@@ -77,7 +79,6 @@ namespace MvxSlidingPanels.Touch.Views
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
-
 		}
 	}
 }
