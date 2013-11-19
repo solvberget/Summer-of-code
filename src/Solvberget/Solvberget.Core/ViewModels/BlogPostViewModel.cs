@@ -50,7 +50,7 @@ namespace Solvberget.Core.ViewModels
         public string Description 
         {
             get { return _description; }
-            set { _description = value; RaisePropertyChanged(() => Description);}
+			set { _description = value; RaisePropertyChanged(() => Description);}
         }
 
         private string _content;

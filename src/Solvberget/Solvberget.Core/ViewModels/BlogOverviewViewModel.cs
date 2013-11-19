@@ -19,6 +19,7 @@ namespace Solvberget.Core.ViewModels
 
         public void Init()
         {
+			Title = "Blogger";
             Load();
         }
 
