@@ -4,6 +4,7 @@ using Cirrious.MvvmCross.Touch.Views;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Solvberget.Core.ViewModels;
+using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
@@ -21,6 +22,9 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
+			var set = this.CreateBindingSet<GenericWebViewView, GenericWebViewViewModel>();
+			set.Bind().For(v => v.Title).To(vm => vm.Title);
+			set.Apply();
 
 			var webFrame = UIScreen.MainScreen.ApplicationFrame;
 
