@@ -4,10 +4,12 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Cirrious.MvvmCross.Touch.Views;
 using Solvberget.Core.ViewModels;
+using Cirrious.MvvmCross.Binding.Touch.Views;
+using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class NewsListingView : MvxViewController
+	public partial class NewsListingView : MvxTableViewController
     {
 		public new NewsListingViewModel ViewModel
 		{
@@ -17,29 +19,19 @@ namespace Solvberget.iOS
 			}
 		}
 
-        static bool UserInterfaceIdiomIsPhone
-        {
-            get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-        }
-
-        public NewsListingView()
-			: base(UserInterfaceIdiomIsPhone ? "NewsListingView_iPhone" : "NewsListingView_iPad", null)
-        {
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
-
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 			
             // Perform any additional setup after loading the view, typically from a nib.
+			var source = new MvxStandardTableViewSource(TableView, "TitleText NewsTitle;");
+			TableView.Source = source;
+
+			var set = this.CreateBindingSet<NewsListingView, NewsListingViewModel>();
+			set.Bind(source).To(vm => vm.Stories);
+			set.Apply();
+
+			TableView.ReloadData();
         }
     }
 }

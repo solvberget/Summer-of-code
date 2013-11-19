@@ -183,8 +183,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView_iPhone.xib" />
     <InterfaceDefinition Include="Views\HomeView_iPad.xib" />
-    <InterfaceDefinition Include="Views\NewsListingView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\NewsListingView_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Images\LeftArrow.png" />

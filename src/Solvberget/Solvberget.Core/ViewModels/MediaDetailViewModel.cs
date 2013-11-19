@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
@@ -7,6 +7,7 @@ using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Solvberget.Core.Properties;
 
 namespace Solvberget.Core.ViewModels
 {
