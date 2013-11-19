@@ -1,0 +1,4 @@
+[submodule "lib/SlidingPanels.Touch"]
+	path = lib/SlidingPanels.Touch
+	url = git@github.com:patbonecrusher/SlidingPanels.Touch.git
+	ignore = dirty

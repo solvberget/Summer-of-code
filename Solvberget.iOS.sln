@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Core.Tests", "te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{4D8BB5F9-4DB5-4B14-951C-31B6C30C86DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingPanels.Touch", "lib\SlidingPanels.Lib\SlidingPanels.Touch.csproj", "{2FD1999D-45B1-4485-BF96-EAB061481945}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingPanels.Touch", "lib\SlidingPanels.Touch\SlidingPanels\SlidingPanels.Lib\SlidingPanels.Touch.csproj", "{2FD1999D-45B1-4485-BF96-EAB061481945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
