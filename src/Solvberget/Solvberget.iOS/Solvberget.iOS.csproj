@@ -112,6 +112,7 @@
     <Compile Include="Views\NewsListingView.designer.cs">
       <DependentUpon>NewsListingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bootstrap\DownloadCacheBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

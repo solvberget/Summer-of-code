@@ -24,8 +24,9 @@ namespace Solvberget.iOS
             base.ViewDidLoad();
 			
             // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, "TitleText NewsTitle;");
+            var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText NewsTitle; DetailText Ingress; SelectionChangedCommand SelectedInListCommand", UITableViewCellAccessory.None);
 			TableView.Source = source;
+
 
 			var set = this.CreateBindingSet<NewsListingView, NewsListingViewModel>();
 			set.Bind(source).To(vm => vm.Stories);
