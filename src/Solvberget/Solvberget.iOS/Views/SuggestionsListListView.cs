@@ -36,11 +36,14 @@ namespace Solvberget.iOS
 			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Name; DetailText Title", UITableViewCellAccessory.DisclosureIndicator);
 			TableView.Source = source;
 
+			var loadingIndicator = new LoadingOverlay(View.Frame);
+			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<SuggestionsListListView, SuggestionsListListViewModel>();
 			set.Bind(source).To(vm => vm.Lists);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowListCommand);
 			set.Bind().For(v => v.Title).To(vm => vm.Title);
+			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
 			TableView.ReloadData();

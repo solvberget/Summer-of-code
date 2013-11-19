@@ -77,7 +77,6 @@ namespace Solvberget.Core.ViewModels
 					Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, n.Id),
                            }).ToList();
             IsLoading = false;
-
         }
     }
 }

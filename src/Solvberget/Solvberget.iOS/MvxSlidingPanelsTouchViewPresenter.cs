@@ -77,7 +77,8 @@ namespace Solvberget.iOS
 			ClearBackStack();
 			try 
 			{
-				Show(this.CreateViewControllerFor(request));
+				var view = this.CreateViewControllerFor(request);
+				Show(view);
 			} catch (Exception) 
 			{
 			}

@@ -134,6 +134,8 @@
     <Compile Include="Views\SuggestionsListView.designer.cs">
       <DependentUpon>SuggestionsListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadingOverlay.cs" />
+    <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
