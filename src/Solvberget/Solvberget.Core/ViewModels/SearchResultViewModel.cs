@@ -20,6 +20,7 @@ namespace Solvberget.Core.ViewModels
                 _type = value; 
                 RaisePropertyChanged(() => Type);
                 RaisePropertyChanged(() => PresentableType);
+				RaisePropertyChanged(() => PresentableTypeWithYear);
             }
         }
 
@@ -31,11 +32,22 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
+		public string PresentableTypeWithYear {
+			get
+			{
+				return string.Format("{0} ({1})", PresentableType, Year);
+			}
+		}
+
         private string _year;
         public string Year 
         {
             get { return _year; }
-            set { _year = value; RaisePropertyChanged(() => Year); }
+            set { 
+				_year = value; 
+				RaisePropertyChanged(() => Year); 
+				RaisePropertyChanged(() => PresentableTypeWithYear);
+			}
         }
 
         private string _docNumber;

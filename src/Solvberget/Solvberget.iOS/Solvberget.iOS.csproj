@@ -130,6 +130,10 @@
     <Compile Include="Views\SuggestionsListListView.designer.cs">
       <DependentUpon>SuggestionsListListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SuggestionsListView.cs" />
+    <Compile Include="Views\SuggestionsListView.designer.cs">
+      <DependentUpon>SuggestionsListView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

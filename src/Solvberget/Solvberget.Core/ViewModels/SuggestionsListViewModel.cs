@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Solvberget.Core.Properties;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -72,7 +73,8 @@ namespace Solvberget.Core.ViewModels
                                Type = n.Type,
                                Year = n.Year.ToString(),
                                DocNumber = n.Id,
-                               Title = n.SubTitle
+								Title = n.SubTitle,
+					Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, n.Id),
                            }).ToList();
             IsLoading = false;
 
