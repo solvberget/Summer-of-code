@@ -118,6 +118,10 @@
     <Compile Include="Views\HomeView.designer.cs">
       <DependentUpon>HomeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BlogOverviewView.cs" />
+    <Compile Include="Views\BlogOverviewView.designer.cs">
+      <DependentUpon>BlogOverviewView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

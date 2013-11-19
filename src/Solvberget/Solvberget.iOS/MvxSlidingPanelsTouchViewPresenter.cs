@@ -72,10 +72,15 @@ namespace Solvberget.iOS
             base.ChangePresentation(hint);
         }
 
-		public override void Show(MvxViewModelRequest request) {
+		public override void Show(MvxViewModelRequest request) 
+		{
 			ClearBackStack();
-
-			Show(this.CreateViewControllerFor(request));
+			try 
+			{
+				Show(this.CreateViewControllerFor(request));
+			} catch (Exception) 
+			{
+			}
 		}
 
 		public void ClearBackStack()
