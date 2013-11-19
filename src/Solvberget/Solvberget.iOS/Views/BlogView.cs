@@ -9,13 +9,13 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class BlogOverviewView : MvxTableViewController
+	public partial class BlogView : MvxTableViewController
     {
-		public new BlogOverviewViewModel ViewModel
+		public new BlogViewModel ViewModel
 		{
 			get
 			{
-				return base.ViewModel as BlogOverviewViewModel;
+				return base.ViewModel as BlogViewModel;
 			}
 		}
 
@@ -32,12 +32,12 @@ namespace Solvberget.iOS
             base.ViewDidLoad();
 			
             // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Description", UITableViewCellAccessory.None);
+			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Published", UITableViewCellAccessory.None);
 			TableView.Source = source;
 
-				
-			var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
-			set.Bind(source).To(vm => vm.Blogs);
+
+			var set = this.CreateBindingSet<BlogView, BlogViewModel>();
+			set.Bind(source).To(vm => vm.Posts);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
 			set.Bind().For(v => v.Title).To(vm => vm.Title);
 			set.Apply();

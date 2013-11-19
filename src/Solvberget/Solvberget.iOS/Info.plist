@@ -16,5 +16,17 @@
 	<string>3.2</string>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string>Sølvberget</string>
+	<key>CFBundleIdentifier</key>
+	<string>solvberget</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon-60@2x</string>
+	</array>
 </dict>
 </plist>

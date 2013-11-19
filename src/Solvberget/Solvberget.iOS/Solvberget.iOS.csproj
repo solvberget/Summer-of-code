@@ -122,6 +122,10 @@
     <Compile Include="Views\BlogOverviewView.designer.cs">
       <DependentUpon>BlogOverviewView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BlogView.cs" />
+    <Compile Include="Views\BlogView.designer.cs">
+      <DependentUpon>BlogView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -198,8 +202,13 @@
     <BundleResource Include="Images\SlideRight20.png" />
     <BundleResource Include="Images\SlideRight40.png" />
     <BundleResource Include="Images\UpArrow.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
 </Project>
