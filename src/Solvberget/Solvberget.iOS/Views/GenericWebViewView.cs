@@ -10,6 +10,8 @@ namespace Solvberget.iOS
 {
 	public class GenericWebViewView : MvxViewController
     {
+		private UIWebView _webView;
+
 		public new GenericWebViewViewModel ViewModel
 		{
 			get
@@ -28,7 +30,7 @@ namespace Solvberget.iOS
 
 			var webFrame = UIScreen.MainScreen.ApplicationFrame;
 
-			var webView = new UIWebView(webFrame) {
+			_webView = new UIWebView(webFrame) {
 				BackgroundColor = UIColor.White,
 				ScalesPageToFit = true,
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
@@ -36,22 +38,27 @@ namespace Solvberget.iOS
 
 
 		
-			webView.LoadStarted += delegate {
+			_webView.LoadStarted += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			};
-			webView.LoadFinished += delegate {
+			_webView.LoadFinished += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			};
-			webView.LoadError += (webview, args) => {
+			_webView.LoadError += (webview, args) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-					webView.LoadHtmlString (String.Format ("<html><center><font size=+5 color='red'>An error occurred:<br>{0}</font></center></html>", args.Error.LocalizedDescription), null);
+					_webView.LoadHtmlString (String.Format ("<html><center><font size=+5 color='red'>An error occurred:<br>{0}</font></center></html>", args.Error.LocalizedDescription), null);
 			};
 
-			View.AddSubview(webView);
+			View.AddSubview(_webView);
 
-			webView.LoadRequest(new NSUrlRequest(new NSUrl(ViewModel.Uri)));
+			_webView.LoadRequest(new NSUrlRequest(new NSUrl(ViewModel.Uri)));
+		}
 
-
+		public override void ViewWillDisappear (bool animated)
+		{
+			_webView.StopLoading ();
+			_webView.Delegate = null;
+			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		}
     }
 }
