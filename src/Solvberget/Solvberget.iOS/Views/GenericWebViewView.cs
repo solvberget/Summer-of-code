@@ -24,9 +24,7 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
-			var set = this.CreateBindingSet<GenericWebViewView, GenericWebViewViewModel>();
-			set.Bind().For(v => v.Title).To(vm => vm.Title);
-			set.Apply();
+			Title = ViewModel.Title;
 
 			var webFrame = UIScreen.MainScreen.ApplicationFrame;
 

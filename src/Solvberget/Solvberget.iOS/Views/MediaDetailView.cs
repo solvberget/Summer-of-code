@@ -42,7 +42,7 @@ namespace Solvberget.iOS
 			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<MediaDetailView, MediaDetailViewModel>();
-			set.Bind().For(v => v.Title).To(vm => vm.Title);
+			Title = ViewModel.Title;
 			set.Bind().For(v => v.Image).To(vm => vm.Image);
 			set.Bind().For(v => v.MediaTitle).To(vm => vm.Title);
 			set.Bind().For(v => v.MediaSubtitle).To(vm => vm.SubTitle);

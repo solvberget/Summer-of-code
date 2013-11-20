@@ -53,7 +53,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(BlogItemViewModel blog)
         {
-            ShowViewModel<BlogViewModel>(new { id = blog.Id });
+			ShowViewModel<BlogViewModel>(new { id = blog.Id, title = blog.Title });
         }
     }
 }

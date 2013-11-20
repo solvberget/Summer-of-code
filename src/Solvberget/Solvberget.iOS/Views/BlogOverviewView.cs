@@ -41,7 +41,7 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
 			set.Bind(source).To(vm => vm.Blogs);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			set.Bind().For(v => v.Title).To(vm => vm.Title);
+			Title = ViewModel.Title;
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();

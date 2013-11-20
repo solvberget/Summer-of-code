@@ -18,8 +18,9 @@ namespace Solvberget.Core.ViewModels
             _blogService = blogService;
         }
 
-        public void Init(long id)
+		public void Init(long id, string title)
         {
+			Title = title;
             Load(id);
         }
 

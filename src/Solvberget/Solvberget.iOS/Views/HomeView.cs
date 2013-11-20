@@ -67,6 +67,7 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
 			set.Bind(source).To(vm => vm.MenuItems);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.SelectMenuItemCommand);
+			Title = "Sølvberget";
 			set.Apply();
 
 			MenuTableView.ReloadData();
