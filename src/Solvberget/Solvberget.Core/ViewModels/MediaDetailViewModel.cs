@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
@@ -26,7 +26,7 @@ namespace Solvberget.Core.ViewModels
 
         public void Init(string title, string docId)
         {
-            Title = title;
+			Title = title ?? "Detaljer";
             Availability = new DocumentAvailabilityDto {AvailableCount = 1};
             Load(docId);
         }
