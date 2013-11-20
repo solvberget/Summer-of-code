@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -38,6 +37,13 @@ namespace Solvberget.Core.ViewModels
             set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
         }
 
+        private bool _loginFailed;
+        public bool LoginFailed
+        {
+            get { return _loginFailed; }
+            set { _loginFailed = value; RaisePropertyChanged(() => LoginFailed); }
+        }
+        
         private MvxCommand<MyPageViewModel> _loginCommand;
         public ICommand LoginCommand
         {
@@ -60,10 +66,12 @@ namespace Solvberget.Core.ViewModels
             if (response.Message.Equals("Autentisering vellykket."))
             {
                 ShowViewModel<MyPageViewModel>();
+                LoginFailed = false;
             }
             else
             {
                 //Popup: Login Failed!
+                LoginFailed = true;
                 _userAuthenticationService.RemoveUser();
                 _userAuthenticationService.RemovePassword();
             }
