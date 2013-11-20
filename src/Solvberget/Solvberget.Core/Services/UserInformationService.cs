@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
+using Solvberget.Core.DTOs.Deprecated.DTO;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 
@@ -147,7 +148,8 @@ namespace Solvberget.Core.Services
                     {
                         Document = new DocumentDto
                         {
-                            Title = e.Message,
+                            Title = "Ingen reservasjoner",
+                            Id = ""
                         }
                     }
                 };
@@ -161,6 +163,14 @@ namespace Solvberget.Core.Services
             var docs = reservations.Select(r => r.Document.Id).ToList();
 
             return docs;
-        } 
+        }
+
+        public async Task<bool> IsFavorite(string documentNumber)
+        {
+            var favs = await GetUserFavorites();
+            var docIds = favs.Select(fav => fav.Document.Id).ToList();
+            
+            return docIds.Contains(documentNumber);
+        }
     }
 }

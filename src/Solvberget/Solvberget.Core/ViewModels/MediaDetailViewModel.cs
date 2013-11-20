@@ -45,18 +45,22 @@ namespace Solvberget.Core.ViewModels
 
             IsReservedByUser = docsReservedByUser.Contains(docId);
             ButtonEnabled = !IsReservedByUser && LoggedIn;
+            IsFavorite = await _userService.IsFavorite(docId);
 
             if (!LoggedIn)
             {
                 ButtonText = "Logg inn for å reservere";
+                IsReservable = false;
             } 
             else if (IsReservedByUser)
             {
                 ButtonText = "Reservert";
+                IsReservable = false;
             }
             else
             {
                 ButtonText = "Reserver";
+                IsReservable = true;
             }
 
             var document = await _searchService.Get(docId);
@@ -105,6 +109,7 @@ namespace Solvberget.Core.ViewModels
         private void ExecutePlaceHoldRequestCommand(MediaDetailViewModel media)
         {
             var response = _userService.AddReservation(DocId);
+            Load(DocId);
         }
 
         private bool _loggedIn;
@@ -277,6 +282,35 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _buttonEnabled; }
             set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
+        }
+
+        public void AddFavorite()
+        {
+            _userService.AddUserFavorite(DocId);
+            IsFavorite = true;
+        }
+
+        public void RemoveFavorite()
+        {
+            _userService.RemoveUserFavorite(DocId);
+            IsFavorite = false;
+        }
+
+        private bool _isReservable;
+        public bool IsReservable
+        {
+            get { return _isReservable; }
+            set { _isReservable = value; RaisePropertyChanged(() => IsReservable); }
+        }
+
+        private bool _isFavorite;
+        public bool IsFavorite
+        {
+            get { return _isFavorite; }
+            set
+            {
+                _isFavorite = value; 
+                RaisePropertyChanged(() => IsFavorite); }
         }
     }
 }

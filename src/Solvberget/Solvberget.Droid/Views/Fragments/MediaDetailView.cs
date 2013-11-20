@@ -1,12 +1,9 @@
 using Android.App;
-using Android.Content;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
-using Cirrious.MvvmCross.Droid.Fragging;
-using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
 
@@ -18,6 +15,7 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private LoadingIndicator _loadingIndicator;
         private ShareActionProvider _shareActionProvider;
+        private IMenu _menu;
 
         protected override void OnViewModelSet()
         {
@@ -27,7 +25,17 @@ namespace Solvberget.Droid.Views.Fragments
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetHomeButtonEnabled(true);
 
+            ((MediaDetailViewModel)ViewModel).PropertyChanged += MediaDetailView_PropertyChanged;
+
             BindLoadingIndicator();
+        }
+
+        void MediaDetailView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsFavorite")
+            {
+                LoadMenu();
+            }
         }
 
         private void BindLoadingIndicator()
@@ -47,8 +55,11 @@ namespace Solvberget.Droid.Views.Fragments
                 case Android.Resource.Id.Home:
                     NavUtils.NavigateUpFromSameTask(this);
                     break;
-                case Resource.Menu.star:
-                    
+                case Resource.Id.menu_is_not_favorite:
+                    ((MediaDetailViewModel) ViewModel).AddFavorite();
+                    break;
+                case Resource.Id.menu_is_favorite:
+                    ((MediaDetailViewModel) ViewModel).RemoveFavorite();
                     break;
             }
             return base.OnOptionsItemSelected(item);
@@ -56,15 +67,9 @@ namespace Solvberget.Droid.Views.Fragments
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.star, menu);
-            MenuInflater.Inflate(Resource.Menu.share, menu);
-            // Locate MenuItem with ShareActionProvider
-            IMenuItem shareMenuItem = menu.FindItem(Resource.Id.menu_share);
-            _shareActionProvider = (ShareActionProvider) shareMenuItem.ActionProvider;
+            _menu = menu;
 
-            CreateShareMenu();
-
-            return base.OnCreateOptionsMenu(menu);
+            return LoadMenu();
         }
 
         private void CreateShareMenu()
@@ -84,6 +89,25 @@ namespace Solvberget.Droid.Views.Fragments
                     .Intent;
                 _shareActionProvider.SetShareIntent(shareIntent);
             }
+        }
+
+        public bool LoadMenu()
+        {
+            _menu.Clear();
+
+            MenuInflater.Inflate(
+                ((MediaDetailViewModel)ViewModel).IsFavorite
+                    ? Resource.Menu.star_is_favorite
+                    : Resource.Menu.star_is_not_favorite, _menu);
+
+            MenuInflater.Inflate(Resource.Menu.share, _menu);
+            // Locate MenuItem with ShareActionProvider
+            IMenuItem shareMenuItem = _menu.FindItem(Resource.Id.menu_share);
+            _shareActionProvider = (ShareActionProvider)shareMenuItem.ActionProvider;
+
+            CreateShareMenu();
+
+            return base.OnCreateOptionsMenu(_menu);
         }
     }
 }

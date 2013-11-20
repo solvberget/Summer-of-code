@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+          android:id="@+id/menu_is_favorite"
+          android:icon="@drawable/ic_3_rating_important"
+          android:showAsAction="ifRoom" />
+</menu>

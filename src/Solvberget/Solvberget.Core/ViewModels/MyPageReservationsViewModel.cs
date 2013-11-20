@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -30,6 +31,11 @@ namespace Solvberget.Core.ViewModels
             var res = await _service.GetUerReservations() ?? new List<ReservationDto>();
 
             Reservations = new ObservableCollection<ReservationViewModel>();
+
+            if (res.Count == 1 && res.First().Document.Title == "Ingen reservasjoner")
+            {
+                res.Remove(res.First());
+            }
 
             foreach (ReservationDto r in res)
             {

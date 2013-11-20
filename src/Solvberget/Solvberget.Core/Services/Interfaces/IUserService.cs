@@ -16,5 +16,6 @@ namespace Solvberget.Core.Services.Interfaces
         Task<string> RemoveReservation(string documentNumber);
         Task<List<ReservationDto>> GetUerReservations();
         Task<List<string>> GetUserReserverdDocuments();
+        Task<bool> IsFavorite(string documentNumber);
     }
 }

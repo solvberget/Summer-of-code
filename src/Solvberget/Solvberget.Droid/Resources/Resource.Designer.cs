@@ -145,31 +145,46 @@ namespace Solvberget.Droid
 			public const int background_card_inverse = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int drawer_shadow_dark = 2130837506;
+			public const int btn_rating_star_off_disabled_holo_dark = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int drawer_shadow_light = 2130837507;
+			public const int btn_rating_star_off_normal_holo_dark = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_drawer_dark = 2130837508;
+			public const int btn_rating_star_on_normal_holo_dark = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_drawer_light = 2130837509;
+			public const int drawer_shadow_dark = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ic_launcher = 2130837510;
+			public const int drawer_shadow_light = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int ic_menu_refresh = 2130837511;
+			public const int ic_3_rating_important = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int ic_menu_share = 2130837512;
+			public const int ic_3_rating_not_important = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int ic_menu_star = 2130837513;
+			public const int ic_drawer_dark = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int splash = 2130837514;
+			public const int ic_drawer_light = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int ic_launcher = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int ic_menu_refresh = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int ic_menu_share = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int ic_menu_star = 2130837518;
+			
+			// aapt resource value: 0x7f02000f
+			public const int splash = 2130837519;
 			
 			static Drawable()
 			{
@@ -211,14 +226,17 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060001
 			public const int linearLayout1 = 2131099649;
 			
+			// aapt resource value: 0x7f06001a
+			public const int menu_is_favorite = 2131099674;
+			
+			// aapt resource value: 0x7f06001b
+			public const int menu_is_not_favorite = 2131099675;
+			
 			// aapt resource value: 0x7f060017
 			public const int menu_refresh = 2131099671;
 			
 			// aapt resource value: 0x7f060019
 			public const int menu_share = 2131099673;
-			
-			// aapt resource value: 0x7f06001a
-			public const int menu_star = 2131099674;
 			
 			// aapt resource value: 0x7f06000e
 			public const int news_ingress = 2131099662;
@@ -461,7 +479,10 @@ namespace Solvberget.Droid
 			public const int share = 2131296258;
 			
 			// aapt resource value: 0x7f090003
-			public const int star = 2131296259;
+			public const int star_is_favorite = 2131296259;
+			
+			// aapt resource value: 0x7f090004
+			public const int star_is_not_favorite = 2131296260;
 			
 			static Menu()
 			{

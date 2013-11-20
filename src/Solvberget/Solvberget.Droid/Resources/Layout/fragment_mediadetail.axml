@@ -118,7 +118,7 @@
                             android:textSize="17dp"
                             android:gravity="center"
                             android:background="@color/ui_background"
-                            local:MvxBind="Click PlaceHoldRequestCommand; Enabled LoggedIn; Text ButtonText" />
+                            local:MvxBind="Click PlaceHoldRequestCommand; Enabled IsReservable; Text ButtonText" />
                     </LinearLayout>
                 </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
                 <TextView

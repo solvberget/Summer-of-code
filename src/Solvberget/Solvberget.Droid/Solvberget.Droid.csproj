@@ -327,11 +327,28 @@
     <AndroidResource Include="Resources\Values-v14\styles.xml" />
     <AndroidResource Include="Resources\Menu\search_menu.xml" />
     <AndroidResource Include="Resources\Menu\share.xml" />
-    <AndroidResource Include="Resources\Menu\star.xml" />
+    <AndroidResource Include="Resources\Menu\star_is_not_favorite.xml" />
     <AndroidResource Include="Resources\Drawable-xhdpi\ic_menu_share.png" />
     <AndroidResource Include="Resources\Drawable-xhdpi\ic_menu_star.png" />
     <AndroidResource Include="Resources\Drawable-mdpi\ic_menu_share.png" />
     <AndroidResource Include="Resources\Drawable-mdpi\ic_menu_star.png" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\btn_rating_star_off_normal_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\btn_rating_star_off_disabled_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\btn_rating_star_on_normal_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\btn_rating_star_on_normal_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\btn_rating_star_off_normal_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\btn_rating_star_off_disabled_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\btn_rating_star_on_normal_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\btn_rating_star_off_normal_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\btn_rating_star_off_disabled_holo_dark.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\ic_menu_star.png" />
+    <AndroidResource Include="Resources\Menu\star_is_favorite.xml" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_3_rating_important.png" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\ic_3_rating_not_important.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_3_rating_not_important.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\ic_3_rating_important.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\ic_3_rating_not_important.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\ic_3_rating_important.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
