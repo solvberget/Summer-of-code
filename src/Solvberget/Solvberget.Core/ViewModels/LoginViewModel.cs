@@ -37,12 +37,26 @@ namespace Solvberget.Core.ViewModels
             set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
         }
 
-        private bool _loginFailed;
-        public bool LoginFailed
+        private bool _wrongUsernameOrPassword;
+        public bool WrongUsernameOrPassword
         {
-            get { return _loginFailed; }
-            set { _loginFailed = value; RaisePropertyChanged(() => LoginFailed); }
+            get { return _wrongUsernameOrPassword; }
+            set { _wrongUsernameOrPassword = value; RaisePropertyChanged(() => WrongUsernameOrPassword); }
         }
+
+        private bool _somethingWentWrong;
+
+        public bool SomethingWentWrong
+        {
+            get { return _somethingWentWrong; }
+            set
+            {
+                _somethingWentWrong = value;
+                RaisePropertyChanged(() => SomethingWentWrong);
+            }
+        }
+
+        
         
         private MvxCommand<MyPageViewModel> _loginCommand;
         public ICommand LoginCommand
@@ -66,12 +80,17 @@ namespace Solvberget.Core.ViewModels
             if (response.Message.Equals("Autentisering vellykket."))
             {
                 ShowViewModel<MyPageViewModel>();
-                LoginFailed = false;
+                WrongUsernameOrPassword = false;
+            }
+            else if (response.Message.Equals("Feil brukernavn eller passord"))
+            {
+                WrongUsernameOrPassword = true;
+                _userAuthenticationService.RemoveUser();
+                _userAuthenticationService.RemovePassword();
             }
             else
             {
-                //Popup: Login Failed!
-                LoginFailed = true;
+                SomethingWentWrong = true;
                 _userAuthenticationService.RemoveUser();
                 _userAuthenticationService.RemovePassword();
             }

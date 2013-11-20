@@ -23,10 +23,19 @@ namespace Solvberget.Droid.Views.Fragments
 
         void LoginView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "LoginFailed" && ((LoginViewModel)ViewModel).LoginFailed)
+            if (e.PropertyName == "WrongUsernameOrPassword" && ((LoginViewModel)ViewModel).WrongUsernameOrPassword)
             {
                 Context context = Application.Context;
                 const string text = "Feil brukernavn eller passord";
+                const ToastLength duration = ToastLength.Long;
+
+                Toast toast = Toast.MakeText(context, text, duration);
+                toast.Show();
+            }
+            else if (e.PropertyName == "SomethingWentWrong" && ((LoginViewModel)ViewModel).SomethingWentWrong)
+            {
+                Context context = Application.Context;
+                const string text = "Noe gikk galt. Prøv igjen senere";
                 const ToastLength duration = ToastLength.Long;
 
                 Toast toast = Toast.MakeText(context, text, duration);
