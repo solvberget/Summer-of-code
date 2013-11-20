@@ -28,5 +28,7 @@
 	<array>
 		<string>Icon-60@2x</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 </dict>
 </plist>
