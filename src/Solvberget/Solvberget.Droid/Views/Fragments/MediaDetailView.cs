@@ -16,7 +16,6 @@ namespace Solvberget.Droid.Views.Fragments
         private LoadingIndicator _loadingIndicator;
         private ShareActionProvider _shareActionProvider;
         private IMenu _menu;
-        private bool _clicked;
 
         protected override void OnViewModelSet()
         {
@@ -33,11 +32,7 @@ namespace Solvberget.Droid.Views.Fragments
 
         void MediaDetailView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "IsFavorite" && _clicked)
-            {
-                LoadMenu();
-            }
-            else if (e.PropertyName == "IsFavorite")
+            if (e.PropertyName == "IsFavorite")
             {
                 LoadMenu();
             }
@@ -61,11 +56,9 @@ namespace Solvberget.Droid.Views.Fragments
                     NavUtils.NavigateUpFromSameTask(this);
                     break;
                 case Resource.Id.menu_is_not_favorite:
-                    _clicked = true;
                     ((MediaDetailViewModel) ViewModel).AddFavorite();
                     break;
                 case Resource.Id.menu_is_favorite:
-                    _clicked = true;
                     ((MediaDetailViewModel) ViewModel).RemoveFavorite();
                     break;
             }
@@ -113,8 +106,6 @@ namespace Solvberget.Droid.Views.Fragments
             _shareActionProvider = (ShareActionProvider)shareMenuItem.ActionProvider;
 
             CreateShareMenu();
-
-            _clicked = false;
 
             return base.OnCreateOptionsMenu(_menu);
         }
