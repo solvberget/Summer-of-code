@@ -13,12 +13,16 @@ using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Views;
 using System.Drawing;
 using Solvberget.Core.ViewModels;
+using System.Collections.Generic;
+using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.iOS
 {
     public class MvxSlidingPanelsTouchViewPresenter : MvxTouchViewPresenter
     {
         private UIWindow _window;
+		private LeftPanelContainer _leftPanel;
+		private Dictionary<Type, bool> _stackClearingViewModels;
 
         public SlidingPanelsNavigationViewController SlidingPanelsController 
         {
@@ -37,7 +41,17 @@ namespace Solvberget.iOS
         public MvxSlidingPanelsTouchViewPresenter(UIApplicationDelegate applicationDelegate, UIWindow window) :
             base(applicationDelegate, window)
         {
-            _window = window;
+			_window = window;
+			_stackClearingViewModels = new Dictionary<Type, bool>();
+
+			RegisterStackClearingViewModel(typeof(NewsListingViewModel));
+			RegisterStackClearingViewModel(typeof(OpeningHoursViewModel));
+			RegisterStackClearingViewModel(typeof(MyPageViewModel));
+			RegisterStackClearingViewModel(typeof(SearchViewModel));
+			RegisterStackClearingViewModel(typeof(SuggestionsListListViewModel));
+			RegisterStackClearingViewModel(typeof(BlogOverviewViewModel));
+			RegisterStackClearingViewModel(typeof(ContactInfoViewModel));
+			RegisterStackClearingViewModel(typeof(EventListViewModel));
         }
 
         public override void ChangePresentation (Cirrious.MvvmCross.ViewModels.MvxPresentationHint hint)
@@ -47,12 +61,22 @@ namespace Solvberget.iOS
 
 		public override void Show(MvxViewModelRequest request) 
 		{
-			ClearBackStack();
 			try 
 			{
 				var view = this.CreateViewControllerFor(request);
+
+				// We clear the back stack up to now and hide the back button if this view should not allow viewstate popping
+				if (_stackClearingViewModels.ContainsKey(request.ViewModelType)) {
+					ClearBackStack();
+				}
+
+				if (_leftPanel != null)
+				{
+					SlidingPanelsController.HidePanel(_leftPanel);
+				}
+
 				Show(view);
-			} catch (Exception) 
+			} catch (Exception e) 
 			{
 			}
 		}
@@ -61,9 +85,7 @@ namespace Solvberget.iOS
 		{
 			if (MasterNavigationController == null)
 				return;
-
-			MasterNavigationController.PopToRootViewController (true);
-			MasterNavigationController = null;
+			MasterNavigationController.PopToRootViewController(false);
 		}
 	
         protected override void ShowFirstView (UIViewController viewController)
@@ -86,8 +108,9 @@ namespace Solvberget.iOS
 
             switch (panelType)
             {
-                case PanelType.LeftPanel:
-                    SlidingPanelsController.InsertPanel(new LeftPanelContainer(viewToAdd));
+				case PanelType.LeftPanel:
+					_leftPanel = new LeftPanelContainer(viewToAdd);
+					SlidingPanelsController.InsertPanel(_leftPanel);
                     break;
 
                     case PanelType.RightPanel:
@@ -107,6 +130,11 @@ namespace Solvberget.iOS
         {
             SlidingPanelsNavigationViewController navController = new SlidingPanelsNavigationViewController (viewController);
             RootController = new UIViewController ();
+
+			if (navController.RespondsToSelector(new MonoTouch.ObjCRuntime.Selector("interactivePopGestureRecognizer")))
+			{
+				navController.InteractivePopGestureRecognizer.Enabled = false;
+			}
             return navController;
         }
 
@@ -116,6 +144,11 @@ namespace Solvberget.iOS
             _window.RootViewController = RootController;
         }
 
+
+		public void RegisterStackClearingViewModel(Type viewModelType)
+		{
+			_stackClearingViewModels[viewModelType] = true;
+		}
     }
 }
 

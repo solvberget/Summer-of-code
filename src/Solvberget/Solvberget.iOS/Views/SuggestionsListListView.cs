@@ -46,6 +46,8 @@ namespace Solvberget.iOS
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
+			NavigationItem.HidesBackButton = true;
+
 			TableView.ReloadData();
         }
     }

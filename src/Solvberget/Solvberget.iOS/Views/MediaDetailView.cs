@@ -3,21 +3,25 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Cirrious.MvvmCross.Touch.Views;
-using Solvberget.Core.ViewModels;
-using Cirrious.MvvmCross.Binding.Touch.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using Solvberget.Core.ViewModels;
 
 namespace Solvberget.iOS
 {
-	public partial class BlogOverviewView : MvxTableViewController
+	public partial class MediaDetailView : MvxViewController
     {
-		public new BlogOverviewViewModel ViewModel
+		public new MediaDetailViewModel ViewModel
 		{
 			get
 			{
-				return base.ViewModel as BlogOverviewViewModel;
+				return base.ViewModel as MediaDetailViewModel;
 			}
 		}
+
+
+        public MediaDetailView() : base("MediaDetailView", null)
+        {
+        }
 
         public override void DidReceiveMemoryWarning()
         {
@@ -32,23 +36,18 @@ namespace Solvberget.iOS
             base.ViewDidLoad();
 			
             // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Description", UITableViewCellAccessory.None);
-			TableView.Source = source;
+			HeaderView.BackgroundColor = UIColor.Red;
 
 			var loadingIndicator = new LoadingOverlay(View.Frame);
 			Add(loadingIndicator);
-				
-			var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
-			set.Bind(source).To(vm => vm.Blogs);
-			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
+
+			var set = this.CreateBindingSet<MediaDetailView, MediaDetailViewModel>();
 			set.Bind().For(v => v.Title).To(vm => vm.Title);
+			set.Bind().For(v => v.Image).To(vm => vm.Image);
+			set.Bind().For(v => v.MediaTitle).To(vm => vm.Title);
+			set.Bind().For(v => v.MediaSubtitle).To(vm => vm.SubTitle);
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
-
 			set.Apply();
-
-			NavigationItem.HidesBackButton = true;
-
-			TableView.ReloadData();
         }
     }
 }

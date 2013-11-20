@@ -38,6 +38,8 @@ namespace Solvberget.iOS
 
 			set.Apply();
 
+			NavigationItem.HidesBackButton = true;
+
 			TableView.ReloadData();
         }
     }

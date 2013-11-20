@@ -140,6 +140,14 @@
     <Compile Include="Views\OpeningHoursView.designer.cs">
       <DependentUpon>OpeningHoursView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.cs" />
+    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.designer.cs">
+      <DependentUpon>OpeningHoursLocationCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaDetailView.cs" />
+    <Compile Include="Views\MediaDetailView.designer.cs">
+      <DependentUpon>MediaDetailView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -221,6 +229,8 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />
+    <InterfaceDefinition Include="Views\TableViewCells\OpeningHoursLocationCell.xib" />
+    <InterfaceDefinition Include="Views\MediaDetailView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
