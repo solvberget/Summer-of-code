@@ -37,27 +37,13 @@ namespace Solvberget.Core.ViewModels
             set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
         }
 
-        private bool _wrongUsernameOrPassword;
-        public bool WrongUsernameOrPassword
+        private string _message;
+        public string Message
         {
-            get { return _wrongUsernameOrPassword; }
-            set { _wrongUsernameOrPassword = value; RaisePropertyChanged(() => WrongUsernameOrPassword); }
+            get { return _message; }
+            set { _message = value; RaisePropertyChanged(() => Message); }
         }
 
-        private bool _somethingWentWrong;
-
-        public bool SomethingWentWrong
-        {
-            get { return _somethingWentWrong; }
-            set
-            {
-                _somethingWentWrong = value;
-                RaisePropertyChanged(() => SomethingWentWrong);
-            }
-        }
-
-        
-        
         private MvxCommand<MyPageViewModel> _loginCommand;
         public ICommand LoginCommand
         {
@@ -76,21 +62,19 @@ namespace Solvberget.Core.ViewModels
             var response = await _service.Login(UserName, Pin);
             IsLoading = false;
 
-
             if (response.Message.Equals("Autentisering vellykket."))
             {
                 ShowViewModel<MyPageViewModel>();
-                WrongUsernameOrPassword = false;
             }
-            else if (response.Message.Equals("Feil brukernavn eller passord"))
+            else if (response.Message.Equals("The remote server returned an error: (401) Unauthorized."))
             {
-                WrongUsernameOrPassword = true;
+                Message = "Feil brukernavn eller passord";
                 _userAuthenticationService.RemoveUser();
                 _userAuthenticationService.RemovePassword();
             }
             else
             {
-                SomethingWentWrong = true;
+                Message = "Noe gikk galt. Prøv igjen senere";
                 _userAuthenticationService.RemoveUser();
                 _userAuthenticationService.RemovePassword();
             }

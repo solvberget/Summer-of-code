@@ -14,6 +14,15 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
+    <TextView
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:gravity="center_horizontal"
+        android:textColor="@color/red"
+        local:MvxBind="Text Message; Visibility Visibility(Message)" />
     <EditText
         android:layout_marginTop="15dp"
         android:id="@+id/editTextUserNameToLogin"
