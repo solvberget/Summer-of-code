@@ -283,7 +283,7 @@ namespace Solvberget.Droid.Views
             if (_drawer != null)
             {
                 var drawerOpen = _drawer.IsDrawerOpen(_drawerList);
-                //when open down't show anything
+                //when open don't show anything
                 for (int i = 0; i < menu.Size(); i++)
                     menu.GetItem(i).SetVisible(!drawerOpen);
             }

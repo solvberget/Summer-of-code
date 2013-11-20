@@ -45,6 +45,7 @@ namespace Solvberget.Core.ViewModels
 
             IsReservedByUser = docsReservedByUser.Contains(docId);
             ButtonEnabled = !IsReservedByUser && LoggedIn;
+            IsFavorite = await _userService.IsFavorite(docId);
 
             if (!LoggedIn)
             {
@@ -286,14 +287,30 @@ namespace Solvberget.Core.ViewModels
         public void AddFavorite()
         {
             _userService.AddUserFavorite(DocId);
+            IsFavorite = true;
+        }
+
+        public void RemoveFavorite()
+        {
+            _userService.RemoveUserFavorite(DocId);
+            IsFavorite = false;
         }
 
         private bool _isReservable;
-
         public bool IsReservable
         {
             get { return _isReservable; }
             set { _isReservable = value; RaisePropertyChanged(() => IsReservable); }
+        }
+
+        private bool _isFavorite;
+        public bool IsFavorite
+        {
+            get { return _isFavorite; }
+            set
+            {
+                _isFavorite = value; 
+                RaisePropertyChanged(() => IsFavorite); }
         }
     }
 }
