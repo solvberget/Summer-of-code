@@ -1,13 +1,13 @@
-<li class='listitem'>
+<li class="listitem">
     <div>
     <a href="{{url}}"><span><img class='list-item-thumb' ng-src='{{imageUrl}}' err-src="{{'img/placeholder/' + type + '.png'}}"></span></a>
     <div class='media-body'>
-        <a href="{{url}}"><h4 class='media-heading'>{{title}}</h4></a>
+        <a href="{{url}}"><h4>{{title}}</h4></a>
         <p ng-show="subtext" ng-bind-html="subtext"></p>
     </div>
     <span class='list-item-actions'>
-        <span class='glyphicon glyphicon-star' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
-        <span class='glyphicon glyphicon-star-empty' ng-show="showFavorite && !isFavorite" ng-click="toggleFavorite()" />
+        <span class='glyphicon glyphicon-star active' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
+        <span class='glyphicon glyphicon-star inactive' ng-show="showFavorite && !isFavorite" ng-click="toggleFavorite()" />
         <span class='glyphicon glyphicon-remove' ng-show="showDelete" ng-click="delete()" />
     </span>
     </div>

@@ -23,11 +23,13 @@
     </div>
 </div>
 <h2 style="margin-top:20px">Balanse</h2>
+<div class="media-item-info-box">
 {{userInfo.balance}},-
+</div>
 <h2 style="margin-top:20px">Gebyrer</h2>
 <div ng-show="userInfo.fines.length ==0">Du har ingen gebyrer.</div>
 <ul class="media-list">
-    <div ng-repeat="fine in userInfo.fines" list-item="fine.document.title" subtext="fine.description + '<br/>' + fine.sum + ',-'" document-type="fine.document.type" document-id="fine.document.id"
+    <div ng-repeat="fine in userInfo.fines" list-item="getFineTitle(fine)" subtext="fine.description + '<br/>' + fine.sum + ',-'" document-type="fine.document.type" document-id="fine.document.id"
          image-url="'img/placeholder/Fine.png'" url="pathForDocument(fine.document)"/>
 </ul>
 <img src="img/ajax-loader.gif" ng-hide="userInfo.fines.length >= 0" />

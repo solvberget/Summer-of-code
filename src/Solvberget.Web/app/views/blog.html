@@ -1,12 +1,16 @@
 <h2>{{blog.title}}</h2>
-<p>{{blog.description}} <a href='{{blog.url}}'>Besøk bloggen.</a></p>
+<div class="media-item-info-box main-box">
+    <p>{{blog.description}}</p>
+    <div><a href='{{blog.url}}'>Besøk bloggen.</a></div>
+</div>
 
 <h2>Siste bloggposter</h2>
+<div ng-repeat="post in blog.posts"
+     ng-click="navigate(post.url)"
+     class="media-item-info-box box-action">
+    <h4><a ng-href="{{post.url}}">{{post.title}}</a></h4>
+    <div class="subhead">Skrevet {{post.published|date:shortDate}}</div>
+    <p ng-bind-html="post.description" />
+</div>
 
-<ul class="media-list">
-    <div ng-repeat="post in blog.posts" list-item="post.title" subtext="post.description" document-type="'Blog'"
-         image-url="post.thumbnailUrl" url="post.url" show-chevron="true"
-         gutter-text-prefix="'Publisert '" gutter-text="post.published|date:mediumDate"/>
-
-    <img src="/img/ajax-loader.gif" ng-hide="blog" />
-</ul>
+<img src="/img/ajax-loader.gif" ng-hide="blog" />

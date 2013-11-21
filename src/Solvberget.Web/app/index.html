@@ -14,10 +14,12 @@
         <!-- build:css(.tmp) styles/main.css -->
 
         <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <!-- endbower -->
 
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/main.css">
+
         <!-- endbuild -->
 </head>
   <body ng-app="Solvberget.WebApp">
@@ -52,11 +54,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand visible-sm visible-md visible-lg">SØLVBERGET</a>
+                        <a class="navbar-brand visible-sm visible-md visible-lg"><img src="img/ic_launcher.png" /></a>
                         <span class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">{{breadcrumb.last.title}}</span>
                     </div>
                     <div id="menu-collapse" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
+                            <li ng-class="{ active: isViewActive('/hjem')}"><a ng-href="{{path('HomeCtrl')}}">Hjem</a></li>
                             <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SearchCtrl')}}">Søk</a></li>
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NewsCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/arrangementer')}"><a ng-href="{{path('EventsCtrl')}}">Arrangementer</a></li>
@@ -103,21 +106,21 @@
     </script>
 
     <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
         <!-- build:js scripts/plugins.js -->
 
         <!-- bower:js -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <!-- endbower -->
 
         <!-- endbuild -->
 
         <!-- build:js scripts/modules.js -->
-    <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-cookies.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -147,4 +150,10 @@
       // collapse menu when menu item is clicked
       $(document).ready(function () {
           $("#menu li a").click(function(event) {
-              $("#menu-collapse").removeClass("in").addClass("
+              $("#menu-collapse").removeClass("in").addClass("collapse");
+          });
+      });
+
+  </script>
+</body>
+</html>

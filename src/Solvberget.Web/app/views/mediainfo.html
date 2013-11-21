@@ -56,11 +56,12 @@
         <div class="meta-label">Tilgjengelighet</div>
     </div>
     <div class="col-xs-12 col-md-6">
-        <i class="glyphicon glyphicon-ok-sign text-success" ng-hide="!document.availability || document.availability.availableCount == 0"></i>
-        <i class="glyphicon glyphicon-minus-sign text-error" ng-show="document.availability.availableCount == 0"></i>
-        <span ng-show="document.availability">{{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån.</span>
-        <span ng-show="document.availability.estimatedAvailableDate">Tidligst tilgjengelig {{document.availability.estimatedAvailableDate|date:mediumDate}}</span>
-        <span class="meta-value placeholder" ng-hide="document.availability">Ukjent</span>
+        <div ng-show="document.availability">
+            <i class="glyphicon glyphicon-ok-sign text-success" ng-hide="!document.availability || document.availability.availableCount == 0"></i>
+            <i class="glyphicon glyphicon-minus-sign text-error" ng-show="document.availability.availableCount == 0"></i>
+            {{document.availability.availableCount}} av {{document.availability.totalCount}} er tilgjengelig for utlån.</div>
+        <div ng-show="document.availability.estimatedAvailableDate">Tidligst tilgjengelig {{document.availability.estimatedAvailableDate|date:mediumDate}}</div>
+        <div class="meta-value placeholder" ng-hide="document.availability">Ukjent</div>
     </div>
     </div>
 </div>

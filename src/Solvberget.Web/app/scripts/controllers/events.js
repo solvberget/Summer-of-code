@@ -25,10 +25,9 @@ angular.module('Solvberget.WebApp')
 
             if(item.start.hour > 0 || item.end.hour > 0) subtext += ' kl.' + $filter('date')(item.start, 'hh:mm');
 
-            subtext += "<br/><span style='font-size:0.8em'>" + item.location + ' | ';
+            subtext += '<br/>Pris: ';
             if(item.ticketPrice == 0) subtext += 'Gratis';
             else subtext += item.ticketPrice + ',-';
-
             subtext += '</span>';
 
             return subtext;

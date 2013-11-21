@@ -1,8 +1,9 @@
 <h2>Arrangementer</h2>
 
-<ul class="media-list">
-    <div ng-repeat="event in events" list-item="event.name" subtext="getSubText(event)" document-type="'Event'"
-         image-url="event.imageUrl" url="event.ticketUrl" show-chevron="true" />
-
-    <img src="/img/ajax-loader.gif" ng-hide="events.length > 0" />
-</ul>
+<div ng-repeat="event in events"
+     ng-click="navigate(event.ticketUrl)"
+     class="media-item-info-box box-action">
+    <h4><a ng-href="{{event.ticketUrl}}">{{event.name}}</a></h4>
+    <div class="subhead">{{event.location}}</div>
+    <p ng-bind-html="getSubText(event)" />
+</div>

@@ -1,9 +1,9 @@
-<h2>Nyheter</h2>
+<h2>Nyheter fra <a href="http://www.solvberget.no">Sølvberget.no</a></h2>
 
-<ul class="media-list">
-    <div ng-repeat="item in items" list-item="item.title" subtext="item.ingress" document-type="'News'"
-         gutter-text-prefix="'Publisert '" gutter-text="item.published|date:mediumDate"
-         image-url="'img/placeholder/News.png'" url="item.link" show-chevron="true" />
-
-    <img src="/img/ajax-loader.gif" ng-hide="items.length > 0" />
-</ul>
+<div ng-repeat="item in items"
+     ng-click="navigate(item.link)"
+     class="media-item-info-box box-action">
+    <h4><a ng-href="{{item.link}}">{{item.title}}</a></h4>
+    <div class="subhead">{{item.published|date:shortDate}}</div>
+    <p>{{item.ingress}}</p>
+</div>

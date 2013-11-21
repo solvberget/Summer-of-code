@@ -38,7 +38,7 @@ angular.module('Solvberget.WebApp')
                     else $location.path('/');
                 }).error(function(data, status, headers, config) {
 
-                });
+            });
         };
 
   });
