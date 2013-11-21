@@ -272,9 +272,10 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             'bower_components/**/*',
-            'images/{,*/}*.{gif,webp}',
-            'styles/fonts/*',
-              '{,*/}*.html'
+            'img/**/*',
+            'styles/**/*',
+              '{,*/}*.html',
+              'app.config.json'
           ]
         }, {
           expand: true,
@@ -390,9 +391,9 @@ module.exports = function (grunt) {
     'cdnify',
     'ngmin',
     'cssmin',
-    'uglify',
+    //'uglify',
     'rev',
-    //'usemin',
+    'usemin',
     'compress'
   ]);
 
