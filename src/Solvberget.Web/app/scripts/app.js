@@ -111,8 +111,12 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 templateUrl : 'views/login.html',
                 controller: 'LoginCtrl'
             })
+            .when('/', {
+                templateUrl : 'views/home.html',
+                controller: 'HomeCtrl'
+            })
             .otherwise({
-                redirectTo: '/nyheter'
+                redirectTo: '/'
             });
 
     }).run(function($rootScope, $location, $route, $http, $cookies) {

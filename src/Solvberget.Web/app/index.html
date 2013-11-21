@@ -72,10 +72,15 @@
                 </div>
             </div>
 
-            <ol class="breadcrumb visible-sm visible-md visible-lg">
-                <li><a href="/#"><i class="glyphicon glyphicon-home"></i></a></li>
-                <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
-            </ol>
+            <div id="breadcrumb" class="visible-sm visible-md visible-lg">
+
+                <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/#"><i class="glyphicon glyphicon-home"></i></a></li>
+                    <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
+                </ol>
+                </div>
+            </div>
             <div class="container">
 
                 <div id="appMessageContainer" style="display:none">
@@ -86,6 +91,11 @@
                 <div ng-view></div>
 
             </div> <!-- /container -->
+            <footer>
+                <span>Sølvberget, Stavanger kulturhus (<a href="https://maps.google.com/maps?q=S%C3%B8lvberggata+2,+Stavanger,+Norge&hl=no&ie=UTF8&ll=58.971207,5.733576&spn=0.006625,0.014763&sll=58.971527,5.734706&sspn=0.006625,0.014763&t=h&hnear=S%C3%B8lvberggata+2,+4006+Stavanger,+Rogaland,+Norge&z=16">kart</a>, <a href="post@stavanger-kulturhus.no">epost</a>)</span><span> / </span>
+                <span>Sølvberggt. 2, Pb 310, 4002 Stavanger - Tlf 51 50 74 65</span><span> / </span>
+                <span>Design, programmering og drift: <a href="http://www.no.capgemini.com">Capgemini</a></span>
+            </footer>
 
         </div>
     </div>
@@ -124,6 +134,7 @@
     <script src="scripts/controllers/search.js"></script>
     <script src="scripts/controllers/media.detaljer.js"></script>
     <script src="scripts/controllers/events.js"></script>
+    <script src="scripts/controllers/home.js"></script>
 
     <script src="scripts/directives/listItem.js"></script>
     <script src="scripts/directives/errSrc.js"></script>
@@ -141,6 +152,17 @@
               $("#menu-collapse").removeClass("in").addClass("collapse");
           });
       });
+
+      // WP8/IE10Mobile viewport fix
+      if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+          var msViewportStyle = document.createElement("style")
+          msViewportStyle.appendChild(
+                  document.createTextNode(
+                          "@-ms-viewport{width:auto!important}"
+                  )
+          )
+          document.getElementsByTagName("head")[0].appendChild(msViewportStyle)
+      }
 
   </script>
 </body>
