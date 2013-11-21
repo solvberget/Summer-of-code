@@ -102,6 +102,7 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (BlogPostViewModel), this);
             customPresenter.Register(typeof (LoginViewModel), this);
             customPresenter.Register(typeof (EventListViewModel), this);
+            customPresenter.Register(typeof (HomeScreenViewModel), this);
         }
 
         /// <summary>
@@ -202,6 +203,15 @@ namespace Solvberget.Droid.Views
                         
                         frag = new BlogOverviewView();
                         title = "Blogger";
+                        break;
+                    }
+                    case HomeViewModel.Section.Home:
+                    {
+                        if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as HomeScreenView != null)
+                            return true;
+
+                        frag = new HomeScreenView();
+                        title = "Startside";
                         break;
                     }
                     case HomeViewModel.Section.Unknown:

@@ -21,6 +21,7 @@ namespace Solvberget.Core.ViewModels
             News,
             OpeningHours,
             Contact,
+            Home,
             Unknown
         }
 
@@ -29,6 +30,12 @@ namespace Solvberget.Core.ViewModels
             _userAuthenticationService = userAuthenticationDataService;
             _menuItems = new List<MenuViewModel>
                               {
+                                  new MenuViewModel
+                                      {
+                                          Section = Section.Home,
+                                          Title = "Hjem",
+                                          IconChar = "c"
+                                      },
                                   new MenuViewModel
                                       {
                                           Section = Section.OpeningHours,
@@ -107,6 +114,9 @@ namespace Solvberget.Core.ViewModels
                     else
                         ShowViewModel<MyPageViewModel>();
                     break;
+                case Section.Home:
+                    ShowViewModel<HomeScreenViewModel>();
+                    break;
                 case Section.Search:
                     ShowViewModel<SearchViewModel>();
                     break;
@@ -135,6 +145,8 @@ namespace Solvberget.Core.ViewModels
         {
             if (type == typeof(MyPageViewModel))
                 return Section.MyPage;
+            if (type == typeof(HomeScreenViewModel))
+                return Section.Home;
             if (type == typeof (LoginViewModel))
                 return Section.MyPage;
             if (type == typeof(SearchViewModel))
