@@ -22,6 +22,8 @@ namespace Solvberget.Nancy
 {
     public class Bootstrapper : AutofacNancyBootstrapper
     {
+        public static ILifetimeScope Container { get; private set; }
+
         protected override NancyInternalConfiguration InternalConfiguration
         {
             get { return NancyInternalConfiguration.WithOverrides(OverrideDefaultConfiguration); }
@@ -49,6 +51,8 @@ namespace Solvberget.Nancy
         
         protected override void ConfigureApplicationContainer(ILifetimeScope container)
         {
+            Container = container;
+
             var jsonSettings = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,

@@ -13,10 +13,11 @@ namespace Solvberget.Nancy.Authentication
             UserInfo = userInfo;
         }
 
-        public UserInfo UserInfo { get; private set; }
+        public UserInfo UserInfo { get; internal set; }
 
         public string UserName { get; private set; }
         public string Password { get; set; }
         public IEnumerable<string> Claims { get; private set; }
+        public bool RequireRefresh { get; set; }
     }
 }
