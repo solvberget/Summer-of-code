@@ -19,6 +19,7 @@ namespace Solvberget.Core.ViewModels
 
         public void Init()
         {
+			Title = "Arrangementer";
             Load();
         }
 
@@ -35,7 +36,7 @@ namespace Solvberget.Core.ViewModels
                     Location = ev.Location,
                     Price = "Kr. " + ev.TicketPrice.ToString("0.##"),
                     Date = ev.Start.ToString("dd.MM.yyyy"),
-                    Time =  "kl. " + ev.Start.ToString("HH:mm") + " - kl. " + ev.End.ToString("HH:mm"),
+                    Time =  "kl. " + ev.Start.ToString("HH:mm") + "-" + ev.End.ToString("HH:mm"),
                     Url = ev.TicketUrl
                 }).ToList();
 

@@ -11,7 +11,7 @@
     <RootNamespace>Solvberget.Core.DTOs</RootNamespace>
     <AssemblyName>Solvberget.Core.DTOs</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile104</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <FileUpgradeFlags>
@@ -59,41 +59,6 @@
     <Compile Include="CdDto.cs" />
     <Compile Include="ContactInfoDto.cs" />
     <Compile Include="ContactPersonDto.cs" />
-    <Compile Include="Deprecated\DTO\AudioBook.cs" />
-    <Compile Include="Deprecated\DTO\AvailabilityInformation.cs" />
-    <Compile Include="Deprecated\DTO\Blog.cs" />
-    <Compile Include="Deprecated\DTO\BlogEntry.cs" />
-    <Compile Include="Deprecated\DTO\BokBasenBook.cs" />
-    <Compile Include="Deprecated\DTO\BokElskereBok.cs" />
-    <Compile Include="Deprecated\DTO\Book.cs" />
-    <Compile Include="Deprecated\DTO\Cd.cs" />
-    <Compile Include="Deprecated\DTO\ContactInformation.cs" />
-    <Compile Include="Deprecated\DTO\ContactPerson.cs" />
-    <Compile Include="Deprecated\DTO\Document.cs" />
-    <Compile Include="Deprecated\DTO\DocumentItem.cs" />
-    <Compile Include="Deprecated\DTO\Event.cs" />
-    <Compile Include="Deprecated\DTO\ExtensionHelpers.cs" />
-    <Compile Include="Deprecated\DTO\Film.cs" />
-    <Compile Include="Deprecated\DTO\Fine.cs" />
-    <Compile Include="Deprecated\DTO\Game.cs" />
-    <Compile Include="Deprecated\DTO\ImdbObject.cs" />
-    <Compile Include="Deprecated\DTO\Information.cs" />
-    <Compile Include="Deprecated\DTO\ItemRule.cs" />
-    <Compile Include="Deprecated\DTO\Journal.cs" />
-    <Compile Include="Deprecated\DTO\LanguageCourse.cs" />
-    <Compile Include="Deprecated\DTO\LastFmAlbum.cs" />
-    <Compile Include="Deprecated\DTO\LibraryList.cs" />
-    <Compile Include="Deprecated\DTO\Loan.cs" />
-    <Compile Include="Deprecated\DTO\NewsItem.cs" />
-    <Compile Include="Deprecated\DTO\Notification.cs" />
-    <Compile Include="Deprecated\DTO\OpeningHoursInformation.cs" />
-    <Compile Include="Deprecated\DTO\Organization.cs" />
-    <Compile Include="Deprecated\DTO\Person.cs" />
-    <Compile Include="Deprecated\DTO\RequestReply.cs" />
-    <Compile Include="Deprecated\DTO\Reservation.cs" />
-    <Compile Include="Deprecated\DTO\ReservationReply.cs" />
-    <Compile Include="Deprecated\DTO\SheetMusic.cs" />
-    <Compile Include="Deprecated\DTO\UserInfo.cs" />
     <Compile Include="DocumentAvailabilityDto.cs" />
     <Compile Include="DocumentDto.cs" />
     <Compile Include="DocumentRatingDto.cs" />

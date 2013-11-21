@@ -19,21 +19,33 @@ namespace Solvberget.Core.ViewModels
         public string Price 
         {
             get { return _price; }
-            set { _price = value; RaisePropertyChanged(() => Price);}
+            set { 
+				_price = value; 
+				RaisePropertyChanged(() => Price);
+				RaisePropertyChanged(() => TimeAndPlaceSummary);
+			}
         }
 
         private string _time;
         public string Time 
         {
             get { return _time; }
-            set { _time = value; RaisePropertyChanged(() => Time);}
+            set { 
+				_time = value; 
+				RaisePropertyChanged(() => Time);
+				RaisePropertyChanged(() => TimeAndPlaceSummary);
+			}
         }
 
         private string _location;
         public string Location 
         {
             get { return _location; }
-            set { _location = value; RaisePropertyChanged(() => Location);}
+            set { 
+				_location = value; 
+				RaisePropertyChanged(() => Location);
+				RaisePropertyChanged(() => TimeAndPlaceSummary);
+			}
         }
 
         private string _imageUrl;
@@ -54,7 +66,16 @@ namespace Solvberget.Core.ViewModels
         public string Date 
         {
             get { return _date; }
-            set { _date = value; RaisePropertyChanged(() => Date);}
+            set { 
+				_date = value; 
+				RaisePropertyChanged(() => Date);
+				RaisePropertyChanged(() => TimeAndPlaceSummary);
+			}
         }
+
+		public string TimeAndPlaceSummary 
+		{
+			get { return string.Format("{0} {1} - {2}", Date, Time, Price); }
+		}
     }
 }

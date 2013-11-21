@@ -5,10 +5,9 @@ using System.Resources;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.DTOs;
-using Solvberget.Core.DTOs.Deprecated.DTO;
-using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Solvberget.Core.Properties;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -27,7 +26,7 @@ namespace Solvberget.Core.ViewModels
 
         public void Init(string title, string docId)
         {
-            Title = title;
+			Title = title ?? "Detaljer";
             Availability = new DocumentAvailabilityDto {AvailableCount = 1};
             Load(docId);
         }

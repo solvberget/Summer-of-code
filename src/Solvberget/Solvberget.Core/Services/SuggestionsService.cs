@@ -1,10 +1,10 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
-using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
+using Solvberget.Core.Properties;
 
 namespace Solvberget.Core.Services
 {

@@ -1,5 +1,7 @@
 using System;
 using Solvberget.Core.ViewModels.Base;
+using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace Solvberget.Core.ViewModels
 {

@@ -102,12 +102,61 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
+    <Compile Include="MvxSlidingPanelsTouchViewPresenter.cs" />
+    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
+    <Compile Include="Views\NewsListingView.cs" />
+    <Compile Include="Views\NewsListingView.designer.cs">
+      <DependentUpon>NewsListingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bootstrap\DownloadCacheBootstrap.cs" />
+    <Compile Include="Views\GenericWebViewView.cs" />
+    <Compile Include="Views\EventListView.cs" />
+    <Compile Include="Views\EventListView.designer.cs">
+      <DependentUpon>EventListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.cs" />
+    <Compile Include="Views\HomeView.designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlogOverviewView.cs" />
+    <Compile Include="Views\BlogOverviewView.designer.cs">
+      <DependentUpon>BlogOverviewView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlogView.cs" />
+    <Compile Include="Views\BlogView.designer.cs">
+      <DependentUpon>BlogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuggestionsListListView.cs" />
+    <Compile Include="Views\SuggestionsListListView.designer.cs">
+      <DependentUpon>SuggestionsListListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SuggestionsListView.cs" />
+    <Compile Include="Views\SuggestionsListView.designer.cs">
+      <DependentUpon>SuggestionsListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingOverlay.cs" />
+    <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Views\OpeningHoursView.cs" />
+    <Compile Include="Views\OpeningHoursView.designer.cs">
+      <DependentUpon>OpeningHoursView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.cs" />
+    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.designer.cs">
+      <DependentUpon>OpeningHoursLocationCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaDetailView.cs" />
+    <Compile Include="Views\MediaDetailView.designer.cs">
+      <DependentUpon>MediaDetailView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
       <Project>{747706F4-ECBF-4D50-8D72-B0DDCC18395C}</Project>
       <Name>Solvberget.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\SlidingPanels.Touch\SlidingPanels\SlidingPanels.Lib\SlidingPanels.Touch.csproj">
+      <Project>{2FD1999D-45B1-4485-BF96-EAB061481945}</Project>
+      <Name>SlidingPanels.Touch</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -138,14 +187,55 @@
     <Reference Include="System.Windows">
       <HintPath>..\..\packages\MvvmCross.PortableSupport.3.0.6\lib\MonoTouch40\System.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.File.Touch">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.File.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.File.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.File">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.File.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Visibility.Touch">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.Visibility.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Visibility">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.Visibility.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.DownloadCache.Touch">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.DownloadCache.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.DownloadCache.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.DownloadCache">
+      <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.DownloadCache.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.DownloadCache.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />
+    <Folder Include="Views\" />
+    <Folder Include="Images\" />
+    <Folder Include="Views\TableViewCells\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppDelegate.cs.txt" />
-    <Content Include="ToDo-MvvmCross\_ Touch UI.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup>
+    <BundleResource Include="Images\LeftArrow.png" />
+    <BundleResource Include="Images\RightArrow.png" />
+    <BundleResource Include="Images\SlideLeft20.png" />
+    <BundleResource Include="Images\SlideLeft40.png" />
+    <BundleResource Include="Images\SlideRight20.png" />
+    <BundleResource Include="Images\SlideRight40.png" />
+    <BundleResource Include="Images\UpArrow.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\HomeView.xib" />
+    <InterfaceDefinition Include="Views\TableViewCells\OpeningHoursLocationCell.xib" />
+    <InterfaceDefinition Include="Views\MediaDetailView.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
 </Project>
