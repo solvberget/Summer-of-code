@@ -78,7 +78,7 @@
         android:width="0dip"
         android:layout_weight="600"
         android:layout_height="wrap_content"
-        local:MvxBind="">
+        local:MvxBind="Visibility Visibility(ListEmpty) ">
         <Button
             android:layout_width="85dp"
             android:layout_height="wrap_content"

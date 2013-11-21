@@ -155,6 +155,7 @@
     <Compile Include="Views\Fragments\BlogView.cs" />
     <Compile Include="Views\Fragments\BlogPostView.cs" />
     <Compile Include="Views\Fragments\EventListView.cs" />
+    <Compile Include="Views\Fragments\HomeScreenView.cs" />
     <Compile Include="Views\Fragments\LoginView.cs" />
     <Compile Include="Views\Fragments\SearchResultCategoryView.cs" />
     <Compile Include="Views\Fragments\OpeningHoursView.cs" />
@@ -283,6 +284,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout-large\page_home_view.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\fragment_home_screen.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

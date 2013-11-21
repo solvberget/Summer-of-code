@@ -33,9 +33,20 @@ namespace Solvberget.Droid.Views.Fragments
 
         void MediaDetailView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "IsFavorite" && _starIsClicked)
+            switch (e.PropertyName)
             {
-                LoadMenu();
+                case "IsFavorite":
+                    if (_starIsClicked)
+                    {
+                        LoadMenu();
+                        if (((MediaDetailViewModel)ViewModel).IsFavorite)
+                            Toast.MakeText(Application.Context, "Lagt til som favoritt", ToastLength.Long).Show();
+                    }
+                    break;
+                case "IsReservable":
+                    if (((MediaDetailViewModel)ViewModel).IsReservedByUser)
+                        Toast.MakeText(Application.Context, "Dokumentet er reservert", ToastLength.Long).Show();
+                    break;
             }
         }
 
@@ -57,8 +68,16 @@ namespace Solvberget.Droid.Views.Fragments
                     NavUtils.NavigateUpFromSameTask(this);
                     break;
                 case Resource.Id.menu_is_not_favorite:
-                    _starIsClicked = true;
-                    ((MediaDetailViewModel)ViewModel).AddFavorite();
+                    if (((MediaDetailViewModel)ViewModel).LoggedIn)
+                    {
+                        _starIsClicked = true;
+                        ((MediaDetailViewModel)ViewModel).AddFavorite();
+                    }
+                    else
+                    {
+                        Toast.MakeText(Application.Context, "Logg inn for å legge til favoritter", ToastLength.Long).Show();
+                    }
+                    
                     break;
                 case Resource.Id.menu_is_favorite:
                     _starIsClicked = true;

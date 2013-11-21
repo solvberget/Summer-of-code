@@ -208,8 +208,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060000
 			public const int MvxBindingTagUnique = 2131099648;
 			
-			// aapt resource value: 0x7f060002
-			public const int button1 = 2131099650;
+			// aapt resource value: 0x7f060003
+			public const int button1 = 2131099651;
 			
 			// aapt resource value: 0x7f060011
 			public const int buttonSignIn = 2131099665;
@@ -229,8 +229,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060014
 			public const int left_drawer = 2131099668;
 			
-			// aapt resource value: 0x7f060001
-			public const int linearLayout1 = 2131099649;
+			// aapt resource value: 0x7f060002
+			public const int linearLayout1 = 2131099650;
 			
 			// aapt resource value: 0x7f06001a
 			public const int menu_is_favorite = 2131099674;
@@ -271,8 +271,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f060009
 			public const int searchViewPagerTabStrip = 2131099657;
 			
-			// aapt resource value: 0x7f060003
-			public const int textView1 = 2131099651;
+			// aapt resource value: 0x7f060001
+			public const int textView1 = 2131099649;
 			
 			// aapt resource value: 0x7f06000b
 			public const int textView2 = 2131099659;
@@ -334,133 +334,136 @@ namespace Solvberget.Droid
 			public const int fragment_eventlisting = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int fragment_hourslisting = 2130903045;
+			public const int fragment_home_screen = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int fragment_mediadetail = 2130903046;
+			public const int fragment_hourslisting = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int fragment_newslisting = 2130903047;
+			public const int fragment_mediadetail = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int fragment_profile = 2130903048;
+			public const int fragment_newslisting = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int fragment_profile_favorites = 2130903049;
+			public const int fragment_profile = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int fragment_profile_fines = 2130903050;
+			public const int fragment_profile_favorites = 2130903050;
 			
 			// aapt resource value: 0x7f03000b
-			public const int fragment_profile_loans = 2130903051;
+			public const int fragment_profile_fines = 2130903051;
 			
 			// aapt resource value: 0x7f03000c
-			public const int fragment_profile_messages = 2130903052;
+			public const int fragment_profile_loans = 2130903052;
 			
 			// aapt resource value: 0x7f03000d
-			public const int fragment_profile_personalia = 2130903053;
+			public const int fragment_profile_messages = 2130903053;
 			
 			// aapt resource value: 0x7f03000e
-			public const int fragment_profile_reservations = 2130903054;
+			public const int fragment_profile_personalia = 2130903054;
 			
 			// aapt resource value: 0x7f03000f
-			public const int fragment_search = 2130903055;
+			public const int fragment_profile_reservations = 2130903055;
 			
 			// aapt resource value: 0x7f030010
-			public const int fragment_searchresults = 2130903056;
+			public const int fragment_search = 2130903056;
 			
 			// aapt resource value: 0x7f030011
-			public const int fragment_suggestions_list = 2130903057;
+			public const int fragment_searchresults = 2130903057;
 			
 			// aapt resource value: 0x7f030012
-			public const int fragment_suggestions_list_list = 2130903058;
+			public const int fragment_suggestions_list = 2130903058;
 			
 			// aapt resource value: 0x7f030013
-			public const int item_blog = 2130903059;
+			public const int fragment_suggestions_list_list = 2130903059;
 			
 			// aapt resource value: 0x7f030014
-			public const int item_blogpost = 2130903060;
+			public const int item_blog = 2130903060;
 			
 			// aapt resource value: 0x7f030015
-			public const int item_contactinfobox = 2130903061;
+			public const int item_blogpost = 2130903061;
 			
 			// aapt resource value: 0x7f030016
-			public const int item_contactperson = 2130903062;
+			public const int item_contactinfobox = 2130903062;
 			
 			// aapt resource value: 0x7f030017
-			public const int item_event = 2130903063;
+			public const int item_contactperson = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int item_favorite = 2130903064;
+			public const int item_event = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int item_fine = 2130903065;
+			public const int item_favorite = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int item_genericfield = 2130903066;
+			public const int item_fine = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int item_genrestring = 2130903067;
+			public const int item_genericfield = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int item_loan = 2130903068;
+			public const int item_genrestring = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int item_menu = 2130903069;
+			public const int item_loan = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int item_message = 2130903070;
+			public const int item_menu = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int item_news = 2130903071;
+			public const int item_message = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int item_openinghour_pair = 2130903072;
+			public const int item_news = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int item_openinghours = 2130903073;
+			public const int item_openinghour_pair = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int item_reservation = 2130903074;
+			public const int item_openinghours = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int item_searchresult = 2130903075;
+			public const int item_reservation = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int item_suggestions_list_summary = 2130903076;
+			public const int item_searchresult = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int login = 2130903077;
+			public const int item_suggestions_list_summary = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int mediadetail_audiobook = 2130903078;
+			public const int login = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int mediadetail_book = 2130903079;
+			public const int mediadetail_audiobook = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int mediadetail_cd = 2130903080;
+			public const int mediadetail_book = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int mediadetail_film = 2130903081;
+			public const int mediadetail_cd = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int mediadetail_game = 2130903082;
+			public const int mediadetail_film = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int mediadetail_journal = 2130903083;
+			public const int mediadetail_game = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int mediadetail_sheetmusic = 2130903084;
+			public const int mediadetail_journal = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int page_home_view = 2130903085;
+			public const int mediadetail_sheetmusic = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int page_webview = 2130903086;
+			public const int page_home_view = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int SplashScreen = 2130903087;
+			public const int page_webview = 2130903087;
+			
+			// aapt resource value: 0x7f030030
+			public const int SplashScreen = 2130903088;
 			
 			static Layout()
 			{

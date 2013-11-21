@@ -92,8 +92,13 @@ namespace Solvberget.Core.ViewModels
             set { _itemDocumentNumber = value; RaisePropertyChanged(() => ItemDocumentNumber); }
         }
 
+        private bool _listEmpty;
+        public bool ListEmpty
+        {
+            get { return _listEmpty; }
+            set { _listEmpty = value; RaisePropertyChanged(() => ListEmpty); }
+        }
         
-
         private MvxCommand<ReservationViewModel> _cancelRemoveCommand;
         public ICommand CancelRemoveCommand
         {
@@ -129,6 +134,7 @@ namespace Solvberget.Core.ViewModels
                         Status = "Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene.",
                         ButtonVisible = false
                     });
+                    ListEmpty = true;
                 }
             }
             else
