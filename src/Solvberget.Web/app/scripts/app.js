@@ -1,7 +1,7 @@
 'use strict';
 
 var $$config =  {
-    apiPrefix : 'http://localhost:39465/',
+    apiPrefix : 'http://80.203.160.221:3535/api/',
     appUrlPrefix : 'http://localhost:9000/',
     apiPrefixEscaped : function(){
         return this.apiPrefix.replace(/:(\d+)/,'\\:$1'); // workaround to escape port number : so it doesn't get interpreted as a variable by $resource
@@ -151,6 +151,13 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
             return array;
         };
 
+         $rootScope.navigate = function(path){
+
+             if(path.indexOf('#') == 0) $location.path(path.substring(1));
+             else if(path.indexOf('/') == 0) $location.path(path);
+             else window.location = path;
+        }
+
         $rootScope.path = function(controller, params)
         {
             if(!controller) return undefined;
@@ -181,6 +188,8 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
         };
 
         $rootScope.pathForDocument = function(document){
+
+            if(!document) return undefined;
 
             var title = encodeURIComponent(document.title.replace(' ','-').toLowerCase());
             var documentPath = $rootScope.path(document.type + 'Ctrl', {id: document.id, title : title});

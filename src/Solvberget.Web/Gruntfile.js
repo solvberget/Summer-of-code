@@ -273,7 +273,8 @@ module.exports = function (grunt) {
             '.htaccess',
             'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
-            'styles/fonts/*'
+            'styles/fonts/*',
+              '{,*/}*.html'
           ]
         }, {
           expand: true,
@@ -302,12 +303,12 @@ module.exports = function (grunt) {
         'copy:styles'
       ],
       dist: [
-        'coffee',
+        //'coffee',
 		'recess',
         'copy:styles',
         'imagemin',
         'svgmin',
-        'htmlmin'
+        //'htmlmin'
       ]
     },
     karma: {
@@ -391,7 +392,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin',
+    //'usemin',
     'compress'
   ]);
 

@@ -35,8 +35,15 @@ angular.module('Solvberget.WebApp')
 
         $scope.userInfo = userInfo.get();
 
+        $scope.getFineTitle = function(fine){
+
+            if(fine.document) return fine.document.title;
+            return "Gebyr";
+        }
+
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
+
 
     }).controller('MyReservationsCtrl', function ($scope, $rootScope, $filter, userInfo) {
 
