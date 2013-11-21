@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('BloggerCtrl', function ($scope, $rootScope, blogs) {
+  .controller('BlogsCtrl', function ($scope, $rootScope, blogs) {
 
         $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Blogger', 'BloggerCtrl');
+        $rootScope.breadcrumb.push('Blogger', 'BlogsCtrl');
 
         $scope.items = blogs.query();
 
@@ -14,7 +14,7 @@ angular.module('Solvberget.WebApp')
   }).controller('BlogCtrl', function ($scope, $routeParams, $rootScope, blogs) {
 
         $rootScope.breadcrumb.clear();
-        $rootScope.breadcrumb.push('Blogger', 'BloggerCtrl');
+        $rootScope.breadcrumb.push('Blogger', 'BlogsCtrl');
 
         $scope.blog = blogs.get({id : $routeParams.id}, function(){
 

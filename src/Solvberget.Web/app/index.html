@@ -11,16 +11,14 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css(.tmp) styles/main.css -->
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
 
+        <!-- build:css(.tmp) styles/main.css -->
         <!-- bower:css -->
         <!-- endbower -->
-
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="styles/main.css">
-
-        <!-- endbuild -->
+      <link rel="stylesheet" href="styles/main.css">
+      <!-- endbuild -->
 </head>
   <body ng-app="Solvberget.WebApp">
     <!--[if lt IE 7]>
@@ -64,20 +62,25 @@
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NewsCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/arrangementer')}"><a ng-href="{{path('EventsCtrl')}}">Arrangementer</a></li>
                             <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MyFavoritesCtrl')}}">Min side<span ng-show="newMessagesCount > 0" class="badge pull-right">{{newMessagesCount}}</span></a></li>
-                            <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
-                            <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BloggerCtrl')}}">Blogger</a></li>
-                            <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('ApningstiderCtrl')}}">Åpningstider</a></li>
-                            <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a ng-href="{{path('KontaktOssCtrl')}}">Kontakt oss</a></li>
+                            <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('ListsCtrl')}}">Anbefalinger</a></li>
+                            <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BlogsCtrl')}}">Blogger</a></li>
+                            <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('OpeningHoursCtrl')}}">Åpningstider</a></li>
+                            <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a ng-href="{{path('ContactCtrl')}}">Kontakt oss</a></li>
 
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
 
-            <ol class="breadcrumb visible-sm visible-md visible-lg">
-                <li><a href="/#"><i class="glyphicon glyphicon-home"></i></a></li>
-                <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
-            </ol>
+            <div id="breadcrumb" class="visible-sm visible-md visible-lg">
+
+                <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/#"><i class="glyphicon glyphicon-home"></i></a></li>
+                    <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
+                </ol>
+                </div>
+            </div>
             <div class="container">
 
                 <div id="appMessageContainer" style="display:none">
@@ -88,6 +91,11 @@
                 <div ng-view></div>
 
             </div> <!-- /container -->
+            <footer>
+                <span>Sølvberget, Stavanger kulturhus (<a href="https://maps.google.com/maps?q=S%C3%B8lvberggata+2,+Stavanger,+Norge&hl=no&ie=UTF8&ll=58.971207,5.733576&spn=0.006625,0.014763&sll=58.971527,5.734706&sspn=0.006625,0.014763&t=h&hnear=S%C3%B8lvberggata+2,+4006+Stavanger,+Rogaland,+Norge&z=16">kart</a>, <a href="post@stavanger-kulturhus.no">epost</a>)</span><span> / </span>
+                <span>Sølvberggt. 2, Pb 310, 4002 Stavanger - Tlf 51 50 74 65</span><span> / </span>
+                <span>Design, programmering og drift: <a href="http://www.no.capgemini.com">Capgemini</a></span>
+            </footer>
 
         </div>
     </div>
@@ -108,34 +116,25 @@
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
-        <!-- build:js scripts/plugins.js -->
-
-        <!-- bower:js -->
-        <!-- endbower -->
-
-        <!-- endbuild -->
-
-        <!-- build:js scripts/modules.js -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-cookies.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
-        <!-- endbuild -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-cookies.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
       <script src="scripts/app.js"></script>
-      <script src="scripts/controllers/nyheter.js"></script>
-      <script src="scripts/controllers/anbefalinger.js"></script>
-      <script src="scripts/controllers/anbefalinger.detaljer.js"></script>
-      <script src="scripts/controllers/apningstider.js"></script>
-      <script src="scripts/controllers/blogger.js"></script>
-      <script src="scripts/controllers/kontaktoss.js"></script>
-      <script src="scripts/controllers/minside.js"></script>
+      <script src="scripts/controllers/news.js"></script>
+      <script src="scripts/controllers/lists.js"></script>
+      <script src="scripts/controllers/list.js"></script>
+      <script src="scripts/controllers/openinghours.js"></script>
+      <script src="scripts/controllers/blogs.js"></script>
+      <script src="scripts/controllers/contact.js"></script>
+      <script src="scripts/controllers/my.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/search.js"></script>
-    <script src="scripts/controllers/media.detaljer.js"></script>
+    <script src="scripts/controllers/media.details.js"></script>
     <script src="scripts/controllers/events.js"></script>
+    <script src="scripts/controllers/home.js"></script>
 
     <script src="scripts/directives/listItem.js"></script>
     <script src="scripts/directives/errSrc.js"></script>
@@ -153,6 +152,17 @@
               $("#menu-collapse").removeClass("in").addClass("collapse");
           });
       });
+
+      // WP8/IE10Mobile viewport fix
+      if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+          var msViewportStyle = document.createElement("style")
+          msViewportStyle.appendChild(
+                  document.createTextNode(
+                          "@-ms-viewport{width:auto!important}"
+                  )
+          )
+          document.getElementsByTagName("head")[0].appendChild(msViewportStyle)
+      }
 
   </script>
 </body>

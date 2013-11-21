@@ -39,6 +39,13 @@ angular.module('Solvberget.WebApp')
             get: {method:'GET', isArray:true}
         });
     })
+    .factory('reservations', function($resource){
+        return $resource($$config.apiPrefixEscaped() + 'reservations/:documentId', { documentId: '@documentId'}, {
+            add: {method:'PUT'},
+            remove: {method:'DELETE'},
+            get: {method:'GET', isArray:true}
+        });
+    })
     .config(function($httpProvider){
 
         $httpProvider.interceptors.push(function() {

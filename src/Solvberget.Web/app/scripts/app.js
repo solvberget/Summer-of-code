@@ -44,35 +44,35 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 controller: 'MyReservationsCtrl'
             })
             .when('/anbefalinger', {
-                templateUrl: 'views/anbefalinger.html',
-                controller: 'AnbefalingerCtrl'
+                templateUrl: 'views/lists.html',
+                controller: 'ListsCtrl'
             })
             .when('/anbefalinger/:id', {
-                templateUrl: 'views/anbefalinger.detaljer.html',
-                controller:'AnbefalingerDetaljerCtrl'
+                templateUrl: 'views/list.html',
+                controller:'ListCtrl'
             })
             .when('/apningstider', {
-                templateUrl: 'views/apningstider.html',
-                controller: 'ApningstiderCtrl'
+                templateUrl: 'views/openinghours.html',
+                controller: 'OpeningHoursCtrl'
             })
             .when('/blogger', {
-                templateUrl: 'views/blogger.html',
-                controller: 'BloggerCtrl'
+                templateUrl: 'views/blogs.html',
+                controller: 'BlogsCtrl'
             })
             .when('/blogg/:id', {
                 templateUrl: 'views/blog.html',
                 controller: 'BlogCtrl'
             })
             .when('/kontakt-oss', {
-                templateUrl: 'views/kontaktoss.html',
-                controller: 'KontaktOssCtrl'
+                templateUrl: 'views/contact.html',
+                controller: 'ContactCtrl'
             })
             .when('/nyheter', {
-                templateUrl: 'views/nyheter.html',
+                templateUrl: 'views/news.html',
                 controller: 'NewsCtrl'
             })
             .when('/bok/:id/:title', {
-                templateUrl: 'views/media.bok.html',
+                templateUrl: 'views/media.book.html',
                 controller: 'BookCtrl'
             })
             .when('/cd/:id/:title', {
@@ -84,7 +84,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 controller: 'FilmCtrl'
             })
             .when('/lydbok/:id/:title', {
-                templateUrl: 'views/media.bok.html',
+                templateUrl: 'views/media.book.html',
                 controller: 'AudioBookCtrl'
             })
             .when('/noter/:id/:title', {
@@ -111,8 +111,12 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 templateUrl : 'views/login.html',
                 controller: 'LoginCtrl'
             })
+            .when('/', {
+                templateUrl : 'views/home.html',
+                controller: 'HomeCtrl'
+            })
             .otherwise({
-                redirectTo: '/nyheter'
+                redirectTo: '/'
             });
 
     }).run(function($rootScope, $location, $route, $http, $cookies) {

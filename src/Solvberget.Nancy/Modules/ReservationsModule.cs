@@ -19,22 +19,26 @@ namespace Solvberget.Nancy.Modules
 
             Get["/"] = _ =>
             {
-                var pin = Request.Headers.Authorization.Split(':')[1];
-                var userName = Request.Headers.Authorization.Split(':')[0];
+                var user = Context.GetAlephUserIdentity();
 
-                return repository.GetUserInformation(userName, pin).Reservations.Select(r => DtoMaps.Map(r, repository)).ToArray();
+                return repository.GetUserInformation(user.UserName, user.Password).Reservations.Select(r => DtoMaps.Map(r, repository)).ToArray();
             };
 
             Delete["/{documentId}"] = args =>
             {
-                var pin = Request.Headers.Authorization.Split(':')[1];
-                var userName = Request.Headers.Authorization.Split(':')[0];
-                var userReservations = repository.GetUserInformation(userName, pin).Reservations;
+                var user = Context.GetAlephUserIdentity();
+
+                var userReservations = repository.GetUserInformation(user.UserName, user.Password).Reservations;
                 var resToRemove = userReservations.FirstOrDefault(r => r.DocumentNumber == args.documentId);
 
                 if (resToRemove != null)
-                    return repository.CancelReservation(resToRemove.ItemDocumentNumber, resToRemove.ItemSeq, resToRemove.CancellationSequence);
-                
+                {
+                    var response = repository.CancelReservation(resToRemove.ItemDocumentNumber, resToRemove.ItemSeq, resToRemove.CancellationSequence);
+                    if (response.Success) Context.RequireUserInfoRefresh();
+
+                    return response;
+                }
+
                 return "Kunne ikke finne dokument i liste over reservasjoner";
             };
 
@@ -42,6 +46,7 @@ namespace Solvberget.Nancy.Modules
             {
                 //Hvordan få med andeling (=branch)?
                 var response = repository.RequestReservation(args.documentId, Context.GetUserInfo().Id, "Hovedbibl.");
+                if (response.Success) Context.RequireUserInfoRefresh();
 
                 return response;
             };

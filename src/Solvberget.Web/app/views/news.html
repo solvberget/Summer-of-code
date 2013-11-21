@@ -5,5 +5,5 @@
      class="media-item-info-box box-action">
     <h4><a ng-href="{{item.link}}">{{item.title}}</a></h4>
     <div class="subhead">{{item.published|date:shortDate}}</div>
-    <p>{{item.ingress}}</p>
+    <p ng-bind-html="item.ingress" />
 </div>
