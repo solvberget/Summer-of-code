@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Solvberget.WebApp')
-  .controller('AnbefalingerCtrl', function ($scope, $rootScope, lists) {
+  .controller('ListsCtrl', function ($scope, $rootScope, lists) {
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Anbefalinger');
@@ -9,6 +9,6 @@ angular.module('Solvberget.WebApp')
         $scope.items = lists.query();
 
         $scope.pathFor = function(item){
-            return $rootScope.path('AnbefalingerDetaljerCtrl', {id: item.id});
+            return $rootScope.path('ListCtrl', {id: item.id});
         };
   });

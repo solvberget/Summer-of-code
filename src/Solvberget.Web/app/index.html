@@ -62,10 +62,10 @@
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NewsCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/arrangementer')}"><a ng-href="{{path('EventsCtrl')}}">Arrangementer</a></li>
                             <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MyFavoritesCtrl')}}">Min side<span ng-show="newMessagesCount > 0" class="badge pull-right">{{newMessagesCount}}</span></a></li>
-                            <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('AnbefalingerCtrl')}}">Anbefalinger</a></li>
-                            <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BloggerCtrl')}}">Blogger</a></li>
-                            <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('ApningstiderCtrl')}}">Åpningstider</a></li>
-                            <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a ng-href="{{path('KontaktOssCtrl')}}">Kontakt oss</a></li>
+                            <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('ListsCtrl')}}">Anbefalinger</a></li>
+                            <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BlogsCtrl')}}">Blogger</a></li>
+                            <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('OpeningHoursCtrl')}}">Åpningstider</a></li>
+                            <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a ng-href="{{path('ContactCtrl')}}">Kontakt oss</a></li>
 
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -123,16 +123,16 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
       <script src="scripts/app.js"></script>
-      <script src="scripts/controllers/nyheter.js"></script>
-      <script src="scripts/controllers/anbefalinger.js"></script>
-      <script src="scripts/controllers/anbefalinger.detaljer.js"></script>
-      <script src="scripts/controllers/apningstider.js"></script>
-      <script src="scripts/controllers/blogger.js"></script>
-      <script src="scripts/controllers/kontaktoss.js"></script>
-      <script src="scripts/controllers/minside.js"></script>
+      <script src="scripts/controllers/news.js"></script>
+      <script src="scripts/controllers/lists.js"></script>
+      <script src="scripts/controllers/list.js"></script>
+      <script src="scripts/controllers/openinghours.js"></script>
+      <script src="scripts/controllers/blogs.js"></script>
+      <script src="scripts/controllers/contact.js"></script>
+      <script src="scripts/controllers/my.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/search.js"></script>
-    <script src="scripts/controllers/media.detaljer.js"></script>
+    <script src="scripts/controllers/media.details.js"></script>
     <script src="scripts/controllers/events.js"></script>
     <script src="scripts/controllers/home.js"></script>
 
