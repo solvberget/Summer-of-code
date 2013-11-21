@@ -25,6 +25,12 @@ namespace Solvberget.Core.ViewModels
             set{ _reservations = value; RaisePropertyChanged(() => Reservations); }
         }
 
+        private bool _reservationRemoved;
+        public bool ReservationRemoved
+        {
+            get { return _reservationRemoved; }
+            set { _reservationRemoved = value; RaisePropertyChanged(() => ReservationRemoved); }
+        }
 
         public async void Load()
         {
@@ -69,6 +75,8 @@ namespace Solvberget.Core.ViewModels
         public async void RemoveReservation(ReservationViewModel reservationViewModel)
         {
             Reservations.Remove(reservationViewModel);
+
+            ReservationRemoved = true;
 
             var response = await _service.RemoveReservation(reservationViewModel.DocumentNumber);
         }

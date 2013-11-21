@@ -95,35 +95,38 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f040008
 			public const int purple_light = 2130968584;
 			
+			// aapt resource value: 0x7f04000c
+			public const int red = 2130968588;
+			
 			// aapt resource value: 0x7f040000
 			public const int standard_background = 2130968576;
 			
-			// aapt resource value: 0x7f04000d
-			public const int ui_background = 2130968589;
-			
-			// aapt resource value: 0x7f04000c
-			public const int ui_black = 2130968588;
-			
-			// aapt resource value: 0x7f040014
-			public const int ui_green = 2130968596;
-			
 			// aapt resource value: 0x7f04000e
-			public const int ui_grey = 2130968590;
+			public const int ui_background = 2130968590;
 			
-			// aapt resource value: 0x7f040012
-			public const int ui_grey_dark = 2130968594;
+			// aapt resource value: 0x7f04000d
+			public const int ui_black = 2130968589;
 			
-			// aapt resource value: 0x7f040010
-			public const int ui_grey_light = 2130968592;
+			// aapt resource value: 0x7f040015
+			public const int ui_green = 2130968597;
 			
 			// aapt resource value: 0x7f04000f
-			public const int ui_itembackground = 2130968591;
-			
-			// aapt resource value: 0x7f040011
-			public const int ui_itembackground_dark = 2130968593;
+			public const int ui_grey = 2130968591;
 			
 			// aapt resource value: 0x7f040013
-			public const int ui_orange = 2130968595;
+			public const int ui_grey_dark = 2130968595;
+			
+			// aapt resource value: 0x7f040011
+			public const int ui_grey_light = 2130968593;
+			
+			// aapt resource value: 0x7f040010
+			public const int ui_itembackground = 2130968592;
+			
+			// aapt resource value: 0x7f040012
+			public const int ui_itembackground_dark = 2130968594;
+			
+			// aapt resource value: 0x7f040014
+			public const int ui_orange = 2130968596;
 			
 			static Color()
 			{
@@ -184,7 +187,10 @@ namespace Solvberget.Droid
 			public const int ic_menu_star = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int splash = 2130837519;
+			public const int icon_512 = 2130837519;
+			
+			// aapt resource value: 0x7f020010
+			public const int splash = 2130837520;
 			
 			static Drawable()
 			{

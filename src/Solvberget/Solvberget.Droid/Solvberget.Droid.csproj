@@ -349,6 +349,7 @@
     <AndroidResource Include="Resources\Drawable-mdpi\ic_3_rating_important.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\ic_3_rating_not_important.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\ic_3_rating_important.png" />
+    <AndroidResource Include="Resources\Drawable\icon_512.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

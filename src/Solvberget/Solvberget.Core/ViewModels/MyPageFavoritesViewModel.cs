@@ -22,6 +22,13 @@ namespace Solvberget.Core.ViewModels
             set{ _favorites = value; RaisePropertyChanged(() => Favorites); }
         }
 
+        private bool _favoriteIsRemoved;
+        public bool FavoriteIsRemoved
+        {
+            get { return _favoriteIsRemoved; }
+            set { _favoriteIsRemoved = value; RaisePropertyChanged(() => FavoriteIsRemoved); }
+        }
+
         public async void Load()
         {
             IsLoading = true;
@@ -58,6 +65,7 @@ namespace Solvberget.Core.ViewModels
         public async void RemoveFavorite(string documentNumber, FavoriteViewModel favorite)
         {
             Favorites.Remove(favorite);
+            FavoriteIsRemoved = true;
             await _service.RemoveUserFavorite(documentNumber);
         }
 

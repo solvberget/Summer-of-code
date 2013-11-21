@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -38,6 +37,13 @@ namespace Solvberget.Core.ViewModels
             set { _loggedIn = value; RaisePropertyChanged(() => LoggedIn); }
         }
 
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set { _message = value; RaisePropertyChanged(() => Message); }
+        }
+
         private MvxCommand<MyPageViewModel> _loginCommand;
         public ICommand LoginCommand
         {
@@ -56,14 +62,19 @@ namespace Solvberget.Core.ViewModels
             var response = await _service.Login(UserName, Pin);
             IsLoading = false;
 
-
             if (response.Message.Equals("Autentisering vellykket."))
             {
                 ShowViewModel<MyPageViewModel>();
             }
+            else if (response.Message.Equals("The remote server returned an error: (401) Unauthorized."))
+            {
+                Message = "Feil brukernavn eller passord";
+                _userAuthenticationService.RemoveUser();
+                _userAuthenticationService.RemovePassword();
+            }
             else
             {
-                //Popup: Login Failed!
+                Message = "Noe gikk galt. Prøv igjen senere";
                 _userAuthenticationService.RemoveUser();
                 _userAuthenticationService.RemovePassword();
             }
