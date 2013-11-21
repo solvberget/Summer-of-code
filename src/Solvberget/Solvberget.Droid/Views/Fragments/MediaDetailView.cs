@@ -68,8 +68,16 @@ namespace Solvberget.Droid.Views.Fragments
                     NavUtils.NavigateUpFromSameTask(this);
                     break;
                 case Resource.Id.menu_is_not_favorite:
-                    _starIsClicked = true;
-                    ((MediaDetailViewModel)ViewModel).AddFavorite();
+                    if (((MediaDetailViewModel)ViewModel).LoggedIn)
+                    {
+                        _starIsClicked = true;
+                        ((MediaDetailViewModel)ViewModel).AddFavorite();
+                    }
+                    else
+                    {
+                        Toast.MakeText(Application.Context, "Logg inn for å legge til favoritter", ToastLength.Long).Show();
+                    }
+                    
                     break;
                 case Resource.Id.menu_is_favorite:
                     _starIsClicked = true;
