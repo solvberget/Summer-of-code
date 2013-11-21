@@ -29,14 +29,7 @@ namespace Solvberget.Droid.Views.Fragments
             var isChanged = e.PropertyName;
 
             if (isChanged == "ReservationRemoved")
-            {
-                var context = Application.Context;
-                const string text = "Reservasjon fjernet";
-                const ToastLength duration = ToastLength.Long;
-
-                var toast = Toast.MakeText(context, text, duration);
-                toast.Show();
-            }
+                Toast.MakeText(Application.Context, "Reservasjon fjernet", ToastLength.Long).Show();
         }
     }
 }

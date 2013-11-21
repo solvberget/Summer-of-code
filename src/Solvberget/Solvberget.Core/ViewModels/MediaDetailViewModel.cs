@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Resources;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.DTOs;
+using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
-using Solvberget.Core.Properties;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -107,7 +105,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecutePlaceHoldRequestCommand(MediaDetailViewModel media)
         {
-            var response = _userService.AddReservation(DocId);
+            _userService.AddReservation(DocId);
             Load(DocId);
         }
 
@@ -150,11 +148,7 @@ namespace Solvberget.Core.ViewModels
         public string SubTitle
         {
             get { return _subTitle; }
-            set
-            {
-                _subTitle = value;
-                RaisePropertyChanged(() => SubTitle);
-            }
+            set { _subTitle = value; RaisePropertyChanged(() => SubTitle); }
         }
 
         private DocumentAvailabilityDto _availability;
