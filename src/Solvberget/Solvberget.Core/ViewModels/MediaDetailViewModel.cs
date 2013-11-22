@@ -70,16 +70,16 @@ namespace Solvberget.Core.ViewModels
             Year = document.Year.ToString("0000");
             Type = document.Type;
             Author = document.MainContributor;
-            Availability = document.Availability ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};
+            Availability = document.Availability.FirstOrDefault() ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};
             RawDto = document;
             Language = document.Language;
             Languages = document.Languages.ToList();
             Publisher = document.Publisher;
             MainContributor = document.MainContributor;
             EstimatedAvailableDate = "Ukjent";
-            if (document.Availability != null && document.Availability.EstimatedAvailableDate.HasValue)
+            if (document.Availability != null && Availability.EstimatedAvailableDate.HasValue)
             {
-                EstimatedAvailableDate = document.Availability.EstimatedAvailableDate.Value.ToString("dd.MM.yyyy");
+                EstimatedAvailableDate = Availability.EstimatedAvailableDate.Value.ToString("dd.MM.yyyy");
             }
 
             var reviewDto = await review;

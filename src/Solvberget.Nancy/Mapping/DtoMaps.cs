@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Solvberget.Core.DTOs;
@@ -100,7 +101,7 @@ namespace Solvberget.Nancy.Mapping
             dto.Type = document.DocType;
             dto.Title = document.Title;
             if(null == dto.SubTitle) dto.SubTitle = document.CompressedSubTitle; // default only if specific type does not map it
-            dto.Availability = MapAvailability(document);
+            dto.Availability = MapAvailability(document).ToArray();
             dto.Year = document.PublishedYear;
             dto.Publisher = document.Publisher;
             dto.Language = document.Language;
@@ -205,38 +206,40 @@ namespace Solvberget.Nancy.Mapping
             }
         }
 
-        private static DocumentAvailabilityDto MapAvailability(Document document)
+        private static IEnumerable<DocumentAvailabilityDto> MapAvailability(Document document)
         {
-            if (null == document.AvailabilityInfo) return null;
+            if (null == document.AvailabilityInfo) yield break;
 
-            var availability = document.AvailabilityInfo.FirstOrDefault();
-
-            if (null == availability) return null;
-
-            var dto = new DocumentAvailabilityDto
+            foreach (var availability in document.AvailabilityInfo)
             {
-                Branch = availability.Branch,
-                AvailableCount = availability.AvailableCount,
-                TotalCount = availability.TotalCount,
+                if (null == availability) continue;
 
-                Department = availability.Department.DefaultIfEmpty("").Aggregate((acc, dep) =>
+                var dto = new DocumentAvailabilityDto
                 {
-                    if (String.IsNullOrEmpty(acc)) return dep;
-                    return acc + " - " + dep;
-                }),
+                    Branch = availability.Branch,
+                    AvailableCount = availability.AvailableCount,
+                    TotalCount = availability.TotalCount,
 
-                Collection = availability.PlacementCode,
-                Location = document.LocationCode
-            };
-            
-            DateTime date;
-            
-            if (DateTime.TryParse(availability.EarliestAvailableDateFormatted, out date))
-            {
-                dto.EstimatedAvailableDate = date;
+                    Department = availability.Department.DefaultIfEmpty("").Aggregate((acc, dep) =>
+                    {
+                        if (String.IsNullOrEmpty(acc)) return dep;
+                        return acc + " - " + dep;
+                    }),
+
+                    Collection = availability.PlacementCode,
+                    Location = document.LocationCode
+                };
+                
+                DateTime date;
+
+                if (DateTime.TryParse(availability.EarliestAvailableDateFormatted, out date))
+                {
+                    dto.EstimatedAvailableDate = date;
+                }
+
+                yield return dto;
             }
 
-            return dto;
         }
     }
 }
