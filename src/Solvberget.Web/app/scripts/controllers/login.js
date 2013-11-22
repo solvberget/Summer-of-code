@@ -6,18 +6,6 @@ angular.module('Solvberget.WebApp')
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Logg inn');
 
-        $scope.logout = function(){
-
-            delete $$config.username;
-            delete $$config.password;
-            delete $cookies.username;
-            delete $cookies.password;
-
-            $scope.isLoggedIn = false;
-        }
-
-        $scope.isLoggedIn = $$config.username && $$config.password;
-
         $scope.login = function(){
 
             $http({
@@ -33,6 +21,9 @@ angular.module('Solvberget.WebApp')
 
                     $$config.username = $cookies.username = $scope.username;
                     $$config.password = $cookies.password = $scope.password;
+                    $rootScope.loginName = $cookies.name = data.name;
+
+                    $rootScope.isLoggedIn = true;
 
                     if($routeParams.redirect) {
                         $location.search('redirect', null);

@@ -11,11 +11,11 @@ namespace Solvberget.Nancy.Modules
         {
             Post["/"] = _ =>
             {
-                var userIdentity = authenticator.Authenticate(Request.Form.Username, Request.Form.Password);
+                var userIdentity = authenticator.Authenticate(Request.Form.Username, Request.Form.Password) as AlephUserIdentity;
                 
                 return null == userIdentity ? 
                       Response.AsJson(new {message = "Feil brukernavn eller passord"}, HttpStatusCode.Unauthorized) 
-                    : Response.AsJson(new {message = "Autentisering vellykket."});
+                    : Response.AsJson(new {message = "Autentisering vellykket.", name = userIdentity.UserInfo.Name});
             };
 
             Get["/forgot/{userId}"] = args => repository.RequestPinCodeToSms(args.userId);

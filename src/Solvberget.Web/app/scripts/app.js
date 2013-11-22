@@ -124,6 +124,21 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
         $$config.username = $cookies.username;
         $$config.password = $cookies.password;
 
+        $rootScope.isLoggedIn = $$config.username && $$config.password;
+        $rootScope.loginName = $cookies.name;
+
+        $rootScope.logout = function(){
+
+            delete $$config.username;
+            delete $$config.password;
+            delete $cookies.username;
+            delete $cookies.password;
+            delete $cookies.name;
+
+            delete $rootScope.isLoggedIn;
+            delete $rootScope.loginName;
+        }
+
         $rootScope.newMessagesCount = 2;
 
         $http({method: 'GET', url: '/app.config.json'}).
