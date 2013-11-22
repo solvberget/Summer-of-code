@@ -8,7 +8,7 @@ var $$config =  {
     }
 }
 
-angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize'])
+angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 'ngRoute', 'ngSanitize', 'twitter.timeline'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/sok', {
