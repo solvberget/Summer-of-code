@@ -2,6 +2,7 @@
 using Nancy;
 using Should;
 using Solvberget.Domain.Aleph;
+using Solvberget.Domain.Users;
 using Solvberget.Nancy.Authentication;
 using Solvberget.Nancy.Modules;
 
@@ -62,7 +63,7 @@ namespace Solvberget.Nancy.Tests
         [Fact]
         public void Should_succeed_when_correct_crredentials()
         {
-            A.CallTo(() => _provider.Authenticate("username", "correct password")).Returns(new AlephUserIdentity("username", "correct password", null));
+            A.CallTo(() => _provider.Authenticate("username", "correct password")).Returns(new AlephUserIdentity("username", "correct password", new UserInfo()));
 
             var response = _browser.Post("/login", with =>
             {
