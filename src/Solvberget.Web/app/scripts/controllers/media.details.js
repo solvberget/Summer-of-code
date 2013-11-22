@@ -3,7 +3,9 @@
 var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, reservations, documentRating, documentReview, favorites) {
 
     $scope.document = documents.get({id : $routeParams.id}, function(){
+
         $rootScope.breadcrumb.push($scope.document.title);
+
         $scope.imageUrl = $$config.apiPrefix + 'documents/' + $scope.document.id + '/thumbnail';
 
         var ogTypes = {

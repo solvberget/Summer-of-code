@@ -3,6 +3,9 @@
 angular.module('Solvberget.WebApp')
   .controller('LoginCtrl', function ($scope, $rootScope, $routeParams, $location, $http, $cookies) {
 
+        $rootScope.breadcrumb.clear();
+        $rootScope.breadcrumb.push('Logg inn');
+
         $scope.logout = function(){
 
             delete $$config.username;
