@@ -38,7 +38,7 @@ namespace Solvberget.Nancy.Modules
                 Document document = documents.GetDocument(args.id, false);
                 return Response.AsJson(DtoMaps.Map(document, favorites, Context.GetUserInfo()));
             };
-
+            
             Get["/{id}/rating"] = args =>
             {
                 DocumentRating rating = ratings.GetDocumentRating(args.id);
