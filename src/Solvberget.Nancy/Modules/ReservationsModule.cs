@@ -42,16 +42,13 @@ namespace Solvberget.Nancy.Modules
                 return "Kunne ikke finne dokument i liste over reservasjoner";
             };
 
-            Put["/{documentId}"] = args =>
+            Put["/{branch}/{documentId}"] = args =>
             {
-                //Hvordan få med andeling (=branch)?
-                var response = repository.RequestReservation(args.documentId, Context.GetUserInfo().Id, "Hovedbibl.");
+                var response = repository.RequestReservation(args.documentId, Context.GetUserInfo().Id, args.branch);
                 if (response.Success) Context.RequireUserInfoRefresh();
 
                 return response;
             };
         }
-
-        
     }
 }

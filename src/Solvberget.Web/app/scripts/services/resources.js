@@ -40,7 +40,7 @@ angular.module('Solvberget.WebApp')
         });
     })
     .factory('reservations', function($resource){
-        return $resource($$config.apiPrefixEscaped() + 'reservations/:documentId', { documentId: '@documentId'}, {
+        return $resource($$config.apiPrefixEscaped() + 'reservations/:branch/:documentId', { branch : '@branch', documentId: '@documentId'}, {
             add: {method:'PUT'},
             remove: {method:'DELETE'},
             get: {method:'GET', isArray:true}

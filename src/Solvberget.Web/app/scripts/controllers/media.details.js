@@ -35,10 +35,10 @@ var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, r
         $scope.document.isFavorite = !$scope.document.isFavorite; // todo: handle failure
     };
 
-    $scope.toggleReservation = function(){
+    $scope.toggleReservation = function(branch){
 
         if($scope.document.isReserved) reservations.remove({documentId : $scope.document.id});
-        else reservations.add({documentId : $scope.document.id});
+        else reservations.add({branch : branch, documentId : $scope.document.id});
 
         $scope.document.isReserved = !$scope.document.isReserved; // todo: handle failure
     };
