@@ -46,6 +46,11 @@ angular.module('Solvberget.WebApp')
             get: {method:'GET', isArray:true}
         });
     })
+    .factory('renewals', function ($resource) {
+        return $resource($$config.apiPrefixEscaped() + 'documents/renew/:documentId', { documentId: '@documentId' }, {
+            add: { method: 'PUT' }
+        });
+    })
     .config(function($httpProvider){
 
         $httpProvider.interceptors.push(function() {

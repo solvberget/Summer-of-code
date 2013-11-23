@@ -9,7 +9,7 @@ namespace Solvberget.Nancy.Modules
 {
     public class RenewalsModule : NancyModule
     {
-        public RenewalsModule(IRepository repository)
+        public RenewalsModule(IRepository repository) : base("/documents/renew")
         {
             this.RequiresAuthentication();
 

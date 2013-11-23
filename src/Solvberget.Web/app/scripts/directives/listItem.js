@@ -15,15 +15,19 @@ angular.module('Solvberget.WebApp')
                 gutterText:"=gutterText",
                 documentId:"=documentId"
             },
-            controller: function($scope, favorites) {
+            controller: function($scope, favorites, renewals) {
 
-                $scope.toggleFavorite = function(){
+                $scope.toggleFavorite = function() {
 
-                    if($scope.isFavorite) favorites.remove({documentId : $scope.documentId});
-                    else favorites.add({documentId : $scope.documentId});
+                    if ($scope.isFavorite) favorites.remove({ documentId: $scope.documentId });
+                    else favorites.add({ documentId: $scope.documentId });
 
                     $scope.isFavorite = !$scope.isFavorite; // todo: handle failure
-                }
+                };
+
+                $scope.renew = function() {
+                    renewals.add({ documentId: $scope.documentId });
+                };
             },
             replace:true,
             templateUrl: 'views/listItem.html'
