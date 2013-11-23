@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Solvberget.Metro", "src\Solvberget.Metro\Solvberget.Metro.jsproj", "{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Tests", "test\Solvberget.Tests\Solvberget.Tests.csproj", "{9426CD77-75BA-4FC1-BB17-19D687AC12EC}"
@@ -36,6 +38,27 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{20EC3C82-E249-4417-8F7C-3A24D06A8802}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solvberget.Nancy.Tests", "test\Solvberget.Nancy.Tests\Solvberget.Nancy.Tests.csproj", "{76B0C29A-860E-4E24-8E4E-44E54AEF838B}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Solvberget.Web", "http://localhost:49655", "{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49655"
+		Debug.AspNetCompiler.PhysicalPath = "src\Solvberget.Web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49655\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49655"
+		Release.AspNetCompiler.PhysicalPath = "src\Solvberget.Web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49655\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "src\Solvberget.Web\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -564,6 +587,51 @@ Global
 		{76B0C29A-860E-4E24-8E4E-44E54AEF838B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{76B0C29A-860E-4E24-8E4E-44E54AEF838B}.Release|x64.ActiveCfg = Release|Any CPU
 		{76B0C29A-860E-4E24-8E4E-44E54AEF838B}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|ARM.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|x64.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Ad-Hoc|x86.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|ARM.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|x64.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.AppStore|x86.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|Any CPU.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|ARM.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|iPhone.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|x64.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.CI|x86.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|ARM.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|iPhone.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|x64.ActiveCfg = Debug|Any CPU
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -576,6 +644,7 @@ Global
 		{4AF4487D-0C3E-4384-BA68-62CB1680C648} = {162B0AAB-BC32-45B0-AD07-B7437A005060}
 		{C74B2533-6F19-4047-A4D0-434A1FE5F027} = {162B0AAB-BC32-45B0-AD07-B7437A005060}
 		{6A9BD7D1-7EF3-44CD-8B39-B4EB0DAADC04} = {162B0AAB-BC32-45B0-AD07-B7437A005060}
+		{4B02A4F2-24E4-4AB9-AEB2-9EE20BE8D390} = {162B0AAB-BC32-45B0-AD07-B7437A005060}
 		{79E792BB-351D-4CC8-B43E-CF8BF02F6F36} = {20EC3C82-E249-4417-8F7C-3A24D06A8802}
 		{9426CD77-75BA-4FC1-BB17-19D687AC12EC} = {20EC3C82-E249-4417-8F7C-3A24D06A8802}
 		{76B0C29A-860E-4E24-8E4E-44E54AEF838B} = {20EC3C82-E249-4417-8F7C-3A24D06A8802}

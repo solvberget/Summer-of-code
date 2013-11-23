@@ -31,12 +31,12 @@ namespace Solvberget.Nancy.Modules
 
                 var fines = finesList.Select(f => new FineDto
                 {
-                    Date = f.Date,
+                    Date = ParseDateString(f.Date),
                     Description = f.Description,
                     Document = String.IsNullOrEmpty(f.DocumentNumber) ? null : DtoMaps.Map(documents.GetDocument(f.DocumentNumber, true)),
                     Status = f.Status,
                     Sum = f.Sum
-                });
+                }).OrderByDescending(f => f.Date);
 
                 var loans = loansList.Select(l => new LoanDto
                 {
