@@ -77,10 +77,21 @@
             <div id="breadcrumb" class="visible-sm visible-md visible-lg">
 
                 <div class="container">
-                <ol class="breadcrumb">
-                    <li><a href="/#"><i class="glyphicon glyphicon-home"></i></a></li>
-                    <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
-                </ol>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ol class="breadcrumb">
+                                <li><a href="/#"><i class="glyphicon glyphicon-home"></i></a></li>
+                                <li ng-repeat="crumb in breadcrumb.crumbs"><a ng-href="{{crumb.url}}" ng-class="{ 'active' : $index == breadcrumb.crumbs.length-1}">{{crumb.title}}</a></li>
+                            </ol>
+                        </div>
+                        <div class="col-md-7">
+                            <ol class="breadcrumb pull-right">
+                                <li ng-show="isLoggedIn">{{loginName}}</li>
+                                <li ng-show="isLoggedIn"><a ng-click="logout()">Logg ut <i class="glyphicon glyphicon-log-out"></i></a></li>
+                                <li ng-hide="isLoggedIn"><a ng-href="{{path('LoginCtrl')}}"><i class="glyphicon glyphicon-log-in"></i> Logg inn</a></li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="container">
