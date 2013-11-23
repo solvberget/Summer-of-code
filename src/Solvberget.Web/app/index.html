@@ -68,7 +68,7 @@
                             <li ng-class="{ active: isViewActive('/blogger')}"><a ng-href="{{path('BlogsCtrl')}}">Blogger</a></li>
                             <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('OpeningHoursCtrl')}}">Åpningstider</a></li>
                             <li ng-class="{ active: isViewActive('/kontakt-oss')}"><a ng-href="{{path('ContactCtrl')}}">Kontakt oss</a></li>
-
+                            <li class="visible-xs"><a ng-show="isLoggedIn" ng-click="logout()">Logg ut <i class="glyphicon glyphicon-log-out"></i></a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>

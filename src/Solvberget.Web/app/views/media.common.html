@@ -14,8 +14,10 @@
 </header>
 
 <div class="media-item-details-actions">
-    <button type="button" class="btn btn-sm" ng-click="toggleReservation()"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : isReserved }"></i> Reserver</button>
-    <button type="button" class="btn btn-sm" ng-click="toggleFavorite()"><i class="glyphicon" ng-class="{ 'glyphicon-star' : document.isFavorite, 'glyphicon-star-empty' : !document.isFavorite }"></i> Favoritt</button>
+    <button type="button" class="btn btn-primary" ng-click="toggleFavorite()">
+        <i class="glyphicon glyphicon-star" ng-class="{ 'active' : document.isFavorite, 'inactive' : !document.isFavorite }"></i>
+        Favoritt
+    </button>
 </div>
 
 <h2>Tilgjengelighet</h2>
@@ -64,6 +66,12 @@
         <div class="colxs-12 col-md-3" ng-show="a.estimatedAvailableDate">
             <div class="meta-label">Tidligst tilgjengelig</div>
             <div class="meta-value">{{a.estimatedAvailableDate|date:mediumDate}}</div>
+        </div>
+        <div class="colxs-12 col-md-3">
+            <button type="button" class="btn btn-primary" ng-click="toggleReservation(a.branch)"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : isReserved }"></i>
+                <span ng-show="isReserved">Kanseller reservasjon</span>
+                <span ng-hide="isReserved">Reserver bok</span>
+            </button>
         </div>
     </div>
 </div>

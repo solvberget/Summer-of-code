@@ -127,7 +127,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
         $rootScope.isLoggedIn = $$config.username && $$config.password;
         $rootScope.loginName = $cookies.name;
 
-        $rootScope.logout = function(){
+        $rootScope.logout = function() {
 
             delete $$config.username;
             delete $$config.password;
@@ -137,7 +137,9 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
 
             delete $rootScope.isLoggedIn;
             delete $rootScope.loginName;
-        }
+
+            $location.path('/');
+        };
 
         $rootScope.newMessagesCount = 2;
 
