@@ -1,7 +1,7 @@
 'use strict';
 
 var $$config =  {
-    apiPrefix : 'http://80.203.160.221:3535/api/',
+    apiPrefix: 'http://localhost:39465/',
     appUrlPrefix : 'http://localhost:9000/',
     apiPrefixEscaped : function(){
         return this.apiPrefix.replace(/:(\d+)/,'\\:$1'); // workaround to escape port number : so it doesn't get interpreted as a variable by $resource
@@ -119,7 +119,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 redirectTo: '/'
             });
 
-    }).run(function($rootScope, $location, $route, $http, $cookies) {
+    }).run(function ($rootScope, $location, $route, $http, $cookies, notificationCount) {
 
         $$config.username = $cookies.username;
         $$config.password = $cookies.password;
@@ -141,7 +141,9 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
             $location.path('/');
         };
 
-        $rootScope.newMessagesCount = 2;
+        if ($rootScope.isLoggedIn) {
+            $rootScope.newMessagesCount = notificationCount.get();
+        }
 
         $http({method: 'GET', url: '/app.config.json'}).
             success(function(data) {

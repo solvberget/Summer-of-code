@@ -12,11 +12,25 @@ using Solvberget.Nancy.Mapping;
 
 namespace Solvberget.Nancy.Modules
 {
+    public class NotificationCountDto
+    {
+        public int Count { get; set; }
+    }
+
     public class UserModule : NancyModule
     {
         public UserModule(IRepository documents) : base("/user")
         {
             this.RequiresAuthentication();
+
+            Get["/notifications/count"] = args =>
+            {
+                //var since = Request.Query.since.HasValue ? Request.Query.since : DateTime.MinValue;
+                
+                // we have no idea when a notification was created. Or rather, all notifications are always created 'now'...
+
+                return new NotificationCountDto {Count = Context.GetUserInfo().Notifications.Count()};
+            };
 
             Get["/info"] = _ =>
             {

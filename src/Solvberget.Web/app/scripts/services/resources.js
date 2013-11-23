@@ -39,6 +39,9 @@ angular.module('Solvberget.WebApp')
             get: {method:'GET', isArray:true}
         });
     })
+    .factory('notificationCount', function ($resource) {
+        return $resource($$config.apiPrefixEscaped() + 'user/notifications/count');
+    })
     .factory('reservations', function($resource){
         return $resource($$config.apiPrefixEscaped() + 'reservations/:branch/:documentId', { branch : '@branch', documentId: '@documentId'}, {
             add: {method:'PUT'},
