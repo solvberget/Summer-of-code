@@ -11,7 +11,7 @@
         public int Year { get; set; }
         public string MainContributor { get; set; }
         public string Publisher { get; set; }
-        public DocumentAvailabilityDto Availability { get; set; }
+        public DocumentAvailabilityDto[] Availability { get; set; }
         public bool? IsFavorite { get; set; }
         public bool? IsReserved { get; set; }
     }

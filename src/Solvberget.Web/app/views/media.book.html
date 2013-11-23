@@ -1,8 +1,10 @@
 <div ng-include="'views/media.common.html'" />
 
-<h2>Bokbasens omtale</h2>
-<div class="media-item-info-box">
-{{review.review}}
+<div ng-show="review.review">
+    <h2>Bokbasens omtale</h2>
+    <div class="media-item-info-box">
+    {{review.review}}
+    </div>
 </div>
 
 <h2>Fakta om boka</h2>
