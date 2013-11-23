@@ -100,5 +100,10 @@ namespace Solvberget.Nancy
         {
             return Path.Combine(_applicationAppDataPath, @"placeholder_images\");
         }
+
+        public string GetFavoritesPath(string userId)
+        {
+            return Path.Combine(_applicationAppDataPath, @"favorites\", userId);
+        }
     }
 }

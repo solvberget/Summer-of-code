@@ -161,3 +161,4 @@ $RECYCLE.BIN/
 # Repo Specific
 # =========================
 src/Solvberget.Nancy/Content/
+src/Solvberget.Nancy/Data/favoritter/

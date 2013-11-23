@@ -17,5 +17,6 @@ namespace Solvberget.Domain.Utils
         string ResolveUrl(string path);
         string ResolveUrl(string baseUrl, string serverPath);
         string GetPlaceHolderImagesPath();
+        string GetFavoritesPath(string userId);
     }
 }
