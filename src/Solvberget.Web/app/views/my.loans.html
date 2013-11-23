@@ -24,7 +24,7 @@
 </div>
 <ul class="media-list">
     <div ng-repeat="doc in userInfo.loans" list-item="doc.title" subtext="doc.subTitle" document-type="doc.type" document-id="doc.id"
-         image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-favorite="true" is-favorite="doc.isFavorite" url="pathForDocument(doc)"/>
+         image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-renew="true" url="pathForDocument(doc)"/>
 </ul>
 <div ng-show="userInfo.loans.length == 0">Du har ingen lån.</div>
 <img src="/img/ajax-loader.gif" ng-hide="userInfo.loans.length >= 0" />

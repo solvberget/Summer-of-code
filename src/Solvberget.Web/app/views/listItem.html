@@ -9,6 +9,7 @@
         <span class='glyphicon glyphicon-star active' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
         <span class='glyphicon glyphicon-star inactive' ng-show="showFavorite && !isFavorite" ng-click="toggleFavorite()" />
         <span class='glyphicon glyphicon-remove' ng-show="showDelete" ng-click="delete()" />
+        <button class="btn btn-primary" ng-click="renew()" ng-show="showRenew">Forny</button>
     </span>
     </div>
     <div class="gutter"><span ng-show="gutterText || gutterTextPrefix">{{gutterTextPrefix}}{{gutterText}}</span></div>
