@@ -1,16 +1,20 @@
-<h2>{{blog.title}}</h2>
-<div class="media-item-info-box main-box">
-    <p>{{blog.description}}</p>
-    <a class="btn btn-primary" href='{{blog.url}}'>Besøk bloggen</a>
+<div ng-show="blog.url">
+    <h2>{{blog.title}}</h2>
+    <div class="media-item-info-box main-box">
+        <p>{{blog.description}}</p>
+        <a class="btn btn-primary" href='{{blog.url}}'>Besøk bloggen</a>
+    </div>
+    <h2>Siste bloggposter</h2>
 </div>
 
-<h2>Siste bloggposter</h2>
 <div ng-repeat="post in blog.posts"
      ng-click="navigate(post.url)"
      class="media-item-info-box box-action">
     <h4><a ng-href="{{post.url}}">{{post.title}}</a></h4>
     <div class="subhead">Skrevet {{post.published|date:shortDate}}</div>
+    <img ng-show="post.thumbnailUrl" ng-src="{{post.thumbnailUrl}}" style="width:80px; padding-right:10px; float:left" />
     <p ng-bind-html="post.description" />
+    <div style="clear:both"></div>
 </div>
 
-<img src="/img/ajax-loader.gif" ng-hide="blog" />
+<img src="/img/ajax-loader.gif" ng-hide="blog.posts" />
