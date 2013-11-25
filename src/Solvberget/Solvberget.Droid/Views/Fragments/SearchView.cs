@@ -5,14 +5,15 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Views.Adapters;
 
 namespace Solvberget.Droid.Views.Fragments
 {
-    public class SearchView : MvxFragment
+    public class SearchView : MvxCompatFragment
     {
         private LoadingIndicator _loadingIndicator;
-        private Android.Widget.SearchView _searchView;
+        private Android.Support.V7.Widget.SearchView _searchView;
         private ViewPager _viewPager;
         private MvxViewPagerSearchResultFragmentAdapter _adapter;
 
@@ -104,22 +105,25 @@ namespace Solvberget.Droid.Views.Fragments
         {
             inflater.Inflate(Resource.Menu.search_menu, menu);
 
-            _searchView = (Android.Widget.SearchView)menu.FindItem(Resource.Id.search).ActionView;
+            _searchView = (Android.Support.V7.Widget.SearchView)menu.FindItem(Resource.Id.search).ActionView;
 
-            _searchView.Iconified = false;
-            _searchView.QueryTextSubmit += sView_QueryTextSubmit;
-            _searchView.QueryTextChange += sView_QueryTextChange;
+            if (_searchView != null)
+            {
+                _searchView.Iconified = false;
+                _searchView.QueryTextSubmit += sView_QueryTextSubmit;
+                _searchView.QueryTextChange += sView_QueryTextChange;
+            }
 
             base.OnCreateOptionsMenu(menu, inflater);
         }
 
-        void sView_QueryTextChange(object sender, Android.Widget.SearchView.QueryTextChangeEventArgs e)
+        void sView_QueryTextChange(object sender, Android.Support.V7.Widget.SearchView.QueryTextChangeEventArgs e)
         {
             var vm = (SearchViewModel) ViewModel;
             vm.Query = e.NewText;
         }
 
-        void sView_QueryTextSubmit(object sender, Android.Widget.SearchView.QueryTextSubmitEventArgs e)
+        void sView_QueryTextSubmit(object sender, Android.Support.V7.Widget.SearchView.QueryTextSubmitEventArgs e)
         {
             var vm = (SearchViewModel)ViewModel;
             vm.SearchAndLoad();

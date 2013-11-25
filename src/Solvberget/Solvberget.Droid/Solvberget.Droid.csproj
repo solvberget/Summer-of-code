@@ -139,7 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionBar\MvxActionBarActivity.cs" />
+    <Compile Include="ActionBar\MvxCompatFragment.cs" />
     <Compile Include="ActionBar\MvxEventSourceActionBarActivity.cs" />
+    <Compile Include="ActionBar\MvxEventSourceCompatFragment.cs" />
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />

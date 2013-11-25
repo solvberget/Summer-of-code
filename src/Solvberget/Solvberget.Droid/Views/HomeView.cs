@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
+using Android.Support.V4.App;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Cirrious.CrossCore;
@@ -14,6 +15,7 @@ using Solvberget.Core.ViewModels;
 using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Helpers;
 using Solvberget.Droid.Views.Fragments;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Solvberget.Droid.Views
 {
@@ -137,7 +139,7 @@ namespace Solvberget.Droid.Views
         {
             try
             {
-                MvxFragment frag = null;
+                IMvxFragmentView frag = null;
                 var title = string.Empty;
                 var section = ViewModel.GetSectionForViewModelType(request.ViewModelType);
 
@@ -256,7 +258,7 @@ namespace Solvberget.Droid.Views
                 {
                     frag.ViewModel = viewModel;
 
-                    SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, frag).Commit();
+                    SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, (Fragment) frag).Commit();
                 }
                 try
                 {
@@ -339,6 +341,12 @@ namespace Solvberget.Droid.Views
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        public override void InvalidateOptionsMenu()
+        {
+            base.SupportInvalidateOptionsMenu();
+            //base.InvalidateOptionsMenu();
         }
     }
 }
