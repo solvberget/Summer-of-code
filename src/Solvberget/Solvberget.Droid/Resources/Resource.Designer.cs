@@ -338,70 +338,6 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f010015
 			public const int selectableItemBackground = 2130771989;
 			
-<<<<<<< HEAD
-			// aapt resource value: 0x7f03001d
-			public const int item_home_screen_element = 2130903069;
-			
-			// aapt resource value: 0x7f03001e
-			public const int item_loan = 2130903070;
-			
-			// aapt resource value: 0x7f03001f
-			public const int item_menu = 2130903071;
-			
-			// aapt resource value: 0x7f030020
-			public const int item_message = 2130903072;
-			
-			// aapt resource value: 0x7f030021
-			public const int item_news = 2130903073;
-			
-			// aapt resource value: 0x7f030022
-			public const int item_openinghour_pair = 2130903074;
-			
-			// aapt resource value: 0x7f030023
-			public const int item_openinghours = 2130903075;
-			
-			// aapt resource value: 0x7f030024
-			public const int item_reservation = 2130903076;
-			
-			// aapt resource value: 0x7f030025
-			public const int item_searchresult = 2130903077;
-			
-			// aapt resource value: 0x7f030026
-			public const int item_suggestions_list_summary = 2130903078;
-			
-			// aapt resource value: 0x7f030027
-			public const int login = 2130903079;
-			
-			// aapt resource value: 0x7f030028
-			public const int mediadetail_audiobook = 2130903080;
-			
-			// aapt resource value: 0x7f030029
-			public const int mediadetail_book = 2130903081;
-			
-			// aapt resource value: 0x7f03002a
-			public const int mediadetail_cd = 2130903082;
-			
-			// aapt resource value: 0x7f03002b
-			public const int mediadetail_film = 2130903083;
-			
-			// aapt resource value: 0x7f03002c
-			public const int mediadetail_game = 2130903084;
-			
-			// aapt resource value: 0x7f03002d
-			public const int mediadetail_journal = 2130903085;
-			
-			// aapt resource value: 0x7f03002e
-			public const int mediadetail_sheetmusic = 2130903086;
-			
-			// aapt resource value: 0x7f03002f
-			public const int page_home_view = 2130903087;
-			
-			// aapt resource value: 0x7f030030
-			public const int page_webview = 2130903088;
-			
-			// aapt resource value: 0x7f030031
-			public const int SplashScreen = 2130903089;
-=======
 			// aapt resource value: 0x7f010049
 			public const int showAsAction = 2130772041;
 			
@@ -461,7 +397,6 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f010002
 			public const int windowSplitActionBar = 2130771970;
->>>>>>> Initial version workin on Android 2.2
 			
 			static Attribute()
 			{
@@ -1461,67 +1396,70 @@ namespace Solvberget.Droid
 			public const int item_genrestring = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int item_loan = 2130903094;
+			public const int item_home_screen_element = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int item_menu = 2130903095;
+			public const int item_loan = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int item_message = 2130903096;
+			public const int item_menu = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int item_news = 2130903097;
+			public const int item_message = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int item_openinghour_pair = 2130903098;
+			public const int item_news = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int item_openinghours = 2130903099;
+			public const int item_openinghour_pair = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int item_reservation = 2130903100;
+			public const int item_openinghours = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int item_searchresult = 2130903101;
+			public const int item_reservation = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int item_suggestions_list_summary = 2130903102;
+			public const int item_searchresult = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int login = 2130903103;
+			public const int item_suggestions_list_summary = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int mediadetail_audiobook = 2130903104;
+			public const int login = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int mediadetail_book = 2130903105;
+			public const int mediadetail_audiobook = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int mediadetail_cd = 2130903106;
+			public const int mediadetail_book = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int mediadetail_film = 2130903107;
+			public const int mediadetail_cd = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int mediadetail_game = 2130903108;
+			public const int mediadetail_film = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int mediadetail_journal = 2130903109;
+			public const int mediadetail_game = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int mediadetail_sheetmusic = 2130903110;
+			public const int mediadetail_journal = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int page_home_view = 2130903111;
+			public const int mediadetail_sheetmusic = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public const int page_webview = 2130903112;
+			public const int page_home_view = 2130903112;
 			
 			// aapt resource value: 0x7f030049
-			public const int SplashScreen = 2130903113;
+			public const int page_webview = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public const int support_simple_spinner_dropdown_item = 2130903114;
+			public const int SplashScreen = 2130903114;
+			
+			// aapt resource value: 0x7f03004b
+			public const int support_simple_spinner_dropdown_item = 2130903115;
 			
 			static Layout()
 			{
