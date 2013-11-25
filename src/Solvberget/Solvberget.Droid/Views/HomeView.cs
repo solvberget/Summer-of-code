@@ -14,7 +14,6 @@ using Solvberget.Core.ViewModels;
 using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Helpers;
 using Solvberget.Droid.Views.Fragments;
-using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Solvberget.Droid.Views
 {
@@ -37,7 +36,7 @@ namespace Solvberget.Droid.Views
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            SupportFragmentManager.PopBackStackImmediate(null, (int)PopBackStackFlags.Inclusive);
             SetContentView(Resource.Layout.page_home_view);
 
             _title = _drawerTitle = Title;
@@ -123,9 +122,12 @@ namespace Solvberget.Droid.Views
         {
             try
             {
-                IMvxFragmentView frag = null;
+                MvxFragment frag = null;
                 var title = string.Empty;
                 var section = ViewModel.GetSectionForViewModelType(request.ViewModelType);
+
+                var shouldClearBackStack = true;
+                var shouldAddToBackStack = false;
 
                 switch (section)
                 {
@@ -223,13 +225,15 @@ namespace Solvberget.Droid.Views
                     }
                     case HomeViewModel.Section.Unknown:
                     {
+                        shouldClearBackStack = false;
+                        shouldAddToBackStack = true;
                         if (request.ViewModelType == typeof (SuggestionsListViewModel))
                             frag = new SuggestionsListView();
                         if (request.ViewModelType == typeof(BlogViewModel))
                             frag = new BlogView();
                         if (request.ViewModelType == typeof (BlogPostViewModel))
                             frag = new BlogPostView();
-                        if (request.ViewModelType == typeof(LoginViewModel))
+                        if (request.ViewModelType == typeof(LoginViewModel)) 
                             frag = new LoginView();
                         break;
                     }
@@ -242,7 +246,21 @@ namespace Solvberget.Droid.Views
                 {
                     frag.ViewModel = viewModel;
 
-                    SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, (Fragment) frag).Commit();
+                    //SupportFragmentManager.PopBackStackImmediate(null, (int)PopBackStackFlags.Inclusive);
+                    var trans = SupportFragmentManager.BeginTransaction();
+                    if (shouldClearBackStack)
+                    {
+                        SupportFragmentManager.PopBackStackImmediate(null, (int) PopBackStackFlags.Inclusive);
+                    }
+
+                    trans.Replace(Resource.Id.content_frame, frag);
+
+                    if (shouldAddToBackStack)
+                    {
+                        trans.AddToBackStack(ViewModel.Title);
+                    }
+                    trans.Commit();
+
                 }
                 
 

@@ -4,13 +4,14 @@ using Android.Support.V4.View;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
+using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
 using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Views.Adapters;
 
 namespace Solvberget.Droid.Views.Fragments
 {
-    public class SearchView : MvxCompatFragment
+    public class SearchView : MvxFragment
     {
         private LoadingIndicator _loadingIndicator;
         private Android.Support.V7.Widget.SearchView _searchView;
