@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Solvberget.Core.DTOs;
+using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -56,7 +57,8 @@ namespace Solvberget.Core.ViewModels
                     ButtonVisible = true,
                     CancellationButtonVisible = false,
                     ButtonText = "Fjern",
-                    Status = r.ReadyForPickup ? "" : "Ikke klar for henting"
+                    Status = r.ReadyForPickup ? "" : "Ikke klar for henting",
+                    Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, r.Document.Id)
                 });
             }
 

@@ -21,6 +21,13 @@ namespace Solvberget.Core.ViewModels
             set { _year = value; RaisePropertyChanged(() => Year); }
         }
 
+        private string _image;
+        public string Image 
+        {
+            get { return _image; }
+            set { _image = value; RaisePropertyChanged(() => Image);}
+        }
+
         private string _type;
         public string Type
         {

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Solvberget.Core.DTOs;
+using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -44,7 +45,8 @@ namespace Solvberget.Core.ViewModels
                     DueDate = l.DueDate,
                     Material = l.Material,
                     SubLibrary = l.SubLibrary,
-                    ButtonVisible = true
+                    ButtonVisible = true,
+                    Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, l.DocumentNumber)
                 });
             }
 
