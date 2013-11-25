@@ -73,7 +73,7 @@ namespace Solvberget.Droid.Views
                     try
                     {
                         Title = _title;
-                        InvalidateOptionsMenu();
+                        SupportInvalidateOptionsMenu();
                     }
                     catch (Exception e)
                     {
@@ -89,7 +89,7 @@ namespace Solvberget.Droid.Views
                      try
                     {
                         SupportActionBar.Title = _drawerTitle;
-                        InvalidateOptionsMenu();
+                        SupportInvalidateOptionsMenu();
                     }
                     catch (Exception e)
                     {
@@ -341,19 +341,6 @@ namespace Solvberget.Droid.Views
             }
 
             return base.OnOptionsItemSelected(item);
-        }
-
-        public override void InvalidateOptionsMenu()
-        {
-            // TODO: Should be handled better.
-            try
-            {
-                base.InvalidateOptionsMenu();
-            }
-            catch (Exception e)
-            {
-                base.SupportInvalidateOptionsMenu();
-            }   
         }
     }
 }
