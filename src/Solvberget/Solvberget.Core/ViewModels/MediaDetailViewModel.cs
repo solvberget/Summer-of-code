@@ -210,7 +210,12 @@ namespace Solvberget.Core.ViewModels
         public string Type 
         {
             get { return _type; }
-            set { _type = value; RaisePropertyChanged(() => Type);}
+            set
+            {
+                _type = value;
+                RaisePropertyChanged(() => Type);
+                RaisePropertyChanged(() => ReviewType);
+            }
         }
 
         private string _author;
@@ -304,6 +309,11 @@ namespace Solvberget.Core.ViewModels
             {
                 _isFavorite = value; 
                 RaisePropertyChanged(() => IsFavorite); }
+        }
+
+        public string ReviewType 
+        {
+            get { return (Type == "Book" ? "BOKOMTALE" : "ANMELDELSE") ; }
         }
     }
 }

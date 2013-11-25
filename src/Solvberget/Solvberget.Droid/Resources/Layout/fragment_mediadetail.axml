@@ -201,7 +201,7 @@
                 android:text="ANMELDELSE"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true"
-                local:MvxBind="Visibility Visibility(Review)" />
+                local:MvxBind="Text ReviewType; Visibility Visibility(Review)" />
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
