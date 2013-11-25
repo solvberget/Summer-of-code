@@ -1,12 +1,11 @@
-using System;
 using System.Linq;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
+using Android.Views.InputMethods;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
@@ -46,13 +45,10 @@ namespace Solvberget.Droid.Views
 
             _drawerList = FindViewById<MvxListView>(Resource.Id.left_drawer);
 
-            try
-            {
-               SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-               SupportActionBar.SetHomeButtonEnabled(true); 
-            } catch(Exception e)
-            {
-            }
+            
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true); 
+            
             
 
             if (_drawer != null)
@@ -67,33 +63,21 @@ namespace Solvberget.Droid.Views
                     Resource.String.drawer_open,
                     Resource.String.drawer_close);
 
-                //You can alternatively use _drawer.DrawerClosed here
                 _drawerToggle.DrawerClosed += delegate
                 {
-                    try
-                    {
-                        Title = _title;
-                        SupportInvalidateOptionsMenu();
-                    }
-                    catch (Exception e)
-                    {
-                    }
                     
-                };
+                    Title = _title;
+                    SupportInvalidateOptionsMenu();                };
 
-
-                //You can alternatively use _drawer.DrawerOpened here
                 _drawerToggle.DrawerOpened += delegate
                 {
+                   
+                    SupportActionBar.Title = _drawerTitle;
+                    SupportInvalidateOptionsMenu();
 
-                     try
-                    {
-                        SupportActionBar.Title = _drawerTitle;
-                        SupportInvalidateOptionsMenu();
-                    }
-                    catch (Exception e)
-                    {
-                    }
+                    // Close open soft keyboard when drawer opens.
+                    var inputManager = (InputMethodManager)GetSystemService(InputMethodService);
+                    inputManager.HideSoftInputFromWindow(Window.DecorView.WindowToken, 0);
                 };
 
                 _drawer.SetDrawerListener(_drawerToggle);
@@ -260,13 +244,9 @@ namespace Solvberget.Droid.Views
 
                     SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, (Fragment) frag).Commit();
                 }
-                try
-                {
-                    SupportActionBar.Title = _title = title;
-                }
-                catch (Exception e)
-                {
-                }
+                
+
+                SupportActionBar.Title = _title = title;
                 
 
                 ClearAndHighlightActiveMenuItem(section);

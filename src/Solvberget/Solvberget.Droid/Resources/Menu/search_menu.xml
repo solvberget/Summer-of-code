@@ -5,6 +5,6 @@
         local:title="@string/search_title"
         local:icon="@android:drawable/ic_menu_search"
         local:showAsAction="always"
-        local:iconifiedByDefault="false"
+        local:iconifiedByDefault="true"
         local:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>

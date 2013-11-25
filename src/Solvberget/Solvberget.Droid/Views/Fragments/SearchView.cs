@@ -122,7 +122,6 @@ namespace Solvberget.Droid.Views.Fragments
 
             if (_searchView != null)
             {
-                _searchView.Iconified = false;
                 _searchView.QueryTextSubmit += sView_QueryTextSubmit;
                 _searchView.QueryTextChange += sView_QueryTextChange;
             }
