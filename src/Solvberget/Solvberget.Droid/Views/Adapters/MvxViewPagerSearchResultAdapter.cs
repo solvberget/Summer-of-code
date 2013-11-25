@@ -38,9 +38,11 @@ namespace Solvberget.Droid.Views.Adapters
         {
             var frag = Fragments.ElementAt(position);
             var fragment = Fragment.Instantiate(_context, FragmentJavaName(typeof(SearchResultCategoryView))) as SearchResultCategoryView;
-            fragment.DataContext = frag.ViewModel;
-            fragment.BindableProperty = frag.BindableProperty;
-            
+            if (fragment != null)
+            {
+                fragment.DataContext = frag.ViewModel;
+                fragment.BindableProperty = frag.BindableProperty;
+            }
             return fragment;
         }
 

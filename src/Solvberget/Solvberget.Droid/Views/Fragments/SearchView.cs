@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Android.Support.V4.View;
 using Android.Views;
@@ -6,7 +5,6 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
-using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Views.Adapters;
 
 namespace Solvberget.Droid.Views.Fragments
@@ -116,10 +114,7 @@ namespace Solvberget.Droid.Views.Fragments
             {
                 _searchView = (Android.Support.V7.Widget.SearchView)actionView;
             }
-            catch (Exception e)
-            {
-                
-            }
+            catch { }
 
             if (_searchView != null)
             {

@@ -6,19 +6,16 @@ using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
-using Solvberget.Core.Properties;
 
 namespace Solvberget.Core.Services
 {
     public class UserInformationService : IUserService
     {
         private readonly IStringDownloader _downloader;
-        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public UserInformationService(IStringDownloader downloader, IUserAuthenticationDataService userAuthenticationService)
+        public UserInformationService(IStringDownloader downloader)
         {
-             _downloader = downloader;
-            _userAuthenticationService = userAuthenticationService;
+            _downloader = downloader;
         }
 
         public async Task<UserInfoDto> GetUserInformation(string userId)
@@ -32,8 +29,7 @@ namespace Solvberget.Core.Services
             {
                 return new UserInfoDto
                 {
-                    //Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
-                    Name = e.Message
+                    Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
                 };
             }
         }
@@ -140,7 +136,7 @@ namespace Solvberget.Core.Services
 
                 return JsonConvert.DeserializeObject<List<ReservationDto>>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new List<ReservationDto>
                 {

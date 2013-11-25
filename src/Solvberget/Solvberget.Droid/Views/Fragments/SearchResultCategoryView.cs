@@ -1,4 +1,3 @@
-using Android.Content;
 using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;

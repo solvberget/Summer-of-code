@@ -78,7 +78,7 @@ namespace Solvberget.Core.ViewModels
 
             ReservationRemoved = true;
 
-            var response = await _service.RemoveReservation(reservationViewModel.DocumentNumber);
+            await _service.RemoveReservation(reservationViewModel.DocumentNumber);
         }
 
         public void AddReservation(ReservationViewModel reservationViewModel)

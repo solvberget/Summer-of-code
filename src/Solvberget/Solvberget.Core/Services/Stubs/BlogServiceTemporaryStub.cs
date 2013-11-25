@@ -28,7 +28,7 @@ namespace Solvberget.Core.Services.Stubs
                 {
                     new BlogPostOverviewDto {Author = "Ola Normann", Description = "En spennende post", Title = "Spennende post", Published = DateTime.Now, Id = 1},
                     new BlogPostOverviewDto {Author = "Kari Normann", Description = "En helt ok post", Title = "Byråkratiets meritter", Published = DateTime.Now, Id = 2},
-                    new BlogPostOverviewDto {Author = "Per Svenske", Description = "En litt kjedelig post", Title = "Heisan", Published = DateTime.Now, Id = 2},
+                    new BlogPostOverviewDto {Author = "Per Svenske", Description = "En litt kjedelig post", Title = "Heisan", Published = DateTime.Now, Id = 2}
                 }
             };
         }

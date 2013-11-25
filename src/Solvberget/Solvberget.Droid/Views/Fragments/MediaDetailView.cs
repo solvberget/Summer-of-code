@@ -1,15 +1,12 @@
 using Android.App;
-using Android.Drm;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
-using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
 using Solvberget.Droid.ActionBar;
-using ActionProvider = Android.Support.V4.View.ActionProvider;
 using ShareActionProvider = Android.Support.V7.Widget.ShareActionProvider;
 
 namespace Solvberget.Droid.Views.Fragments
@@ -130,7 +127,7 @@ namespace Solvberget.Droid.Views.Fragments
             MenuInflater.Inflate(Resource.Menu.share, _menu);
             // Locate MenuItem with ShareActionProvider
             var inflatedShareView = _menu.FindItem(Resource.Id.menu_share);
-            var actionShareView = new Android.Support.V7.Widget.ShareActionProvider(this);
+            var actionShareView = new ShareActionProvider(this);
             MenuItemCompat.SetActionProvider(inflatedShareView, actionShareView);
 
             _shareActionProvider = actionShareView;

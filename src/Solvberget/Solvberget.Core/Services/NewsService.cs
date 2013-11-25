@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
-using Cirrious.CrossCore;
 using Solvberget.Core.Properties;
 
 namespace Solvberget.Core.Services
@@ -25,7 +24,7 @@ namespace Solvberget.Core.Services
 				var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_News);
                 return JsonConvert.DeserializeObject<IList<NewsStoryDto>>(response);
             }
-			catch (Exception e)
+			catch (Exception)
             {
                 return new List<NewsStoryDto>
                 {

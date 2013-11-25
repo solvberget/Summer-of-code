@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Solvberget.Core.ViewModels.Base;
+﻿using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
