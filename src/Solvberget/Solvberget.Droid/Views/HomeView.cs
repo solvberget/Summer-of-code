@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Android.App;
 using Android.Content.PM;
@@ -43,8 +44,14 @@ namespace Solvberget.Droid.Views
 
             _drawerList = FindViewById<MvxListView>(Resource.Id.left_drawer);
 
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetHomeButtonEnabled(true);
+            try
+            {
+               ActionBar.SetDisplayHomeAsUpEnabled(true);
+                ActionBar.SetHomeButtonEnabled(true); 
+            } catch(Exception e)
+            {
+            }
+            
 
             if (_drawer != null)
             {
@@ -61,16 +68,30 @@ namespace Solvberget.Droid.Views
                 //You can alternatively use _drawer.DrawerClosed here
                 _drawerToggle.DrawerClosed += delegate
                 {
-                    ActionBar.Title = _title;
-                    InvalidateOptionsMenu();
+                    try
+                    {
+                        ActionBar.Title = _title;
+                        InvalidateOptionsMenu();
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                    
                 };
 
 
                 //You can alternatively use _drawer.DrawerOpened here
                 _drawerToggle.DrawerOpened += delegate
                 {
-                    ActionBar.Title = _drawerTitle;
-                    InvalidateOptionsMenu();
+
+                     try
+                    {
+                        ActionBar.Title = _drawerTitle;
+                        InvalidateOptionsMenu();
+                    }
+                    catch (Exception e)
+                    {
+                    }
                 };
 
                 _drawer.SetDrawerListener(_drawerToggle);
@@ -237,7 +258,14 @@ namespace Solvberget.Droid.Views
 
                     SupportFragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, frag).Commit();
                 }
-                ActionBar.Title = _title = title;
+                try
+                {
+                    ActionBar.Title = _title = title;
+                }
+                catch (Exception e)
+                {
+                }
+                
 
                 ClearAndHighlightActiveMenuItem(section);
 

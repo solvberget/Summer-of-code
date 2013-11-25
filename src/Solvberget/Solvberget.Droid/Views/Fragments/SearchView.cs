@@ -23,7 +23,7 @@ namespace Solvberget.Droid.Views.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
-            SetHasOptionsMenu(true);
+            HasOptionsMenu = true;
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_search, null);
 
