@@ -406,64 +406,67 @@ namespace Solvberget.Droid
 			public const int item_genrestring = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int item_loan = 2130903069;
+			public const int item_home_screen_element = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int item_menu = 2130903070;
+			public const int item_loan = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int item_message = 2130903071;
+			public const int item_menu = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int item_news = 2130903072;
+			public const int item_message = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int item_openinghour_pair = 2130903073;
+			public const int item_news = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int item_openinghours = 2130903074;
+			public const int item_openinghour_pair = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int item_reservation = 2130903075;
+			public const int item_openinghours = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int item_searchresult = 2130903076;
+			public const int item_reservation = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int item_suggestions_list_summary = 2130903077;
+			public const int item_searchresult = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int login = 2130903078;
+			public const int item_suggestions_list_summary = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int mediadetail_audiobook = 2130903079;
+			public const int login = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int mediadetail_book = 2130903080;
+			public const int mediadetail_audiobook = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int mediadetail_cd = 2130903081;
+			public const int mediadetail_book = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int mediadetail_film = 2130903082;
+			public const int mediadetail_cd = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int mediadetail_game = 2130903083;
+			public const int mediadetail_film = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int mediadetail_journal = 2130903084;
+			public const int mediadetail_game = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int mediadetail_sheetmusic = 2130903085;
+			public const int mediadetail_journal = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int page_home_view = 2130903086;
+			public const int mediadetail_sheetmusic = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int page_webview = 2130903087;
+			public const int page_home_view = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int SplashScreen = 2130903088;
+			public const int page_webview = 2130903088;
+			
+			// aapt resource value: 0x7f030031
+			public const int SplashScreen = 2130903089;
 			
 			static Layout()
 			{
