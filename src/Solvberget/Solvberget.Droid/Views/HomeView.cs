@@ -4,7 +4,6 @@ using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
-using Android.Support.V4.App;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Cirrious.CrossCore;
@@ -48,8 +47,8 @@ namespace Solvberget.Droid.Views
 
             try
             {
-               ActionBar.SetDisplayHomeAsUpEnabled(true);
-               ActionBar.SetHomeButtonEnabled(true); 
+               SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+               SupportActionBar.SetHomeButtonEnabled(true); 
             } catch(Exception e)
             {
             }
@@ -88,7 +87,7 @@ namespace Solvberget.Droid.Views
 
                      try
                     {
-                        ActionBar.Title = _drawerTitle;
+                        SupportActionBar.Title = _drawerTitle;
                         InvalidateOptionsMenu();
                     }
                     catch (Exception e)
@@ -262,7 +261,7 @@ namespace Solvberget.Droid.Views
                 }
                 try
                 {
-                    ActionBar.Title = _title = title;
+                    SupportActionBar.Title = _title = title;
                 }
                 catch (Exception e)
                 {
