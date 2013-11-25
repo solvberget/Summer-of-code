@@ -1,20 +1,22 @@
 using Android.App;
 using Android.Support.V4.App;
+using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.ActionBar;
 
 namespace Solvberget.Droid.Views.Fragments
 {
     [Activity(Label = "Mediadetaljer", Theme = "@style/MyTheme", Icon = "@android:color/transparent", ParentActivity = typeof(HomeView))]
     [MetaData("android.support.PARENT_ACTIVITY", Value = "solvberget.droid.views.HomeView")]
-    public class MediaDetailView : MvxActivity
+    public class MediaDetailView : MvxActionBarActivity
     {
         private LoadingIndicator _loadingIndicator;
-        private ShareActionProvider _shareActionProvider;
+        private Android.Support.V7.Widget.ShareActionProvider _shareActionProvider;
         private IMenu _menu;
         private bool _starIsClicked;
 
@@ -23,8 +25,8 @@ namespace Solvberget.Droid.Views.Fragments
             base.OnViewModelSet();
             SetContentView(Resource.Layout.fragment_mediadetail);
 
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
 
             ((MediaDetailViewModel)ViewModel).PropertyChanged += MediaDetailView_PropertyChanged;
 
@@ -55,7 +57,7 @@ namespace Solvberget.Droid.Views.Fragments
             _loadingIndicator = new LoadingIndicator(this);
 
             var set = this.CreateBindingSet<MediaDetailView, SearchResultViewModel>();
-            set.Bind(ActionBar).For(v => v.Title).To(vm => vm.Title).Mode(MvxBindingMode.OneWay);
+            set.Bind(SupportActionBar).For(v => v.Title).To(vm => vm.Title).Mode(MvxBindingMode.OneWay);
             set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
             set.Apply();
         }
@@ -125,7 +127,7 @@ namespace Solvberget.Droid.Views.Fragments
             MenuInflater.Inflate(Resource.Menu.share, _menu);
             // Locate MenuItem with ShareActionProvider
             IMenuItem shareMenuItem = _menu.FindItem(Resource.Id.menu_share);
-            _shareActionProvider = (ShareActionProvider)shareMenuItem.ActionProvider;
+            _shareActionProvider = MenuItemCompat.GetActionProvider(shareMenuItem) as Android.Support.V7.Widget.ShareActionProvider;
 
             CreateShareMenu();
 
