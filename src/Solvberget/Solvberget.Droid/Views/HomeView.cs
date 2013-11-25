@@ -8,17 +8,17 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.Views;
-using Cirrious.MvvmCross.Droid.Fragging;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Helpers;
 using Solvberget.Droid.Views.Fragments;
 
 namespace Solvberget.Droid.Views
 {
-    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher")]
-    public class HomeView : MvxFragmentActivity, IFragmentHost
+    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/Theme.AppCompat", Icon = "@drawable/ic_launcher")]
+    public class HomeView : MvxActionBarActivity, IFragmentHost
     {
         private DrawerLayout _drawer;
         private MyActionBarDrawerToggle _drawerToggle;
@@ -47,7 +47,7 @@ namespace Solvberget.Droid.Views
             try
             {
                ActionBar.SetDisplayHomeAsUpEnabled(true);
-                ActionBar.SetHomeButtonEnabled(true); 
+               ActionBar.SetHomeButtonEnabled(true); 
             } catch(Exception e)
             {
             }
@@ -70,7 +70,7 @@ namespace Solvberget.Droid.Views
                 {
                     try
                     {
-                        ActionBar.Title = _title;
+                        Title = _title;
                         InvalidateOptionsMenu();
                     }
                     catch (Exception e)
