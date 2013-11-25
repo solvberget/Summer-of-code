@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\FavoriteViewModel.cs" />
     <Compile Include="ViewModels\FineViewModel.cs" />
     <Compile Include="ViewModels\GenericWebViewViewModel.cs" />
+    <Compile Include="ViewModels\HomeScreenElementViewModel.cs" />
     <Compile Include="ViewModels\HomeScreenViewModel.cs" />
     <Compile Include="ViewModels\LoanViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

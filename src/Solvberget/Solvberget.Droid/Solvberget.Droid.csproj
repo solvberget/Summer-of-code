@@ -125,6 +125,7 @@
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Converters\AvailabilityAmountToColorConverter.cs" />
     <Compile Include="Converters\SelectedMenuItemBackgroundConverter.cs" />
+    <Compile Include="Converters\StringToColorConverter.cs" />
     <Compile Include="Converters\StringToHtmlConverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Helpers\CustomPresenter.cs" />
@@ -287,6 +288,15 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_home_screen.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout-large\fragment_home_screen.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout-large-land\fragment_home_screen.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_home_screen_element.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
