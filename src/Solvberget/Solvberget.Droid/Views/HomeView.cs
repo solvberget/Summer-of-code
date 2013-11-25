@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
@@ -344,8 +345,15 @@ namespace Solvberget.Droid.Views
 
         public override void InvalidateOptionsMenu()
         {
-            base.SupportInvalidateOptionsMenu();
-            //base.InvalidateOptionsMenu();
+            // TODO: Should be handled better.
+            try
+            {
+                base.InvalidateOptionsMenu();
+            }
+            catch (Exception e)
+            {
+                base.SupportInvalidateOptionsMenu();
+            }   
         }
     }
 }

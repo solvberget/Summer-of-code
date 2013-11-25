@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Drm;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Views;
@@ -8,6 +9,8 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Droid.Views;
 using Solvberget.Core.ViewModels;
 using Solvberget.Droid.ActionBar;
+using ActionProvider = Android.Support.V4.View.ActionProvider;
+using ShareActionProvider = Android.Support.V7.Widget.ShareActionProvider;
 
 namespace Solvberget.Droid.Views.Fragments
 {
@@ -16,7 +19,7 @@ namespace Solvberget.Droid.Views.Fragments
     public class MediaDetailView : MvxActionBarActivity
     {
         private LoadingIndicator _loadingIndicator;
-        private Android.Support.V7.Widget.ShareActionProvider _shareActionProvider;
+        private ShareActionProvider _shareActionProvider;
         private IMenu _menu;
         private bool _starIsClicked;
 
@@ -126,8 +129,11 @@ namespace Solvberget.Droid.Views.Fragments
 
             MenuInflater.Inflate(Resource.Menu.share, _menu);
             // Locate MenuItem with ShareActionProvider
-            IMenuItem shareMenuItem = _menu.FindItem(Resource.Id.menu_share);
-            _shareActionProvider = MenuItemCompat.GetActionProvider(shareMenuItem) as Android.Support.V7.Widget.ShareActionProvider;
+            var inflatedShareView = _menu.FindItem(Resource.Id.menu_share);
+            var actionShareView = new Android.Support.V7.Widget.ShareActionProvider(this);
+            MenuItemCompat.SetActionProvider(inflatedShareView, actionShareView);
+
+            _shareActionProvider = actionShareView;
 
             CreateShareMenu();
 

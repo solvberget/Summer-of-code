@@ -20,7 +20,7 @@
     <RestorePackages>true</RestorePackages>
     <AndroidUseLatestPlatformSdk />
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
-    <AndroidSupportedAbis>armeabi-v7a%3bx86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -210,8 +210,12 @@
     <AndroidResource Include="Resources\Layout\fragment_profile.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Layout\item_menu.axml" />
-    <AndroidResource Include="Resources\Layout\page_home_view.axml" />
+    <AndroidResource Include="Resources\Layout\item_menu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\page_home_view.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_search.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -391,7 +395,7 @@
     <AndroidResource Include="Resources\Values\SplashStyle.xml" />
     <AndroidResource Include="Resources\Values\MvxBindingAttributes.xml" />
     <AndroidResource Include="Resources\Values-v7\styles.xml" />
-    <Content Include="ToDo-MvvmCross\_ Droid UI.txt" />
+    <AndroidResource Include="Resources\Layout-v11\item_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

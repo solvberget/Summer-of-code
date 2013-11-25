@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Android.Support.V4.View;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
-using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
 using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Views.Adapters;
@@ -105,7 +105,20 @@ namespace Solvberget.Droid.Views.Fragments
         {
             inflater.Inflate(Resource.Menu.search_menu, menu);
 
-            _searchView = (Android.Support.V7.Widget.SearchView)menu.FindItem(Resource.Id.search).ActionView;
+            var inflatedSearchView = menu.FindItem(Resource.Id.search);
+            var actionSearchView = new Android.Support.V7.Widget.SearchView(Activity);
+            inflatedSearchView.SetActionView(actionSearchView);
+
+            var actionView = MenuItemCompat.GetActionView(inflatedSearchView);
+
+            try
+            {
+                _searchView = (Android.Support.V7.Widget.SearchView)actionView;
+            }
+            catch (Exception e)
+            {
+                
+            }
 
             if (_searchView != null)
             {
@@ -130,7 +143,6 @@ namespace Solvberget.Droid.Views.Fragments
 
             _searchView.SetQuery("", false);
             _searchView.Iconified = true;
-
         }
     }
 }
