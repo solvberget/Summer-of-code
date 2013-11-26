@@ -136,6 +136,7 @@
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="Services\Interfaces\IEventService.cs" />
     <Compile Include="Services\EventService.cs" />
+    <Compile Include="ViewModels\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

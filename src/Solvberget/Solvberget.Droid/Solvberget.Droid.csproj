@@ -287,7 +287,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_blogpost.axml" />
     <AndroidResource Include="Resources\Layout\fragment_searchresults.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\mediadetail_film.axml" />
     <AndroidResource Include="Resources\Layout\mediadetail_book.axml" />

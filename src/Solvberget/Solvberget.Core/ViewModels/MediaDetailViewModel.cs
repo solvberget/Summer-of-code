@@ -67,7 +67,7 @@ namespace Solvberget.Core.ViewModels
             ItemTitle = document.Title;
             Name = document.Title;
             Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, docId);
-            Year = document.Year.ToString("0000");
+            Year = (document.Year != 0) ? document.Year.ToString("####") : "Ukjent år";
             Type = document.Type;
             Author = document.MainContributor;
             Availability = document.Availability.FirstOrDefault() ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};

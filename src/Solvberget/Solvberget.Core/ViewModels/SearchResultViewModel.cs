@@ -28,7 +28,7 @@ namespace Solvberget.Core.ViewModels
         {
             get
             {
-                return ConvertMediaTypeToNiceString(Type);
+                return Utils.ConvertMediaTypeToNiceString(Type);
             }
         }
 
@@ -62,30 +62,6 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _image; }
             set { _image = value; RaisePropertyChanged(() => Image);}
-        }
-
-        private static string ConvertMediaTypeToNiceString(string type)
-        {
-            switch (type)
-            {
-                case "Document":
-                case "Book":
-                    return "Bok";
-                case "Film":
-                    return "Film";
-                case "AudioBook":
-                    return "Lydbok";
-                case "Cd":
-                    return "CD";
-                case "Journal":
-                    return "Tidsskrift";
-                case "SheetMusic":
-                    return "Noter";
-                case "Game":
-                    return "Spill";
-                default:
-                    return "Annet";
-            }
         }
     }
 }
