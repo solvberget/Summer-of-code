@@ -25,6 +25,13 @@ namespace Solvberget.Core.ViewModels
             set { _query = value; RaisePropertyChanged(() => Query);}
         }
 
+        private string _lastQuery;
+        public string LastQuery 
+        {
+            get { return _lastQuery; }
+            set { _lastQuery = value; RaisePropertyChanged(() => LastQuery);}
+        }
+
         private IList<SearchResultViewModel> _results;
         public IList<SearchResultViewModel> Results 
         {
@@ -61,6 +68,8 @@ namespace Solvberget.Core.ViewModels
         public async void SearchAndLoad()
         {
             IsLoading = true;
+            var lastquery = Query;
+
             var results = await _searchService.Search(Query);
             Results = (from document in results
                         select new SearchResultViewModel
@@ -71,6 +80,8 @@ namespace Solvberget.Core.ViewModels
                             Year = document.Year.ToString("0000"),
                             DocNumber = document.Id,
                         }).ToList();
+
+            LastQuery = string.Format("Resultater for: {0}", lastquery);
             IsLoading = false;
         }
 

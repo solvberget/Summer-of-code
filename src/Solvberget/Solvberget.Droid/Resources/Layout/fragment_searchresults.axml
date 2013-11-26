@@ -5,6 +5,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_background">
+  <TextView
+        android:id="@+id/searchResultsTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+    />
     <MvxListView
         android:id="@+id/searchResultsList"
         android:paddingTop="8dp"

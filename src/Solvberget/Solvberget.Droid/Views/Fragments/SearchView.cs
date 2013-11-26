@@ -31,10 +31,13 @@ namespace Solvberget.Droid.Views.Fragments
 
             var set = this.CreateBindingSet<SearchView, SearchViewModel>();
             set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
-            set.Apply();
 
             _viewPager = view.FindViewById<ViewPager>(Resource.Id.searchViewPager);
             _viewPager.OffscreenPageLimit = 4;
+
+            set.Bind(_viewPager).For(vp => vp.Visibility).To(vm => vm.LastQuery).WithConversion("Visibility");
+
+            set.Apply();
 
             var fragments = new List<MvxViewPagerSearchResultFragmentAdapter.SearchResultFragmentInfo>
               {
