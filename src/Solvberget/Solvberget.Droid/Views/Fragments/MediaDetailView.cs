@@ -102,8 +102,8 @@ namespace Solvberget.Droid.Views.Fragments
             {
                 var playStoreLink = "https://play.google.com/store/apps/details?id=" + PackageName;
                 var shareTextBody = string.Format(
-                    "Jeg søkte og fant {0} hos Sølvberget. Last ned appen på Google Play for muligheten til å låne den du også. {1}",
-                    ((MediaDetailViewModel)ViewModel).Title,
+                    "Jeg fant {0} hos Sølvberget. Last ned app for muligheten til å låne du også: {1}",
+                    ((MediaDetailViewModel)ViewModel).Title, 
                     playStoreLink);
 
                 var shareIntent = ShareCompat.IntentBuilder.From(this)
