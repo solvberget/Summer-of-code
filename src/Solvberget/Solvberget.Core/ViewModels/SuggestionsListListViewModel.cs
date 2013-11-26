@@ -40,7 +40,7 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowListCommand(SuggestionListSummaryViewModel suggestionsListSummary)
         {
-            ShowViewModel<SuggestionsListViewModel>(new { suggestionsListSummary.Name, suggestionsListSummary.Id });
+            ShowViewModel<SuggestionsListViewModel>(new { name = suggestionsListSummary.Name, id = suggestionsListSummary.Id });
         }
 
         // Loads a a set of Lists retrieved from the service into the results list.

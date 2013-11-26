@@ -17,11 +17,11 @@ namespace Solvberget.Core.ViewModels
             _suggestionsService = suggestionsService;
         }
 
-        public void Init(string Name, string Id)
+        public void Init(string name, string id)
         {
-            this.Name = Name;
-            this.Id = Id;
-            Title = Name;
+            Name = name;
+            Id = id;
+            Title = name;
             Load();
         }
 

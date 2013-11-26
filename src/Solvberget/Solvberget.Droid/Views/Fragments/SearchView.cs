@@ -12,7 +12,7 @@ namespace Solvberget.Droid.Views.Fragments
     public class SearchView : MvxFragment
     {
         private LoadingIndicator _loadingIndicator;
-        private Android.Widget.SearchView _searchView;
+        private Android.Support.V7.Widget.SearchView _searchView;
         private ViewPager _viewPager;
         private MvxViewPagerSearchResultFragmentAdapter _adapter;
 
@@ -23,7 +23,7 @@ namespace Solvberget.Droid.Views.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
-            SetHasOptionsMenu(true);
+            HasOptionsMenu = true;
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_search, null);
 
@@ -104,29 +104,40 @@ namespace Solvberget.Droid.Views.Fragments
         {
             inflater.Inflate(Resource.Menu.search_menu, menu);
 
-            _searchView = (Android.Widget.SearchView)menu.FindItem(Resource.Id.search).ActionView;
+            var inflatedSearchView = menu.FindItem(Resource.Id.search);
+            var actionSearchView = new Android.Support.V7.Widget.SearchView(Activity);
+            inflatedSearchView.SetActionView(actionSearchView);
 
-            _searchView.Iconified = false;
-            _searchView.QueryTextSubmit += sView_QueryTextSubmit;
-            _searchView.QueryTextChange += sView_QueryTextChange;
+            var actionView = MenuItemCompat.GetActionView(inflatedSearchView);
+
+            try
+            {
+                _searchView = (Android.Support.V7.Widget.SearchView)actionView;
+            }
+            catch { }
+
+            if (_searchView != null)
+            {
+                _searchView.QueryTextSubmit += sView_QueryTextSubmit;
+                _searchView.QueryTextChange += sView_QueryTextChange;
+            }
 
             base.OnCreateOptionsMenu(menu, inflater);
         }
 
-        void sView_QueryTextChange(object sender, Android.Widget.SearchView.QueryTextChangeEventArgs e)
+        void sView_QueryTextChange(object sender, Android.Support.V7.Widget.SearchView.QueryTextChangeEventArgs e)
         {
             var vm = (SearchViewModel) ViewModel;
             vm.Query = e.NewText;
         }
 
-        void sView_QueryTextSubmit(object sender, Android.Widget.SearchView.QueryTextSubmitEventArgs e)
+        void sView_QueryTextSubmit(object sender, Android.Support.V7.Widget.SearchView.QueryTextSubmitEventArgs e)
         {
             var vm = (SearchViewModel)ViewModel;
             vm.SearchAndLoad();
 
             _searchView.SetQuery("", false);
             _searchView.Iconified = true;
-
         }
     }
 }

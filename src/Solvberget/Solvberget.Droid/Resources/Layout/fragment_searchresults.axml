@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@color/ui_background">
     <MvxListView
-      android:id="@+id/searchResultsList"
+        android:id="@+id/searchResultsList"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_width="fill_parent"

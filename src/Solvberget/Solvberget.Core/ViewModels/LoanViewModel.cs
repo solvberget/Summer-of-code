@@ -73,6 +73,13 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
+        private string _image;
+        public string Image 
+        {
+            get { return _image; }
+            set { _image = value; RaisePropertyChanged(() => Image);}
+        }
+
         private MvxCommand<LoanViewModel> _showDetailsCommand;
         public ICommand ShowDetailsCommand
         {

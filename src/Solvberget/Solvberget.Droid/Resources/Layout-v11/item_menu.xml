@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textColor="#fff"
         local:MvxBind="Text IconChar"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textAppearance="?android:attr/textAppearanceListItem" />
     <TextView
         android:id="@android:id/text1"
         android:layout_width="match_parent"
@@ -22,8 +22,7 @@
         android:textColor="#fff"
         local:MvxBind="Text Title"
         android:singleLine="true"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:minHeight="?attr/listPreferredItemHeight" />
-<!-- 
-    -->
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:background="?android:attr/activatedBackgroundIndicator" />
 </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>

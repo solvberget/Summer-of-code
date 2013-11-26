@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Input;
-using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels

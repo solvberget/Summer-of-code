@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Solvberget.Core.DTOs;
+using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -45,7 +46,8 @@ namespace Solvberget.Core.ViewModels
                     Name = f.Document.Title,
                     Year = f.Document.Year,
                     Parent = this,
-                    DocumentNumber = f.Document.Id
+                    DocumentNumber = f.Document.Id,
+                    Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, f.Document.Id)
                 });
             }
 

@@ -6,14 +6,14 @@ using Android.Views;
 
 namespace Solvberget.Droid.Helpers
 {
-    public class ActionBarDrawerEventArgs : EventArgs
+    public class DrawerEventArgs : EventArgs
     {
         public View DrawerView { get; set; }
         public float SlideOffset { get; set; }
         public int NewState { get; set; }
     }
 
-    public delegate void ActionBarDrawerChangedEventHandler(object s, ActionBarDrawerEventArgs e);
+    public delegate void ActionBarDrawerChangedEventHandler(object s, DrawerEventArgs e);
 
     public class MyActionBarDrawerToggle : ActionBarDrawerToggle
     {
@@ -29,21 +29,21 @@ namespace Solvberget.Droid.Helpers
         public override void OnDrawerClosed(View drawerView)
         {
             if (null != DrawerClosed)
-                DrawerClosed(this, new ActionBarDrawerEventArgs { DrawerView = drawerView });
+                DrawerClosed(this, new DrawerEventArgs { DrawerView = drawerView });
             base.OnDrawerClosed(drawerView);
         }
 
         public override void OnDrawerOpened(View drawerView)
         {
             if (null != DrawerOpened)
-                DrawerOpened(this, new ActionBarDrawerEventArgs { DrawerView = drawerView });
+                DrawerOpened(this, new DrawerEventArgs { DrawerView = drawerView });
             base.OnDrawerOpened(drawerView);
         }
 
         public override void OnDrawerSlide(View drawerView, float slideOffset)
         {
             if (null != DrawerSlide)
-                DrawerSlide(this, new ActionBarDrawerEventArgs
+                DrawerSlide(this, new DrawerEventArgs
                 {
                     DrawerView = drawerView,
                     SlideOffset = slideOffset
@@ -54,7 +54,7 @@ namespace Solvberget.Droid.Helpers
         public override void OnDrawerStateChanged(int newState)
         {
             if (null != DrawerStateChanged)
-                DrawerStateChanged(this, new ActionBarDrawerEventArgs
+                DrawerStateChanged(this, new DrawerEventArgs
                 {
                     NewState = newState
                 });

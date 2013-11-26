@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Android.Content;
 using Android.Support.V4.App;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;

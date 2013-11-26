@@ -83,7 +83,7 @@ namespace Solvberget.Core.Services
                 var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Rating, docId));
                 return JsonConvert.DeserializeObject<DocumentRatingDto>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -96,7 +96,7 @@ namespace Solvberget.Core.Services
                 var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Review, docId));
                 return JsonConvert.DeserializeObject<DocumentReviewDto>(response);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

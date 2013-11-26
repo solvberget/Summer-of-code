@@ -14,12 +14,11 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+  <Solvberget.Droid.Views.Components.CustomImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_launcher"
-        android:layout_weight="1"
-        android:width="0dip" />
+        local:MvxBind="ImageUrl Image"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_weight="300"

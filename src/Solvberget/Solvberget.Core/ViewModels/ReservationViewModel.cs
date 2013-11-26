@@ -28,6 +28,13 @@ namespace Solvberget.Core.ViewModels
             set { _pickupLocation = value; RaisePropertyChanged(() => PickupLocation); }
         }
 
+        private string _image;
+        public string Image 
+        {
+            get { return _image; }
+            set { _image = value; RaisePropertyChanged(() => Image);}
+        }
+
         private DateTime? _holdRequestFrom;
         public DateTime? HoldRequestFrom
         {
