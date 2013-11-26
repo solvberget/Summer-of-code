@@ -73,7 +73,7 @@ namespace Solvberget.Core.ViewModels
             Availability = document.Availability.FirstOrDefault() ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};
             RawDto = document;
             Language = document.Language;
-            Languages = document.Languages.ToList();
+            Languages = document.Languages;
             Publisher = document.Publisher;
             MainContributor = document.MainContributor;
             EstimatedAvailableDate = "Ukjent";
@@ -239,8 +239,8 @@ namespace Solvberget.Core.ViewModels
             set { _language = value; RaisePropertyChanged(() => Language);}
         }
 
-        private List<string> _languages;
-        public List<string> Languages 
+        private string[] _languages;
+        public string[] Languages 
         {
             get { return _languages; }
             set { _languages = value; RaisePropertyChanged(() => Languages);}

@@ -46,12 +46,12 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Besetning"
-    local:MvxBind="Visibility Visibility(MusicalLineup)" />
+    local:MvxBind="Visibility Visibility(MusicalLineup.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource MusicalLineup; Visibility Visibility(MusicalLineup)"
+    local:MvxBind="ItemsSource MusicalLineup; Visibility Visibility(MusicalLineup.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
 </LinearLayout>

@@ -10,7 +10,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Artist / Komponist"
-    local:MvxBind="Visibility(ArtistOrComposerName)" />
+    local:MvxBind="Visibility Visibility(ArtistOrComposerName)" />
   <TextView
     android:textAppearance="@style/MediaDetailFieldContent"
     android:layout_width="fill_parent"

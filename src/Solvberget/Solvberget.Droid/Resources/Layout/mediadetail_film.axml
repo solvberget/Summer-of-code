@@ -34,13 +34,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Skuespillere"
-    local:MvxBind="Visibility Visibility(ActorNames)" />
+    local:MvxBind="Visibility Visibility(ActorNames.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource ActorNames; Visibility Visibility(ActorNames)"
+    local:MvxBind="ItemsSource ActorNames; Visibility Visibility(ActorNames.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
@@ -48,13 +48,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Undertekster"
-    local:MvxBind="Visibility Visibility(SubtitleLanguages)" />
+    local:MvxBind="Visibility Visibility(SubtitleLanguages.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource SubtitleLanguages; Visibility Visibility(SubtitleLanguages)"
+    local:MvxBind="ItemsSource SubtitleLanguages; Visibility Visibility(SubtitleLanguages.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
@@ -62,13 +62,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Refererte Personer"
-    local:MvxBind="Visibility Visibility(ReferredPeopleNames)" />
+    local:MvxBind="Visibility Visibility(ReferredPeopleNames.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource ReferredPeopleNames; Visibility Visibility(ReferredPeopleNames)"
+    local:MvxBind="ItemsSource ReferredPeopleNames; Visibility Visibility(ReferredPeopleNames.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
@@ -76,13 +76,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Omtalte Steder"
-    local:MvxBind="Visibility Visibility(ReferencedPlaces)" />
+    local:MvxBind="Visibility Visibility(ReferencedPlaces.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource ReferencedPlaces; Visibility Visibility(ReferencedPlaces)"
+    local:MvxBind="ItemsSource ReferencedPlaces; Visibility Visibility(ReferencedPlaces.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
@@ -90,13 +90,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Sjangre"
-    local:MvxBind="Visibility Visibility(Genres)" />
+    local:MvxBind="Visibility Visibility(Genres.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource Genres; Visibility Visibility(Genres)"
+    local:MvxBind="ItemsSource Genres; Visibility Visibility(Genres.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
@@ -104,13 +104,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Involverte Personer"
-    local:MvxBind="Visibility Visibility(InvolvedPersonNames)" />
+    local:MvxBind="Visibility Visibility(InvolvedPersonNames.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource InvolvedPersonNames; Visibility Visibility(InvolvedPersonNames)"
+    local:MvxBind="ItemsSource InvolvedPersonNames; Visibility Visibility(InvolvedPersonNames.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
   
   <TextView
@@ -118,12 +118,12 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Ansvarlige Personer"
-    local:MvxBind="Visibility Visibility(ResponsiblePersonNames)" />
+    local:MvxBind="Visibility Visibility(ResponsiblePersonNames.Length)" />
   <Mvx.MvxLinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource ResponsiblePersonNames; Visibility Visibility(ResponsiblePersonNames)"
+    local:MvxBind="ItemsSource ResponsiblePersonNames; Visibility Visibility(ResponsiblePersonNames.Length)"
     local:MvxItemTemplate="@layout/item_genrestring" />
 </LinearLayout>
