@@ -7,7 +7,8 @@ namespace Solvberget.Droid
        Label = "Sølvberget"
        , MainLauncher = true
        , Icon = "@drawable/ic_launcher"
-       , Theme = "@style/Theme.Splash")]
+       , Theme = "@style/Theme.Splash"
+       , NoHistory = true)]
     public class SplashScreen : MvxSplashScreenActivity
     {
         public SplashScreen() : base(Resource.Layout.SplashScreen)
