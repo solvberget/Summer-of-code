@@ -11,6 +11,7 @@ using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.ViewModels;
+using Solvberget.Core.ViewModels.Base;
 using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Helpers;
 using Solvberget.Droid.Views.Fragments;
@@ -20,6 +21,7 @@ namespace Solvberget.Droid.Views
     [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/Theme.AppCompat", Icon = "@drawable/ic_launcher")]
     public class HomeView : MvxActionBarActivity, IFragmentHost
     {
+        private const string START_PAGE_TITLE = "Startside";
         private DrawerLayout _drawer;
         private MyActionBarDrawerToggle _drawerToggle;
         private string _drawerTitle;
@@ -27,6 +29,7 @@ namespace Solvberget.Droid.Views
         private MvxListView _drawerList;
 
         private HomeViewModel _viewModel;
+        private MvxFragment _currentFragment;
 
         public new HomeViewModel ViewModel
         {
@@ -219,13 +222,13 @@ namespace Solvberget.Droid.Views
                         if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as HomeScreenView != null)
                             return true;
 
+
                         frag = new HomeScreenView();
-                        title = "Startside";
+                        title = START_PAGE_TITLE;
                         break;
                     }
                     case HomeViewModel.Section.Unknown:
                     {
-                        shouldClearBackStack = false;
                         shouldAddToBackStack = true;
                         if (request.ViewModelType == typeof (SuggestionsListViewModel))
                             frag = new SuggestionsListView();
@@ -246,21 +249,20 @@ namespace Solvberget.Droid.Views
                 {
                     frag.ViewModel = viewModel;
 
-                    //SupportFragmentManager.PopBackStackImmediate(null, (int)PopBackStackFlags.Inclusive);
                     var trans = SupportFragmentManager.BeginTransaction();
                     if (shouldClearBackStack)
                     {
-                        SupportFragmentManager.PopBackStackImmediate(null, (int) PopBackStackFlags.Inclusive);
+                        SupportFragmentManager.PopBackStackImmediate(START_PAGE_TITLE, (int) PopBackStackFlags.None);
                     }
 
                     trans.Replace(Resource.Id.content_frame, frag);
+                    _currentFragment = frag;
 
                     if (shouldAddToBackStack)
                     {
-                        trans.AddToBackStack(ViewModel.Title);
+                        trans.AddToBackStack(((BaseViewModel)frag.ViewModel).Title);
                     }
                     trans.Commit();
-
                 }
                 
 
@@ -339,6 +341,25 @@ namespace Solvberget.Droid.Views
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        public override void OnBackPressed()
+        {
+            if (SupportFragmentManager.BackStackEntryCount == 0)
+            {
+                if (_currentFragment is HomeScreenView)
+                {
+                    base.OnBackPressed();
+                }
+                else
+                {
+                    ViewModel.SelectMenuItemCommand.Execute(ViewModel.MenuItems[0]);
+                }
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
         }
     }
 }
