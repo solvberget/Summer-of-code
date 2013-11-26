@@ -973,8 +973,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050045
 			public const int button1 = 2131034181;
 			
-			// aapt resource value: 0x7f050053
-			public const int buttonSignIn = 2131034195;
+			// aapt resource value: 0x7f050054
+			public const int buttonSignIn = 2131034196;
 			
 			// aapt resource value: 0x7f05002c
 			public const int checkbox = 2131034156;
@@ -982,8 +982,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f05000d
 			public const int collapseActionView = 2131034125;
 			
-			// aapt resource value: 0x7f050055
-			public const int content_frame = 2131034197;
+			// aapt resource value: 0x7f050056
+			public const int content_frame = 2131034198;
 			
 			// aapt resource value: 0x7f050027
 			public const int default_activity_button = 2131034151;
@@ -994,17 +994,17 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050008
 			public const int disableHome = 2131034120;
 			
-			// aapt resource value: 0x7f050054
-			public const int drawer_layout = 2131034196;
+			// aapt resource value: 0x7f050055
+			public const int drawer_layout = 2131034197;
 			
 			// aapt resource value: 0x7f05000f
 			public const int dropdown = 2131034127;
 			
-			// aapt resource value: 0x7f050052
-			public const int editTextPasswordToLogin = 2131034194;
+			// aapt resource value: 0x7f050053
+			public const int editTextPasswordToLogin = 2131034195;
 			
-			// aapt resource value: 0x7f050051
-			public const int editTextUserNameToLogin = 2131034193;
+			// aapt resource value: 0x7f050052
+			public const int editTextUserNameToLogin = 2131034194;
 			
 			// aapt resource value: 0x7f050037
 			public const int edit_query = 2131034167;
@@ -1033,8 +1033,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050026
 			public const int image = 2131034150;
 			
-			// aapt resource value: 0x7f050056
-			public const int left_drawer = 2131034198;
+			// aapt resource value: 0x7f050057
+			public const int left_drawer = 2131034199;
 			
 			// aapt resource value: 0x7f050032
 			public const int left_icon = 2131034162;
@@ -1048,17 +1048,17 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050028
 			public const int list_item = 2131034152;
 			
-			// aapt resource value: 0x7f05005c
-			public const int menu_is_favorite = 2131034204;
-			
 			// aapt resource value: 0x7f05005d
-			public const int menu_is_not_favorite = 2131034205;
+			public const int menu_is_favorite = 2131034205;
 			
-			// aapt resource value: 0x7f050059
-			public const int menu_refresh = 2131034201;
+			// aapt resource value: 0x7f05005e
+			public const int menu_is_not_favorite = 2131034206;
 			
-			// aapt resource value: 0x7f05005b
-			public const int menu_share = 2131034203;
+			// aapt resource value: 0x7f05005a
+			public const int menu_refresh = 2131034202;
+			
+			// aapt resource value: 0x7f05005c
+			public const int menu_share = 2131034204;
 			
 			// aapt resource value: 0x7f050012
 			public const int middle = 2131034130;
@@ -1066,14 +1066,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050009
 			public const int never = 2131034121;
 			
-			// aapt resource value: 0x7f050050
-			public const int news_ingress = 2131034192;
-			
-			// aapt resource value: 0x7f05004e
-			public const int news_newstitle = 2131034190;
+			// aapt resource value: 0x7f050051
+			public const int news_ingress = 2131034193;
 			
 			// aapt resource value: 0x7f05004f
-			public const int news_published = 2131034191;
+			public const int news_newstitle = 2131034191;
+			
+			// aapt resource value: 0x7f050050
+			public const int news_published = 2131034192;
 			
 			// aapt resource value: 0x7f050010
 			public const int none = 2131034128;
@@ -1081,8 +1081,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050000
 			public const int normal = 2131034112;
 			
-			// aapt resource value: 0x7f050057
-			public const int progressBar = 2131034199;
+			// aapt resource value: 0x7f050058
+			public const int progressBar = 2131034200;
 			
 			// aapt resource value: 0x7f050035
 			public const int progress_circular = 2131034165;
@@ -1102,11 +1102,14 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050034
 			public const int right_icon = 2131034164;
 			
-			// aapt resource value: 0x7f05005a
-			public const int search = 2131034202;
+			// aapt resource value: 0x7f05005b
+			public const int search = 2131034203;
+			
+			// aapt resource value: 0x7f05004e
+			public const int searchResultsList = 2131034190;
 			
 			// aapt resource value: 0x7f05004d
-			public const int searchResultsList = 2131034189;
+			public const int searchResultsTitle = 2131034189;
 			
 			// aapt resource value: 0x7f05004b
 			public const int searchViewPager = 2131034187;
@@ -1195,8 +1198,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050047
 			public const int viewPager = 2131034183;
 			
-			// aapt resource value: 0x7f050058
-			public const int webView = 2131034200;
+			// aapt resource value: 0x7f050059
+			public const int webView = 2131034201;
 			
 			// aapt resource value: 0x7f05000c
 			public const int withText = 2131034124;
