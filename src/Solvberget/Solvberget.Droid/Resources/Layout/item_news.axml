@@ -33,5 +33,5 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/news_ingress"
-        local:MvxBind="Text Ingress" />
+        local:MvxBind="TextFormatted StringToHtml(Ingress)"/>
 </LinearLayout>
