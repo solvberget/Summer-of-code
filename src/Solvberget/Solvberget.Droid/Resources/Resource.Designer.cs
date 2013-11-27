@@ -970,8 +970,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050011
 			public const int beginning = 2131034129;
 			
-			// aapt resource value: 0x7f050045
-			public const int button1 = 2131034181;
+			// aapt resource value: 0x7f050044
+			public const int button1 = 2131034180;
 			
 			// aapt resource value: 0x7f050054
 			public const int buttonSignIn = 2131034196;
@@ -1039,8 +1039,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050032
 			public const int left_icon = 2131034162;
 			
-			// aapt resource value: 0x7f050044
-			public const int linearLayout1 = 2131034180;
+			// aapt resource value: 0x7f050043
+			public const int linearLayout1 = 2131034179;
 			
 			// aapt resource value: 0x7f050001
 			public const int listMode = 2131034113;
@@ -1090,8 +1090,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050036
 			public const int progress_horizontal = 2131034166;
 			
-			// aapt resource value: 0x7f050048
-			public const int pts_main = 2131034184;
+			// aapt resource value: 0x7f050047
+			public const int pts_main = 2131034183;
 			
 			// aapt resource value: 0x7f05002e
 			public const int radio = 2131034158;
@@ -1105,17 +1105,17 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f05005b
 			public const int search = 2131034203;
 			
-			// aapt resource value: 0x7f05004e
-			public const int searchResultsList = 2131034190;
-			
 			// aapt resource value: 0x7f05004d
-			public const int searchResultsTitle = 2131034189;
-			
-			// aapt resource value: 0x7f05004b
-			public const int searchViewPager = 2131034187;
+			public const int searchResultsList = 2131034189;
 			
 			// aapt resource value: 0x7f05004c
-			public const int searchViewPagerTabStrip = 2131034188;
+			public const int searchResultsTitle = 2131034188;
+			
+			// aapt resource value: 0x7f05004a
+			public const int searchViewPager = 2131034186;
+			
+			// aapt resource value: 0x7f05004b
+			public const int searchViewPagerTabStrip = 2131034187;
 			
 			// aapt resource value: 0x7f050039
 			public const int search_badge = 2131034169;
@@ -1168,17 +1168,17 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050002
 			public const int tabMode = 2131034114;
 			
-			// aapt resource value: 0x7f050046
-			public const int textView1 = 2131034182;
+			// aapt resource value: 0x7f050045
+			public const int textView1 = 2131034181;
 			
-			// aapt resource value: 0x7f050043
-			public const int textView2 = 2131034179;
-			
-			// aapt resource value: 0x7f05004a
-			public const int textView3 = 2131034186;
+			// aapt resource value: 0x7f05004e
+			public const int textView2 = 2131034190;
 			
 			// aapt resource value: 0x7f050049
-			public const int textView4 = 2131034185;
+			public const int textView3 = 2131034185;
+			
+			// aapt resource value: 0x7f050048
+			public const int textView4 = 2131034184;
 			
 			// aapt resource value: 0x7f05002a
 			public const int title = 2131034154;
@@ -1195,8 +1195,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050003
 			public const int useLogo = 2131034115;
 			
-			// aapt resource value: 0x7f050047
-			public const int viewPager = 2131034183;
+			// aapt resource value: 0x7f050046
+			public const int viewPager = 2131034182;
 			
 			// aapt resource value: 0x7f050059
 			public const int webView = 2131034201;
