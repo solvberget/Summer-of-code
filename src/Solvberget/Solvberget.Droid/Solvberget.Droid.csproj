@@ -326,6 +326,12 @@
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\Layout\FirstView.axml" />
+    <AndroidResource Include="Resources\Layout-large\item_home_screen_element.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout-large-land\item_home_screen_element.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
