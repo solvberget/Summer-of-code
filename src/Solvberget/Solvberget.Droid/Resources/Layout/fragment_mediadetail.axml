@@ -142,56 +142,60 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filial" />
+                    android:text="Filial" 
+                    local:MvxBind="Visibility Visibility(Availability.Branch)"/>
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="20dp"
                     android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Branch" />
+                    local:MvxBind="Text Availability.Branch; Visibility Visibility(Availability.Branch)" />
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avdeling" />
+                    android:text="Avdeling"
+                    local:MvxBind="Visibility Visibility(Availability.Department)" />
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="20dp"
                     android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Department" />
+                    local:MvxBind="Text Availability.Department; Visibility Visibility(Availability.Department)" />
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Samling" />
+                    android:text="Samling"
+                    local:MvxBind="Visibility Visibility(Availability.Collection)"/>
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="20dp"
                     android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Collection" />
+                    local:MvxBind="Text Availability.Collection; Visibility Visibility(Availability.Collection)" />
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Finnes på hylle" />
+                    android:text="Finnes på hylle"
+                    local:MvxBind="Visibility Visibility(Availability.Location)"/>
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="20dp"
                     android:textAppearance="@style/MediaDetailFieldContent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Location" />
+                    local:MvxBind="Text Availability.Location; Visibility Visibility(Availability.Location)" />
             </LinearLayout>
             <TextView
                 android:paddingLeft="8dp"
@@ -258,7 +262,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Alternative språk"
-                    local:MvxBind="Visibility Visibility(Languages)" />
+                    local:MvxBind="Visibility Visibility(Languages.Length)" />
                 <Mvx.MvxLinearLayout
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
@@ -266,7 +270,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@color/ui_itembackground"
-                    local:MvxBind="ItemsSource Languages; Visibility Visibility(Languages)"
+                    local:MvxBind="ItemsSource Languages; Visibility Visibility(Languages.Length)"
                     local:MvxItemTemplate="@layout/item_genrestring" />
                 <TextView
                     android:paddingLeft="8dp"

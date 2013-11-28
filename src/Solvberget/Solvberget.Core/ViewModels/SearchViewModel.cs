@@ -77,7 +77,7 @@ namespace Solvberget.Core.ViewModels
                             Name = document.Title,
                             Type = document.Type,
                             Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, document.Id),
-                            Year = document.Year.ToString("0000"),
+                            Year = (document.Year != 0) ? document.Year.ToString("####") : "Ukjent år",
                             DocNumber = document.Id,
                         }).ToList();
 
