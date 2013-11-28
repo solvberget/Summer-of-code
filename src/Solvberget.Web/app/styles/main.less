@@ -90,6 +90,10 @@ body{
   color:white;
 }
 
+#menu{
+    z-index:2000;
+}
+
 #menu-collapse{
   border:none;
   border-image:none;
@@ -101,6 +105,13 @@ body{
   color:@theme-color3 !important;
   padding-bottom:8px;
   font-family:'Open Sans Semibold';
+}
+
+
+@media (min-width: @screen-sm-min ) {
+    .navbar-toggle{
+        margin-top:14px;
+    }
 }
 
 @media (min-width: @screen-sm-min ) {
