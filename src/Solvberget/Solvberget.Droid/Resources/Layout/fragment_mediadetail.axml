@@ -142,8 +142,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filial" 
-                    local:MvxBind="Visibility Visibility(Availability.Branch)"/>
+                    android:text="Filial"
+                    local:MvxBind="Visibility Visibility(Availability.Branch)" />
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="20dp"
@@ -173,7 +173,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Samling"
-                    local:MvxBind="Visibility Visibility(Availability.Collection)"/>
+                    local:MvxBind="Visibility Visibility(Availability.Collection)" />
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="20dp"
@@ -187,8 +187,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Finnes på hylle"
-                    local:MvxBind="Visibility Visibility(Availability.Location)"/>
+                    android:text="Sorteres etter"
+                    local:MvxBind="Visibility Visibility(Availability.Location)" />
                 <TextView
                     android:paddingLeft="18dp"
                     android:paddingRight="20dp"
