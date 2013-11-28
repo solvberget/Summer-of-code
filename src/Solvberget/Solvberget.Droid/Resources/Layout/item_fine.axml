@@ -19,7 +19,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Description" />
+        local:MvxBind="Text DocumentTitle " />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,16 +28,10 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
         <TextView
-            android:text="Gjelder: "
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            local:MvxBind="Visibility Visibility(DocumentTitle)" />
-        <TextView
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            local:MvxBind="Text DocumentTitle" />
+            local:MvxBind="Text Description" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

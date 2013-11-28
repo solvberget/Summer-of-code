@@ -45,17 +45,17 @@ namespace Solvberget.Core.ViewModels
                 });
             }
 
-            if (Fines.Count != 0)
-            {
-                for (var i = 0; i < Fines.Count; i++)
-                {
-                    if (Fines.ElementAt(i).Status.Equals("Cancelled") || Fines.ElementAt(i).Status.Equals("Paid"))
-                    {
-                        Fines.Remove(Fines.ElementAt(i));
-                        i--;
-                    }
-                }
-            }
+            //if (Fines.Count != 0)
+            //{
+            //    for (var i = 0; i < Fines.Count; i++)
+            //    {
+            //        if (Fines.ElementAt(i).Status.Equals("Cancelled") || Fines.ElementAt(i).Status.Equals("Paid"))
+            //        {
+            //            Fines.Remove(Fines.ElementAt(i));
+            //            i--;
+            //        }
+            //    }
+            //}
 
             if (Fines.Count == 0)
             {
