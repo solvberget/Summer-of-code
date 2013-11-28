@@ -46,6 +46,8 @@ namespace Solvberget.Core.ViewModels
 
             foreach (ReservationDto r in res)
             {
+                var deadline = r.ReadyForPickup ? r.PickupDeadline : null;
+
                 Reservations.Add(new ReservationViewModel
                 {
                     DocumentTitle = r.Document.Title,
@@ -58,7 +60,8 @@ namespace Solvberget.Core.ViewModels
                     CancellationButtonVisible = false,
                     ButtonText = "Fjern",
                     Status = r.ReadyForPickup ? "" : "Ikke klar for henting",
-                    Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, r.Document.Id)
+                    Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, r.Document.Id),
+                    PickupDeadline = deadline
                 });
             }
 
