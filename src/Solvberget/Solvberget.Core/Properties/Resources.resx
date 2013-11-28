@@ -188,4 +188,7 @@
   <data name="ServiceUrl_Events" xml:space="preserve">
     <value>/events</value>
   </data>
+  <data name="ServiceUrl_Renew" xml:space="preserve">
+    <value>/documents/renew/</value>
+  </data>
 </root>
