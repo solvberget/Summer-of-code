@@ -46,7 +46,9 @@ namespace Solvberget.Core.ViewModels
                     Material = l.Material,
                     SubLibrary = l.SubLibrary,
                     ButtonVisible = true,
-                    Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, l.DocumentNumber)
+                    Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, l.DocumentNumber),
+                    Parent = this,
+                    DocumentNumber = l.DocumentNumber
                 });
             }
 
@@ -62,14 +64,9 @@ namespace Solvberget.Core.ViewModels
             IsLoading = false;
         }
 
-        public void RemoveReservation(LoanViewModel loanViewModel)
+        public void ExpandLoan(string documentNumber)
         {
-            Loans.Remove(loanViewModel);
-        }
-
-        public void AddReservation(LoanViewModel loanViewModel)
-        {
-            Loans.Add(loanViewModel);
+            _service.ExpandLoan(documentNumber);
         }
     }
 }

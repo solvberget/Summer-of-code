@@ -14,11 +14,11 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-  <Solvberget.Droid.Views.Components.CustomImageView
+    <Solvberget.Droid.Views.Components.CustomImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_launcher"
-        local:MvxBind="ImageUrl Image"/>
+        local:MvxBind="ImageUrl Image" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_weight="300"
@@ -53,6 +53,27 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView1"
                 local:MvxBind="Text PickupLocation" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:width="0dip"
+                android:layout_height="wrap_content"
+                local:MvxBind="Visibility Visibility(PickupDeadline)">
+                <TextView
+                    android:text="Innen "
+                    android:paddingLeft="10dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1" />
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1"
+                    local:MvxBind="Text PickupDeadline" />
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"

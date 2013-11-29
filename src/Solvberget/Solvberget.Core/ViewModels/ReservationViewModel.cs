@@ -99,6 +99,13 @@ namespace Solvberget.Core.ViewModels
             set { _itemDocumentNumber = value; RaisePropertyChanged(() => ItemDocumentNumber); }
         }
 
+        private DateTime? _pickupDeadline;
+        public DateTime? PickupDeadline 
+        {
+            get { return _pickupDeadline; }
+            set { _pickupDeadline = value; RaisePropertyChanged(() => PickupDeadline);}
+        } 
+
         private bool _listEmpty;
         public bool ListEmpty
         {

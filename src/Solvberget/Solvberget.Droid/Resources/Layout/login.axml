@@ -28,7 +28,7 @@
         android:id="@+id/editTextUserNameToLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="User Name"
+        android:hint="Lånernummer"
         android:ems="10"
         local:MvxBind="Text UserName">
         <requestFocus />
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="Pin"
         local:MvxBind="Text Pin" />
     <Button
         android:id="@+id/buttonSignIn"

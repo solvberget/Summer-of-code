@@ -80,19 +80,25 @@ namespace Solvberget.Core.ViewModels
             set { _image = value; RaisePropertyChanged(() => Image);}
         }
 
-        private MvxCommand<LoanViewModel> _showDetailsCommand;
-        public ICommand ShowDetailsCommand
+        private string _documentNumber;
+        public string DocumentNumber 
+        {
+            get { return _documentNumber; }
+            set { _documentNumber = value; RaisePropertyChanged(() => DocumentNumber);}
+        } 
+
+        private MvxCommand<LoanViewModel> _expandLoanCommand;
+        public ICommand ExpandLoanCommand
         {
             get
             {
-                return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<LoanViewModel>(ExecuteShowDetailsCommand));
+                return _expandLoanCommand ?? (_expandLoanCommand = new MvxCommand<LoanViewModel>(ExecuteExpandLoanCommand));
             }
         }
 
-        private void ExecuteShowDetailsCommand(LoanViewModel loan)
+        private void ExecuteExpandLoanCommand(LoanViewModel loan)
         {
-
-            //Send request to expand due date, give feedback on result.
+            Parent.ExpandLoan(DocumentNumber);
             
         }
     }

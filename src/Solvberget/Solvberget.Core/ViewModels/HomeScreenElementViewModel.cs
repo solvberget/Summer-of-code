@@ -15,7 +15,7 @@ namespace Solvberget.Core.ViewModels
         }
 
         private string _title;
-        public string Title 
+        public new string Title 
         {
             get { return _title; }
             set { _title = value; RaisePropertyChanged(() => Title);}
@@ -29,10 +29,16 @@ namespace Solvberget.Core.ViewModels
         } 
 
         private ICommand _goToCommand;
+
         public ICommand GoToCommand 
         {
             get { return _goToCommand ?? (_goToCommand = new MvxCommand<HomeScreenElementViewModel>(ExecuteGoToCommand)) ;
             }
+        }
+
+        public bool IsAuthenticated()
+        {
+            return _userAuthenticationService.UserInfoRegistered();
         }
 
         private void ExecuteGoToCommand(HomeScreenElementViewModel element)
@@ -40,10 +46,10 @@ namespace Solvberget.Core.ViewModels
             switch (Title)
             {
                 case "Min Side":
-                    if (_userAuthenticationService.UserInfoRegistered())
+                    if (IsAuthenticated())
                         ShowViewModel<MyPageViewModel>();
                     else
-                        ShowViewModel<LoginViewModel>();                
+                        ShowViewModel<LoginViewModel>();
                     break;
                 case "Arrangementer":
                     ShowViewModel<EventListViewModel>();
