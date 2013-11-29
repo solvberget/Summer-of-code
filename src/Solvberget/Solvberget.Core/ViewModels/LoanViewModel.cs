@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.ViewModels.Base;
 
@@ -29,8 +28,8 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        private DateTime? _dueDate;
-        public DateTime? DueDate
+        private string _dueDate;
+        public string DueDate
         {
             get { return _dueDate; }
             set

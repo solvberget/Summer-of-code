@@ -33,14 +33,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
+            android:textColor="#000"
             local:MvxBind="Text DocumentTitle" />
         <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Leveres innen "
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:textColor="#000" />
+        <TextView
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
+            android:textColor="#000"
             local:MvxBind="Text DueDate" />
     </LinearLayout>
     <Button

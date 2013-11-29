@@ -39,10 +39,16 @@ namespace Solvberget.Core.ViewModels
 
             foreach (LoanDto l in loansList)
             {
+                var due = "";
+                if (l.DueDate != null)
+                {
+                    due = l.DueDate.Value.ToString("dd.MM.yyyy");
+                }
+
                 Loans.Add(new LoanViewModel
                 {
                     DocumentTitle = l.DocumentTitle,
-                    DueDate = l.DueDate,
+                    DueDate = due,
                     Material = l.Material,
                     SubLibrary = l.SubLibrary,
                     ButtonVisible = true,
