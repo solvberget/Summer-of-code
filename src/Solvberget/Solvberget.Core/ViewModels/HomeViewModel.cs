@@ -22,6 +22,7 @@ namespace Solvberget.Core.ViewModels
             OpeningHours,
             Contact,
             Home,
+            Logout,
             Unknown
         }
 
@@ -84,6 +85,12 @@ namespace Solvberget.Core.ViewModels
                                           Title = "Kontakt oss",
                                           IconChar = "c"
                                       },
+                                  new MenuViewModel
+                                  {
+                                          Section = Section.Logout,
+                                          Title = "Logg ut",
+                                          IconChar = "c"
+                                  }
                               };
         }
 
@@ -138,6 +145,12 @@ namespace Solvberget.Core.ViewModels
                 case Section.Contact:
                     ShowViewModel<ContactInfoViewModel>();
                     break;
+                case Section.Logout:
+                    LogOut();
+                    
+                    ShowViewModel<HomeScreenViewModel>();
+                    break;
+
             }
         }
 
@@ -170,6 +183,12 @@ namespace Solvberget.Core.ViewModels
         public bool IsAuthenticated()
         {
             return _userAuthenticationService.UserInfoRegistered();
+        }
+
+        public void LogOut()
+        {
+            _userAuthenticationService.RemoveUser();
+            _userAuthenticationService.RemovePassword();
         }
     }
 }

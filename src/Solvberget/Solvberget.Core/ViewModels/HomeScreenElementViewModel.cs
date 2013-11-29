@@ -1,11 +1,19 @@
 ﻿using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class HomeScreenElementViewModel : BaseViewModel
     {
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
+
+        public HomeScreenElementViewModel(IUserAuthenticationDataService userAuthenticationService)
+        {
+            _userAuthenticationService = userAuthenticationService;
+        }
+
         private string _title;
         public string Title 
         {
@@ -32,7 +40,10 @@ namespace Solvberget.Core.ViewModels
             switch (Title)
             {
                 case "Min Side":
-                    ShowViewModel<MyPageViewModel>();
+                    if (_userAuthenticationService.UserInfoRegistered())
+                        ShowViewModel<MyPageViewModel>();
+                    else
+                        ShowViewModel<LoginViewModel>();                
                     break;
                 case "Arrangementer":
                     ShowViewModel<EventListViewModel>();
