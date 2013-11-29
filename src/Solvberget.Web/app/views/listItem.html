@@ -4,12 +4,13 @@
     <div class='media-body'>
         <a href="{{url}}"><h4>{{title}}</h4></a>
         <p ng-show="subtext" ng-bind-html="subtext"></p>
+        <button style="margin-top:4px; margin-bottom:4px" class="btn btn-sm btn-primary" ng-click="renew()" ng-show="showRenew">Utvid lånetid</button>
+
     </div>
     <span class='list-item-actions'>
         <span class='glyphicon glyphicon-star active' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
         <span class='glyphicon glyphicon-star inactive' ng-show="showFavorite && !isFavorite" ng-click="toggleFavorite()" />
         <span class='glyphicon glyphicon-remove' ng-show="showDelete" ng-click="delete()" />
-        <button class="btn btn-primary" ng-click="renew()" ng-show="showRenew">Forny</button>
     </span>
     </div>
     <div class="gutter"><span ng-show="gutterText || gutterTextPrefix">{{gutterTextPrefix}}{{gutterText}}</span></div>

@@ -42,9 +42,11 @@ namespace Solvberget.Nancy.Modules
                 return "Kunne ikke finne dokument i liste over reservasjoner";
             };
 
-            Put["/{branch}/{documentId}"] = args =>
+            Put["/{documentId}"] = args =>
             {
-                var response = repository.RequestReservation(args.documentId, Context.GetUserInfo().Id, args.branch);
+                string branch = Request.Form.branch.HasValue ? Request.Form.branch : Request.Query.branch;
+
+                var response = repository.RequestReservation(args.documentId, Context.GetUserInfo().Id, branch);
                 if (response.Success) Context.RequireUserInfoRefresh();
 
                 return response;

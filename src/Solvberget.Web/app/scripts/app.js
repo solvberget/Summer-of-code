@@ -145,7 +145,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
             $rootScope.newMessagesCount = notificationCount.get();
         }
 
-        $http({method: 'GET', url: '/app.config.json'}).
+        $http({method: 'GET', url: 'app.config.json'}).
             success(function(data) {
                 console.log("app.config.json loaded", data);
 

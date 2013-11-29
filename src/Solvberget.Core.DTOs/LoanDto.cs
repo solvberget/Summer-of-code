@@ -16,5 +16,6 @@ namespace Solvberget.Core.DTOs
         public string LoanHour { get; set; }
         public string Material { get; set; }
         public DateTime? DueDate { get; set; }
+        public DocumentDto Document { get; set; }
     }
 }

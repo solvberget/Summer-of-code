@@ -54,6 +54,7 @@ namespace Solvberget.Nancy.Modules
 
                 var loans = loansList.Select(l => new LoanDto
                 {
+                    Document = String.IsNullOrEmpty(l.DocumentNumber) ? null : DtoMaps.Map(documents.GetDocument(l.DocumentNumber, true)),
                     AdminisrtativeDocumentNumber = l.AdminisrtativeDocumentNumber,
                     Barcode = l.Barcode,
                     DocumentNumber = l.DocumentNumber,
