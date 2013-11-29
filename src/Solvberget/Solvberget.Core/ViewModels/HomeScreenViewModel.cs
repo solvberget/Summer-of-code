@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
+using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels
 {
     public class HomeScreenViewModel : BaseViewModel
     {
+        private readonly IUserAuthenticationDataService _userAuthenticationService;
 
-        public HomeScreenViewModel()
+        public HomeScreenViewModel(IUserAuthenticationDataService userAuthenticationDataService)
         {
+            _userAuthenticationService = userAuthenticationDataService;
             Load();
         }
 
@@ -15,42 +18,42 @@ namespace Solvberget.Core.ViewModels
         {
             ListElements = new List<HomeScreenElementViewModel>
             {
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Min Side",
                     IconChar = "m",
                 },
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Arrangementer",
                     IconChar = "a"
                 },
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Søk",
                     IconChar = "s"
                 },
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Blogger",
                     IconChar = "e"
                 },
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Nyheter",
                     IconChar = "n"
                 },
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Anbefalinger",
                     IconChar = "h"
                 },
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Åpningstider",
                     IconChar = "å"
                 },
-                new HomeScreenElementViewModel
+                new HomeScreenElementViewModel(_userAuthenticationService)
                 {
                     Title = "Kontakt oss",
                     IconChar = "c"

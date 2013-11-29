@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
+using Android.Widget;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
@@ -15,6 +16,7 @@ using Solvberget.Core.ViewModels.Base;
 using Solvberget.Droid.ActionBar;
 using Solvberget.Droid.Helpers;
 using Solvberget.Droid.Views.Fragments;
+using SearchView = Solvberget.Droid.Views.Fragments.SearchView;
 
 namespace Solvberget.Droid.Views
 {
@@ -225,6 +227,12 @@ namespace Solvberget.Droid.Views
 
                         frag = new HomeScreenView();
                         title = START_PAGE_TITLE;
+                        break;
+                    }
+                    case HomeViewModel.Section.Logout:
+                    {
+                        //((HomeViewModel)ViewModel).LogOut();
+                        Toast.MakeText(Application.Context, "Du er nå logget ut", ToastLength.Long).Show();
                         break;
                     }
                     case HomeViewModel.Section.Unknown:
