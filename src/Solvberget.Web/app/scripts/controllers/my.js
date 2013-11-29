@@ -24,12 +24,19 @@ angular.module('Solvberget.WebApp')
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
 
-    }).controller('MyLoansCtrl', function ($scope, $rootScope, userInfo) {
+    }).controller('MyLoansCtrl', function ($scope, $rootScope, $filter, userInfo) {
 
         $scope.userInfo = userInfo.get();
 
         $rootScope.breadcrumb.clear();
         $rootScope.breadcrumb.push('Min side');
+
+        var dateFilter = $filter('date');
+
+        $scope.subtextFor = function(loan) {
+
+            return dateFilter(loan.loanDate, 'mediumDate') + " - " + dateFilter(loan.dueDate, 'mediumDate') + ", " + loan.subLibrary;
+        };
 
     }).controller('MyFinesCtrl', function ($scope, $rootScope, userInfo) {
 

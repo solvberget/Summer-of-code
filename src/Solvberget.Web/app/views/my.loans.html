@@ -23,8 +23,8 @@
     </div>
 </div>
 <ul class="media-list">
-    <div ng-repeat="doc in userInfo.loans" list-item="doc.title" subtext="doc.subTitle" document-type="doc.type" document-id="doc.id"
-         image-url="apiPrefix + 'documents/' + doc.id + '/thumbnail'" show-renew="true" url="pathForDocument(doc)"/>
+    <div ng-repeat="loan in userInfo.loans" list-item="loan.document.title" subtext="subtextFor(loan)" document-type="loan.document.type" document-id="loan.document.id"
+         image-url="apiPrefix + 'documents/' + loan.document.id + '/thumbnail'" show-renew="true" url="pathForDocument(loan.document)"/>
 </ul>
 <div ng-show="userInfo.loans.length == 0">Du har ingen lån.</div>
 <img src="/img/ajax-loader.gif" ng-hide="userInfo.loans.length >= 0" />

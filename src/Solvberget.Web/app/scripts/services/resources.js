@@ -43,7 +43,7 @@ angular.module('Solvberget.WebApp')
         return $resource($$config.apiPrefixEscaped() + 'user/notifications/count');
     })
     .factory('reservations', function($resource){
-        return $resource($$config.apiPrefixEscaped() + 'reservations/:branch/:documentId', { branch : '@branch', documentId: '@documentId'}, {
+        return $resource($$config.apiPrefixEscaped() + 'reservations/:documentId', { documentId: '@documentId'}, {
             add: {method:'PUT'},
             remove: {method:'DELETE'},
             get: {method:'GET', isArray:true}
