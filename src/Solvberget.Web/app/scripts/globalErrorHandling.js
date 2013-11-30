@@ -18,8 +18,14 @@ angular
         $httpProvider.responseInterceptors.push(function($timeout, $q) {
             return function(promise) {
                 return promise.then(function(successResponse) {
-                    if (successResponse.config.method.toUpperCase() != 'GET')
-                        showMessage('Success', 'alert-success');
+                    if (successResponse.config.method.toUpperCase() != 'GET') {
+
+                        var css = 'alert-success';
+                        if (successResponse.data.success === false) css = 'alert-warning';
+
+                        if (successResponse.data.message) showMessage(successResponse.data.message, css);
+                        if (successResponse.data.reply) showMessage(successResponse.data.reply, css);
+                    }
                     return successResponse;
 
                 }, function(errorResponse) {

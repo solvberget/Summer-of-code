@@ -282,7 +282,7 @@ namespace Solvberget.Domain.Users
 
                         if (status == "Not paid by/credited to patron")
                             status = "Ikke betalt ";
-
+                        
                         description = GetXmlValue(xElementField, "z31-type");
                         if (description != null)
                             TypeOfFineDictionary.TryGetValue(description, out descriptionLookupValue);
@@ -478,6 +478,7 @@ namespace Solvberget.Domain.Users
                                     {"40", "Materiell mistet, erstatningskrav er opprettet"},
                                     {"41", "Materiell mistet, erstatningskrav er opprettet"},
                                     {"42", "Materiell mistet, erstatningskrav er opprettet"},
+                                    {"45", "Materiell mistet, erstatningskrav er opprettet"},
                                     {"80", "1. purring"},
                                     {"81", "2. purring"},
                                     {"82", "3. purring"},

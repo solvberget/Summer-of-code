@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Nancy;
 using Nancy.Security;
-using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
 using Solvberget.Nancy.Authentication;
 
@@ -22,7 +21,7 @@ namespace Solvberget.Nancy.Modules
                 var response = repository.RequestRenewalOfLoan(loan.DocumentNumber, loan.ItemSequence, loan.Barcode, Context.GetUserInfo().Id);
 
                 if (response.Success) Context.RequireUserInfoRefresh();
-
+                
                 return response;
             };
         }
