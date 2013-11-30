@@ -60,7 +60,7 @@ namespace Solvberget.Domain.Favorites
 
             if(!File.Exists(file)) return new List<string>();
 
-            List<string> favoritesForUser = File.ReadAllText(file).Split(';').ToList();
+            List<string> favoritesForUser = File.ReadAllText(file).Split(';').Where(f => !String.IsNullOrEmpty(f)).ToList();
             return favoritesForUser;
         }
     }
