@@ -68,9 +68,9 @@
             <div class="meta-value">{{a.estimatedAvailableDate|date:mediumDate}}</div>
         </div>
         <div class="colxs-12 col-md-3">
-            <button type="button" class="btn btn-primary" ng-click="toggleReservation(a.branch)"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : isReserved }"></i>
-                <span ng-show="isReserved">Kanseller reservasjon</span>
-                <span ng-hide="isReserved">Reserver bok</span>
+            <button type="button" class="btn btn-primary" ng-click="toggleReservation(a.branch)"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : document.isReserved }"></i>
+                <span ng-show="document.isReserved">Kanseller reservasjon</span>
+                <span ng-hide="document.isReserved">Reserver bok</span>
             </button>
         </div>
     </div>

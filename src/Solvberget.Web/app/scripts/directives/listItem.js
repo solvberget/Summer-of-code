@@ -16,7 +16,12 @@ angular.module('Solvberget.WebApp')
                 gutterText:"=gutterText",
                 documentId:"=documentId"
             },
-            controller: function($scope, favorites, renewals) {
+            controller: function($scope, favorites, reservations, renewals) {
+
+                $scope.delete = function() {
+                    reservations.remove({ documentId: $scope.documentId });
+                    $scope.hide = true;
+                };
 
                 $scope.toggleFavorite = function() {
 

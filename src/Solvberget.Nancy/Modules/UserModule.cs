@@ -38,7 +38,7 @@ namespace Solvberget.Nancy.Modules
                 UserInfo results = documents.GetUserInformation(user.UserName, user.Password);
 
                 var reservationsList = results.Reservations ?? new List<Reservation>();
-                var finesList = results.Fines ?? new List<Fine>();
+                var finesList = results.ActiveFines ?? new List<Fine>();
                 var loansList = results.Loans ?? new List<Loan>();
                 var notificationList = results.Notifications ?? new List<Notification>();
                 var reservations = reservationsList.Select(r => DtoMaps.Map(r, documents));

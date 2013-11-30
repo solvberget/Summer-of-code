@@ -1,6 +1,6 @@
 'use strict';
 
-var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, reservations, documentRating, documentReview, favorites) {
+var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, $http, documents, reservations, documentRating, documentReview, favorites) {
 
     $scope.document = documents.get({id : $routeParams.id}, function(){
 
@@ -37,10 +37,21 @@ var mediaDetaljerCtrl = function ($scope, $rootScope, $routeParams, documents, r
 
     $scope.toggleReservation = function(branch){
 
-        if($scope.document.isReserved) reservations.remove({documentId : $scope.document.id});
-        else reservations.add({branch : branch, documentId : $scope.document.id});
-
-        $scope.document.isReserved = !$scope.document.isReserved; // todo: handle failure
+        if ($scope.document.isReserved) {
+            reservations.remove({ documentId: $scope.document.id });
+            $scope.document.isReserved = false;
+        }
+        else {
+            $http({
+                method: 'PUT',
+                url: $$config.apiPrefix + '/reservations/' + $scope.document.id,
+                data: $.param({ branch: branch }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+            .success(function (data, status, headers, config) {
+                $scope.document.isReserved = true;
+            });
+        }
     };
 };
 
