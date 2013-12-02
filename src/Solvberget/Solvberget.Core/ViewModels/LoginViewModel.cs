@@ -44,6 +44,13 @@ namespace Solvberget.Core.ViewModels
             set { _message = value; RaisePropertyChanged(() => Message); }
         }
 
+        private bool _buttonPressed;
+        public bool ButtonPressed 
+        {
+            get { return _buttonPressed; }
+            set { _buttonPressed = value; RaisePropertyChanged(() => ButtonPressed);}
+        } 
+
         private MvxCommand<MyPageViewModel> _loginCommand;
         public ICommand LoginCommand
         {
@@ -56,6 +63,8 @@ namespace Solvberget.Core.ViewModels
         private async void ExecuteLoginCommand(MyPageViewModel page)
         {
             IsLoading = true;
+
+            ButtonPressed = true;
             _userAuthenticationService.SetUser(UserName);
             _userAuthenticationService.SetPassword(Pin);
 
