@@ -35,7 +35,7 @@ namespace Solvberget.Core.ViewModels
         private IList<SearchResultViewModel> _results;
         public IList<SearchResultViewModel> Results 
         {
-            get { return _results; }
+            get { return ListOrEmptyResult(_results); }
             set { 
                 _results = value; 
                 RaisePropertyChanged(() => Results);
@@ -61,7 +61,10 @@ namespace Solvberget.Core.ViewModels
 
         private void ExecuteShowDetailsCommand(SearchResultViewModel searchResultViewModel)
         {
-            ShowViewModel<MediaDetailViewModel>(new { title = searchResultViewModel.Name, docId = searchResultViewModel.DocNumber});
+            if (searchResultViewModel.DocNumber != "")
+            {
+                ShowViewModel<MediaDetailViewModel>(new { title = searchResultViewModel.Name, docId = searchResultViewModel.DocNumber });
+            }
         }
 
         // Loads a a set of Documents retrieved from the service into the results list.
@@ -87,35 +90,48 @@ namespace Solvberget.Core.ViewModels
 
         public IList<SearchResultViewModel> BookResults 
         {
-            get { return _results.Where(r => r.Type == "Book").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "Book").ToList()); }
         }
         public IList<SearchResultViewModel> MovieResults
         {
-            get { return _results.Where(r => r.Type == "Film").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "Film").ToList()); }
         }
         public IList<SearchResultViewModel> AudioBookResults
         {
-            get { return _results.Where(r => r.Type == "AudioBook").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "AudioBook").ToList()); }
         }
         public IList<SearchResultViewModel> CDResults
         {
-            get { return _results.Where(r => r.Type == "Cd").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "Cd").ToList()); }
         }
         public IList<SearchResultViewModel> MagazineResults
         {
-            get { return _results.Where(r => r.Type == "Journal").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "Journal").ToList()); }
         }
         public IList<SearchResultViewModel> SheetMusicResults
         {
-            get { return _results.Where(r => r.Type == "SheetMusic").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "SheetMusic").ToList()); }
         }
         public IList<SearchResultViewModel> GameResults
         {
-            get { return _results.Where(r => r.Type == "Game").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "Game").ToList()); }
         }
         public IList<SearchResultViewModel> OtherResults
         {
-            get { return _results.Where(r => r.Type == "Other" || r.Type == "Other").ToList(); }
+            get { return ListOrEmptyResult(_results.Where(r => r.Type == "Other" || r.Type == "Other").ToList()); }
+        }
+
+        private IList<SearchResultViewModel> ListOrEmptyResult(IList<SearchResultViewModel> list)
+        {
+            return (list.Count > 0) ? list : new List<SearchResultViewModel> {new SearchResultViewModel
+                {
+                    DocNumber = "",
+                    Id = 0,
+                    Name = "Ingen resultat",
+                    Type = "Ukjent",
+                    Title = "Ingen resultat",
+                    Year = ""
+                }};
         }
     }
 }
