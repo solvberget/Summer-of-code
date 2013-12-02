@@ -35,7 +35,7 @@ namespace Solvberget.Core.ViewModels
         private IList<SearchResultViewModel> _results;
         public IList<SearchResultViewModel> Results 
         {
-            get { return _results; }
+            get { return ListOrEmptyResult(_results); }
             set { 
                 _results = value; 
                 RaisePropertyChanged(() => Results);
@@ -121,17 +121,16 @@ namespace Solvberget.Core.ViewModels
             get { return ListOrEmptyResult(_results.Where(r => r.Type == "Other" || r.Type == "Other").ToList()); }
         }
 
-        private IList<SearchResultViewModel> ListOrEmptyResult(List<SearchResultViewModel> list)
+        private IList<SearchResultViewModel> ListOrEmptyResult(IList<SearchResultViewModel> list)
         {
             return (list.Count > 0) ? list : new List<SearchResultViewModel> {new SearchResultViewModel
                 {
                     DocNumber = "",
                     Id = 0,
-                    Image = "",
                     Name = "Ingen resultat",
                     Type = "Ukjent",
                     Title = "Ingen resultat",
-                    Year = "Ukjent"
+                    Year = ""
                 }};
         }
     }
