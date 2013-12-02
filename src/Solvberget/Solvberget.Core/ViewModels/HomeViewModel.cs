@@ -39,33 +39,21 @@ namespace Solvberget.Core.ViewModels
                                       },
                                   new MenuViewModel
                                       {
-                                          Section = Section.OpeningHours,
-                                          Title = "Åpningstider",
-                                          IconChar = "å"
-                                      },
-                                  new MenuViewModel
-                                      {
                                           Section = Section.MyPage,
                                           Title = "Min Side",
                                           IconChar = "m"
-                                      },
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.Search,
-                                          Title = "Søk",
-                                          IconChar = "s"
-                                      },
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.Lists,
-                                          Title = "Anbefalinger",
-                                          IconChar = "h"
                                       },
                                  new MenuViewModel
                                       {
                                           Section = Section.Events,
                                           Title = "Arrangementer",
                                           IconChar = "a"
+                                      },
+                                      new MenuViewModel
+                                      {
+                                          Section = Section.Search,
+                                          Title = "Søk",
+                                          IconChar = "s"
                                       },
                                   new MenuViewModel
                                       {
@@ -78,6 +66,18 @@ namespace Solvberget.Core.ViewModels
                                           Section = Section.News,
                                           Title = "Nyheter",
                                           IconChar = "n"
+                                      },
+                                      new MenuViewModel
+                                      {
+                                          Section = Section.Lists,
+                                          Title = "Anbefalinger",
+                                          IconChar = "h"
+                                      },
+                                      new MenuViewModel
+                                      {
+                                          Section = Section.OpeningHours,
+                                          Title = "Åpningstider",
+                                          IconChar = "å"
                                       },
                                   new MenuViewModel
                                       {

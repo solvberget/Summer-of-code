@@ -104,6 +104,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/button1"
             android:gravity="center"
+            android:background="@color/s_main_green"
+            android:textColor="@color/white"
             android:width="80dp"
             local:MvxBind="Click RemoveReservationCommand; Text ButtonText; Visibility Visibility(ButtonVisible)" />
         <Button
@@ -111,6 +113,8 @@
             android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:background="@color/s_main_green"
+            android:textColor="@color/white"
             android:id="@+id/button1"
             android:gravity="center"
             android:width="80dp"

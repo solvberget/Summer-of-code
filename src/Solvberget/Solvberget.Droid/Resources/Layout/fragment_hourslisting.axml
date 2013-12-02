@@ -3,12 +3,11 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/ui_background">
+    android:background="@color/s_main_background">
     <Mvx.MvxLinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/ui_background"
         local:MvxBind="ItemsSource Locations; ItemClick ShowDetailsCommand"
         local:MvxItemTemplate="@layout/item_openinghours" />
 </ScrollView>

@@ -7,24 +7,24 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/ui_background"
+        android:background="@color/s_main_background"
         android:minWidth="25px"
         android:minHeight="25px">
         <TextView
             android:text="This is a blog post!"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="@style/LargeText"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             local:MvxBind="Text Title" />
         <TextView
             android:text="Author"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="@style/MediumText"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             local:MvxBind="Text Author" />
         <TextView
             android:text="Published date"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="@style/SmallText"
             android:textSize="10dp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

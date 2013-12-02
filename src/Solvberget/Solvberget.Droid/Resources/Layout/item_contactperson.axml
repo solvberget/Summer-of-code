@@ -10,26 +10,26 @@
     android:paddingBottom="8dp">
     <TextView
         android:text="Key"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         local:MvxBind="Text Name" />
     <TextView
         android:text="Key"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         local:MvxBind="Text Position; Visibility Visibility(Position)" />
     <TextView
         android:text="Key"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         local:MvxBind="Text Email; Visibility Visibility(Email)" />
     <TextView
         android:text="Key"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

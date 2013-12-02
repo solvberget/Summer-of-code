@@ -20,7 +20,7 @@ using SearchView = Solvberget.Droid.Views.Fragments.SearchView;
 
 namespace Solvberget.Droid.Views
 {
-    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/Theme.AppCompat", Icon = "@drawable/ic_launcher")]
+    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher")]
     public class HomeView : MvxActionBarActivity, IFragmentHost
     {
         private const string START_PAGE_TITLE = "Startside";

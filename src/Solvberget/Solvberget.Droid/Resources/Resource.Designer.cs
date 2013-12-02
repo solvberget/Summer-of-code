@@ -442,8 +442,8 @@ namespace Solvberget.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f07001f
-			public const int abc_search_url_text_holo = 2131165215;
+			// aapt resource value: 0x7f070020
+			public const int abc_search_url_text_holo = 2131165216;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_search_url_text_normal = 2131165184;
@@ -490,53 +490,56 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f07000f
 			public const int red = 2131165199;
 			
-			// aapt resource value: 0x7f07001b
-			public const int s_boxes = 2131165211;
-			
 			// aapt resource value: 0x7f07001c
-			public const int s_hero = 2131165212;
-			
-			// aapt resource value: 0x7f07001a
-			public const int s_main_background = 2131165210;
-			
-			// aapt resource value: 0x7f070019
-			public const int s_main_green = 2131165209;
+			public const int s_boxes = 2131165212;
 			
 			// aapt resource value: 0x7f07001d
-			public const int s_text = 2131165213;
+			public const int s_hero = 2131165213;
+			
+			// aapt resource value: 0x7f07001b
+			public const int s_main_background = 2131165211;
+			
+			// aapt resource value: 0x7f07001a
+			public const int s_main_green = 2131165210;
 			
 			// aapt resource value: 0x7f07001e
-			public const int s_text_weak = 2131165214;
+			public const int s_text = 2131165214;
+			
+			// aapt resource value: 0x7f07001f
+			public const int s_text_weak = 2131165215;
 			
 			// aapt resource value: 0x7f070003
 			public const int standard_background = 2131165187;
 			
-			// aapt resource value: 0x7f070011
-			public const int ui_background = 2131165201;
-			
-			// aapt resource value: 0x7f070010
-			public const int ui_black = 2131165200;
-			
-			// aapt resource value: 0x7f070018
-			public const int ui_green = 2131165208;
-			
 			// aapt resource value: 0x7f070012
-			public const int ui_grey = 2131165202;
+			public const int ui_background = 2131165202;
 			
-			// aapt resource value: 0x7f070016
-			public const int ui_grey_dark = 2131165206;
+			// aapt resource value: 0x7f070011
+			public const int ui_black = 2131165201;
 			
-			// aapt resource value: 0x7f070014
-			public const int ui_grey_light = 2131165204;
+			// aapt resource value: 0x7f070019
+			public const int ui_green = 2131165209;
 			
 			// aapt resource value: 0x7f070013
-			public const int ui_itembackground = 2131165203;
-			
-			// aapt resource value: 0x7f070015
-			public const int ui_itembackground_dark = 2131165205;
+			public const int ui_grey = 2131165203;
 			
 			// aapt resource value: 0x7f070017
-			public const int ui_orange = 2131165207;
+			public const int ui_grey_dark = 2131165207;
+			
+			// aapt resource value: 0x7f070015
+			public const int ui_grey_light = 2131165205;
+			
+			// aapt resource value: 0x7f070014
+			public const int ui_itembackground = 2131165204;
+			
+			// aapt resource value: 0x7f070016
+			public const int ui_itembackground_dark = 2131165206;
+			
+			// aapt resource value: 0x7f070018
+			public const int ui_orange = 2131165208;
+			
+			// aapt resource value: 0x7f070010
+			public const int white = 2131165200;
 			
 			static Color()
 			{

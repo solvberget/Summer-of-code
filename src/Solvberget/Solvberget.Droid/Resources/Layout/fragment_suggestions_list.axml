@@ -4,10 +4,10 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/ui_background">
+    android:background="@color/ui_itembackground">
     <TextView
         local:MvxBind="Text Title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/LargeText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />

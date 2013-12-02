@@ -15,14 +15,14 @@
     android:paddingBottom="10dp">
     <TextView
         android:text="Heading"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="@style/MediumText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/news_newstitle"
         local:MvxBind="Text NewsTitle" />
     <TextView
         android:text="Published: Something something"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,5 +33,5 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/news_ingress"
-        local:MvxBind="TextFormatted StringToHtml(Ingress)"/>
+        local:MvxBind="TextFormatted StringToHtml(Ingress)" />
 </LinearLayout>

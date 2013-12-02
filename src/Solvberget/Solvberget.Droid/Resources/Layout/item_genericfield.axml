@@ -9,7 +9,7 @@
     android:paddingRight="10dp">
     <TextView
         android:text="Key"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         local:MvxBind="Text; Visibility Visibility()" />

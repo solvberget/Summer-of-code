@@ -12,7 +12,7 @@
             backward-compatibility can go here.
         -->
   </style>
-  
+
   <!-- Application theme. -->
   <style name="MyTheme" parent="MyBaseTheme">
     <!--
@@ -22,7 +22,7 @@
     <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     <item name="android:windowContentOverlay">@null</item>
   </style>
-  
+
   <!--<style name="TextAppearance.TabPageIndicator" parent="Widget">
     <item name="android:textStyle">bold</item>
     <item name="android:textColor">@color/vpi__light_theme</item>
@@ -44,16 +44,12 @@
   <style name="SmallText" parent="@android:style/TextAppearance.Small">
     <item name="android:textColor">@color/s_text_weak</item>
   </style>
-  
-   <style name="MediaDetailFieldContent" parent="@android:style/TextAppearance.Small">
+
+  <style name="MediaDetailFieldContent" parent="@android:style/TextAppearance.Small">
   </style>
-  
+
   <style name="MediaDetailFieldName" parent="@style/MediaDetailFieldContent">
     <item name="android:textSize">10dp</item>
   </style>
 
- 
-  
-  
-  
 </resources>
