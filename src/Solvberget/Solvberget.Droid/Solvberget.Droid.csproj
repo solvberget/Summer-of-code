@@ -206,7 +206,7 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\Layout\fragment_profile.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_menu.axml">
       <SubType>Designer</SubType>
@@ -372,8 +372,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Values-land\integers.xml" />
-    <AndroidResource Include="Resources\Values-v11\styles.xml" />
-    <AndroidResource Include="Resources\Values-v14\styles.xml" />
+    <AndroidResource Include="Resources\Values-v11\styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Values-v14\styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Menu\search_menu.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

@@ -74,6 +74,13 @@ namespace Solvberget.Core.ViewModels
             set { _estimatedAvailableDate = value; RaisePropertyChanged(() => EstimatedAvailableDate);}
         }
 
+        public string EstimatedAvailableText {
+            get
+            {
+                return EstimatedAvailableDate != null ? EstimatedAvailableDate.Value.ToString("dd.MM.yyyy") : "Ukjent";
+            }
+        }
+
         private string _availabilitySummary;
         public string AvailabilitySummary
         {

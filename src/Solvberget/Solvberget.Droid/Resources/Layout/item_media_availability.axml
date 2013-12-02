@@ -55,7 +55,7 @@
         android:textAppearance="@style/MediaDetailFieldContent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text EstimatedAvailableDate; Visibility InvertedVisibility(AvailableCount)" />
+        local:MvxBind="Text EstimatedAvailableText; Visibility InvertedVisibility(AvailableCount)" />
     <TextView
         android:paddingLeft="18dp"
         android:paddingRight="18dp"

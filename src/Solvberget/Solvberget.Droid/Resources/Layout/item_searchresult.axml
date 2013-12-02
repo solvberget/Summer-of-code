@@ -13,9 +13,10 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-    <Solvberget.Droid.Views.Components.CustomImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+
+  <Solvberget.Droid.Views.Components.CustomImageView
+        android:layout_width="55dp"
+        android:layout_height="70dp"
         android:src="@drawable/ic_launcher"
         local:MvxBind="ImageUrl Image" />
     <LinearLayout

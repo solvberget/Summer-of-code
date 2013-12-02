@@ -72,6 +72,7 @@ namespace Solvberget.Core.ViewModels
                     TotalCount = a.TotalCount,
                     DocId = docId,
                     ButtonText = ButtonText,
+                    EstimatedAvailableDate = a.EstimatedAvailableDate
                 }).ToArray();
 
             foreach (var availabilityViewModel in Availabilities)

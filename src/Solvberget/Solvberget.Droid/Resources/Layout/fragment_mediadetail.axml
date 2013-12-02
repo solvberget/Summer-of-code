@@ -35,15 +35,21 @@
                     android:textAppearance="?android:attr/textAppearanceLargeInverse"
                     android:text="A Somewhat Long Film Title"
                     local:MvxBind="Text ItemTitle"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="8dp" />
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMediumInverse"
                     android:text="Film (2005)"
                     local:MvxBind="Text SubTitle" />
+              <TextView
+                    android:paddingTop="12dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/SmallText"
+                    android:text="Review Source"
+                    local:MvxBind="Text Rating.Source; Visibility(Rating.Source)" />
                 <RatingBar
-                    android:paddingTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="?android:attr/ratingBarStyleSmall"
