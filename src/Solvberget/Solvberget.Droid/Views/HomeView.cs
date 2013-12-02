@@ -242,8 +242,6 @@ namespace Solvberget.Droid.Views
                             frag = new SuggestionsListView();
                         if (request.ViewModelType == typeof(BlogViewModel))
                             frag = new BlogView();
-                        if (request.ViewModelType == typeof (BlogPostViewModel))
-                            frag = new BlogPostView();
                         if (request.ViewModelType == typeof(LoginViewModel)) 
                             frag = new LoginView();
                         break;

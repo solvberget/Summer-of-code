@@ -175,7 +175,6 @@
     <Compile Include="Views\Fragments\ContactInfoView.cs" />
     <Compile Include="Views\Fragments\BlogOverviewView.cs" />
     <Compile Include="Views\Fragments\BlogView.cs" />
-    <Compile Include="Views\Fragments\BlogPostView.cs" />
     <Compile Include="Views\Fragments\LocalHtmlWebView.cs" />
     <Compile Include="Views\Fragments\EventListView.cs" />
     <Compile Include="Views\Fragments\HomeScreenView.cs" />
