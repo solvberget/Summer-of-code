@@ -23,4 +23,12 @@
   <color name="ui_grey_dark">#ff595959</color>
   <color name="ui_orange">#ffF4F4F4</color>
   <color name="ui_green">#ff4A8522</color>
+
+  <color name="s_main_green">#ff34B445</color>
+  <color name="s_main_background">#ffffffff</color>
+  <color name="s_boxes">#fff4f4f4</color>
+  <color name="s_hero">#ffF0FBEB</color>
+  <color name="s_text">#ff333333</color>
+  <color name="s_text_weak">#ffcecece</color>
+  
 </resources>

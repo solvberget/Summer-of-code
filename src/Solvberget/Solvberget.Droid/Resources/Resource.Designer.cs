@@ -442,8 +442,8 @@ namespace Solvberget.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f070019
-			public const int abc_search_url_text_holo = 2131165209;
+			// aapt resource value: 0x7f07001f
+			public const int abc_search_url_text_holo = 2131165215;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_search_url_text_normal = 2131165184;
@@ -489,6 +489,24 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f07000f
 			public const int red = 2131165199;
+			
+			// aapt resource value: 0x7f07001b
+			public const int s_boxes = 2131165211;
+			
+			// aapt resource value: 0x7f07001c
+			public const int s_hero = 2131165212;
+			
+			// aapt resource value: 0x7f07001a
+			public const int s_main_background = 2131165210;
+			
+			// aapt resource value: 0x7f070019
+			public const int s_main_green = 2131165209;
+			
+			// aapt resource value: 0x7f07001d
+			public const int s_text = 2131165213;
+			
+			// aapt resource value: 0x7f07001e
+			public const int s_text_weak = 2131165214;
 			
 			// aapt resource value: 0x7f070003
 			public const int standard_background = 2131165187;
@@ -1582,16 +1600,25 @@ namespace Solvberget.Droid
 		{
 			
 			// aapt resource value: 0x7f0b0082
-			public const int MediaDetailFieldContent = 2131427458;
+			public const int LargeText = 2131427458;
+			
+			// aapt resource value: 0x7f0b0085
+			public const int MediaDetailFieldContent = 2131427461;
+			
+			// aapt resource value: 0x7f0b0086
+			public const int MediaDetailFieldName = 2131427462;
 			
 			// aapt resource value: 0x7f0b0083
-			public const int MediaDetailFieldName = 2131427459;
+			public const int MediumText = 2131427459;
 			
 			// aapt resource value: 0x7f0b0080
 			public const int MyBaseTheme = 2131427456;
 			
 			// aapt resource value: 0x7f0b0081
 			public const int MyTheme = 2131427457;
+			
+			// aapt resource value: 0x7f0b0084
+			public const int SmallText = 2131427460;
 			
 			// aapt resource value: 0x7f0b0061
 			public const int TextAppearance_AppCompat_Base_CompactMenu_Dialog = 2131427425;

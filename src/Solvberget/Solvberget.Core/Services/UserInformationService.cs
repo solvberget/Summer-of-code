@@ -169,17 +169,21 @@ namespace Solvberget.Core.Services
             return docIds.Contains(documentNumber);
         }
 
-        public async Task<string> ExpandLoan(string documentNumber)
+        public async Task<RequestReplyDto> ExpandLoan(string documentNumber)
         {
             try
             {
                 var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Renew + documentNumber, "PUT");
 
-                return response;
+                return JsonConvert.DeserializeObject<RequestReplyDto>(response);
             }
             catch (Exception)
             {
-                return "Kunne ikke utvide lån, prøv igjen senere";
+                return new RequestReplyDto
+                {
+                    Success = false,
+                    Reply = "Feil: Klarte ikke å utvide lånetiden"
+                };
             }
         }
     }

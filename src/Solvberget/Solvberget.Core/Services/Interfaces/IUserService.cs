@@ -17,6 +17,6 @@ namespace Solvberget.Core.Services.Interfaces
         Task<List<ReservationDto>> GetUerReservations();
         Task<List<string>> GetUserReserverdDocuments();
         Task<bool> IsFavorite(string documentNumber);
-        Task<string> ExpandLoan(string documentNumber);
+        Task<RequestReplyDto> ExpandLoan(string documentNumber);
     }
 }
