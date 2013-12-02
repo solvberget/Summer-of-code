@@ -63,6 +63,7 @@ namespace Solvberget.Core.ViewModels
             {
                 Fines.Add(new FineViewModel
                     {
+                        DocumentTitle = "Ingen gebyrer",
                         Description =
                             "Du har ingen gebyrer! Det kan du for eksempel få hvis du leverer noe for sent eller mister noe"
                     });
