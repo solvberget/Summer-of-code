@@ -100,6 +100,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
+            IsLoading = true;
             var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
 
             DateOfBirth = user.DateOfBirth;
@@ -108,6 +109,8 @@ namespace Solvberget.Core.ViewModels
             StreetAdress = user.StreetAddress;
             Email = user.Email;
             Name = user.Name;
+
+            IsLoading = false;
         }
     }
 }

@@ -35,6 +35,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
+            IsLoading = true;
             var res = await _service.GetUerReservations() ?? new List<ReservationDto>();
 
             Reservations = new ObservableCollection<ReservationViewModel>();
@@ -80,6 +81,7 @@ namespace Solvberget.Core.ViewModels
 
                 });
             }
+            IsLoading = false;
         }
 
         public async void RemoveReservation(ReservationViewModel reservationViewModel)
