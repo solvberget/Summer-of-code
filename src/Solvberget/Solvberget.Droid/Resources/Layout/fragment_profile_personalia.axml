@@ -9,77 +9,98 @@
         android:layout_height="fill_parent"
         android:paddingLeft="8dp"
         android:paddingRight="8dp">
-        <TextView
-            android:text="Personalia"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:textAppearance="@style/LargeText"
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView4" />
-        <TextView
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            local:MvxBind="Visibility Visibility(IsLoading)">
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="340.0dp"
+                android:layout_gravity="center"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/MediumText"
-            android:singleLine="true"
-            local:MvxBind="Text Name" />
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/MediumText"
-            android:singleLine="true"
-            local:MvxBind="Text DateOfBirth" />
-        <TextView
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/LargeText"
-            android:singleLine="true"
-            android:text="Adresse" />
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/MediumText"
-            android:singleLine="true"
-            local:MvxBind="Text StreetAdress" />
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/MediumText"
-            android:singleLine="true"
-            local:MvxBind="Text CityAdress" />
-        <TextView
-            android:text="Kontaktinformasjon"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:textAppearance="@style/LargeText"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3" />
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/MediumText"
-            android:singleLine="true"
-            local:MvxBind="Text CellPhoneNumber" />
-        <TextView
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/MediumText"
-            android:singleLine="true"
-            local:MvxBind="Text Email" />
+            local:MvxBind="Visibility InvertedVisibility(IsLoading)">
+            <TextView
+                android:text="Personalia"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:textAppearance="@style/LargeText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/MediumText"
+                android:singleLine="true"
+                local:MvxBind="Text Name" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/MediumText"
+                android:singleLine="true"
+                local:MvxBind="Text DateOfBirth" />
+            <TextView
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/LargeText"
+                android:singleLine="true"
+                android:text="Adresse" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/MediumText"
+                android:singleLine="true"
+                local:MvxBind="Text StreetAdress" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/MediumText"
+                android:singleLine="true"
+                local:MvxBind="Text CityAdress" />
+            <TextView
+                android:text="Kontaktinformasjon"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:textAppearance="@style/LargeText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/MediumText"
+                android:singleLine="true"
+                local:MvxBind="Text CellPhoneNumber" />
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/MediumText"
+                android:singleLine="true"
+                local:MvxBind="Text Email" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

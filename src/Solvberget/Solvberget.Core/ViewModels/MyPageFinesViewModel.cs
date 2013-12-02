@@ -28,6 +28,7 @@ namespace Solvberget.Core.ViewModels
 
         public async void Load()
         {
+            IsLoading = true;
             var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
 
             var finesDtos = user.Fines == null ? new List<FineDto>() : user.Fines.ToList();
@@ -44,6 +45,7 @@ namespace Solvberget.Core.ViewModels
                     Status = f.Status
                 });
             }
+            IsLoading = false;
 
             //if (Fines.Count != 0)
             //{

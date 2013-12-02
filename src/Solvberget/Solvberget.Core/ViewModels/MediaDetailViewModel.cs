@@ -298,7 +298,8 @@ namespace Solvberget.Core.ViewModels
 
         public void AddFavorite()
         {
-            _userService.AddUserFavorite(DocId);
+            var result = _userService.AddUserFavorite(DocId);
+            
             IsFavorite = true;
         }
 
