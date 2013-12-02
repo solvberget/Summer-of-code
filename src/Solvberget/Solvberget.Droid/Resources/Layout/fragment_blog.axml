@@ -4,6 +4,6 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/ui_background"
+    android:background="@color/s_main_background"
     local:MvxBind="ItemsSource Posts; ItemClick ShowDetailsCommand"
     local:MvxItemTemplate="@layout/item_blogpost" />
