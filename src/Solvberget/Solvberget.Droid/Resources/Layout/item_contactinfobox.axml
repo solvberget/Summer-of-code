@@ -15,31 +15,31 @@
     android:paddingBottom="10dp">
     <TextView
         android:text="Heading"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="@style/MediumText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Title" />
     <TextView
         android:text="Tlf.: 938 39 293"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Phone; Visibility Visibility(Phone)" />
     <TextView
         android:text="Something@example.com"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Email; Visibility Visibility(Email)" />
     <TextView
         android:text="Street Streetname 4"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Address; Visibility Visibility(Address)" />
     <TextView
         android:text="Street Namestreet 10"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text VisitingAddress; Visibility Visibility(VisitingAddress)" />
