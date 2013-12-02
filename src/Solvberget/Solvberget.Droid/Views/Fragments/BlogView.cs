@@ -3,6 +3,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.ActionBar;
 
 namespace Solvberget.Droid.Views.Fragments
 {
@@ -23,6 +24,7 @@ namespace Solvberget.Droid.Views.Fragments
 
             var set = this.CreateBindingSet<BlogView, BlogViewModel>();
             set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
+
             set.Apply();
 
             return this.BindingInflate(Resource.Layout.fragment_blog, null);
