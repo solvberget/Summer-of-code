@@ -46,7 +46,12 @@ namespace Solvberget.Core.ViewModels
 
             foreach (ReservationDto r in res)
             {
-                var deadline = r.ReadyForPickup ? r.PickupDeadline : null;
+                var deadline = "";
+
+                if (r.PickupDeadline != null)
+                    deadline = r.ReadyForPickup ? r.PickupDeadline.Value.ToString("dd.MM.yyyy") : null;
+
+                
 
                 Reservations.Add(new ReservationViewModel
                 {
