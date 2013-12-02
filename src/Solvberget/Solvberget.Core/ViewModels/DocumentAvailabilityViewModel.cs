@@ -9,9 +9,9 @@ namespace Solvberget.Core.ViewModels
     public class DocumentAvailabilityViewModel : BaseViewModel
     {
         private readonly IUserService _userService;
-        private BaseViewModel _parent;
+        private MediaDetailViewModel _parent;
 
-        public DocumentAvailabilityViewModel(IUserService userService, BaseViewModel parent)
+        public DocumentAvailabilityViewModel(IUserService userService, MediaDetailViewModel parent)
         {
             _userService = userService;
             _parent = parent;
@@ -103,10 +103,16 @@ namespace Solvberget.Core.ViewModels
         private async void ExecutePlaceHoldRequestCommand()
         {
             _parent.IsLoading = true;
-            await _userService.AddReservation(DocId, Branch);
+            var result = await _userService.AddReservation(DocId, Branch);
             _parent.IsLoading = false;
 
-            IsDirty = true;
+            if (result.Success)
+            {
+                _parent.IsReservable = false;
+                _parent.IsReservedByUser = true;
+                _parent.RefreshButtons();
+            }
+            
         }
 
         private bool _isReservable;
@@ -121,13 +127,6 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _buttonText; }
             set { _buttonText = value; RaisePropertyChanged(() => ButtonText); }
-        }
-
-        private bool _isDirty;
-        public bool IsDirty 
-        {
-            get { return _isDirty; }
-            set { _isDirty = value; RaisePropertyChanged(() => IsDirty);}
         }
     }
 }

@@ -72,14 +72,14 @@ namespace Solvberget.Core.ViewModels
                     TotalCount = a.TotalCount,
                     DocId = docId,
                     ButtonText = ButtonText,
-                    EstimatedAvailableDate = a.EstimatedAvailableDate
+                    EstimatedAvailableDate = a.EstimatedAvailableDate,
+                    IsReservable = IsReservable,
                 }).ToArray();
 
             foreach (var availabilityViewModel in Availabilities)
             {
                 availabilityViewModel.IsReservable = GenerateIsReservable();
                 availabilityViewModel.ButtonText = GenerateButtonText();
-                availabilityViewModel.PropertyChanged += (sender, e) => { if (e.PropertyName == "IsDirty") Load(docId); };
             }
 
             Availability = document.Availability.FirstOrDefault() ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};
@@ -326,6 +326,17 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _availabilities; }
             set { _availabilities = value; RaisePropertyChanged(() => Availabilities);}
+        }
+
+        public void RefreshButtons()
+        {
+            IsReservable = GenerateIsReservable();
+            ButtonText = GenerateButtonText();
+            foreach (var availability in Availabilities)
+            {
+                availability.IsReservable = IsReservable;
+                availability.ButtonText = ButtonText;
+            }
         }
     }
 }
