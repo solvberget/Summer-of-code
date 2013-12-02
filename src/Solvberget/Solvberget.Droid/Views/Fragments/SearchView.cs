@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using Android.Graphics;
 using Android.Support.V4.View;
 using Android.Views;
+using Android.Widget;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
@@ -123,6 +126,14 @@ namespace Solvberget.Droid.Views.Fragments
             {
                 _searchView.QueryTextSubmit += sView_QueryTextSubmit;
                 _searchView.QueryTextChange += sView_QueryTextChange;
+
+                // Change the search text color to white.
+                // See SearchView Source code @ https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master/core/java/android/widget/SearchView.java
+                var queryTextView = _searchView.FindViewById(Resource.Id.search_src_text) as EditText;
+                if (queryTextView != null)
+                {
+                    queryTextView.SetTextColor(Color.White);
+                }
             }
 
             base.OnCreateOptionsMenu(menu, inflater);
