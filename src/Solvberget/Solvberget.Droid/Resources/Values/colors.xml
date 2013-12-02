@@ -13,6 +13,7 @@
   <color name="grey_light">#ffdacfce</color>
   <color name="grey_dark">#ff5b4350</color>
   <color name="red">#ffff0000</color>
+  <color name="white">#ffffffff</color>
 
   <color name="ui_black">#ff262626</color>
   <color name="ui_background">#ffE9E9E9</color>

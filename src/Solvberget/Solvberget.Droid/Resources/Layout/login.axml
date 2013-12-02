@@ -45,6 +45,8 @@
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="fill_parent"
+        android:background="@color/s_main_green"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:text="Sign In"
         local:MvxBind="Click LoginCommand" />
