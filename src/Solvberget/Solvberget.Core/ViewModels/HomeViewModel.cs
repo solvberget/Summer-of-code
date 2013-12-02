@@ -35,7 +35,7 @@ namespace Solvberget.Core.ViewModels
                                       {
                                           Section = Section.Home,
                                           Title = "Hjem",
-                                          IconChar = "c"
+                                          IconChar = "1"
                                       },
                                   new MenuViewModel
                                       {
@@ -89,7 +89,7 @@ namespace Solvberget.Core.ViewModels
                                   {
                                           Section = Section.Logout,
                                           Title = "Logg ut",
-                                          IconChar = "c"
+                                          IconChar = "2"
                                   }
                               };
         }
