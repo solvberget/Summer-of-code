@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
@@ -26,6 +28,7 @@ namespace Solvberget.Core.ViewModels
         {
 			Title = title ?? "Detaljer";
             Availability = new DocumentAvailabilityDto {AvailableCount = 1};
+            Availabilities = new DocumentAvailabilityViewModel[0];
             Load(docId);
         }
 
@@ -44,21 +47,9 @@ namespace Solvberget.Core.ViewModels
             ButtonEnabled = !IsReservedByUser && LoggedIn;
             IsFavorite = await _userService.IsFavorite(docId);
 
-            if (!LoggedIn)
-            {
-                ButtonText = "Logg inn for å reservere";
-                IsReservable = false;
-            } 
-            else if (IsReservedByUser)
-            {
-                ButtonText = "Reservert";
-                IsReservable = false;
-            }
-            else
-            {
-                ButtonText = "Reserver";
-                IsReservable = true;
-            }
+            ButtonText = GenerateButtonText();
+            IsReservable = GenerateIsReservable();
+            
 
             var document = await _searchService.Get(docId);
             DocId = docId;
@@ -70,6 +61,18 @@ namespace Solvberget.Core.ViewModels
             Year = (document.Year != 0) ? document.Year.ToString("####") : "Ukjent år";
             Type = document.Type;
             Author = document.MainContributor;
+            Availabilities = (from a in document.Availability
+                select new DocumentAvailabilityViewModel(_userService)
+                {
+                    AvailableCount = a.AvailableCount,
+                    Branch = a.Branch,
+                    Collection = a.Collection,
+                    Department = a.Department,
+                    Location = a.Location,
+                    TotalCount = a.TotalCount,
+                    DocId = docId,
+                    ButtonText = ButtonText
+                }).ToArray();
             Availability = document.Availability.FirstOrDefault() ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};
             RawDto = document;
             Language = document.Language;
@@ -93,21 +96,26 @@ namespace Solvberget.Core.ViewModels
             IsLoading = false;
         }
 
-        private MvxCommand<MediaDetailViewModel> _placeHoldRequestCommand;
-        public ICommand PlaceHoldRequestCommand
+        private bool GenerateIsReservable()
         {
-            get
-            {
-                return _placeHoldRequestCommand ??
-                       (_placeHoldRequestCommand = new MvxCommand<MediaDetailViewModel>(ExecutePlaceHoldRequestCommand));
-            }
+            return LoggedIn && !IsReservedByUser;
         }
 
-        private void ExecutePlaceHoldRequestCommand(MediaDetailViewModel media)
+        private string GenerateButtonText()
         {
-            _userService.AddReservation(DocId);
-            Load(DocId);
+            if (!LoggedIn)
+            {
+                return "Logg inn for å reservere";
+            }
+
+            if (IsReservedByUser)
+            {
+                return "Reservert";
+            }
+
+            return "Reserver";
         }
+
 
         private bool _loggedIn;
         public bool LoggedIn
@@ -159,22 +167,10 @@ namespace Solvberget.Core.ViewModels
             { 
                 _availability = value; 
                 RaisePropertyChanged(() => Availability);
-                RaisePropertyChanged(() => AvailabilitySummary);
             }
         }
 
-        private string _availabilitySummary;
-        public string AvailabilitySummary 
-        {
-            get
-            {
-                if (Availability != null)
-                {
-                    return string.Format("{0} av {1} tilgjengelig", Availability.AvailableCount, Availability.TotalCount);  
-                }
-                return "Tilgjengelighet er ikke kjent";
-            }
-        }
+       
 
         private string _estimatedAvailableDate;
         public string EstimatedAvailableDate 
@@ -314,6 +310,13 @@ namespace Solvberget.Core.ViewModels
         public string ReviewType 
         {
             get { return (Type == "Book" ? "BOKOMTALE" : "ANMELDELSE") ; }
+        }
+
+        private DocumentAvailabilityViewModel[] _availabilities;
+        public DocumentAvailabilityViewModel[] Availabilities 
+        {
+            get { return _availabilities; }
+            set { _availabilities = value; RaisePropertyChanged(() => Availabilities);}
         }
     }
 }

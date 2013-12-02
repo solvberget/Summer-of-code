@@ -250,7 +250,9 @@
     <AndroidResource Include="Resources\Layout\fragment_profile_favorites.axml" />
     <AndroidResource Include="Resources\Layout\fragment_profile_fines.axml" />
     <AndroidResource Include="Resources\Layout\fragment_profile_messages.axml" />
-    <AndroidResource Include="Resources\Layout\item_news.axml" />
+    <AndroidResource Include="Resources\Layout\item_news.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_mediadetail.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -332,6 +334,7 @@
     <AndroidResource Include="Resources\Layout-large-land\item_home_screen_element.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\item_media_availability.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

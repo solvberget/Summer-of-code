@@ -76,126 +76,17 @@
                 android:text="TILGJENGELIGHET"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true" />
-            <LinearLayout
+            <MvxLinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/linearLayout1"
-                android:background="@color/ui_itembackground">
-                <Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout
-                    android:orientation="horizontal"
-                    android:minWidth="25px"
-                    android:minHeight="25px"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/linearLayout1"
-                    android:gravity="center"
-                    local:MvxBind="BackgroundColor AvailabilityAmountToColor(Availability.AvailableCount)">
-                    <TextView
-                        android:paddingLeft="18dp"
-                        android:paddingRight="18dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="11 av 15 tilgjengelig"
-                        local:MvxBind="Text AvailabilitySummary" />
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="fill_parent"
-                        android:width="0dip"
-                        android:paddingRight="18dp"
-                        android:layout_weight="600"
-                        android:layout_height="wrap_content"
-                        android:gravity="right">
-                        <Button
-                            android:layout_width="100dp"
-                            android:text="Reserver"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/button1"
-                            android:textSize="17dp"
-                            android:gravity="center"
-                            local:MvxBind="Click PlaceHoldRequestCommand; Enabled IsReservable; Text ButtonText" />
-                    </LinearLayout>
-                </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="18dp"
-                    android:textAppearance="@style/MediaDetailFieldName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Forventet tilgjengelig"
-                    local:MvxBind="Visibility InvertedVisibility(Availability.AvailableCount)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="20dp"
-                    android:textAppearance="@style/MediaDetailFieldContent"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    local:MvxBind="Text EstimatedAvailableDate; Visibility InvertedVisibility(Availability.AvailableCount)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="18dp"
-                    android:textAppearance="@style/MediaDetailFieldName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Filial"
-                    local:MvxBind="Visibility Visibility(Availability.Branch)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="20dp"
-                    android:textAppearance="@style/MediaDetailFieldContent"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Branch; Visibility Visibility(Availability.Branch)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="18dp"
-                    android:textAppearance="@style/MediaDetailFieldName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Avdeling"
-                    local:MvxBind="Visibility Visibility(Availability.Department)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="20dp"
-                    android:textAppearance="@style/MediaDetailFieldContent"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Department; Visibility Visibility(Availability.Department)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="18dp"
-                    android:textAppearance="@style/MediaDetailFieldName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Samling"
-                    local:MvxBind="Visibility Visibility(Availability.Collection)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="20dp"
-                    android:textAppearance="@style/MediaDetailFieldContent"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Collection; Visibility Visibility(Availability.Collection)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="18dp"
-                    android:textAppearance="@style/MediaDetailFieldName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sorteres etter"
-                    local:MvxBind="Visibility Visibility(Availability.Location)" />
-                <TextView
-                    android:paddingLeft="18dp"
-                    android:paddingRight="20dp"
-                    android:textAppearance="@style/MediaDetailFieldContent"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    local:MvxBind="Text Availability.Location; Visibility Visibility(Availability.Location)" />
-            </LinearLayout>
+                android:background="@color/ui_itembackground"
+                local:MvxBind="ItemsSource Availabilities"
+                local:MvxItemTemplate="@layout/item_media_availability">
+            </MvxLinearLayout>
             <TextView
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
