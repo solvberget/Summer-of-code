@@ -105,6 +105,7 @@
     <Compile Include="ViewModels\ContactInfoBoxViewModel.cs" />
     <Compile Include="ViewModels\ContactInfoViewModel.cs" />
     <Compile Include="ViewModels\ContactPersonViewModel.cs" />
+    <Compile Include="ViewModels\DocumentAvailabilityViewModel.cs" />
     <Compile Include="ViewModels\FavoriteViewModel.cs" />
     <Compile Include="ViewModels\FineViewModel.cs" />
     <Compile Include="ViewModels\GenericWebViewViewModel.cs" />

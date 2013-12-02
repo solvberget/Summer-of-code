@@ -7,6 +7,13 @@ namespace Solvberget.Core.ViewModels
 {
     public class ReservationViewModel : BaseViewModel
     {
+        private string _branch;
+        public string Branch 
+        {
+            get { return _branch; }
+            set { _branch = value; RaisePropertyChanged(() => Branch);}
+        }
+
         private string _documentNumber;
         public string DocumentNumber
         {

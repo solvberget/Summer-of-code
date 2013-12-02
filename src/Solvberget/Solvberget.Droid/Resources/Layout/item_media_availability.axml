@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/ui_itembackground">
+    <Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        local:MvxBind="BackgroundColor AvailabilityAmountToColor(AvailableCount)">
+        <TextView
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11 av 15 tilgjengelig"
+            local:MvxBind="Text AvailabilitySummary" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:width="0dip"
+            android:paddingRight="18dp"
+            android:layout_weight="600"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+            <Button
+                android:layout_width="100dp"
+                android:text="Reserver"
+                android:layout_height="wrap_content"
+                android:id="@+id/button1"
+                android:textSize="17dp"
+                android:gravity="center"
+                android:background="@color/ui_background"
+                local:MvxBind="Click PlaceHoldRequestCommand; Enabled IsReservable; Text ButtonText" />
+        </LinearLayout>
+    </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Forventet tilgjengelig"
+        local:MvxBind="Visibility InvertedVisibility(AvailableCount)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="20dp"
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text EstimatedAvailableText; Visibility InvertedVisibility(AvailableCount)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Filial"
+        local:MvxBind="Visibility Visibility(Branch)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="20dp"
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text Branch; Visibility Visibility(Branch)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Avdeling"
+        local:MvxBind="Visibility Visibility(Department)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="20dp"
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text Department; Visibility Visibility(Department)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Samling"
+        local:MvxBind="Visibility Visibility(Collection)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="20dp"
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text Collection; Visibility Visibility(Collection)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sorteres etter"
+        local:MvxBind="Visibility Visibility(SortBy)" />
+    <TextView
+        android:paddingLeft="18dp"
+        android:paddingRight="20dp"
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text SortBy; Visibility Visibility(SortBy)" />
+</LinearLayout>

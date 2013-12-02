@@ -991,8 +991,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050011
 			public const int beginning = 2131034129;
 			
-			// aapt resource value: 0x7f050044
-			public const int button1 = 2131034180;
+			// aapt resource value: 0x7f05004e
+			public const int button1 = 2131034190;
 			
 			// aapt resource value: 0x7f050054
 			public const int buttonSignIn = 2131034196;
@@ -1111,8 +1111,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050036
 			public const int progress_horizontal = 2131034166;
 			
-			// aapt resource value: 0x7f050047
-			public const int pts_main = 2131034183;
+			// aapt resource value: 0x7f050046
+			public const int pts_main = 2131034182;
 			
 			// aapt resource value: 0x7f05002e
 			public const int radio = 2131034158;
@@ -1126,17 +1126,17 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f05005b
 			public const int search = 2131034203;
 			
-			// aapt resource value: 0x7f05004d
-			public const int searchResultsList = 2131034189;
-			
 			// aapt resource value: 0x7f05004c
-			public const int searchResultsTitle = 2131034188;
-			
-			// aapt resource value: 0x7f05004a
-			public const int searchViewPager = 2131034186;
+			public const int searchResultsList = 2131034188;
 			
 			// aapt resource value: 0x7f05004b
-			public const int searchViewPagerTabStrip = 2131034187;
+			public const int searchResultsTitle = 2131034187;
+			
+			// aapt resource value: 0x7f050049
+			public const int searchViewPager = 2131034185;
+			
+			// aapt resource value: 0x7f05004a
+			public const int searchViewPagerTabStrip = 2131034186;
 			
 			// aapt resource value: 0x7f050039
 			public const int search_badge = 2131034169;
@@ -1189,17 +1189,17 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050002
 			public const int tabMode = 2131034114;
 			
-			// aapt resource value: 0x7f050045
-			public const int textView1 = 2131034181;
+			// aapt resource value: 0x7f050044
+			public const int textView1 = 2131034180;
 			
-			// aapt resource value: 0x7f05004e
-			public const int textView2 = 2131034190;
-			
-			// aapt resource value: 0x7f050049
-			public const int textView3 = 2131034185;
+			// aapt resource value: 0x7f05004d
+			public const int textView2 = 2131034189;
 			
 			// aapt resource value: 0x7f050048
-			public const int textView4 = 2131034184;
+			public const int textView3 = 2131034184;
+			
+			// aapt resource value: 0x7f050047
+			public const int textView4 = 2131034183;
 			
 			// aapt resource value: 0x7f05002a
 			public const int title = 2131034154;
@@ -1216,8 +1216,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f050003
 			public const int useLogo = 2131034115;
 			
-			// aapt resource value: 0x7f050046
-			public const int viewPager = 2131034182;
+			// aapt resource value: 0x7f050045
+			public const int viewPager = 2131034181;
 			
 			// aapt resource value: 0x7f050059
 			public const int webView = 2131034201;
@@ -1426,64 +1426,67 @@ namespace Solvberget.Droid
 			public const int item_loan = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int item_menu = 2130903096;
+			public const int item_media_availability = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int item_message = 2130903097;
+			public const int item_menu = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int item_news = 2130903098;
+			public const int item_message = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int item_openinghour_pair = 2130903099;
+			public const int item_news = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int item_openinghours = 2130903100;
+			public const int item_openinghour_pair = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int item_reservation = 2130903101;
+			public const int item_openinghours = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int item_searchresult = 2130903102;
+			public const int item_reservation = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int item_suggestions_list_summary = 2130903103;
+			public const int item_searchresult = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int login = 2130903104;
+			public const int item_suggestions_list_summary = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int mediadetail_audiobook = 2130903105;
+			public const int login = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int mediadetail_book = 2130903106;
+			public const int mediadetail_audiobook = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int mediadetail_cd = 2130903107;
+			public const int mediadetail_book = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int mediadetail_film = 2130903108;
+			public const int mediadetail_cd = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int mediadetail_game = 2130903109;
+			public const int mediadetail_film = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int mediadetail_journal = 2130903110;
+			public const int mediadetail_game = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int mediadetail_sheetmusic = 2130903111;
+			public const int mediadetail_journal = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public const int page_home_view = 2130903112;
+			public const int mediadetail_sheetmusic = 2130903112;
 			
 			// aapt resource value: 0x7f030049
-			public const int page_webview = 2130903113;
+			public const int page_home_view = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public const int SplashScreen = 2130903114;
+			public const int page_webview = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public const int support_simple_spinner_dropdown_item = 2130903115;
+			public const int SplashScreen = 2130903115;
+			
+			// aapt resource value: 0x7f03004c
+			public const int support_simple_spinner_dropdown_item = 2130903116;
 			
 			static Layout()
 			{

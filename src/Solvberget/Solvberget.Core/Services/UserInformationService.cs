@@ -103,27 +103,29 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<string> AddReservation(string documentNumber)
+        public async Task<RequestReplyDto> AddReservation(string documentNumber, string branch)
         {
             try
             {
-                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber, "PUT");
+                var result = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "PUT");
+                return JsonConvert.DeserializeObject<RequestReplyDto>(result);
             }
             catch (Exception e)
             {
-                return e.Message;
+                return new RequestReplyDto {Reply = e.Message, Success = false};
             }
         }
 
-        public async Task<string> RemoveReservation(string documentNumber)
+        public async Task<RequestReplyDto> RemoveReservation(string documentNumber, string branch)
         {
             try
             {
-                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber, "DELETE");
+                var result = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "DELETE");
+                return JsonConvert.DeserializeObject<RequestReplyDto>(result);
             }
             catch (Exception e)
             {
-                return e.Message;
+                return new RequestReplyDto { Reply = e.Message, Success = false };
             }
         }
 
