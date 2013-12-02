@@ -409,6 +409,7 @@
     <AndroidResource Include="Resources\Values\MvxBindingAttributes.xml" />
     <AndroidResource Include="Resources\Values-v7\styles.xml" />
     <AndroidResource Include="Resources\Layout-v11\item_menu.xml" />
+    <AndroidResource Include="Resources\Drawable\splash_logo.9.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

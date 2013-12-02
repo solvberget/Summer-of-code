@@ -927,6 +927,9 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f020067
 			public const int splash = 2130837607;
 			
+			// aapt resource value: 0x7f020068
+			public const int splash_logo = 2130837608;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
