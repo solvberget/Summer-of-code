@@ -62,7 +62,7 @@ namespace Solvberget.Core.ViewModels
             Type = document.Type;
             Author = document.MainContributor;
             Availabilities = (from a in document.Availability
-                select new DocumentAvailabilityViewModel(_userService)
+                select new DocumentAvailabilityViewModel(_userService, this)
                 {
                     AvailableCount = a.AvailableCount,
                     Branch = a.Branch,
@@ -71,8 +71,16 @@ namespace Solvberget.Core.ViewModels
                     Location = a.Location,
                     TotalCount = a.TotalCount,
                     DocId = docId,
-                    ButtonText = ButtonText
+                    ButtonText = ButtonText,
                 }).ToArray();
+
+            foreach (var availabilityViewModel in Availabilities)
+            {
+                availabilityViewModel.IsReservable = GenerateIsReservable();
+                availabilityViewModel.ButtonText = GenerateButtonText();
+                availabilityViewModel.PropertyChanged += (sender, e) => { if (e.PropertyName == "IsDirty") Load(docId); };
+            }
+
             Availability = document.Availability.FirstOrDefault() ?? new DocumentAvailabilityDto {AvailableCount = 0, TotalCount = 0};
             RawDto = document;
             Language = document.Language;

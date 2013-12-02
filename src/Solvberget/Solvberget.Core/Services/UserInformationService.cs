@@ -103,11 +103,11 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<string> AddReservation(string documentNumber)
+        public async Task<string> AddReservation(string documentNumber, string branch)
         {
             try
             {
-                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber, "PUT");
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "PUT");
             }
             catch (Exception e)
             {
@@ -115,11 +115,11 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<string> RemoveReservation(string documentNumber)
+        public async Task<string> RemoveReservation(string documentNumber, string branch)
         {
             try
             {
-                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber, "DELETE");
+                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "DELETE");
             }
             catch (Exception e)
             {

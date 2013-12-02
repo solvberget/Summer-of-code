@@ -9,11 +9,14 @@ namespace Solvberget.Core.ViewModels
     public class DocumentAvailabilityViewModel : BaseViewModel
     {
         private readonly IUserService _userService;
+        private BaseViewModel _parent;
 
-        public DocumentAvailabilityViewModel(IUserService userService)
+        public DocumentAvailabilityViewModel(IUserService userService, BaseViewModel parent)
         {
             _userService = userService;
+            _parent = parent;
         }
+
 
         private string _docId;
         public string DocId 
@@ -80,20 +83,23 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        private MvxCommand<MediaDetailViewModel> _placeHoldRequestCommand;
+        private MvxCommand _placeHoldRequestCommand;
         public ICommand PlaceHoldRequestCommand
         {
             get
             {
                 return _placeHoldRequestCommand ??
-                       (_placeHoldRequestCommand = new MvxCommand<MediaDetailViewModel>(ExecutePlaceHoldRequestCommand));
+                       (_placeHoldRequestCommand = new MvxCommand(ExecutePlaceHoldRequestCommand));
             }
         }
 
-        private void ExecutePlaceHoldRequestCommand(MediaDetailViewModel media)
+        private async void ExecutePlaceHoldRequestCommand()
         {
-            _userService.AddReservation(DocId);
-            //Load(DocId);
+            _parent.IsLoading = true;
+            await _userService.AddReservation(DocId, Branch);
+            _parent.IsLoading = false;
+
+            IsDirty = true;
         }
 
         private bool _isReservable;
@@ -108,6 +114,13 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _buttonText; }
             set { _buttonText = value; RaisePropertyChanged(() => ButtonText); }
+        }
+
+        private bool _isDirty;
+        public bool IsDirty 
+        {
+            get { return _isDirty; }
+            set { _isDirty = value; RaisePropertyChanged(() => IsDirty);}
         }
     }
 }

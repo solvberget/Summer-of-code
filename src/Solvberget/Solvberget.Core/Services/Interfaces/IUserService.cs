@@ -12,8 +12,8 @@ namespace Solvberget.Core.Services.Interfaces
         Task<string> AddUserFavorite(string documentNumber);
         Task<string> RemoveUserFavorite(string documentNumber);
         Task<MessageDto> Login(string userId, string userPin);
-        Task<string> AddReservation(string documentNumber);
-        Task<string> RemoveReservation(string documentNumber);
+        Task<string> AddReservation(string documentNumber, string branch);
+        Task<string> RemoveReservation(string documentNumber, string branch);
         Task<List<ReservationDto>> GetUerReservations();
         Task<List<string>> GetUserReserverdDocuments();
         Task<bool> IsFavorite(string documentNumber);
