@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/ui_itembackground"
     android:layout_marginTop="5dp"
@@ -21,33 +21,33 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="140.00dp"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="8dp">
-      <TextView
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:text="EventTitle"
-          local:MvxBind="Text Title"
-          android:paddingBottom="10dp" />
-      <TextView
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:text="Location"
-          local:MvxBind="Text Location" />
-      <TextView
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:textAppearance="?android:attr/textAppearanceSmall"
-          android:text="Price"
-          local:MvxBind="Text Price" />
-      <TextView
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:textAppearance="?android:attr/textAppearanceSmall"
-          android:text="From"
-          local:MvxBind="Text Time" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/LargeText"
+            android:text="EventTitle"
+            local:MvxBind="Text Title"
+            android:paddingBottom="10dp" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/MediumText"
+            android:text="Location"
+            local:MvxBind="Text Location" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/SmallText"
+            android:text="Price"
+            local:MvxBind="Text Price" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/SmallText"
+            android:text="From"
+            local:MvxBind="Text Time" />
     </LinearLayout>
-  </LinearLayout>
+</LinearLayout>
