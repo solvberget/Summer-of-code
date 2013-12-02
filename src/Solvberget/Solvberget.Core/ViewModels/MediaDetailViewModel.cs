@@ -61,6 +61,14 @@ namespace Solvberget.Core.ViewModels
             Year = (document.Year != 0) ? document.Year.ToString("####") : "Ukjent år";
             Type = document.Type;
             Author = document.MainContributor;
+
+            var classification = "";
+            if (document.Type == "Book")
+            {
+                classification = ((BookDto) document).Classification;
+            }
+                
+
             Availabilities = (from a in document.Availability
                 select new DocumentAvailabilityViewModel(_userService, this)
                 {
@@ -74,6 +82,7 @@ namespace Solvberget.Core.ViewModels
                     ButtonText = ButtonText,
                     EstimatedAvailableDate = a.EstimatedAvailableDate,
                     IsReservable = IsReservable,
+                    Classification = classification
                 }).ToArray();
 
             foreach (var availabilityViewModel in Availabilities)

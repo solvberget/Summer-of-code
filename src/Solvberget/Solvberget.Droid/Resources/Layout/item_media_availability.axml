@@ -108,12 +108,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Sorteres etter"
-        local:MvxBind="Visibility Visibility(Location)" />
+        local:MvxBind="Visibility Visibility(SortBy)" />
     <TextView
         android:paddingLeft="18dp"
         android:paddingRight="20dp"
         android:textAppearance="@style/MediaDetailFieldContent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Location; Visibility Visibility(Location)" />
+        local:MvxBind="Text SortBy; Visibility Visibility(SortBy)" />
 </LinearLayout>

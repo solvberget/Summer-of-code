@@ -50,7 +50,12 @@ namespace Solvberget.Core.ViewModels
         public string Location 
         {
             get { return _location; }
-            set { _location = value; RaisePropertyChanged(() => Location);}
+            set
+            {
+                _location = value; 
+                RaisePropertyChanged(() => Location);
+                RaisePropertyChanged(() => SortBy);
+            }
         }   
 
         private int _availableCount;
@@ -127,6 +132,23 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _buttonText; }
             set { _buttonText = value; RaisePropertyChanged(() => ButtonText); }
+        }
+
+        private string _classification;
+        public string Classification 
+        {
+            get { return _classification; }
+            set
+            {
+                _classification = value; 
+                RaisePropertyChanged(() => Classification);
+                RaisePropertyChanged(() => SortBy);
+            }
+        }
+
+        public string SortBy 
+        {
+            get { return string.Format("{0} {1}", Classification ?? "", Location ?? ""); }
         }
     }
 }
