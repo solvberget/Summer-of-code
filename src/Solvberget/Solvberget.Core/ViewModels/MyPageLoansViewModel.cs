@@ -27,6 +27,13 @@ namespace Solvberget.Core.ViewModels
             set { _loans = value; RaisePropertyChanged(() => Loans); }
         }
 
+        private string _renewalStatus;
+        public string RenewalStatus 
+        {
+            get { return _renewalStatus; }
+            set { _renewalStatus = value; RaisePropertyChanged(() => RenewalStatus);}
+        } 
+
         public async void Load()
         {
             IsLoading = true;
@@ -70,9 +77,16 @@ namespace Solvberget.Core.ViewModels
             IsLoading = false;
         }
 
-        public void ExpandLoan(string documentNumber)
+        public async void ExpandLoan(string documentNumber)
         {
-            _service.ExpandLoan(documentNumber);
+            var response = await _service.ExpandLoan(documentNumber);
+
+            RenewalStatus = response.Reply;
+
+            if (response.Success)
+            {
+                Load();
+            }
         }
     }
 }
