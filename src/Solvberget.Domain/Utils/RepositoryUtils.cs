@@ -21,8 +21,13 @@ namespace Solvberget.Domain.Utils
             var xml = string.Empty;
             using (var stream = response.GetResponseStream())
             {
-                var readStream = new StreamReader(stream, Encoding.UTF8);
-                xml = readStream.ReadToEnd();
+                using (BufferedStream buffer = new BufferedStream(stream))
+                {
+                    using (StreamReader reader = new StreamReader(buffer, Encoding.UTF8))
+                    {
+                        xml = reader.ReadToEnd();
+                    }
+                }
             }
 
             //The Star-Wars-Beatles-PeerGynt-bug
