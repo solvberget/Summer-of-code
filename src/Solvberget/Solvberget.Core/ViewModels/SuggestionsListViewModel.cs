@@ -71,7 +71,7 @@ namespace Solvberget.Core.ViewModels
                            {
                                Name = n.Title,
                                Type = n.Type,
-                               Year = n.Year.ToString(),
+                               Year = (n.Year != 0) ? n.Year.ToString("####") : "Ukjent år",
                                DocNumber = n.Id,
 								Title = n.SubTitle,
 					Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, n.Id),
