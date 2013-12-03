@@ -12,11 +12,11 @@ namespace Solvberget.Domain.Utils
         
         public static XDocument GetXmlFromStream(string url)
         {
-            ServicePointManager.Expect100Continue = false;
-            var request = WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.ServicePoint.Expect100Continue = false;
             request.Proxy = null;
 
-            WebResponse response = request.GetResponse();
+            var response = request.GetResponse();
             
             var xml = string.Empty;
             using (var stream = response.GetResponseStream())
