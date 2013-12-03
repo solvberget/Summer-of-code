@@ -318,7 +318,7 @@ namespace Solvberget.Domain.Aleph
             var numberOfSections = numberOfRecords/100;
             for (var i = 0; i <= numberOfSections; i++)
             {
-                var range = string.Format("{0}-{1}", (i*100 + 1).ToString("000000000"), (i*100 + 99).ToString("000000000"));
+                var range = string.Format("{0}-{1}", (i*100).ToString("000000000"), (i*100 + 99).ToString("000000000"));
                 paralellRequestUrls.Add(range);
                 
                 if (i > 10) break;
