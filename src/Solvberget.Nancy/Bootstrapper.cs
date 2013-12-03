@@ -34,7 +34,8 @@ namespace Solvberget.Nancy
             base.ApplicationStartup(container, pipelines);
 
             /*enable lightningcache, vary by url params id,query,take and skip*/
-            this.EnableLightningCache(container.Resolve<IRouteResolver>(), ApplicationPipelines, new[] { "id", "query", "take", "skip" });
+            //this.EnableLightningCache(container.Resolve<IRouteResolver>(), ApplicationPipelines, new[] { "id", "query", "take", "skip" });  
+            CustomNancyLightningCache.Enable(this, container.Resolve<IRouteResolver>(), ApplicationPipelines, new[] { "id", "query", "take", "skip"});
 
             var statelessAuthConfiguration = new StatelessAuthenticationConfiguration(ctx => container.Resolve<NancyContextAuthenticator>().Authenticate(ctx));
 
