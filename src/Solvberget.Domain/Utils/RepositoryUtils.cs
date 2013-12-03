@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Solvberget.Domain.Utils
@@ -21,9 +22,9 @@ namespace Solvberget.Domain.Utils
             var xml = string.Empty;
             using (var stream = response.GetResponseStream())
             {
-                using (BufferedStream buffer = new BufferedStream(stream))
+                using (var buffer = new BufferedStream(stream))
                 {
-                    using (StreamReader reader = new StreamReader(buffer, Encoding.UTF8))
+                    using (var reader = new StreamReader(buffer, Encoding.UTF8))
                     {
                         xml = reader.ReadToEnd();
                     }
@@ -39,7 +40,6 @@ namespace Solvberget.Domain.Utils
             var xmlEscaped = xml.Replace(soh, sp);
 
             return XDocument.Parse(xmlEscaped);
-
         }
 
         public static XDocument GetXmlFromStreamWithParam(string uri, string param)

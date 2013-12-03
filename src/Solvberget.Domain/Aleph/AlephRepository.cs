@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Solvberget.Domain.Documents;
 using Solvberget.Domain.Documents.Images;
@@ -126,7 +127,6 @@ namespace Solvberget.Domain.Aleph
             user.FillProperties(userXDoc.ToString());
             
             return user;
-
         }
 
         public RequestReply CancelReservation(string documentItemNumber, string documentItemSequence, string cancellationSequence)
@@ -311,49 +311,38 @@ namespace Solvberget.Domain.Aleph
 
         private List<Document> GetSearchResults(dynamic result)
         {
-
-            var documents = new List<Document>();
             var numberOfRecords = int.Parse(result.NumberOfRecords);
-            for (var i = 1; i <= numberOfRecords; i += 99)
+
+            var paralellRequestUrls = new List<string>();
+
+            var numberOfSections = numberOfRecords/100;
+            for (var i = 0; i <= numberOfSections; i++)
             {
-                var start = i;
-                var end = numberOfRecords - i > 99 ? i + 98 : numberOfRecords;
-                var startString = "" + start;
-                var endString = "" + end;
-                var numOfZerosToAdd = 9 - startString.Length;
-
-
-                for (var j = 0; j < numOfZerosToAdd; j++)
-                    startString = "0" + startString;
-
-                numOfZerosToAdd = 9 - endString.Length;
-                for (var j = 0; j < numOfZerosToAdd; j++)
-                    endString = "0" + endString;
-
-                string setEntry = startString + "-" + endString;
-                const Operation function = Operation.PresentSetNumber;
-                var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", setEntry } };
-
+                var range = string.Format("{0}-{1}", (i*100 + 1).ToString("000000000"), (i*100 + 99).ToString("000000000"));
+                paralellRequestUrls.Add(range);
                 
-
-                var doc = GetDocumentFromAleph(function, options);
-
-                if(doc != null)
-                {
-                    if (doc.Root != null)
-                    {
-                        var xmlResult = doc.Root.Elements("record").Select(x => x).ToList();
-                        //Populate list with light documents of correct type
-                        xmlResult.ForEach(x => documents.Add(PopulateDocument(x, true)));
-                    }
-                }
-               
-                documents.RemoveAll(x => x.Title == null);
-                documents.ForEach(d => d.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(d.DocumentNumber, true));
-                if (i > 1000) break;
+                if (i > 10) break;
             }
 
-            return documents;
+            var partialLists = new List<Document>[paralellRequestUrls.Count];
+            Parallel.ForEach(paralellRequestUrls, new ParallelOptions {MaxDegreeOfParallelism = 5}, (range, loopstate, index) =>
+            {
+                var options = new Dictionary<string, string> { { "set_number", result.SetNumber }, { "set_entry", range } };
+                
+                var doc = GetDocumentFromAleph(Operation.PresentSetNumber, options);
+                if (doc == null || doc.Root == null) return;
+
+                var tmpList = new List<Document>();
+                var xmlResult = doc.Root.Elements("record").Select(x => PopulateDocument(x, true)).Where(xDoc => xDoc.Title != null);
+                foreach (var document in xmlResult)
+                {
+                    document.ThumbnailUrl = _storageHelper.GetLocalImageFileCacheUrl(document.DocumentNumber, true);
+                    tmpList.Add(document);
+                }
+                partialLists[index] = tmpList;
+            });
+
+            return partialLists.SelectMany(l => l).ToList();
         }
 
         private Document PopulateDocument(XElement record, bool populateLight)
