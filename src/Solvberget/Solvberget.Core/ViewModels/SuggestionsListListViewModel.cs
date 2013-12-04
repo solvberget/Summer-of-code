@@ -52,6 +52,7 @@ namespace Solvberget.Core.ViewModels
                      select new SuggestionListSummaryViewModel
                            {
                                Name = n.Name,
+                               SubTitle = n.SubTitle,
                                Id = n.Id
                            }).ToList();
 

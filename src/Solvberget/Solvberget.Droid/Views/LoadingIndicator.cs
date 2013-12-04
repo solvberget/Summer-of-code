@@ -24,6 +24,7 @@ namespace Solvberget.Droid.Views
                 if (value)
                 {
                     _dialog = new ProgressDialog(_context);
+                    _dialog.SetCanceledOnTouchOutside(false);
                     _dialog.SetTitle("Laster...");
                     _dialog.Show();
                 }

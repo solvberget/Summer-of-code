@@ -79,9 +79,17 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        private void ExecuteShowDetailsCommand(BlogPostViewModel post)
+        private async void ExecuteShowDetailsCommand(BlogPostViewModel post)
         {
-            ShowViewModel<BlogPostViewModel>(new { blogId = Id, postId = post.Id });
+            IsLoading = true;
+
+            var blogPost = await _blogService.GetBlogPost(Id.ToString(), post.Id.ToString());
+            var html = blogPost.Content;
+            var title = blogPost.Title;
+
+            IsLoading = false;
+
+            ShowViewModel<LocalHtmlWebViewModel>(new { html = html, title = title });
         }
     }
 }

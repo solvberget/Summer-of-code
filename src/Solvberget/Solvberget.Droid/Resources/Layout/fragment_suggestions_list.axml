@@ -5,12 +5,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/ui_itembackground">
-    <TextView
-        local:MvxBind="Text Title"
-        android:textAppearance="@style/LargeText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
     <MvxListView
         android:paddingTop="8dp"
         android:paddingBottom="8dp"

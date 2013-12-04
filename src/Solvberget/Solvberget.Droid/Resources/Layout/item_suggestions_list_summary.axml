@@ -15,13 +15,13 @@
     android:paddingBottom="10dp">
     <TextView
         android:text="Heading"
-        android:textAppearance="@style/LargeText"
+        android:textAppearance="@style/MediumText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Name" />
     <TextView
         android:text="SubHeading"
-        android:textAppearance="@style/MediumText"
+        android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text SubTitle" />
