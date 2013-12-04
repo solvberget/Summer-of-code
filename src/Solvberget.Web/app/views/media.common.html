@@ -36,14 +36,6 @@
         </div>
 
         <div class="col-xs-6 col-md-3">
-            <div class="meta-label">Finnes på hylle</div>
-            <div class="meta-value">
-                {{document.classification}} {{a.location}}
-                <span class="meta-value placeholder" ng-hide="document.classification || a.location">Ukjent</span>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
             <div class="meta-label">Avdeling</div>
             <div class="meta-value">{{a.department}}
                 <span class="meta-value placeholder" ng-hide="a.department">Ukjent</span>
@@ -56,6 +48,15 @@
                 <span class="meta-value placeholder" ng-hide="a.collection">Ukjent</span>
             </div>
         </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Finnes på hylle</div>
+            <div class="meta-value">
+                {{document.classification}} {{a.location}}
+                <span class="meta-value placeholder" ng-hide="document.classification || a.location">Ukjent</span>
+            </div>
+        </div>
+        
         <div class="col-xs-12 col-md-3">
             <div class="meta-label">Tilgjengelighet</div>
             <div class="meta-value">
