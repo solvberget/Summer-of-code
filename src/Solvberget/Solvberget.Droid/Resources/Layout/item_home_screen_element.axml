@@ -13,7 +13,7 @@
     android:clickable="true"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#000"
+    android:background="@color/black"
     local:MvxBind="Click GoToCommand; Background StringToColor(Title)">
     <Solvberget.Droid.Views.Components.IconTextView
         android:paddingLeft="16dp"
@@ -22,10 +22,10 @@
         android:width="50dp"
         android:paddingRight="10dp"
         android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         local:MvxBind="Text IconChar" />
     <TextView
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
