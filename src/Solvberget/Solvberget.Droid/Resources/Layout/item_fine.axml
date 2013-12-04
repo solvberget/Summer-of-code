@@ -9,13 +9,11 @@
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingTop="8dp"
+    android:paddingLeft="8dp"
+    android:paddingBottom="8dp"
+    android:gravity="center">
     <TextView
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:textAppearance="@style/MediumText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -24,9 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/ui_itembackground"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:background="@color/ui_itembackground">
         <TextView
             android:textAppearance="@style/SmallText"
             android:layout_width="fill_parent"
@@ -37,9 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/ui_itembackground"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:background="@color/ui_itembackground">
         <TextView
             android:text="Beløp: "
             android:textAppearance="@style/SmallText"

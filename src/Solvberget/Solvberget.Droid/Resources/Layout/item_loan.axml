@@ -39,7 +39,8 @@
             android:textAppearance="@style/SmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView1" />
+            android:id="@+id/textView1"
+            local:MvxBind="Visibility Visibility(ButtonVisible)"/>
         <TextView
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -47,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            local:MvxBind="Text DueDate" />
+            local:MvxBind="Text DueDate; Visibility Visibility(ButtonVisible)" />
     </LinearLayout>
   <LinearLayout
     android:layout_width="wrap_content"

@@ -153,7 +153,8 @@ namespace Solvberget.Core.ViewModels
                     {
                         DocumentTitle = "Du har ingen reservasjoner",
                         Status = "Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene.",
-                        ButtonVisible = false
+                        ButtonVisible = false,
+                        ListEmpty = true
                     });
                     ListEmpty = true;
                 }
@@ -162,7 +163,7 @@ namespace Solvberget.Core.ViewModels
             {
                 ButtonText = "Bekreft";
 
-                DocumentTitle = "Vil du fjerne reservasjoen?";
+                DocumentTitle = "Vil du fjerne reservasjonen?";
                 Status = "Da mister du din plass i køen for å låne denne!";
 
                 CancellationButtonVisible = true;
