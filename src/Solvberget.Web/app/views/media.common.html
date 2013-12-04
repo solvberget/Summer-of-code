@@ -66,7 +66,7 @@
         </div>
         <div class="colxs-12 col-md-3" ng-show="a.estimatedAvailableDate">
             <div class="meta-label">Tidligst tilgjengelig</div>
-            <div class="meta-value">{{a.estimatedAvailableDate|date:mediumDate}}</div>
+            <div class="meta-value">{{a.estimatedAvailableDate|date:'d. MMM yyyy'}}</div>
         </div>
         <div class="colxs-12 col-md-3">
             <button type="button" class="btn btn-primary" ng-click="toggleReservation(a.branch)"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : document.isReserved }"></i>
