@@ -64,7 +64,7 @@ namespace Solvberget.Nancy.Modules
 
                 if (null == query) throw new InvalidOperationException("Ingenting å søke etter.");
 
-                return Response.AsJson(documents.Search(query).Select(doc => DtoMaps.Map(doc, favorites, Context.GetUserInfo())).ToArray()).AsCacheable(DateTime.Now.AddHours(1));
+                return Response.AsJson(documents.Search(query).Select(doc => DtoMaps.Map(doc, favorites, Context.GetUserInfo())).ToArray()).AsCacheable(DateTime.Now.AddHours(12));
             };
         }
 
