@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class NewsListingView : MvxTableViewController
+	public partial class NewsListingView : NamedTableViewController
     {
 		public new NewsListingViewModel ViewModel
 		{
@@ -33,12 +33,9 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<NewsListingView, NewsListingViewModel>();
 			set.Bind(source).To(vm => vm.Stories);
             set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
-
-			NavigationItem.HidesBackButton = true;
-
+		
 			TableView.ReloadData();
         }
     }

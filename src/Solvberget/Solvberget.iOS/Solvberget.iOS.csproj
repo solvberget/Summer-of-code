@@ -167,6 +167,8 @@
     <Compile Include="Views\SearchView.designer.cs">
       <DependentUpon>SearchView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\NamedViewController.cs" />
+    <Compile Include="Views\NamedTableViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

@@ -150,7 +150,8 @@ namespace Solvberget.iOS
 			navController.NavigationBar.SetTitleTextAttributes(new UITextAttributes()
 			{
 				TextColor = UIColor.White,
-				TextShadowColor = UIColor.Clear
+				TextShadowColor = UIColor.Clear,
+				Font = Application.ThemeColors.HeaderFont
 			});
 			navController.NavigationBar.Translucent = false;
 

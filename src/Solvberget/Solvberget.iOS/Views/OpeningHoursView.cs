@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class OpeningHoursView : MvxTableViewController
+	public partial class OpeningHoursView : NamedTableViewController
     {
 		public new OpeningHoursViewModel ViewModel
 		{
@@ -42,7 +42,7 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<OpeningHoursView, OpeningHoursViewModel>();
 			set.Bind(source).To(vm => vm.Locations);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
+
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 

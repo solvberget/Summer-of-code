@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class SuggestionsListListView : MvxTableViewController
+	public partial class SuggestionsListListView : NamedTableViewController
     {
 		public new SuggestionsListListViewModel ViewModel
 		{
@@ -41,7 +41,7 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<SuggestionsListListView, SuggestionsListListViewModel>();
 			set.Bind(source).To(vm => vm.Lists);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowListCommand);
-			Title = ViewModel.Title;
+
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 

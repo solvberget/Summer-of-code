@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class EventListView : MvxTableViewController
+	public partial class EventListView : NamedTableViewController
     {
 		public new EventListViewModel ViewModel
 		{
@@ -33,7 +33,7 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<EventListView, EventListViewModel>();
 			set.Bind(source).To(vm => vm.Events);
             set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
+
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();

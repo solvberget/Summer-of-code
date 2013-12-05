@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class BlogView : MvxTableViewController
+	public partial class BlogView : NamedTableViewController
     {
 		public new BlogViewModel ViewModel
 		{
@@ -43,7 +43,7 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<BlogView, BlogViewModel>();
 			set.Bind(source).To(vm => vm.Posts);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
+
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();

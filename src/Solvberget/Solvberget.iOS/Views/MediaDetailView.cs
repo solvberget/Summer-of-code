@@ -8,7 +8,7 @@ using Solvberget.Core.ViewModels;
 
 namespace Solvberget.iOS
 {
-	public partial class MediaDetailView : MvxViewController
+	public partial class MediaDetailView : NamedViewController
     {
 		public new MediaDetailViewModel ViewModel
 		{
@@ -35,14 +35,11 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 			
-            // Perform any additional setup after loading the view, typically from a nib.
-			HeaderView.BackgroundColor = UIColor.Red;
-
-			var loadingIndicator = new LoadingOverlay();
+            var loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<MediaDetailView, MediaDetailViewModel>();
-			Title = ViewModel.Title;
+
 			set.Bind().For(v => v.Image).To(vm => vm.Image);
 			set.Bind().For(v => v.MediaTitle).To(vm => vm.Title);
 			set.Bind().For(v => v.MediaSubtitle).To(vm => vm.SubTitle);

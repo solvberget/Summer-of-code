@@ -18,8 +18,6 @@ namespace Solvberget.iOS
         /// <param name="args">The args.</param>
         public static void Main(string[] args)
         {
-            // if you want to use a different Application Delegate class from "AppDelegate"
-            // you can specify it here.
             UIApplication.Main(args, null, "AppDelegate");
         }
 
@@ -37,6 +35,8 @@ namespace Solvberget.iOS
 
 			public static UIFont TitleFont = UIFont.FromName("OpenSans-Light", 16);
 			public static UIFont DefaultFont = UIFont.FromName("OpenSans", 13);
+
+			public static UIFont HeaderFont = UIFont.FromName("OpenSans-Bold", 16);
 		}
     }
 }

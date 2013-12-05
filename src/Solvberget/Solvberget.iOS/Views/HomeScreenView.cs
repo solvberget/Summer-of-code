@@ -5,10 +5,13 @@ using MonoTouch.UIKit;
 using Cirrious.MvvmCross.Touch.Views;
 using SlidingPanels.Lib;
 using SlidingPanels.Lib.PanelContainers;
+using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.iOS
 {
-	public partial class HomeScreenView : MvxViewController
+
+
+	public partial class HomeScreenView : NamedViewController
     {
         public HomeScreenView() : base("HomeScreenView", null)
 		{
@@ -29,19 +32,6 @@ namespace Solvberget.iOS
 			};
 
 			return new UIBarButtonItem(button);
-		}
-
-		public override void ViewWillDisappear(bool animated)
-		{
-			if (null != NavigationItem)
-			{
-				NavigationItem.Title = String.Empty;
-			}
-		}
-
-		public override void ViewWillAppear(bool animated)
-		{
-			NavigationItem.Title = "Sølvberget";
 		}
 
         public override void DidReceiveMemoryWarning()

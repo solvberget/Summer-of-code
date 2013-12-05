@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.Touch.Views;
 
 namespace Solvberget.iOS
 {
-	public partial class SearchView : MvxViewController
+	public partial class SearchView : NamedViewController
     {
         public SearchView() : base("SearchView", null)
         {
@@ -38,7 +38,6 @@ namespace Solvberget.iOS
 			UpdateResultCount();
 			ViewModel.PropertyChanged += (sender, e) => UpdateResultCount();
 		
-			Title = ViewModel.Title;
 			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Organize, HandleRightBarButtonItemClicked), true);
 
 			Query.SearchButtonClicked += HandleSearchButtonClicked;
@@ -57,6 +56,8 @@ namespace Solvberget.iOS
 			set.Apply();
 
 			Results.ReloadData();
+
+			Query.BecomeFirstResponder();
 		}
 
 		UIView _overlay = new UIView();

@@ -8,7 +8,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public class GenericWebViewView : MvxViewController
+	public class GenericWebViewView : NamedViewController
     {
 		private UIWebView _webView;
 
@@ -24,8 +24,6 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
-			Title = ViewModel.Title;
-
 			var webFrame = UIScreen.MainScreen.ApplicationFrame;
 
 			_webView = new UIWebView(webFrame) {
@@ -34,8 +32,6 @@ namespace Solvberget.iOS
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
 			};
 
-
-		
 			_webView.LoadStarted += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			};
