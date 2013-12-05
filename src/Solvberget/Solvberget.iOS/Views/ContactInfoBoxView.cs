@@ -35,7 +35,7 @@ namespace Solvberget.iOS
 		{
 			var box = StartBox();
 
-			if(!String.IsNullOrEmpty(ViewModel.Phone)) new LabelAndValue(box, "Telefon", ViewModel.Phone, () => Call(ViewModel.Phone)); // todo: tap to ring
+			if(!String.IsNullOrEmpty(ViewModel.Phone)) new LabelAndValue(box, "Telefon", ViewModel.Phone, () => Call(ViewModel.Title, ViewModel.Phone)); // todo: tap to ring
 			if(!String.IsNullOrEmpty(ViewModel.Fax)) new LabelAndValue(box, "Faks", ViewModel.Fax);
 			if(!String.IsNullOrEmpty(ViewModel.VisitingAddress)) new LabelAndValue(box, "Besøksaddresse", ViewModel.VisitingAddress); // todo: tap to map
 			if(!String.IsNullOrEmpty(ViewModel.Email)) new LabelAndValue(box, "Epost", ViewModel.Email, () => Email(ViewModel.Email)); // todo: tap to send
@@ -52,7 +52,7 @@ namespace Solvberget.iOS
 
 				new LabelAndValue(box, null, ci.Position);
 				new LabelAndValue(box, "Navn", ci.Name);
-				new LabelAndValue(box, "Telefon", ci.Phone, () => Call(ci.Phone));
+				new LabelAndValue(box, "Telefon", ci.Phone, () => Call(ci.Name, ci.Phone));
 				new LabelAndValue(box, "Epost", ci.Email, () => Email(ci.Email));
 			}
 
@@ -81,9 +81,16 @@ namespace Solvberget.iOS
 			return box;
 		}
 
-		private void Call(string number)
+		private void Call(string name, string number)
 		{
-			UIApplication.SharedApplication.OpenUrl(new NSUrl("tel:" + number.Replace(" ", String.Empty)));
+			UIAlertView alert = new UIAlertView();
+			alert.Title = "Ringe nå?";
+			alert.AddButton("Nei");
+			alert.CancelButtonIndex = 0;
+			alert.AddButton("Ja");
+			alert.Message = "Vil du ringe til " + name + "?";
+			alert.Delegate = new PhoneAlertViewDelegate(number);
+			alert.Show();
 		}
 
 		private void Email(string email)
@@ -91,5 +98,23 @@ namespace Solvberget.iOS
 			UIApplication.SharedApplication.OpenUrl(new NSUrl("mailto://" + email));
 		}
     }
+
+	public class PhoneAlertViewDelegate : UIAlertViewDelegate
+	{
+		string number;
+		public PhoneAlertViewDelegate(string number)
+		{
+			this.number = number;
+		}
+
+		public override void Clicked (UIAlertView alertview, int buttonIndex)
+		{
+			if(buttonIndex == 1)
+			{
+				UIApplication.SharedApplication.OpenUrl(new NSUrl("tel:" + number.Replace(" ", String.Empty)));
+			}
+		}
+	}
+
 }
 
