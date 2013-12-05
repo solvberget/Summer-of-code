@@ -158,10 +158,11 @@
       <DependentUpon>SimpleCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SimpleTableViewSource.cs" />
-    <Compile Include="Views\TableViewCells\BlogSimpleCellBinder.cs" />
-    <Compile Include="Views\TableViewCells\ISimpleCellBinder.cs" />
-    <Compile Include="Views\SuggestionListSummaryViewModelSimpleTableBinder.cs" />
-    <Compile Include="Views\SuggestionsListViewModelSimpleTableBinder.cs" />
+    <Compile Include="Views\TableViewCells\Binders\ISimpleCellBinder.cs" />
+    <Compile Include="Views\TableViewCells\Binders\BlogSimpleCellBinder.cs" />
+    <Compile Include="Views\TableViewCells\Binders\SuggestionListSummaryViewModelSimpleTableBinder.cs" />
+    <Compile Include="Views\TableViewCells\Binders\SuggestionsListViewModelSimpleTableBinder.cs" />
+    <Compile Include="Views\TableViewCells\Binders\EventViewModelSimpleListBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -225,6 +226,7 @@
     <Folder Include="Views\" />
     <Folder Include="Images\" />
     <Folder Include="Views\TableViewCells\" />
+    <Folder Include="Views\TableViewCells\Binders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppDelegate.cs.txt" />

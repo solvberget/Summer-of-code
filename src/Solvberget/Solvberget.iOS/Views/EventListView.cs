@@ -22,9 +22,9 @@ namespace Solvberget.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; ImageUrl ImageUrl; DetailText TimeAndPlaceSummary", UITableViewCellAccessory.None);
+
+			var source = new SimpleTableViewSource<EventViewModel>(TableView, new EventViewModelSimpleListBinder());
+
 			TableView.Source = source;
 
 			var loadingIndicator = new LoadingOverlay(View.Frame);
@@ -37,8 +37,6 @@ namespace Solvberget.iOS
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();
-
-			NavigationItem.HidesBackButton = true;
 
 			TableView.ReloadData();
         }

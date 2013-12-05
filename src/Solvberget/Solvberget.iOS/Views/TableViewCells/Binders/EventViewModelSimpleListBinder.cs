@@ -8,11 +8,11 @@ using Solvberget.Core.ViewModels;
 namespace Solvberget.iOS
 {
 
-	public class BlogSimpleCellBinder : ISimpleCellBinder<BlogItemViewModel>
+	public class EventViewModelSimpleListBinder : ISimpleCellBinder<EventViewModel>
 	{
-		public void Bind(SimpleCell cell, BlogItemViewModel blog)
+		public void Bind(SimpleCell cell, EventViewModel model)
 		{
-			cell.Bind(blog.Title, blog.Description, null);
+			cell.Bind(model.Title, model.TimeAndPlaceSummary, model.ImageUrl);
 		}
 	}
 }
