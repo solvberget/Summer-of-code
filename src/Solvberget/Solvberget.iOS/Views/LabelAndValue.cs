@@ -2,6 +2,7 @@ using System;
 using MonoTouch.UIKit;
 using System.Drawing;
 using System.Linq;
+using MonoTouch.Foundation;
 
 namespace Solvberget.iOS
 {
@@ -10,7 +11,7 @@ namespace Solvberget.iOS
 		UILabel _label = new UILabel();
 		UILabel _value = new UILabel();
 
-		public LabelAndValue(UIView container, string label, string value)
+		public LabelAndValue(UIView container, string label, string value, Action onTap = null)
         {
 			_label.Font = Application.ThemeColors.LabelFont;
 			_label.TextColor = Application.ThemeColors.Main;
@@ -46,6 +47,19 @@ namespace Solvberget.iOS
 
 			container.Frame = new RectangleF(container.Frame.Location, 
 				new SizeF(container.Frame.Width, container.Frame.Height + padding + _label.Frame.Height + _value.Frame.Height));
+
+			if (null != onTap)
+			{
+				_value.TextColor = Application.ThemeColors.Main;
+				var onTapAction = new NSAction(onTap);
+
+				_label.AddGestureRecognizer(new UITapGestureRecognizer(onTapAction));
+				_value.AddGestureRecognizer(new UITapGestureRecognizer(onTapAction));
+
+				_label.UserInteractionEnabled = _value.UserInteractionEnabled = true;
+			}
+
+		
 		}
     }
 }

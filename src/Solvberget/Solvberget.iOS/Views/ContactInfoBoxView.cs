@@ -35,10 +35,10 @@ namespace Solvberget.iOS
 		{
 			var box = StartBox();
 
-			if(!String.IsNullOrEmpty(ViewModel.Phone)) new LabelAndValue(box, "Telefon", ViewModel.Phone); // todo: tap to ring
+			if(!String.IsNullOrEmpty(ViewModel.Phone)) new LabelAndValue(box, "Telefon", ViewModel.Phone, () => Call(ViewModel.Phone)); // todo: tap to ring
 			if(!String.IsNullOrEmpty(ViewModel.Fax)) new LabelAndValue(box, "Faks", ViewModel.Fax);
 			if(!String.IsNullOrEmpty(ViewModel.VisitingAddress)) new LabelAndValue(box, "Besøksaddresse", ViewModel.VisitingAddress); // todo: tap to map
-			if(!String.IsNullOrEmpty(ViewModel.Email)) new LabelAndValue(box, "Epost", ViewModel.Email); // todo: tap to send
+			if(!String.IsNullOrEmpty(ViewModel.Email)) new LabelAndValue(box, "Epost", ViewModel.Email, () => Email(ViewModel.Email)); // todo: tap to send
 
 			if (box.Subviews.Length == 0)
 			{
@@ -52,8 +52,8 @@ namespace Solvberget.iOS
 
 				new LabelAndValue(box, null, ci.Position);
 				new LabelAndValue(box, "Navn", ci.Name);
-				new LabelAndValue(box, "Telefon", ci.Phone);
-				new LabelAndValue(box, "Epost", ci.Email);
+				new LabelAndValue(box, "Telefon", ci.Phone, () => Call(ci.Phone));
+				new LabelAndValue(box, "Epost", ci.Email, () => Email(ci.Email));
 			}
 
 			container.ContentSize = new SizeF(320, container.Subviews.Last().Frame.Bottom + padding);
@@ -79,6 +79,16 @@ namespace Solvberget.iOS
 			container.Add(box);
 
 			return box;
+		}
+
+		private void Call(string number)
+		{
+			UIApplication.SharedApplication.OpenUrl(new NSUrl("tel:" + number.Replace(" ", String.Empty)));
+		}
+
+		private void Email(string email)
+		{
+			UIApplication.SharedApplication.OpenUrl(new NSUrl("mailto://" + email));
 		}
     }
 }
