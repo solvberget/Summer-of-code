@@ -14,16 +14,15 @@ namespace Solvberget.iOS
 {
 	public class SimpleTableViewSource<T> : MvxTableViewSource where T : class
 	{
-		ISimpleCellBinder<T> _binder;
+		Action<UITableViewCell, T> _binder;
 
-		public SimpleTableViewSource(UITableView tableView, ISimpleCellBinder<T> binder) : base(tableView)
+		public SimpleTableViewSource(UITableView tableView, Action<UITableViewCell, T> binder) : base(tableView)
 		{
 			_binder = binder;
-
+		
 			tableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 
-			tableView.RegisterNibForCellReuse(UINib.FromName(SimpleCell.Key, NSBundle.MainBundle),
-				SimpleCell.Key);
+			tableView.RegisterNibForCellReuse(UINib.FromName(SimpleCell.Key, NSBundle.MainBundle), SimpleCell.Key);
 
 		}
 
@@ -32,15 +31,21 @@ namespace Solvberget.iOS
 			return 95;
 		}
 
-		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath,
-				object item)
+		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
-				
-			var cell = (SimpleCell) TableView.DequeueReusableCell(SimpleCell.Key, indexPath);
 
-			_binder.Bind(cell, item as T);
+			var key = GetNibNameForVM(item.GetType());
+
+			var cell = TableView.DequeueReusableCell(key, indexPath);
+
+			_binder(cell, item as T);
 
 			return cell;
+		}
+
+		NSString GetNibNameForVM(Type type)
+		{
+			return SimpleCell.Key;
 		}
 	}
 	

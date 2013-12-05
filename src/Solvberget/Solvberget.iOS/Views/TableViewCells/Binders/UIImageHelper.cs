@@ -9,13 +9,15 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public class SuggestionListSummaryViewModelSimpleTableBinder : ISimpleCellBinder<SuggestionListSummaryViewModel>
+	public static class UIImageHelper
 	{
-		public void Bind(SimpleCell cell, SuggestionListSummaryViewModel model)
+		public static UIImage FromUrl (string uri)
 		{
-			cell.Bind(model.Name, null, null);
-
+			using (var url = new NSUrl (uri))
+			using (var data = NSData.FromUrl(url))
+				return null != data ? UIImage.LoadFromData(data) : null;
 		}
+
 	}
 }
 

@@ -43,7 +43,7 @@ namespace Solvberget.iOS
 			Query.SearchButtonClicked += HandleSearchButtonClicked;
 			Query.TextChanged += HandleTextChanged;
 
-			_resultsSource = new SimpleTableViewSource<SearchResultViewModel>(Results, new SearchResultViewModelSimpleTableBinder());
+			_resultsSource = new SimpleTableViewSource<SearchResultViewModel>(Results, CellBindings.SearchResults);
 			Results.Source = _resultsSource;
 
 			var loadingIndicator = new LoadingOverlay();

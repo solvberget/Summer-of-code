@@ -23,7 +23,7 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 
-			var source = new SimpleTableViewSource<EventViewModel>(TableView, new EventViewModelSimpleListBinder());
+			var source = new SimpleTableViewSource<EventViewModel>(TableView, CellBindings.Events);
 
 			TableView.Source = source;
 

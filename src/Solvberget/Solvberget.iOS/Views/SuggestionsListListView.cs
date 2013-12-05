@@ -32,7 +32,7 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 			
-			var source = new SimpleTableViewSource<SuggestionListSummaryViewModel>(TableView, new SuggestionListSummaryViewModelSimpleTableBinder());
+			var source = new SimpleTableViewSource<SuggestionListSummaryViewModel>(TableView, CellBindings.SuggestionLists);
 			TableView.Source = source;
 
 			var loadingIndicator = new LoadingOverlay();

@@ -31,7 +31,7 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 			
-			var source = new SimpleTableViewSource<SearchResultViewModel>(TableView, new SearchResultViewModelSimpleTableBinder());
+			var source = new SimpleTableViewSource<SearchResultViewModel>(TableView, CellBindings.SearchResults);
 			TableView.Source = source;
 
 			var loadingIndicator = new LoadingOverlay();

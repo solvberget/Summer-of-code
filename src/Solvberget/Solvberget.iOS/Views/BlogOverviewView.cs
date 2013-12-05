@@ -28,7 +28,7 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 
-			var source = new SimpleTableViewSource<BlogItemViewModel>(TableView, new BlogSimpleCellBinder());
+			var source = new SimpleTableViewSource<BlogItemViewModel>(TableView, CellBindings.Blogs);
 
 			TableView.Source = source;
 
