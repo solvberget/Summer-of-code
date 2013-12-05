@@ -35,26 +35,24 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 
-			NoResultsLabel.RemoveFromSuperview();
-
-			NavigationItem.SetRightBarButtonItem(
-				new UIBarButtonItem(UIBarButtonSystemItem.Organize, HandleRightBarButtonItemClicked), true);
+			UpdateResultCount();
+			ViewModel.PropertyChanged += (sender, e) => UpdateResultCount();
+		
+			Title = ViewModel.Title;
+			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Organize, HandleRightBarButtonItemClicked), true);
 
 			Query.SearchButtonClicked += HandleSearchButtonClicked;
 			Query.TextChanged += HandleTextChanged;
 
-			ViewModel.PropertyChanged += (sender, e) => UpdateResultCount();
-
 			_resultsSource = new SimpleTableViewSource<SearchResultViewModel>(Results, new SearchResultViewModelSimpleTableBinder());
 			Results.Source = _resultsSource;
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
+			var loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<SearchView, SearchViewModel>();
 			set.Bind(_resultsSource).To(vm => vm.Results);
 			set.Bind(_resultsSource).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
@@ -72,6 +70,16 @@ namespace Solvberget.iOS
         }
 
 		void ToggleFilterPanel()
+		{
+			EnsureFilterPanelCreated();
+
+			if (!_filterShowing) ShowFilterPanel();
+			else HideFilterPanel();
+
+			_filterShowing = !_filterShowing;
+		}
+
+		void EnsureFilterPanelCreated()
 		{
 			if (null == _filterOptions)
 			{
@@ -94,34 +102,33 @@ namespace Solvberget.iOS
 					"Annet"
 				};
 				_filterModel.SelectedItem = "Alle";
-
 				_filterModel.SelectedItemChanged += HandleFilterChanged;
-
 				_filterOptions.Model = _filterModel;
 			}
-			if (!_filterShowing)
+		}
+
+		void ShowFilterPanel()
+		{
+			_overlay.BackgroundColor = new UIColor(0f, 0f, 0f, 0f);
+			_filterOptions.Center = new PointF(View.Frame.Width / 2, View.Frame.Height + (_filterOptions.Frame.Height / 2));
+			View.AddSubview(_overlay);
+			UIView.Animate(0.25, 0, UIViewAnimationOptions.CurveEaseInOut, () => 
 			{
-				_overlay.BackgroundColor = new UIColor(0f, 0f, 0f, 0f);
+				_filterOptions.Center = new PointF(View.Frame.Width / 2, View.Frame.Height - (_filterOptions.Frame.Height / 2));
+				_overlay.BackgroundColor = new UIColor(0f, 0f, 0f, 0.75f);
+			}, null);
+		}
+
+		void HideFilterPanel()
+		{
+			UIView.Animate(0.25, 0, UIViewAnimationOptions.CurveEaseInOut, () => 
+			{
 				_filterOptions.Center = new PointF(View.Frame.Width / 2, View.Frame.Height + (_filterOptions.Frame.Height / 2));
-				View.AddSubview(_overlay);
-				UIView.Animate(0.25, 0, UIViewAnimationOptions.CurveEaseInOut, () => 
-				{
-					_filterOptions.Center = new PointF(View.Frame.Width / 2, View.Frame.Height - (_filterOptions.Frame.Height / 2));
-					_overlay.BackgroundColor = new UIColor(0f, 0f, 0f, 0.75f);
-				}, null);
-			}
-			else
+				_overlay.BackgroundColor = new UIColor(0f, 0f, 0f, 0f);
+			}, () => 
 			{
-				UIView.Animate(0.25, 0, UIViewAnimationOptions.CurveEaseInOut, () => 
-				{
-					_filterOptions.Center = new PointF(View.Frame.Width / 2, View.Frame.Height + (_filterOptions.Frame.Height / 2));
-					_overlay.BackgroundColor = new UIColor(0f, 0f, 0f, 0f);
-				}, () => 
-				{
-					_overlay.RemoveFromSuperview();
-				});
-			}
-			_filterShowing = !_filterShowing;
+				_overlay.RemoveFromSuperview();
+			});
 		}
 
 		void HandleFilterChanged (object sender, EventArgs e)
@@ -169,15 +176,13 @@ namespace Solvberget.iOS
 
 		void UpdateResultCount()
 		{
-			if (Results.NumberOfRowsInSection(0) == 0)
+			if (null != ViewModel.Results && Results.NumberOfRowsInSection(0) == 0)
 			{
-				//Results.RemoveFromSuperview();
 				View.AddSubview(NoResultsLabel);
 			}
 			else
 			{
 				NoResultsLabel.RemoveFromSuperview();
-				//View.AddSubview(Results);
 			}
 		}
 

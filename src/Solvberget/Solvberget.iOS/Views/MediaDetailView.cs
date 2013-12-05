@@ -38,7 +38,7 @@ namespace Solvberget.iOS
             // Perform any additional setup after loading the view, typically from a nib.
 			HeaderView.BackgroundColor = UIColor.Red;
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
+			var loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<MediaDetailView, MediaDetailViewModel>();

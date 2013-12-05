@@ -35,7 +35,7 @@ namespace Solvberget.iOS
 			var source = new SimpleTableViewSource<SuggestionListSummaryViewModel>(TableView, new SuggestionListSummaryViewModelSimpleTableBinder());
 			TableView.Source = source;
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
+			var loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<SuggestionsListListView, SuggestionsListListViewModel>();

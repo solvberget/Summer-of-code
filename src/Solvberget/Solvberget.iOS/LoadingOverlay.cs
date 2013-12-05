@@ -14,8 +14,10 @@ namespace Solvberget.iOS
 		UIActivityIndicatorView activitySpinner;
 		UILabel loadingLabel;
 
-		public LoadingOverlay (RectangleF frame) : base (frame)
+		public LoadingOverlay () : base ()
 		{
+			Frame = UIScreen.MainScreen.Bounds;
+
 			// configurable bits
 			BackgroundColor = UIColor.Black;
 			Alpha = 0.75f;

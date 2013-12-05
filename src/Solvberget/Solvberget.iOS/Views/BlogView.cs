@@ -37,7 +37,7 @@ namespace Solvberget.iOS
 			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Published", UITableViewCellAccessory.None);
 			TableView.Source = source;
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
+			var loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<BlogView, BlogViewModel>();

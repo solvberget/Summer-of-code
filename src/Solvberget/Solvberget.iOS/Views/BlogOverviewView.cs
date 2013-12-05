@@ -32,7 +32,7 @@ namespace Solvberget.iOS
 
 			TableView.Source = source;
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
+			var loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 				
 			var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
