@@ -122,10 +122,6 @@
     <Compile Include="Views\BlogOverviewView.designer.cs">
       <DependentUpon>BlogOverviewView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\BlogView.cs" />
-    <Compile Include="Views\BlogView.designer.cs">
-      <DependentUpon>BlogView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\SuggestionsListListView.cs" />
     <Compile Include="Views\SuggestionsListListView.designer.cs">
       <DependentUpon>SuggestionsListListView.cs</DependentUpon>
@@ -166,7 +162,19 @@
     <Compile Include="Views\NamedViewController.cs" />
     <Compile Include="Views\NamedTableViewController.cs" />
     <Compile Include="Views\TableViewCells\Binders\CellBindings.cs" />
-    <Compile Include="Views\TableViewCells\Binders\UIImageHelper.cs" />
+    <Compile Include="Views\TableViewCells\BlogPostCell.cs" />
+    <Compile Include="Views\TableViewCells\BlogPostCell.designer.cs">
+      <DependentUpon>BlogPostCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlogView.cs" />
+    <Compile Include="Views\BlogView.designer.cs">
+      <DependentUpon>BlogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlogPostSummaryItem.cs" />
+    <Compile Include="Views\BlogPostSummaryItem.designer.cs">
+      <DependentUpon>BlogPostSummaryItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TableViewCells\Binders\UIHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -231,6 +239,7 @@
     <Folder Include="Images\" />
     <Folder Include="Views\TableViewCells\" />
     <Folder Include="Views\TableViewCells\Binders\" />
+    <Folder Include="Images\Placeholders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppDelegate.cs.txt" />
@@ -258,6 +267,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
     <BundleResource Include="Resources\Library-Books.jpg" />
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\Blog.png">
+      <Link>Images\Placeholders\Blog.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\Fine.png">
+      <Link>Images\Placeholders\Fine.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\Message.png">
+      <Link>Images\Placeholders\Message.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\News.png">
+      <Link>Images\Placeholders\News.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />
@@ -266,6 +287,9 @@
     <InterfaceDefinition Include="Views\HomeScreenView.xib" />
     <InterfaceDefinition Include="Views\TableViewCells\SimpleCell.xib" />
     <InterfaceDefinition Include="Views\SearchView.xib" />
+    <InterfaceDefinition Include="Views\TableViewCells\BlogPostCell.xib" />
+    <InterfaceDefinition Include="Views\BlogView.xib" />
+    <InterfaceDefinition Include="Views\BlogPostSummaryItem.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

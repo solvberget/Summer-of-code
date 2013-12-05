@@ -12,25 +12,25 @@ namespace Solvberget.iOS
 		public static Action<UITableViewCell, EventViewModel> Events = (cell, model) =>
 		{
 			var sc = (SimpleCell)cell;
-			sc.Bind(model.Title, model.TimeAndPlaceSummary, model.ImageUrl);
+			sc.Bind(model.Title, model.TimeAndPlaceSummary, UIHelpers.ImageFromUrl(model.ImageUrl));
 		};
 
 		public static Action<UITableViewCell, SuggestionListSummaryViewModel> SuggestionLists = (cell, model) =>
 		{
 			var sc = (SimpleCell)cell;
-			sc.Bind(model.Title, null, null);
+			sc.Bind(model.Name, null, null);
 		};
 
 		public static Action<UITableViewCell, BlogItemViewModel> Blogs = (cell, model) =>
 		{
 			var sc = (SimpleCell)cell;
-			sc.Bind(model.Title, model.Description, null);
+			sc.Bind(model.Title, null, UIImage.FromBundle("/Images/Placeholders/Blog.png"));
 		};
 
 		public static Action<UITableViewCell, SearchResultViewModel> SearchResults = (cell, model) =>
 		{
 			var sc = (SimpleCell)cell;
-			sc.Bind(model.Name, model.PresentableTypeWithYear, model.Image);
+			sc.Bind(model.Name, model.PresentableTypeWithYear, UIHelpers.ImageFromUrl(model.Image));
 		};
 
 		public static Action<UITableViewCell, BlogPostViewModel> BlogPosts = (cell, model) =>

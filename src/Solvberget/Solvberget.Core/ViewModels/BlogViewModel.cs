@@ -5,11 +5,24 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System;
+using System.Threading;
 
 namespace Solvberget.Core.ViewModels
 {
     public class BlogViewModel : BaseViewModel
     {
+		AutoResetEvent _viewModelReady = new AutoResetEvent(false);
+
+		public void WaitForReady(Action onReady)
+		{
+			ThreadPool.QueueUserWorkItem(s =>
+			{
+				_viewModelReady.WaitOne();
+				onReady();
+			});
+		}
+
         private readonly IBlogService _blogService;
 
         public BlogViewModel(IBlogService blogService)
@@ -40,6 +53,7 @@ namespace Solvberget.Core.ViewModels
             }).ToList();
 
             IsLoading = false;
+			_viewModelReady.Set();
         }
 
         private List<BlogPostViewModel> _posts;

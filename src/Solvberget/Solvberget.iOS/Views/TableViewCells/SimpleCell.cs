@@ -58,8 +58,8 @@ namespace Solvberget.iOS
 
 			// text height for width strategy
 			var padding = String.IsNullOrEmpty(Label2.Text) ? 0.0f : 5.0f;
-			var size1 = CalculateHeightForWidthStrategy(Label1, Label1.Text);
-			var size2 = String.IsNullOrEmpty(Label2.Text) ? SizeF.Empty : CalculateHeightForWidthStrategy(Label2, Label2.Text);
+			var size1 = UIHelpers.CalculateHeightForWidthStrategy(this, Label1, Label1.Text);
+			var size2 = String.IsNullOrEmpty(Label2.Text) ? SizeF.Empty : UIHelpers.CalculateHeightForWidthStrategy(this, Label2, Label2.Text);
 
 			// align text on y-axis, centering vertically
 			var totalHeight = size1.Height+size2.Height+padding;
@@ -71,7 +71,7 @@ namespace Solvberget.iOS
 			Label2.Frame = new RectangleF(new PointF(Label2.Frame.X, y2), size2);
 		}
 
-		public void Bind(string title, string subtitle, string imageUrl)
+		public void Bind(string title, string subtitle, UIImage image)
 		{
 			_recalulatePositionsOnDraw = true;
 
@@ -83,16 +83,10 @@ namespace Solvberget.iOS
 
 			Label1.Text = title;
 			Label2.Text = subtitle;
-			Image.Image = null == imageUrl ? null : UIImageHelper.FromUrl(imageUrl);
+			Image.Image = image;
 		}
 
-		private SizeF CalculateHeightForWidthStrategy(UILabel label, string newText)
-		{
-			var maxSize = new SizeF(label.Frame.Width, float.MaxValue);
 
-			var size = this.StringSize(newText, label.Font, maxSize, UILineBreakMode.WordWrap);
-			return size;
-		}
 
 		void SetThemeStyles()
 		{

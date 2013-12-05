@@ -2,15 +2,16 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Cirrious.MvvmCross.Touch.Views;
 using Solvberget.Core.ViewModels;
-using Cirrious.MvvmCross.Binding.Touch.Views;
-using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class BlogView : NamedTableViewController
+	public partial class BlogView : NamedViewController
     {
+        public BlogView() : base("BlogView", null)
+		{
+        }
+
 		public new BlogViewModel ViewModel
 		{
 			get
@@ -19,34 +20,78 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
+		public override void DidReceiveMemoryWarning()
+		{
+			// Releases the view if it doesn't have a superview.
+			base.DidReceiveMemoryWarning();
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+			// Release any cached data, images, etc that aren't in use.
+		}
 
-			var source = new SimpleTableViewSource<BlogPostViewModel>(TableView, CellBindings.BlogPosts);
-			TableView.Source = source;
+		LoadingOverlay loadingIndicator;
 
-			var loadingIndicator = new LoadingOverlay();
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			StyleView();
+
+			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Action, OnViewInBrowser), true);
+
+			ViewModel.WaitForReady(() => InvokeOnMainThread(RenderView));
+
+			loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 
-			var set = this.CreateBindingSet<BlogView, BlogViewModel>();
-			set.Bind(source).To(vm => vm.Posts);
-			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
+		}
 
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
+		void StyleView()
+		{
+			DescriptionLabel.TextColor = Application.ThemeColors.Main;
+			DescriptionLabel.Font = Application.ThemeColors.DefaultFont;
+			DescriptionLabel.LineBreakMode = UILineBreakMode.WordWrap;
+			DescriptionLabel.Lines = 0;
+		}
 
-			set.Apply();
+		private void RenderView()
+		{
+			var padding = 10.0f;
 
-			TableView.ReloadData();
-        }
+			DescriptionLabel.Text = "The blog description should go here. Need to refactor IBlogService to populate a complete BlogViewModel with Url, Description and Posts, not just Posts.";
+			DescriptionLabel.SizeToFit();
+
+			DescriptionContainer.BackgroundColor = Application.ThemeColors.Hero;
+			DescriptionContainer.Frame = new RectangleF(0, 0, 320, DescriptionLabel.Frame.Height + padding*2);
+
+			var y = padding;
+
+			foreach (var post in ViewModel.Posts)
+			{
+				var postView = new BlogPostSummaryItem();
+
+				postView.TitleLabelText = post.Title;
+				postView.SummaryLabelText = post.Description;
+
+				ItemsContainer.Add(postView.View);
+				postView.Frame = new RectangleF(padding, y, postView.Frame.Width, postView.Frame.Height + padding);
+
+				y += postView.Frame.Height + padding;
+			}
+
+			var icY = DescriptionContainer.Frame.Y + DescriptionContainer.Frame.Height;
+
+			ItemsContainer.Frame = new RectangleF(0, icY , 320, y);
+
+			ScrollContainer.ContentSize = new SizeF(320, y + icY);
+			ScrollContainer.ScrollEnabled = true;
+
+			loadingIndicator.Hide();
+		}
+
+		private void OnViewInBrowser(object sender, EventArgs e)
+		{
+			UIApplication.SharedApplication.OpenUrl(new NSUrl(ViewModel.Url));
+		}
     }
 }
 
