@@ -12,18 +12,7 @@ namespace Solvberget.Core.ViewModels
 {
     public class BlogViewModel : BaseViewModel
     {
-		AutoResetEvent _viewModelReady = new AutoResetEvent(false);
-
-		public void WaitForReady(Action onReady)
-		{
-			ThreadPool.QueueUserWorkItem(s =>
-			{
-				_viewModelReady.WaitOne();
-				onReady();
-			});
-		}
-
-        private readonly IBlogService _blogService;
+		private readonly IBlogService _blogService;
 
         public BlogViewModel(IBlogService blogService)
         {
@@ -59,7 +48,7 @@ namespace Solvberget.Core.ViewModels
             }).ToList();
 
             IsLoading = false;
-			_viewModelReady.Set();
+			NotifyViewModelReady();
         }
 
         private List<BlogPostViewModel> _posts;

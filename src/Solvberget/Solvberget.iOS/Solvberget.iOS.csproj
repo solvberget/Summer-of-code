@@ -179,6 +179,11 @@
     <Compile Include="Views\BlogPostView.designer.cs">
       <DependentUpon>BlogPostView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\OpeningHoursLocationView.cs" />
+    <Compile Include="Views\OpeningHoursLocationView.designer.cs">
+      <DependentUpon>OpeningHoursLocationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StandardTableViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

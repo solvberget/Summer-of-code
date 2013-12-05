@@ -111,7 +111,8 @@ namespace Solvberget.Core.ViewModels
 
             Rating = await rating;
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
 
         private bool GenerateIsReservable()

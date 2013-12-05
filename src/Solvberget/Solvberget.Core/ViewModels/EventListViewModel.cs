@@ -39,7 +39,8 @@ namespace Solvberget.Core.ViewModels
                     Url = ev.TicketUrl
                 }).ToList();
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
 
         private List<EventViewModel> _events;

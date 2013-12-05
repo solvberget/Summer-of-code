@@ -85,7 +85,7 @@ namespace Solvberget.Core.ViewModels
                         }).ToList();
 
             LastQuery = string.Format("Resultater for: {0}", lastquery);
-            IsLoading = false;
+			IsLoading = false;
         }
 
 		public void ClearResults()

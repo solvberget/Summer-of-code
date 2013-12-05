@@ -61,7 +61,8 @@ namespace Solvberget.Core.ViewModels
                 });
             }
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
 
         public async void RemoveFavorite(string documentNumber, FavoriteViewModel favorite)

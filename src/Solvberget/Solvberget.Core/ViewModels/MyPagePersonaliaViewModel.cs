@@ -110,7 +110,8 @@ namespace Solvberget.Core.ViewModels
             Email = user.Email;
             Name = user.Name;
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
     }
 }

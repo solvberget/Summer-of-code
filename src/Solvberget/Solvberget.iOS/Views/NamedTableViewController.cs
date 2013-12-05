@@ -19,6 +19,11 @@ namespace Solvberget.iOS
 			NavigationItem.Title = (ViewModel as BaseViewModel).Title.ToUpperInvariant();
 		}
 
+		public override UIStatusBarStyle PreferredStatusBarStyle()
+		{
+			return UIStatusBarStyle.LightContent;
+		}
+
 		public override void ViewWillAppear(bool animated)
 		{
 			if (null != ViewModel) NavigationItem.Title = (ViewModel as BaseViewModel).Title.ToUpperInvariant();

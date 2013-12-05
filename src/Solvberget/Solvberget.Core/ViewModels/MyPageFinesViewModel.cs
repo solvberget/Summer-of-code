@@ -45,7 +45,8 @@ namespace Solvberget.Core.ViewModels
                     Status = f.Status
                 });
             }
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
 
             //if (Fines.Count != 0)
             //{

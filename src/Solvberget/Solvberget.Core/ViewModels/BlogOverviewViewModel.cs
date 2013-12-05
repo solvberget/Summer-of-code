@@ -33,6 +33,7 @@ namespace Solvberget.Core.ViewModels
                 Title = b.Title
             }).ToList();
             IsLoading = false;
+			NotifyViewModelReady();
         }
 
         private List<BlogItemViewModel> _blogs;

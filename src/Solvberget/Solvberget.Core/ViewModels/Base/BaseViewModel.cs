@@ -1,9 +1,27 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using System.Threading;
+using System;
 
 namespace Solvberget.Core.ViewModels.Base
 {
     public class BaseViewModel : MvxViewModel
     {
+		AutoResetEvent _viewModelReady = new AutoResetEvent(false);
+
+		public void WaitForReady(Action onReady)
+		{
+			ThreadPool.QueueUserWorkItem(s =>
+				{
+					_viewModelReady.WaitOne();
+					onReady();
+				});
+		}
+
+		protected void NotifyViewModelReady()
+		{
+			_viewModelReady.Set();
+		}
+
         private long _id;
         /// <summary>
         /// Gets or sets the unique ID for the menu

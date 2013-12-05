@@ -56,7 +56,8 @@ namespace Solvberget.Core.ViewModels
                                Id = n.Id
                            }).ToList();
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
     }
 }

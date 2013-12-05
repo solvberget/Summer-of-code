@@ -32,7 +32,10 @@ namespace Solvberget.iOS
             base.ViewDidLoad();
 			
             // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxSimpleTableViewSource(TableView, OpeningHoursLocationCell.Key, OpeningHoursLocationCell.Key);
+
+			var source = new StandardTableViewSource(TableView, UITableViewCellStyle.Default,
+				"OpeningHoursLocations", "TitleText Title");
+
 			TableView.Source = source;
 
 
@@ -45,8 +48,6 @@ namespace Solvberget.iOS
 
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
-
-			NavigationItem.HidesBackButton = true;
 
 			TableView.ReloadData();
         }

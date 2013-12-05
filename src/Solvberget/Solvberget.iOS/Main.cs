@@ -19,6 +19,8 @@ namespace Solvberget.iOS
         public static void Main(string[] args)
         {
             UIApplication.Main(args, null, "AppDelegate");
+
+			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
         }
 
 		public static class ThemeColors

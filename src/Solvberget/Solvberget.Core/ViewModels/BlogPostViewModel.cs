@@ -15,17 +15,6 @@ namespace Solvberget.Core.ViewModels
             _blogService = blogService;
         }
 
-		AutoResetEvent _viewModelReady = new AutoResetEvent(false);
-
-		public void WaitForReady(Action onReady)
-		{
-			ThreadPool.QueueUserWorkItem(s =>
-				{
-					_viewModelReady.WaitOne();
-					onReady();
-				});
-		}
-
 		public void Init(string blogId, string postId, string title)
         {
 			BlogId = blogId;
@@ -44,8 +33,8 @@ namespace Solvberget.Core.ViewModels
             Content = blogPost.Content;
 			Title = blogPost.Title;
 
-            IsLoading = false;
-			_viewModelReady.Set();
+			IsLoading = false;
+			NotifyViewModelReady();
         }
 
 		public void Show(long blogId) // bug: BlogId is null when deserialized from DTO...

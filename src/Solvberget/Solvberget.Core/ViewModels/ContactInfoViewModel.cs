@@ -38,7 +38,8 @@ namespace Solvberget.Core.ViewModels
                     VisitingAddress = ci.VisitingAddress,
                 }).ToList();
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
 
         public IEnumerable<ContactPersonViewModel> MapContactPersons(IEnumerable<ContactPersonDto> contactPersons)

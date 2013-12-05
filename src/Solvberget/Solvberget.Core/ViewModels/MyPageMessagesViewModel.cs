@@ -43,7 +43,8 @@ namespace Solvberget.Core.ViewModels
                     }
                 };
             }
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
     }
 }

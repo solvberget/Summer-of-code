@@ -19,18 +19,6 @@ namespace Solvberget.Core.ViewModels
             Title = "Nyheter";
         }
 
-		AutoResetEvent _viewModelReady = new AutoResetEvent(false);
-
-		public void WaitForReady(Action onReady)
-		{
-			ThreadPool.QueueUserWorkItem(s =>
-				{
-					_viewModelReady.WaitOne();
-					onReady();
-				});
-		}
-
-
         public void Init()
         {
             Load();
@@ -71,8 +59,8 @@ namespace Solvberget.Core.ViewModels
                     NewsTitle = n.Title
                 }).ToList();
 
-            IsLoading = false;
-			_viewModelReady.Set();
+			IsLoading = false;
+			NotifyViewModelReady();
         }
     }
 }

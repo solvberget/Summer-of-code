@@ -81,7 +81,8 @@ namespace Solvberget.Core.ViewModels
 
                 });
             }
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
 
         public async void RemoveReservation(ReservationViewModel reservationViewModel)
