@@ -111,6 +111,11 @@ namespace Solvberget.iOS
 		{
 			if(buttonIndex == 1)
 			{
+				number = number
+					.Replace("(",String.Empty)
+					.Replace(")", String.Empty)
+					.Replace(" ", String.Empty);
+
 				UIApplication.SharedApplication.OpenUrl(new NSUrl("tel:" + number.Replace(" ", String.Empty)));
 			}
 		}
