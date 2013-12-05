@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -24,37 +26,21 @@ namespace Solvberget.Core.ViewModels
         private async Task Load()
         {
             IsLoading = true;
+			Title = "Kontakt oss";
 
-            InfoBoxes = (await _contactInfoService.GetContactInfo()).Select(ci =>
-                new ContactInfoBoxViewModel
-                {
-                    Address = ci.Address,
-                    ContactPersons = MapContactPersons(ci.ContactPersons).ToList(),
-                    Email = ci.Email,
-                    Fax = ci.Fax,
-                    GenericFields = ci.GenericFields.NullSafeToList(),
-                    Phone = ci.Phone,
-                    Title = ci.Title,
-                    VisitingAddress = ci.VisitingAddress,
-                }).ToList();
+			var id = 0;
+
+			InfoBoxes = (await _contactInfoService.GetContactInfo()).Select(ci =>{
+				var vm = ContactInfoBoxViewModel.Map(ci);
+				vm.Id = id++;
+				return vm;
+			}).ToList();
 
 			IsLoading = false;
 			NotifyViewModelReady();
         }
 
-        public IEnumerable<ContactPersonViewModel> MapContactPersons(IEnumerable<ContactPersonDto> contactPersons)
-        {
-            if (contactPersons == null)
-                return Enumerable.Empty<ContactPersonViewModel>();
-
-            return contactPersons.Select(cp => new ContactPersonViewModel
-            {
-                Email = cp.Email,
-                Name = cp.Name,
-                Phone = cp.Phone,
-                Position = cp.Position
-            });
-        }
+        
 
         private List<ContactInfoBoxViewModel> _infoBoxes;
         public List<ContactInfoBoxViewModel> InfoBoxes 
@@ -62,5 +48,20 @@ namespace Solvberget.Core.ViewModels
             get { return _infoBoxes; }
             set { _infoBoxes = value; RaisePropertyChanged(() => InfoBoxes);}
         }
+
+
+		private MvxCommand<ContactInfoBoxViewModel> _showDetailsCommand;
+		public ICommand ShowDetailsCommand
+		{
+			get
+			{
+				return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<ContactInfoBoxViewModel>(ExecuteShowDetailsCommand));
+			}
+		}
+
+		private void ExecuteShowDetailsCommand(ContactInfoBoxViewModel model)
+		{
+			ShowViewModel<ContactInfoBoxViewModel>(new {id = model.Id, title = model.Title});
+		}
     }
 }

@@ -184,6 +184,11 @@
       <DependentUpon>OpeningHoursLocationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\StandardTableViewSource.cs" />
+    <Compile Include="Views\ContactInfoView.cs" />
+    <Compile Include="Views\ContactInfoBoxView.cs" />
+    <Compile Include="Views\ContactInfoBoxView.designer.cs">
+      <DependentUpon>ContactInfoBoxView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -301,6 +306,7 @@
     <InterfaceDefinition Include="Views\TitleAndSummaryItem.xib" />
     <InterfaceDefinition Include="Views\BlogPostView.xib" />
     <InterfaceDefinition Include="Views\NewsListingView.xib" />
+    <InterfaceDefinition Include="Views\ContactInfoBoxView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
