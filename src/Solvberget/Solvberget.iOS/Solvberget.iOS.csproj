@@ -148,6 +148,11 @@
     <Compile Include="Views\MediaDetailView.designer.cs">
       <DependentUpon>MediaDetailView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\HomeScreenView.cs" />
+    <Compile Include="Views\HomeScreenView.designer.cs">
+      <DependentUpon>HomeScreenView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolvbergetTableViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -228,11 +233,22 @@
     <BundleResource Include="Resources\Icon-60%402x.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\OpenSans-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\OpenSans-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\OpenSans-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Library-Books.jpg" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />
     <InterfaceDefinition Include="Views\TableViewCells\OpeningHoursLocationCell.xib" />
     <InterfaceDefinition Include="Views\MediaDetailView.xib" />
+    <InterfaceDefinition Include="Views\HomeScreenView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

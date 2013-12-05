@@ -44,6 +44,7 @@ namespace Solvberget.iOS
 			_window = window;
 			_stackClearingViewModels = new Dictionary<Type, bool>();
 
+			RegisterStackClearingViewModel(typeof(HomeScreenViewModel));
 			RegisterStackClearingViewModel(typeof(NewsListingViewModel));
 			RegisterStackClearingViewModel(typeof(OpeningHoursViewModel));
 			RegisterStackClearingViewModel(typeof(MyPageViewModel));
@@ -85,11 +86,16 @@ namespace Solvberget.iOS
 		{
 			if (MasterNavigationController == null)
 				return;
-			MasterNavigationController.PopToRootViewController(false);
+			MasterNavigationController.PopToViewController(_mainView, false);
+
 		}
+
+		UIViewController _mainView;
 	
         protected override void ShowFirstView (UIViewController viewController)
         {
+			_mainView = viewController;
+
             // Show the first view
             base.ShowFirstView (viewController);
 

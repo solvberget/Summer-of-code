@@ -32,12 +32,14 @@ namespace Solvberget.iOS
             base.ViewDidLoad();
 			
             // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Description", UITableViewCellAccessory.None);
+			var source = new SimpleTableViewSource(); //, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Description", UITableViewCellAccessory.None);
+
 			TableView.Source = source;
 
 			var loadingIndicator = new LoadingOverlay(View.Frame);
 			Add(loadingIndicator);
-				
+
+			/*	
 			var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
 			set.Bind(source).To(vm => vm.Blogs);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
@@ -45,9 +47,7 @@ namespace Solvberget.iOS
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();
-
-			NavigationItem.HidesBackButton = true;
-
+*/
 			TableView.ReloadData();
         }
     }

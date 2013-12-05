@@ -60,9 +60,18 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
-			var source = new MvxStandardTableViewSource(MenuTableView, UITableViewCellStyle.Default, new NSString("TableViewCell"), "TitleText Title;", UITableViewCellAccessory.None);
+			var source = new SolvbergetTableViewSource(MenuTableView, UITableViewCellStyle.Default, new NSString("TableViewCell"), "TitleText Title;", UITableViewCellAccessory.None);
+
+			source.BackgroundColor = Application.ThemeColors.Main2;
+			source.TextColor = Application.ThemeColors.MainInverse;
+			source.TintColor = Application.ThemeColors.Main;
+
+			View.BackgroundColor = Application.ThemeColors.Main2;
+			MenuTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+
 
 			MenuTableView.Source = source;
+			MenuTableView.BackgroundView = null;
 
 			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
 			set.Bind(source).To(vm => vm.MenuItems);

@@ -30,6 +30,8 @@ namespace Solvberget.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+
 			
             // Perform any additional setup after loading the view, typically from a nib.
 			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Published", UITableViewCellAccessory.None);
