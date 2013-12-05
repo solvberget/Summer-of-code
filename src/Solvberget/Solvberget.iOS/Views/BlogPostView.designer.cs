@@ -13,13 +13,13 @@ namespace Solvberget.iOS
 	partial class BlogPostView
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView ScrollContainer { get; set; }
+		MonoTouch.UIKit.UIWebView WebView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ScrollContainer != null) {
-				ScrollContainer.Dispose ();
-				ScrollContainer = null;
+			if (WebView != null) {
+				WebView.Dispose ();
+				WebView = null;
 			}
 		}
 	}

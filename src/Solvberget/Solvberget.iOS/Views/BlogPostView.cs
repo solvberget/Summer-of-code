@@ -43,13 +43,20 @@ namespace Solvberget.iOS
 		{
 			_loadingOverlay.Hide();
 
+			/*
 			TitleAndSummaryItem ctrl = new TitleAndSummaryItem();
 			ctrl.TitleLabelText = "Skrevet av " + ViewModel.Author + ", " + ViewModel.Published.ToString("d. MMM");
 			ctrl.SummaryLabelText = ViewModel.Content;
 			ScrollContainer.Add(ctrl.View);
 			ctrl.View.BackgroundColor = UIColor.Clear;
 			ctrl.View.Frame = new RectangleF(new PointF(10, 0), ctrl.View.SizeThatFits(new SizeF(320, 0)));
-			ScrollContainer.ContentSize = ctrl.View.Frame.Size;
+			ScrollContainer.ContentSize = ctrl.View.Frame.Size;*/
+
+			var styles = "<style>body { font-family: Open Sans }</style>";
+			var html = styles + ViewModel.Content + "<p style=color:gray>Publisert av " + ViewModel.Author + ", " + ViewModel.Published.ToString("ddd d. MMM yyyy");
+
+
+			WebView.LoadHtmlString(html, null);
 		}
 
 		private void OnViewInBrowser(object sender, EventArgs e)
