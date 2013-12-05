@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
@@ -87,6 +87,11 @@ namespace Solvberget.Core.ViewModels
             LastQuery = string.Format("Resultater for: {0}", lastquery);
             IsLoading = false;
         }
+
+		public void ClearResults()
+		{
+			Results = null;
+		}
 
         public IList<SearchResultViewModel> BookResults 
         {

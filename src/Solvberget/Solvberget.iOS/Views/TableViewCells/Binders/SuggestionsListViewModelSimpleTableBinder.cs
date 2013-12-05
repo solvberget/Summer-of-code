@@ -23,7 +23,7 @@ namespace Solvberget.iOS
 		{
 			using (var url = new NSUrl (uri))
 			using (var data = NSData.FromUrl(url))
-				return UIImage.LoadFromData(data);
+				return null != data ? UIImage.LoadFromData(data) : null;
 		}
 
 	}

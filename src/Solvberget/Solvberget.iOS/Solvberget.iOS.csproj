@@ -163,6 +163,10 @@
     <Compile Include="Views\TableViewCells\Binders\SuggestionListSummaryViewModelSimpleTableBinder.cs" />
     <Compile Include="Views\TableViewCells\Binders\SuggestionsListViewModelSimpleTableBinder.cs" />
     <Compile Include="Views\TableViewCells\Binders\EventViewModelSimpleListBinder.cs" />
+    <Compile Include="Views\SearchView.cs" />
+    <Compile Include="Views\SearchView.designer.cs">
+      <DependentUpon>SearchView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -261,6 +265,7 @@
     <InterfaceDefinition Include="Views\MediaDetailView.xib" />
     <InterfaceDefinition Include="Views\HomeScreenView.xib" />
     <InterfaceDefinition Include="Views\TableViewCells\SimpleCell.xib" />
+    <InterfaceDefinition Include="Views\SearchView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

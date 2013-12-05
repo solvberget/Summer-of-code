@@ -76,6 +76,9 @@ namespace Solvberget.iOS
 					SlidingPanelsController.HidePanel(_leftPanel);
 				}
 
+				//(SlidingPanelsController.NavigationItem.TitleView as UILabel).Text = "Sølvberget";
+
+
 				Show(view);
 			} catch (Exception e) 
 			{
@@ -141,6 +144,16 @@ namespace Solvberget.iOS
 			{
 				navController.InteractivePopGestureRecognizer.Enabled = false;
 			}
+
+			navController.NavigationBar.BarTintColor = Application.ThemeColors.Main;
+			navController.NavigationBar.TintColor = Application.ThemeColors.MainInverse;
+			navController.NavigationBar.SetTitleTextAttributes(new UITextAttributes()
+			{
+				TextColor = UIColor.White,
+				TextShadowColor = UIColor.Clear
+			});
+			navController.NavigationBar.Translucent = false;
+
             return navController;
         }
 

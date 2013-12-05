@@ -13,7 +13,7 @@ namespace Solvberget.iOS
         public HomeScreenView() : base("HomeScreenView", null)
 		{
 			NavigationItem.LeftBarButtonItem = CreateSliderButton("Images/SlideRight40.png", PanelType.LeftPanel);
-			NavigationItem.Title = "Sølvberget";
+			//NavigationItem.Title = "Sølvberget";
 
 
         }
@@ -29,6 +29,19 @@ namespace Solvberget.iOS
 			};
 
 			return new UIBarButtonItem(button);
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			if (null != NavigationItem)
+			{
+				NavigationItem.Title = String.Empty;
+			}
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			NavigationItem.Title = "Sølvberget";
 		}
 
         public override void DidReceiveMemoryWarning()
