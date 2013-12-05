@@ -5,9 +5,9 @@ using MonoTouch.UIKit;
 
 namespace Solvberget.iOS
 {
-    public partial class BlogPostSummaryItem : UIViewController
+    public partial class TitleAndSummaryItem : UIViewController
     {
-        public BlogPostSummaryItem() : base("BlogPostSummaryItem", null)
+		public TitleAndSummaryItem() : base("TitleAndSummaryItem", null)
         {
         }
 
@@ -64,6 +64,8 @@ namespace Solvberget.iOS
 
 			//TitleLabel.BackgroundColor = UIColor.Red.ColorWithAlpha(0.5f);
 			//SummaryLabel.BackgroundColor = UIColor.Blue.ColorWithAlpha(0.5f);
+
+
 		}
 
         public override void ViewDidLoad()
@@ -72,7 +74,16 @@ namespace Solvberget.iOS
 
 			StyleView();
 			UpdateLayout();
+
+			View.AddGestureRecognizer(new UITapGestureRecognizer(OnTap));
         }
+
+		public event EventHandler Clicked = (s,e) => {};
+
+		private void OnTap()
+		{
+			Clicked(this, EventArgs.Empty);
+		}
     }
 }
 

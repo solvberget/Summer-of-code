@@ -170,11 +170,15 @@
     <Compile Include="Views\BlogView.designer.cs">
       <DependentUpon>BlogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\BlogPostSummaryItem.cs" />
-    <Compile Include="Views\BlogPostSummaryItem.designer.cs">
-      <DependentUpon>BlogPostSummaryItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\TableViewCells\Binders\UIHelpers.cs" />
+    <Compile Include="Views\TitleAndSummaryItem.cs" />
+    <Compile Include="Views\TitleAndSummaryItem.designer.cs">
+      <DependentUpon>TitleAndSummaryItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlogPostView.cs" />
+    <Compile Include="Views\BlogPostView.designer.cs">
+      <DependentUpon>BlogPostView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -289,7 +293,8 @@
     <InterfaceDefinition Include="Views\SearchView.xib" />
     <InterfaceDefinition Include="Views\TableViewCells\BlogPostCell.xib" />
     <InterfaceDefinition Include="Views\BlogView.xib" />
-    <InterfaceDefinition Include="Views\BlogPostSummaryItem.xib" />
+    <InterfaceDefinition Include="Views\TitleAndSummaryItem.xib" />
+    <InterfaceDefinition Include="Views\BlogPostView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

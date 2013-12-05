@@ -10,7 +10,7 @@ using System.CodeDom.Compiler;
 namespace Solvberget.iOS
 {
 	[Register ("BlogPostSummaryItem")]
-	partial class BlogPostSummaryItem
+	partial class TitleAndSummaryItem
 	{
 		[Outlet]
 		MonoTouch.UIKit.UILabel SummaryLabel { get; set; }

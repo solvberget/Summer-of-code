@@ -57,7 +57,7 @@ namespace Solvberget.iOS
 		{
 			var padding = 10.0f;
 
-			DescriptionLabel.Text = "The blog description should go here. Need to refactor IBlogService to populate a complete BlogViewModel with Url, Description and Posts, not just Posts.";
+			DescriptionLabel.Text = ViewModel.Description;
 			DescriptionLabel.SizeToFit();
 
 			DescriptionContainer.BackgroundColor = Application.ThemeColors.Hero;
@@ -67,15 +67,17 @@ namespace Solvberget.iOS
 
 			foreach (var post in ViewModel.Posts)
 			{
-				var postView = new BlogPostSummaryItem();
+				var postCtrl = new TitleAndSummaryItem();
 
-				postView.TitleLabelText = post.Title;
-				postView.SummaryLabelText = post.Description;
+				postCtrl.Clicked += (sender, e) => post.Show(ViewModel.Id);
 
-				ItemsContainer.Add(postView.View);
-				postView.Frame = new RectangleF(padding, y, postView.Frame.Width, postView.Frame.Height + padding);
+				postCtrl.TitleLabelText = post.Title;
+				postCtrl.SummaryLabelText = post.Description;
 
-				y += postView.Frame.Height + padding;
+				ItemsContainer.Add(postCtrl.View);
+				postCtrl.Frame = new RectangleF(padding, y, postCtrl.Frame.Width, postCtrl.Frame.Height + padding);
+
+				y += postCtrl.Frame.Height + padding;
 			}
 
 			var icY = DescriptionContainer.Frame.Y + DescriptionContainer.Frame.Height;
