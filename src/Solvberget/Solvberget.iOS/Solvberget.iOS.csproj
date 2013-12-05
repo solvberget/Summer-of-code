@@ -189,6 +189,7 @@
     <Compile Include="Views\ContactInfoBoxView.designer.cs">
       <DependentUpon>ContactInfoBoxView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\LabelAndValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">

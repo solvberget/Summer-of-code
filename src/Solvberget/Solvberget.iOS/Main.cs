@@ -37,6 +37,7 @@ namespace Solvberget.iOS
 
 			public static UIFont TitleFont = UIFont.FromName("OpenSans-Light", 16);
 			public static UIFont DefaultFont = UIFont.FromName("OpenSans", 13);
+			public static UIFont LabelFont = UIFont.FromName("OpenSans", 10);	
 
 			public static UIFont HeaderFont = UIFont.FromName("OpenSans-Bold", 16);
 		}
