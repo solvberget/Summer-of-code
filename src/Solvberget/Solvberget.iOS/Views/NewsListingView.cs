@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class NewsListingView : NamedTableViewController
+	public partial class NewsListingView : NamedViewController
     {
 		public new NewsListingViewModel ViewModel
 		{
@@ -19,25 +19,69 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-            var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText NewsTitle; DetailText Ingress", UITableViewCellAccessory.None);
-			TableView.Source = source;
+		public NewsListingView() : base("NewsListingView", null)
+		{}
 
-			var loadingIndicator = new LoadingOverlay();
+		public override void DidReceiveMemoryWarning()
+		{
+			base.DidReceiveMemoryWarning();
+		}
+
+		LoadingOverlay loadingIndicator;
+
+		UIScrollView container;
+
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			container = new UIScrollView(View.Frame);
+
+			View.Add(container);
+
+			StyleView();
+
+			ViewModel.WaitForReady(() => InvokeOnMainThread(RenderView));
+
+			loadingIndicator = new LoadingOverlay();
 			Add(loadingIndicator);
 
-			var set = this.CreateBindingSet<NewsListingView, NewsListingViewModel>();
-			set.Bind(source).To(vm => vm.Stories);
-            set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
-			set.Apply();
-		
-			TableView.ReloadData();
-        }
+		}
+
+		void StyleView()
+		{
+			container.BackgroundColor = UIColor.White;
+		}
+
+		private void RenderView()
+		{
+
+			var padding = 10.0f;
+
+			var y = padding;
+
+			foreach (var item in ViewModel.Stories)
+			{
+				var itemCtrl = new TitleAndSummaryItem();
+
+				itemCtrl.Clicked += (sender, e) => UIApplication.SharedApplication.OpenUrl(new NSUrl(item.Uri.OriginalString));
+
+				itemCtrl.TitleLabelText = item.NewsTitle;
+
+				if(!String.IsNullOrEmpty(item.Ingress)) itemCtrl.SummaryLabelText = item.Ingress.Replace("&nbsp;", " ");
+
+				container.Add(itemCtrl.View);
+
+				itemCtrl.Frame = new RectangleF(padding, y, itemCtrl.Frame.Width, itemCtrl.Frame.Height + padding);
+
+				y += itemCtrl.Frame.Height + padding;
+			}
+
+			container.ContentSize = new SizeF(320, y);
+			container.ScrollEnabled = true;
+
+			loadingIndicator.Hide();
+		}
     }
 }
 

@@ -295,6 +295,7 @@
     <InterfaceDefinition Include="Views\BlogView.xib" />
     <InterfaceDefinition Include="Views\TitleAndSummaryItem.xib" />
     <InterfaceDefinition Include="Views\BlogPostView.xib" />
+    <InterfaceDefinition Include="Views\NewsListingView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

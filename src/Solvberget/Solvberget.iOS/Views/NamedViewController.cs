@@ -18,6 +18,11 @@ namespace Solvberget.iOS
 		public NamedViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
 		{}
 
+		public override UIStatusBarStyle PreferredStatusBarStyle()
+		{
+			return UIStatusBarStyle.LightContent;
+		}
+
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();

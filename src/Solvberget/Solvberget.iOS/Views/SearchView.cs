@@ -35,7 +35,9 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 
+			ViewModel.EnableListEmptyResult = false;
 			UpdateResultCount();
+
 			ViewModel.PropertyChanged += (sender, e) => UpdateResultCount();
 		
 			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Organize, HandleRightBarButtonItemClicked), true);

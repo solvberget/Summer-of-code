@@ -4,6 +4,8 @@ using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 using System.Linq;
+using System.Threading;
+using System;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -16,6 +18,18 @@ namespace Solvberget.Core.ViewModels
             _newsService = newsService;
             Title = "Nyheter";
         }
+
+		AutoResetEvent _viewModelReady = new AutoResetEvent(false);
+
+		public void WaitForReady(Action onReady)
+		{
+			ThreadPool.QueueUserWorkItem(s =>
+				{
+					_viewModelReady.WaitOne();
+					onReady();
+				});
+		}
+
 
         public void Init()
         {
@@ -58,6 +72,7 @@ namespace Solvberget.Core.ViewModels
                 }).ToList();
 
             IsLoading = false;
+			_viewModelReady.Set();
         }
     }
 }
