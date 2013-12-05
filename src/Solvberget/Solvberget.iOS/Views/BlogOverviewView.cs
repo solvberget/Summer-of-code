@@ -21,25 +21,20 @@ namespace Solvberget.iOS
 
         public override void DidReceiveMemoryWarning()
         {
-            // Releases the view if it doesn't have a superview.
             base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-			var source = new SimpleTableViewSource(); //, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Description", UITableViewCellAccessory.None);
+
+			var source = new SimpleTableViewSource<BlogItemViewModel>(TableView, new BlogSimpleCellBinder());
 
 			TableView.Source = source;
 
 			var loadingIndicator = new LoadingOverlay(View.Frame);
 			Add(loadingIndicator);
-
-			/*	
+				
 			var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
 			set.Bind(source).To(vm => vm.Blogs);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
@@ -47,7 +42,7 @@ namespace Solvberget.iOS
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();
-*/
+
 			TableView.ReloadData();
         }
     }

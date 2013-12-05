@@ -32,8 +32,7 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 			
-            // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Name; DetailText Title", UITableViewCellAccessory.DisclosureIndicator);
+			var source = new SimpleTableViewSource<SuggestionListSummaryViewModel>(TableView, new SuggestionListSummaryViewModelSimpleTableBinder());
 			TableView.Source = source;
 
 			var loadingIndicator = new LoadingOverlay(View.Frame);

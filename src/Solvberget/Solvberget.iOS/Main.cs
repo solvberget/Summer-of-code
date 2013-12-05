@@ -21,17 +21,6 @@ namespace Solvberget.iOS
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
             UIApplication.Main(args, null, "AppDelegate");
-
-			UILabel.Appearance.Font = UIFont.FromName("Open Sans", 14);
-
-			var menu = UITableView.AppearanceWhenContainedIn(typeof(HomeView));
-
-			menu.BackgroundColor = UIColor.Red;	
-			//menu.BackgroundColor = UIColor.FromRGB(52, 180, 69);
-
-			UILabel.AppearanceWhenContainedIn(typeof(HomeView)).TextColor = UIColor.White;
-
-
         }
 
 		public static class ThemeColors
@@ -45,6 +34,9 @@ namespace Solvberget.iOS
 			public static UIColor Subtle = UIColor.FromRGB(206, 206, 206);
 
 			public static UIColor Hero = UIColor.FromRGB(240,251,235);
+
+			public static UIFont TitleFont = UIFont.FromName("OpenSans-Light", 16);
+			public static UIFont DefaultFont = UIFont.FromName("OpenSans", 13);
 		}
     }
 }

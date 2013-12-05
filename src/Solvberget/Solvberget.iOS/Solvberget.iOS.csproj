@@ -153,6 +153,15 @@
       <DependentUpon>HomeScreenView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SolvbergetTableViewSource.cs" />
+    <Compile Include="Views\TableViewCells\SimpleCell.cs" />
+    <Compile Include="Views\TableViewCells\SimpleCell.designer.cs">
+      <DependentUpon>SimpleCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleTableViewSource.cs" />
+    <Compile Include="Views\TableViewCells\BlogSimpleCellBinder.cs" />
+    <Compile Include="Views\TableViewCells\ISimpleCellBinder.cs" />
+    <Compile Include="Views\SuggestionListSummaryViewModelSimpleTableBinder.cs" />
+    <Compile Include="Views\SuggestionsListViewModelSimpleTableBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -249,6 +258,7 @@
     <InterfaceDefinition Include="Views\TableViewCells\OpeningHoursLocationCell.xib" />
     <InterfaceDefinition Include="Views\MediaDetailView.xib" />
     <InterfaceDefinition Include="Views\HomeScreenView.xib" />
+    <InterfaceDefinition Include="Views\TableViewCells\SimpleCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
