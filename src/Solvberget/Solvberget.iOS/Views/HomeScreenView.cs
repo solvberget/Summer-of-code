@@ -16,9 +16,6 @@ namespace Solvberget.iOS
         public HomeScreenView() : base("HomeScreenView", null)
 		{
 			NavigationItem.LeftBarButtonItem = CreateSliderButton("Images/SlideRight40.png", PanelType.LeftPanel);
-			//NavigationItem.Title = "Sølvberget";
-
-
         }
 
 		private UIBarButtonItem CreateSliderButton(string imageName, PanelType panelType)

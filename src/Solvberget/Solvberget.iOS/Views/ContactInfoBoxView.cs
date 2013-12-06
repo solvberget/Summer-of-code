@@ -16,16 +16,13 @@ namespace Solvberget.iOS
 		public new ContactInfoBoxViewModel ViewModel { get { return base.ViewModel as ContactInfoBoxViewModel; } }
 
 		LoadingOverlay loader = new LoadingOverlay();
-		UIScrollView container;
+
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
 			Add(loader);
-
-			container = new UIScrollView(View.Frame);
-			Add(container);
 
 			ViewModel.WaitForReady(() => InvokeOnMainThread(Update));
 
@@ -56,7 +53,7 @@ namespace Solvberget.iOS
 				new LabelAndValue(box, "Epost", ci.Email, () => Email(ci.Email));
 			}
 
-			container.ContentSize = new SizeF(320, container.Subviews.Last().Frame.Bottom + padding);
+			ScrollView.ContentSize = new SizeF(320, ScrollView.Subviews.Last().Frame.Bottom + padding);
 
 			loader.Hide();
 		}
@@ -76,7 +73,7 @@ namespace Solvberget.iOS
 			}
 
 			_currentBox = box;
-			container.Add(box);
+			ScrollView.Add(box);
 
 			return box;
 		}

@@ -84,6 +84,7 @@ namespace Solvberget.iOS
 
 			ItemsContainer.Frame = new RectangleF(0, icY , 320, y);
 
+
 			ScrollContainer.ContentSize = new SizeF(320, y + icY);
 			ScrollContainer.ScrollEnabled = true;
 

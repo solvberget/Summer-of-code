@@ -66,11 +66,12 @@ namespace Solvberget.iOS
 			source.TextColor = Application.ThemeColors.MainInverse;
 			source.TintColor = Application.ThemeColors.Main;
 
-			View.BackgroundColor = Application.ThemeColors.Main2;
+
+			View.BackgroundColor = UIColor.Clear;
 			MenuTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 
-
 			MenuTableView.Source = source;
+			MenuTableView.BackgroundColor = UIColor.Clear;
 			MenuTableView.BackgroundView = null;
 
 			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
@@ -83,11 +84,16 @@ namespace Solvberget.iOS
 			View.AddSubview(MenuTableView);
 		}
 
-
-
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
+
+
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+
 		}
 	}
 }

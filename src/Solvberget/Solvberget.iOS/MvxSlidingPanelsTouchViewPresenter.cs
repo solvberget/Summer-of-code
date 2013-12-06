@@ -115,10 +115,15 @@ namespace Solvberget.iOS
         {
             UIViewController viewToAdd = (UIViewController) mvxController.CreateViewControllerFor<T>();
 
+
+
             switch (panelType)
             {
 				case PanelType.LeftPanel:
 					_leftPanel = new LeftPanelContainer(viewToAdd);
+					_leftPanel.View.BackgroundColor = Application.ThemeColors.Main2;
+
+
 					SlidingPanelsController.InsertPanel(_leftPanel);
                     break;
 
@@ -137,8 +142,9 @@ namespace Solvberget.iOS
 
         protected override UINavigationController CreateNavigationController (UIViewController viewController)
         {
-            SlidingPanelsNavigationViewController navController = new SlidingPanelsNavigationViewController (viewController);
-            RootController = new UIViewController ();
+			SlidingPanelsNavigationViewController navController = new SlidingPanelsNavigationViewController (viewController);
+            
+			RootController = new UIViewController ();
 
 			if (navController.RespondsToSelector(new MonoTouch.ObjCRuntime.Selector("interactivePopGestureRecognizer")))
 			{
