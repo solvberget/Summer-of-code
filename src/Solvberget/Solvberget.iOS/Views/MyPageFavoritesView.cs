@@ -30,7 +30,7 @@ namespace Solvberget.iOS
 
 			var set = this.CreateBindingSet<MyPageFavoritesView, MyPageFavoritesViewModel>();
 			set.Bind(source).To(vm => vm.Favorites);
-			//set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.);
+			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
 
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();

@@ -3,6 +3,8 @@ using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -46,6 +48,7 @@ namespace Solvberget.Core.ViewModels
                     ButtonVisible = true,
                     Name = f.Document.Title,
                     Year = f.Document.Year,
+					Type = f.Document.Type,
                     Parent = this,
                     DocumentNumber = f.Document.Id,
                     Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, f.Document.Id)
@@ -77,5 +80,22 @@ namespace Solvberget.Core.ViewModels
         {
             Favorites.Add(favoriteViewModel);
         }
+
+		private MvxCommand<FavoriteViewModel> _showDetailsCommand;
+		public ICommand ShowDetailsCommand
+		{
+			get
+			{
+				return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<FavoriteViewModel>(ExecuteShowDetailsCommand));
+			}
+		}
+
+		private void ExecuteShowDetailsCommand(FavoriteViewModel model)
+		{
+			if (model.DocumentNumber != "")
+			{
+				ShowViewModel<MediaDetailViewModel>(new { title = model.Name, docId = model.DocumentNumber });
+			}
+		}
     }
 }

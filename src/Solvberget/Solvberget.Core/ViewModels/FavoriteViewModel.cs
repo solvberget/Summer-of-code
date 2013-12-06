@@ -21,6 +21,21 @@ namespace Solvberget.Core.ViewModels
             set { _year = value; RaisePropertyChanged(() => Year); }
         }
 
+		public string PresentableTypeWithYear {
+			get
+			{
+				return string.Format("{0} ({1})", PresentableType, Year);
+			}
+		}
+
+		public string PresentableType
+		{
+			get
+			{
+				return Utils.ConvertMediaTypeToNiceString(Type);
+			}
+		}
+
         private string _image;
         public string Image 
         {
