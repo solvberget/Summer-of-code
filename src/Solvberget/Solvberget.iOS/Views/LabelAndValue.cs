@@ -12,13 +12,20 @@ namespace Solvberget.iOS
 		UILabel _value = new UILabel();
 
 		public LabelAndValue(UIView container, string label, string value, Action onTap = null)
+			: this(container, label, value, false, onTap)
+		{}
+
+		public LabelAndValue(UIView container, string label, string value, bool bold, Action onTap = null)
         {
 			_label.Font = Application.ThemeColors.LabelFont;
 			_label.TextColor = Application.ThemeColors.Main;
+
 			_value.Font = Application.ThemeColors.DefaultFont;
 			_value.TextColor = Application.ThemeColors.Main2;
 			_value.Lines = 0;
 			_value.LineBreakMode = UILineBreakMode.WordWrap;
+
+			if (bold) _value.Font = Application.ThemeColors.DefaultFontBold;
 
 			var prev = container.Subviews.Length == 0 ? RectangleF.Empty : container.Subviews.Last().Frame;
 

@@ -298,6 +298,8 @@
     <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\News.png">
       <Link>Images\Placeholders\News.png</Link>
     </BundleResource>
+    <BundleResource Include="Images\star.off.png" />
+    <BundleResource Include="Images\star.on.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />
