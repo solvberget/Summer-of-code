@@ -21,12 +21,12 @@ namespace Solvberget.iOS
 
 		public override void Draw(RectangleF rect)
 		{
+			PositionViews();
 			base.Draw(rect);
 
-			if (_recalulatePositionsOnDraw)
+			/*if (_recalulatePositionsOnDraw)
 			{
-				PositionViews();
-			}
+			}*/
 		}
 
 		bool _recalulatePositionsOnDraw;
@@ -86,8 +86,6 @@ namespace Solvberget.iOS
 			Image.Image = image;
 		}
 
-
-
 		void SetThemeStyles()
 		{
 			Box.BackgroundColor = Application.ThemeColors.VerySubtle;
@@ -99,6 +97,12 @@ namespace Solvberget.iOS
 
 			Label2.Font = Application.ThemeColors.DefaultFont;
 			Label2.TextColor = Application.ThemeColors.Main2;
+
+			var bgBox = new UIView(Box.Frame);
+			SelectedBackgroundView = new UIView();
+			SelectedBackgroundView.Add(bgBox);
+			SelectedBackgroundView.BackgroundColor = UIColor.White;
+			bgBox.BackgroundColor = Application.ThemeColors.Hero;
 		}
 
         public static SimpleCell Create()
