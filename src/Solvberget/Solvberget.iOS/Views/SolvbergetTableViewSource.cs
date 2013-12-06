@@ -24,6 +24,7 @@ namespace Solvberget.iOS
 			UITableViewCell cell = base.GetOrCreateCellFor(tableView, indexPath, item);
 
 			cell.BackgroundView = null;
+			cell.TextLabel.Font = Application.ThemeColors.MenuFont;
 
 			if(null != BackgroundColor) cell.BackgroundColor = BackgroundColor;
 			if(null != TextColor) cell.TextLabel.TextColor = TextColor;

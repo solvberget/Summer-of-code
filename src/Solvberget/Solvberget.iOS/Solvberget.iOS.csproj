@@ -183,6 +183,15 @@
     <Compile Include="Views\LabelAndValue.cs" />
     <Compile Include="Views\UIHelpers.cs" />
     <Compile Include="Views\TableViewCells\ISimpleCell.cs" />
+    <Compile Include="Views\MyPageView.cs" />
+    <Compile Include="Views\MyPageView.designer.cs">
+      <DependentUpon>MyPageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\LoginView.designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NamedTabViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -305,6 +314,7 @@
     <InterfaceDefinition Include="Views\BlogPostView.xib" />
     <InterfaceDefinition Include="Views\NewsListingView.xib" />
     <InterfaceDefinition Include="Views\ContactInfoBoxView.xib" />
+    <InterfaceDefinition Include="Views\LoginView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

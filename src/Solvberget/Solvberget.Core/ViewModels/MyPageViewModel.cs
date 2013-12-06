@@ -13,6 +13,8 @@ namespace Solvberget.Core.ViewModels
             MyPageFinesViewModel = new MyPageFinesViewModel(service, userAuthenticationDataService);
             MyPageMessagesViewModel = new MyPageMessagesViewModel(service, userAuthenticationDataService);
             MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
+
+			Title = "Min side";
         }
 
         private MyPageLoansViewModel _myPageLoansViewModel;
