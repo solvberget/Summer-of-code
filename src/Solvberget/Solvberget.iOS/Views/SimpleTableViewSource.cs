@@ -37,8 +37,6 @@ namespace Solvberget.iOS
 
 			tableView.RegisterNibForCellReuse(UINib.FromName(SimpleCell.Key, NSBundle.MainBundle), SimpleCell.Key);
 
-			tableView.RegisterNibForCellReuse(UINib.FromName(CellWithTallImage.Key, NSBundle.MainBundle), CellWithTallImage.Key);
-
 			DownloadTask = Task.Factory.StartNew (() => { });
 
 		}
@@ -72,7 +70,6 @@ namespace Solvberget.iOS
 		NSString GetNibNameForVM(object item)
 		{
 			return SimpleCell.Key;
-			//return CellWithTallImage.Key;
 		}
 
 		void BeginDownloadingImage (string imageUrl)

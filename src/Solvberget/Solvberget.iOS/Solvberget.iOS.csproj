@@ -136,10 +136,6 @@
     <Compile Include="Views\OpeningHoursView.designer.cs">
       <DependentUpon>OpeningHoursView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.cs" />
-    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.designer.cs">
-      <DependentUpon>OpeningHoursLocationCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MediaDetailView.cs" />
     <Compile Include="Views\MediaDetailView.designer.cs">
       <DependentUpon>MediaDetailView.cs</DependentUpon>
@@ -162,15 +158,10 @@
     <Compile Include="Views\NamedViewController.cs" />
     <Compile Include="Views\NamedTableViewController.cs" />
     <Compile Include="Views\TableViewCells\Binders\CellBindings.cs" />
-    <Compile Include="Views\TableViewCells\BlogPostCell.cs" />
-    <Compile Include="Views\TableViewCells\BlogPostCell.designer.cs">
-      <DependentUpon>BlogPostCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\BlogView.cs" />
     <Compile Include="Views\BlogView.designer.cs">
       <DependentUpon>BlogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TableViewCells\Binders\UIHelpers.cs" />
     <Compile Include="Views\TitleAndSummaryItem.cs" />
     <Compile Include="Views\TitleAndSummaryItem.designer.cs">
       <DependentUpon>TitleAndSummaryItem.cs</DependentUpon>
@@ -190,6 +181,8 @@
       <DependentUpon>ContactInfoBoxView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LabelAndValue.cs" />
+    <Compile Include="Views\UIHelpers.cs" />
+    <Compile Include="Views\TableViewCells\ISimpleCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -303,12 +296,10 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />
-    <InterfaceDefinition Include="Views\TableViewCells\OpeningHoursLocationCell.xib" />
     <InterfaceDefinition Include="Views\MediaDetailView.xib" />
     <InterfaceDefinition Include="Views\HomeScreenView.xib" />
     <InterfaceDefinition Include="Views\TableViewCells\SimpleCell.xib" />
     <InterfaceDefinition Include="Views\SearchView.xib" />
-    <InterfaceDefinition Include="Views\TableViewCells\BlogPostCell.xib" />
     <InterfaceDefinition Include="Views\BlogView.xib" />
     <InterfaceDefinition Include="Views\TitleAndSummaryItem.xib" />
     <InterfaceDefinition Include="Views\BlogPostView.xib" />

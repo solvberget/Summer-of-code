@@ -7,6 +7,7 @@ using Solvberget.Core.ViewModels;
 
 namespace Solvberget.iOS
 {
+
 	public static class CellBindings
 	{
 		public static Action<ISimpleCell, EventViewModel> Events = (sc, model) =>
