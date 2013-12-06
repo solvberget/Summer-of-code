@@ -200,6 +200,10 @@
       <Project>{2FD1999D-45B1-4485-BF96-EAB061481945}</Project>
       <Name>SlidingPanels.Touch</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
+      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Name>Solvberget.Core.DTOs</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.MvvmCross">

@@ -13,19 +13,36 @@ namespace Solvberget.iOS
 	partial class MediaDetailView
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel HeaderLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIView HeaderView { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIImageView Image { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel MediaSubtitle { get; set; }
+		MonoTouch.UIKit.UILabel RatingSourceLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel MediaTitle { get; set; }
+		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView StarsContainer { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel SubtitleLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel TypeLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (HeaderLabel != null) {
+				HeaderLabel.Dispose ();
+				HeaderLabel = null;
+			}
+
 			if (HeaderView != null) {
 				HeaderView.Dispose ();
 				HeaderView = null;
@@ -36,14 +53,29 @@ namespace Solvberget.iOS
 				Image = null;
 			}
 
-			if (MediaTitle != null) {
-				MediaTitle.Dispose ();
-				MediaTitle = null;
+			if (RatingSourceLabel != null) {
+				RatingSourceLabel.Dispose ();
+				RatingSourceLabel = null;
 			}
 
-			if (MediaSubtitle != null) {
-				MediaSubtitle.Dispose ();
-				MediaSubtitle = null;
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
+			}
+
+			if (StarsContainer != null) {
+				StarsContainer.Dispose ();
+				StarsContainer = null;
+			}
+
+			if (SubtitleLabel != null) {
+				SubtitleLabel.Dispose ();
+				SubtitleLabel = null;
+			}
+
+			if (TypeLabel != null) {
+				TypeLabel.Dispose ();
+				TypeLabel = null;
 			}
 		}
 	}

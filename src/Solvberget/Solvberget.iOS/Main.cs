@@ -35,6 +35,7 @@ namespace Solvberget.iOS
 
 			public static UIColor Hero = UIColor.FromRGB(240,251,235);
 
+			public static UIFont TitleFont1 = UIFont.FromName("OpenSans", 22);
 			public static UIFont TitleFont = UIFont.FromName("OpenSans-Light", 16);
 			public static UIFont DefaultFont = UIFont.FromName("OpenSans", 13);
 			public static UIFont LabelFont = UIFont.FromName("OpenSans", 10);	
