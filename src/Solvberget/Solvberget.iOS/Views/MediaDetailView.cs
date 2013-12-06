@@ -132,10 +132,13 @@ namespace Solvberget.iOS
 
 			Image.Image = UIHelpers.ImageFromUrl(ViewModel.Image);
 
-			var imageScale = Image.Frame.Width / Image.Image.Size.Width;
-			var imageHeight = Math.Min(Image.Image.Size.Height * imageScale, Image.Frame.Height);
-			var imageSize = new SizeF(Image.Frame.Width, imageHeight);
-			Image.Frame = new RectangleF(Image.Frame.Location, imageSize);
+			if (null != Image.Image)
+			{
+				var imageScale = Image.Frame.Width / Image.Image.Size.Width;
+				var imageHeight = Math.Min(Image.Image.Size.Height * imageScale, Image.Frame.Height);
+				var imageSize = new SizeF(Image.Frame.Width, imageHeight);
+				Image.Frame = new RectangleF(Image.Frame.Location, imageSize);
+			}
 
 			Position();
 
