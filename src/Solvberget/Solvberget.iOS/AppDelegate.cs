@@ -29,8 +29,10 @@ namespace Solvberget.iOS
         /// <param name="options">The options.</param>
         /// <returns>True or false.</returns>
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
-        {
-            this.window = new UIWindow(UIScreen.MainScreen.Bounds);
+		{
+			this.window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
 
             var presenter = new MvxSlidingPanelsTouchViewPresenter(this, this.window);
             var setup = new Setup(this, presenter);

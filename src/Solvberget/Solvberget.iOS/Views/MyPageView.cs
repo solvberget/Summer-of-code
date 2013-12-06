@@ -40,7 +40,7 @@ namespace Solvberget.iOS
 			sections.Add(new MyPageSection{ Title = "Reservasjoner", ViewModel = ViewModel.MyPageReservationsViewModel });
 			sections.Add(new MyPageSection{ Title = "Gebyrer", ViewModel = ViewModel.MyPageFinesViewModel });
 			sections.Add(new MyPageSection{ Title = "Meldinger", ViewModel = ViewModel.MyPageMessagesViewModel });
-			sections.Add(new MyPageSection{ Title = "Profil", ViewModel = ViewModel.MyPagePersonaliaViewModel });
+			sections.Add(new MyPageSection{ Title = "Min profil", ViewModel = ViewModel.MyPagePersonaliaViewModel });
 
 			source.ItemsSource = sections;
 			source.SelectedItemChanged += (s, e) =>

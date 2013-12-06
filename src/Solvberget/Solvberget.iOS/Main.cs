@@ -3,6 +3,9 @@
 //    Defines the Main type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+using Solvberget.Core.ViewModels.Base;
+
+
 namespace Solvberget.iOS
 {
     using MonoTouch.UIKit;
@@ -17,10 +20,11 @@ namespace Solvberget.iOS
         /// </summary>
         /// <param name="args">The args.</param>
         public static void Main(string[] args)
-        {
+		{
+			BaseViewModel.AddEmptyItemForEmptyLists = false;
+
             UIApplication.Main(args, null, "AppDelegate");
 
-			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
         }
 
 		public static class ThemeColors

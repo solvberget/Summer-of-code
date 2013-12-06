@@ -10,6 +10,7 @@ namespace Solvberget.Core.ViewModels
 
         public MyPagePersonaliaViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+			Title = "Min profil";
             _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();

@@ -13,6 +13,7 @@ namespace Solvberget.Core.ViewModels
 
         public MyPageMessagesViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+			Title = "Meldinger";
             _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
@@ -32,7 +33,7 @@ namespace Solvberget.Core.ViewModels
 
             Notifications = user.Notifications == null ? new List<NotificationDto>() : user.Notifications.ToList();
 
-            if (Notifications.Count == 0)
+			if (Notifications.Count == 0 && AddEmptyItemForEmptyLists)
             {
                 Notifications = new List<NotificationDto>
                 {

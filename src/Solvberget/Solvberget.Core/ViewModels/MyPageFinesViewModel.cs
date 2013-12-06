@@ -14,6 +14,7 @@ namespace Solvberget.Core.ViewModels
 
         public MyPageFinesViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+			Title = "Gebyrer";
             _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
@@ -60,7 +61,7 @@ namespace Solvberget.Core.ViewModels
             //    }
             //}
 
-            if (Fines.Count == 0)
+			if (Fines.Count == 0 && AddEmptyItemForEmptyLists)
             {
                 Fines.Add(new FineViewModel
                     {

@@ -12,6 +12,7 @@ namespace Solvberget.Core.ViewModels
 
         public MyPageFavoritesViewModel(IUserService service)
         {
+			Title = "Favoritter";
             _service = service;
             Load();
         }
@@ -51,7 +52,7 @@ namespace Solvberget.Core.ViewModels
                 });
             }
 
-            if (Favorites.Count == 0)
+			if (Favorites.Count == 0 && AddEmptyItemForEmptyLists)
             {
                 Favorites.Add(new FavoriteViewModel
                 {

@@ -15,6 +15,7 @@ namespace Solvberget.Core.ViewModels
 
         public MyPageLoansViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationService)
         {
+			Title = "Lån";
             _userAuthenticationService = userAuthenticationService;
             _service = service;
             Load();
@@ -65,7 +66,7 @@ namespace Solvberget.Core.ViewModels
                 });
             }
 
-            if (Loans.Count == 0)
+			if (Loans.Count == 0 && AddEmptyItemForEmptyLists)
             {
                 Loans.Add(new LoanViewModel
                 {

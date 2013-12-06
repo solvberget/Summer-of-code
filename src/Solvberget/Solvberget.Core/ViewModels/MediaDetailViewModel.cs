@@ -297,16 +297,17 @@ namespace Solvberget.Core.ViewModels
             set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
         }
 
-        public void AddFavorite()
+		public void AddFavorite()
         {
-            var result = _userService.AddUserFavorite(DocId);
+			var result = _userService.AddUserFavorite(DocId);
             
             IsFavorite = true;
         }
 
-        public void RemoveFavorite()
+		public void RemoveFavorite()
         {
-            _userService.RemoveUserFavorite(DocId);
+			var result = _userService.RemoveUserFavorite(DocId);
+
             IsFavorite = false;
         }
 

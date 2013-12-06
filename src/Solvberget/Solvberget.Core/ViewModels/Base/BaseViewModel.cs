@@ -6,6 +6,8 @@ namespace Solvberget.Core.ViewModels.Base
 {
     public class BaseViewModel : MvxViewModel
     {
+		public static bool AddEmptyItemForEmptyLists = true;
+
 		AutoResetEvent _viewModelReady = new AutoResetEvent(false);
 
 		public void WaitForReady(Action onReady)

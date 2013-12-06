@@ -35,7 +35,17 @@ namespace Solvberget.iOS
 			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
+			ViewModel.WaitForReady(() => InvokeOnMainThread(OnViewModelReady));
+
 			TableView.ReloadData();
+		}
+
+		private void OnViewModelReady()
+		{
+			if (ViewModel.Favorites.Count == 0)
+			{
+				Add(new UILabel(new RectangleF(10, 10, 300, 30)){ Text = "Du har ingen favoritter.", Font = Application.ThemeColors.DefaultFont });
+			}
 		}
 
     }

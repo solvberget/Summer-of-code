@@ -15,6 +15,7 @@ namespace Solvberget.Core.ViewModels
 
         public MyPageReservationsViewModel(IUserService service)
         {
+			Title = "Reservasjoner";
             _service = service;
             Load();
         }
@@ -71,7 +72,7 @@ namespace Solvberget.Core.ViewModels
                 });
             }
 
-            if (Reservations.Count == 0)
+			if (Reservations.Count == 0 && AddEmptyItemForEmptyLists)
             {
                 Reservations.Add(new ReservationViewModel
                 {
