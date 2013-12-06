@@ -47,7 +47,7 @@ namespace Solvberget.iOS
 			{
 				box = StartBox();
 
-				new LabelAndValue(box, null, ci.Position);
+				new LabelAndValue(box, null, ci.Position, true);
 				new LabelAndValue(box, "Navn", ci.Name);
 				new LabelAndValue(box, "Telefon", ci.Phone, () => Call(ci.Name, ci.Phone));
 				new LabelAndValue(box, "Epost", ci.Email, () => Email(ci.Email));

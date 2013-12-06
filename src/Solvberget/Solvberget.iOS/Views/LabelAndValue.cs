@@ -29,12 +29,15 @@ namespace Solvberget.iOS
 
 			var prev = container.Subviews.Length == 0 ? RectangleF.Empty : container.Subviews.Last().Frame;
 
-			if (!String.IsNullOrEmpty(label))
+			if (String.IsNullOrEmpty(label) && bold)
+			{
+				_value.Font = Application.ThemeColors.HeaderFont;
+			}
+			else
 			{
 				container.Add(_label);
 				_label.Text = label.ToUpperInvariant();
 			}
-			else _value.Font = Application.ThemeColors.HeaderFont;
 
 			if (!String.IsNullOrEmpty(value))
 			{

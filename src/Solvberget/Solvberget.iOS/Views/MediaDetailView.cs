@@ -7,6 +7,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Solvberget.Core.ViewModels;
 using System.Threading;
 using System.Linq;
+using Solvberget.Core.DTOs;
 
 namespace Solvberget.iOS
 {
@@ -102,6 +103,30 @@ namespace Solvberget.iOS
 			RenderRating();
 			RenderAvailability();
 
+			switch (ViewModel.Type)
+			{
+				case "Book":
+					RenderBook();
+					break;
+
+				case "Film":
+					RenderMovie();
+					break;
+
+				case "SheetMusic":
+					break;
+
+				case "Game":
+					break;
+
+				case "Journal":
+					break;
+
+				case "Cd":
+					RenderCd();
+					break;
+			}
+
 			Image.Image = UIHelpers.ImageFromUrl(ViewModel.Image);
 
 			Position();
@@ -111,7 +136,7 @@ namespace Solvberget.iOS
 
 		void RenderAvailability()
 		{
-			if (null == ViewModel.Availabilities) return;
+			if (null == ViewModel.Availabilities || ViewModel.Availabilities.Length == 0) return;
 
 			AddSectionHeader("Tilgjengelighet");
 
@@ -124,8 +149,15 @@ namespace Solvberget.iOS
 				new LabelAndValue(box, "Samling", availability.Collection);
 				new LabelAndValue(box, "Tilgjengelighet", availability.AvailableCount + " av + " + availability.TotalCount + " tilgjengelig for utlån.");
 
+				if (availability.EstimatedAvailableDate.HasValue)
+				{
+					new LabelAndValue(box, String.Empty, availability.EstimatedAvailableText);
+				}
+
 				var reserve = new UIButton();
-				reserve.SetTitle("Reserver", UIControlState.Normal);
+
+				//reserve.TouchUpInside += (s,e) => ??
+				reserve.SetTitle(availability.ButtonText, UIControlState.Normal);
 
 				reserve.SetTitleColor(Application.ThemeColors.Main2, UIControlState.Highlighted);
 				reserve.SetTitleColor(Application.ThemeColors.Main, UIControlState.Normal);
@@ -139,27 +171,98 @@ namespace Solvberget.iOS
 			}
 		}
 
+
 		void RenderRating()
 		{
 			if (null != ViewModel.Rating)
 			{
 				RatingSourceLabel.Text = "Fra " + ViewModel.Rating.Source;
+			
+				var x = 0;
+				for (int i = 0; i < (int)ViewModel.Rating.MaxScore; i++)
+				{
+					var star = new UIImageView(new RectangleF(x, 0, 14, 14));
+					if (i < (int)ViewModel.Rating.Score)// add star.half.on.png for better precision?
+					{
+						star.Image = UIImage.FromBundle("/Images/star.on.png");
+					}
+					else
+					{
+						star.Image = UIImage.FromBundle("/Images/star.off.png");
+					}
+					StarsContainer.Add(star);
+					x += 14;
+				}
 			}
-			var x = 0;
-			for (int i = 0; i < (int)ViewModel.Rating.MaxScore; i++)
+		}
+
+		void RenderBook()
+		{
+			if (!String.IsNullOrEmpty(ViewModel.Review))
 			{
-				var star = new UIImageView(new RectangleF(x, 0, 14, 14));
-				if (i < (int)ViewModel.Rating.Score)// add star.half.on.png for better precision?
-				{
-					star.Image = UIImage.FromBundle("/Images/star.on.png");
-				}
-				else
-				{
-					star.Image = UIImage.FromBundle("/Images/star.off.png");
-				}
-				StarsContainer.Add(star);
-				x += 14;
+				AddSectionHeader("Bokbasens omtale");
+				var box = StartBox();
+				new LabelAndValue(box, String.Empty, ViewModel.Review);
 			}
+
+			AddSectionHeader("Fakta om boka");
+
+			var dto = ViewModel.RawDto as BookDto;
+
+			var facts = StartBox();
+
+			if(!String.IsNullOrEmpty(dto.AuthorName)) new LabelAndValue(facts, "Forfatter", dto.AuthorName);
+			if(!String.IsNullOrEmpty(dto.Classification)) new LabelAndValue(facts, "Sjanger", dto.Classification);
+			if(null != dto.Series) new LabelAndValue(facts, "Del av serie", dto.Series.Title);
+			if(null != dto.Series) new LabelAndValue(facts, "Nummber i serie", dto.Series.SequenceNo);
+
+			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Forlag", ViewModel.Publisher);
+			if(!String.IsNullOrEmpty(ViewModel.Language)) new LabelAndValue(facts, "Språk", ViewModel.Language);
+		}
+
+		void RenderCd()
+		{
+			AddSectionHeader("Fakta om CDen");
+
+			var dto = ViewModel.RawDto as CdDto;
+
+			var facts = StartBox();
+
+			if(!String.IsNullOrEmpty(dto.ArtistOrComposerName)) new LabelAndValue(facts, "Artist eller komponist", dto.ArtistOrComposerName);
+			if(null != dto.CompositionTypesOrGenres && dto.CompositionTypesOrGenres.Length > 0) new LabelAndValue(facts, "Komposisjonstype eller sjanger", String.Join(",", dto.CompositionTypesOrGenres));
+			if(!String.IsNullOrEmpty(dto.Language)) new LabelAndValue(facts, "Språk", dto.Language);
+			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Label/utgiver", ViewModel.Publisher);
+			if(!String.IsNullOrEmpty(ViewModel.Year)) new LabelAndValue(facts, "Publikasjonsår", ViewModel.Year);
+
+		}
+
+
+		void RenderMovie()
+		{
+			AddSectionHeader("Fakta om filmen");
+
+			var dto = ViewModel.RawDto as FilmDto;
+
+			var facts = StartBox();
+
+			if(!String.IsNullOrEmpty(dto.AgeLimit)) new LabelAndValue(facts, "Aldersgrense", dto.AgeLimit);
+			if(!String.IsNullOrEmpty(dto.MediaInfo)) new LabelAndValue(facts, "Format", dto.MediaInfo);
+			if(null != dto.ActorNames && dto.ActorNames.Length > 0) new LabelAndValue(facts, "Skuespillere", String.Join(", ",dto.ActorNames));
+			if(!String.IsNullOrEmpty(dto.Language)) new LabelAndValue(facts, "Språk", dto.Language);
+			if(null != dto.SubtitleLanguages && dto.SubtitleLanguages.Length > 0) new LabelAndValue(facts, "Undertekster", String.Join(", ",dto.SubtitleLanguages));
+			if(null != dto.ReferredPeopleNames && dto.ReferredPeopleNames.Length > 0) new LabelAndValue(facts, "Refererte personer", String.Join(", ",dto.ReferredPeopleNames));
+			if(null != dto.ReferencedPlaces && dto.ReferencedPlaces.Length > 0) new LabelAndValue(facts, "Omtalte steder", String.Join(", ",dto.ReferencedPlaces));
+			if(null != dto.Genres && dto.Genres.Length > 0) new LabelAndValue(facts, "Sjanger", String.Join(", ",dto.Genres));if(null != dto.ActorNames && dto.ActorNames.Length > 0) new LabelAndValue(facts, "Skuespillere", String.Join(",",dto.ActorNames));
+
+			if(null != dto.InvolvedPersonNames && dto.InvolvedPersonNames.Length > 0) new LabelAndValue(facts, "Involverte personer", String.Join(", ",dto.InvolvedPersonNames));
+			if(null != dto.ResponsiblePersonNames && dto.ResponsiblePersonNames.Length > 0) new LabelAndValue(facts, "Ansvarlige personer", String.Join(", ",dto.ResponsiblePersonNames));
+
+			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Utgiver", ViewModel.Publisher);
+			if(!String.IsNullOrEmpty(ViewModel.Year)) new LabelAndValue(facts, "Publikasjonsår", ViewModel.Year);
+
+
+
+
 		}
 
 		float padding = 10.0f;
