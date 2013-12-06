@@ -33,5 +33,11 @@ namespace Solvberget.iOS
 			sc.ImageUrl = model.Image;
 		};
 
+		public static Action<ISimpleCell, FavoriteViewModel> Favorites = (sc, model) =>
+		{
+			sc.Bind(model.Name, model.TypeAndYear); 
+			sc.ImageUrl = model.Image;
+		};
+
 	}
 }
