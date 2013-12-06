@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 
@@ -53,7 +54,8 @@ namespace Solvberget.Core.ViewModels
                            {
                                Name = n.Name,
                                SubTitle = n.SubTitle,
-                               Id = n.Id
+                               Id = n.Id,
+                               ImageUrl = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_ListImage, n.Id),
                            }).ToList();
 
             IsLoading = false;

@@ -191,4 +191,8 @@
   <data name="ServiceUrl_Renew" xml:space="preserve">
     <value>/documents/renew/</value>
   </data>
+  <data name="ServiceUrl_ListImage" xml:space="preserve">
+    <value>/lists/{0}/thumbnail</value>
+    <comment>0 =List Id</comment>
+  </data>
 </root>

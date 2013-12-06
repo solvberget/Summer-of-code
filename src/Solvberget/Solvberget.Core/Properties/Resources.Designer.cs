@@ -151,6 +151,15 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /lists/{0}/thumbnail.
+        /// </summary>
+        internal static string ServiceUrl_ListImage {
+            get {
+                return ResourceManager.GetString("ServiceUrl_ListImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /lists.
         /// </summary>
         internal static string ServiceUrl_Lists {

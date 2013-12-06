@@ -15,16 +15,12 @@
     android:paddingBottom="10dp">
     <TextView
         android:text="Meldingstittel"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
         android:textAppearance="@style/MediumText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Title" />
     <TextView
         android:text="Meldingsinnhold"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:textAppearance="@style/SmallText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
