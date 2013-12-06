@@ -192,6 +192,10 @@
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\NamedTabViewController.cs" />
+    <Compile Include="Views\MyFavoritesView.cs" />
+    <Compile Include="Views\MyFavoritesView.designer.cs">
+      <DependentUpon>MyFavoritesView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -315,6 +319,7 @@
     <InterfaceDefinition Include="Views\NewsListingView.xib" />
     <InterfaceDefinition Include="Views\ContactInfoBoxView.xib" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
+    <InterfaceDefinition Include="Views\MyFavoritesView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
