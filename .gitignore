@@ -163,3 +163,11 @@ $RECYCLE.BIN/
 src/Solvberget.Nancy/Content/
 src/Solvberget.Nancy/Data/favoritter/
 lib/18/
+
+# =========================
+# Eclipse project stuff
+# =========================
+# Eclipse
+.classpath
+.project
+.settings/
