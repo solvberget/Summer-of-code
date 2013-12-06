@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><widget>
+<cpname> </cpname>
+<cplogo> </cplogo>
+<cpauthjs> </cpauthjs>
+<ThumbIcon>icon/sampleIcon_106_87.png</ThumbIcon>
+<BigThumbIcon>icon/sampleIcon_115_95.png</BigThumbIcon>
+<ListIcon>icon/sampleIcon_85_70.png</ListIcon>
+<BigListIcon>icon/sampleIcon_95_78.png</BigListIcon>
+<category> </category>
+<autoUpdate>n</autoUpdate>
+<ver>0.100</ver>
+<mgrver> </mgrver>
+<fullwidget>y</fullwidget>
+<type>user</type>
+<srcctl>y</srcctl>
+<ticker>n</ticker>
+<childlock>n</childlock>
+<videomute>n</videomute>
+<dcont>y</dcont>
+<widgetname>Solvberget.Infoscreen</widgetname>
+<description> </description>
+<width>1280</width>
+<height>720</height>
+<author> <name> </name>
+<email> </email>
+<link> </link>
+<organization> </organization>
+</author>
+</widget>
