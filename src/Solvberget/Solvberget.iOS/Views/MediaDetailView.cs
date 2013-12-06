@@ -114,12 +114,15 @@ namespace Solvberget.iOS
 					break;
 
 				case "SheetMusic":
+					RenderSheetMusic();
 					break;
 
 				case "Game":
+					RenderGame();
 					break;
 
 				case "Journal":
+					RenderJournal();
 					break;
 
 				case "Cd":
@@ -128,6 +131,11 @@ namespace Solvberget.iOS
 			}
 
 			Image.Image = UIHelpers.ImageFromUrl(ViewModel.Image);
+
+			var imageScale = Image.Frame.Width / Image.Image.Size.Width;
+			var imageHeight = Math.Min(Image.Image.Size.Height * imageScale, Image.Frame.Height);
+			var imageSize = new SizeF(Image.Frame.Width, imageHeight);
+			Image.Frame = new RectangleF(Image.Frame.Location, imageSize);
 
 			Position();
 
@@ -147,7 +155,7 @@ namespace Solvberget.iOS
 				new LabelAndValue(box, "Finnes på hylle", availability.Location);
 				new LabelAndValue(box, "Avdeling", availability.Department);
 				new LabelAndValue(box, "Samling", availability.Collection);
-				new LabelAndValue(box, "Tilgjengelighet", availability.AvailableCount + " av + " + availability.TotalCount + " tilgjengelig for utlån.");
+				new LabelAndValue(box, "Tilgjengelighet", availability.AvailableCount + " av " + availability.TotalCount + " tilgjengelig for utlån.");
 
 				if (availability.EstimatedAvailableDate.HasValue)
 				{
@@ -229,10 +237,52 @@ namespace Solvberget.iOS
 			var facts = StartBox();
 
 			if(!String.IsNullOrEmpty(dto.ArtistOrComposerName)) new LabelAndValue(facts, "Artist eller komponist", dto.ArtistOrComposerName);
-			if(null != dto.CompositionTypesOrGenres && dto.CompositionTypesOrGenres.Length > 0) new LabelAndValue(facts, "Komposisjonstype eller sjanger", String.Join(",", dto.CompositionTypesOrGenres));
+			if(null != dto.CompositionTypesOrGenres && dto.CompositionTypesOrGenres.Length > 0) new LabelAndValue(facts, "Komposisjonstype eller sjanger", String.Join(", ", dto.CompositionTypesOrGenres));
 			if(!String.IsNullOrEmpty(dto.Language)) new LabelAndValue(facts, "Språk", dto.Language);
 			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Label/utgiver", ViewModel.Publisher);
 			if(!String.IsNullOrEmpty(ViewModel.Year)) new LabelAndValue(facts, "Publikasjonsår", ViewModel.Year);
+
+		}
+
+		void RenderGame()
+		{
+			AddSectionHeader("Fakta om spillet");
+
+			var dto = ViewModel.RawDto as GameDto;
+
+			var facts = StartBox();
+			if(!String.IsNullOrEmpty(dto.Language)) new LabelAndValue(facts, "Platform", dto.Platform);
+
+			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Utgiver", ViewModel.Publisher);
+			if(!String.IsNullOrEmpty(ViewModel.Year)) new LabelAndValue(facts, "Publikasjonsår", ViewModel.Year);
+		}
+
+		void RenderJournal()
+		{
+			AddSectionHeader("Fakta om journalen");
+
+			var dto = ViewModel.RawDto as JournalDto;
+
+			var facts = StartBox();
+			if(null != dto.Subjects && dto.Subjects.Length > 0) new LabelAndValue(facts, "Kategorier", String.Join(", ", dto.Subjects));
+
+			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Utgiver", ViewModel.Publisher);
+			if(!String.IsNullOrEmpty(ViewModel.Year)) new LabelAndValue(facts, "Publikasjonsår", ViewModel.Year);
+		}
+
+		void RenderSheetMusic()
+		{
+			AddSectionHeader("Fakta om notehefte");
+
+			var dto = ViewModel.RawDto as SheetMusicDto;
+
+			var facts = StartBox();
+
+			if(!String.IsNullOrEmpty(dto.ComposerName)) new LabelAndValue(facts, "Komponist", dto.ComposerName);
+			if(!String.IsNullOrEmpty(dto.CompositionType)) new LabelAndValue(facts, "Komposisjonstype", dto.CompositionType);
+			if(!String.IsNullOrEmpty(dto.NumberOfPagesAndParts)) new LabelAndValue(facts, "Sidetall, type noter og antall stemmer", dto.NumberOfPagesAndParts);
+
+			if(null != dto.MusicalLineup && dto.MusicalLineup.Length > 0) new LabelAndValue(facts, "Beseting", String.Join(", ", dto.MusicalLineup));
 
 		}
 
