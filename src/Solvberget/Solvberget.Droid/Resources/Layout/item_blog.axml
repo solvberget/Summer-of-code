@@ -20,15 +20,8 @@
         android:layout_height="wrap_content"
         local:MvxBind="Text Title" />
     <TextView
-        android:text="Url of the blog"
-        android:textAppearance="@style/SmallText"
-        android:textSize="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        local:MvxBind="Text Url" />
-    <TextView
         android:text="Blog description here"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Description" />
+        local:MvxBind="Text Description; Visibility Visibility(Description)" />
 </LinearLayout>

@@ -8,21 +8,39 @@
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
-    <TextView
+    android:layout_marginRight="10dp">
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+    <Solvberget.Droid.Views.Components.CustomImageView
+        android:layout_height="90dp"
+        android:layout_width="60dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_launcher"
+        local:MvxBind="ImageUrl ImageUrl" />
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:paddingTop="10dp"
+      android:paddingBottom="10dp">
+      <TextView
         android:text="Heading"
         android:textAppearance="@style/MediumText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Name" />
-    <TextView
-        android:text="SubHeading"
-        android:textAppearance="@style/SmallText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        local:MvxBind="Text SubTitle" />
+      <TextView
+          android:text="SubHeading"
+          android:textAppearance="@style/SmallText"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          local:MvxBind="Text SubTitle" />
+    </LinearLayout>
+  </LinearLayout>
+    
 </LinearLayout>

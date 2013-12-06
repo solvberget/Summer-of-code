@@ -13,11 +13,11 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-    <Solvberget.Droid.Views.Components.CustomImageView
+  <!--<Solvberget.Droid.Views.Components.CustomImageView
         android:layout_width="100.0dp"
         android:layout_height="140.0dp"
         android:src="@drawable/ic_launcher"
-        local:MvxBind="ImageUrl ImageUrl" />
+        local:MvxBind="ImageUrl ImageUrl" />-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -30,7 +30,7 @@
             android:textAppearance="@style/LargeText"
             android:text="EventTitle"
             local:MvxBind="Text Title"
-            android:paddingBottom="10dp" />
+            android:paddingBottom="5dp" />
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

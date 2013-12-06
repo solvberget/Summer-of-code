@@ -33,7 +33,7 @@ namespace Solvberget.Core.ViewModels
                     Title = ev.Name,
                     ImageUrl = ev.ImageUrl,
                     Location = ev.Location,
-                    Price = "Kr. " + ev.TicketPrice.ToString("0.##"),
+                    Price = (ev.TicketPrice > 0.0) ? "Kr. " + ev.TicketPrice.ToString("0.00") : "Gratis",
                     Date = ev.Start.ToString("dd.MM.yyyy"),
                     Time =  "kl. " + ev.Start.ToString("HH:mm") + "-" + ev.End.ToString("HH:mm"),
                     Url = ev.TicketUrl

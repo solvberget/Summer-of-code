@@ -66,7 +66,7 @@
                             <li ng-class="{ active: isViewActive('/sok')}"><a ng-href="{{path('SearchCtrl')}}">Søk</a></li>
                             <li ng-class="{ active: isViewActive('/nyheter')}"><a ng-href="{{path('NewsCtrl')}}">Nyheter</a></li>
                             <li ng-class="{ active: isViewActive('/arrangementer')}"><a ng-href="{{path('EventsCtrl')}}">Arrangementer</a></li>
-                            <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MyFavoritesCtrl')}}">Min side<span ng-show="newMessagesCount.count > 0" style="margin-left:6px" class="badge pull-right">{{newMessagesCount.count}}</span></a></li>
+                            <li ng-class="{ active: isViewActive('/min-side')}"><a ng-href="{{path('MyMessagesCtrl')}}">Min side<span ng-show="newMessagesCount.count > 0" style="margin-left:6px" class="badge pull-right">{{newMessagesCount.count}}</span></a></li>
                             <li ng-class="{ active: isViewActive('/anbefalinger')}"><a ng-href="{{path('ListsCtrl')}}">Anbefalinger</a></li>
                             <li ng-class="{ active: isViewActive('/blogg')}"><a ng-href="{{path('BlogsCtrl')}}">Blogger</a></li>
                             <li ng-class="{ active: isViewActive('/apningstider')}"><a ng-href="{{path('OpeningHoursCtrl')}}">Åpningstider</a></li>
@@ -109,7 +109,7 @@
             </div> <!-- /container -->
 
             <footer>
-                <span>Sølvberget, Stavanger kulturhus (<a href="https://maps.google.com/maps?q=S%C3%B8lvberggata+2,+Stavanger,+Norge&hl=no&ie=UTF8&ll=58.971207,5.733576&spn=0.006625,0.014763&sll=58.971527,5.734706&sspn=0.006625,0.014763&t=h&hnear=S%C3%B8lvberggata+2,+4006+Stavanger,+Rogaland,+Norge&z=16">kart</a>, <a href="post@stavanger-kulturhus.no">epost</a>)</span><span> / </span>
+                <span>Sølvberget, Stavanger kulturhus (<a href="https://maps.google.com/maps?q=S%C3%B8lvberggata+2,+Stavanger,+Norge&hl=no&ie=UTF8&ll=58.971207,5.733576&spn=0.006625,0.014763&sll=58.971527,5.734706&sspn=0.006625,0.014763&t=h&hnear=S%C3%B8lvberggata+2,+4006+Stavanger,+Rogaland,+Norge&z=16">kart</a>, <a href="mailto:post@stavanger-kulturhus.no">epost</a>)</span><span> / </span>
                 <span>Sølvberggt. 2, Pb 310, 4002 Stavanger - Tlf 51 50 74 65</span><span> / </span>
                 <span>Design, programmering og drift: <a href="http://www.no.capgemini.com">Capgemini</a></span>
             </footer>

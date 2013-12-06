@@ -63,6 +63,7 @@ namespace Solvberget.Core.ViewModels
                     ReadyForPickup = r.ReadyForPickup,
                     PickupLocation = r.PickupLocation.Equals("Hovedbibl.") ? "Hovedbiblioteket" : r.PickupLocation,
                     Parent = this,
+                    ListEmpty = false,
                     ButtonVisible = true,
                     CancellationButtonVisible = false,
                     ButtonText = "Fjern",
@@ -76,6 +77,7 @@ namespace Solvberget.Core.ViewModels
             {
                 Reservations.Add(new ReservationViewModel
                 {
+                    ListEmpty = true,
                     DocumentTitle = "Du har ingen reservasjoner",
                     Status = "Du kan reservere gjennom mediedetaljsiden, enten gjennom søkeresultater, eller anbefalingslistene.",
                     ButtonVisible = false
