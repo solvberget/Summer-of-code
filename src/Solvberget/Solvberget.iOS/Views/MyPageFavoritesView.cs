@@ -7,6 +7,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
+
 	public partial class MyPageFavoritesView : NamedTableViewController
     {
 		public new MyPageFavoritesViewModel ViewModel

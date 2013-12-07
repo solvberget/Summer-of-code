@@ -4,6 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Cirrious.MvvmCross.Binding.Touch.Views;
 using Solvberget.Core.ViewModels;
+using Solvberget.Core.DTOs;
 
 namespace Solvberget.iOS
 {
@@ -37,6 +38,24 @@ namespace Solvberget.iOS
 		{
 			sc.Bind(model.Name, model.PresentableTypeWithYear); 
 			sc.ImageUrl = model.Image;
+		};
+
+		public static Action<ISimpleCell, LoanViewModel> Loans = (sc, model) =>
+		{
+			sc.Bind(model.DocumentTitle, "Leveringsfrist: " + model.DueDate); 
+			sc.ImageUrl = model.Image;
+		};
+
+		public static Action<ISimpleCell, NotificationDto> Messages = (sc, model) =>
+		{
+			sc.Bind(model.Title, model.DocumentTitle); 
+			sc.SetImage(UIImage.FromBundle("/Images/Placeholders/Message.png"));
+		};
+
+		public static Action<ISimpleCell, FineViewModel> Fines = (sc, model) =>
+		{
+			sc.Bind(model.Description, model.Sum + " | " + model.DocumentTitle); 
+			sc.SetImage(UIImage.FromBundle("/Images/Placeholders/Fine.png"));
 		};
 
 	}

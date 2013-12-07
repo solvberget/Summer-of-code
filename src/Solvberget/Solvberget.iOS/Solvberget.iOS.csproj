@@ -196,6 +196,9 @@
       <DependentUpon>MyPageFavoritesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MyPageFavoritesView.cs" />
+    <Compile Include="Views\MyPageLoansView.cs" />
+    <Compile Include="Views\MyPageMessagesView.cs" />
+    <Compile Include="Views\MyPageFinesView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
