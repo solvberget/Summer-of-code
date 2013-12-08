@@ -1,5 +1,7 @@
 alert('SceneScene1.js loaded');
 
+WEB_APP_URL = "https://www.google.com/search?q=";
+
 function SceneScene1() {
 
 };
@@ -14,7 +16,7 @@ SceneScene1.prototype.initialize = function () {
 		text:'Start visning'
 	});
 	
-	var tvID = makeid();
+	tvID = makeid();
 	$('#id-label').html(tvID);
 };
 
@@ -51,6 +53,7 @@ SceneScene1.prototype.handleKeyDown = function (keyCode) {
 		case sf.key.DOWN:
 			break;
 		case sf.key.ENTER:
+			document.location=WEB_APP_URL + tvID;
 			break;
 		default:
 			alert("handle default key event, key code(" + keyCode + ")");
