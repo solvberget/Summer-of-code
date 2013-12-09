@@ -46,6 +46,15 @@ namespace Solvberget.iOS
 			sc.ImageUrl = model.Image;
 		};
 
+		public static Action<ISimpleCell, ReservationViewModel> Reservations = (sc, model) =>
+		{
+			var info = model.ReadyForPickup ? "Klar for henting. Hentefrist: " + model.PickupDeadline
+			           						: "Ikke klar.";
+
+			sc.Bind(model.DocumentTitle, info); 
+			sc.ImageUrl = model.Image;
+		};
+
 		public static Action<ISimpleCell, NotificationDto> Messages = (sc, model) =>
 		{
 			sc.Bind(model.Title, model.DocumentTitle); 

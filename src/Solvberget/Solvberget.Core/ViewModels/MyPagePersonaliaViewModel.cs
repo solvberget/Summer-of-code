@@ -99,6 +99,24 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
+		public string Balance
+		{
+			get;
+			set;
+		}
+
+		public string Credit
+		{
+			get;
+			set;
+		}
+
+		public string HomeLibrary
+		{
+			get;
+			set;
+		}
+
         public async void Load()
         {
             IsLoading = true;
@@ -110,6 +128,9 @@ namespace Solvberget.Core.ViewModels
             StreetAdress = user.StreetAddress;
             Email = user.Email;
             Name = user.Name;
+			Balance = user.Balance;
+			Credit = user.CashLimit;
+			HomeLibrary = user.HomeLibrary;
 
 			IsLoading = false;
 			NotifyViewModelReady();

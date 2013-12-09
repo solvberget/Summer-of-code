@@ -36,7 +36,7 @@ namespace Solvberget.iOS
 			else
 			{
 				container.Add(_label);
-				_label.Text = label.ToUpperInvariant();
+				_label.Text = null == label ? String.Empty : label.ToUpperInvariant();
 			}
 
 			if (!String.IsNullOrEmpty(value))

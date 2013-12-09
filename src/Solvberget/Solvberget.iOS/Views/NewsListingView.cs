@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class NewsListingView : NamedViewController
+	public class NewsListingView : NamedViewController
     {
 		public new NewsListingViewModel ViewModel
 		{
@@ -19,7 +19,7 @@ namespace Solvberget.iOS
 			}
 		}
 
-		public NewsListingView() : base("NewsListingView", null)
+		public NewsListingView() : base()
 		{}
 
 		public override void DidReceiveMemoryWarning()
@@ -35,7 +35,9 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
-			container = new UIScrollView(View.Frame);
+			View.Frame = new RectangleF(0,64, View.Frame.Width, View.Frame.Height - 64);
+			View.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+			container = new UIScrollView(new RectangleF(PointF.Empty, View.Frame.Size));
 
 			View.Add(container);
 

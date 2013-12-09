@@ -26,6 +26,9 @@
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -47,6 +50,8 @@
     <ConsolePause>false</ConsolePause>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <IpaPackageName>
+    </IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -105,9 +110,6 @@
     <Compile Include="MvxSlidingPanelsTouchViewPresenter.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Views\NewsListingView.cs" />
-    <Compile Include="Views\NewsListingView.designer.cs">
-      <DependentUpon>NewsListingView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Bootstrap\DownloadCacheBootstrap.cs" />
     <Compile Include="Views\GenericWebViewView.cs" />
     <Compile Include="Views\EventListView.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="Views\MyPageFinesView.cs" />
     <Compile Include="Views\MyPagePersonaliaView.cs" />
     <Compile Include="Views\BoxRenderer.cs" />
+    <Compile Include="Views\MyPageReservationsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -322,7 +325,6 @@
     <InterfaceDefinition Include="Views\BlogView.xib" />
     <InterfaceDefinition Include="Views\TitleAndSummaryItem.xib" />
     <InterfaceDefinition Include="Views\BlogPostView.xib" />
-    <InterfaceDefinition Include="Views\NewsListingView.xib" />
     <InterfaceDefinition Include="Views\ContactInfoBoxView.xib" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
   </ItemGroup>

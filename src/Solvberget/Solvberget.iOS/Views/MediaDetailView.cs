@@ -38,9 +38,10 @@ namespace Solvberget.iOS
 
 		BoxRenderer _boxes;
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
 
 			_boxes = new BoxRenderer(ScrollView);
 

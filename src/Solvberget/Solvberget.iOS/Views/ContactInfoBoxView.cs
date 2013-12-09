@@ -31,6 +31,8 @@ namespace Solvberget.iOS
 
 		private void Update()
 		{
+			foreach (var s in ScrollView.Subviews) s.RemoveFromSuperview();
+
 			var boxes = new BoxRenderer(ScrollView);
 			var box = boxes.StartBox();
 
@@ -54,7 +56,7 @@ namespace Solvberget.iOS
 				new LabelAndValue(box, "Epost", ci.Email, () => Email(ci.Email));
 			}
 
-			ScrollView.ContentSize = new SizeF(320, ScrollView.Subviews.Last().Frame.Bottom + 10.0f);
+			UIHelpers.SetContentSize(ScrollView);
 
 			loader.Hide();
 		}

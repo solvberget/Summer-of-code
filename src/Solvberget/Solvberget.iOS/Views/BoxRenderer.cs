@@ -14,7 +14,7 @@ namespace Solvberget.iOS
 		public BoxRenderer(UIView container)
 		{
 			_container = container;
-			_boxWidthMinusPadding = UIScreen.MainScreen.ApplicationFrame.Width - (2*_padding);
+			_boxWidthMinusPadding = container.Bounds.Width - (2*_padding);
 		}
 
 		float _padding = 10.0f;
