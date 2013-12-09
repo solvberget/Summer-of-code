@@ -1,29 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><widget>
-<cpname>Sølvberget</cpname>
-<cplogo> </caplogo>
-<cpauthjs> </cpauthjs>
-<ThumbIcon>icon/ThumbIcon.png</ThumbIcon>
-<BigThumbIcon>icon/BigThumbIcon.png</BigThumbIcon>
-<ListIcon>icon/ListIcon.png</ListIcon>
-<BigListIcon>icon/BigListIcon.png</BigListIcon>
-<category>information</category>
-<autoUpdate>n</autoUpdate>
-<ver>1</ver>
-<mgrver> </mgrver>
-<fullwidget>y</fullwidget>
-<type>user</type>
-<srcctl>y</srcctl>
-<ticker>n</ticker>
-<childlock>n</childlock>
-<videomute>n</videomute>
-<dcont>y</dcont>
-<widgetname>Sølvberget Infoskjerm</widgetname>
-<description>Infoskjerm til bruk i Sølvbergets lokaler.</description>
-<width>1280</width>
-<height>720</height>
-<author> <name>Capgemini Norge AS</name>
-<email> </email>
-<link>http://www.no.capgemini.com</link>
-<organization>Capgemini Norge AS</organization>
-</author>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<widget>
+    <cpname> </cpname>
+    <cplogo> </cplogo>
+    <cpauthjs> </cpauthjs>
+    <ThumbIcon>icon/ThumbIcon.png</ThumbIcon>
+    <BigThumbIcon>icon/BigThumbIcon.png</BigThumbIcon>
+    <ListIcon>icon/ListIcon.png</ListIcon>
+    <BigListIcon>icon/BigListIcon.png</BigListIcon>
+    <category> </category>
+    <autoUpdate>n</autoUpdate>
+    <ver>0.100</ver>
+    <mgrver> </mgrver>
+    <fullwidget>y</fullwidget>
+    <type>user</type>
+    <srcctl>y</srcctl>
+    <ticker>n</ticker>
+    <childlock>n</childlock>
+    <videomute>n</videomute>
+    <dcont>y</dcont>
+    <widgetname>Sølvberget infoskjerm</widgetname>
+    <description> </description>
+    <width>1280</width>
+    <height>720</height>
+    <author> 
+        <name>Capgemini Norge AS</name>
+        <email> </email>
+        <link>http://www.no.capgemini.com</link>
+        <organization>Capgemini Norge AS</organization>
+    </author>
 </widget>
