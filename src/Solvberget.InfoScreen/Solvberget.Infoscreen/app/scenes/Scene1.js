@@ -13,6 +13,7 @@ SceneScene1.prototype.initialize = function () {
 	// scene HTML and CSS will be loaded before this function is called
 	//window.location='http://80.203.160.221:3535/webapp/#/';
 	tvID = this.getid();
+	alert("Current Widget id:" + curWidget.id);
 	$('#id-label').html(tvID);
 };
 
@@ -57,29 +58,13 @@ SceneScene1.prototype.handleKeyDown = function (keyCode) {
 };
 
 SceneScene1.prototype.getid = function() {
-	// ID Load / Generation / Save
-	var fileSystemObj = new FileSystem();
-	if (fileSystemObj.isValidCommonPath(curWidget.id) == 0){
-	    fileSystemObj.createCommonDir(curWidget.id);
-	}
-	var jsFileObj = fileSystemObj.openCommonFile(curWidget.id + "/monitor-id.json","w");
+	var tvID = sf.core.localData("tv-id");
 	
-	
-	var tvID = jsFileObj.readAll();
-	alert("Printing contents of file");
-	if (tvID) {
-		alert(tvID);
-	} else {
+	if (!tvID) {
 		tvID = this.makeid();
+		sf.core.localData("tv-id", tvID);
 		alert("Generated new id: " + tvID);
-		var writeSuccess = jsFileObj.writeAll(tvID);
-		if (!writeSuccess) {
-			alert("Could not write to file");
-		} else {
-			alert("Wrote file successfully");
-		}
 	}
-	fileSystemObj.closeCommonFile(jsFileObj);
 	
 	return tvID;
 };
