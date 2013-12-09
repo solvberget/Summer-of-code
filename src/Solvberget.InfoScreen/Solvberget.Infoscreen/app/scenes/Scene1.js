@@ -16,7 +16,8 @@ SceneScene1.prototype.initialize = function () {
 		text:'Start visning'
 	});
 	
-	tvID = makeid();
+	var tvID = this.getid();
+	
 	$('#id-label').html(tvID);
 };
 
@@ -42,7 +43,7 @@ SceneScene1.prototype.handleBlur = function () {
 
 SceneScene1.prototype.handleKeyDown = function (keyCode) {
 	alert("SceneScene1.handleKeyDown(" + keyCode + ")");
-	// TODO : write an key event handler when this scene get focued
+	// TODO : write an key event handler when this scene get focused
 	switch (keyCode) {
 		case sf.key.LEFT:
 			break;
@@ -56,12 +57,39 @@ SceneScene1.prototype.handleKeyDown = function (keyCode) {
 			document.location=WEB_APP_URL + tvID;
 			break;
 		default:
-			alert("handle default key event, key code(" + keyCode + ")");
 			break;
 	}
 };
 
-function makeid()
+SceneScene1.prototype.getid = function() {
+	// ID Load / Generation / Save
+	var fileSystemObj = new FileSystem();
+	if (fileSystemObj.isValidCommonPath(curWidget.id) == 0){
+	    fileSystemObj.createCommonDir(curWidget.id);
+	}
+	var jsFileObj = fileSystemObj.openCommonFile(curWidget.id + "/monitor-id.json","w");
+	
+	
+	var tvID = jsFileObj.readAll();
+	alert("Printing contents of file");
+	if (tvID) {
+		alert(tvID);
+	} else {
+		tvID = this.makeid();
+		alert("Generated new id: " + tvID);
+		var writeSuccess = jsFileObj.writeAll(tvID);
+		if (!writeSuccess) {
+			alert("Could not write to file");
+		} else {
+			alert("Wrote file successfully");
+		}
+	}
+	fileSystemObj.closeCommonFile(jsFileObj);
+	
+	return tvID;
+};
+
+SceneScene1.prototype.makeid = function()
 {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -70,4 +98,4 @@ function makeid()
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
-}
+};
