@@ -18,15 +18,12 @@ namespace Solvberget.iOS
 
 		LoadingOverlay loader = new LoadingOverlay();
 
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
 			Add(loader);
 
 			ViewModel.WaitForReady(() => InvokeOnMainThread(Update));
-
         }
 
 		private void Update()
@@ -36,10 +33,10 @@ namespace Solvberget.iOS
 			var boxes = new BoxRenderer(ScrollView);
 			var box = boxes.StartBox();
 
-			if(!String.IsNullOrEmpty(ViewModel.Phone)) new LabelAndValue(box, "Telefon", ViewModel.Phone, () => Call(ViewModel.Title, ViewModel.Phone)); // todo: tap to ring
+			if(!String.IsNullOrEmpty(ViewModel.Phone)) new LabelAndValue(box, "Telefon", ViewModel.Phone, onTap : () => Call(ViewModel.Title, ViewModel.Phone)); // todo: tap to ring
 			if(!String.IsNullOrEmpty(ViewModel.Fax)) new LabelAndValue(box, "Faks", ViewModel.Fax);
 			if(!String.IsNullOrEmpty(ViewModel.VisitingAddress)) new LabelAndValue(box, "Besøksaddresse", ViewModel.VisitingAddress); // todo: tap to map
-			if(!String.IsNullOrEmpty(ViewModel.Email)) new LabelAndValue(box, "Epost", ViewModel.Email, () => Email(ViewModel.Email)); // todo: tap to send
+			if(!String.IsNullOrEmpty(ViewModel.Email)) new LabelAndValue(box, "Epost", ViewModel.Email, onTap : () => Email(ViewModel.Email)); // todo: tap to send
 
 			if (box.Subviews.Length == 0)
 			{
@@ -52,8 +49,8 @@ namespace Solvberget.iOS
 
 				new LabelAndValue(box, null, ci.Position, true);
 				new LabelAndValue(box, "Navn", ci.Name);
-				new LabelAndValue(box, "Telefon", ci.Phone, () => Call(ci.Name, ci.Phone));
-				new LabelAndValue(box, "Epost", ci.Email, () => Email(ci.Email));
+				new LabelAndValue(box, "Telefon", ci.Phone, onTap : () => Call(ci.Name, ci.Phone));
+				new LabelAndValue(box, "Epost", ci.Email, onTap : () => Email(ci.Email));
 			}
 
 			UIHelpers.SetContentSize(ScrollView);

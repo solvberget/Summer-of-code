@@ -163,12 +163,15 @@ namespace Solvberget.iOS
 				new LabelAndValue(box, "Finnes på hylle", availability.Location);
 				new LabelAndValue(box, "Avdeling", availability.Department);
 				new LabelAndValue(box, "Samling", availability.Collection);
-				new LabelAndValue(box, "Tilgjengelighet", availability.AvailableCount + " av " + availability.TotalCount + " tilgjengelig for utlån.");
+
+				var availabilityText = availability.AvailableCount + " av " + availability.TotalCount + " tilgjengelig for utlån.";
 
 				if (availability.EstimatedAvailableDate.HasValue)
 				{
-					new LabelAndValue(box, String.Empty, availability.EstimatedAvailableText);
+					availabilityText += " Tidligst tilgjengelig " + availability.EstimatedAvailableText;
 				}
+
+				new LabelAndValue(box, "Tilgjengelighet", availabilityText, colspan : 3);
 
 				var reserve = new UIButton();
 
@@ -218,7 +221,7 @@ namespace Solvberget.iOS
 			{
 				_boxes.AddSectionHeader("Bokbasens omtale");
 				var box = _boxes.StartBox();
-				new LabelAndValue(box, String.Empty, ViewModel.Review);
+				new LabelAndValue(box, String.Empty, ViewModel.Review, colspan : 3);
 			}
 
 			_boxes.AddSectionHeader("Fakta om boka");
