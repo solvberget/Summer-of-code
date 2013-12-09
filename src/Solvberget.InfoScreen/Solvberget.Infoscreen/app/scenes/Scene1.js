@@ -50,7 +50,8 @@ SceneScene1.prototype.handleKeyDown = function (keyCode) {
 		case sf.key.DOWN:
 			break;
 		case sf.key.ENTER:
-			document.location=WEB_APP_URL + tvID;
+			document.location = 'http://northrend.bitnexus.net/';
+			//document.location=WEB_APP_URL + tvID;
 			break;
 		default:
 			break;
