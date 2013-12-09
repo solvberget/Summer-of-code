@@ -1,0 +1,9 @@
+<div ng-controller="NewsCtrl">
+    <h1>Nyheter fra Sølvberget</h1>
+
+    <article ng-repeat="item in items">
+        <h1>{{ item.title }}</h1>
+        <address>Publisert {{ item.published }}</address>
+        <p>{{ item.ingress }}</p>
+    </article>
+</div>
