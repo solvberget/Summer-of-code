@@ -12,12 +12,7 @@ SceneScene1.prototype.initialize = function () {
 	// initialize the scene controls and styles, and initialize your variables here
 	// scene HTML and CSS will be loaded before this function is called
 	//window.location='http://80.203.160.221:3535/webapp/#/';
-	$('#svecButton_px3d').sfButton({
-		text:'Start visning'
-	});
-	
-	var tvID = this.getid();
-	
+	tvID = this.getid();
 	$('#id-label').html(tvID);
 };
 

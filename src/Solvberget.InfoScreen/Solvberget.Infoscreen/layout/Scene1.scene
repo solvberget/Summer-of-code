@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:tv.samsung.sdk="http://www.samsung.com/tvsdk">
-  <tv.samsung.sdk:VisualScene xmi:id="_2ieUoORMEeGc3-aXEl7Rpg" sId="Scene1" sName="" sType="0" sBgImage="images\background.png" sBgClr="#ffffff" sWidth="1280" sHeight="720">
-    <sComponents xmi:type="tv.samsung.sdk:VisualCtrlComponent" xmi:id="_V2KLsGC1EeOtff0JBoHDbQ" sWidth="164.0" sHeight="54.0" sBgImage="button/button.png" sResolution="720" sId="svecButton_px3d" sCaption="Start visning" sResizeOpt="ResizeOption_Width" sUserCodeIncludeJs="" sUserCodeInit="" sUserCodeDestroy="" sUserLibJs="" sUserLibImgDir="" sUserLibCss="" sType="button" sFunctionName="sfButton" sLockHeight="true" sLockBgImage="true" sNeedResolution="true">
-      <sCssAttrs xmi:type="tv.samsung.sdk:CssAttrStruct" xmi:id="_V2KLsWC1EeOtff0JBoHDbQ" sType="NUMBER" sValue="990" sName="left"/>
-      <sCssAttrs xmi:type="tv.samsung.sdk:CssAttrStruct" xmi:id="_V2KLsmC1EeOtff0JBoHDbQ" sType="NUMBER" sValue="620" sName="top"/>
-      <sCssAttrs xmi:type="tv.samsung.sdk:CssAttrStruct" xmi:id="_V2KLs2C1EeOtff0JBoHDbQ" sType="NUMBER" sValue="274" sName="width"/>
-      <sParams xmi:type="tv.samsung.sdk:ParamStruct" xmi:id="_V2KLtGC1EeOtff0JBoHDbQ" sName="text" sValue="Start visning"/>
-    </sComponents>
-  </tv.samsung.sdk:VisualScene>
+  <tv.samsung.sdk:VisualScene xmi:id="_2ieUoORMEeGc3-aXEl7Rpg" sId="Scene1" sName="" sType="0" sBgImage="images\background.png" sBgClr="#ffffff" sWidth="1280" sHeight="720"/>
   <notation:Diagram xmi:id="_d1gisF5WEeONxq3F5_1Vdw" type="VisualScene" element="_2ieUoORMEeGc3-aXEl7Rpg" name="Scene1.scene" measurementUnit="Pixel">
-    <children xmi:type="notation:Shape" xmi:id="_V2JkoGC1EeOtff0JBoHDbQ" type="2001" element="_V2KLsGC1EeOtff0JBoHDbQ" fontName="Segoe UI">
-      <children xmi:type="notation:DecorationNode" xmi:id="_V2JkomC1EeOtff0JBoHDbQ" type="5001"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_V2Jko2C1EeOtff0JBoHDbQ" x="990" y="620" width="274" height="54"/>
-    </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_2ieUouRMEeGc3-aXEl7Rpg"/>
   </notation:Diagram>
 </xmi:XMI>
