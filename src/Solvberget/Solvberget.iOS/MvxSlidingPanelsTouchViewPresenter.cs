@@ -151,15 +151,25 @@ namespace Solvberget.iOS
 				navController.InteractivePopGestureRecognizer.Enabled = false;
 			}
 
-			navController.NavigationBar.BarTintColor = Application.ThemeColors.Main;
-			navController.NavigationBar.TintColor = Application.ThemeColors.MainInverse;
 			navController.NavigationBar.SetTitleTextAttributes(new UITextAttributes()
+				{
+					TextColor = UIColor.White,
+					TextShadowColor = UIColor.Clear,
+					Font = Application.ThemeColors.HeaderFont
+				});
+
+			if (UIHelpers.MinVersion7)
 			{
-				TextColor = UIColor.White,
-				TextShadowColor = UIColor.Clear,
-				Font = Application.ThemeColors.HeaderFont
-			});
-			navController.NavigationBar.Translucent = false;
+				navController.NavigationBar.BarTintColor = Application.ThemeColors.Main;
+				navController.NavigationBar.TintColor = Application.ThemeColors.MainInverse;
+				navController.NavigationBar.Translucent = false;
+			}
+			else
+			{
+				// todo: style navigation bar for ios6
+				navController.NavigationBar.TintColor = Application.ThemeColors.Main;
+
+			}
 
             return navController;
         }

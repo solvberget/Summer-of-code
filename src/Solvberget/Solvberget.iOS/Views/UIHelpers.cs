@@ -39,6 +39,23 @@ namespace Solvberget.iOS
 
 			scrollView.ContentSize = new SizeF(320, scrollView.Subviews.Last().Frame.Bottom + 10.0f);
 		}
+
+
+		private static Version _systemVersion;
+		public static bool CurrentVersionIsGreaterThanOrEqualTo( Version versionToCompareAgainst )
+		{
+			if ( _systemVersion == null )
+			{
+				_systemVersion = new Version( UIDevice.CurrentDevice.SystemVersion );
+			}
+
+			return _systemVersion >= versionToCompareAgainst;
+		}
+
+		public static bool MinVersion7
+		{
+			get { return CurrentVersionIsGreaterThanOrEqualTo(new Version(7, 0)); }
+		}
 	}
 }
 

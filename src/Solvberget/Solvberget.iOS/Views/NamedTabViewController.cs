@@ -31,7 +31,10 @@ namespace Solvberget.iOS
 
 		public override void ViewWillDisappear(bool animated)
 		{
-			NavigationItem.Title = String.Empty;
+			if (UIHelpers.MinVersion7)
+			{
+				NavigationItem.Title = String.Empty;
+			}
 
 			base.ViewWillDisappear(animated);
 
