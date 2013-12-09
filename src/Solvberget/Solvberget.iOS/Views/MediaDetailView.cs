@@ -36,9 +36,13 @@ namespace Solvberget.iOS
 
 		LoadingOverlay _loadingOverlay = new LoadingOverlay();
 
+		BoxRenderer _boxes;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+			_boxes = new BoxRenderer(ScrollView);
 
 			RatingSourceLabel.Text = HeaderLabel.Text = SubtitleLabel.Text = TypeLabel.Text = String.Empty;
 
@@ -149,11 +153,11 @@ namespace Solvberget.iOS
 		{
 			if (null == ViewModel.Availabilities || ViewModel.Availabilities.Length == 0) return;
 
-			AddSectionHeader("Tilgjengelighet");
+			_boxes.AddSectionHeader("Tilgjengelighet");
 
 			foreach (var availability in ViewModel.Availabilities)
 			{
-				var box = StartBox();
+				var box = _boxes.StartBox();
 				new LabelAndValue(box, "Filial", availability.Branch, true);
 				new LabelAndValue(box, "Finnes på hylle", availability.Location);
 				new LabelAndValue(box, "Avdeling", availability.Department);
@@ -211,16 +215,16 @@ namespace Solvberget.iOS
 		{
 			if (!String.IsNullOrEmpty(ViewModel.Review))
 			{
-				AddSectionHeader("Bokbasens omtale");
-				var box = StartBox();
+				_boxes.AddSectionHeader("Bokbasens omtale");
+				var box = _boxes.StartBox();
 				new LabelAndValue(box, String.Empty, ViewModel.Review);
 			}
 
-			AddSectionHeader("Fakta om boka");
+			_boxes.AddSectionHeader("Fakta om boka");
 
 			var dto = ViewModel.RawDto as BookDto;
 
-			var facts = StartBox();
+			var facts = _boxes.StartBox();
 
 			if(!String.IsNullOrEmpty(dto.AuthorName)) new LabelAndValue(facts, "Forfatter", dto.AuthorName);
 			if(!String.IsNullOrEmpty(dto.Classification)) new LabelAndValue(facts, "Sjanger", dto.Classification);
@@ -233,11 +237,11 @@ namespace Solvberget.iOS
 
 		void RenderCd()
 		{
-			AddSectionHeader("Fakta om CDen");
+			_boxes.AddSectionHeader("Fakta om CDen");
 
 			var dto = ViewModel.RawDto as CdDto;
 
-			var facts = StartBox();
+			var facts = _boxes.StartBox();
 
 			if(!String.IsNullOrEmpty(dto.ArtistOrComposerName)) new LabelAndValue(facts, "Artist eller komponist", dto.ArtistOrComposerName);
 			if(null != dto.CompositionTypesOrGenres && dto.CompositionTypesOrGenres.Length > 0) new LabelAndValue(facts, "Komposisjonstype eller sjanger", String.Join(", ", dto.CompositionTypesOrGenres));
@@ -249,11 +253,11 @@ namespace Solvberget.iOS
 
 		void RenderGame()
 		{
-			AddSectionHeader("Fakta om spillet");
+			_boxes.AddSectionHeader("Fakta om spillet");
 
 			var dto = ViewModel.RawDto as GameDto;
 
-			var facts = StartBox();
+			var facts = _boxes.StartBox();
 			if(!String.IsNullOrEmpty(dto.Language)) new LabelAndValue(facts, "Platform", dto.Platform);
 
 			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Utgiver", ViewModel.Publisher);
@@ -262,11 +266,11 @@ namespace Solvberget.iOS
 
 		void RenderJournal()
 		{
-			AddSectionHeader("Fakta om journalen");
+			_boxes.AddSectionHeader("Fakta om journalen");
 
 			var dto = ViewModel.RawDto as JournalDto;
 
-			var facts = StartBox();
+			var facts = _boxes.StartBox();
 			if(null != dto.Subjects && dto.Subjects.Length > 0) new LabelAndValue(facts, "Kategorier", String.Join(", ", dto.Subjects));
 
 			if(!String.IsNullOrEmpty(ViewModel.Publisher)) new LabelAndValue(facts, "Utgiver", ViewModel.Publisher);
@@ -275,11 +279,11 @@ namespace Solvberget.iOS
 
 		void RenderSheetMusic()
 		{
-			AddSectionHeader("Fakta om notehefte");
+			_boxes.AddSectionHeader("Fakta om notehefte");
 
 			var dto = ViewModel.RawDto as SheetMusicDto;
 
-			var facts = StartBox();
+			var facts = _boxes.StartBox();
 
 			if(!String.IsNullOrEmpty(dto.ComposerName)) new LabelAndValue(facts, "Komponist", dto.ComposerName);
 			if(!String.IsNullOrEmpty(dto.CompositionType)) new LabelAndValue(facts, "Komposisjonstype", dto.CompositionType);
@@ -292,11 +296,11 @@ namespace Solvberget.iOS
 
 		void RenderMovie()
 		{
-			AddSectionHeader("Fakta om filmen");
+			_boxes.AddSectionHeader("Fakta om filmen");
 
 			var dto = ViewModel.RawDto as FilmDto;
 
-			var facts = StartBox();
+			var facts = _boxes.StartBox();
 
 			if(!String.IsNullOrEmpty(dto.AgeLimit)) new LabelAndValue(facts, "Aldersgrense", dto.AgeLimit);
 			if(!String.IsNullOrEmpty(dto.MediaInfo)) new LabelAndValue(facts, "Format", dto.MediaInfo);
@@ -337,36 +341,6 @@ namespace Solvberget.iOS
 			TypeLabel.Frame = new RectangleF(typePos, typeSize);
 
 			ScrollView.ContentSize = new SizeF(320, ScrollView.Subviews.Last().Frame.Bottom + padding);
-		}
-
-		private UIView StartBox()
-		{
-			var box = new UIView(new RectangleF(padding, padding, 300,10));
-			box.BackgroundColor = Application.ThemeColors.VerySubtle;
-
-			var prev = ScrollView.Subviews.LastOrDefault();
-
-			if (null != prev)
-			{
-				box.Frame = new RectangleF(padding, prev.Frame.Bottom + padding, 300,10);
-			}
-		
-			ScrollView.Add(box);
-
-			return box;
-		}
-
-		private void AddSectionHeader(string name)
-		{
-			UILabel label = new UILabel();
-			label.Text = name.ToUpperInvariant();
-			label.Font = Application.ThemeColors.HeaderFont;
-			label.TextColor = Application.ThemeColors.Main;
-
-			var y = ScrollView.Subviews.Where(s => !(s is UIImageView)).Last().Frame.Bottom + padding;
-			label.Frame = new RectangleF(padding, y, 300, label.SizeThatFits(new SizeF(300, 0)).Height);
-
-			ScrollView.Add(label);
 		}
     }
 }

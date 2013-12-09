@@ -63,7 +63,7 @@ namespace Solvberget.Core.ViewModels
 
         public void Init()
         {
-            Title = "Startside";
+			Title = "Sølvberget";
         }
 
         private List<HomeScreenElementViewModel> _listElements;

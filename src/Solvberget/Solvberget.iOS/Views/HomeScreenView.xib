@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeScreenView">
             <connections>
+                <outlet property="ScrollView" destination="tMS-GY-AGS" id="99E-K7-eyF"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -14,37 +15,14 @@
             <rect key="frame" x="0.0" y="64" width="320" height="416"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Library-Books.jpg" id="ymY-eg-O9N">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="192"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <view contentMode="scaleToFill" id="6WS-Rp-Gf4">
-                    <rect key="frame" x="0.0" y="192" width="320" height="135"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Velkommen til Sølvberget-appen!" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DI5-E0-eqF">
-                            <rect key="frame" x="12" y="9" width="296" height="73"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                            <color key="textColor" red="0.20392156862745098" green="0.70588235294117641" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="highlightedColor" red="0.20392156862745098" green="0.70588235294117641" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
-                        </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Søk etter bøker, fiolmer, spill og mer" minimumFontSize="17" clearButtonMode="unlessEditing" id="UVM-xB-cIK">
-                            <rect key="frame" x="12" y="93" width="296" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                        </textField>
-                    </subviews>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.98431372549019602" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="tMS-GY-AGS">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
         </view>
     </objects>
-    <resources>
-        <image name="Library-Books.jpg" width="1698" height="1131"/>
-    </resources>
 </document>

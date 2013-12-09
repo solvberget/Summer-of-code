@@ -50,27 +50,32 @@ namespace Solvberget.iOS
 				box.RemoveFromSuperview();
 			}
 
+			var padding = 10.0f;
+			var widthMinusPadding = UIScreen.MainScreen.ApplicationFrame.Width - (2 * padding);
+
 			if (_isFirstBinding)
 			{
 				_isFirstBinding = false;
-				var bgBox = new UIView(new RectangleF(10,10,300,80));
+				var bgBox = new UIView(new RectangleF(padding,padding,widthMinusPadding,80));
 				SelectedBackgroundView = new UIView();
 				SelectedBackgroundView.Add(bgBox);
 				SelectedBackgroundView.BackgroundColor = UIColor.White;
 				bgBox.BackgroundColor = Application.ThemeColors.Hero;
 			}
 
-			box = new UIView(new RectangleF(10, 10, 300, 80));
+			box = new UIView(new RectangleF(padding, padding, widthMinusPadding, 80));
 
 			var x = 80.0f;
 
 			// align text on x-axis
 			var l1Frame = new RectangleF(new PointF(x, 0), new SizeF(box.Frame.Width - x, 0));
 
-			// text height for width strategy
-			var padding = String.IsNullOrEmpty(title) ? 0.0f : 5.0f;
-
 			var label1 = new UILabel(l1Frame);
+			label1.Font = Application.ThemeColors.TitleFont;
+			label1.Lines = 0;
+			label1.LineBreakMode = UILineBreakMode.WordWrap;
+			label1.TextColor = Application.ThemeColors.Main;
+
 			label1.Text = title;
 
 			UILabel label2 = null;
@@ -82,15 +87,20 @@ namespace Solvberget.iOS
 			{
 				var l2Frame = new RectangleF(new PointF(x, 0), new SizeF(box.Frame.Width - x, 0));
 				label2 = new UILabel(l2Frame);
+				label2.Font = Application.ThemeColors.DefaultFont;
+				label2.TextColor = Application.ThemeColors.Main2;
 				label2.Text = subtitle;
 				size2 = UIHelpers.CalculateHeightForWidthStrategy(this, label2, subtitle);
 			}
 
+			// text height for width strategy
+			var textYPadding = String.IsNullOrEmpty(title) ? 0.0f : 5.0f;
+
 			// align text on y-axis, centering vertically
-			var totalHeight = size1.Height+size2.Height+padding;
+			var totalHeight = size1.Height+size2.Height+textYPadding;
 
 			var y1 = (box.Frame.Height - totalHeight) / 2;
-			var y2 = y1 + size1.Height + padding;
+			var y2 = y1 + size1.Height + textYPadding;
 
 			label1.Frame = new RectangleF(new PointF(label1.Frame.X, y1), size1);
 
@@ -98,16 +108,9 @@ namespace Solvberget.iOS
 			{
 				label2.Frame = new RectangleF(new PointF(label2.Frame.X, y2), size2);
 
-				label2.Font = Application.ThemeColors.DefaultFont;
-				label2.TextColor = Application.ThemeColors.Main2;
 			}
 
 			box.BackgroundColor = Application.ThemeColors.VerySubtle;
-
-			label1.Font = Application.ThemeColors.TitleFont;
-			label1.Lines = 2;
-			label1.LineBreakMode = UILineBreakMode.WordWrap;
-			label1.TextColor = Application.ThemeColors.Main;
 
 			box.Add(label1);
 			if (null != label2) box.Add(label2);

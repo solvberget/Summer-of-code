@@ -199,6 +199,8 @@
     <Compile Include="Views\MyPageLoansView.cs" />
     <Compile Include="Views\MyPageMessagesView.cs" />
     <Compile Include="Views\MyPageFinesView.cs" />
+    <Compile Include="Views\MyPagePersonaliaView.cs" />
+    <Compile Include="Views\BoxRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -309,6 +311,7 @@
     </BundleResource>
     <BundleResource Include="Images\star.off.png" />
     <BundleResource Include="Images\star.on.png" />
+    <BundleResource Include="Images\logo.white.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />

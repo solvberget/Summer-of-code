@@ -6,6 +6,7 @@ using Cirrious.MvvmCross.Touch.Views;
 using SlidingPanels.Lib;
 using SlidingPanels.Lib.PanelContainers;
 using Solvberget.Core.ViewModels.Base;
+using Solvberget.Core.ViewModels;
 
 namespace Solvberget.iOS
 {
@@ -15,35 +16,34 @@ namespace Solvberget.iOS
     {
         public HomeScreenView() : base("HomeScreenView", null)
 		{
-			NavigationItem.LeftBarButtonItem = CreateSliderButton("Images/SlideRight40.png", PanelType.LeftPanel);
+			NavigationItem.LeftBarButtonItem = CreateSliderButton("/Images/logo.white.png", PanelType.LeftPanel);
         }
+
+		public new HomeScreenViewModel ViewModel { get { return base.ViewModel as HomeScreenViewModel; }}
 
 		private UIBarButtonItem CreateSliderButton(string imageName, PanelType panelType)
 		{
-			UIButton button = new UIButton(new RectangleF(0, 0, 40f, 40f));
-			button.SetBackgroundImage(UIImage.FromBundle(imageName), UIControlState.Normal);
-			button.TouchUpInside += delegate
-			{
+			var button = new UIBarButtonItem(UIImage.FromBundle(imageName).Scale(new SizeF(30,30)), UIBarButtonItemStyle.Plain, 
+
+				(s,e) => {
 				SlidingPanelsNavigationViewController navController = NavigationController as SlidingPanelsNavigationViewController;
 				navController.TogglePanel(panelType);
-			};
+				});
 
-			return new UIBarButtonItem(button);
+			return button;
 		}
-
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
 
         public override void ViewDidLoad()
 		{
             base.ViewDidLoad();
 
-            // Perform any additional setup after loading the view, typically from a nib.
+			UILabel label = new UILabel(new RectangleF(20,20,280,100));
+			label.Lines = 2;
+			label.LineBreakMode = UILineBreakMode.WordWrap;
+			label.Text = "Forside under utvikling. Dra menyen ut fra venstre kant.";
+
+			ScrollView.Add(label);
+
         }
     }
 }

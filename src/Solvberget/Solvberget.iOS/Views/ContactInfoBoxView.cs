@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace Solvberget.iOS
 {
+
 	public partial class ContactInfoBoxView : NamedViewController
     {
         public ContactInfoBoxView() : base("ContactInfoBoxView", null)
@@ -30,7 +31,8 @@ namespace Solvberget.iOS
 
 		private void Update()
 		{
-			var box = StartBox();
+			var boxes = new BoxRenderer(ScrollView);
+			var box = boxes.StartBox();
 
 			if(!String.IsNullOrEmpty(ViewModel.Phone)) new LabelAndValue(box, "Telefon", ViewModel.Phone, () => Call(ViewModel.Title, ViewModel.Phone)); // todo: tap to ring
 			if(!String.IsNullOrEmpty(ViewModel.Fax)) new LabelAndValue(box, "Faks", ViewModel.Fax);
@@ -40,12 +42,11 @@ namespace Solvberget.iOS
 			if (box.Subviews.Length == 0)
 			{
 				box.RemoveFromSuperview();
-				_currentBox = null;
 			}
 
 			foreach (var ci in ViewModel.ContactPersons)
 			{
-				box = StartBox();
+				box = boxes.StartBox();
 
 				new LabelAndValue(box, null, ci.Position, true);
 				new LabelAndValue(box, "Navn", ci.Name);
@@ -53,29 +54,9 @@ namespace Solvberget.iOS
 				new LabelAndValue(box, "Epost", ci.Email, () => Email(ci.Email));
 			}
 
-			ScrollView.ContentSize = new SizeF(320, ScrollView.Subviews.Last().Frame.Bottom + padding);
+			ScrollView.ContentSize = new SizeF(320, ScrollView.Subviews.Last().Frame.Bottom + 10.0f);
 
 			loader.Hide();
-		}
-
-		UIView _currentBox;
-
-		float padding = 10.0f;
-
-		private UIView StartBox()
-		{
-			var box = new UIView(new RectangleF(padding, padding, 300,10));
-			box.BackgroundColor = Application.ThemeColors.VerySubtle;
-
-			if (null != _currentBox)
-			{
-				box.Frame = new RectangleF(padding, _currentBox.Frame.Bottom + padding, 300,10);
-			}
-
-			_currentBox = box;
-			ScrollView.Add(box);
-
-			return box;
 		}
 
 		private void Call(string name, string number)
