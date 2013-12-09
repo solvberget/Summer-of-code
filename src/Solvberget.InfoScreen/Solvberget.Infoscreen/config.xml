@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><widget>
-<cpname> </cpname>
-<cplogo> </cplogo>
+<cpname>Sølvberget</cpname>
+<cplogo> </caplogo>
 <cpauthjs> </cpauthjs>
-<ThumbIcon>icon/sampleIcon_106_87.png</ThumbIcon>
-<BigThumbIcon>icon/sampleIcon_115_95.png</BigThumbIcon>
-<ListIcon>icon/sampleIcon_85_70.png</ListIcon>
-<BigListIcon>icon/sampleIcon_95_78.png</BigListIcon>
-<category> </category>
+<ThumbIcon>icon/ThumbIcon.png</ThumbIcon>
+<BigThumbIcon>icon/BigThumbIcon.png</BigThumbIcon>
+<ListIcon>icon/ListIcon.png</ListIcon>
+<BigListIcon>icon/BigListIcon.png</BigListIcon>
+<category>information</category>
 <autoUpdate>n</autoUpdate>
-<ver>0.100</ver>
+<ver>1</ver>
 <mgrver> </mgrver>
 <fullwidget>y</fullwidget>
 <type>user</type>
@@ -17,13 +17,13 @@
 <childlock>n</childlock>
 <videomute>n</videomute>
 <dcont>y</dcont>
-<widgetname>Solvberget.Infoscreen</widgetname>
-<description> </description>
+<widgetname>Sølvberget Infoskjerm</widgetname>
+<description>Infoskjerm til bruk i Sølvbergets lokaler.</description>
 <width>1280</width>
 <height>720</height>
-<author> <name> </name>
+<author> <name>Capgemini Norge AS</name>
 <email> </email>
-<link> </link>
-<organization> </organization>
+<link>http://www.no.capgemini.com</link>
+<organization>Capgemini Norge AS</organization>
 </author>
 </widget>
