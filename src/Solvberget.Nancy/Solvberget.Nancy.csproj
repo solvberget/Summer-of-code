@@ -198,6 +198,7 @@
     <Compile Include="EnvironmentPathProvider.cs" />
     <Compile Include="Mapping\DtoMaps.cs" />
     <Compile Include="Modules\BlogModule.cs" />
+    <Compile Include="Modules\SlideConfigModule.cs" />
     <Compile Include="Modules\EventModule.cs" />
     <Compile Include="Modules\FavoritesModule.cs" />
     <Compile Include="Modules\InformationModule.cs" />
