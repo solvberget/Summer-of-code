@@ -51,6 +51,7 @@ namespace Solvberget.iOS
 			var key = GetNibNameForVM(item);
 
 			var cell = TableView.DequeueReusableCell(key, indexPath) as ISimpleCell;
+			cell.TableWidth = tableView.Bounds.Width;
 
 			cell.SetImage(null);
 			_binder(cell, item as T);

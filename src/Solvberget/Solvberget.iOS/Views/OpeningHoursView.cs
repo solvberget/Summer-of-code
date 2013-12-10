@@ -19,34 +19,21 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
+			LoadingOverlay.LoadingText = "Henter åpningstider...";
 
 			var source = new StandardTableViewSource(TableView, UITableViewCellStyle.Default,
 				"OpeningHoursLocations", "TitleText Title");
 
 			TableView.Source = source;
 
-
-			var loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
-
 			var set = this.CreateBindingSet<OpeningHoursView, OpeningHoursViewModel>();
 			set.Bind(source).To(vm => vm.Locations);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
 
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
 			TableView.ReloadData();

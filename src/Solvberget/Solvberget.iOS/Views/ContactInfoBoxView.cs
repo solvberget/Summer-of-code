@@ -16,18 +16,17 @@ namespace Solvberget.iOS
 
 		public new ContactInfoBoxViewModel ViewModel { get { return base.ViewModel as ContactInfoBoxViewModel; } }
 
-		LoadingOverlay loader = new LoadingOverlay();
-
-		public override void ViewWillAppear(bool animated)
+		public override void ViewDidLoad()
 		{
-			base.ViewWillAppear(animated);
-			Add(loader);
+			base.ViewDidLoad();
 
-			ViewModel.WaitForReady(() => InvokeOnMainThread(Update));
-        }
+			LoadingOverlay.LoadingText = "Henter kontaktinformasjon...";
+		}
 
-		private void Update()
+		protected override void ViewModelReady()
 		{
+			base.ViewModelReady();
+		
 			foreach (var s in ScrollView.Subviews) s.RemoveFromSuperview();
 
 			var boxes = new BoxRenderer(ScrollView);
@@ -54,8 +53,6 @@ namespace Solvberget.iOS
 			}
 
 			UIHelpers.SetContentSize(ScrollView);
-
-			loader.Hide();
 		}
 
 		private void Call(string name, string number)

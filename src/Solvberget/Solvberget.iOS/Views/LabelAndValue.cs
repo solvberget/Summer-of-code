@@ -25,11 +25,13 @@ namespace Solvberget.iOS
 			_label.Tag = LabelTag;
 			_label.Font = Application.ThemeColors.LabelFont;
 			_label.TextColor = Application.ThemeColors.Main;
+			_label.BackgroundColor = UIColor.Clear;
 
 			_value.Font = Application.ThemeColors.DefaultFont;
 			_value.TextColor = Application.ThemeColors.Main2;
 			_value.Lines = 0;
 			_value.Tag = ValueTag;
+			_value.BackgroundColor = UIColor.Clear;
 			_value.LineBreakMode = UILineBreakMode.WordWrap;
 
 			#if DEBUG

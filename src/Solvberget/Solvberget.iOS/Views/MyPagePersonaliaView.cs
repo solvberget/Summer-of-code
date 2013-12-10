@@ -17,19 +17,16 @@ namespace Solvberget.iOS
 			}
 		}
 
-		LoadingOverlay loadingIndicator = new LoadingOverlay();
+		UIScrollView scrollView;
 
-		public override void ViewDidLoad()
+		protected override void ViewModelReady()
 		{
-			base.ViewDidLoad();
-			Add(loadingIndicator);
+			base.ViewModelReady();
 
-			ViewModel.WaitForReady(() => InvokeOnMainThread(Update));
-		}
-
-		private void Update()
-		{
-			UIScrollView scrollView = new UIScrollView(new RectangleF(PointF.Empty,View.Frame.Size));
+			if (null != scrollView)
+				scrollView.RemoveFromSuperview();
+		
+			scrollView = new UIScrollView(new RectangleF(PointF.Empty,View.Frame.Size));
 			scrollView.BackgroundColor = UIColor.White;
 
 			Add(scrollView);
@@ -50,8 +47,6 @@ namespace Solvberget.iOS
 			new LabelAndValue(box, "Bibliotek", ViewModel.HomeLibrary);
 			new LabelAndValue(box, "Balanse", ViewModel.Balance);
 			new LabelAndValue(box, "Kredittgrense", ViewModel.Credit);
-
-			loadingIndicator.Hide();
 
 			UIHelpers.SetContentSize(scrollView);
 		}

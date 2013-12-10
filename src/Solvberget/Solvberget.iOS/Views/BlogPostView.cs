@@ -20,34 +20,23 @@ namespace Solvberget.iOS
 			}
 		}
 
-		LoadingOverlay _loadingOverlay;
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		{
+			base.ViewDidLoad();
+
+			LoadingOverlay.LoadingText = "Henter bloggpost...";
 
 			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Action, OnViewInBrowser), true);
+		}
 
-			ViewModel.WaitForReady(() => InvokeOnMainThread(RenderView));
-
-			_loadingOverlay = new LoadingOverlay();
-			Add(_loadingOverlay);
-        }
-
-		void RenderView()
+		protected override void ViewModelReady()
 		{
-			_loadingOverlay.Hide();
-
 			var styles = "<style>body { font-family: Open Sans }</style>";
 			var html = styles + ViewModel.Content + "<p style=color:gray>Publisert av " + ViewModel.Author + ", " + ViewModel.Published.ToString("ddd d. MMM yyyy");
 
-
 			WebView.LoadHtmlString(html, null);
+
+			base.ViewModelReady();
 		}
 
 		private void OnViewInBrowser(object sender, EventArgs e)

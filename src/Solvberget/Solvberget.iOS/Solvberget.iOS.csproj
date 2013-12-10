@@ -193,7 +193,6 @@
     <Compile Include="Views\LoginView.designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\NamedTabViewController.cs" />
     <Compile Include="Views\MyFavoritesView.designer.cs">
       <DependentUpon>MyPageFavoritesView.cs</DependentUpon>
     </Compile>

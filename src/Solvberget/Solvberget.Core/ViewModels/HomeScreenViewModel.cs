@@ -59,6 +59,8 @@ namespace Solvberget.Core.ViewModels
                     IconChar = "c"
                 }
             };
+
+			NotifyViewModelReady();
         }
 
         public void Init()

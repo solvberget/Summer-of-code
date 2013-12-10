@@ -26,33 +26,29 @@ namespace Solvberget.iOS
         {
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-		}
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
 
-		LoadingOverlay _loadingOverlay = new LoadingOverlay();
+			LoadingOverlay.LoadingText = "Henter detaljer...";
+		}
 
 		BoxRenderer _boxes;
 
-
-		public override void ViewWillAppear(bool animated)
+		protected override void ViewModelReady()
 		{
-			base.ViewWillAppear(animated);
+			base.ViewModelReady();
 
+			foreach (var s in ScrollView.Subviews)
+				s.RemoveFromSuperview();
+		
 			_boxes = new BoxRenderer(ScrollView);
 
 			RatingSourceLabel.Text = HeaderLabel.Text = SubtitleLabel.Text = TypeLabel.Text = String.Empty;
 
 			Style();
-
-			Add(_loadingOverlay);
-
-			ViewModel.WaitForReady(() => InvokeOnMainThread(Update));
-        }
+			Update();
+		}
 
 		private void Style()
         {
@@ -69,8 +65,29 @@ namespace Solvberget.iOS
 			TypeLabel.TextColor = Application.ThemeColors.MainInverse;
 		}
 
-        private void UpdateFavoriteButtonState()
+		LoadingOverlay _loadingOverlay = new LoadingOverlay();
+
+        private void OnToggleFavorite(object sender, EventArgs e)
         {
+			NavigationItem.RightBarButtonItem.Enabled = false;
+			ToggleFavorite();
+        }
+
+		private async void ToggleFavorite()
+		{
+			Thread.Sleep(TimeSpan.FromSeconds(3));
+
+			if (ViewModel.IsFavorite) await ViewModel.RemoveFavorite();
+			else await ViewModel.AddFavorite();
+
+			InvokeOnMainThread(() => {
+				UpdateFavoriteButtonState();
+				_loadingOverlay.Hide();
+			});
+		}
+
+		private void UpdateFavoriteButtonState()
+		{
 			if (null == NavigationItem.RightBarButtonItem)
 			{
 				var image = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26,26));
@@ -78,23 +95,7 @@ namespace Solvberget.iOS
 			}
 
 			NavigationItem.RightBarButtonItem.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
-      }
-
-        private void OnToggleFavorite(object sender, EventArgs e)
-        {
-			Add(_loadingOverlay);
-			InvokeInBackground(ToggleFavorite);
-        }
-
-		private void ToggleFavorite()
-		{
-			if (ViewModel.IsFavorite) ViewModel.RemoveFavorite();
-			else ViewModel.AddFavorite();
-
-			InvokeOnMainThread(() => {
-				UpdateFavoriteButtonState();
-				_loadingOverlay.Hide();
-			});
+			NavigationItem.RightBarButtonItem.Enabled = true;
 		}
 
 		private void Update()
@@ -175,14 +176,24 @@ namespace Solvberget.iOS
 
 				var reserve = new UIButton();
 
-				//reserve.TouchUpInside += (s,e) => ??
-				reserve.SetTitle(availability.ButtonText, UIControlState.Normal);
+				reserve.TouchUpInside += (s, e) => availability.PlaceHoldRequestCommand.Execute(null);
 
-				reserve.SetTitleColor(Application.ThemeColors.Main2, UIControlState.Highlighted);
-				reserve.SetTitleColor(Application.ThemeColors.Main, UIControlState.Normal);
+				var set = this.CreateBindingSet<MediaDetailView, MediaDetailViewModel>();
+				set.Bind(reserve).For("Title").To(vm => vm.ButtonText);
+				set.Bind(reserve).For("Enabled").To(vm => vm.ButtonEnabled);
+				set.Apply();
+
+
+				//reserve.SetTitle(availability.ButtonText, UIControlState.Normal);
+
+				reserve.SetTitleColor(Application.ThemeColors.ButtonDisabledTextColor, UIControlState.Disabled);
+				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor, UIControlState.Normal);
+				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Selected);
+				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Highlighted);
 				reserve.Font = Application.ThemeColors.ButtonFont;
+				reserve.BackgroundColor = Application.ThemeColors.ButtonBackground;
 
-				reserve.Frame = new RectangleF(new PointF(padding, box.Subviews.Last().Frame.Bottom+padding), reserve.SizeThatFits(SizeF.Empty));
+				reserve.Frame = new RectangleF(padding, box.Subviews.Last().Frame.Bottom+padding, 150f, reserve.SizeThatFits(new SizeF(0f,0f)).Height);
 
 				box.Add(reserve);
 				box.Frame = new RectangleF(box.Frame.Location, new SizeF(box.Frame.Width, reserve.Frame.Bottom+padding));

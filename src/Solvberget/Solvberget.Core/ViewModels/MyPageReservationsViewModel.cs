@@ -5,6 +5,8 @@ using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 
 namespace Solvberget.Core.ViewModels
@@ -101,5 +103,22 @@ namespace Solvberget.Core.ViewModels
         {
             Reservations.Add(reservationViewModel);
         }
+
+		private MvxCommand<ReservationViewModel> _showDetailsCommand;
+		public ICommand ShowDetailsCommand
+		{
+			get
+			{
+				return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<ReservationViewModel>(ExecuteShowDetailsCommand));
+			}
+		}
+
+		private void ExecuteShowDetailsCommand(ReservationViewModel model)
+		{
+			if (model.DocumentNumber != "")
+			{
+				ShowViewModel<MediaDetailViewModel>(new { title = model.DocumentTitle, docId = model.DocumentNumber });
+			}
+		}
     }
 }

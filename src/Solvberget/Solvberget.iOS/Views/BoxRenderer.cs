@@ -44,7 +44,7 @@ namespace Solvberget.iOS
 			label.Font = Application.ThemeColors.HeaderFont;
 			label.TextColor = Application.ThemeColors.Main;
 
-			var y = _container.Subviews.Where(s => !(s is UIImageView)).Last().Frame.Bottom + _padding;
+			var y = _container.Subviews.Length == 0 ? _padding : _container.Subviews.Last().Frame.Bottom + _padding;
 			label.Frame = new RectangleF(_padding, y, _boxWidthMinusPadding, label.SizeThatFits(new SizeF(_boxWidthMinusPadding, 0)).Height);
 
 			_container.Add(label);

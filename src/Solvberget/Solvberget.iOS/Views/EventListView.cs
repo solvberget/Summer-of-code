@@ -19,22 +19,24 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
 
+			LoadingOverlay.LoadingText = "Henter arrangementer...";
+		}
+
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
+		
 			var source = new SimpleTableViewSource<EventViewModel>(TableView, CellBindings.Events);
 
 			TableView.Source = source;
 
-			var loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
-
 			var set = this.CreateBindingSet<EventListView, EventListViewModel>();
 			set.Bind(source).To(vm => vm.Events);
             set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();
 

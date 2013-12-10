@@ -23,7 +23,7 @@ namespace Solvberget.iOS
 
 		private UIBarButtonItem CreateSliderButton(string imageName, PanelType panelType)
 		{
-			var button = new UIBarButtonItem(UIImage.FromBundle(imageName).Scale(new SizeF(30,30)), UIBarButtonItemStyle.Plain, 
+			var button = new UIBarButtonItem(UIImage.FromBundle(imageName).Scale(new SizeF(20,20)), UIBarButtonItemStyle.Plain, 
 
 				(s,e) => {
 				SlidingPanelsNavigationViewController navController = NavigationController as SlidingPanelsNavigationViewController;
@@ -31,6 +31,15 @@ namespace Solvberget.iOS
 				});
 
 			return button;
+		}
+
+		public override void ViewWillDisappear(bool animated)
+		{
+			base.ViewWillDisappear(animated);
+
+			if(UIHelpers.MinVersion7) return;
+
+			NavigationItem.Title = "Hjem";
 		}
 
         public override void ViewDidLoad()

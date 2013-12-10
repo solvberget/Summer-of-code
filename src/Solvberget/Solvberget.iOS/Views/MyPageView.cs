@@ -31,6 +31,8 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
+			LoadingOverlay.LoadingText = "Henter din side...";
+
 			var source = new StandardTableViewSource(TableView, UITableViewCellStyle.Default,
 				"MyPageSections", "TitleText Title");
 

@@ -166,9 +166,7 @@ namespace Solvberget.iOS
 			}
 			else
 			{
-				// todo: style navigation bar for ios6
 				navController.NavigationBar.TintColor = Application.ThemeColors.Main;
-
 			}
 
             return navController;

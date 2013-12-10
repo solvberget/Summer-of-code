@@ -12,20 +12,12 @@ namespace Solvberget.iOS
     {
 		public new OpeningHoursLocationViewModel ViewModel { get { return base.ViewModel as OpeningHoursLocationViewModel; } }
 
-		LoadingOverlay loadingIndicator;
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
-			loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
-
-			ViewModel.WaitForReady(() => InvokeOnMainThread(Update));
-        }
-
-		private void Update()
+		protected override void ViewModelReady()
 		{
+			base.ViewModelReady();
+
+			LoadingOverlay.LoadingText = "Henter åpningstider...";
+		
 			var source = new StandardTableViewSource(TableView, 
 				"TitleText Key + If(Value.Length>0, ': ','') + Value");
 
@@ -36,12 +28,10 @@ namespace Solvberget.iOS
 			var set = this.CreateBindingSet<OpeningHoursLocationView, OpeningHoursLocationViewModel>();
 			set.Bind(source).To(vm => vm.Hours);
 
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
 			TableView.ReloadData();
 
-			loadingIndicator.Hide();
 		}
     }
 }

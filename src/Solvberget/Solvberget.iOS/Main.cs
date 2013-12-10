@@ -36,6 +36,10 @@ namespace Solvberget.iOS
 
 			public static UIColor MainInverse = UIColor.White;
 
+			public static UIColor ButtonBackground = Main;
+			public static UIColor ButtonTextColor = MainInverse;
+			public static UIColor ButtonDisabledTextColor = MainInverse.ColorWithAlpha(0.3f);
+
 			public static UIColor VerySubtle = UIColor.FromRGB(244,244,244);
 			public static UIColor Subtle = UIColor.FromRGB(206, 206, 206);
 

@@ -20,29 +20,15 @@ namespace Solvberget.iOS
 			}
 		}
 
-		public override void DidReceiveMemoryWarning()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning();
-
-			// Release any cached data, images, etc that aren't in use.
-		}
-
-		LoadingOverlay loadingIndicator;
-
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
+			LoadingOverlay.LoadingText = "Henter blogg...";
+
 			StyleView();
 
 			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Action, OnViewInBrowser), true);
-
-			ViewModel.WaitForReady(() => InvokeOnMainThread(RenderView));
-
-			loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
-
 		}
 
 		void StyleView()
@@ -53,8 +39,10 @@ namespace Solvberget.iOS
 			DescriptionLabel.Lines = 0;
 		}
 
-		private void RenderView()
+		protected override void ViewModelReady()
 		{
+			base.ViewModelReady();
+
 			var padding = 10.0f;
 
 			DescriptionLabel.Text = ViewModel.Description;
@@ -64,6 +52,9 @@ namespace Solvberget.iOS
 			DescriptionContainer.Frame = new RectangleF(0, 0, 320, DescriptionLabel.Frame.Height + padding*2);
 
 			var y = padding;
+
+			foreach (var s in ItemsContainer.Subviews)
+				s.RemoveFromSuperview();
 
 			foreach (var post in ViewModel.Posts)
 			{
@@ -87,8 +78,6 @@ namespace Solvberget.iOS
 
 			ScrollContainer.ContentSize = new SizeF(320, y + icY);
 			ScrollContainer.ScrollEnabled = true;
-
-			loadingIndicator.Hide();
 		}
 
 		private void OnViewInBrowser(object sender, EventArgs e)

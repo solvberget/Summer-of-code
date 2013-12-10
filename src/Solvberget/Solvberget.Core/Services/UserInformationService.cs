@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,27 +56,31 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<string> AddUserFavorite(string documentNumber)
+		public async Task<RequestReplyDto> AddUserFavorite(string documentNumber)
         {
             try
             {
-                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "PUT");
-            }
+				var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "PUT");
+
+				return JsonConvert.DeserializeObject<RequestReplyDto>(response);
+			}
             catch (Exception e)
             {
-                return e.Message;
+				return new RequestReplyDto{Reply = e.Message, Success = false};
             }
         }
 
-        public async Task<string> RemoveUserFavorite(string documentNumber)
+		public async Task<RequestReplyDto> RemoveUserFavorite(string documentNumber)
         {
             try
             {
-                return await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "DELETE");
-            }
+				var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "DELETE");
+
+				return JsonConvert.DeserializeObject<RequestReplyDto>(response);
+			 }
             catch (Exception e)
-            {
-                return e.Message;
+			{
+				return new RequestReplyDto{Reply = e.Message, Success = false};
             }
         }
 

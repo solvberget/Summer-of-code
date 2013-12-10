@@ -18,35 +18,31 @@ namespace Solvberget.iOS
 			}
 		}
 
-		public override void ViewDidLoad()
+		protected override void ViewModelReady()
 		{
-			base.ViewDidLoad();
-
+			base.ViewModelReady();
+		
 			var source = new SimpleTableViewSource<LoanViewModel>(TableView, CellBindings.Loans);
 			TableView.Source = source;
-
-			var loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<MyPageLoansView, MyPageLoansViewModel>();
 			set.Bind(source).To(vm => vm.Loans);
 			//set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
 
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
-			ViewModel.WaitForReady(() => InvokeOnMainThread(OnViewModelReady));
-
 			TableView.ReloadData();
-		}
 
-		private void OnViewModelReady()
-		{
+			_noRows.RemoveFromSuperview();
+
 			if (ViewModel.Loans.Count == 0)
 			{
-				Add(new UILabel(new RectangleF(10, 10, 300, 30)){ Text = "Du har ingen lån.", Font = Application.ThemeColors.DefaultFont });
+				_noRows = new UILabel(new RectangleF(10, 10, 300, 30)){ Text = "Du har ingen lån.", Font = Application.ThemeColors.DefaultFont };
+				Add(_noRows);
 			}
 		}
+
+		UILabel _noRows = new UILabel();
 	}
 	
 }

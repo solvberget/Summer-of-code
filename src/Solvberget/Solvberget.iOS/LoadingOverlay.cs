@@ -49,11 +49,28 @@ namespace Solvberget.iOS
 				labelHeight
 			));
 			loadingLabel.BackgroundColor = UIColor.Clear;
+			loadingLabel.Font = Application.ThemeColors.MenuFont;
 			loadingLabel.TextColor = UIColor.White;
-			loadingLabel.Text = "Laster...";
+			loadingLabel.Text = LoadingText;
 			loadingLabel.TextAlignment = UITextAlignment.Center;
 			loadingLabel.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			AddSubview (loadingLabel);
+		}
+
+		string _loadingText = "Laster...";
+
+		public string LoadingText
+		{
+			get
+			{ 
+				return _loadingText;
+			}
+			set
+			{
+				_loadingText = value;
+				if (null != loadingLabel)
+					loadingLabel.Text = value;
+		 	}
 		}
 
 		/// <summary>

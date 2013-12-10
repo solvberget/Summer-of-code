@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Solvberget.Core.DTOs;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -108,15 +109,27 @@ namespace Solvberget.Core.ViewModels
         private async void ExecutePlaceHoldRequestCommand()
         {
             _parent.IsLoading = true;
-            var result = await _userService.AddReservation(DocId, Branch);
-            _parent.IsLoading = false;
+			_parent.ButtonEnabled = false;
+			_parent.ButtonText = ButtonText = "Behandler...";
 
-            if (result.Success)
-            {
-                _parent.IsReservable = false;
-                _parent.IsReservedByUser = true;
-                _parent.RefreshButtons();
-            }
+			RequestReplyDto result;
+
+			if (_parent.IsReservedByUser)
+			{
+				result = await _userService.RemoveReservation(DocId, Branch);
+				_parent.IsReservable = result.Success;
+				_parent.IsReservedByUser = !result.Success;
+			}
+			else
+			{
+				result = await _userService.AddReservation(DocId, Branch);
+				_parent.IsReservable = !result.Success;
+				_parent.IsReservedByUser = result.Success;
+			}
+
+            _parent.IsLoading = false;
+			_parent.ButtonEnabled = true;
+            _parent.RefreshButtons();
             
         }
 

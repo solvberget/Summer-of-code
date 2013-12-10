@@ -8,6 +8,7 @@ using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System.Threading.Tasks;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -44,7 +45,7 @@ namespace Solvberget.Core.ViewModels
             var docsReservedByUser = await _userService.GetUserReserverdDocuments();
 
             IsReservedByUser = docsReservedByUser.Contains(docId);
-            ButtonEnabled = !IsReservedByUser && LoggedIn;
+            ButtonEnabled = LoggedIn;
             IsFavorite = await _userService.IsFavorite(docId);
 
             ButtonText = GenerateButtonText();
@@ -117,7 +118,7 @@ namespace Solvberget.Core.ViewModels
 
         private bool GenerateIsReservable()
         {
-            return LoggedIn && !IsReservedByUser;
+			return LoggedIn;// && !IsReservedByUser;
         }
 
         private string GenerateButtonText()
@@ -129,7 +130,7 @@ namespace Solvberget.Core.ViewModels
 
             if (IsReservedByUser)
             {
-                return "Reservert";
+				return "Kanseller reservasjon";
             }
 
             return "Reserver";
@@ -297,18 +298,24 @@ namespace Solvberget.Core.ViewModels
             set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
         }
 
-		public void AddFavorite()
+		public async Task AddFavorite()
         {
-			var result = _userService.AddUserFavorite(DocId);
+			var result = await _userService.AddUserFavorite(DocId);
             
-            IsFavorite = true;
+			if (result.Success)
+			{
+				IsFavorite = true;
+			}
         }
 
-		public void RemoveFavorite()
+		public async Task RemoveFavorite()
         {
-			var result = _userService.RemoveUserFavorite(DocId);
+			var result = await _userService.RemoveUserFavorite(DocId);
 
-            IsFavorite = false;
+			if(result.Success)
+			{
+            	IsFavorite = false;
+			}
         }
 
         private bool _isReservable;
@@ -342,7 +349,7 @@ namespace Solvberget.Core.ViewModels
 
         public void RefreshButtons()
         {
-            IsReservable = GenerateIsReservable();
+			ButtonEnabled = IsReservable = GenerateIsReservable();
             ButtonText = GenerateButtonText();
             foreach (var availability in Availabilities)
             {

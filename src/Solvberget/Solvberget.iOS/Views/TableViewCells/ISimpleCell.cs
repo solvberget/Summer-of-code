@@ -11,6 +11,8 @@ namespace Solvberget.iOS
 		void Bind(string title, string subtitle);
 		void SetImage(UIImage image);
 		string ImageUrl{get;set;}
+
+		float TableWidth { get; set;}
 	}
 	
 }

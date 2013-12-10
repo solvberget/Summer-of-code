@@ -22,32 +22,31 @@ namespace Solvberget.iOS
 		public NewsListingView() : base()
 		{}
 
-		public override void DidReceiveMemoryWarning()
-		{
-			base.DidReceiveMemoryWarning();
-		}
-
-		LoadingOverlay loadingIndicator;
-
 		UIScrollView container;
 
 		public override void ViewDidLoad()
 		{
+			View.BackgroundColor = UIColor.White;
 			base.ViewDidLoad();
+		}
 
-			View.Frame = new RectangleF(0,64, View.Frame.Width, View.Frame.Height - 64);
-			View.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
+
+			LoadingOverlay.LoadingText = "Henter nyheter...";
+
+			if (null != container)
+				container.RemoveFromSuperview();
+		
+			//View.Frame = new RectangleF(View.Frame);
+			View.AutoresizingMask = UIViewAutoresizing.All;
 			container = new UIScrollView(new RectangleF(PointF.Empty, View.Frame.Size));
 
 			View.Add(container);
 
 			StyleView();
-
-			ViewModel.WaitForReady(() => InvokeOnMainThread(RenderView));
-
-			loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
-
+			RenderView();
 		}
 
 		void StyleView()
@@ -65,6 +64,7 @@ namespace Solvberget.iOS
 			foreach (var item in ViewModel.Stories)
 			{
 				var itemCtrl = new TitleAndSummaryItem();
+				itemCtrl.View.Frame = new RectangleF(padding, y, container.Frame.Width - (2*padding), 50.0f);
 
 				itemCtrl.Clicked += (sender, e) => UIApplication.SharedApplication.OpenUrl(new NSUrl(item.Uri.OriginalString));
 
@@ -74,15 +74,11 @@ namespace Solvberget.iOS
 
 				container.Add(itemCtrl.View);
 
-				itemCtrl.Frame = new RectangleF(padding, y, itemCtrl.Frame.Width, itemCtrl.Frame.Height + padding);
-
 				y += itemCtrl.Frame.Height + padding;
 			}
 
 			container.ContentSize = new SizeF(320, y);
 			container.ScrollEnabled = true;
-
-			loadingIndicator.Hide();
 		}
     }
 }

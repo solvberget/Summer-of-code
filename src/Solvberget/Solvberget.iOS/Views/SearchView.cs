@@ -23,12 +23,6 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-
-        }
-
 		SimpleTableViewSource<SearchResultViewModel> _resultsSource;
 
         public override void ViewDidLoad()
@@ -48,13 +42,13 @@ namespace Solvberget.iOS
 			_resultsSource = new SimpleTableViewSource<SearchResultViewModel>(Results, CellBindings.SearchResults);
 			Results.Source = _resultsSource;
 
-			var loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
+
+			LoadingOverlay.LoadingText = "Søker...";
 
 			var set = this.CreateBindingSet<SearchView, SearchViewModel>();
 			set.Bind(_resultsSource).To(vm => vm.Results);
 			set.Bind(_resultsSource).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
+			set.Bind(LoadingOverlay).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
 			Results.ReloadData();

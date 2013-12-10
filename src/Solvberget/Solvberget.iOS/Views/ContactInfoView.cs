@@ -8,7 +8,6 @@ namespace Solvberget.iOS
 {
 	public class ContactInfoView : NamedTableViewController
 	{
-
 		public ContactInfoView() : base()
         {}
 
@@ -18,21 +17,22 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
+			LoadingOverlay.LoadingText = "Henter kontaktinformasjon...";
+		}
 
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
+		
 			var source = new StandardTableViewSource(TableView, UITableViewCellStyle.Default,
 				"ContactInfoItems", "TitleText Title");
 
 			TableView.Source = source;
 
-
-			var loadingIndicator = new LoadingOverlay();
-			Add(loadingIndicator);
-
 			var set = this.CreateBindingSet<ContactInfoView, ContactInfoViewModel>();
 			set.Bind(source).To(vm => vm.InfoBoxes);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
 
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			set.Apply();
 
 			TableView.ReloadData();
