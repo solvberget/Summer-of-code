@@ -15,7 +15,10 @@ namespace Solvberget.Nancy.Modules
                     {
                         "PBZJGT", new[]
                             {
-                                new SlideConfigDto { Template = "views/screen_news.html", Duration = 3000},
+                                new SlideConfigDto { Template = "views/screen_news.html", Duration = 3000, SlideOptions = new Dictionary<string, string>
+                                    {
+                                        {"filterby", "something"}
+                                    }},
                                 new SlideConfigDto { Template = "views/screen_events.html", Duration = 3000}
                             }
                     },

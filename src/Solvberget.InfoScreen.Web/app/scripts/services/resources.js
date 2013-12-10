@@ -8,5 +8,5 @@ angular.module('solvbergetinfoScreenwebApp')
         return $resource($$config.apiPrefixEscaped() + 'events/').query();
     })
     .factory('slides', function($resource) {
-        return $resource($$config.apiPrefixEscaped() + 'slides/default');
+        return function(screenId) { return $resource($$config.apiPrefixEscaped() + 'slides/' + screenId); };
     });
