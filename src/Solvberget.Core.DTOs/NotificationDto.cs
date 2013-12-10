@@ -1,6 +1,6 @@
 ﻿namespace Solvberget.Core.DTOs
 {
-    public class NotificationDto
+    public class NotificationDto : RequestReplyDto
     {
         public string Type { get; set; }
         public string Title { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Solvberget.Core.DTOs
 {
-    public class FineDto
+    public class FineDto : RequestReplyDto
     {
         public DateTime? Date { get; set; }
         public string Status { get; set; }

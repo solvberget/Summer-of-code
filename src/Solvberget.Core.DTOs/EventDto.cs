@@ -2,7 +2,7 @@
 
 namespace Solvberget.Core.DTOs
 {
-    public class EventDto
+    public class EventDto : RequestReplyDto
     {
         public long Id { get; set; }
 

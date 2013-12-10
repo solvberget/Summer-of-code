@@ -10,7 +10,7 @@ namespace Solvberget.Core.DTOs
         public BlogPostOverviewDto[] Posts { get; set; }
     }
 
-    public class BlogPostOverviewDto
+    public class BlogPostOverviewDto : RequestReplyDto
     {
         public long Id { get; set; }
         public string Title { get; set; }

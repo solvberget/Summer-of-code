@@ -11,77 +11,42 @@ namespace Solvberget.Core.Services
 {
     public class UserInformationService : IUserService
     {
-        private readonly IStringDownloader _downloader;
+        private readonly DtoDownloader _downloader;
+        private readonly IStringDownloader _rawHttp;
 
-        public UserInformationService(IStringDownloader downloader)
+        public UserInformationService(DtoDownloader downloader, IStringDownloader stringDownloader)
         {
             _downloader = downloader;
+            _rawHttp = stringDownloader;
         }
 
         public async Task<UserInfoDto> GetUserInformation(string userId)
         {
-            try
-            {
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_UserInfo);
-                return JsonConvert.DeserializeObject<UserInfoDto>(response);
-            }
-            catch (Exception e)
-            {
-                return new UserInfoDto
-                {
-                    Name = "Feil ved lasting, kunne desverre ikke finne brukeren. Prøv igjen senere.",
-                };
-            }
+            return await _downloader.Download<UserInfoDto>(Resources.ServiceUrl + Resources.ServiceUrl_UserInfo);
         }
 
         public async Task<List<FavoriteDto>> GetUserFavorites()
         {
-            try
+            var result = await _downloader.DownloadList<FavoriteDto>(Resources.ServiceUrl + Resources.ServiceUrl_Favorites);
+            if (result.Success) return result.Results;
+
+            return new List<FavoriteDto>{new FavoriteDto
             {
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites);
-                return JsonConvert.DeserializeObject<List<FavoriteDto>>(response);
-            }
-            catch (Exception)
-            {
-                return new List<FavoriteDto>
+                Document = new DocumentDto
                 {
-                    new FavoriteDto
-                    {
-                        Document = new DocumentDto
-                        {
-                            Title = "Feil ved lasting, kunne desverre ikke finne listen. Prøv igjen senere.",
-                        }
-                    }
-                };
-            }
+                    Title = "Feil ved lasting, kunne desverre ikke finne listen. Prøv igjen senere.",
+                }
+            }};
         }
 
 		public async Task<RequestReplyDto> AddUserFavorite(string documentNumber)
         {
-            try
-            {
-				var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "PUT");
-
-				return JsonConvert.DeserializeObject<RequestReplyDto>(response);
-			}
-            catch (Exception e)
-            {
-				return new RequestReplyDto{Reply = e.Message, Success = false};
-            }
+            return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "PUT");
         }
 
 		public async Task<RequestReplyDto> RemoveUserFavorite(string documentNumber)
         {
-            try
-            {
-				var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "DELETE");
-
-				return JsonConvert.DeserializeObject<RequestReplyDto>(response);
-			 }
-            catch (Exception e)
-			{
-				return new RequestReplyDto{Reply = e.Message, Success = false};
-            }
+            return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + Resources.ServiceUrl_Favorites + documentNumber, "DELETE");
         }
 
         public async Task<MessageDto> Login(string userId, string userPin)
@@ -94,8 +59,7 @@ namespace Solvberget.Core.Services
                     {"Password", userPin}
                 };
 
-                var response = await _downloader.PostForm(Resources.ServiceUrl + Resources.ServiceUrl_Login, formData);
-
+                var response = await _rawHttp.PostForm(Resources.ServiceUrl + Resources.ServiceUrl_Login, formData);
                 return JsonConvert.DeserializeObject<MessageDto>(response);
             }
             catch (Exception e)
@@ -109,42 +73,21 @@ namespace Solvberget.Core.Services
 
         public async Task<RequestReplyDto> AddReservation(string documentNumber, string branch)
         {
-            try
-            {
-                var result = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "PUT");
-                return JsonConvert.DeserializeObject<RequestReplyDto>(result);
-            }
-            catch (Exception e)
-            {
-                return new RequestReplyDto {Reply = e.Message, Success = false};
-            }
+            return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "PUT");
         }
 
         public async Task<RequestReplyDto> RemoveReservation(string documentNumber, string branch)
         {
-            try
-            {
-                var result = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "DELETE");
-                return JsonConvert.DeserializeObject<RequestReplyDto>(result);
-            }
-            catch (Exception e)
-            {
-                return new RequestReplyDto { Reply = e.Message, Success = false };
-            }
+            return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + Resources.ServiceUrl_Reservations + documentNumber + "?branch=" + branch, "DELETE");
         }
 
         public async Task<List<ReservationDto>> GetUerReservations()
         {
-            try
-            {
+            var result = await _downloader.DownloadList<ReservationDto>(Resources.ServiceUrl + Resources.ServiceUrl_Reservations, "GET");
 
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Reservations, "GET");
+            if (result.Success) return result.Results;
 
-                return JsonConvert.DeserializeObject<List<ReservationDto>>(response);
-            }
-            catch (Exception)
-            {
-                return new List<ReservationDto>
+            return new List<ReservationDto>
                 {
                     new ReservationDto
                     {
@@ -155,7 +98,6 @@ namespace Solvberget.Core.Services
                         }
                     }
                 };
-            }
         }
 
         public async Task<List<string>> GetUserReserverdDocuments()
@@ -177,20 +119,7 @@ namespace Solvberget.Core.Services
 
         public async Task<RequestReplyDto> ExpandLoan(string documentNumber)
         {
-            try
-            {
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Renew + documentNumber, "PUT");
-
-                return JsonConvert.DeserializeObject<RequestReplyDto>(response);
-            }
-            catch (Exception)
-            {
-                return new RequestReplyDto
-                {
-                    Success = false,
-                    Reply = "Feil: Klarte ikke å utvide lånetiden"
-                };
-            }
+            return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + Resources.ServiceUrl_Renew + documentNumber, "PUT");
         }
     }
 }

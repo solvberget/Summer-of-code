@@ -14,7 +14,7 @@ namespace Solvberget.Core.Tests.Services
         [Fact]
         public async Task Should_properly_deserialize_nancy_datetimeoffset_serialization_format()
         {
-            INewsService service = new NewsService(new StaticStringFakeDownloader(Resources.NewsSampleJson));
+            INewsService service = new NewsService(new DtoDownloader(new StaticStringFakeDownloader(Resources.NewsSampleJson)));
             var results = (await service.GetNews()).ToList();
 
             results.Count().Should().Be(10);

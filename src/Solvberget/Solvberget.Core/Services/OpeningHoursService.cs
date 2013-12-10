@@ -9,32 +9,17 @@ namespace Solvberget.Core.Services
 {
     public class OpeningHoursService : IOpeningHoursService
     {
-        private readonly IStringDownloader _downloader;
+        private readonly DtoDownloader _downloader;
 
-        public OpeningHoursService(IStringDownloader downloader)
+        public OpeningHoursService(DtoDownloader downloader)
         {
             _downloader = downloader;
         }
 
         public async Task<IList<OpeningHoursDto>> GetOpeningHours()
         {
-            try
-            {
-                var openingHoursJson =
-                    await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_OpeningHours);
-                return JsonConvert.DeserializeObject<List<OpeningHoursDto>>(openingHoursJson);
-            }
-            catch
-            {
-                return new List<OpeningHoursDto>
-                {
-                    new OpeningHoursDto
-                    {
-                        Title = "Ingen åpningstider",
-                        Hours = new OpeningHourInfoDto[0]
-                    }
-                };
-            }
+            var result = await _downloader.DownloadList<OpeningHoursDto>(Resources.ServiceUrl + Resources.ServiceUrl_OpeningHours);
+            return result.Results;
         }
     }
 }

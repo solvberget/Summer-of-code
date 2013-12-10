@@ -105,12 +105,13 @@ namespace Solvberget.Core.ViewModels
             }
 
             var reviewDto = await review;
-            if (reviewDto != null && !string.IsNullOrEmpty(reviewDto.Review))
+            if (reviewDto.Success && !string.IsNullOrEmpty(reviewDto.Review))
             {
                 Review = reviewDto.Review;
             }
 
-            Rating = await rating;
+            var ratingDto = await rating;
+            if (ratingDto.Success) Rating = ratingDto;
 
 			IsLoading = false;
 			NotifyViewModelReady();

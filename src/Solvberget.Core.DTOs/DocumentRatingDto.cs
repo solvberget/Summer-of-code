@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Solvberget.Core.DTOs
 {
-    public class DocumentRatingDto
+    public class DocumentRatingDto : RequestReplyDto
     {
         public string SourceUrl { get; set; }
         public double Score { get; set; }

@@ -10,30 +10,17 @@ namespace Solvberget.Core.Services
 {
     public class ContactInformationService : IContactInformationService
     {
-        private readonly IStringDownloader _downloader;
+        private readonly DtoDownloader _downloader;
 
-        public ContactInformationService(IStringDownloader downloader)
+        public ContactInformationService(DtoDownloader downloader)
         {
             _downloader = downloader;
         }
 
         public async Task<IList<ContactInfoDto>> GetContactInfo()
         {
-            try
-            {
-                var json = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Contact);
-                return JsonConvert.DeserializeObject<List<ContactInfoDto>>(json);
-            }
-            catch (Exception)
-            {
-                return new List<ContactInfoDto>
-                {
-                    new ContactInfoDto
-                    {
-                        Title = "Klarte desverre ikke å hente kontaktinformasjon"
-                    }
-                };
-            }
+            var result = await _downloader.DownloadList<ContactInfoDto>(Resources.ServiceUrl + Resources.ServiceUrl_Contact);
+            return result.Results;
         }
     }
 }

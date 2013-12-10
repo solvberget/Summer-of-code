@@ -2,7 +2,7 @@
 
 namespace Solvberget.Core.DTOs
 {
-    public class LibrarylistDto
+    public class LibrarylistDto : RequestReplyDto
     {
         public string Id { get; set; }
         public string Name { get; set; }

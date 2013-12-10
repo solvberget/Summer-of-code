@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\ContactInformationService.cs" />
+    <Compile Include="Services\DtoDownloader.cs" />
     <Compile Include="Services\HttpBodyDownloader.cs" />
     <Compile Include="Services\Interfaces\IBlogService.cs" />
     <Compile Include="Services\Interfaces\IContactInformationService.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Services\Interfaces\IUserAuthenticationDataService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\IStringDownloader.cs" />
+    <Compile Include="Services\ListResult.cs" />
     <Compile Include="Services\OpeningHoursService.cs" />
     <Compile Include="Services\Interfaces\ISuggestionsService.cs" />
     <Compile Include="Services\NewsService.cs" />
