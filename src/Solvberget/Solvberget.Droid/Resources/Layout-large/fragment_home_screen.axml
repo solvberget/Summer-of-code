@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:background="@color/s_main_background"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center">
     <Mvx.MvxGridView
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
@@ -12,8 +13,8 @@
         android:numColumns="2"
         android:verticalSpacing="6dp"
         android:horizontalSpacing="6dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="750dp"
         android:stretchMode="columnWidth"
         local:MvxBind="ItemsSource ListElements"
         local:MvxItemTemplate="@layout/item_home_screen_element" />
