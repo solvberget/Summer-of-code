@@ -38,7 +38,7 @@ namespace Solvberget.iOS
 
 			public static UIColor ButtonBackground = Main;
 			public static UIColor ButtonTextColor = MainInverse;
-			public static UIColor ButtonDisabledTextColor = MainInverse.ColorWithAlpha(0.3f);
+			public static UIColor ButtonDisabledTextColor = MainInverse.ColorWithAlpha(0.5f);
 
 			public static UIColor VerySubtle = UIColor.FromRGB(244,244,244);
 			public static UIColor Subtle = UIColor.FromRGB(206, 206, 206);
@@ -54,6 +54,16 @@ namespace Solvberget.iOS
 			public static UIFont ButtonFont = UIFont.FromName("OpenSans-Bold", 13);
 
 			public static UIFont HeaderFont = UIFont.FromName("OpenSans-Bold", 16);
+
+			public static void Style(UIButton reserve)
+			{
+				reserve.SetTitleColor(Application.ThemeColors.ButtonDisabledTextColor, UIControlState.Disabled);
+				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor, UIControlState.Normal);
+				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Selected);
+				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Highlighted);
+				reserve.Font = Application.ThemeColors.ButtonFont;
+				reserve.BackgroundColor = Application.ThemeColors.ButtonBackground;
+			}
 		}
     }
 }

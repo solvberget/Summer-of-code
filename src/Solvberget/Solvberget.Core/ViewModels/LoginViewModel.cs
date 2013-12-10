@@ -16,6 +16,7 @@ namespace Solvberget.Core.ViewModels
             _userAuthenticationService = userAuthenticationDataService;
 
 			Title = "Logg inn";
+			NotifyViewModelReady();
         }
 
         private string _userName;

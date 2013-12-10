@@ -48,6 +48,8 @@ namespace Solvberget.Core.ViewModels
 					Id = id++
                 }).ToList();
             IsLoading = false;
+
+			NotifyViewModelReady();
         }
 
         private MvxCommand<OpeningHoursLocationViewModel> _showDetailsCommand;

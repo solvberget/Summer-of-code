@@ -17,7 +17,7 @@ namespace Solvberget.Core.Services
             _downloader = downloader;
         }
 
-        public async Task<TDto> Download<TDto>(string url, string method = "GET")
+		public virtual async Task<TDto> Download<TDto>(string url, string method = "GET")
             where TDto : RequestReplyDto, new()
         {
             try
@@ -42,7 +42,7 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
+		public virtual async Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
         {
             try
             {

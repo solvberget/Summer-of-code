@@ -1,4 +1,5 @@
 ﻿using Solvberget.Core.ViewModels;
+using Solvberget.Core.Services;
 
 namespace Solvberget.iOS
 {
@@ -41,6 +42,8 @@ namespace Solvberget.iOS
 			var appStart = new MvxAppStart<HomeScreenViewModel>();
 			Mvx.RegisterSingleton<IMvxAppStart>(appStart);
 
+			Mvx.LazyConstructAndRegisterSingleton<DtoDownloader, IosDtoDownloader>();
+
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
 
@@ -49,4 +52,43 @@ namespace Solvberget.iOS
             return true;
         }
     }
+
+	public class IosDtoDownloader : DtoDownloader
+	{
+		public IosDtoDownloader(IStringDownloader stringDownloader) : base(stringDownloader)
+		{}
+		public override async System.Threading.Tasks.Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
+		{
+			var result = await base.DownloadList<TDto>(url, method);
+
+			if (!result.Success)
+			{
+				ShowErrorAlert(result.Reply);
+			}
+
+			return result;
+		}
+
+
+		public override async System.Threading.Tasks.Task<TDto> Download<TDto>(string url, string method = "GET")
+		{
+			var result = await base.Download<TDto>(url, method);
+
+			if (!result.Success)
+			{
+				ShowErrorAlert(result.Reply);
+			}
+
+			return result;
+		}
+
+		static void ShowErrorAlert(string message)
+		{
+			UIAlertView alert = new UIAlertView(UIScreen.MainScreen.Bounds);
+			alert.Title = "Uffda...";
+			alert.Message = message;
+			alert.AddButton("Ok");
+			alert.Show();
+		}
+	}
 }

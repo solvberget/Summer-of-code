@@ -14,15 +14,7 @@ namespace Solvberget.iOS
         {
         }
 
-		private new LoginViewModel ViewModel { get { return base.ViewModel as LoginViewModel;}}
-
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
+		public new LoginViewModel ViewModel { get { return base.ViewModel as LoginViewModel; }}
 
 		LoadingOverlay _loadingOverlay = new LoadingOverlay();
 
@@ -30,9 +22,14 @@ namespace Solvberget.iOS
         {
             base.ViewDidLoad();
 
+			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoLogin), false);
+
 			UsernameLAbel.Font = PinLabel.Font = Application.ThemeColors.LabelFont;
 			UsernameLAbel.TextColor = PinLabel.TextColor = Application.ThemeColors.Main;
-			LostCredentialsButton.TitleLabel.TextColor = Application.ThemeColors.Main;
+
+			Application.ThemeColors.Style(LostCredentialsButton);
+
+			//LostCredentialsButton.TouchUpInside += (s,e) => ViewModel... // todo!!
 
 			var set = this.CreateBindingSet<LoginView, LoginViewModel>();
 			set.Bind(Username).To(vm => vm.UserName);
@@ -51,16 +48,20 @@ namespace Solvberget.iOS
 
 			Password.ShouldReturn += txt =>
 			{
-				Password.ResignFirstResponder();
-				Add(_loadingOverlay);
-				ViewModel.LoginCommand.Execute(null);
+				DoLogin();
 				return true;
 			};
 
 			Username.BecomeFirstResponder();
 
-			// lost pin??
         }
+
+		private void DoLogin(object sender = null, EventArgs args = null)
+		{
+			Password.ResignFirstResponder();
+			Add(_loadingOverlay);
+			ViewModel.LoginCommand.Execute(null);
+		}
     }
 }
 

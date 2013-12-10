@@ -42,16 +42,11 @@ namespace Solvberget.Core.ViewModels
 
             LoggedIn = _userAuthService.UserInfoRegistered();
 
-            var docsReservedByUser = await _userService.GetUserReserverdDocuments();
-
-            IsReservedByUser = docsReservedByUser.Contains(docId);
-            ButtonEnabled = LoggedIn;
-            IsFavorite = await _userService.IsFavorite(docId);
-
+			ButtonEnabled = LoggedIn;
+            
             ButtonText = GenerateButtonText();
             IsReservable = GenerateIsReservable();
             
-
             var document = await _searchService.Get(docId);
             DocId = docId;
             Title = document.Title;
@@ -62,6 +57,8 @@ namespace Solvberget.Core.ViewModels
             Year = (document.Year != 0) ? document.Year.ToString("####") : "Ukjent år";
             Type = document.Type;
             Author = document.MainContributor;
+			IsReservedByUser = document.IsReserved.HasValue && document.IsReserved.Value;
+			IsFavorite = document.IsFavorite.HasValue && document.IsFavorite.Value;
 
             var classification = "";
             if (document.Type == "Book")
@@ -111,7 +108,7 @@ namespace Solvberget.Core.ViewModels
             }
 
             var ratingDto = await rating;
-            if (ratingDto.Success) Rating = ratingDto;
+			if (ratingDto.Success && ratingDto.HasRating) Rating = ratingDto;
 
 			IsLoading = false;
 			NotifyViewModelReady();

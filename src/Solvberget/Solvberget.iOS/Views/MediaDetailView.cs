@@ -39,7 +39,7 @@ namespace Solvberget.iOS
 		{
 			base.ViewModelReady();
 
-			foreach (var s in ScrollView.Subviews)
+			foreach (var s in ScrollView.Subviews.Skip(1)) // leave the header view
 				s.RemoveFromSuperview();
 		
 			_boxes = new BoxRenderer(ScrollView);
@@ -75,8 +75,6 @@ namespace Solvberget.iOS
 
 		private async void ToggleFavorite()
 		{
-			Thread.Sleep(TimeSpan.FromSeconds(3));
-
 			if (ViewModel.IsFavorite) await ViewModel.RemoveFavorite();
 			else await ViewModel.AddFavorite();
 
@@ -90,11 +88,21 @@ namespace Solvberget.iOS
 		{
 			if (null == NavigationItem.RightBarButtonItem)
 			{
-				var image = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26,26));
+				var image = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26, 26));
+
+				if(!ViewModel.IsFavorite && !UIHelpers.MinVersion7)
+				{
+					image = UIImage.FromBundle("/Images/star.off.png").Scale(new SizeF(26, 26));
+				}
+
 				NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, OnToggleFavorite), false);
 			}
 
-			NavigationItem.RightBarButtonItem.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
+			if (UIHelpers.MinVersion7)
+			{
+				NavigationItem.RightBarButtonItem.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
+			}
+				
 			NavigationItem.RightBarButtonItem.Enabled = true;
 		}
 
@@ -184,16 +192,11 @@ namespace Solvberget.iOS
 				set.Apply();
 
 
-				//reserve.SetTitle(availability.ButtonText, UIControlState.Normal);
+				Application.ThemeColors.Style(reserve);
 
-				reserve.SetTitleColor(Application.ThemeColors.ButtonDisabledTextColor, UIControlState.Disabled);
-				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor, UIControlState.Normal);
-				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Selected);
-				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Highlighted);
-				reserve.Font = Application.ThemeColors.ButtonFont;
-				reserve.BackgroundColor = Application.ThemeColors.ButtonBackground;
+				var btnPadding = UIHelpers.MinVersion7 ? 0f : padding;
 
-				reserve.Frame = new RectangleF(padding, box.Subviews.Last().Frame.Bottom+padding, 150f, reserve.SizeThatFits(new SizeF(0f,0f)).Height);
+				reserve.Frame = new RectangleF(padding, box.Subviews.Last().Frame.Bottom+padding, 150f, reserve.SizeThatFits(new SizeF(0f,0f)).Height + btnPadding);
 
 				box.Add(reserve);
 				box.Frame = new RectangleF(box.Frame.Location, new SizeF(box.Frame.Width, reserve.Frame.Bottom+padding));

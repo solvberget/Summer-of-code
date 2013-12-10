@@ -15,6 +15,7 @@ namespace Solvberget.Core.ViewModels
             MyPageFavoritesViewModel = new MyPageFavoritesViewModel(service);
 
 			Title = "Min side";
+			IsLoading = false;
 			NotifyViewModelReady();
         }
 
