@@ -41,14 +41,23 @@ namespace Solvberget.Nancy.Modules
             
             Get["/{id}/rating"] = args =>
             {
-                DocumentRating rating = ratings.GetDocumentRating(args.id);
-                return Response.AsJson(new DocumentRatingDto
+                try
                 {
-                    MaxScore = rating.MaxScore,
-                    Score = rating.Score,
-                    Source = rating.Source,
-                    SourceUrl = rating.SourceUrl
-                });
+                    DocumentRating rating = ratings.GetDocumentRating(args.id);
+
+                    return Response.AsJson(new DocumentRatingDto
+                    {
+                        MaxScore = rating.MaxScore,
+                        Score = rating.Score,
+                        Source = rating.Source,
+                        SourceUrl = rating.SourceUrl,
+                        HasRating = true
+                    });
+                }
+                catch
+                {
+                    return new DocumentRatingDto {Success = true, HasRating = false};
+                }
             };
 
             Get["/{id}/review"] = args =>
