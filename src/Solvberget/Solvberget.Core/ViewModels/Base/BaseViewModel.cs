@@ -1,9 +1,33 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using System.Threading;
+using System;
 
 namespace Solvberget.Core.ViewModels.Base
 {
     public class BaseViewModel : MvxViewModel
     {
+		public static bool AddEmptyItemForEmptyLists = true;
+
+		ManualResetEvent _viewModelReady = new ManualResetEvent(false);
+
+		public void WaitForReady(Action onReady)
+		{
+			ThreadPool.QueueUserWorkItem(s =>
+				{
+					_viewModelReady.WaitOne();
+					onReady();
+				});
+		}
+
+		protected void NotifyViewModelReady()
+		{
+			_viewModelReady.Set();
+		}
+
+		public virtual void OnViewReady()
+		{
+		}
+
         private long _id;
         /// <summary>
         /// Gets or sets the unique ID for the menu

@@ -9,17 +9,25 @@ using System.CodeDom.Compiler;
 
 namespace Solvberget.iOS
 {
-	[Register ("OpeningHoursLocationCell")]
-	partial class OpeningHoursLocationCell
+	[Register ("BlogPostSummaryItem")]
+	partial class TitleAndSummaryItem
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel Title { get; set; }
+		MonoTouch.UIKit.UILabel SummaryLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel TitleLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (Title != null) {
-				Title.Dispose ();
-				Title = null;
+			if (TitleLabel != null) {
+				TitleLabel.Dispose ();
+				TitleLabel = null;
+			}
+
+			if (SummaryLabel != null) {
+				SummaryLabel.Dispose ();
+				SummaryLabel = null;
 			}
 		}
 	}

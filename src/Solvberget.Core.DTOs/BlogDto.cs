@@ -1,6 +1,6 @@
 ﻿namespace Solvberget.Core.DTOs
 {
-    public class BlogDto
+    public class BlogDto : RequestReplyDto
     {
         public string Title { get; set; }
         public long Id { get; set; }

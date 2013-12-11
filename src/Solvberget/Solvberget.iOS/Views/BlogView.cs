@@ -2,15 +2,16 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Cirrious.MvvmCross.Touch.Views;
 using Solvberget.Core.ViewModels;
-using Cirrious.MvvmCross.Binding.Touch.Views;
-using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class BlogView : MvxTableViewController
+	public partial class BlogView : NamedViewController
     {
+        public BlogView() : base("BlogView", null)
+		{
+        }
+
 		public new BlogViewModel ViewModel
 		{
 			get
@@ -19,35 +20,65 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Published", UITableViewCellAccessory.None);
-			TableView.Source = source;
+			LoadingOverlay.LoadingText = "Henter blogg...";
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
-			Add(loadingIndicator);
+			StyleView();
 
-			var set = this.CreateBindingSet<BlogView, BlogViewModel>();
-			set.Bind(source).To(vm => vm.Posts);
-			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
+			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Action, OnViewInBrowser), true);
+		}
 
-			set.Apply();
+		void StyleView()
+		{
+			DescriptionLabel.TextColor = Application.ThemeColors.Main;
+			DescriptionLabel.Font = Application.ThemeColors.DefaultFont;
+			DescriptionLabel.LineBreakMode = UILineBreakMode.WordWrap;
+			DescriptionLabel.Lines = 0;
+		}
 
-			TableView.ReloadData();
-        }
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
+
+			var padding = 10.0f;
+
+			DescriptionLabel.Text = ViewModel.Description;
+			DescriptionLabel.SizeToFit();
+
+			DescriptionContainer.BackgroundColor = Application.ThemeColors.Hero;
+			DescriptionContainer.Frame = new RectangleF(0, 0, View.Frame.Width, DescriptionLabel.Frame.Height + padding*2);
+
+			var y = padding;
+
+			foreach (var s in ItemsContainer.Subviews)
+				s.RemoveFromSuperview();
+
+			foreach (var item in ViewModel.Posts)
+			{
+				var itemCtrl = new TitleAndSummaryItem();
+				itemCtrl.View.Frame = new RectangleF(padding, y, ItemsContainer.Frame.Width - (2*padding), 50.0f);
+
+				itemCtrl.Clicked += (sender, e) => UIApplication.SharedApplication.OpenUrl(new NSUrl(item.Url));
+
+				itemCtrl.TitleLabelText = item.Title;
+
+				if(!String.IsNullOrEmpty(item.Content)) itemCtrl.SummaryLabelText = item.Content.Replace("&nbsp;", " ");
+
+				ItemsContainer.Add(itemCtrl.View);
+
+				y += itemCtrl.Frame.Height + padding;
+			}
+
+			ScrollContainer.ContentSize = new SizeF(ScrollContainer.Bounds.Width, y);
+		}
+
+		private void OnViewInBrowser(object sender, EventArgs e)
+		{
+			UIApplication.SharedApplication.OpenUrl(new NSUrl(ViewModel.Url));
+		}
     }
 }
 

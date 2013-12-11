@@ -1,6 +1,6 @@
 ﻿namespace Solvberget.Core.DTOs
 {
-    public class ContactPersonDto
+    public class ContactPersonDto : RequestReplyDto
     {
         public string Name { get; set; }
         public string Position { get; set; }

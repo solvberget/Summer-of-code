@@ -2,7 +2,7 @@
 
 namespace Solvberget.Core.DTOs
 {
-    public class ContactInfoDto
+    public class ContactInfoDto : RequestReplyDto
     {
         public string Title { get; set; }
         public string Phone { get; set; }

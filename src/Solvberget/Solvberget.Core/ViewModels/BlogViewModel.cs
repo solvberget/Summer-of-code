@@ -5,12 +5,14 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System;
+using System.Threading;
 
 namespace Solvberget.Core.ViewModels
 {
     public class BlogViewModel : BaseViewModel
     {
-        private readonly IBlogService _blogService;
+		private readonly IBlogService _blogService;
 
         public BlogViewModel(IBlogService blogService)
         {
@@ -28,7 +30,13 @@ namespace Solvberget.Core.ViewModels
             IsLoading = true;
             Id = id;
             
-            Posts = (await _blogService.GetBlogPostListing(id)).Posts.Select(p => new BlogPostViewModel(_blogService)
+			var blog = await _blogService.GetBlogPostListing(id);
+
+			Description = blog.Description;
+			Title = blog.Title;
+			Url = blog.Url;
+
+			Posts = blog.Posts.Select(p => new BlogPostViewModel(_blogService)
             {
                 Id = p.Id,
                 Author = p.Author,
@@ -36,10 +44,11 @@ namespace Solvberget.Core.ViewModels
                 Description = p.Description,
                 Title = p.Title,
                 Published = p.Published,
-                Url = "", // TODO: Do we want blog post urls?
+				Url = p.Url,
             }).ToList();
 
             IsLoading = false;
+			NotifyViewModelReady();
         }
 
         private List<BlogPostViewModel> _posts;

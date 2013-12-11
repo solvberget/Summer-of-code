@@ -8,6 +8,7 @@ using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System.Threading.Tasks;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -39,18 +40,9 @@ namespace Solvberget.Core.ViewModels
             var review = _searchService.GetReview(docId);
             var rating = _searchService.GetRating(docId);
 
-            LoggedIn = _userAuthService.UserInfoRegistered();
-
-            var docsReservedByUser = await _userService.GetUserReserverdDocuments();
-
-            IsReservedByUser = docsReservedByUser.Contains(docId);
-            ButtonEnabled = !IsReservedByUser && LoggedIn;
-            IsFavorite = await _userService.IsFavorite(docId);
-
-            ButtonText = GenerateButtonText();
-            IsReservable = GenerateIsReservable();
+			ButtonEnabled = true; // obsolete now?
+			IsReservable = true; // -"-
             
-
             var document = await _searchService.Get(docId);
             DocId = docId;
             Title = document.Title;
@@ -61,6 +53,10 @@ namespace Solvberget.Core.ViewModels
             Year = (document.Year != 0) ? document.Year.ToString("####") : "Ukjent år";
             Type = document.Type;
             Author = document.MainContributor;
+			IsReservedByUser = document.IsReserved.HasValue && document.IsReserved.Value;
+			IsFavorite = document.IsFavorite.HasValue && document.IsFavorite.Value;
+
+			ButtonText = GenerateButtonText();
 
             var classification = "";
             if (document.Type == "Book")
@@ -87,7 +83,7 @@ namespace Solvberget.Core.ViewModels
 
             foreach (var availabilityViewModel in Availabilities)
             {
-                availabilityViewModel.IsReservable = GenerateIsReservable();
+				availabilityViewModel.IsReservable = true;
                 availabilityViewModel.ButtonText = GenerateButtonText();
             }
 
@@ -104,31 +100,28 @@ namespace Solvberget.Core.ViewModels
             }
 
             var reviewDto = await review;
-            if (reviewDto != null && !string.IsNullOrEmpty(reviewDto.Review))
+            if (reviewDto.Success && !string.IsNullOrEmpty(reviewDto.Review))
             {
                 Review = reviewDto.Review;
             }
 
-            Rating = await rating;
+            var ratingDto = await rating;
+			if (ratingDto.Success && ratingDto.HasRating) Rating = ratingDto;
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
 
-        private bool GenerateIsReservable()
-        {
-            return LoggedIn && !IsReservedByUser;
-        }
+		public override void OnViewReady()
+		{
+			LoggedIn = _userAuthService.UserInfoRegistered();
+		}
 
         private string GenerateButtonText()
         {
-            if (!LoggedIn)
-            {
-                return "Logg inn for å reservere";
-            }
-
             if (IsReservedByUser)
             {
-                return "Reservert";
+				return "Kanseller reservasjon";
             }
 
             return "Reserver";
@@ -296,18 +289,42 @@ namespace Solvberget.Core.ViewModels
             set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
         }
 
-        public void AddFavorite()
+		public async Task AddFavorite()
         {
-            var result = _userService.AddUserFavorite(DocId);
+			if (!LoggedIn)
+			{
+				GotoLogin();
+				return;
+			}
+
+			var result = await _userService.AddUserFavorite(DocId);
             
-            IsFavorite = true;
+			if (result.Success)
+			{
+				IsFavorite = true;
+			}
         }
 
-        public void RemoveFavorite()
+		public async Task RemoveFavorite()
         {
-            _userService.RemoveUserFavorite(DocId);
-            IsFavorite = false;
+			if (!LoggedIn)
+			{
+				GotoLogin();
+				return;
+			}
+
+			var result = await _userService.RemoveUserFavorite(DocId);
+
+			if(result.Success)
+			{
+            	IsFavorite = false;
+			}
         }
+
+		public void GotoLogin()
+		{
+			ShowViewModel<LoginViewModel>(new MvxBundle(new Dictionary<string,string>{{"navigateBackOnLogin", "true"}}));
+		}
 
         private bool _isReservable;
         public bool IsReservable
@@ -340,7 +357,6 @@ namespace Solvberget.Core.ViewModels
 
         public void RefreshButtons()
         {
-            IsReservable = GenerateIsReservable();
             ButtonText = GenerateButtonText();
             foreach (var availability in Availabilities)
             {

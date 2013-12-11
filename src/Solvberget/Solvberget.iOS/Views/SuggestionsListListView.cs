@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class SuggestionsListListView : MvxTableViewController
+	public partial class SuggestionsListListView : NamedTableViewController
     {
 		public new SuggestionsListListViewModel ViewModel
 		{
@@ -19,34 +19,20 @@ namespace Solvberget.iOS
 			}
 		}
 
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
 
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
+			LoadingOverlay.LoadingText = "Henter anbefalinger...";
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Name; DetailText Title", UITableViewCellAccessory.DisclosureIndicator);
+			var source = new SimpleTableViewSource<SuggestionListSummaryViewModel>(TableView, CellBindings.SuggestionLists);
 			TableView.Source = source;
-
-			var loadingIndicator = new LoadingOverlay(View.Frame);
-			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<SuggestionsListListView, SuggestionsListListViewModel>();
 			set.Bind(source).To(vm => vm.Lists);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowListCommand);
-			Title = ViewModel.Title;
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
-			set.Apply();
 
-			NavigationItem.HidesBackButton = true;
+			set.Apply();
 
 			TableView.ReloadData();
         }

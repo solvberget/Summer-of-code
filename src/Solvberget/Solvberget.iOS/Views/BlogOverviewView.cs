@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class BlogOverviewView : MvxTableViewController
+	public partial class BlogOverviewView : NamedTableViewController
     {
 		public new BlogOverviewViewModel ViewModel
 		{
@@ -19,37 +19,28 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Title; DetailText Description", UITableViewCellAccessory.None);
+			LoadingOverlay.LoadingText = "Henter blogger...";
+		}
+	
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
+
+			var source = new SimpleTableViewSource<BlogItemViewModel>(TableView, CellBindings.Blogs);
+
 			TableView.Source = source;
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
-			Add(loadingIndicator);
-				
 			var set = this.CreateBindingSet<BlogOverviewView, BlogOverviewViewModel>();
 			set.Bind(source).To(vm => vm.Blogs);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();
 
-			NavigationItem.HidesBackButton = true;
-
-			TableView.ReloadData();
-        }
+		}
     }
 }
 

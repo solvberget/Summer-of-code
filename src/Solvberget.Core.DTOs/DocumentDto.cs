@@ -1,6 +1,6 @@
 ﻿namespace Solvberget.Core.DTOs
 {
-    public class DocumentDto
+    public class DocumentDto : RequestReplyDto
     {
         public string Id { get; set; }
         public string Title { get; set; }

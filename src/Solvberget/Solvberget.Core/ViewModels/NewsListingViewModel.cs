@@ -4,6 +4,8 @@ using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 using System.Linq;
+using System.Threading;
+using System;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -57,7 +59,8 @@ namespace Solvberget.Core.ViewModels
                     NewsTitle = n.Title
                 }).ToList();
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
     }
 }

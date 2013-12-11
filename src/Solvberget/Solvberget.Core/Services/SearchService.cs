@@ -11,38 +11,26 @@ namespace Solvberget.Core.Services
 {
     class SearchService : ISearchService
     {
-        private readonly IStringDownloader _stringDownloader;
+        private readonly DtoDownloader _dtos;
+        private readonly IStringDownloader _rawHttp;
 
-        public SearchService(IStringDownloader stringDownloader)
+        public SearchService(DtoDownloader stringDownloader, IStringDownloader rawHttp)
         {
-            _stringDownloader = stringDownloader;
+            _dtos = stringDownloader;
+            _rawHttp = rawHttp;
         }
 
         public async Task<IEnumerable<DocumentDto>>  Search(string query)
         {
-            try
-            {
-                var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Search, query));
-                return JsonConvert.DeserializeObject<List<DocumentDto>>(response);
-            }
-            catch (Exception e)
-            {
-                Mvx.Trace(e.Message);
-                return new List<DocumentDto>
-                {
-                    new DocumentDto
-                    {
-                        Title = "Kunne ikke hente resultater"
-                    }
-                };
-            }
+            var result = await _dtos.DownloadList<DocumentDto>(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Search, query));
+                        return result.Results;
         }
 
         public async Task<DocumentDto> Get(string docId)
         {
             try
             {
-                var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Document, docId));
+                var response = await _rawHttp.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Document, docId));
                 var doc = JsonConvert.DeserializeObject<DocumentDto>(response);
 
                 switch (doc.Type)
@@ -71,35 +59,22 @@ namespace Solvberget.Core.Services
                 Mvx.Trace(e.Message);
                 return new DocumentDto
                 {
-                    Title = "Kunne ikke laste dokument"
+                    Success = false,
+                    Reply = "Kunen ikke laste dokumentet",
+                    Title = "Kunne ikke laste dokumentet"
                 };
             }
         }
 
         public async Task<DocumentRatingDto> GetRating(string docId)
         {
-            try
-            {
-                var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Rating, docId));
-                return JsonConvert.DeserializeObject<DocumentRatingDto>(response);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            var response = await _dtos.Download<DocumentRatingDto>(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Rating, docId));
+            return response;
         }
 
         public async Task<DocumentReviewDto> GetReview(string docId)
         {
-            try
-            {
-                var response = await _stringDownloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Review, docId));
-                return JsonConvert.DeserializeObject<DocumentReviewDto>(response);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return await _dtos.Download<DocumentReviewDto>(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Review, docId));
         }
     }
 }

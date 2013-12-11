@@ -10,48 +10,23 @@ namespace Solvberget.Core.Services
 {
     public class EventService : IEventService
     {
-        private readonly IStringDownloader _downloader;
+        private readonly DtoDownloader _downloader;
 
-        public EventService(IStringDownloader downloader)
+        public EventService(DtoDownloader downloader)
         {
             _downloader = downloader;
         }
 
         public async Task<IList<EventDto>> GetList()
         {
-            try
-            {
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Events);
-                return JsonConvert.DeserializeObject<IList<EventDto>>(response);
-            }
-            catch (Exception)
-            {
-                return new List<EventDto>
-                {
-                    new EventDto
-                    {
-                        Name = "Feil",
-                        Description = "Klarte ikke å laste arrangementer"
-                    }
-                };
-            }
+            var response = await _downloader.DownloadList<EventDto>(Resources.ServiceUrl + Resources.ServiceUrl_Events);
+            return response.Results;
+
         }
 
         public async Task<EventDto> Get(int eventId)
         {
-            try
-            {
-                var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Event, eventId));
-                return JsonConvert.DeserializeObject<EventDto>(response);
-            }
-            catch (Exception)
-            {
-                return new EventDto
-                {
-                    Name = "Feil",
-                    Description = "Klarte ikke å laste arrangement"
-                };
-            }
-        }
+            return await _downloader.Download<EventDto>(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_Event, eventId));
+       }
     }
 }

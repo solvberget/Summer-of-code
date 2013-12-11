@@ -14,7 +14,17 @@ namespace Solvberget.Core.ViewModels
         {
             _service = service;
             _userAuthenticationService = userAuthenticationDataService;
+
+			Title = "Logg inn";
+			NotifyViewModelReady();
         }
+
+		bool _navigateBackOnLogin;
+
+		public void Init(bool navigateBackOnLogin = false)
+		{
+			_navigateBackOnLogin = navigateBackOnLogin;
+		}
 
         private string _userName;
         public string UserName
@@ -73,7 +83,8 @@ namespace Solvberget.Core.ViewModels
 
             if (response.Message.Equals("Autentisering vellykket."))
             {
-                ShowViewModel<MyPageViewModel>();
+				if (_navigateBackOnLogin) Close(this);
+				else ShowViewModel<MyPageViewModel>();
             }
             else if (response.Message.Equals("The remote server returned an error: (401) Unauthorized."))
             {

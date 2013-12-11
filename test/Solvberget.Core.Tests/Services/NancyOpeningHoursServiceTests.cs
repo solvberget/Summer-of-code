@@ -14,7 +14,7 @@ namespace Solvberget.Core.Tests.Services
 
         public NancyOpeningHoursServiceTests()
         {
-            _service = new OpeningHoursService(new StaticStringFakeDownloader(Resources.OpeningHoursSampleJson));
+            _service = new OpeningHoursService(new DtoDownloader(new StaticStringFakeDownloader(Resources.OpeningHoursSampleJson)));
         }
 
         [Fact]

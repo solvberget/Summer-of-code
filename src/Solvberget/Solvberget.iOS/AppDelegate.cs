@@ -1,4 +1,8 @@
 ﻿using Solvberget.Core.ViewModels;
+using Solvberget.Core.Services;
+using Solvberget.Core.DTOs;
+using Cirrious.MvvmCross.Views;
+using System.Collections.Generic;
 
 namespace Solvberget.iOS
 {
@@ -29,15 +33,19 @@ namespace Solvberget.iOS
         /// <param name="options">The options.</param>
         /// <returns>True or false.</returns>
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
-        {
-            this.window = new UIWindow(UIScreen.MainScreen.Bounds);
+		{
+			this.window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
 
             var presenter = new MvxSlidingPanelsTouchViewPresenter(this, this.window);
             var setup = new Setup(this, presenter);
             setup.Initialize();
 
-			var appStart = new MvxAppStart<NewsListingViewModel>();
+			var appStart = new MvxAppStart<HomeScreenViewModel>();
 			Mvx.RegisterSingleton<IMvxAppStart>(appStart);
+
+			Mvx.LazyConstructAndRegisterSingleton<DtoDownloader, IosDtoDownloader>();
 
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
@@ -47,4 +55,5 @@ namespace Solvberget.iOS
             return true;
         }
     }
+
 }

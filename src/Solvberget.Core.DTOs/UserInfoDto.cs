@@ -2,7 +2,7 @@
 
 namespace Solvberget.Core.DTOs
 {
-    public class UserInfoDto
+    public class UserInfoDto : RequestReplyDto
     {
         public string Id { get; set; }
         public bool IsAuthorized { get; set; }

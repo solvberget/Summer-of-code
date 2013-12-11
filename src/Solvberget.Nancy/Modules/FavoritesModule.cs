@@ -21,9 +21,10 @@ namespace Solvberget.Nancy.Modules
             Delete["/{documentId}"] = args =>
             {
                 var document = documents.GetDocument(args.documentId, true);
-                favorites.RemoveFavorite(document, Context.GetUserInfo());
 
-                return new { Success = true };
+                favorites.RemoveFavorite(document, Context.GetUserInfo());
+                
+                return new RequestReplyDto { Success = true };
             };
 
             Put["/{documentId}"] = args =>
@@ -31,7 +32,7 @@ namespace Solvberget.Nancy.Modules
                 var document = documents.GetDocument(args.documentId, true);
                 favorites.AddFavorite(document, Context.GetUserInfo());
 
-                return new { Success = true };
+                return new RequestReplyDto { Success = true };
             };
         }
 

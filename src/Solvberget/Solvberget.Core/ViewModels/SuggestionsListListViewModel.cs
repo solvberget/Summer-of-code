@@ -58,7 +58,8 @@ namespace Solvberget.Core.ViewModels
                                ImageUrl = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_ListImage, n.Id),
                            }).ToList();
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
     }
 }

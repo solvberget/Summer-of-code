@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ServiceUrl" xml:space="preserve">
-    <value>http://80.203.160.221:3535/api</value>
+    <value>http://0684aa9afb9d4ed68633773e9b3cc26d.cloudapp.net/</value>
     <comment>Base API URL</comment>
   </data>
   <data name="ServiceUrl_List" xml:space="preserve">

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using SlidingPanels.Lib.PanelContainers;
 using Solvberget.Core.ViewModels;
 using Cirrious.MvvmCross.Binding.Touch.Views;
+using System.Linq;
 
 namespace Solvberget.iOS
 {
@@ -48,26 +49,28 @@ namespace Solvberget.iOS
 			NavigationItem.LeftBarButtonItem = CreateSliderButton("Images/SlideRight40.png", PanelType.LeftPanel);
 		}
 
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning();
-
-			// Release any cached data, images, etc that aren't in use.
-		}
+		SolvbergetTableViewSource source;
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad();
 
-			var source = new MvxStandardTableViewSource(MenuTableView, UITableViewCellStyle.Default, new NSString("TableViewCell"), "TitleText Title;", UITableViewCellAccessory.None);
+			source = new SolvbergetTableViewSource(MenuTableView, UITableViewCellStyle.Default, new NSString("TableViewCell"), "TitleText Title;", UITableViewCellAccessory.None);
+
+			source.BackgroundColor = Application.ThemeColors.Main2;
+			source.TextColor = Application.ThemeColors.MainInverse;
+			source.TintColor = Application.ThemeColors.Main;
+
+			View.BackgroundColor = UIColor.Clear;
+			MenuTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 
 			MenuTableView.Source = source;
+			MenuTableView.BackgroundColor = UIColor.Clear;
+			MenuTableView.BackgroundView = null;
 
 			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
 			set.Bind(source).To(vm => vm.MenuItems);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.SelectMenuItemCommand);
-			Title = "Sølvberget";
 			set.Apply();
 
 			MenuTableView.ReloadData();
@@ -75,11 +78,16 @@ namespace Solvberget.iOS
 			View.AddSubview(MenuTableView);
 		}
 
-
-
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
+
+			var currentView = MvxSlidingPanelsTouchViewPresenter.CurrentView;
+			var row = null == currentView || null == currentView.ViewModel 
+			          ? null 
+			          : ViewModel.MenuItems.FirstOrDefault(mi => mi.ViewModelType == currentView.ViewModel.GetType());
+
+			source.SelectRow(row);
 		}
 	}
 }

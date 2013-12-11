@@ -5,6 +5,8 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Solvberget.Core.DTOs;
+using System;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -32,18 +34,22 @@ namespace Solvberget.Core.ViewModels
 
         public async Task Load()
         {
+			var id = 0;
             IsLoading = true;
             Locations = (await _openingHoursService.GetOpeningHours()).Select(oh => 
-                new OpeningHoursLocationViewModel
+				new OpeningHoursLocationViewModel(_openingHoursService)
                 {
                     Hours = oh.Hours.ToDictionary(k => k.Title, v => v.Hours),
                     LocationName = oh.Title,
                     Phone = oh.Phone,
                     Title = oh.Title,
                     Url = oh.Url,
-                    UrlText = oh.UrlText
+					UrlText = oh.UrlText,
+					Id = id++
                 }).ToList();
             IsLoading = false;
+
+			NotifyViewModelReady();
         }
 
         private MvxCommand<OpeningHoursLocationViewModel> _showDetailsCommand;
@@ -55,14 +61,47 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        private void ExecuteShowDetailsCommand(OpeningHoursLocationViewModel newsStory)
+		private void ExecuteShowDetailsCommand(OpeningHoursLocationViewModel model)
         {
-            
+			this.ShowViewModel<OpeningHoursLocationViewModel>(new {id = model.Id, title = model.Title});
         }
     }
 
     public class OpeningHoursLocationViewModel : BaseViewModel
-    {
+	{
+		IOpeningHoursService _service;
+
+		public OpeningHoursLocationViewModel(IOpeningHoursService openingHoursService)
+		{
+			_service = openingHoursService;
+
+		}
+
+		public void Init(string id, string title)
+		{
+			Title = title;
+			Load(Int32.Parse(id));
+		}
+
+		private async Task Load(int id)
+		{
+			IsLoading = true;
+			var ohs = await _service.GetOpeningHours();
+				
+			var oh = ohs.Skip(id).FirstOrDefault();
+
+		    Hours = oh.Hours.ToDictionary(k => k.Title, v => v.Hours);
+
+			LocationName = oh.Title;
+			Phone = oh.Phone;
+			Title = oh.Title;
+			Url = oh.Url;
+			UrlText = oh.UrlText;
+			
+          	IsLoading = false;
+			NotifyViewModelReady();
+		}
+
         private string _title;
         public new string Title 
         {
@@ -70,11 +109,11 @@ namespace Solvberget.Core.ViewModels
             set 
             {
                 _title = value;
+				base.Title = value;
                 LocationName = value;
                 RaisePropertyChanged(() => Title);
             }
         }
-
 
         private string _locationName;
         public string LocationName

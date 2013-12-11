@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System.Threading;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -14,23 +15,34 @@ namespace Solvberget.Core.ViewModels
             _blogService = blogService;
         }
 
-        public void Init(string blogId, string postId)
+		public void Init(string blogId, string postId, string title)
         {
+			BlogId = blogId;
+			Title = title;
             Load(blogId, postId);
         }
 
-        private async Task Load(string blogId, string postId)
+		private async Task Load(string blogId, string postId)
         {
+			BlogId = blogId;
             IsLoading = true;
 
             var blogPost = await _blogService.GetBlogPost(blogId, postId);
             Author = blogPost.Author;
             Published = blogPost.Published;
             Content = blogPost.Content;
-            Title = blogPost.Title;
+			Title = blogPost.Title;
 
-            IsLoading = false;
+			IsLoading = false;
+			NotifyViewModelReady();
         }
+
+		public void Show(long blogId) // bug: BlogId is null when deserialized from DTO...
+		{
+			ShowViewModel<BlogPostViewModel>(new { blogId = blogId.ToString(), postId = Id, title = Title });
+		}
+
+		string BlogId {get;set;}
 
         private string _author;
         public string Author 

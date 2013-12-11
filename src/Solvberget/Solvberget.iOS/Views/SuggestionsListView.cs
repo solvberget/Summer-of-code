@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class SuggestionsListView : MvxTableViewController
+	public partial class SuggestionsListView : NamedTableViewController
     {
 		public new SuggestionsListViewModel ViewModel
 		{
@@ -19,30 +19,19 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-			var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText Name; DetailText Title; ImageUrl Image;", UITableViewCellAccessory.DisclosureIndicator);
+			LoadingOverlay.LoadingText = "Henter anbefalinger...";
+
+			var source = new SimpleTableViewSource<SearchResultViewModel>(TableView, CellBindings.SearchResults);
 			TableView.Source = source;
-
-			var loadingIndicator = new LoadingOverlay(View.Frame);
-			Add(loadingIndicator);
 
 			var set = this.CreateBindingSet<SuggestionsListView, SuggestionsListViewModel>();
 			set.Bind(source).To(vm => vm.Docs);
 			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
+
 			set.Apply();
 
 			TableView.ReloadData();

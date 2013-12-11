@@ -44,6 +44,7 @@ namespace Solvberget.iOS
 			_window = window;
 			_stackClearingViewModels = new Dictionary<Type, bool>();
 
+			RegisterStackClearingViewModel(typeof(HomeScreenViewModel));
 			RegisterStackClearingViewModel(typeof(NewsListingViewModel));
 			RegisterStackClearingViewModel(typeof(OpeningHoursViewModel));
 			RegisterStackClearingViewModel(typeof(MyPageViewModel));
@@ -63,7 +64,7 @@ namespace Solvberget.iOS
 		{
 			try 
 			{
-				var view = this.CreateViewControllerFor(request);
+				var view = CurrentView = this.CreateViewControllerFor(request);
 
 				// We clear the back stack up to now and hide the back button if this view should not allow viewstate popping
 				if (_stackClearingViewModels.ContainsKey(request.ViewModelType)) {
@@ -75,21 +76,31 @@ namespace Solvberget.iOS
 					SlidingPanelsController.HidePanel(_leftPanel);
 				}
 
+				//(SlidingPanelsController.NavigationItem.TitleView as UILabel).Text = "Sølvberget";
+
+
 				Show(view);
 			} catch (Exception e) 
 			{
 			}
 		}
 
+		public static IMvxTouchView CurrentView { get; private set;}
+
 		public void ClearBackStack()
 		{
 			if (MasterNavigationController == null)
 				return;
-			MasterNavigationController.PopToRootViewController(false);
+			MasterNavigationController.PopToViewController(_mainView, false);
+
 		}
+
+		UIViewController _mainView;
 	
         protected override void ShowFirstView (UIViewController viewController)
         {
+			_mainView = viewController;
+
             // Show the first view
             base.ShowFirstView (viewController);
 
@@ -106,10 +117,15 @@ namespace Solvberget.iOS
         {
             UIViewController viewToAdd = (UIViewController) mvxController.CreateViewControllerFor<T>();
 
+
+
             switch (panelType)
             {
 				case PanelType.LeftPanel:
 					_leftPanel = new LeftPanelContainer(viewToAdd);
+					_leftPanel.View.BackgroundColor = Application.ThemeColors.Main2;
+
+
 					SlidingPanelsController.InsertPanel(_leftPanel);
                     break;
 
@@ -128,13 +144,33 @@ namespace Solvberget.iOS
 
         protected override UINavigationController CreateNavigationController (UIViewController viewController)
         {
-            SlidingPanelsNavigationViewController navController = new SlidingPanelsNavigationViewController (viewController);
-            RootController = new UIViewController ();
+			SlidingPanelsNavigationViewController navController = new SlidingPanelsNavigationViewController (viewController);
+            
+			RootController = new UIViewController ();
 
 			if (navController.RespondsToSelector(new MonoTouch.ObjCRuntime.Selector("interactivePopGestureRecognizer")))
 			{
 				navController.InteractivePopGestureRecognizer.Enabled = false;
 			}
+
+			navController.NavigationBar.SetTitleTextAttributes(new UITextAttributes()
+				{
+					TextColor = UIColor.White,
+					TextShadowColor = UIColor.Clear,
+					Font = Application.ThemeColors.HeaderFont
+				});
+
+			if (UIHelpers.MinVersion7)
+			{
+				navController.NavigationBar.BarTintColor = Application.ThemeColors.Main;
+				navController.NavigationBar.TintColor = Application.ThemeColors.MainInverse;
+				navController.NavigationBar.Translucent = false;
+			}
+			else
+			{
+				navController.NavigationBar.TintColor = Application.ThemeColors.Main;
+			}
+
             return navController;
         }
 

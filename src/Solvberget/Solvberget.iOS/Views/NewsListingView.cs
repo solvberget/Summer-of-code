@@ -9,7 +9,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace Solvberget.iOS
 {
-	public partial class NewsListingView : MvxTableViewController
+	public class NewsListingView : NamedViewController
     {
 		public new NewsListingViewModel ViewModel
 		{
@@ -19,28 +19,67 @@ namespace Solvberget.iOS
 			}
 		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-			
-            // Perform any additional setup after loading the view, typically from a nib.
-            var source = new MvxStandardTableViewSource(TableView, UITableViewCellStyle.Subtitle, new NSString("TableViewCell"), "TitleText NewsTitle; DetailText Ingress", UITableViewCellAccessory.None);
-			TableView.Source = source;
+		public NewsListingView() : base()
+		{}
 
-			var loadingIndicator = new LoadingOverlay(View.Frame);
-			Add(loadingIndicator);
+		UIScrollView container;
 
-			var set = this.CreateBindingSet<NewsListingView, NewsListingViewModel>();
-			set.Bind(source).To(vm => vm.Stories);
-            set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
-			Title = ViewModel.Title;
-			set.Bind(loadingIndicator).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
-			set.Apply();
+		public override void ViewDidLoad()
+		{
+			View.BackgroundColor = UIColor.White;
+			base.ViewDidLoad();
+		}
 
-			NavigationItem.HidesBackButton = true;
+		protected override void ViewModelReady()
+		{
+			base.ViewModelReady();
 
-			TableView.ReloadData();
-        }
+			LoadingOverlay.LoadingText = "Henter nyheter...";
+
+			if (null != container)
+				container.RemoveFromSuperview();
+		
+			//View.Frame = new RectangleF(View.Frame);
+			View.AutoresizingMask = UIViewAutoresizing.All;
+			container = new UIScrollView(new RectangleF(PointF.Empty, View.Frame.Size));
+
+			View.Add(container);
+
+			StyleView();
+			RenderView();
+		}
+
+		void StyleView()
+		{
+			container.BackgroundColor = UIColor.White;
+		}
+
+		private void RenderView()
+		{
+
+			var padding = 10.0f;
+
+			var y = padding;
+
+			foreach (var item in ViewModel.Stories)
+			{
+				var itemCtrl = new TitleAndSummaryItem();
+				itemCtrl.View.Frame = new RectangleF(padding, y, container.Frame.Width - (2*padding), 50.0f);
+
+				itemCtrl.Clicked += (sender, e) => UIApplication.SharedApplication.OpenUrl(new NSUrl(item.Uri.OriginalString));
+
+				itemCtrl.TitleLabelText = item.NewsTitle;
+
+				if(!String.IsNullOrEmpty(item.Ingress)) itemCtrl.SummaryLabelText = item.Ingress.Replace("&nbsp;", " ");
+
+				container.Add(itemCtrl.View);
+
+				y += itemCtrl.Frame.Height + padding;
+			}
+
+			container.ContentSize = new SizeF(320, y);
+			container.ScrollEnabled = true;
+		}
     }
 }
 

@@ -2,7 +2,7 @@
 
 namespace Solvberget.Core.DTOs
 {
-    public class DocumentAvailabilityDto
+    public class DocumentAvailabilityDto : RequestReplyDto
     {
         public string Branch { get; set; }
         public int AvailableCount { get; set; }

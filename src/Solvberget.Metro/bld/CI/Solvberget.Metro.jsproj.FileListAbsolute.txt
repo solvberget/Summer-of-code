@@ -1,0 +1,15 @@
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bin\CI\resources.pri
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bin\CI\AppxManifest.xml
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bin\CI\Solvberget.Metro.build.appxrecipe
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\priconfig.xml
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\priconfig.xml.intermediate
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\layout.resfiles
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\layout.resfiles.intermediate
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\resources.resfiles
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\resources.resfiles.intermediate
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\pri.resfiles
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\pri.resfiles.intermediate
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\qualifiers.txt
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\qualifiers.txt.intermediate
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Fredrik\Documents\GitHub\Solvberget\src\Solvberget.Metro\bld\CI\ProjectArchitectures.txt

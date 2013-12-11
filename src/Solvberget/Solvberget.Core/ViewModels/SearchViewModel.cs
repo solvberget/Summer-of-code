@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
@@ -85,8 +85,13 @@ namespace Solvberget.Core.ViewModels
                         }).ToList();
 
             LastQuery = string.Format("Resultater for: {0}", lastquery);
-            IsLoading = false;
+			IsLoading = false;
         }
+
+		public void ClearResults()
+		{
+			Results = null;
+		}
 
         public IList<SearchResultViewModel> BookResults 
         {
@@ -121,9 +126,13 @@ namespace Solvberget.Core.ViewModels
             get { return ListOrEmptyResult(_results.Where(r => r.Type == "Other" || r.Type == "Other").ToList()); }
         }
 
+		public bool EnableListEmptyResult = true;
+
         private IList<SearchResultViewModel> ListOrEmptyResult(IList<SearchResultViewModel> list)
         {
-            return (list.Count > 0) ? list : new List<SearchResultViewModel> {new SearchResultViewModel
+			if (!EnableListEmptyResult) return list;
+
+			return (list.Count > 0) ? list : new List<SearchResultViewModel> {new SearchResultViewModel
                 {
                     DocNumber = "",
                     Id = 0,

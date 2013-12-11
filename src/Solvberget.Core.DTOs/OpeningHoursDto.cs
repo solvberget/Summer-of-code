@@ -2,7 +2,7 @@
 
 namespace Solvberget.Core.DTOs
 {
-    public class OpeningHoursDto
+    public class OpeningHoursDto : RequestReplyDto
     {
         public string Title { get; set; }
         public string SubTitle { get; set; }
@@ -13,7 +13,7 @@ namespace Solvberget.Core.DTOs
         public string UrlText { get; set; }
     }
 
-    public class OpeningHourInfoDto
+    public class OpeningHourInfoDto : RequestReplyDto
     {
         public string Title { get; set; }
         public string Hours { get; set; }

@@ -26,6 +26,9 @@
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -46,7 +49,13 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution: Capgemini Norge AS (2DSX5WDBX9)</CodesignKey>
+    <IpaPackageName>
+    </IpaPackageName>
+    <CodesignProvision>2665FD00-6F2D-42D4-B5D3-02A6BED26D51</CodesignProvision>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -64,8 +73,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Distribution: Capgemini Norge AS (2DSX5WDBX9)</CodesignKey>
     <BuildIpa>True</BuildIpa>
+    <CodesignProvision>49E4B071-4BDE-43E2-9950-BB07F3D88D1D</CodesignProvision>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+    <IpaPackageName>
+    </IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -105,9 +120,6 @@
     <Compile Include="MvxSlidingPanelsTouchViewPresenter.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Views\NewsListingView.cs" />
-    <Compile Include="Views\NewsListingView.designer.cs">
-      <DependentUpon>NewsListingView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Bootstrap\DownloadCacheBootstrap.cs" />
     <Compile Include="Views\GenericWebViewView.cs" />
     <Compile Include="Views\EventListView.cs" />
@@ -121,10 +133,6 @@
     <Compile Include="Views\BlogOverviewView.cs" />
     <Compile Include="Views\BlogOverviewView.designer.cs">
       <DependentUpon>BlogOverviewView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BlogView.cs" />
-    <Compile Include="Views\BlogView.designer.cs">
-      <DependentUpon>BlogView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SuggestionsListListView.cs" />
     <Compile Include="Views\SuggestionsListListView.designer.cs">
@@ -140,14 +148,73 @@
     <Compile Include="Views\OpeningHoursView.designer.cs">
       <DependentUpon>OpeningHoursView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.cs" />
-    <Compile Include="Views\TableViewCells\OpeningHoursLocationCell.designer.cs">
-      <DependentUpon>OpeningHoursLocationCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MediaDetailView.cs" />
     <Compile Include="Views\MediaDetailView.designer.cs">
       <DependentUpon>MediaDetailView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\HomeScreenView.cs" />
+    <Compile Include="Views\HomeScreenView.designer.cs">
+      <DependentUpon>HomeScreenView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolvbergetTableViewSource.cs" />
+    <Compile Include="Views\TableViewCells\SimpleCell.cs" />
+    <Compile Include="Views\TableViewCells\SimpleCell.designer.cs">
+      <DependentUpon>SimpleCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleTableViewSource.cs" />
+    <Compile Include="Views\TableViewCells\Binders\ISimpleCellBinder.cs" />
+    <Compile Include="Views\SearchView.cs" />
+    <Compile Include="Views\SearchView.designer.cs">
+      <DependentUpon>SearchView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NamedViewController.cs" />
+    <Compile Include="Views\NamedTableViewController.cs" />
+    <Compile Include="Views\TableViewCells\Binders\CellBindings.cs" />
+    <Compile Include="Views\BlogView.cs" />
+    <Compile Include="Views\BlogView.designer.cs">
+      <DependentUpon>BlogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TitleAndSummaryItem.cs" />
+    <Compile Include="Views\TitleAndSummaryItem.designer.cs">
+      <DependentUpon>TitleAndSummaryItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlogPostView.cs" />
+    <Compile Include="Views\BlogPostView.designer.cs">
+      <DependentUpon>BlogPostView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OpeningHoursLocationView.cs" />
+    <Compile Include="Views\OpeningHoursLocationView.designer.cs">
+      <DependentUpon>OpeningHoursLocationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StandardTableViewSource.cs" />
+    <Compile Include="Views\ContactInfoView.cs" />
+    <Compile Include="Views\ContactInfoBoxView.cs" />
+    <Compile Include="Views\ContactInfoBoxView.designer.cs">
+      <DependentUpon>ContactInfoBoxView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LabelAndValue.cs" />
+    <Compile Include="Views\UIHelpers.cs" />
+    <Compile Include="Views\TableViewCells\ISimpleCell.cs" />
+    <Compile Include="Views\MyPageView.cs" />
+    <Compile Include="Views\MyPageView.designer.cs">
+      <DependentUpon>MyPageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\LoginView.designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyFavoritesView.designer.cs">
+      <DependentUpon>MyPageFavoritesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyPageFavoritesView.cs" />
+    <Compile Include="Views\MyPageLoansView.cs" />
+    <Compile Include="Views\MyPageMessagesView.cs" />
+    <Compile Include="Views\MyPageFinesView.cs" />
+    <Compile Include="Views\MyPagePersonaliaView.cs" />
+    <Compile Include="Views\BoxRenderer.cs" />
+    <Compile Include="Views\MyPageReservationsView.cs" />
+    <Compile Include="Views\Cache.cs" />
+    <Compile Include="IosDtoDownloader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -157,6 +224,10 @@
     <ProjectReference Include="..\..\..\lib\SlidingPanels.Touch\SlidingPanels\SlidingPanels.Lib\SlidingPanels.Touch.csproj">
       <Project>{2FD1999D-45B1-4485-BF96-EAB061481945}</Project>
       <Name>SlidingPanels.Touch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Solvberget.Core.DTOs\Solvberget.Core.DTOs.csproj">
+      <Project>{C74B2533-6F19-4047-A4D0-434A1FE5F027}</Project>
+      <Name>Solvberget.Core.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +282,8 @@
     <Folder Include="Views\" />
     <Folder Include="Images\" />
     <Folder Include="Views\TableViewCells\" />
+    <Folder Include="Views\TableViewCells\Binders\" />
+    <Folder Include="Images\Placeholders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppDelegate.cs.txt" />
@@ -228,11 +301,46 @@
     <BundleResource Include="Resources\Icon-60%402x.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\OpenSans-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\OpenSans-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\OpenSans-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Library-Books.jpg" />
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\Blog.png">
+      <Link>Images\Placeholders\Blog.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\Fine.png">
+      <Link>Images\Placeholders\Fine.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\Message.png">
+      <Link>Images\Placeholders\Message.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Solvberget.Web\app\img\placeholder\News.png">
+      <Link>Images\Placeholders\News.png</Link>
+    </BundleResource>
+    <BundleResource Include="Images\star.off.png" />
+    <BundleResource Include="Images\star.on.png" />
+    <BundleResource Include="Images\logo.white.png" />
+    <BundleResource Include="Resources\icons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />
-    <InterfaceDefinition Include="Views\TableViewCells\OpeningHoursLocationCell.xib" />
     <InterfaceDefinition Include="Views\MediaDetailView.xib" />
+    <InterfaceDefinition Include="Views\HomeScreenView.xib" />
+    <InterfaceDefinition Include="Views\TableViewCells\SimpleCell.xib" />
+    <InterfaceDefinition Include="Views\SearchView.xib" />
+    <InterfaceDefinition Include="Views\BlogView.xib" />
+    <InterfaceDefinition Include="Views\TitleAndSummaryItem.xib" />
+    <InterfaceDefinition Include="Views\BlogPostView.xib" />
+    <InterfaceDefinition Include="Views\ContactInfoBoxView.xib" />
+    <InterfaceDefinition Include="Views\LoginView.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

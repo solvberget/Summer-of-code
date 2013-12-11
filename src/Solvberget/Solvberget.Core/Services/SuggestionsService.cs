@@ -10,51 +10,31 @@ namespace Solvberget.Core.Services
 {
     public class SuggestionsService : ISuggestionsService
     {
-        private readonly IStringDownloader _downloader;
+        private readonly DtoDownloader _downloader;
 
-        public SuggestionsService(IStringDownloader downloader)
+        public SuggestionsService(DtoDownloader downloader)
         {
             _downloader = downloader;
         }
 
         public async Task<List<LibrarylistDto>> GetSuggestionsLists()
         {
-            try
+            var response = await _downloader.DownloadList<LibrarylistDto>(Resources.ServiceUrl + Resources.ServiceUrl_Lists);
+
+            if (response.Success) return response.Results;
+
+            return new List<LibrarylistDto>
             {
-                var response = await _downloader.Download(Resources.ServiceUrl + Resources.ServiceUrl_Lists);
-                return JsonConvert.DeserializeObject<List<LibrarylistDto>>(response);
-            }
-            catch (Exception)
-            {
-                return new List<LibrarylistDto>
+                new LibrarylistDto
                 {
-                    new LibrarylistDto
-                    {
-                        Name = "Feil ved lasting, kunne desverre ikke finne noen lister. Prøv igjen senere.",
-                    }
-                };
-            }
+                    Name = "Feil ved lasting, kunne desverre ikke finne noen lister. Prøv igjen senere.",
+                }
+            };
         }
 
         public async Task<LibrarylistDto> GetList(string id)
         {
-            try
-            {
-                var response = await _downloader.Download(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_List, id));
-                return JsonConvert.DeserializeObject<LibrarylistDto>(response);
-            }
-            catch (Exception)
-            {
-                return new LibrarylistDto
-                {
-
-                    Documents = {new DocumentDto
-                    {
-                        Title = "Feil",
-                        SubTitle = "Kunne ikke laste listen"
-                    }}
-                };
-            }
+            return await _downloader.Download<LibrarylistDto>(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_List, id));
         } 
     }
 }
