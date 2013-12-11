@@ -6,10 +6,10 @@
 @transition-carousel-in: opacity 1s ease-in-out 1s;
 
 body {
-    padding: 100px 20px 20px 20px;
-    background: @solvberget-bg;
-    color: @solvberget-white;
-    height: 100%;
+  padding: 100px 20px 20px 20px;
+  background: @solvberget-bg;
+  color: @solvberget-white;
+  height: 100%;
 }
 
 .carousel .item {
@@ -35,35 +35,37 @@ body {
 }
 
 .carousel-indicators {
-    position: relative;
+  position: relative;
 }
 
 .carousel-indicators li {
-    display: inline;
-    text-indent: 0px;
-    border: none;
-    margin: 0px;
+  display: inline;
+  text-indent: 0px;
+  border: none;
+  margin: 0px;
+  transition: color 1s ease-in-out 0s;
 }
 
 .carousel-indicators li.active {
-    color: @solvberget-green;
+  color: @solvberget-green;
+  transition: color 1s ease-in-out 0s;
 }
 
 .overview-column {
-    border-left: 1px solid white;
+  border-left: 1px solid white;
 }
 
 .navbar {
-    background: @solvberget-green;
-    height: 60px;
+  background: @solvberget-green;
+  height: 60px;
 }
 
 .navbar-brand span{
-    color: white;
-    font-size: 28px;
-    padding-left: 30px;
+  color: white;
+  font-size: 28px;
+  padding-left: 30px;
 }
 
 .navbar-brand img{
-    width:36px;
+  width:36px;
 }
