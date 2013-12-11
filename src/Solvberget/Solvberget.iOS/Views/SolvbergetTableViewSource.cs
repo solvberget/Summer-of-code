@@ -18,6 +18,7 @@ namespace Solvberget.iOS
 		public SolvbergetTableViewSource(UITableView tableView, UITableViewCellStyle style, NSString cellIdentifier, string bindingText, UITableViewCellAccessory tableViewCellAccessory = 0)
 			: base(tableView, style, cellIdentifier, bindingText, tableViewCellAccessory)
 		{}
+
 			
 		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
@@ -25,6 +26,8 @@ namespace Solvberget.iOS
 
 			cell.BackgroundView = null;
 			cell.TextLabel.Font = Application.ThemeColors.MenuFont;
+
+			_indexPathItems[item] = indexPath;
 
 			if(null != BackgroundColor) cell.BackgroundColor = BackgroundColor;
 			if(null != TextColor) cell.TextLabel.TextColor = TextColor;
@@ -34,6 +37,8 @@ namespace Solvberget.iOS
 		}
 
 		UIView _selectedBackgroundView;
+
+		Dictionary<object, NSIndexPath> _indexPathItems = new Dictionary<object, NSIndexPath>();
 
 		public UIView SelectedBackgroundView{
 			get{ 
@@ -46,6 +51,16 @@ namespace Solvberget.iOS
 
 				return _selectedBackgroundView;
 			}
+		}
+
+		public void SelectRow(MenuViewModel row)
+		{
+			NSIndexPath path = null;
+
+			if(null != row) _indexPathItems.TryGetValue(row, out path);
+
+			if(null != TableView.IndexPathForSelectedRow) TableView.DeselectRow(TableView.IndexPathForSelectedRow,false);
+			if(null != path) TableView.SelectRow(path, false, UITableViewScrollPosition.None);
 		}
 
 		public UIColor BackgroundColor{get;set;}

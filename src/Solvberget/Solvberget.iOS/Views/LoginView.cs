@@ -25,7 +25,7 @@ namespace Solvberget.iOS
 			UsernameLAbel.Font = PinLabel.Font = Application.ThemeColors.LabelFont;
 			UsernameLAbel.TextColor = PinLabel.TextColor = Application.ThemeColors.Main;
 
-			Application.ThemeColors.Style(LostCredentialsButton);
+			LostCredentialsButton.SetTitleColor(Application.ThemeColors.Main, UIControlState.Normal);
 
 			//LostCredentialsButton.TouchUpInside += (s,e) => ViewModel... // todo!!
 

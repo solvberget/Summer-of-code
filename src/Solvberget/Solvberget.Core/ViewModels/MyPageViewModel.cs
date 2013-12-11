@@ -5,8 +5,12 @@ namespace Solvberget.Core.ViewModels
 {
     public class MyPageViewModel : BaseViewModel
     {
+		IUserAuthenticationDataService _userAuthenticationDataService;
+
         public MyPageViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationDataService)
         {
+			_userAuthenticationDataService = userAuthenticationDataService;
+
             MyPageLoansViewModel = new MyPageLoansViewModel(service, userAuthenticationDataService);
             MyPagePersonaliaViewModel = new MyPagePersonaliaViewModel(service, userAuthenticationDataService);
             MyPageReservationsViewModel = new MyPageReservationsViewModel(service);
@@ -59,5 +63,13 @@ namespace Solvberget.Core.ViewModels
             get { return _myPageFavoritesViewModel; }
             set { _myPageFavoritesViewModel = value; RaisePropertyChanged(() => MyPageFavoritesViewModel); }
         }
+
+		public void Logout()
+		{
+			_userAuthenticationDataService.RemoveUser();
+			_userAuthenticationDataService.RemovePassword();
+
+			ShowViewModel<HomeScreenViewModel>();
+		}
     }
 }

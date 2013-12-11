@@ -64,7 +64,7 @@ namespace Solvberget.iOS
 		{
 			try 
 			{
-				var view = this.CreateViewControllerFor(request);
+				var view = CurrentView = this.CreateViewControllerFor(request);
 
 				// We clear the back stack up to now and hide the back button if this view should not allow viewstate popping
 				if (_stackClearingViewModels.ContainsKey(request.ViewModelType)) {
@@ -84,6 +84,8 @@ namespace Solvberget.iOS
 			{
 			}
 		}
+
+		public static IMvxTouchView CurrentView { get; private set;}
 
 		public void ClearBackStack()
 		{
