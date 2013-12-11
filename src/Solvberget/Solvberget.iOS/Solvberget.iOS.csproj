@@ -75,7 +75,7 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Distribution: Capgemini Norge AS (2DSX5WDBX9)</CodesignKey>
     <BuildIpa>True</BuildIpa>
-    <CodesignProvision>2665FD00-6F2D-42D4-B5D3-02A6BED26D51</CodesignProvision>
+    <CodesignProvision>49E4B071-4BDE-43E2-9950-BB07F3D88D1D</CodesignProvision>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
@@ -324,6 +324,9 @@
     <BundleResource Include="Images\star.off.png" />
     <BundleResource Include="Images\star.on.png" />
     <BundleResource Include="Images\logo.white.png" />
+    <BundleResource Include="Resources\icons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\HomeView.xib" />

@@ -31,12 +31,13 @@
 		<string>OpenSans-Bold.ttf</string>
 		<string>OpenSans-Light.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
+		<string>icons.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleIdentifier</key>
 	<string>com.capgemini.solvberget</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>4</string>
 </dict>
 </plist>

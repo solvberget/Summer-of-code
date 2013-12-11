@@ -55,6 +55,8 @@ namespace Solvberget.iOS
 
 			public static UIFont HeaderFont = UIFont.FromName("OpenSans-Bold", 16);
 
+			public static UIFont IconFont = UIFont.FromName("icons", 80);
+
 			public static void Style(UIButton reserve)
 			{
 				reserve.SetTitleColor(Application.ThemeColors.ButtonDisabledTextColor, UIControlState.Disabled);
