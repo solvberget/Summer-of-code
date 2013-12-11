@@ -42,18 +42,22 @@ namespace Solvberget.iOS
 
 			public static UIColor VerySubtle = UIColor.FromRGB(244,244,244);
 			public static UIColor Subtle = UIColor.FromRGB(206, 206, 206);
+			public static UIColor SubTitleColor = UIColor.FromRGB(100, 100, 100);
 
 			public static UIColor Hero = UIColor.FromRGB(240,251,235);
 
 			public static UIFont MenuFont = UIFont.FromName("OpenSans", 18);
 			public static UIFont TitleFont1 = UIFont.FromName("OpenSans", 22);
-			public static UIFont TitleFont = UIFont.FromName("OpenSans-Light", 16);
-			public static UIFont DefaultFont = UIFont.FromName("OpenSans", 13);
-			public static UIFont DefaultFontBold = UIFont.FromName("OpenSans-Bold", 13);
-			public static UIFont LabelFont = UIFont.FromName("OpenSans", 10);	
-			public static UIFont ButtonFont = UIFont.FromName("OpenSans-Bold", 13);
 
-			public static UIFont HeaderFont = UIFont.FromName("OpenSans-Bold", 16);
+			public static UIFont TitleFont = UIFont.FromName("OpenSans", 16);
+			public static UIFont SubTitleFont = UIFont.FromName("OpenSans", 14);
+
+			public static UIFont DefaultFont = UIFont.FromName("OpenSans", 15);
+			public static UIFont DefaultFontBold = UIFont.FromName("OpenSans-Bold", 15);
+			public static UIFont LabelFont = UIFont.FromName("OpenSans-Bold", 11);	
+			public static UIFont ButtonFont = UIFont.FromName("OpenSans-Bold", 15);
+
+			public static UIFont HeaderFont = UIFont.FromName("OpenSans-Bold", 17);
 
 			public static UIFont IconFont = UIFont.FromName("icons", 80);
 

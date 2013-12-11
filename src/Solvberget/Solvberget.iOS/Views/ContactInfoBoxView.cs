@@ -63,7 +63,20 @@ namespace Solvberget.iOS
 			alert.CancelButtonIndex = 0;
 			alert.AddButton("Ja");
 			alert.Message = "Vil du ringe til " + name + "?";
-			alert.Delegate = new PhoneAlertViewDelegate(number);
+
+			alert.Dismissed += (sender, e) =>
+			{
+				if (e.ButtonIndex == 1)
+				{
+					number = number
+						.Replace("(", String.Empty)
+						.Replace(")", String.Empty)
+						.Replace(" ", String.Empty);
+
+					UIApplication.SharedApplication.OpenUrl(new NSUrl("tel:" + number.Replace(" ", String.Empty)));
+				}
+			};
+
 			alert.Show();
 		}
 
@@ -72,28 +85,6 @@ namespace Solvberget.iOS
 			UIApplication.SharedApplication.OpenUrl(new NSUrl("mailto://" + email));
 		}
     }
-
-	public class PhoneAlertViewDelegate : UIAlertViewDelegate
-	{
-		string number;
-		public PhoneAlertViewDelegate(string number)
-		{
-			this.number = number;
-		}
-
-		public override void Clicked (UIAlertView alertview, int buttonIndex)
-		{
-			if(buttonIndex == 1)
-			{
-				number = number
-					.Replace("(",String.Empty)
-					.Replace(")", String.Empty)
-					.Replace(" ", String.Empty);
-
-				UIApplication.SharedApplication.OpenUrl(new NSUrl("tel:" + number.Replace(" ", String.Empty)));
-			}
-		}
-	}
 
 }
 

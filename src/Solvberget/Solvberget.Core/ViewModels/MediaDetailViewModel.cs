@@ -40,10 +40,8 @@ namespace Solvberget.Core.ViewModels
             var review = _searchService.GetReview(docId);
             var rating = _searchService.GetRating(docId);
 
-			ButtonEnabled = true;
-            
-            ButtonText = GenerateButtonText();
-			IsReservable = true;
+			ButtonEnabled = true; // obsolete now?
+			IsReservable = true; // -"-
             
             var document = await _searchService.Get(docId);
             DocId = docId;
@@ -57,6 +55,8 @@ namespace Solvberget.Core.ViewModels
             Author = document.MainContributor;
 			IsReservedByUser = document.IsReserved.HasValue && document.IsReserved.Value;
 			IsFavorite = document.IsFavorite.HasValue && document.IsFavorite.Value;
+
+			ButtonText = GenerateButtonText();
 
             var classification = "";
             if (document.Type == "Book")

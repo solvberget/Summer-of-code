@@ -83,24 +83,19 @@ namespace Solvberget.iOS
 
 		private void UpdateFavoriteButtonState()
 		{
-			if (null == NavigationItem.RightBarButtonItem)
+			var image = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26, 26));
+
+			if(!ViewModel.IsFavorite && !UIHelpers.MinVersion7)
 			{
-				var image = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26, 26));
-
-				if(!ViewModel.IsFavorite && !UIHelpers.MinVersion7)
-				{
-					image = UIImage.FromBundle("/Images/star.off.png").Scale(new SizeF(26, 26));
-				}
-
-				NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, OnToggleFavorite), false);
+				image = UIImage.FromBundle("/Images/star.off.png").Scale(new SizeF(26, 26));
 			}
+
+			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, OnToggleFavorite), false);
 
 			if (UIHelpers.MinVersion7)
 			{
 				NavigationItem.RightBarButtonItem.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
 			}
-				
-			NavigationItem.RightBarButtonItem.Enabled = true;
 		}
 
 		private void Update()
@@ -317,7 +312,7 @@ namespace Solvberget.iOS
 
 			var facts = _boxes.StartBox();
 
-			if(!String.IsNullOrEmpty(dto.AgeLimit)) new LabelAndValue(facts, "Aldersgrense", dto.AgeLimit);
+			if(!String.IsNullOrEmpty(dto.AgeLimit)) new LabelAndValue(facts, "Aldersgrense", dto.AgeLimit.Replace("Aldersgrense:", String.Empty).Trim());
 			if(!String.IsNullOrEmpty(dto.MediaInfo)) new LabelAndValue(facts, "Format", dto.MediaInfo);
 			if(null != dto.ActorNames && dto.ActorNames.Length > 0) new LabelAndValue(facts, "Skuespillere", String.Join(", ",dto.ActorNames));
 			if(!String.IsNullOrEmpty(dto.Language)) new LabelAndValue(facts, "Språk", dto.Language);
@@ -346,12 +341,12 @@ namespace Solvberget.iOS
 			HeaderLabel.Frame = new RectangleF(HeaderLabel.Frame.Location, headerSize);
 
 			var subtitleSize = SubtitleLabel.SizeThatFits(new SizeF(SubtitleLabel.Frame.Width, 0));
-			var subtitlePos = new PointF(SubtitleLabel.Frame.X, HeaderLabel.Frame.Bottom+padding);
+			var subtitlePos = new PointF(SubtitleLabel.Frame.X, HeaderLabel.Frame.Bottom);
 
 			SubtitleLabel.Frame = new RectangleF(subtitlePos, subtitleSize);
 
 			var typeSize = TypeLabel.SizeThatFits(new SizeF(TypeLabel.Frame.Width, 0));
-			var typePos = new PointF(TypeLabel.Frame.X, SubtitleLabel.Frame.Bottom+padding);
+			var typePos = new PointF(TypeLabel.Frame.X, SubtitleLabel.Frame.Bottom);
 
 			TypeLabel.Frame = new RectangleF(typePos, typeSize);
 
