@@ -2,11 +2,36 @@
 @solvberget-bg: #1D1D1D;
 @solvberget-white: #FFFFFF;
 
+@transition-carousel-out: opacity 1s ease-in-out 0s;
+@transition-carousel-in: opacity 1s ease-in-out 1s;
+
 body {
     padding: 100px 20px 20px 20px;
     background: @solvberget-bg;
     color: @solvberget-white;
     height: 100%;
+}
+
+.carousel .item {
+
+  left:0;
+  opacity:1;
+  z-index:2;
+  transition: @transition-carousel-out;
+}
+
+.carousel .active.left {
+  left:0;
+  opacity:0;
+  z-index:2;
+  transition: @transition-carousel-out;
+}
+
+.carousel .next {
+  left:0;
+  opacity:0;
+  z-index:1;
+  transition: @transition-carousel-in;
 }
 
 .carousel-indicators {
@@ -17,11 +42,11 @@ body {
     display: inline;
     text-indent: 0px;
     border: none;
+    margin: 0px;
 }
 
 .carousel-indicators li.active {
     color: @solvberget-green;
-    border: none;
 }
 
 .overview-column {

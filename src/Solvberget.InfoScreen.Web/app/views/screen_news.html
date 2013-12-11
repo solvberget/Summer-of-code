@@ -1,6 +1,6 @@
 <div ng-controller="NewsCtrl">
     <div class="row">
-        <div id="news-carousel" class="carousel" data-ride="carousel">
+        <div id="news-carousel" class="carousel slide" data-ride="carousel">
             <div class="col-xs-8">
                 <div class="carousel-inner">
                     <div class="item" ng-repeat="item in items" ng-class="{active : $first}">
@@ -27,6 +27,6 @@
 
 
     <script>$(".carousel").carousel({
-        interval: 5000
+        interval: 3000
     });</script>
 </div>

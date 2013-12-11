@@ -14,7 +14,7 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
                 if($scope.count>=$scope.slides.length) {
                     $scope.count=0;
                 }
-                $scope.nextSlide($scope.slides[$scope.count].duration);
+                $scope.nextSlide($scope.slides[$scope.template].duration);
             }, timeOut);
         };
 
@@ -28,7 +28,7 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
                 function (data) {
                     $scope.slides = data;
                     console.log("New slides loaded");
-                    $scope.reloadSlides(timeOut);
+                    $scope.reloadSlides(timeOut, screenId);
                 }
             );
         }, timeOut);
@@ -38,7 +38,6 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
     // Load slides and start slideshow
     $scope.slides = slides(screenId).query($scope.onSlidesReceived);
     // Start reload rotation of slides
-    $scope.reloadSlides(60 * 1000);
-
+    $scope.reloadSlides(2 * 60 * 1000, screenId);
     $rootScope.title = "Sølvberget";
   });
