@@ -24,6 +24,10 @@ namespace Solvberget.Core.ViewModels.Base
 			_viewModelReady.Set();
 		}
 
+		public virtual void OnViewReady()
+		{
+		}
+
         private long _id;
         /// <summary>
         /// Gets or sets the unique ID for the menu

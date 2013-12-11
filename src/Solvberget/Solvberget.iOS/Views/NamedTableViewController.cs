@@ -61,6 +61,7 @@ namespace Solvberget.iOS
 			if (null != ViewModel)
 			{
 				var vm = (BaseViewModel)ViewModel;
+				vm.OnViewReady();
 				vm.WaitForReady(() => InvokeOnMainThread(ViewModelReady));
 				NavigationItem.Title = vm.Title.ToUpperInvariant();
 			}
