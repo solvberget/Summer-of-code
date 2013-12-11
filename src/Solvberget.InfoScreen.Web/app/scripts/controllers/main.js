@@ -10,11 +10,12 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
         $scope.nextSlide=function(timeOut) {
             $timeout(function() {
                 $scope.template = $scope.slides[$scope.count];
+                $scope.templateName = "/views/slides/"+$scope.template.template+".html";
                 $scope.count+=1;
                 if($scope.count>=$scope.slides.length) {
                     $scope.count=0;
                 }
-                $scope.nextSlide($scope.slides[$scope.template].duration);
+                $scope.nextSlide($scope.slides[$scope.template].duration * 1000);
             }, timeOut);
         };
 
@@ -33,6 +34,8 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
             );
         }, timeOut);
     };
+
+    // Mapper between slide names and
 
     var screenId = ($routeParams.id) ? $routeParams.id : "default";
     // Load slides and start slideshow
