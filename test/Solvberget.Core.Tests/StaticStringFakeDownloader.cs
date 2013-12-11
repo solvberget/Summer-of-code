@@ -19,17 +19,17 @@ namespace Solvberget.Core.Tests
             return _toBeReturned;
         }
 
-        public Task<string> Download(string url, string method)
+        public async Task<string> Download(string url, string method)
+        {
+            return await Download(url);
+        }
+
+        public async Task<string> PostForm(string url, Dictionary<string, string> formData)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<string> PostForm(string url, Dictionary<string, string> formData)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<string> Download(string url, string method, string userId, string userPin)
+        public async Task<string> Download(string url, string method, string userId, string userPin)
         {
             throw new System.NotImplementedException();
         }
