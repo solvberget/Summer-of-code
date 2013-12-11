@@ -3,6 +3,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Solvberget.Core.ViewModels;
+using System.Globalization;
 
 namespace Solvberget.iOS
 {
@@ -61,11 +62,13 @@ namespace Solvberget.iOS
 				var itemCtrl = new TitleAndSummaryItem();
 				itemCtrl.View.Frame = new RectangleF(padding, y, ItemsContainer.Frame.Width - (2*padding), 50.0f);
 
-				itemCtrl.Clicked += (sender, e) => UIApplication.SharedApplication.OpenUrl(new NSUrl(item.Url));
+				itemCtrl.Clicked += (sender, e) => ViewModel.ShowDetailsCommand.Execute(item);
 
 				itemCtrl.TitleLabelText = item.Title;
 
-				if(!String.IsNullOrEmpty(item.Content)) itemCtrl.SummaryLabelText = item.Content.Replace("&nbsp;", " ");
+				itemCtrl.SummaryLabelText = item.Published.ToString("dddd d. MMMM", new CultureInfo("nb-no")).ToUpperInvariant();
+
+				if(!String.IsNullOrEmpty(item.Content)) itemCtrl.SummaryLabelText += Environment.NewLine + Environment.NewLine + item.Content.Replace("&nbsp;", " ").Trim();
 
 				ItemsContainer.Add(itemCtrl.View);
 
