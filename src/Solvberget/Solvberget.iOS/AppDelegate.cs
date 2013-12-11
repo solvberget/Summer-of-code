@@ -1,4 +1,4 @@
-﻿﻿using Solvberget.Core.ViewModels;
+﻿using Solvberget.Core.ViewModels;
 using Solvberget.Core.Services;
 using Solvberget.Core.DTOs;
 using Cirrious.MvvmCross.Views;
@@ -94,7 +94,7 @@ namespace Solvberget.iOS
 		{
 			if (message == Replies.RequireLoginReply)
 			{
-				var ok = _viewDispatcher.ShowViewModel(new MvxViewModelRequest(
+				_viewDispatcher.ShowViewModel(new MvxViewModelRequest(
 					typeof(LoginViewModel),
 					new MvxBundle(new Dictionary<string,string>{{ "navigateBackOnLogin","true" }}),
 					null,

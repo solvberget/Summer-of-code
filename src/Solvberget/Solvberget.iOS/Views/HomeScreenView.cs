@@ -111,7 +111,10 @@ namespace Solvberget.iOS
 					y += 60f;
 				}
 
-				ScrollView.ContentSize = new SizeF(View.Bounds.Width, y + 20f);
+				ScrollView.ContentSize = new SizeF(
+					ScrollView.Subviews.Max(s => s.Frame.Right), 
+					ScrollView.Subviews.Max(s => s.Frame.Bottom + 20f));
+
 			}
 		}
 
@@ -186,6 +189,8 @@ namespace Solvberget.iOS
 
 			public override void TouchesBegan(NSSet touches, UIEvent evt)
 			{
+				base.TouchesBegan(touches, evt);
+
 				UIView.BeginAnimations(null);
 				UIView.SetAnimationDuration(0.2f);
 				_box.Transform = CGAffineTransform.MakeScale(1.1f,1.1f);
@@ -194,7 +199,19 @@ namespace Solvberget.iOS
 
 			}
 
+			public override void TouchesCancelled(NSSet touches, UIEvent evt)
+			{
+				base.TouchesCancelled(touches, evt);
+				EndAnimate();
+			}
+
 			public override void TouchesEnded(NSSet touches, UIEvent evt)
+			{
+				base.TouchesEnded(touches, evt);
+				EndAnimate();
+			}
+
+			private void EndAnimate()
 			{
 				UIView.BeginAnimations(null);
 				UIView.SetAnimationDuration(0.2f);

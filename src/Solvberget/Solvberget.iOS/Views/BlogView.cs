@@ -49,35 +49,30 @@ namespace Solvberget.iOS
 			DescriptionLabel.SizeToFit();
 
 			DescriptionContainer.BackgroundColor = Application.ThemeColors.Hero;
-			DescriptionContainer.Frame = new RectangleF(0, 0, 320, DescriptionLabel.Frame.Height + padding*2);
+			DescriptionContainer.Frame = new RectangleF(0, 0, View.Frame.Width, DescriptionLabel.Frame.Height + padding*2);
 
 			var y = padding;
 
 			foreach (var s in ItemsContainer.Subviews)
 				s.RemoveFromSuperview();
 
-			foreach (var post in ViewModel.Posts)
+			foreach (var item in ViewModel.Posts)
 			{
-				var postCtrl = new TitleAndSummaryItem();
+				var itemCtrl = new TitleAndSummaryItem();
+				itemCtrl.View.Frame = new RectangleF(padding, y, ItemsContainer.Frame.Width - (2*padding), 50.0f);
 
-				postCtrl.Clicked += (sender, e) => post.Show(ViewModel.Id);
+				itemCtrl.Clicked += (sender, e) => UIApplication.SharedApplication.OpenUrl(new NSUrl(item.Url));
 
-				postCtrl.TitleLabelText = post.Title;
-				postCtrl.SummaryLabelText = post.Description;
+				itemCtrl.TitleLabelText = item.Title;
 
-				ItemsContainer.Add(postCtrl.View);
-				postCtrl.Frame = new RectangleF(padding, y, postCtrl.Frame.Width, postCtrl.Frame.Height + padding);
+				if(!String.IsNullOrEmpty(item.Content)) itemCtrl.SummaryLabelText = item.Content.Replace("&nbsp;", " ");
 
-				y += postCtrl.Frame.Height + padding;
+				ItemsContainer.Add(itemCtrl.View);
+
+				y += itemCtrl.Frame.Height + padding;
 			}
 
-			var icY = DescriptionContainer.Frame.Y + DescriptionContainer.Frame.Height;
-
-			ItemsContainer.Frame = new RectangleF(0, icY , 320, y);
-
-
-			ScrollContainer.ContentSize = new SizeF(320, y + icY);
-			ScrollContainer.ScrollEnabled = true;
+			ScrollContainer.ContentSize = new SizeF(ScrollContainer.Bounds.Width, y);
 		}
 
 		private void OnViewInBrowser(object sender, EventArgs e)
