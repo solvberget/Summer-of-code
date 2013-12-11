@@ -27,7 +27,8 @@ namespace Solvberget.iOS
 
 			var set = this.CreateBindingSet<MyPageLoansView, MyPageLoansViewModel>();
 			set.Bind(source).To(vm => vm.Loans);
-			//set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
+
+			source.SelectedItemChanged += (s,e) => ShowPopup(source.SelectedItem as LoanViewModel);
 
 			set.Apply();
 
@@ -40,6 +41,38 @@ namespace Solvberget.iOS
 				_noRows = new UILabel(new RectangleF(10, 10, 300, 30)){ Text = "Du har ingen lån.", Font = Application.ThemeColors.DefaultFont };
 				Add(_noRows);
 			}
+		}
+
+		void ShowPopup(LoanViewModel vm)
+		{
+			if (null == vm)
+				return;
+
+			var popup = new UIAlertView(View.Frame);
+
+			popup.Title = vm.DocumentTitle;
+
+			popup.AddButton("Utvid lånetid");
+			popup.AddButton("Vis detaljer");
+			popup.AddButton("Avbryt");
+
+			popup.CancelButtonIndex = 2;
+
+			popup.Dismissed += (sender, e) =>
+			{
+				switch(e.ButtonIndex)
+				{
+					case 0 : 
+						ViewModel.ExpandLoan(vm.DocumentNumber);
+						break;
+
+					case 1: 
+						ViewModel.ShowDetailsCommand.Execute(vm);
+						break;
+				}
+			};
+
+			popup.Show();
 		}
 
 		UILabel _noRows = new UILabel();

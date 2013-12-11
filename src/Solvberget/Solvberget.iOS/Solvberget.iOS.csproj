@@ -213,6 +213,8 @@
     <Compile Include="Views\MyPagePersonaliaView.cs" />
     <Compile Include="Views\BoxRenderer.cs" />
     <Compile Include="Views\MyPageReservationsView.cs" />
+    <Compile Include="Views\Cache.cs" />
+    <Compile Include="IosDtoDownloader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
