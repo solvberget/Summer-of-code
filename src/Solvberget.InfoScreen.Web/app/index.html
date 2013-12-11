@@ -27,8 +27,13 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div>Slide {{ count }} of {{ slides.length }}</div>
-    <div class="container" ng-view></div>
+    <div class="navbar navbar-default navbar-static-top navbar-fixed-top" id="menu">
+            <div class="navbar-header">
+                <span class="navbar-brand"><img src="images/logo_white.png" /><span>{{ title }}</span></span>
+            </div>
+    </div>
+
+    <div class="container-liquid" ng-view></div>
 
 
     <script src="bower_components/jquery/jquery.js"></script>
@@ -40,6 +45,8 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->

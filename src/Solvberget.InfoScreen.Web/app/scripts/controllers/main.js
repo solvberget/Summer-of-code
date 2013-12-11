@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($scope, $timeout, $routeParams, slides) {
+angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($scope, $rootScope, $timeout, $routeParams, slides) {
     // Called after first slide retrieval. Starts a loop where slides are rotated every timeOut second.
-    // Each slide defines its own timeout intervall.
+    // Each slide defines its own timeout interval.
     $scope.onSlidesReceived = function () {
         $scope.template=$scope.slides[0];
         $scope.count=0;
@@ -39,4 +39,6 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
     $scope.slides = slides(screenId).query($scope.onSlidesReceived);
     // Start reload rotation of slides
     $scope.reloadSlides(60 * 1000);
+
+    $rootScope.title = "Sølvberget";
   });
