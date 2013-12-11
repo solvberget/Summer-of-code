@@ -16,8 +16,6 @@ namespace Solvberget.iOS
 
 		public new LoginViewModel ViewModel { get { return base.ViewModel as LoginViewModel; }}
 
-		LoadingOverlay _loadingOverlay = new LoadingOverlay();
-
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -36,7 +34,7 @@ namespace Solvberget.iOS
 			set.Bind(Password).To(vm => vm.Pin);
 			set.Bind(ErrorMessage).To(vm => vm.Message);
 
-			set.Bind(_loadingOverlay).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
+			set.Bind(LoadingOverlay).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();
 
@@ -59,7 +57,7 @@ namespace Solvberget.iOS
 		private void DoLogin(object sender = null, EventArgs args = null)
 		{
 			Password.ResignFirstResponder();
-			Add(_loadingOverlay);
+			LoadingOverlay.Show(View);
 			ViewModel.LoginCommand.Execute(null);
 		}
     }

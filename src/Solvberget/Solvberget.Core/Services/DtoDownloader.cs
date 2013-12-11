@@ -27,6 +27,11 @@ namespace Solvberget.Core.Services
             }
             catch (WebException ex)
             {
+				if (ex.Message.Contains("(401) Unauthorized"))
+				{
+					return new TDto { Success = false, Reply = Replies.RequireLoginReply };
+				}
+
                 switch (ex.Status)
                 {
                     case WebExceptionStatus.ConnectFailure:

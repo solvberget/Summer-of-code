@@ -65,8 +65,6 @@ namespace Solvberget.iOS
 			TypeLabel.TextColor = Application.ThemeColors.MainInverse;
 		}
 
-		LoadingOverlay _loadingOverlay = new LoadingOverlay();
-
         private void OnToggleFavorite(object sender, EventArgs e)
         {
 			NavigationItem.RightBarButtonItem.Enabled = false;
@@ -80,7 +78,6 @@ namespace Solvberget.iOS
 
 			InvokeOnMainThread(() => {
 				UpdateFavoriteButtonState();
-				_loadingOverlay.Hide();
 			});
 		}
 
@@ -156,7 +153,7 @@ namespace Solvberget.iOS
 
 			Position();
 
-			_loadingOverlay.Hide();
+			LoadingOverlay.Hide();
 		}
 
 		void RenderAvailability()

@@ -20,6 +20,7 @@ namespace Solvberget.iOS
 		public static Action<ISimpleCell, SuggestionListSummaryViewModel> SuggestionLists = (sc, model) =>
 		{
 			sc.Bind(model.Name, null);
+			sc.ImageUrl = model.ImageUrl;
 		};
 
 		public static Action<ISimpleCell, BlogItemViewModel> Blogs = (sc, model) =>

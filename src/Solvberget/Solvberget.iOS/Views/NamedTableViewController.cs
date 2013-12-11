@@ -23,7 +23,7 @@ namespace Solvberget.iOS
 			NavigationItem.Title = (ViewModel as BaseViewModel).Title.ToUpperInvariant();
 
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-			Add(_loadingOverlay);
+			_loadingOverlay.Show(View);
 		}
 
 		public override UIStatusBarStyle PreferredStatusBarStyle()

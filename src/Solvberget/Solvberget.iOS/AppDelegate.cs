@@ -1,5 +1,8 @@
-﻿using Solvberget.Core.ViewModels;
+﻿﻿using Solvberget.Core.ViewModels;
 using Solvberget.Core.Services;
+using Solvberget.Core.DTOs;
+using Cirrious.MvvmCross.Views;
+using System.Collections.Generic;
 
 namespace Solvberget.iOS
 {
@@ -55,15 +58,20 @@ namespace Solvberget.iOS
 
 	public class IosDtoDownloader : DtoDownloader
 	{
-		public IosDtoDownloader(IStringDownloader stringDownloader) : base(stringDownloader)
-		{}
+		IMvxViewDispatcher _viewDispatcher;
+
+		public IosDtoDownloader(IMvxViewDispatcher viewDispatcher, IStringDownloader stringDownloader) : base(stringDownloader)
+		{
+			_viewDispatcher = viewDispatcher;
+		}
+
 		public override async System.Threading.Tasks.Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
 		{
 			var result = await base.DownloadList<TDto>(url, method);
 
 			if (!result.Success)
 			{
-				ShowErrorAlert(result.Reply);
+				HandleError(result.Reply);
 			}
 
 			return result;
@@ -76,14 +84,25 @@ namespace Solvberget.iOS
 
 			if (!result.Success)
 			{
-				ShowErrorAlert(result.Reply);
+				HandleError(result.Reply);
 			}
 
 			return result;
 		}
 
-		static void ShowErrorAlert(string message)
+		void HandleError(string message)
 		{
+			if (message == Replies.RequireLoginReply)
+			{
+				var ok = _viewDispatcher.ShowViewModel(new MvxViewModelRequest(
+					typeof(LoginViewModel),
+					new MvxBundle(new Dictionary<string,string>{{ "navigateBackOnLogin","true" }}),
+					null,
+					null));
+
+				return;
+			}
+
 			UIAlertView alert = new UIAlertView(UIScreen.MainScreen.Bounds);
 			alert.Title = "Uffda...";
 			alert.Message = message;
