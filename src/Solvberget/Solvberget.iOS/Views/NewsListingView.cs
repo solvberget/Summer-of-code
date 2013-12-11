@@ -6,6 +6,7 @@ using Cirrious.MvvmCross.Touch.Views;
 using Solvberget.Core.ViewModels;
 using Cirrious.MvvmCross.Binding.Touch.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using System.Globalization;
 
 namespace Solvberget.iOS
 {
@@ -70,7 +71,9 @@ namespace Solvberget.iOS
 
 				itemCtrl.TitleLabelText = item.NewsTitle;
 
-				if(!String.IsNullOrEmpty(item.Ingress)) itemCtrl.SummaryLabelText = item.Ingress.Replace("&nbsp;", " ");
+				itemCtrl.SummaryLabelText = item.Published.ToString("dddd d. MMMM", new CultureInfo("nb-no")).ToUpperInvariant();
+
+				if(!String.IsNullOrEmpty(item.Ingress)) itemCtrl.SummaryLabelText += Environment.NewLine + Environment.NewLine + item.Ingress.Replace("&nbsp;", " ");
 
 				container.Add(itemCtrl.View);
 
