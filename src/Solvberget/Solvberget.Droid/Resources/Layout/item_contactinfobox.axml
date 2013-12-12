@@ -24,24 +24,28 @@
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="phone"
         local:MvxBind="Text Phone; Visibility Visibility(Phone)" />
     <TextView
         android:text="Something@example.com"
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="email"
         local:MvxBind="Text Email; Visibility Visibility(Email)" />
     <TextView
         android:text="Street Streetname 4"
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="map"
         local:MvxBind="Text Address; Visibility Visibility(Address)" />
     <TextView
         android:text="Street Namestreet 10"
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="map"
         local:MvxBind="Text VisitingAddress; Visibility Visibility(VisitingAddress)" />
     <MvxLinearLayout
         android:orientation="vertical"
