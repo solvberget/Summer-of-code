@@ -1,38 +1,39 @@
-using System.Threading.Tasks;
 using Android.App;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
-using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using Cirrious.MvvmCross.Binding.Droid.BindingContext;
+using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
-using Solvberget.Droid.ActionBar;
 using ShareActionProvider = Android.Support.V7.Widget.ShareActionProvider;
 
 namespace Solvberget.Droid.Views.Fragments
 {
-    [Activity(Label = "Mediadetaljer", Theme = "@style/MyTheme", Icon = "@android:color/transparent", ParentActivity = typeof(HomeView))]
-    [MetaData("android.support.PARENT_ACTIVITY", Value = "solvberget.droid.views.HomeView")]
-    public class MediaDetailView : MvxActionBarActivity
+    public class MediaDetailView : MvxFragment
     {
         private LoadingIndicator _loadingIndicator;
         private ShareActionProvider _shareActionProvider;
         private IMenu _menu;
         private bool _starIsClicked;
+        private MenuInflater _inflater;
 
-        protected override void OnViewModelSet()
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
-            base.OnViewModelSet();
-            SetContentView(Resource.Layout.fragment_mediadetail);
+            HasOptionsMenu = true;
+            base.OnCreateView(inflater, container, savedInstanceState);
+            var view = this.BindingInflate(Resource.Layout.fragment_mediadetail, null);
 
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar.SetHomeButtonEnabled(true);
-            SupportActionBar.SetBackgroundDrawable(Resources.GetDrawable(Resource.Color.s_main_green));
+            _loadingIndicator = new LoadingIndicator(Activity);
+
+            var set = this.CreateBindingSet<MediaDetailView, MediaDetailViewModel>();
+            set.Bind(_loadingIndicator).For(loadingIndicator => loadingIndicator.Visible).To(vm => vm.IsLoading);
+            set.Apply();
 
             ((MediaDetailViewModel)ViewModel).PropertyChanged += MediaDetailView_PropertyChanged;
 
-            BindLoadingIndicator();
+            return view;
         }
 
         void MediaDetailView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -51,34 +52,24 @@ namespace Solvberget.Droid.Views.Fragments
             }
         }
 
-        private void BindLoadingIndicator()
-        {
-            _loadingIndicator = new LoadingIndicator(this);
-
-            var set = this.CreateBindingSet<MediaDetailView, SearchResultViewModel>();
-            set.Bind(SupportActionBar).For(v => v.Title).To(vm => vm.Title).Mode(MvxBindingMode.OneWay);
-            set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
-            set.Apply();
-        }
-
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    NavUtils.NavigateUpFromSameTask(this);
+                    NavUtils.NavigateUpFromSameTask(Activity);
                     break;
                 case Resource.Id.menu_is_not_favorite:
-                    if (((MediaDetailViewModel)ViewModel).LoggedIn)
-                    {
-                        _starIsClicked = true;
-                        ((MediaDetailViewModel)ViewModel).AddFavorite();
-                    }
-                    else
-                    {
-                        Toast.MakeText(Application.Context, "Logg inn for å legge til favoritter", ToastLength.Long).Show();
-                    }
-                    
+                    //if (((MediaDetailViewModel)ViewModel).LoggedIn)
+                    //{
+                    _starIsClicked = true;
+                    ((MediaDetailViewModel)ViewModel).AddFavorite();
+                    //}
+                    //else
+                    //{
+                    //    Toast.MakeText(Application.Context, "Logg inn for å legge til favoritter", ToastLength.Long).Show();
+                    //}
+
                     break;
                 case Resource.Id.menu_is_favorite:
                     _starIsClicked = true;
@@ -88,45 +79,26 @@ namespace Solvberget.Droid.Views.Fragments
             return base.OnOptionsItemSelected(item);
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             _menu = menu;
+            _inflater = inflater;
 
-            return LoadMenu();
+            LoadMenu();
         }
 
-        private void CreateShareMenu()
-        {
-            if (_shareActionProvider != null)
-            {
-                var playStoreLink = "https://play.google.com/store/apps/details?id=" + PackageName;
-                var shareTextBody = string.Format(
-                    "Jeg fant {0} hos Sølvberget. Last ned app for muligheten til å låne du også: {1}",
-                    ((MediaDetailViewModel)ViewModel).Title, 
-                    playStoreLink);
-
-                var shareIntent = ShareCompat.IntentBuilder.From(this)
-                    .SetType("text/plain")
-                    .SetText(shareTextBody)
-                    .SetSubject("Sølvberget")
-                    .Intent;
-                _shareActionProvider.SetShareIntent(shareIntent);
-            }
-        }
-
-        public bool LoadMenu()
+        private void LoadMenu()
         {
             _menu.Clear();
-
-            MenuInflater.Inflate(
+            _inflater.Inflate(
                 ((MediaDetailViewModel)ViewModel).IsFavorite
                     ? Resource.Menu.star_is_favorite
                     : Resource.Menu.star_is_not_favorite, _menu);
 
-            MenuInflater.Inflate(Resource.Menu.share, _menu);
+            _inflater.Inflate(Resource.Menu.share, _menu);
             // Locate MenuItem with ShareActionProvider
             var inflatedShareView = _menu.FindItem(Resource.Id.menu_share);
-            var actionShareView = new ShareActionProvider(this);
+            var actionShareView = new ShareActionProvider(Activity);
             MenuItemCompat.SetActionProvider(inflatedShareView, actionShareView);
 
             _shareActionProvider = actionShareView;
@@ -135,10 +107,29 @@ namespace Solvberget.Droid.Views.Fragments
 
             _starIsClicked = false;
 
-            return base.OnCreateOptionsMenu(_menu);
+            base.OnCreateOptionsMenu(_menu, _inflater);
         }
 
-        protected override void OnResume()
+        private void CreateShareMenu()
+        {
+            if (_shareActionProvider != null)
+            {
+                var playStoreLink = "https://play.google.com/store/apps/details?id=" + Activity.PackageName;
+                var shareTextBody = string.Format(
+                    "Jeg fant {0} hos Sølvberget. Last ned app for muligheten til å låne du også: {1}",
+                    ((MediaDetailViewModel)ViewModel).Title,
+                    playStoreLink);
+
+                var shareIntent = ShareCompat.IntentBuilder.From(Activity)
+                    .SetType("text/plain")
+                    .SetText(shareTextBody)
+                    .SetSubject("Sølvberget")
+                    .Intent;
+                _shareActionProvider.SetShareIntent(shareIntent);
+            }
+        }
+
+        public override void OnResume()
         {
             if (ViewModel != null)
             {

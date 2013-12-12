@@ -117,6 +117,8 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (LoginViewModel), this);
             customPresenter.Register(typeof (EventListViewModel), this);
             customPresenter.Register(typeof (HomeScreenViewModel), this);
+
+            customPresenter.Register(typeof (MediaDetailViewModel), this);
         }
 
         /// <summary>
@@ -245,8 +247,11 @@ namespace Solvberget.Droid.Views
                             frag = new SuggestionsListView();
                         if (request.ViewModelType == typeof(BlogViewModel))
                             frag = new BlogView();
-                        if (request.ViewModelType == typeof(LoginViewModel)) 
+                        if (request.ViewModelType == typeof (LoginViewModel))
                             frag = new LoginView();
+                        if (request.ViewModelType == typeof (MediaDetailViewModel))
+                            frag = new MediaDetailView();
+
                         break;
                     }
                 }

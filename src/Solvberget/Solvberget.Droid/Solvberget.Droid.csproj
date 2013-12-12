@@ -281,7 +281,9 @@
     <AndroidResource Include="Resources\Layout\fragment_contactinfo.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Layout\item_contactinfobox.axml" />
+    <AndroidResource Include="Resources\Layout\item_contactinfobox.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_contactperson.axml" />
     <AndroidResource Include="Resources\Layout\item_genericfield.axml" />
     <AndroidResource Include="Resources\Layout\fragment_blogoverview.axml">
