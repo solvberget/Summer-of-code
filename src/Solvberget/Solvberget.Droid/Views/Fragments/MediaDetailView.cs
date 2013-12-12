@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Android.App;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
@@ -27,6 +28,7 @@ namespace Solvberget.Droid.Views.Fragments
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetBackgroundDrawable(Resources.GetDrawable(Resource.Color.s_main_green));
 
             ((MediaDetailViewModel)ViewModel).PropertyChanged += MediaDetailView_PropertyChanged;
 
