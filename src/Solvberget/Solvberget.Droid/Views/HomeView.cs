@@ -66,7 +66,7 @@ namespace Solvberget.Droid.Views
                 //DrawerToggle is the animation that happens with the indicator next to the
                 //ActionBar icon. You can choose not to use this.
                 _drawerToggle = new MyActionBarDrawerToggle(this, _drawer,
-                    Resource.Drawable.ic_drawer_light,
+                    Resource.Drawable.ic_navigation_drawer,
                     Resource.String.drawer_open,
                     Resource.String.drawer_close);
 
