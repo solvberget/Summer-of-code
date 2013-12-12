@@ -11,5 +11,7 @@ namespace Solvberget.Core.DTOs
         public double Score { get; set; }
         public double MaxScore { get; set; }
         public string Source { get; set; }
+
+        public bool HasRating { get; set; }
     }
 }

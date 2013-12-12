@@ -103,7 +103,11 @@ namespace Solvberget.Nancy
 
         public string GetFavoritesPath(string userId)
         {
-            return Path.Combine(_applicationAppDataPath, @"favorites\", userId);
+            var favPath = Path.Combine(_applicationAppDataPath, @"favorites\");
+
+            if(!Directory.Exists(favPath)) Directory.CreateDirectory(favPath);
+
+            return Path.Combine(favPath, userId);
         }
     }
 }
