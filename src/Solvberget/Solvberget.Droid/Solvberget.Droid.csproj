@@ -37,7 +37,7 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidLinkSkip />
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <BundleAssemblies>False</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -154,6 +154,7 @@
     <Compile Include="Converters\StringToColorConverter.cs" />
     <Compile Include="Converters\StringToHtmlConverter.cs" />
     <Compile Include="DebugTrace.cs" />
+    <Compile Include="Helpers\AndroidDtoDownloader.cs" />
     <Compile Include="Helpers\CustomPresenter.cs" />
     <Compile Include="Helpers\MyActionBarDrawerToggle.cs" />
     <Compile Include="LinkerPleaseInclude.cs">
