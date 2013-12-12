@@ -40,12 +40,9 @@ namespace Solvberget.Droid.Views.Fragments
             switch (e.PropertyName)
             {
                 case "IsFavorite":
-                    if (_starIsClicked)
-                    {
-                        LoadMenu();
-                        if (((MediaDetailViewModel)ViewModel).IsFavorite)
-                            Toast.MakeText(Application.Context, "Lagt til som favoritt", ToastLength.Long).Show();
-                    }
+                    LoadMenu();
+                    if (((MediaDetailViewModel)ViewModel).IsFavorite)
+                        Toast.MakeText(Application.Context, "Lagt til som favoritt", ToastLength.Long).Show();
                     break;
                 case "IsReservable":
                     if (((MediaDetailViewModel)ViewModel).IsReservedByUser)
@@ -139,6 +136,17 @@ namespace Solvberget.Droid.Views.Fragments
             _starIsClicked = false;
 
             return base.OnCreateOptionsMenu(_menu);
+        }
+
+        protected override void OnResume()
+        {
+            if (ViewModel != null)
+            {
+                var vm = (MediaDetailViewModel)ViewModel;
+                vm.OnViewReady();
+            }
+
+            base.OnResume();
         }
     }
 }

@@ -2,9 +2,11 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
+using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Droid.Views.Fragments
 {
@@ -37,6 +39,17 @@ namespace Solvberget.Droid.Views.Fragments
                 var toast = Toast.MakeText(context, text, duration);
                 toast.Show();
             }
+        }
+
+        public override void OnResume()
+        {
+            if (ViewModel != null)
+            {
+                var vm = (MyPageFavoritesViewModel) ViewModel;
+                vm.OnViewReady();
+            }
+
+            base.OnResume();
         }
     }
 }

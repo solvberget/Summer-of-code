@@ -38,14 +38,4 @@
             android:id="@+id/textView2"
             local:MvxBind="Text Year; Visibility Visibility(Year)" />
     </LinearLayout>
-    <Button
-        android:text="Fjern"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:background="@color/s_main_green"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:width="80dp"
-        local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(ButtonVisible)" />
 </LinearLayout>

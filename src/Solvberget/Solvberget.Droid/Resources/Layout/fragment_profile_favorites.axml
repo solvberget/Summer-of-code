@@ -30,7 +30,7 @@
         android:divider="@null"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource Favorites"
+        local:MvxBind="ItemsSource Favorites; ItemClick ShowDetailsCommand"
         local:MvxItemTemplate="@layout/item_favorite" />
   </LinearLayout>
 </LinearLayout>

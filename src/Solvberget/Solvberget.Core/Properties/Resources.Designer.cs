@@ -61,7 +61,7 @@ namespace Solvberget.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://0684aa9afb9d4ed68633773e9b3cc26d.cloudapp.net/.
+        ///   Looks up a localized string similar to http://0684aa9afb9d4ed68633773e9b3cc26d.cloudapp.net.
         /// </summary>
         internal static string ServiceUrl {
             get {

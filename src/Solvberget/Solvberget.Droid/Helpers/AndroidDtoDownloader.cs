@@ -29,7 +29,6 @@ namespace Solvberget.Droid.Helpers
         public override async Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
         {
             var result = await base.DownloadList<TDto>(url, method);
-            Mvx.Trace("Just received a result");
             if (!result.Success)
             {
                 HandleError(result.Reply);
@@ -41,7 +40,6 @@ namespace Solvberget.Droid.Helpers
         public override async Task<TDto> Download<TDto>(string url, string method = "GET")
         {
             var result = await base.Download<TDto>(url, method);
-            Mvx.Trace("Just received a result");
             if (!result.Success)
             {
                 HandleError(result.Reply);

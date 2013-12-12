@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
@@ -54,7 +55,7 @@ namespace Solvberget.Core.ViewModels
                     ButtonVisible = true,
                     Name = f.Document.Title,
                     Year = f.Document.Year,
-					Type = f.Document.Type,
+                    Type = f.Document.Type,
                     Parent = this,
                     DocumentNumber = f.Document.Id,
                     Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, f.Document.Id)

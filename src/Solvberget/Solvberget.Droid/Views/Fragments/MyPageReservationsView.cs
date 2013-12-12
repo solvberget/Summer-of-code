@@ -31,5 +31,16 @@ namespace Solvberget.Droid.Views.Fragments
             if (isChanged == "ReservationRemoved")
                 Toast.MakeText(Application.Context, "Reservasjon fjernet", ToastLength.Long).Show();
         }
+
+        public override void OnResume()
+        {
+            if (ViewModel != null)
+            {
+                var vm = (MyPageReservationsViewModel)ViewModel;
+                vm.OnViewReady();
+            }
+
+            base.OnResume();
+        }
     }
 }
