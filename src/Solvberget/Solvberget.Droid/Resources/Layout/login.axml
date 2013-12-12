@@ -43,11 +43,21 @@
         android:hint="Pin"
         local:MvxBind="Text Pin" />
     <Button
+        android:layout_marginTop="8dp"
         android:id="@+id/buttonSignIn"
         android:layout_width="fill_parent"
         android:background="@color/s_main_green"
         android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:text="Logg inn"
         local:MvxBind="Click LoginCommand" />
+    <Button
+        android:layout_marginTop="8dp"
+        android:id="@+id/buttonLostPass"
+        android:layout_width="fill_parent"
+        android:background="@color/s_main_green"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:text="Glemt PIN"
+        local:MvxBind="Click ForgotPasswordCommand" />
 </LinearLayout>

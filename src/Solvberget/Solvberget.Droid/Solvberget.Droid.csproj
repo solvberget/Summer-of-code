@@ -343,6 +343,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_media_availability.axml" />
     <AndroidResource Include="Resources\Layout\page_localwebview.axml" />
+    <AndroidResource Include="Resources\Layout\dialog_forgotpass.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

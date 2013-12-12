@@ -195,4 +195,8 @@
     <value>/lists/{0}/thumbnail</value>
     <comment>0 =List Id</comment>
   </data>
+  <data name="ServiceUrl_RequestPin" xml:space="preserve">
+    <value>/login/forgot/{0}</value>
+    <comment>0 =User Id</comment>
+  </data>
 </root>

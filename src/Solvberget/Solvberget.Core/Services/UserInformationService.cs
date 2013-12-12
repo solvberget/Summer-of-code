@@ -121,5 +121,10 @@ namespace Solvberget.Core.Services
         {
             return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + Resources.ServiceUrl_Renew + documentNumber, "PUT");
         }
+
+        public async Task<RequestReplyDto> RequestPinCode(string userId)
+        {
+            return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_RequestPin, userId));
+        }
     }
 }

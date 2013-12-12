@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">XamDroid.NavigationDrawer.MvxSample.Droid</string>
-    <string name="drawer_open">Åpne</string>
-    <string name="drawer_close">Lukke</string>
-    <string name="menu_refresh">Refresh</string>
-    <string name="menu_star">Favoritt</string>
-    <string name="menu_share">Del</string>
-    <string name="search_title">Søk</string>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">XamDroid.NavigationDrawer.MvxSample.Droid</string>
+  <string name="drawer_open">Åpne</string>
+  <string name="drawer_close">Lukke</string>
+  <string name="menu_refresh">Refresh</string>
+  <string name="menu_star">Favoritt</string>
+  <string name="menu_share">Del</string>
+  <string name="search_title">Søk</string>
+  <string name="user_id">Lånernummer</string>
+  <string name="forgot_pass_description">Få tilsendt din PIN-kode på SMS. (Tjenesten koster 1,- per mottatte melding)</string>
 </resources>
