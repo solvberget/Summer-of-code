@@ -8,6 +8,9 @@ using Solvberget.Core.ViewModels;
 using System.Threading;
 using System.Linq;
 using Solvberget.Core.DTOs;
+using System.Web;
+using MonoTouch.Twitter;
+using MonoTouch.FacebookConnect;
 
 namespace Solvberget.iOS
 {
@@ -81,21 +84,97 @@ namespace Solvberget.iOS
 			});
 		}
 
+		UIBarButtonItem _favButton;
+		UIBarButtonItem _shareButton;
+
 		private void UpdateFavoriteButtonState()
 		{
-			var image = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26, 26));
+			var favStateImage = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26, 26));
 
 			if(!ViewModel.IsFavorite && !UIHelpers.MinVersion7)
 			{
-				image = UIImage.FromBundle("/Images/star.off.png").Scale(new SizeF(26, 26));
+				favStateImage = UIImage.FromBundle("/Images/star.off.png").Scale(new SizeF(26, 26));
 			}
 
-			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, OnToggleFavorite), false);
+			if (null == _favButton)
+			{
+				_favButton = new UIBarButtonItem(favStateImage, UIBarButtonItemStyle.Plain, OnToggleFavorite);
+				_shareButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, OnShare);
+
+				NavigationItem.SetRightBarButtonItems(new UIBarButtonItem[]{_shareButton,_favButton}, false);
+			}
 
 			if (UIHelpers.MinVersion7)
 			{
-				NavigationItem.RightBarButtonItem.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
+				_favButton.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
 			}
+			else
+			{
+				_favButton.Image = favStateImage;
+			}
+		}
+
+		private void OnShare(object sender, EventArgs e)
+		{
+			var shareView = new UIAlertView(View.Frame);
+
+			shareView.Title = "Del " + ViewModel.Title;
+
+			shareView.AddButton("Del på Facebook");
+			shareView.AddButton("Del på Twitter");
+			shareView.AddButton("Send på E-post");
+			shareView.AddButton("Avbryt");
+
+			shareView.Clicked += (ss, se) =>
+			{
+				string launchUri = null;
+
+				var shareMessage = "Se hva jeg fant på Sølvberget: " + ViewModel.Title;
+
+				if(null == ViewModel.RawDto.WebUrl) return;
+
+				switch(se.ButtonIndex)
+				{
+					case 0:
+
+
+						if(!FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
+						{
+							UIAlertView alert = new UIAlertView(View.Frame);
+							alert.Title = "Facebook oppsett mangler";
+							alert.Message = "Du må koble din iPhone/iPad til Facebook før du kan dele (selv om du kanskje har installet Facebook appen). Gå til Instillinger - Facebook.";
+							alert.AddButton("Ok");
+							alert.Show();
+							return;
+						}
+
+						FBDialogs.PresentOSIntegratedShareDialogModally(this,
+							shareMessage, null, new NSUrl(ViewModel.RawDto.WebUrl),new FBOSIntegratedShareDialogHandler((res,err) => {
+
+								var ex = err;
+
+							}));
+
+
+						break;
+					case 1:
+
+						var tvc = new TWTweetComposeViewController();
+						tvc.SetInitialText(shareMessage);
+						tvc.AddUrl(new NSUrl(ViewModel.RawDto.WebUrl));
+						PresentModalViewController(tvc, true);
+
+						break;
+				}
+
+				if(null == launchUri) return;
+
+				bool success = UIApplication.SharedApplication.OpenUrl(new NSUrl(launchUri));
+			};
+
+			shareView.CancelButtonIndex = shareView.ButtonCount - 1;
+
+			shareView.Show();
 		}
 
 		private void Update()

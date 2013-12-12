@@ -52,7 +52,7 @@
     <CodesignKey>iPhone Distribution: Capgemini Norge AS (2DSX5WDBX9)</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
-    <CodesignProvision>2665FD00-6F2D-42D4-B5D3-02A6BED26D51</CodesignProvision>
+    <CodesignProvision>49E4B071-4BDE-43E2-9950-BB07F3D88D1D</CodesignProvision>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
@@ -276,6 +276,10 @@
     <Reference Include="Cirrious.MvvmCross.Plugins.DownloadCache">
       <HintPath>..\..\..\packages\MvvmCross.HotTuna.Plugin.DownloadCache.3.0.13\lib\MonoTouch40\Cirrious.MvvmCross.Plugins.DownloadCache.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="MonoTouch.FacebookConnect">
+      <HintPath>..\..\..\Components\facebookios-3.9.0\lib\ios\MonoTouch.FacebookConnect.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />
@@ -345,5 +349,12 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
     <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="facebookios">
+      <InstallationInProgress>True</InstallationInProgress>
+      <Version>3.9.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>
