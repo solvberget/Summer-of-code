@@ -76,15 +76,15 @@ namespace Solvberget.Core.Services
                 switch (ex.Status)
                 {
                     case WebExceptionStatus.ConnectFailure:
-                        return new ListResult<TDto> { Success = false, Reply = "Får ikke kontakt med bibliotekssystemet." };
+                        return new ListResult<TDto> { Success = false, Reply = "Får ikke kontakt med bibliotekssystemet.", Results = new List<TDto>()};
                     default:
-                        return new ListResult<TDto> { Success = false, Reply = "En ukjent feil oppstod." };
+                        return new ListResult<TDto> { Success = false, Reply = "En ukjent feil oppstod.", Results = new List<TDto>()};
                 }
 
             }
             catch (Exception ex)
             {
-                return new ListResult<TDto> { Success = false, Reply = ex.Message };
+                return new ListResult<TDto> { Success = false, Reply = ex.Message, Results = new List<TDto>()};
             }
         }
     }
