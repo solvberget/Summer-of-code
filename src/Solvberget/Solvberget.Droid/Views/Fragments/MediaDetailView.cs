@@ -60,15 +60,15 @@ namespace Solvberget.Droid.Views.Fragments
                     NavUtils.NavigateUpFromSameTask(Activity);
                     break;
                 case Resource.Id.menu_is_not_favorite:
-                    //if (((MediaDetailViewModel)ViewModel).LoggedIn)
-                    //{
-                    _starIsClicked = true;
-                    ((MediaDetailViewModel)ViewModel).AddFavorite();
-                    //}
-                    //else
-                    //{
-                    //    Toast.MakeText(Application.Context, "Logg inn for å legge til favoritter", ToastLength.Long).Show();
-                    //}
+                    if (((MediaDetailViewModel)ViewModel).LoggedIn)
+                    {
+                        _starIsClicked = true;
+                        ((MediaDetailViewModel)ViewModel).AddFavorite();
+                    }
+                    else
+                    {
+                        ShowLoginDialog();
+                    }
 
                     break;
                 case Resource.Id.menu_is_favorite:
@@ -77,6 +77,32 @@ namespace Solvberget.Droid.Views.Fragments
                     break;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        private void ShowLoginDialog()
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+            // Get the layout inflater
+            LayoutInflater inflater = Activity.LayoutInflater;
+
+
+            builder.SetIconAttribute(Android.Resource.Attribute.AlertDialogIcon);
+            builder.SetTitle("Logg inn");
+            builder.SetView(inflater.Inflate(Resource.Layout.dialog_login, null));
+            builder.SetPositiveButton("Logg inn", async (source, args) =>
+                {
+                    var vm = (MediaDetailViewModel) ViewModel;
+                    var username = ((EditText)((Dialog) source).FindViewById(Resource.Id.dialogLoginUsername)).Text;
+                    var password =  ((EditText)((Dialog) source).FindViewById(Resource.Id.dialogLoginPin)).Text;
+                    var success = await vm.Login(username, password);
+                    if (success)
+                    {
+                        _starIsClicked = true;
+                        ((MediaDetailViewModel)ViewModel).AddFavoriteNoRedirect();
+                    }
+                });
+            builder.SetNegativeButton("Avbryt", (source, args) => { });
+            builder.Create().Show();
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)

@@ -9,5 +9,6 @@
   <string name="menu_share">Del</string>
   <string name="search_title">Søk</string>
   <string name="user_id">Lånernummer</string>
+  <string name="user_pin">PIN</string>
   <string name="forgot_pass_description">Få tilsendt din PIN-kode på SMS. (Tjenesten koster 1,- per mottatte melding)</string>
 </resources>
