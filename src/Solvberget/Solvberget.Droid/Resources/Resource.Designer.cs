@@ -931,10 +931,13 @@ namespace Solvberget.Droid
 			public const int icon_512 = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int splash = 2130837608;
+			public const int logo_white = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int splash_logo = 2130837609;
+			public const int splash = 2130837609;
+			
+			// aapt resource value: 0x7f02006a
+			public const int splash_logo = 2130837610;
 			
 			static Drawable()
 			{

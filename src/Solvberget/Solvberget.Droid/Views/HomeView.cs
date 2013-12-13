@@ -20,7 +20,7 @@ using SearchView = Solvberget.Droid.Views.Fragments.SearchView;
 
 namespace Solvberget.Droid.Views
 {
-    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher", WindowSoftInputMode = SoftInput.AdjustResize)]
+    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher",  WindowSoftInputMode = SoftInput.AdjustResize)]
     public class HomeView : MvxActionBarActivity, IFragmentHost
     {
         private const string START_PAGE_TITLE = "Startside";
@@ -53,6 +53,7 @@ namespace Solvberget.Droid.Views
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true); 
             SupportActionBar.SetBackgroundDrawable(Resources.GetDrawable(Resource.Color.s_main_green));
+            SupportActionBar.SetLogo(Resource.Drawable.logo_white);
             
             
 

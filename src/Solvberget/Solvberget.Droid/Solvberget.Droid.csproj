@@ -430,6 +430,7 @@
     <AndroidResource Include="Resources\Drawable-mdpi\ic_navigation_drawer.png" />
     <AndroidResource Include="Resources\Drawable-xhdpi\ic_navigation_drawer.png" />
     <AndroidResource Include="Resources\Drawable-xxhdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\Drawable\logo_white.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
