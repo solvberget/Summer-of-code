@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
-using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -48,7 +46,7 @@ namespace Solvberget.Core.ViewModels
 
             Favorites = new ObservableCollection<FavoriteViewModel>();
 
-            foreach (FavoriteDto f in favs)
+            foreach (var f in favs)
             {
                 Favorites.Add(new FavoriteViewModel
                 {

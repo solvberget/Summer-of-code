@@ -83,7 +83,7 @@ namespace Solvberget.Core.Services
 
         public async Task<List<ReservationDto>> GetUerReservations()
         {
-            var result = await _downloader.DownloadList<ReservationDto>(Resources.ServiceUrl + Resources.ServiceUrl_Reservations, "GET");
+            var result = await _downloader.DownloadList<ReservationDto>(Resources.ServiceUrl + Resources.ServiceUrl_Reservations);
 
             if (result.Success) return result.Results;
 

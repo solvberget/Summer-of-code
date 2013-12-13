@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
-using System.Threading;
 
 namespace Solvberget.Core.ViewModels
 {

@@ -5,8 +5,6 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
-using System;
-using System.Threading;
 
 namespace Solvberget.Core.ViewModels
 {

@@ -106,8 +106,6 @@ namespace Solvberget.Core.ViewModels
             LoggedIn = IsAuthenticated();
         }
 
-		Type ViewModelType;
-
         private List<MenuViewModel> _menuItems;
         public List<MenuViewModel> MenuItems
         {

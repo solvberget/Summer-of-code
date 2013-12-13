@@ -377,7 +377,6 @@ namespace Solvberget.Core.ViewModels
 
 
         // TODO: This really doesnt belong here. But its a quick fix in order not to have to deal with the loginview and weird backstack behavior
-        
         public async Task<bool> Login(string user, string pin)
         {
             IsLoading = true;
@@ -393,21 +392,17 @@ namespace Solvberget.Core.ViewModels
                 LoggedIn = true;
                 return true;
             }
-            else if (response.Message.Equals("The remote server returned an error: (401) Unauthorized."))
+
+            if (response.Message.Equals("The remote server returned an error: (401) Unauthorized."))
             {
-                // Message = "Feil brukernavn eller passord";
                 _userAuthService.RemoveUser();
                 _userAuthService.RemovePassword();
                 return false;
             }
-            else
-            {
-               // Message = "Noe gikk galt. Prøv igjen senere";
-                _userAuthService.RemoveUser();
-                _userAuthService.RemovePassword();
-                return false;
-            }
-            IsLoading = false;
+
+            _userAuthService.RemoveUser();
+            _userAuthService.RemovePassword();
+            return false;
         }
     }
 }
