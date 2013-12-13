@@ -38,5 +38,10 @@ namespace Solvberget.Droid.Views.Fragments
             if (isChanged == "RenewalStatus")
                 Toast.MakeText(Application.Context, ViewModel.RenewalStatus, ToastLength.Long).Show();
         }
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
     }
 }

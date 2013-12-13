@@ -20,14 +20,21 @@ namespace Solvberget.Droid.Views.Fragments
         private IMenu _menu;
         private MenuInflater _inflater;
 
+
         private MediaDetailViewModel _viewModel;
         public new MediaDetailViewModel ViewModel
         {
             get { return _viewModel ?? (_viewModel = base.ViewModel as MediaDetailViewModel); }
         }
 
+        public MediaDetailView()
+        {
+            RetainInstance = true;
+        }
+
         public MediaDetailView(HomeViewModel homeVm)
         {
+            RetainInstance = true;
             _homeVm = homeVm;
         }
 
@@ -166,11 +173,7 @@ namespace Solvberget.Droid.Views.Fragments
 
         public override void OnResume()
         {
-            if (ViewModel != null)
-            {
-                ViewModel.OnViewReady();
-            }
-
+            ViewModel.OnViewReady();
             base.OnResume();
         }
     }

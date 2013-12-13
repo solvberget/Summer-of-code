@@ -85,5 +85,11 @@ namespace Solvberget.Droid.Views.Fragments
                 _homeVm.LoggedIn = ViewModel.LoggedIn;
             }
         }
+
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
     }
 }

@@ -79,6 +79,12 @@ namespace Solvberget.Droid.Views.Fragments
 
             return view;
         }
+
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
     }
 }
 

@@ -52,5 +52,11 @@ namespace Solvberget.Droid.Views.Fragments
     
             _webView.LoadUrl(ViewModel.Uri);
         }
+
+        protected override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
     }
 }

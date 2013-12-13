@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/s_text"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:hint="Pin"
         local:MvxBind="Text Pin" />
     <Button

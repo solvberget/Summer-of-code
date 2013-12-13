@@ -52,5 +52,11 @@ namespace Solvberget.Droid.Views.Fragments
     
             _webView.LoadData(ViewModel.Html, "text/html", "UTF-8");
         }
+
+        protected override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
     }
 }

@@ -45,11 +45,7 @@ namespace Solvberget.Droid.Views.Fragments
 
         public override void OnResume()
         {
-            if (ViewModel != null)
-            {
-                ViewModel.OnViewReady();
-            }
-
+            ViewModel.OnViewReady();
             base.OnResume();
         }
     }

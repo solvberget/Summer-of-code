@@ -41,5 +41,11 @@ namespace Solvberget.Droid.Views.Fragments
 
             return this.BindingInflate(Resource.Layout.fragment_blog, null);
         }
+
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
     }
 }

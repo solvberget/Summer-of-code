@@ -152,6 +152,12 @@ namespace Solvberget.Droid.Views.Fragments
             _searchView.SetQuery("", false);
             _searchView.Iconified = true;
         }
+
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
     }
 }
 
