@@ -2,16 +2,20 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
-using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Droid.Views.Fragments
 {
     public class MyPageFavoritesView : MvxFragment
     {
+        private MyPageFavoritesViewModel _viewModel;
+        public new MyPageFavoritesViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as MyPageFavoritesViewModel); }
+        }
+
         public MyPageFavoritesView()
         {
             RetainInstance = true;
@@ -21,16 +25,14 @@ namespace Solvberget.Droid.Views.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            ((MyPageFavoritesViewModel)ViewModel).PropertyChanged += MyPageFavoritesView_PropertyChanged;
+            ViewModel.PropertyChanged += MyPageFavoritesView_PropertyChanged;
 
             return this.BindingInflate(Resource.Layout.fragment_profile_favorites, null);
         }
 
         void MyPageFavoritesView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            var isChanged = e.PropertyName;
-
-            if (isChanged == "FavoriteIsRemoved")
+            if (e.PropertyName == "FavoriteIsRemoved")
             {
                 var context = Application.Context;
                 const string text = "Favoritt fjernet";
@@ -45,8 +47,7 @@ namespace Solvberget.Droid.Views.Fragments
         {
             if (ViewModel != null)
             {
-                var vm = (MyPageFavoritesViewModel) ViewModel;
-                vm.OnViewReady();
+                ViewModel.OnViewReady();
             }
 
             base.OnResume();

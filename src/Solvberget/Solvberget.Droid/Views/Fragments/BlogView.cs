@@ -3,7 +3,6 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
-using Solvberget.Droid.ActionBar;
 
 namespace Solvberget.Droid.Views.Fragments
 {

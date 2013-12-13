@@ -2,8 +2,6 @@ using System.Linq;
 using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
-using Android.Graphics;
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;

@@ -10,6 +10,12 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private LoadingIndicator _loadingIndicator;
 
+        private OpeningHoursViewModel _viewModel;
+        public new OpeningHoursViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as OpeningHoursViewModel); }
+        }
+
         public OpeningHoursView()
         {
             RetainInstance = true;

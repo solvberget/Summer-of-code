@@ -10,6 +10,12 @@ namespace Solvberget.Droid.Views.Fragments
 {
     public class MyPageReservationsView : MvxFragment
     {
+        private MyPageReservationsViewModel _viewModel;
+        public new MyPageReservationsViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as MyPageReservationsViewModel); }
+        }
+
         public MyPageReservationsView()
         {
             RetainInstance = true;
@@ -19,7 +25,7 @@ namespace Solvberget.Droid.Views.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            ((MyPageReservationsViewModel)ViewModel).PropertyChanged += MyPageReservationsView_PropertyChanged;
+            ViewModel.PropertyChanged += MyPageReservationsView_PropertyChanged;
 
             return this.BindingInflate(Resource.Layout.fragment_profile_reservations, null);
         }
@@ -36,7 +42,7 @@ namespace Solvberget.Droid.Views.Fragments
         {
             if (ViewModel != null)
             {
-                var vm = (MyPageReservationsViewModel)ViewModel;
+                var vm = ViewModel;
                 vm.OnViewReady();
             }
 

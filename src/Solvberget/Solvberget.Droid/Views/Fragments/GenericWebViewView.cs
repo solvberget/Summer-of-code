@@ -16,6 +16,12 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private WebView _webView;
 
+        private GenericWebViewViewModel _viewModel;
+        public new GenericWebViewViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as GenericWebViewViewModel); }
+        }
+
         protected override void OnViewModelSet()
         {
             Window.RequestFeature(WindowFeatures.Progress);
@@ -44,7 +50,7 @@ namespace Solvberget.Droid.Views.Fragments
             _webView.SetWebViewClient(webViewClient);
             _webView.SetWebChromeClient(webChromeClient);
     
-            _webView.LoadUrl(((GenericWebViewViewModel)(ViewModel)).Uri);
+            _webView.LoadUrl(ViewModel.Uri);
         }
     }
 }

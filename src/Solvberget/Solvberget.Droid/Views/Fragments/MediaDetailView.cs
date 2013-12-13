@@ -19,6 +19,12 @@ namespace Solvberget.Droid.Views.Fragments
         private IMenu _menu;
         private MenuInflater _inflater;
 
+        private MediaDetailViewModel _viewModel;
+        public new MediaDetailViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as MediaDetailViewModel); }
+        }
+
         public MediaDetailView(HomeViewModel homeVm)
         {
             _homeVm = homeVm;
@@ -36,7 +42,7 @@ namespace Solvberget.Droid.Views.Fragments
             set.Bind(_loadingIndicator).For(loadingIndicator => loadingIndicator.Visible).To(vm => vm.IsLoading);
             set.Apply();
 
-            ((MediaDetailViewModel)ViewModel).PropertyChanged += MediaDetailView_PropertyChanged;
+            ViewModel.PropertyChanged += MediaDetailView_PropertyChanged;
 
             return view;
         }
@@ -47,11 +53,11 @@ namespace Solvberget.Droid.Views.Fragments
             {
                 case "IsFavorite":
                     LoadMenu();
-                    if (((MediaDetailViewModel)ViewModel).IsFavorite)
+                    if (ViewModel.IsFavorite)
                         Toast.MakeText(Application.Context, "Lagt til som favoritt", ToastLength.Long).Show();
                     break;
                 case "IsReservable":
-                    if (((MediaDetailViewModel)ViewModel).IsReservedByUser)
+                    if (ViewModel.IsReservedByUser)
                         Toast.MakeText(Application.Context, "Dokumentet er reservert", ToastLength.Long).Show();
                     break;
             }
@@ -65,9 +71,9 @@ namespace Solvberget.Droid.Views.Fragments
                     NavUtils.NavigateUpFromSameTask(Activity);
                     break;
                 case Resource.Id.menu_is_not_favorite:
-                    if (((MediaDetailViewModel)ViewModel).LoggedIn)
+                    if (ViewModel.LoggedIn)
                     {
-                        ((MediaDetailViewModel)ViewModel).AddFavorite();
+                        ViewModel.AddFavorite();
                     }
                     else
                     {
@@ -76,7 +82,7 @@ namespace Solvberget.Droid.Views.Fragments
 
                     break;
                 case Resource.Id.menu_is_favorite:
-                    ((MediaDetailViewModel)ViewModel).RemoveFavorite();
+                    ViewModel.RemoveFavorite();
                     break;
             }
             return base.OnOptionsItemSelected(item);
@@ -84,9 +90,9 @@ namespace Solvberget.Droid.Views.Fragments
 
         private void ShowLoginDialog()
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+            var builder = new AlertDialog.Builder(Activity);
             // Get the layout inflater
-            LayoutInflater inflater = Activity.LayoutInflater;
+            var inflater = Activity.LayoutInflater;
 
 
             builder.SetIconAttribute(Android.Resource.Attribute.AlertDialogIcon);
@@ -94,14 +100,13 @@ namespace Solvberget.Droid.Views.Fragments
             builder.SetView(inflater.Inflate(Resource.Layout.dialog_login, null));
             builder.SetPositiveButton("Logg inn", async (source, args) =>
                 {
-                    var vm = (MediaDetailViewModel) ViewModel;
                     var username = ((EditText)((Dialog) source).FindViewById(Resource.Id.dialogLoginUsername)).Text;
                     var password =  ((EditText)((Dialog) source).FindViewById(Resource.Id.dialogLoginPin)).Text;
-                    var success = await vm.Login(username, password);
+                    var success = await ViewModel.Login(username, password);
                     if (success)
                     {
                         _homeVm.LoggedIn = true;
-                        ((MediaDetailViewModel)ViewModel).AddFavorite();
+                        ViewModel.AddFavorite();
                     }
                 });
             builder.SetNegativeButton("Avbryt", (source, args) => { });
@@ -120,7 +125,7 @@ namespace Solvberget.Droid.Views.Fragments
         {
             _menu.Clear();
             _inflater.Inflate(
-                ((MediaDetailViewModel)ViewModel).IsFavorite
+                ViewModel.IsFavorite
                     ? Resource.Menu.star_is_favorite
                     : Resource.Menu.star_is_not_favorite, _menu);
 
@@ -139,29 +144,27 @@ namespace Solvberget.Droid.Views.Fragments
 
         private void CreateShareMenu()
         {
-            if (_shareActionProvider != null)
-            {
-                var playStoreLink = "https://play.google.com/store/apps/details?id=" + Activity.PackageName;
-                var shareTextBody = string.Format(
-                    "Jeg fant {0} hos Sølvberget. Last ned app for muligheten til å låne du også: {1}",
-                    ((MediaDetailViewModel)ViewModel).Title,
-                    playStoreLink);
+            if (_shareActionProvider == null) return;
 
-                var shareIntent = ShareCompat.IntentBuilder.From(Activity)
-                    .SetType("text/plain")
-                    .SetText(shareTextBody)
-                    .SetSubject("Sølvberget")
-                    .Intent;
-                _shareActionProvider.SetShareIntent(shareIntent);
-            }
+            var playStoreLink = "https://play.google.com/store/apps/details?id=" + Activity.PackageName;
+            var shareTextBody = string.Format(
+                "Jeg fant {0} hos Sølvberget. Last ned app for muligheten til å låne du også: {1}",
+                ViewModel.Title,
+                playStoreLink);
+
+            var shareIntent = ShareCompat.IntentBuilder.From(Activity)
+                                         .SetType("text/plain")
+                                         .SetText(shareTextBody)
+                                         .SetSubject("Sølvberget")
+                                         .Intent;
+            _shareActionProvider.SetShareIntent(shareIntent);
         }
 
         public override void OnResume()
         {
             if (ViewModel != null)
             {
-                var vm = (MediaDetailViewModel)ViewModel;
-                vm.OnViewReady();
+                ViewModel.OnViewReady();
             }
 
             base.OnResume();

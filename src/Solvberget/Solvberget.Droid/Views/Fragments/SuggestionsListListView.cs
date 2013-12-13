@@ -10,6 +10,12 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private LoadingIndicator _loadingIndicator;
 
+        private SuggestionsListListViewModel _viewModel;
+        public new SuggestionsListListViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as SuggestionsListListViewModel); }
+        }
+
         public SuggestionsListListView()
         {
             RetainInstance = true;

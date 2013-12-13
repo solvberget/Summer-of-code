@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
@@ -17,8 +16,8 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private readonly HomeViewModel _homeVm;
         private LoadingIndicator _loadingIndicator;
+        
         private LoginViewModel _viewModel;
-
         public new LoginViewModel ViewModel
         {
             get { return _viewModel ?? (_viewModel = base.ViewModel as LoginViewModel); }
@@ -35,7 +34,7 @@ namespace Solvberget.Droid.Views.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
             _loadingIndicator = new LoadingIndicator(Activity);
 
-            ((LoginViewModel)ViewModel).PropertyChanged += LoginView_PropertyChanged;
+            ViewModel.PropertyChanged += LoginView_PropertyChanged;
 
             var set = this.CreateBindingSet<LoginView, LoginViewModel>();
             set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
@@ -52,9 +51,9 @@ namespace Solvberget.Droid.Views.Fragments
 
         void lostPassButton_Click(object sender, System.EventArgs e)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+            var builder = new AlertDialog.Builder(Activity);
             // Get the layout inflater
-            LayoutInflater inflater = Activity.LayoutInflater;
+            var inflater = Activity.LayoutInflater;
 
             
             builder.SetIconAttribute(Android.Resource.Attribute.AlertDialogIcon);
@@ -65,7 +64,7 @@ namespace Solvberget.Droid.Views.Fragments
                     var view = ((Dialog) source).FindViewById(Resource.Id.forgotPassUsername) as TextView;
                     if (view == null) { return; }
 
-                    ((LoginViewModel) ViewModel).ForgotPasswordCommand.Execute(view.Text);
+                    ViewModel.ForgotPasswordCommand.Execute(view.Text);
                 });
             builder.SetNegativeButton("Avbryt", (source, args) => { });
             builder.Create().Show();
