@@ -21,7 +21,7 @@
             <Solvberget.Droid.Views.Components.CustomImageView
                 android:layout_width="100.0dp"
                 android:layout_height="140.0dp"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/default_list"
                 local:MvxBind="ImageUrl Image" />
             <LinearLayout
                 android:orientation="vertical"

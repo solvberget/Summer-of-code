@@ -18,7 +18,7 @@
         android:layout_width="60dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/default_list"
         local:MvxBind="ImageUrl ImageUrl" />
     <LinearLayout
       android:layout_width="match_parent"

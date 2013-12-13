@@ -895,49 +895,52 @@ namespace Solvberget.Droid
 			public const int btn_rating_star_on_normal_holo_dark = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int drawer_shadow_dark = 2130837596;
+			public const int default_list = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int drawer_shadow_light = 2130837597;
+			public const int drawer_shadow_dark = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_3_rating_important = 2130837598;
+			public const int drawer_shadow_light = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int ic_3_rating_not_important = 2130837599;
+			public const int ic_3_rating_important = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_drawer_dark = 2130837600;
+			public const int ic_3_rating_not_important = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_drawer_light = 2130837601;
+			public const int ic_drawer_dark = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_launcher = 2130837602;
+			public const int ic_drawer_light = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_menu_refresh = 2130837603;
+			public const int ic_launcher = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_menu_share = 2130837604;
+			public const int ic_menu_refresh = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_menu_star = 2130837605;
+			public const int ic_menu_share = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_navigation_drawer = 2130837606;
+			public const int ic_menu_star = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int icon_512 = 2130837607;
+			public const int ic_navigation_drawer = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int logo_white = 2130837608;
+			public const int icon_512 = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int splash = 2130837609;
+			public const int logo_white = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int splash_logo = 2130837610;
+			public const int splash = 2130837610;
+			
+			// aapt resource value: 0x7f02006b
+			public const int splash_logo = 2130837611;
 			
 			static Drawable()
 			{

@@ -28,6 +28,7 @@ namespace Solvberget.Droid.Views.Fragments
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
             SupportActionBar.SetBackgroundDrawable(Resources.GetDrawable(Resource.Color.s_main_green));
+            SupportActionBar.SetLogo(Resource.Drawable.logo_white);
 
             base.OnViewModelSet();
 
