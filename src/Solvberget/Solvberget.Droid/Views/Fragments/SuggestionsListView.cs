@@ -1,8 +1,10 @@
 using Android.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
+using Cirrious.MvvmCross.Droid.Fragging;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.ActionBar;
 
 namespace Solvberget.Droid.Views.Fragments
 {
@@ -30,6 +32,13 @@ namespace Solvberget.Droid.Views.Fragments
             var set = this.CreateBindingSet<SuggestionsListView, SuggestionsListViewModel>();
             set.Bind(_loadingIndicator).For(pi => pi.Visible).To(vm => vm.IsLoading);
             set.Apply();
+
+            var act = Activity as MvxActionBarActivity;
+            if (act != null)
+            {
+                act.SupportActionBar.Title = ViewModel.Title;
+            }
+
 
             return this.BindingInflate(Resource.Layout.fragment_suggestions_list, null);
         }
