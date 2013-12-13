@@ -148,7 +148,7 @@ namespace Solvberget.Droid.Views
                             if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as LoginView != null)
                                 return true;
 
-                            frag = new LoginView();
+                            frag = new LoginView(ViewModel);
                             title = "Logg inn";
                         }
                         else
@@ -248,9 +248,9 @@ namespace Solvberget.Droid.Views
                         if (request.ViewModelType == typeof(BlogViewModel))
                             frag = new BlogView();
                         if (request.ViewModelType == typeof (LoginViewModel))
-                            frag = new LoginView();
+                            frag = new LoginView(ViewModel);
                         if (request.ViewModelType == typeof (MediaDetailViewModel))
-                            frag = new MediaDetailView();
+                            frag = new MediaDetailView(ViewModel);
 
                         break;
                     }

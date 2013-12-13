@@ -84,6 +84,7 @@ namespace Solvberget.Core.ViewModels
 
             if (response.Message.Equals("Autentisering vellykket."))
             {
+                LoggedIn = true;
 				if (_navigateBackOnLogin) Close(this);
 				else ShowViewModel<MyPageViewModel>();
             }

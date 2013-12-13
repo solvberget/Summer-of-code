@@ -13,11 +13,16 @@ namespace Solvberget.Droid.Views.Fragments
 {
     public class MediaDetailView : MvxFragment
     {
+        private readonly HomeViewModel _homeVm;
         private LoadingIndicator _loadingIndicator;
         private ShareActionProvider _shareActionProvider;
         private IMenu _menu;
-        private bool _starIsClicked;
         private MenuInflater _inflater;
+
+        public MediaDetailView(HomeViewModel homeVm)
+        {
+            _homeVm = homeVm;
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
@@ -62,7 +67,6 @@ namespace Solvberget.Droid.Views.Fragments
                 case Resource.Id.menu_is_not_favorite:
                     if (((MediaDetailViewModel)ViewModel).LoggedIn)
                     {
-                        _starIsClicked = true;
                         ((MediaDetailViewModel)ViewModel).AddFavorite();
                     }
                     else
@@ -72,7 +76,6 @@ namespace Solvberget.Droid.Views.Fragments
 
                     break;
                 case Resource.Id.menu_is_favorite:
-                    _starIsClicked = true;
                     ((MediaDetailViewModel)ViewModel).RemoveFavorite();
                     break;
             }
@@ -97,8 +100,8 @@ namespace Solvberget.Droid.Views.Fragments
                     var success = await vm.Login(username, password);
                     if (success)
                     {
-                        _starIsClicked = true;
-                        ((MediaDetailViewModel)ViewModel).AddFavoriteNoRedirect();
+                        _homeVm.LoggedIn = true;
+                        ((MediaDetailViewModel)ViewModel).AddFavorite();
                     }
                 });
             builder.SetNegativeButton("Avbryt", (source, args) => { });
@@ -130,8 +133,6 @@ namespace Solvberget.Droid.Views.Fragments
             _shareActionProvider = actionShareView;
 
             CreateShareMenu();
-
-            _starIsClicked = false;
 
             base.OnCreateOptionsMenu(_menu, _inflater);
         }

@@ -15,10 +15,18 @@ namespace Solvberget.Droid.Views.Fragments
 {
     public class LoginView : MvxFragment
     {
+        private readonly HomeViewModel _homeVm;
         private LoadingIndicator _loadingIndicator;
+        private LoginViewModel _viewModel;
 
-        public LoginView()
+        public new LoginViewModel ViewModel
         {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as LoginViewModel); }
+        }
+
+        public LoginView(HomeViewModel homeVm)
+        {
+            _homeVm = homeVm;
             RetainInstance = true;
         }
 
@@ -71,6 +79,11 @@ namespace Solvberget.Droid.Views.Fragments
             {
                 var inputManager = (InputMethodManager)Application.Context.GetSystemService(Context.InputMethodService);
                 inputManager.HideSoftInputFromWindow(View.WindowToken, 0);
+            }
+
+            if (isChanged == "LoggedIn")
+            {
+                _homeVm.LoggedIn = ViewModel.LoggedIn;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
@@ -101,6 +102,8 @@ namespace Solvberget.Core.ViewModels
 					IconChar = "2",
                                   }
                               };
+
+            LoggedIn = IsAuthenticated();
         }
 
 		Type ViewModelType;
@@ -108,7 +111,13 @@ namespace Solvberget.Core.ViewModels
         private List<MenuViewModel> _menuItems;
         public List<MenuViewModel> MenuItems
         {
-            get { return _menuItems; }
+            get
+            {
+                if (LoggedIn)
+                    return _menuItems;
+                
+                return _menuItems.Where(mi => mi.Section != Section.Logout).ToList();
+            }
             set { _menuItems = value; RaisePropertyChanged(() => MenuItems); }
         }
 
@@ -118,6 +127,18 @@ namespace Solvberget.Core.ViewModels
             get
             {
                 return _selectMenuItemCommand ?? (_selectMenuItemCommand = new MvxCommand<MenuViewModel>(ExecuteSelectMenuItemCommand));
+            }
+        }
+
+        private bool _loggedIn;
+        public bool LoggedIn 
+        {
+            get { return _loggedIn; }
+            set
+            {
+                _loggedIn = value; 
+                RaisePropertyChanged(() => LoggedIn);
+                RaisePropertyChanged(() => MenuItems);
             }
         }
 
@@ -200,6 +221,7 @@ namespace Solvberget.Core.ViewModels
         {
             _userAuthenticationService.RemoveUser();
             _userAuthenticationService.RemovePassword();
+            LoggedIn = false;
         }
     }
 }
