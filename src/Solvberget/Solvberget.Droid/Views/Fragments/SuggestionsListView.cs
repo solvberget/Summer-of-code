@@ -39,7 +39,6 @@ namespace Solvberget.Droid.Views.Fragments
                 act.SupportActionBar.Title = ViewModel.Title;
             }
 
-
             return this.BindingInflate(Resource.Layout.fragment_suggestions_list, null);
         }
     }

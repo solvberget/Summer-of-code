@@ -7,6 +7,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using Solvberget.Core.ViewModels;
+using Solvberget.Droid.ActionBar;
 using ShareActionProvider = Android.Support.V7.Widget.ShareActionProvider;
 
 namespace Solvberget.Droid.Views.Fragments
@@ -44,6 +45,12 @@ namespace Solvberget.Droid.Views.Fragments
 
             ViewModel.PropertyChanged += MediaDetailView_PropertyChanged;
 
+            var act = Activity as MvxActionBarActivity;
+            if (act != null)
+            {
+                act.SupportActionBar.Title = ViewModel.Title;
+            }
+
             return view;
         }
 
@@ -67,9 +74,6 @@ namespace Solvberget.Droid.Views.Fragments
         {
             switch (item.ItemId)
             {
-                case Android.Resource.Id.Home:
-                    NavUtils.NavigateUpFromSameTask(Activity);
-                    break;
                 case Resource.Id.menu_is_not_favorite:
                     if (ViewModel.LoggedIn)
                     {
