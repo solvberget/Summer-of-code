@@ -79,11 +79,6 @@ namespace Solvberget.Droid.Views.Fragments
 
             return view;
         }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.refresh, menu);
-        }
     }
 }
 
