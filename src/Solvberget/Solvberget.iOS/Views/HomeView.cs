@@ -75,7 +75,7 @@ namespace Solvberget.iOS
 
 			MenuTableView.ReloadData();
 
-			View.AddSubview(MenuTableView);
+			View.Add(MenuTableView);
 		}
 
 		public override void ViewWillAppear (bool animated)

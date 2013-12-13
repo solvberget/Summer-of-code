@@ -46,24 +46,24 @@ namespace Solvberget.iOS
 
 		bool _isFirstAppear = true;
 
-		public override void ViewWillAppear(bool animated)
+		public override void ViewDidAppear(bool animated)
 		{
-			base.ViewWillAppear(animated);
+			base.ViewDidAppear(animated);
 
-			if (_isFirstAppear)
-				CreateMenu();
+			CreateMenu();
+		}
 
-			_isFirstAppear = false;
+		public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
+		{
+			base.DidRotate(fromInterfaceOrientation);
 
-			foreach (var v in ScrollView.Subviews)
-			{
-				v.Alpha = 0.0f;
-				v.Transform = CGAffineTransform.MakeScale(1.1f, 1.1f);
-			}
-        }
+			CreateMenu();
+		}
 
 		private void CreateMenu()
 		{
+			foreach(var v in ScrollView.Subviews) v.RemoveFromSuperview();
+
 			if (View.Bounds.Width > 700)
 			{
 				var centeredBox = new UIView(new RectangleF(0, 0, 640, 320));
@@ -75,52 +75,70 @@ namespace Solvberget.iOS
 
 				// tablet layout
 
-				centeredBox.Add(CreateBox(0f,0f, 200f, 200f, "m"));
-				centeredBox.Add(CreateBox(220f,0f, 200f, 200f, "s"));
-				centeredBox.Add(CreateBox(440f,0f, 200f, 200f, "h"));
+				centeredBox.Add(CreateBox(0f, 0f, 200f, 200f, "m"));
+				centeredBox.Add(CreateBox(220f, 0f, 200f, 200f, "s"));
+				centeredBox.Add(CreateBox(440f, 0f, 200f, 200f, "h"));
 
-				centeredBox.Add(CreateBox(0f,220f, 200f, 100f, "a"));
+				centeredBox.Add(CreateBox(0f, 220f, 200f, 100f, "a"));
 
-				centeredBox.Add(CreateBox(220f,220f, 90f, 100f, "e"));
-				centeredBox.Add(CreateBox(330f,220f, 90f, 100f, "n"));
+				centeredBox.Add(CreateBox(220f, 220f, 90f, 100f, "e"));
+				centeredBox.Add(CreateBox(330f, 220f, 90f, 100f, "n"));
 
-				centeredBox.Add(CreateBox(440f,220f, 90f, 100f, "å"));
-				centeredBox.Add(CreateBox(550f,220f, 90f, 100f, "c"));
+				centeredBox.Add(CreateBox(440f, 220f, 90f, 100f, "å"));
+				centeredBox.Add(CreateBox(550f, 220f, 90f, 100f, "c"));
 
 
 			}
-			else
+			else if (View.Bounds.Width > 320) // phone landscape
 			{
 				// phone layout
+				var centeredBox = new UIView(new RectangleF(0, 0, 440, 220));
+				ScrollView.Add(centeredBox);
 
-				var y = 20f;
+				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
+				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 
-				foreach (var item in ViewModel.ListElements)
-				{
-					UIButton button = new UIButton(new RectangleF(20f, y, View.Bounds.Width - 40f, 40f));
+				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
+				centeredBox.Add(CreateBox(110f, 0f, 90f, 90f, "s"));
+				centeredBox.Add(CreateBox(220f, 0f, 90f, 90f, "h"));
+				centeredBox.Add(CreateBox(330f, 0f, 90f, 90f, "a"));
 
-					button.BackgroundColor = ColorFor(item);
-					button.SetTitle(item.Title, UIControlState.Normal);
-					button.Font = Application.ThemeColors.TitleFont;
-					button.SetTitleColor(UIColor.White, UIControlState.Normal);
-					button.SetTitleColor(UIColor.White.ColorWithAlpha(0.5f), UIControlState.Highlighted);
-					button.TouchUpInside += (s, e) => item.GoToCommand.Execute(null);
-
-					ScrollView.Add(button);
-
-					y += 60f;
-				}
-
-				ScrollView.ContentSize = new SizeF(
-					ScrollView.Subviews.Max(s => s.Frame.Right), 
-					ScrollView.Subviews.Max(s => s.Frame.Bottom + 20f));
-
+				centeredBox.Add(CreateBox(0f, 110f, 90f, 90f, "e"));
+				centeredBox.Add(CreateBox(110f, 110f, 90f, 90f, "n"));
+				centeredBox.Add(CreateBox(220f, 110f, 90f, 90f, "å"));
+				centeredBox.Add(CreateBox(330f, 110f, 90f, 90f, "c"));
 			}
-		}
+			else // phone portrait
+			{
+				// phone layout
+				var centeredBox = new UIView(new RectangleF(0, 0, 200, 420));
+				ScrollView.Add(centeredBox);
 
-		public override void ViewDidAppear(bool animated)
-		{
-			base.ViewDidAppear(animated);
+				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
+				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+
+				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
+				centeredBox.Add(CreateBox(110f, 0f, 90f, 90f, "s"));
+
+				centeredBox.Add(CreateBox(0f, 110f, 90f, 90f, "h"));
+				centeredBox.Add(CreateBox(110f, 110f, 90f, 90f, "a"));
+
+				centeredBox.Add(CreateBox(0f, 220f, 90f, 90f, "e"));
+				centeredBox.Add(CreateBox(110f, 220f, 90f, 90f, "n"));
+
+				centeredBox.Add(CreateBox(0f, 330f, 90f, 90f, "å"));
+				centeredBox.Add(CreateBox(110f, 330f, 90f, 90f, "c"));
+			}
+
+			ScrollView.ContentSize = new SizeF(
+				ScrollView.Subviews.Max(s => s.Frame.Right), 
+				ScrollView.Subviews.Max(s => s.Frame.Bottom + 20f));
+
+			foreach (var v in ScrollView.Subviews)
+			{
+				v.Alpha = 0.0f;
+				v.Transform = CGAffineTransform.MakeScale(1.1f, 1.1f);
+			}
 
 			foreach(UIView view in ScrollView.Subviews)
 			{
@@ -147,7 +165,8 @@ namespace Solvberget.iOS
 			UILabel title = new UILabel();
 			title.TextColor = UIColor.White;
 
-			if (height < 200) title.Font = Application.ThemeColors.DefaultFont;
+			if (height < 120) title.Font = Application.ThemeColors.DefaultFont.WithSize(12f);
+			else if (height < 200) title.Font = Application.ThemeColors.DefaultFont;
 			else title.Font = Application.ThemeColors.TitleFont;
 
 			title.Text = item.Title;
@@ -161,8 +180,7 @@ namespace Solvberget.iOS
 			view.Add(title);
 
 			var icon = new UILabel();
-			icon.Font = height >= 200 ? Application.ThemeColors.IconFont.WithSize(70f) 
-			            : Application.ThemeColors.IconFont.WithSize(35f);
+			icon.Font = Application.ThemeColors.IconFont.WithSize(width / 3);
 
 
 			icon.TextColor = UIColor.White;
@@ -193,8 +211,7 @@ namespace Solvberget.iOS
 
 				UIView.BeginAnimations(null);
 				UIView.SetAnimationDuration(0.2f);
-				_box.Transform = CGAffineTransform.MakeScale(1.1f,1.1f);
-				_box.Subviews.Last().Transform = CGAffineTransform.MakeScale(0.9f, 0.9f);
+				_box.Transform = CGAffineTransform.MakeScale(.9f,.9f);
 				UIView.CommitAnimations();
 
 			}
@@ -216,7 +233,6 @@ namespace Solvberget.iOS
 				UIView.BeginAnimations(null);
 				UIView.SetAnimationDuration(0.2f);
 				_box.Transform = CGAffineTransform.MakeScale(1f,1f);
-				_box.Subviews.Last().Transform = CGAffineTransform.MakeScale(1f, 1f);
 				UIView.CommitAnimations();
 			}
 

@@ -122,7 +122,6 @@ namespace Solvberget.iOS
 
 			shareView.AddButton("Del på Facebook");
 			shareView.AddButton("Del på Twitter");
-			shareView.AddButton("Send på E-post");
 			shareView.AddButton("Avbryt");
 
 			shareView.Clicked += (ss, se) =>
@@ -131,12 +130,11 @@ namespace Solvberget.iOS
 
 				var shareMessage = "Se hva jeg fant på Sølvberget: " + ViewModel.Title;
 
-				if(null == ViewModel.RawDto.WebUrl) return;
+				if(null == ViewModel.RawDto.WebAppUrl) return;
 
 				switch(se.ButtonIndex)
 				{
 					case 0:
-
 
 						if(!FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
 						{
@@ -149,7 +147,7 @@ namespace Solvberget.iOS
 						}
 
 						FBDialogs.PresentOSIntegratedShareDialogModally(this,
-							shareMessage, null, new NSUrl(ViewModel.RawDto.WebUrl),new FBOSIntegratedShareDialogHandler((res,err) => {
+							shareMessage, null, new NSUrl(ViewModel.RawDto.WebAppUrl),new FBOSIntegratedShareDialogHandler((res,err) => {
 
 								var ex = err;
 
@@ -161,7 +159,7 @@ namespace Solvberget.iOS
 
 						var tvc = new TWTweetComposeViewController();
 						tvc.SetInitialText(shareMessage);
-						tvc.AddUrl(new NSUrl(ViewModel.RawDto.WebUrl));
+						tvc.AddUrl(new NSUrl(ViewModel.RawDto.WebAppUrl));
 						PresentModalViewController(tvc, true);
 
 						break;

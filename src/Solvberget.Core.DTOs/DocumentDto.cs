@@ -15,6 +15,6 @@
         public bool? IsFavorite { get; set; }
         public bool? IsReserved { get; set; }
 
-		public string WebUrl{get;set;}
+		public string WebAppUrl {get;set;}
     }
 }
