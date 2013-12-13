@@ -241,12 +241,16 @@ namespace Solvberget.Droid.Views
                     case HomeViewModel.Section.Unknown:
                     {
                         shouldAddToBackStack = true;
+                        shouldClearBackStack = false;
                         if (request.ViewModelType == typeof (SuggestionsListViewModel))
                             frag = new SuggestionsListView();
                         if (request.ViewModelType == typeof(BlogViewModel))
                             frag = new BlogView();
                         if (request.ViewModelType == typeof (LoginViewModel))
+                        {
+                            shouldClearBackStack = true;
                             frag = new LoginView(ViewModel);
+                        }
                         if (request.ViewModelType == typeof (MediaDetailViewModel))
                             frag = new MediaDetailView(ViewModel);
 
