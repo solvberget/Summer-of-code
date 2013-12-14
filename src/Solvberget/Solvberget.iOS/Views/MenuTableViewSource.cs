@@ -13,25 +13,23 @@ using Cirrious.MvvmCross.Binding.Touch.Views;
 namespace Solvberget.iOS
 {
 
-	public class SolvbergetTableViewSource : MvxStandardTableViewSource
+	public class MenuTableViewSource : MvxStandardTableViewSource
 	{
-		public SolvbergetTableViewSource(UITableView tableView, UITableViewCellStyle style, NSString cellIdentifier, string bindingText, UITableViewCellAccessory tableViewCellAccessory = 0)
-			: base(tableView, style, cellIdentifier, bindingText, tableViewCellAccessory)
-		{}
+		public MenuTableViewSource(UITableView tableView)
+			: base(tableView, MenuCell.Key)
+		{
+			tableView.RegisterNibForCellReuse(UINib.FromName(MenuCell.Key, NSBundle.MainBundle), MenuCell.Key);
+		}
 
-			
 		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
-			UITableViewCell cell = base.GetOrCreateCellFor(tableView, indexPath, item);
+			MenuCell cell = base.GetOrCreateCellFor(tableView, indexPath, item) as MenuCell;
 
-			cell.BackgroundView = null;
-			cell.TextLabel.Font = Application.ThemeColors.MenuFont;
+			MenuViewModel model = (MenuViewModel)item;
+
+			cell.Set(model);
 
 			_indexPathItems[item] = indexPath;
-
-			if(null != BackgroundColor) cell.BackgroundColor = BackgroundColor;
-			if(null != TextColor) cell.TextLabel.TextColor = TextColor;
-			if(null != TintColor) cell.SelectedBackgroundView = SelectedBackgroundView;
 
 			return cell;
 		}
@@ -39,19 +37,6 @@ namespace Solvberget.iOS
 		UIView _selectedBackgroundView;
 
 		Dictionary<object, NSIndexPath> _indexPathItems = new Dictionary<object, NSIndexPath>();
-
-		public UIView SelectedBackgroundView{
-			get{ 
-				if (null == _selectedBackgroundView && null != TintColor)
-				{
-					_selectedBackgroundView = new UIView();
-					_selectedBackgroundView.BackgroundColor = TintColor;
-					_selectedBackgroundView.Layer.MasksToBounds = true;
-				}
-
-				return _selectedBackgroundView;
-			}
-		}
 
 		public void SelectRow(MenuViewModel row)
 		{

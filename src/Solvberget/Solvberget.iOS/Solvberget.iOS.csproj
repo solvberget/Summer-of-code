@@ -156,7 +156,6 @@
     <Compile Include="Views\HomeScreenView.designer.cs">
       <DependentUpon>HomeScreenView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\SolvbergetTableViewSource.cs" />
     <Compile Include="Views\TableViewCells\SimpleCell.cs" />
     <Compile Include="Views\TableViewCells\SimpleCell.designer.cs">
       <DependentUpon>SimpleCell.cs</DependentUpon>
@@ -215,6 +214,11 @@
     <Compile Include="Views\MyPageReservationsView.cs" />
     <Compile Include="Views\Cache.cs" />
     <Compile Include="IosDtoDownloader.cs" />
+    <Compile Include="Views\TableViewCells\MenuCell.cs" />
+    <Compile Include="Views\TableViewCells\MenuCell.designer.cs">
+      <DependentUpon>MenuCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuTableViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
@@ -345,6 +349,7 @@
     <InterfaceDefinition Include="Views\BlogPostView.xib" />
     <InterfaceDefinition Include="Views\ContactInfoBoxView.xib" />
     <InterfaceDefinition Include="Views\LoginView.xib" />
+    <InterfaceDefinition Include="Views\TableViewCells\MenuCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
@@ -352,6 +357,7 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="facebookios">
+      <InstallationInProgress>True</InstallationInProgress>
       <Version>3.9.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>

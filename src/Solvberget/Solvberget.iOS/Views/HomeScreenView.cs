@@ -164,6 +164,7 @@ namespace Solvberget.iOS
 
 			UILabel title = new UILabel();
 			title.TextColor = UIColor.White;
+			title.BackgroundColor = UIColor.Clear;
 
 			if (height < 120) title.Font = Application.ThemeColors.DefaultFont.WithSize(12f);
 			else if (height < 200) title.Font = Application.ThemeColors.DefaultFont;
@@ -180,6 +181,7 @@ namespace Solvberget.iOS
 			view.Add(title);
 
 			var icon = new UILabel();
+			icon.BackgroundColor = UIColor.Clear;
 			icon.Font = Application.ThemeColors.IconFont.WithSize(width / 3);
 
 
