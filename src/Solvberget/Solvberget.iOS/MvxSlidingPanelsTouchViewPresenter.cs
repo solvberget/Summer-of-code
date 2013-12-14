@@ -64,9 +64,6 @@ namespace Solvberget.iOS
 		{
 			try 
 			{
-				// hack, ios has custom blog post view and not generic html view
-				if(request.ViewModelType == typeof(LocalHtmlWebViewModel)) request.ViewModelType = typeof(BlogPostViewModel);
-
 				var view = CurrentView = this.CreateViewControllerFor(request);
 
 				// We clear the back stack up to now and hide the back button if this view should not allow viewstate popping

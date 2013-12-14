@@ -91,43 +91,47 @@ namespace Solvberget.iOS
 			}
 			else if (View.Bounds.Width > 320) // phone landscape
 			{
+				var extraPadding = UIScreen.MainScreen.Bounds.Height > 480 ? 15f : 0f;
+
 				// phone layout
-				var centeredBox = new UIView(new RectangleF(0, 0, 440, 220));
+				var centeredBox = new UIView(new RectangleF(0, 0, 390+extraPadding*3, 190+extraPadding));
 				ScrollView.Add(centeredBox);
 
 				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
 				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 
 				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
-				centeredBox.Add(CreateBox(110f, 0f, 90f, 90f, "s"));
-				centeredBox.Add(CreateBox(220f, 0f, 90f, 90f, "h"));
-				centeredBox.Add(CreateBox(330f, 0f, 90f, 90f, "a"));
+				centeredBox.Add(CreateBox(100f+extraPadding, 0f, 90f, 90f, "s"));
+				centeredBox.Add(CreateBox(200f+extraPadding*2, 0f, 90f, 90f, "h"));
+				centeredBox.Add(CreateBox(300f+extraPadding*3, 0f, 90f, 90f, "a"));
 
-				centeredBox.Add(CreateBox(0f, 110f, 90f, 90f, "e"));
-				centeredBox.Add(CreateBox(110f, 110f, 90f, 90f, "n"));
-				centeredBox.Add(CreateBox(220f, 110f, 90f, 90f, "å"));
-				centeredBox.Add(CreateBox(330f, 110f, 90f, 90f, "c"));
+				centeredBox.Add(CreateBox(0f, 100f+extraPadding, 90f, 90f, "e"));
+				centeredBox.Add(CreateBox(100f+extraPadding, 100f+extraPadding, 90f, 90f, "n"));
+				centeredBox.Add(CreateBox(200f+extraPadding*2, 100f+extraPadding, 90f, 90f, "å"));
+				centeredBox.Add(CreateBox(300f+extraPadding*3, 100f+extraPadding, 90f, 90f, "c"));
 			}
 			else // phone portrait
 			{
+				var extraPadding = UIScreen.MainScreen.Bounds.Height > 480 ? 15f : 0f;
+
 				// phone layout
-				var centeredBox = new UIView(new RectangleF(0, 0, 200, 420));
+				var centeredBox = new UIView(new RectangleF(0, 0, 190 + extraPadding, 390 + extraPadding*3));
 				ScrollView.Add(centeredBox);
 
 				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
 				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 
 				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
-				centeredBox.Add(CreateBox(110f, 0f, 90f, 90f, "s"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 0f, 90f, 90f, "s"));
 
-				centeredBox.Add(CreateBox(0f, 110f, 90f, 90f, "h"));
-				centeredBox.Add(CreateBox(110f, 110f, 90f, 90f, "a"));
+				centeredBox.Add(CreateBox(0f, 100f+extraPadding, 90f, 90f, "h"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 100f + extraPadding, 90f, 90f, "a"));
 
-				centeredBox.Add(CreateBox(0f, 220f, 90f, 90f, "e"));
-				centeredBox.Add(CreateBox(110f, 220f, 90f, 90f, "n"));
+				centeredBox.Add(CreateBox(0f, 200f+extraPadding*2, 90f, 90f, "e"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 200f + extraPadding*2, 90f, 90f, "n"));
 
-				centeredBox.Add(CreateBox(0f, 330f, 90f, 90f, "å"));
-				centeredBox.Add(CreateBox(110f, 330f, 90f, 90f, "c"));
+				centeredBox.Add(CreateBox(0f, 300f+extraPadding*3, 90f, 90f, "å"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 300f + extraPadding*3, 90f, 90f, "c"));
 			}
 
 			ScrollView.ContentSize = new SizeF(
