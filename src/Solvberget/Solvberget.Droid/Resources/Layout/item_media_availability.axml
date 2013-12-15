@@ -48,6 +48,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Forventet tilgjengelig"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
         local:MvxBind="Visibility InvertedVisibility(AvailableCount)" />
     <TextView
         android:paddingLeft="18dp"
@@ -63,6 +65,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Filial"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
         local:MvxBind="Visibility Visibility(Branch)" />
     <TextView
         android:paddingLeft="18dp"
@@ -78,6 +82,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Avdeling"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
         local:MvxBind="Visibility Visibility(Department)" />
     <TextView
         android:paddingLeft="18dp"
@@ -93,6 +99,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Samling"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
         local:MvxBind="Visibility Visibility(Collection)" />
     <TextView
         android:paddingLeft="18dp"
@@ -108,6 +116,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Sorteres etter"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
         local:MvxBind="Visibility Visibility(SortBy)" />
     <TextView
         android:paddingLeft="18dp"

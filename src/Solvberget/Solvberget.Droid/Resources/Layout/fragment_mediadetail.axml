@@ -80,6 +80,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="TILGJENGELIGHET"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true" />
             <MvxLinearLayout
@@ -99,6 +101,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="ANMELDELSE"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true"
                 local:MvxBind="Text ReviewType; Visibility Visibility(Review)" />
@@ -122,6 +126,8 @@
                 android:paddingRight="8dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
                 android:text="FAKTA"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true"
@@ -142,6 +148,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Språk"
                     local:MvxBind="Visibility Visibility(Language)" />
                 <TextView
@@ -157,6 +165,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Alternative språk"
                     local:MvxBind="Visibility Visibility(Languages.Length)" />
                 <Mvx.MvxLinearLayout
@@ -174,6 +184,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Utgiver"
                     local:MvxBind="Visibility Visibility(Publisher)" />
                 <TextView
@@ -189,6 +201,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Opphavsperson"
                     local:MvxBind="Visibility Visibility(MainContributor)" />
                 <TextView
