@@ -271,7 +271,7 @@
     <AndroidResource Include="Resources\Layout\fragment_suggestions_list.axml" />
     <AndroidResource Include="Resources\Layout\fragment_suggestions_list_list.axml" />
     <AndroidResource Include="Resources\Layout\item_suggestions_list_summary.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_hourslisting.axml">
       <SubType>Designer</SubType>
