@@ -49,13 +49,13 @@ namespace Solvberget.iOS
 			NavigationItem.LeftBarButtonItem = CreateSliderButton("Images/SlideRight40.png", PanelType.LeftPanel);
 		}
 
-		SolvbergetTableViewSource source;
+		MenuTableViewSource source;
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad();
 
-			source = new SolvbergetTableViewSource(MenuTableView, UITableViewCellStyle.Default, new NSString("TableViewCell"), "TitleText Title;", UITableViewCellAccessory.None);
+			source = new MenuTableViewSource(MenuTableView);
 
 			source.BackgroundColor = Application.ThemeColors.Main2;
 			source.TextColor = Application.ThemeColors.MainInverse;
@@ -75,7 +75,7 @@ namespace Solvberget.iOS
 
 			MenuTableView.ReloadData();
 
-			View.AddSubview(MenuTableView);
+			View.Add(MenuTableView);
 		}
 
 		public override void ViewWillAppear (bool animated)

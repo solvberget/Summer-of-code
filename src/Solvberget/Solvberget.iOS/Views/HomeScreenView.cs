@@ -9,6 +9,7 @@ using Solvberget.Core.ViewModels.Base;
 using Solvberget.Core.ViewModels;
 using System.Linq;
 using MonoTouch.CoreGraphics;
+using System.Diagnostics;
 
 namespace Solvberget.iOS
 {
@@ -44,26 +45,24 @@ namespace Solvberget.iOS
 			NavigationItem.Title = "Hjem";
 		}
 
-		bool _isFirstAppear = true;
-
-		public override void ViewWillAppear(bool animated)
+		public override void ViewDidAppear(bool animated)
 		{
-			base.ViewWillAppear(animated);
+			base.ViewDidAppear(animated);
 
-			if (_isFirstAppear)
-				CreateMenu();
+			CreateMenu();
+		}
 
-			_isFirstAppear = false;
-
-			foreach (var v in ScrollView.Subviews)
-			{
-				v.Alpha = 0.0f;
-				v.Transform = CGAffineTransform.MakeScale(1.1f, 1.1f);
-			}
-        }
-
-		private void CreateMenu()
+		public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
 		{
+			base.DidRotate(fromInterfaceOrientation);
+
+			CreateMenu();
+		}
+
+		private void CreateMenu(bool animate = true)
+		{
+			foreach(var v in ScrollView.Subviews) v.RemoveFromSuperview();
+
 			if (View.Bounds.Width > 700)
 			{
 				var centeredBox = new UIView(new RectangleF(0, 0, 640, 320));
@@ -75,52 +74,78 @@ namespace Solvberget.iOS
 
 				// tablet layout
 
-				centeredBox.Add(CreateBox(0f,0f, 200f, 200f, "m"));
-				centeredBox.Add(CreateBox(220f,0f, 200f, 200f, "s"));
-				centeredBox.Add(CreateBox(440f,0f, 200f, 200f, "h"));
+				centeredBox.Add(CreateBox(0f, 0f, 200f, 200f, "m"));
+				centeredBox.Add(CreateBox(220f, 0f, 200f, 200f, "s"));
+				centeredBox.Add(CreateBox(440f, 0f, 200f, 200f, "h"));
 
-				centeredBox.Add(CreateBox(0f,220f, 200f, 100f, "a"));
+				centeredBox.Add(CreateBox(0f, 220f, 200f, 100f, "a"));
 
-				centeredBox.Add(CreateBox(220f,220f, 90f, 100f, "e"));
-				centeredBox.Add(CreateBox(330f,220f, 90f, 100f, "n"));
+				centeredBox.Add(CreateBox(220f, 220f, 90f, 100f, "e"));
+				centeredBox.Add(CreateBox(330f, 220f, 90f, 100f, "n"));
 
-				centeredBox.Add(CreateBox(440f,220f, 90f, 100f, "å"));
-				centeredBox.Add(CreateBox(550f,220f, 90f, 100f, "c"));
+				centeredBox.Add(CreateBox(440f, 220f, 90f, 100f, "å"));
+				centeredBox.Add(CreateBox(550f, 220f, 90f, 100f, "c"));
 
 
 			}
-			else
+			else if (View.Bounds.Width > 320) // phone landscape
 			{
+				var extraPadding = UIScreen.MainScreen.Bounds.Height > 480 ? 15f : 0f;
+
 				// phone layout
+				var centeredBox = new UIView(new RectangleF(0, 0, 390+extraPadding*3, 190+extraPadding));
+				ScrollView.Add(centeredBox);
 
-				var y = 20f;
+				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
+				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 
-				foreach (var item in ViewModel.ListElements)
-				{
-					UIButton button = new UIButton(new RectangleF(20f, y, View.Bounds.Width - 40f, 40f));
+				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
+				centeredBox.Add(CreateBox(100f+extraPadding, 0f, 90f, 90f, "s"));
+				centeredBox.Add(CreateBox(200f+extraPadding*2, 0f, 90f, 90f, "h"));
+				centeredBox.Add(CreateBox(300f+extraPadding*3, 0f, 90f, 90f, "a"));
 
-					button.BackgroundColor = ColorFor(item);
-					button.SetTitle(item.Title, UIControlState.Normal);
-					button.Font = Application.ThemeColors.TitleFont;
-					button.SetTitleColor(UIColor.White, UIControlState.Normal);
-					button.SetTitleColor(UIColor.White.ColorWithAlpha(0.5f), UIControlState.Highlighted);
-					button.TouchUpInside += (s, e) => item.GoToCommand.Execute(null);
-
-					ScrollView.Add(button);
-
-					y += 60f;
-				}
-
-				ScrollView.ContentSize = new SizeF(
-					ScrollView.Subviews.Max(s => s.Frame.Right), 
-					ScrollView.Subviews.Max(s => s.Frame.Bottom + 20f));
-
+				centeredBox.Add(CreateBox(0f, 100f+extraPadding, 90f, 90f, "e"));
+				centeredBox.Add(CreateBox(100f+extraPadding, 100f+extraPadding, 90f, 90f, "n"));
+				centeredBox.Add(CreateBox(200f+extraPadding*2, 100f+extraPadding, 90f, 90f, "å"));
+				centeredBox.Add(CreateBox(300f+extraPadding*3, 100f+extraPadding, 90f, 90f, "c"));
 			}
-		}
+			else // phone portrait
+			{
+				var extraPadding = UIScreen.MainScreen.Bounds.Height > 480 ? 15f : 0f;
 
-		public override void ViewDidAppear(bool animated)
-		{
-			base.ViewDidAppear(animated);
+				// phone layout
+				var centeredBox = new UIView(new RectangleF(0, 0, 190 + extraPadding, 390 + extraPadding*3));
+				ScrollView.Add(centeredBox);
+
+				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
+				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+
+				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 0f, 90f, 90f, "s"));
+
+				centeredBox.Add(CreateBox(0f, 100f+extraPadding, 90f, 90f, "h"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 100f + extraPadding, 90f, 90f, "a"));
+
+				centeredBox.Add(CreateBox(0f, 200f+extraPadding*2, 90f, 90f, "e"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 200f + extraPadding*2, 90f, 90f, "n"));
+
+				centeredBox.Add(CreateBox(0f, 300f+extraPadding*3, 90f, 90f, "å"));
+				centeredBox.Add(CreateBox(100f + extraPadding, 300f + extraPadding*3, 90f, 90f, "c"));
+			}
+
+			ScrollView.ContentSize = new SizeF(
+				ScrollView.Subviews.Max(s => s.Frame.Right), 
+				ScrollView.Subviews.Max(s => s.Frame.Bottom + 20f));
+
+
+			if (!animate)
+				return;
+
+			foreach (var v in ScrollView.Subviews)
+			{
+				v.Alpha = 0.0f;
+				v.Transform = CGAffineTransform.MakeScale(1.1f, 1.1f);
+			}
 
 			foreach(UIView view in ScrollView.Subviews)
 			{
@@ -146,8 +171,10 @@ namespace Solvberget.iOS
 
 			UILabel title = new UILabel();
 			title.TextColor = UIColor.White;
+			title.BackgroundColor = UIColor.Clear;
 
-			if (height < 200) title.Font = Application.ThemeColors.DefaultFont;
+			if (height < 120) title.Font = Application.ThemeColors.DefaultFont.WithSize(12f);
+			else if (height < 200) title.Font = Application.ThemeColors.DefaultFont;
 			else title.Font = Application.ThemeColors.TitleFont;
 
 			title.Text = item.Title;
@@ -161,8 +188,8 @@ namespace Solvberget.iOS
 			view.Add(title);
 
 			var icon = new UILabel();
-			icon.Font = height >= 200 ? Application.ThemeColors.IconFont.WithSize(70f) 
-			            : Application.ThemeColors.IconFont.WithSize(35f);
+			icon.BackgroundColor = UIColor.Clear;
+			icon.Font = Application.ThemeColors.IconFont.WithSize(width / 3);
 
 
 			icon.TextColor = UIColor.White;
@@ -193,8 +220,7 @@ namespace Solvberget.iOS
 
 				UIView.BeginAnimations(null);
 				UIView.SetAnimationDuration(0.2f);
-				_box.Transform = CGAffineTransform.MakeScale(1.1f,1.1f);
-				_box.Subviews.Last().Transform = CGAffineTransform.MakeScale(0.9f, 0.9f);
+				_box.Transform = CGAffineTransform.MakeScale(.9f,.9f);
 				UIView.CommitAnimations();
 
 			}
@@ -216,7 +242,6 @@ namespace Solvberget.iOS
 				UIView.BeginAnimations(null);
 				UIView.SetAnimationDuration(0.2f);
 				_box.Transform = CGAffineTransform.MakeScale(1f,1f);
-				_box.Subviews.Last().Transform = CGAffineTransform.MakeScale(1f, 1f);
 				UIView.CommitAnimations();
 			}
 
@@ -233,7 +258,7 @@ namespace Solvberget.iOS
 				case "s": // søk
 					return UIColor.FromRGB(0x00, 0x55, 0x22);
 				case "e": // blogger
-					return UIColor.FromRGB(0x00, 0x55, 0x22);
+					return UIColor.FromRGB(0x88, 0xBB, 0x00);
 				case "n": // nyheter
 					return UIColor.FromRGB(0x88, 0xBB, 0x00);
 				case "h": // anbefalinger
