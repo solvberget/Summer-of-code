@@ -265,7 +265,7 @@ namespace Solvberget.iOS
 
 				var btnPadding = UIHelpers.MinVersion7 ? 0f : padding;
 
-				reserve.Frame = new RectangleF(padding, box.Subviews.Last().Frame.Bottom+padding, 150f, reserve.SizeThatFits(new SizeF(0f,0f)).Height + btnPadding);
+				reserve.Frame = new RectangleF(padding, box.Subviews.Last().Frame.Bottom+padding, 165f, reserve.SizeThatFits(new SizeF(0f,0f)).Height + btnPadding);
 
 				box.Add(reserve);
 				box.Frame = new RectangleF(box.Frame.Location, new SizeF(box.Frame.Width, reserve.Frame.Bottom+padding));

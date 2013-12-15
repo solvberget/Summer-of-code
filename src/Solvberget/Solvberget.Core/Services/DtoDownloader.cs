@@ -26,7 +26,12 @@ namespace Solvberget.Core.Services
                 return JsonConvert.DeserializeObject<TDto>(response);
             }
             catch (WebException ex)
-            {
+			{
+				if (ex.Message.Contains("NameResolutionFailure")) // WebExceptionStatus.NameResolutionFailure doesnt exist in mono?
+				{
+					return new TDto{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette." };
+				}
+
 				if (ex.Message.Contains("(401) Unauthorized"))
 				{
 					return new TDto { Success = false, Reply = Replies.RequireLoginReply };
@@ -57,7 +62,17 @@ namespace Solvberget.Core.Services
                 return new ListResult<TDto>{Results = list};
             }
             catch (WebException ex)
-            {
+			{
+				if (ex.Message.Contains("(401) Unauthorized"))
+				{
+					return new ListResult<TDto> { Success = false, Reply = Replies.RequireLoginReply };
+				}
+
+				if (ex.Message.Contains("NameResolutionFailure")) // WebExceptionStatus.NameResolutionFailure doesnt exist in mono?
+				{
+					return new ListResult<TDto>{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette." };
+				}
+
                 switch (ex.Status)
                 {
                     case WebExceptionStatus.ConnectFailure:

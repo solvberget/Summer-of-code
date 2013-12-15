@@ -9,6 +9,7 @@ using Solvberget.Core.ViewModels.Base;
 using Solvberget.Core.ViewModels;
 using System.Linq;
 using MonoTouch.CoreGraphics;
+using System.Diagnostics;
 
 namespace Solvberget.iOS
 {
@@ -44,8 +45,6 @@ namespace Solvberget.iOS
 			NavigationItem.Title = "Hjem";
 		}
 
-		bool _isFirstAppear = true;
-
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
@@ -60,7 +59,7 @@ namespace Solvberget.iOS
 			CreateMenu();
 		}
 
-		private void CreateMenu()
+		private void CreateMenu(bool animate = true)
 		{
 			foreach(var v in ScrollView.Subviews) v.RemoveFromSuperview();
 
@@ -137,6 +136,10 @@ namespace Solvberget.iOS
 			ScrollView.ContentSize = new SizeF(
 				ScrollView.Subviews.Max(s => s.Frame.Right), 
 				ScrollView.Subviews.Max(s => s.Frame.Bottom + 20f));
+
+
+			if (!animate)
+				return;
 
 			foreach (var v in ScrollView.Subviews)
 			{
@@ -255,7 +258,7 @@ namespace Solvberget.iOS
 				case "s": // søk
 					return UIColor.FromRGB(0x00, 0x55, 0x22);
 				case "e": // blogger
-					return UIColor.FromRGB(0x00, 0x55, 0x22);
+					return UIColor.FromRGB(0x88, 0xBB, 0x00);
 				case "n": // nyheter
 					return UIColor.FromRGB(0x88, 0xBB, 0x00);
 				case "h": // anbefalinger
