@@ -191,7 +191,7 @@ namespace Solvberget.Core.ViewModels
             if (type == typeof(HomeScreenViewModel))
                 return Section.Home;
             if (type == typeof (LoginViewModel))
-                return Section.MyPage;
+                return Section.Unknown;
             if (type == typeof(SearchViewModel))
                 return Section.Search;
             if (type == typeof (NewsListingViewModel))

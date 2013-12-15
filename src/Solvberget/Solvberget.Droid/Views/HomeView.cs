@@ -248,10 +248,7 @@ namespace Solvberget.Droid.Views
                         if (request.ViewModelType == typeof(BlogViewModel))
                             frag = new BlogView();
                         if (request.ViewModelType == typeof (LoginViewModel))
-                        {
-                            shouldClearBackStack = true;
                             frag = new LoginView(ViewModel);
-                        }
                         if (request.ViewModelType == typeof (MediaDetailViewModel))
                             frag = new MediaDetailView(ViewModel);
 
