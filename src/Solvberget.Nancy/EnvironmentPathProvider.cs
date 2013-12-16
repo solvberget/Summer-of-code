@@ -1,5 +1,8 @@
+using System;
 using System.IO;
 using Nancy;
+using Nancy.Helpers;
+using Solvberget.Domain.Documents;
 using Solvberget.Domain.Utils;
 
 namespace Solvberget.Nancy
@@ -103,7 +106,46 @@ namespace Solvberget.Nancy
 
         public string GetFavoritesPath(string userId)
         {
-            return Path.Combine(_applicationAppDataPath, @"favorites\", userId);
+            var favPath = Path.Combine(_applicationAppDataPath, @"favorites\");
+
+            if(!Directory.Exists(favPath)) Directory.CreateDirectory(favPath);
+
+            return Path.Combine(favPath, userId);
+        }
+
+        public string GetWebAppUrl()
+        {
+            return "http://app.solvberget.no";
+        }
+
+        public string GetWebAppDocumentDetailsPath(Document document)
+        {
+            return "http://www.solvberget.no"; // until web app deployed
+            var docUrl = Path.Combine(GetWebAppUrl(), GetWebType(document.DocType), document.DocumentNumber, HttpUtility.UrlEncode(document.Title));
+            return docUrl;
+        }
+
+        private string GetWebType(string docType)
+        {
+            switch (docType)
+            {
+                case "Book" :
+                    return "bok";
+                case "Cd":
+                    return "cd";
+                case "Film":
+                    return "film";
+                case "AudioBook":
+                    return "lydbok";
+                case "SheetMusic":
+                    return "noter";
+                case "Game":
+                    return "spill";
+                case "OtherJournal":
+                    return "journal";
+                default:
+                    return "annet";
+            }
         }
     }
 }

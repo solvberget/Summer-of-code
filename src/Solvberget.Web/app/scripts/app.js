@@ -97,7 +97,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
             })
             .when('/journal/:id/:title', {
                 templateUrl : 'views/media.journal.html',
-                controller: 'OtherMediaCtrl'
+                controller: 'JournalCtrl'
             })
             .when('/annet/:id/:title', {
                 templateUrl : 'views/media.other.html',
