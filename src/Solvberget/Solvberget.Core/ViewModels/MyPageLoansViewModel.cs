@@ -41,7 +41,7 @@ namespace Solvberget.Core.ViewModels
         {
             IsLoading = true;
 
-            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
+            var user = await _service.GetUserInformation();
 
             var loansList = user.Loans == null ? new List<LoanDto>() : user.Loans.ToList();
 

@@ -63,6 +63,8 @@ namespace Solvberget.iOS
 		{
 			foreach(var v in ScrollView.Subviews) v.RemoveFromSuperview();
 
+			UIView myPageBox;
+
 			if (View.Bounds.Width > 700)
 			{
 				var centeredBox = new UIView(new RectangleF(0, 0, 640, 320));
@@ -74,7 +76,7 @@ namespace Solvberget.iOS
 
 				// tablet layout
 
-				centeredBox.Add(CreateBox(0f, 0f, 200f, 200f, "m"));
+				centeredBox.Add(myPageBox = CreateBox(0f, 0f, 200f, 200f, "m"));
 				centeredBox.Add(CreateBox(220f, 0f, 200f, 200f, "s"));
 				centeredBox.Add(CreateBox(440f, 0f, 200f, 200f, "h"));
 
@@ -99,7 +101,7 @@ namespace Solvberget.iOS
 				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
 				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 
-				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
+				centeredBox.Add(myPageBox = CreateBox(0f, 0f, 90f, 90f, "m"));
 				centeredBox.Add(CreateBox(100f+extraPadding, 0f, 90f, 90f, "s"));
 				centeredBox.Add(CreateBox(200f+extraPadding*2, 0f, 90f, 90f, "h"));
 				centeredBox.Add(CreateBox(300f+extraPadding*3, 0f, 90f, 90f, "a"));
@@ -120,7 +122,7 @@ namespace Solvberget.iOS
 				centeredBox.Center = new PointF(ScrollView.Bounds.Width / 2, ScrollView.Bounds.Height / 2);
 				centeredBox.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 
-				centeredBox.Add(CreateBox(0f, 0f, 90f, 90f, "m"));
+				centeredBox.Add(myPageBox = CreateBox(0f, 0f, 90f, 90f, "m"));
 				centeredBox.Add(CreateBox(100f + extraPadding, 0f, 90f, 90f, "s"));
 
 				centeredBox.Add(CreateBox(0f, 100f+extraPadding, 90f, 90f, "h"));
@@ -156,6 +158,16 @@ namespace Solvberget.iOS
 
 					}, null);
 			}
+
+			ViewModel.WaitForReady(() =>
+			{
+				if(String.IsNullOrEmpty(ViewModel.MyPageBadgeText)) return;
+
+				InvokeOnMainThread(() => 
+				{
+					AddBadge(myPageBox, ViewModel.MyPageBadgeText);
+				});
+			});
 		}
 
 		UIView CreateBox(float x, float y, float width, float height, string itemChar)
@@ -203,6 +215,25 @@ namespace Solvberget.iOS
 
 			return view;
 
+		}
+
+		UILabel AddBadge(UIView box, string text)
+		{
+			var badgeSize = box.Frame.Width > 100 ? 25f : 18f;
+
+			UILabel badge = new UILabel();
+			badge.Font = Application.ThemeColors.DefaultFontBold.WithSize(badgeSize - 6f);
+			badge.TextColor = Application.ThemeColors.MainInverse;
+
+			badge.BackgroundColor = Application.ThemeColors.Main2.ColorWithAlpha(0.35f);
+			badge.Text = text;
+			badge.TextAlignment = UITextAlignment.Center;
+			badge.Frame = new RectangleF(new PointF(
+				(box.Frame.Width - badgeSize), 0f), new SizeF(badgeSize,badgeSize));
+
+			box.Add(badge);
+
+			return badge;
 		}
 
 		public class BoxGestureRecognizer : UIGestureRecognizer

@@ -30,7 +30,7 @@ namespace Solvberget.Core.ViewModels
         public async void Load()
         {
             IsLoading = true;
-            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
+			var user = await _service.GetUserInformation();
 
             var finesDtos = user.Fines == null ? new List<FineDto>() : user.Fines.ToList();
 

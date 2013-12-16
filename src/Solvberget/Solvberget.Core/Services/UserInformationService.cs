@@ -20,9 +20,9 @@ namespace Solvberget.Core.Services
             _rawHttp = stringDownloader;
         }
 
-        public async Task<UserInfoDto> GetUserInformation(string userId)
+		public async Task<UserInfoDto> GetUserInformation(bool ignoreLoginRedirect = false)
         {
-            return await _downloader.Download<UserInfoDto>(Resources.ServiceUrl + Resources.ServiceUrl_UserInfo);
+			return await _downloader.Download<UserInfoDto>(Resources.ServiceUrl + Resources.ServiceUrl_UserInfo, ignoreError: ignoreLoginRedirect);
         }
 
         public async Task<List<FavoriteDto>> GetUserFavorites()

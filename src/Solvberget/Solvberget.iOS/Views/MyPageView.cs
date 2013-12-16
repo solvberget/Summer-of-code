@@ -44,8 +44,20 @@ namespace Solvberget.iOS
 			sections.Add(new MyPageSection{ Title = "Lån", ViewModel = ViewModel.MyPageLoansViewModel });
 			sections.Add(new MyPageSection{ Title = "Reservasjoner", ViewModel = ViewModel.MyPageReservationsViewModel });
 			sections.Add(new MyPageSection{ Title = "Gebyrer", ViewModel = ViewModel.MyPageFinesViewModel });
-			sections.Add(new MyPageSection{ Title = "Meldinger", ViewModel = ViewModel.MyPageMessagesViewModel });
+
+			var messagesSection = new MyPageSection{ Title = "Meldinger (..)", ViewModel = ViewModel.MyPageMessagesViewModel };
+			sections.Add(messagesSection);
 			sections.Add(new MyPageSection{ Title = "Min profil", ViewModel = ViewModel.MyPagePersonaliaViewModel });
+
+			ViewModel.MyPageMessagesViewModel.WaitForReady(() =>
+			{
+					InvokeOnMainThread(() => 
+					{
+						messagesSection.Title = String.Format("Meldinger ({0})", ViewModel.MyPageMessagesViewModel.Notifications.Count);
+
+						TableView.ReloadRows(TableView.IndexPathsForVisibleRows, UITableViewRowAnimation.Fade);
+					});
+			});
 
 			source.ItemsSource = sections;
 			source.SelectedItemChanged += (s, e) =>
