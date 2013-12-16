@@ -67,7 +67,7 @@ namespace Solvberget.iOS
 
 			box = new UIView(new RectangleF(padding, padding, widthMinusPadding, 80));
 
-			var x = 80.0f;
+			var x = 70.0f;
 
 			// align text on x-axis
 			var l1Frame = new RectangleF(new PointF(x, 0), new SizeF(box.Frame.Width - x, 0));
@@ -77,7 +77,7 @@ namespace Solvberget.iOS
 			label1.Font = Application.ThemeColors.TitleFont;
 			label1.Lines = 0;
 			label1.LineBreakMode = UILineBreakMode.WordWrap;
-			label1.TextColor = Application.ThemeColors.Main;
+			label1.TextColor = Application.ThemeColors.Main2;
 
 			#if DEBUG
 			//label1.BackgroundColor = UIColor.Red.ColorWithAlpha(0.5f);
@@ -95,8 +95,8 @@ namespace Solvberget.iOS
 				var l2Frame = new RectangleF(new PointF(x, 0), new SizeF(box.Frame.Width - x, 0));
 				label2 = new UILabel(l2Frame);
 				label2.BackgroundColor = UIColor.Clear;
-				label2.Font = Application.ThemeColors.DefaultFont;
-				label2.TextColor = Application.ThemeColors.Main2;
+				label2.Font = Application.ThemeColors.SubTitleFont;
+				label2.TextColor = Application.ThemeColors.SubTitleColor;
 				label2.Text = subtitle;
 				label2.Lines = 0;
 				label2.LineBreakMode = UILineBreakMode.WordWrap;

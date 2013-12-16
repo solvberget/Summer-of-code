@@ -42,7 +42,6 @@ namespace Solvberget.iOS
 			_resultsSource = new SimpleTableViewSource<SearchResultViewModel>(Results, CellBindings.SearchResults);
 			Results.Source = _resultsSource;
 
-
 			LoadingOverlay.LoadingText = "Søker...";
 
 			var set = this.CreateBindingSet<SearchView, SearchViewModel>();
@@ -106,8 +105,13 @@ namespace Solvberget.iOS
 
 		void ShowFilterPanel()
 		{
+			Query.ResignFirstResponder();
+
 			_overlay.BackgroundColor = new UIColor(0f, 0f, 0f, 0f);
+			_overlay.Frame = new RectangleF(PointF.Empty, View.Frame.Size);
+
 			_filterOptions.Center = new PointF(View.Frame.Width / 2, View.Frame.Height + (_filterOptions.Frame.Height / 2));
+			_filterOptions.Frame = new RectangleF(0, _filterOptions.Frame.Top, View.Frame.Width, _filterOptions.Frame.Height);
 			View.AddSubview(_overlay);
 			UIView.Animate(0.25, 0, UIViewAnimationOptions.CurveEaseInOut, () => 
 			{

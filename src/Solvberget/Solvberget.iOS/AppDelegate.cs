@@ -1,4 +1,9 @@
 ﻿using Solvberget.Core.ViewModels;
+using Solvberget.Core.Services;
+using Solvberget.Core.DTOs;
+using Cirrious.MvvmCross.Views;
+using System.Collections.Generic;
+using MonoTouch.FacebookConnect;
 
 namespace Solvberget.iOS
 {
@@ -16,7 +21,10 @@ namespace Solvberget.iOS
     /// </summary>
     [Register("AppDelegate")]
     public class AppDelegate : MvxApplicationDelegate
-    {
+	{
+		const string FacebookAppId = "178416682352295";
+		const string DisplayName = "Sølvberget for iOS";
+
         /// <summary>
         /// The window.
         /// </summary>
@@ -41,12 +49,34 @@ namespace Solvberget.iOS
 			var appStart = new MvxAppStart<HomeScreenViewModel>();
 			Mvx.RegisterSingleton<IMvxAppStart>(appStart);
 
+			Mvx.LazyConstructAndRegisterSingleton<DtoDownloader, IosDtoDownloader>();
+
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
 
             this.window.MakeKeyAndVisible();
 
+			FBSettings.DefaultAppID = FacebookAppId;
+			FBSettings.DefaultDisplayName = DisplayName;
+
+
             return true;
         }
+
+		public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+		{
+			// We need to handle URLs by passing them to FBSession in order for SSO authentication
+			// to work.
+			return FBSession.ActiveSession.HandleOpenURL(url);
+		}
+
+		public override void OnActivated (UIApplication application)
+		{
+			// We need to properly handle activation of the application with regards to SSO
+			// (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
+			FBSession.ActiveSession.HandleDidBecomeActive();
+		}
+
     }
+
 }

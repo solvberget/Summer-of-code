@@ -35,64 +35,75 @@ namespace Solvberget.Core.ViewModels
                                       {
                                           Section = Section.Home,
                                           Title = "Hjem",
-                                          IconChar = "1"
+										  IconChar = "1",
+											ViewModelType = typeof(HomeScreenViewModel)
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.MyPage,
                                           Title = "Min Side",
-                                          IconChar = "m"
+					IconChar = "m",
+					ViewModelType = typeof(MyPageViewModel)
                                       },
                                  new MenuViewModel
                                       {
                                           Section = Section.Events,
                                           Title = "Arrangementer",
-                                          IconChar = "a"
+					IconChar = "a",
+					ViewModelType = typeof(EventListViewModel)
                                       },
                                       new MenuViewModel
                                       {
                                           Section = Section.Search,
                                           Title = "Søk",
-                                          IconChar = "s"
+					IconChar = "s",
+					ViewModelType = typeof(SearchViewModel)
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.Blogs,
                                           Title = "Blogger",
-                                          IconChar = "e"
+					IconChar = "e",
+					ViewModelType = typeof(BlogOverviewViewModel)
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.News,
                                           Title = "Nyheter",
-                                          IconChar = "n"
+					IconChar = "n",
+					ViewModelType = typeof(NewsListingViewModel)
                                       },
                                       new MenuViewModel
                                       {
                                           Section = Section.Lists,
                                           Title = "Anbefalinger",
-                                          IconChar = "h"
+					IconChar = "h",
+					ViewModelType = typeof(SuggestionsListListViewModel)
                                       },
                                       new MenuViewModel
                                       {
                                           Section = Section.OpeningHours,
                                           Title = "Åpningstider",
-                                          IconChar = "å"
+					IconChar = "å",
+					ViewModelType = typeof(OpeningHoursViewModel)
                                       },
                                   new MenuViewModel
                                       {
                                           Section = Section.Contact,
                                           Title = "Kontakt oss",
-                                          IconChar = "c"
+					IconChar = "c",
+					ViewModelType = typeof(ContactInfoViewModel)
                                       },
                                   new MenuViewModel
                                   {
                                           Section = Section.Logout,
                                           Title = "Logg ut",
-                                          IconChar = "2"
+					IconChar = "2",
                                   }
                               };
         }
+
+		Type ViewModelType;
 
         private List<MenuViewModel> _menuItems;
         public List<MenuViewModel> MenuItems

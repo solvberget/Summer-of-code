@@ -3,6 +3,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Solvberget.Core.ViewModels;
+using System.Globalization;
 
 namespace Solvberget.iOS
 {
@@ -23,10 +24,9 @@ namespace Solvberget.iOS
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+			StyleView();
 
 			LoadingOverlay.LoadingText = "Henter blogg...";
-
-			StyleView();
 
 			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(UIBarButtonSystemItem.Action, OnViewInBrowser), true);
 		}
@@ -46,38 +46,39 @@ namespace Solvberget.iOS
 			var padding = 10.0f;
 
 			DescriptionLabel.Text = ViewModel.Description;
-			DescriptionLabel.SizeToFit();
 
+			var labelSize = DescriptionLabel.SizeThatFits(new SizeF(View.Frame.Width-2*padding, 0f));
+
+			DescriptionLabel.Frame = new RectangleF(new PointF(padding,padding), labelSize);
 			DescriptionContainer.BackgroundColor = Application.ThemeColors.Hero;
-			DescriptionContainer.Frame = new RectangleF(0, 0, 320, DescriptionLabel.Frame.Height + padding*2);
+			DescriptionContainer.Frame = new RectangleF(0, 0, View.Frame.Width, labelSize.Height + padding+padding);
 
 			var y = padding;
+
 
 			foreach (var s in ItemsContainer.Subviews)
 				s.RemoveFromSuperview();
 
-			foreach (var post in ViewModel.Posts)
+			foreach (var item in ViewModel.Posts)
 			{
-				var postCtrl = new TitleAndSummaryItem();
+				var itemCtrl = new TitleAndSummaryItem();
+				itemCtrl.Frame = new RectangleF(padding, y, View.Frame.Width - 2 * padding, 10);
 
-				postCtrl.Clicked += (sender, e) => post.Show(ViewModel.Id);
+				itemCtrl.Clicked += (sender, e) => ViewModel.ShowDetailsCommand.Execute(item);
 
-				postCtrl.TitleLabelText = post.Title;
-				postCtrl.SummaryLabelText = post.Description;
+				itemCtrl.TitleLabelText = item.Title;
 
-				ItemsContainer.Add(postCtrl.View);
-				postCtrl.Frame = new RectangleF(padding, y, postCtrl.Frame.Width, postCtrl.Frame.Height + padding);
+				itemCtrl.SummaryLabelText = item.Published.ToString("dddd d. MMMM", new CultureInfo("nb-no")).ToUpperInvariant();
 
-				y += postCtrl.Frame.Height + padding;
+				if(!String.IsNullOrEmpty(item.Content)) itemCtrl.SummaryLabelText += Environment.NewLine + Environment.NewLine + item.Content.Replace("&nbsp;", " ").Trim();
+
+				ItemsContainer.Add(itemCtrl.View);
+
+				y += itemCtrl.Frame.Height + padding;
 			}
 
-			var icY = DescriptionContainer.Frame.Y + DescriptionContainer.Frame.Height;
-
-			ItemsContainer.Frame = new RectangleF(0, icY , 320, y);
-
-
-			ScrollContainer.ContentSize = new SizeF(320, y + icY);
-			ScrollContainer.ScrollEnabled = true;
+			ItemsContainer.Frame = new RectangleF(0, DescriptionLabel.Frame.Bottom + padding, View.Frame.Width, y);
+			ScrollContainer.ContentSize = new SizeF(ScrollContainer.Bounds.Width, y);
 		}
 
 		private void OnViewInBrowser(object sender, EventArgs e)

@@ -27,7 +27,7 @@ namespace Solvberget.iOS
 
 			var set = this.CreateBindingSet<MyPageReservationsView, MyPageReservationsViewModel>();
 			set.Bind(source).To(vm => vm.Reservations);
-			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
+			source.SelectedItemChanged += (s,e) => ShowPopup(source.SelectedItem as ReservationViewModel);
 			set.Apply();
 
 			TableView.ReloadData();
@@ -39,6 +39,37 @@ namespace Solvberget.iOS
 				_noRows = new UILabel(new RectangleF(10, 10, 300, 30)){ Text = "Du har ingen reservasjoner.", Font = Application.ThemeColors.DefaultFont };
 				Add(_noRows);
 			}
+		}
+		void ShowPopup(ReservationViewModel vm)
+		{
+			if (null == vm)
+				return;
+
+			var popup = new UIAlertView(View.Frame);
+
+			popup.Title = vm.DocumentTitle;
+
+			popup.AddButton("Kanseller reservasjon");
+			popup.AddButton("Vis detaljer");
+			popup.AddButton("Avbryt");
+
+			popup.CancelButtonIndex = 2;
+
+			popup.Dismissed += (sender, e) =>
+			{
+				switch(e.ButtonIndex)
+				{
+					case 0 : 
+						ViewModel.RemoveReservation(vm);
+						break;
+
+					case 1: 
+						ViewModel.ShowDetailsCommand.Execute(vm);
+						break;
+				}
+			};
+
+			popup.Show();
 		}
 
 		UILabel _noRows = new UILabel();

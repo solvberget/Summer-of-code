@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Nancy;
+using Nancy.LightningCache.Extensions;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Documents;
 using Solvberget.Domain.Documents.Reviews;
@@ -30,7 +31,7 @@ namespace Solvberget.Nancy.Modules
                     return ResolvePlaceHolderImageForDocumentType(pathProvider, doc);
                 }
 
-                return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img));
+                return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img)).AsCacheable(DateTime.Now.AddDays(1));
             };
 
             Get["/{id}"] = args =>
@@ -52,7 +53,7 @@ namespace Solvberget.Nancy.Modules
                         Source = rating.Source,
                         SourceUrl = rating.SourceUrl,
                         HasRating = true
-                    });
+                    }).AsCacheable(DateTime.Now.AddDays(1));
                 }
                 catch
                 {
@@ -63,7 +64,7 @@ namespace Solvberget.Nancy.Modules
             Get["/{id}/review"] = args =>
             {
                 string review = reviews.GetDocumentReview(args.id);
-                return new DocumentReviewDto{ Review = review, Url = "" };
+                return Response.AsJson(new DocumentReviewDto{ Review = review, Url = "" }).AsCacheable(DateTime.Now.AddDays(1));
             };
 
             Get["/search"] = _ =>
@@ -72,7 +73,7 @@ namespace Solvberget.Nancy.Modules
 
                 if (null == query) throw new InvalidOperationException("Ingenting å søke etter.");
 
-                return documents.Search(query).Select(doc => DtoMaps.Map(doc, favorites, Context.GetUserInfo())).ToArray();
+                return Response.AsJson(documents.Search(query).Select(doc => DtoMaps.Map(doc, favorites, Context.GetUserInfo())).ToArray()).AsCacheable(DateTime.Now.AddHours(12));
             };
         }
 
@@ -80,33 +81,33 @@ namespace Solvberget.Nancy.Modules
         {
             if (doc is Cd)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Cd.png"));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Cd.png")).AsCacheable(DateTime.Now.AddMonths(1));
             }
             if (doc is Book)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Book.png"));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Book.png")).AsCacheable(DateTime.Now.AddMonths(1));
             }
             if (doc is Film)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Film.png"));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Film.png")).AsCacheable(DateTime.Now.AddMonths(1));
             }
             if (doc is SheetMusic)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "SheetMusic.png"));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "SheetMusic.png")).AsCacheable(DateTime.Now.AddMonths(1));
             }
             if (doc is Journal)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Journal.png"));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Journal.png")).AsCacheable(DateTime.Now.AddMonths(1));
             }
             if (doc is Game)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Game.png"));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Game.png")).AsCacheable(DateTime.Now.AddMonths(1));
             }
             if (doc is AudioBook)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "AudioBook.png"));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "AudioBook.png")).AsCacheable(DateTime.Now.AddMonths(1));
             }
-            return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Document.png"));
+            return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Document.png")).AsCacheable(DateTime.Now.AddMonths(1));
         }
     }
 }

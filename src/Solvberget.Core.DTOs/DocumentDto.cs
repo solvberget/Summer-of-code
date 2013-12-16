@@ -14,6 +14,6 @@
         public DocumentAvailabilityDto[] Availability { get; set; }
         public bool? IsFavorite { get; set; }
         public bool? IsReserved { get; set; }
-        public string WebAppUrl { get; set; }
+		public string WebAppUrl {get;set;}
     }
 }

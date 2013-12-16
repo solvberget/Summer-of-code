@@ -24,7 +24,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" id="UNd-J3-BxY">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blog description here." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YPh-mX-x4Y">
                                     <rect key="frame" x="7" y="10" width="306" height="21"/>

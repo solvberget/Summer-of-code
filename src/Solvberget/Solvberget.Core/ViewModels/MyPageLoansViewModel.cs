@@ -5,6 +5,8 @@ using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -81,14 +83,34 @@ namespace Solvberget.Core.ViewModels
 
         public async void ExpandLoan(string documentNumber)
         {
+			IsLoading = true;
             var response = await _service.ExpandLoan(documentNumber);
 
             RenewalStatus = response.Reply;
 
             if (response.Success)
             {
-                Load();
+				Load();
+				IsLoading = false;
             }
         }
+
+
+		private MvxCommand<LoanViewModel> _showDetailsCommand;
+		public ICommand ShowDetailsCommand
+		{
+			get
+			{
+				return _showDetailsCommand ?? (_showDetailsCommand = new MvxCommand<LoanViewModel>(ExecuteShowDetailsCommand));
+			}
+		}
+
+		private void ExecuteShowDetailsCommand(LoanViewModel model)
+		{
+			if (model.DocumentNumber != "")
+			{
+				ShowViewModel<MediaDetailViewModel>(new { title = model.DocumentTitle, docId = model.DocumentNumber });
+			}
+		}
     }
 }

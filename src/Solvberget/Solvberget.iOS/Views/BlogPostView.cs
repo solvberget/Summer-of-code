@@ -3,6 +3,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Solvberget.Core.ViewModels;
+using System.Globalization;
 
 namespace Solvberget.iOS
 {
@@ -32,7 +33,7 @@ namespace Solvberget.iOS
 		protected override void ViewModelReady()
 		{
 			var styles = "<style>body { font-family: Open Sans }</style>";
-			var html = styles + ViewModel.Content + "<p style=color:gray>Publisert av " + ViewModel.Author + ", " + ViewModel.Published.ToString("ddd d. MMM yyyy");
+			var html = styles + ViewModel.Content + "<p style=color:gray>Publisert av " + ViewModel.Author + ", " + ViewModel.Published.ToString("ddd d. MMMM yyyy", new CultureInfo("nb-no"));
 
 			WebView.LoadHtmlString(html, null);
 

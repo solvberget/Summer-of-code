@@ -68,7 +68,7 @@ namespace Solvberget.iOS
 
 			// new row, first column
 			var x = padding;
-			var y = container.Subviews.Length == 0 ? padding : container.Subviews.Max(s => s.Frame.Bottom) + padding;
+			var y = container.Subviews.Length == 0 ? padding : container.Subviews.Max(s => s.Frame.Bottom) + padding*2;
 
 			if (null != lastLabel && lastX + columnWidth <= container.Frame.Width + 1) // +1 to ensure rounding is not an issue
 			{

@@ -108,6 +108,12 @@ namespace Solvberget.Core.ViewModels
 
         private async void ExecutePlaceHoldRequestCommand()
         {
+			if (!_parent.LoggedIn)
+			{
+				_parent.GotoLogin();
+				return;
+			}
+
             _parent.IsLoading = true;
 			_parent.ButtonEnabled = false;
 			_parent.ButtonText = ButtonText = "Behandler...";

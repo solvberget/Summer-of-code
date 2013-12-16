@@ -29,7 +29,7 @@ namespace Solvberget.iOS
 			if (null == ViewModel) return;
 			NavigationItem.Title = (ViewModel as BaseViewModel).Title.ToUpperInvariant();
 
-			Add(_loadingOverlay);
+			_loadingOverlay.Show(View);
 		}
 
 		public override UIStatusBarStyle PreferredStatusBarStyle()
@@ -66,6 +66,8 @@ namespace Solvberget.iOS
 			if (null != ViewModel)
 			{
 				var vm = (BaseViewModel)ViewModel;
+				vm.OnViewReady();
+
 				vm.WaitForReady(() => InvokeOnMainThread(ViewModelReady));
 				NavigationItem.Title = vm.Title.ToUpperInvariant();
 			}

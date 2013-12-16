@@ -10,4 +10,9 @@
         public bool Success { get; set; }
         public string Reply { get; set; }
     }
+
+	public static class Replies
+	{
+		public static string RequireLoginReply = "RequireLogin";
+	}
 }

@@ -8,6 +8,9 @@ using Solvberget.Core.ViewModels;
 using System.Threading;
 using System.Linq;
 using Solvberget.Core.DTOs;
+using System.Web;
+using MonoTouch.Twitter;
+using MonoTouch.FacebookConnect;
 
 namespace Solvberget.iOS
 {
@@ -39,7 +42,7 @@ namespace Solvberget.iOS
 		{
 			base.ViewModelReady();
 
-			foreach (var s in ScrollView.Subviews)
+			foreach (var s in ScrollView.Subviews.Skip(1)) // leave the header view
 				s.RemoveFromSuperview();
 		
 			_boxes = new BoxRenderer(ScrollView);
@@ -65,8 +68,6 @@ namespace Solvberget.iOS
 			TypeLabel.TextColor = Application.ThemeColors.MainInverse;
 		}
 
-		LoadingOverlay _loadingOverlay = new LoadingOverlay();
-
         private void OnToggleFavorite(object sender, EventArgs e)
         {
 			NavigationItem.RightBarButtonItem.Enabled = false;
@@ -75,27 +76,103 @@ namespace Solvberget.iOS
 
 		private async void ToggleFavorite()
 		{
-			Thread.Sleep(TimeSpan.FromSeconds(3));
-
 			if (ViewModel.IsFavorite) await ViewModel.RemoveFavorite();
 			else await ViewModel.AddFavorite();
 
 			InvokeOnMainThread(() => {
 				UpdateFavoriteButtonState();
-				_loadingOverlay.Hide();
 			});
 		}
 
+		UIBarButtonItem _favButton;
+		UIBarButtonItem _shareButton;
+
 		private void UpdateFavoriteButtonState()
 		{
-			if (null == NavigationItem.RightBarButtonItem)
+			var favStateImage = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26, 26));
+
+			if(!ViewModel.IsFavorite && !UIHelpers.MinVersion7)
 			{
-				var image = UIImage.FromBundle("/Images/star.on.png").Scale(new SizeF(26,26));
-				NavigationItem.SetRightBarButtonItem(new UIBarButtonItem(image, UIBarButtonItemStyle.Plain, OnToggleFavorite), false);
+				favStateImage = UIImage.FromBundle("/Images/star.off.png").Scale(new SizeF(26, 26));
 			}
 
-			NavigationItem.RightBarButtonItem.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
-			NavigationItem.RightBarButtonItem.Enabled = true;
+			if (null == _favButton)
+			{
+				_favButton = new UIBarButtonItem(favStateImage, UIBarButtonItemStyle.Plain, OnToggleFavorite);
+				_shareButton = new UIBarButtonItem(UIBarButtonSystemItem.Action, OnShare);
+
+				NavigationItem.SetRightBarButtonItems(new UIBarButtonItem[]{_shareButton,_favButton}, false);
+			}
+
+			if (UIHelpers.MinVersion7)
+			{
+				_favButton.TintColor = ViewModel.IsFavorite ? Application.ThemeColors.FavoriteColor : Application.ThemeColors.MainInverse;
+			}
+			else
+			{
+				_favButton.Image = favStateImage;
+			}
+		}
+
+		private void OnShare(object sender, EventArgs e)
+		{
+			var shareView = new UIAlertView(View.Frame);
+
+			shareView.Title = "Del " + ViewModel.Title;
+
+			shareView.AddButton("Del på Facebook");
+			shareView.AddButton("Del på Twitter");
+			shareView.AddButton("Avbryt");
+
+			shareView.Clicked += (ss, se) =>
+			{
+				string launchUri = null;
+
+				var shareMessage = "Se hva jeg fant på Sølvberget: " + ViewModel.Title;
+
+				if(null == ViewModel.RawDto.WebAppUrl) return;
+
+				switch(se.ButtonIndex)
+				{
+					case 0:
+
+						if(!FBDialogs.CanPresentOSIntegratedShareDialog(FBSession.ActiveSession))
+						{
+							UIAlertView alert = new UIAlertView(View.Frame);
+							alert.Title = "Facebook oppsett mangler";
+							alert.Message = "Du må koble din iPhone/iPad til Facebook før du kan dele (selv om du kanskje har installet Facebook appen). Gå til Instillinger - Facebook.";
+							alert.AddButton("Ok");
+							alert.Show();
+							return;
+						}
+
+						FBDialogs.PresentOSIntegratedShareDialogModally(this,
+							shareMessage, null, new NSUrl(ViewModel.RawDto.WebAppUrl),new FBOSIntegratedShareDialogHandler((res,err) => {
+
+								var ex = err;
+
+							}));
+
+
+						break;
+					case 1:
+
+						var tvc = new TWTweetComposeViewController();
+						tvc.SetInitialText(shareMessage);
+						tvc.AddUrl(new NSUrl(ViewModel.RawDto.WebAppUrl));
+						PresentModalViewController(tvc, true);
+
+						break;
+				}
+
+				if(null == launchUri) return;
+
+				bool success = UIApplication.SharedApplication.OpenUrl(new NSUrl(launchUri));
+			};
+
+			shareView.CancelButtonIndex = shareView.ButtonCount - 1;
+
+			shareView.Show();
 		}
 
 		private void Update()
@@ -148,7 +225,7 @@ namespace Solvberget.iOS
 
 			Position();
 
-			_loadingOverlay.Hide();
+			LoadingOverlay.Hide();
 		}
 
 		void RenderAvailability()
@@ -184,16 +261,11 @@ namespace Solvberget.iOS
 				set.Apply();
 
 
-				//reserve.SetTitle(availability.ButtonText, UIControlState.Normal);
+				Application.ThemeColors.Style(reserve);
 
-				reserve.SetTitleColor(Application.ThemeColors.ButtonDisabledTextColor, UIControlState.Disabled);
-				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor, UIControlState.Normal);
-				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Selected);
-				reserve.SetTitleColor(Application.ThemeColors.ButtonTextColor.ColorWithAlpha(0.5f), UIControlState.Highlighted);
-				reserve.Font = Application.ThemeColors.ButtonFont;
-				reserve.BackgroundColor = Application.ThemeColors.ButtonBackground;
+				var btnPadding = UIHelpers.MinVersion7 ? 0f : padding;
 
-				reserve.Frame = new RectangleF(padding, box.Subviews.Last().Frame.Bottom+padding, 150f, reserve.SizeThatFits(new SizeF(0f,0f)).Height);
+				reserve.Frame = new RectangleF(padding, box.Subviews.Last().Frame.Bottom+padding, 165f, reserve.SizeThatFits(new SizeF(0f,0f)).Height + btnPadding);
 
 				box.Add(reserve);
 				box.Frame = new RectangleF(box.Frame.Location, new SizeF(box.Frame.Width, reserve.Frame.Bottom+padding));
@@ -317,7 +389,7 @@ namespace Solvberget.iOS
 
 			var facts = _boxes.StartBox();
 
-			if(!String.IsNullOrEmpty(dto.AgeLimit)) new LabelAndValue(facts, "Aldersgrense", dto.AgeLimit);
+			if(!String.IsNullOrEmpty(dto.AgeLimit)) new LabelAndValue(facts, "Aldersgrense", dto.AgeLimit.Replace("Aldersgrense:", String.Empty).Trim());
 			if(!String.IsNullOrEmpty(dto.MediaInfo)) new LabelAndValue(facts, "Format", dto.MediaInfo);
 			if(null != dto.ActorNames && dto.ActorNames.Length > 0) new LabelAndValue(facts, "Skuespillere", String.Join(", ",dto.ActorNames));
 			if(!String.IsNullOrEmpty(dto.Language)) new LabelAndValue(facts, "Språk", dto.Language);
@@ -346,12 +418,12 @@ namespace Solvberget.iOS
 			HeaderLabel.Frame = new RectangleF(HeaderLabel.Frame.Location, headerSize);
 
 			var subtitleSize = SubtitleLabel.SizeThatFits(new SizeF(SubtitleLabel.Frame.Width, 0));
-			var subtitlePos = new PointF(SubtitleLabel.Frame.X, HeaderLabel.Frame.Bottom+padding);
+			var subtitlePos = new PointF(SubtitleLabel.Frame.X, HeaderLabel.Frame.Bottom);
 
 			SubtitleLabel.Frame = new RectangleF(subtitlePos, subtitleSize);
 
 			var typeSize = TypeLabel.SizeThatFits(new SizeF(TypeLabel.Frame.Width, 0));
-			var typePos = new PointF(TypeLabel.Frame.X, SubtitleLabel.Frame.Bottom+padding);
+			var typePos = new PointF(TypeLabel.Frame.X, SubtitleLabel.Frame.Bottom);
 
 			TypeLabel.Frame = new RectangleF(typePos, typeSize);
 

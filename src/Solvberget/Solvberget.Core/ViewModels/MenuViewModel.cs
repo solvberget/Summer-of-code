@@ -1,4 +1,5 @@
 ﻿using Solvberget.Core.ViewModels.Base;
+using System;
 
 namespace Solvberget.Core.ViewModels
 {
@@ -14,6 +15,8 @@ namespace Solvberget.Core.ViewModels
                 Id = (int)_section; RaisePropertyChanged(() => Section);
             }
         }
+
+		public Type ViewModelType {get;set;}
 
         private string _iconChar;
         public string IconChar 

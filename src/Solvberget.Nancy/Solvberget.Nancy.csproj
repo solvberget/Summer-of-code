@@ -78,8 +78,9 @@
       <HintPath>..\..\packages\Nancy.Hosting.Aspnet.0.21.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nancy.LightningCache">
-      <HintPath>..\..\packages\Nancy.LightningCache.0.1.2\lib\net40\Nancy.LightningCache.dll</HintPath>
+    <Reference Include="Nancy.LightningCache, Version=0.1.3.7342, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Nancy.LightningCache.0.1.3\lib\net40\Nancy.LightningCache.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Serialization.JsonNet">
       <HintPath>..\..\packages\Nancy.Serialization.JsonNet.0.21.1\lib\net40\Nancy.Serialization.JsonNet.dll</HintPath>
@@ -192,6 +193,7 @@
     <Compile Include="Authentication\UserIdentityCache.cs" />
     <Compile Include="Authentication\UserInfoContextExtensions.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="CustomNancyLightningCache.cs" />
     <Compile Include="Extensions\ComponentContextExtensions.cs" />
     <Compile Include="EnvironmentPathProvider.cs" />
     <Compile Include="Mapping\DtoMaps.cs" />

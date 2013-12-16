@@ -10,20 +10,17 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>3.2</string>
+	<string>6.1</string>
 	<key>NSMainNibFile</key>
 	<string></string>
 	<key>CFBundleDisplayName</key>
 	<string>Sølvberget</string>
-	<key>CFBundleIdentifier</key>
-	<string>solvberget</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1</string>
-	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CFBundleIconFiles</key>
 	<array>
@@ -34,8 +31,13 @@
 		<string>OpenSans-Bold.ttf</string>
 		<string>OpenSans-Light.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
+		<string>icons.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleIdentifier</key>
+	<string>com.capgemini.solvberget</string>
+	<key>CFBundleVersion</key>
+	<string>9</string>
 </dict>
 </plist>

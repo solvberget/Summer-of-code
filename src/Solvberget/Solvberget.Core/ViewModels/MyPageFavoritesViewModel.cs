@@ -16,7 +16,6 @@ namespace Solvberget.Core.ViewModels
         {
 			Title = "Favoritter";
             _service = service;
-            Load();
         }
 
         private ObservableCollection<FavoriteViewModel> _favorites;
@@ -32,6 +31,13 @@ namespace Solvberget.Core.ViewModels
             get { return _favoriteIsRemoved; }
             set { _favoriteIsRemoved = value; RaisePropertyChanged(() => FavoriteIsRemoved); }
         }
+
+		public override void OnViewReady()
+		{
+			base.OnViewReady();
+
+			Load();
+		}
 
         public async void Load()
         {

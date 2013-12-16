@@ -31,6 +31,9 @@ namespace Solvberget.iOS
 		{
 			base.ViewDidLoad();
 
+			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Logg ut", UIBarButtonItemStyle.Plain, DoLogout), false);
+
+
 			LoadingOverlay.LoadingText = "Henter din side...";
 
 			var source = new StandardTableViewSource(TableView, UITableViewCellStyle.Default,
@@ -53,6 +56,11 @@ namespace Solvberget.iOS
 			};
 
 			TableView.Source = source;
+		}
+
+		private void DoLogout(object sender, EventArgs args)
+		{
+			ViewModel.Logout();
 		}
        
     }

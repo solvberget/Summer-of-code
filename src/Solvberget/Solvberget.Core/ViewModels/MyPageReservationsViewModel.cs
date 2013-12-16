@@ -19,7 +19,6 @@ namespace Solvberget.Core.ViewModels
         {
 			Title = "Reservasjoner";
             _service = service;
-            Load();
         }
 
         private ObservableCollection<ReservationViewModel> _reservations;
@@ -35,6 +34,12 @@ namespace Solvberget.Core.ViewModels
             get { return _reservationRemoved; }
             set { _reservationRemoved = value; RaisePropertyChanged(() => ReservationRemoved); }
         }
+
+		public override void OnViewReady()
+		{
+			base.OnViewReady();
+			Load();
+		}
 
         public async void Load()
         {

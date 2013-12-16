@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Solvberget.Domain.Utils
@@ -12,15 +13,22 @@ namespace Solvberget.Domain.Utils
         
         public static XDocument GetXmlFromStream(string url)
         {
-            var request = WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.ServicePoint.Expect100Continue = false;
+            request.Proxy = null;
 
-            WebResponse response = request.GetResponse();
+            var response = request.GetResponse();
             
             var xml = string.Empty;
             using (var stream = response.GetResponseStream())
             {
-                var readStream = new StreamReader(stream, Encoding.UTF8);
-                xml = readStream.ReadToEnd();
+                using (var buffer = new BufferedStream(stream))
+                {
+                    using (var reader = new StreamReader(buffer, Encoding.UTF8))
+                    {
+                        xml = reader.ReadToEnd();
+                    }
+                }
             }
 
             //The Star-Wars-Beatles-PeerGynt-bug
@@ -32,7 +40,6 @@ namespace Solvberget.Domain.Utils
             var xmlEscaped = xml.Replace(soh, sp);
 
             return XDocument.Parse(xmlEscaped);
-
         }
 
         public static XDocument GetXmlFromStreamWithParam(string uri, string param)

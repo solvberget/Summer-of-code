@@ -17,7 +17,7 @@ namespace Solvberget.Core.Services
             _downloader = downloader;
         }
 
-        public async Task<TDto> Download<TDto>(string url, string method = "GET")
+		public virtual async Task<TDto> Download<TDto>(string url, string method = "GET")
             where TDto : RequestReplyDto, new()
         {
             try
@@ -26,7 +26,17 @@ namespace Solvberget.Core.Services
                 return JsonConvert.DeserializeObject<TDto>(response);
             }
             catch (WebException ex)
-            {
+			{
+				if (ex.Message.Contains("NameResolutionFailure")) // WebExceptionStatus.NameResolutionFailure doesnt exist in mono?
+				{
+					return new TDto{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette." };
+				}
+
+				if (ex.Message.Contains("(401) Unauthorized"))
+				{
+					return new TDto { Success = false, Reply = Replies.RequireLoginReply };
+				}
+
                 switch (ex.Status)
                 {
                     case WebExceptionStatus.ConnectFailure:
@@ -42,7 +52,7 @@ namespace Solvberget.Core.Services
             }
         }
 
-        public async Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
+		public virtual async Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
         {
             try
             {
@@ -52,7 +62,17 @@ namespace Solvberget.Core.Services
                 return new ListResult<TDto>{Results = list};
             }
             catch (WebException ex)
-            {
+			{
+				if (ex.Message.Contains("(401) Unauthorized"))
+				{
+					return new ListResult<TDto> { Success = false, Reply = Replies.RequireLoginReply };
+				}
+
+				if (ex.Message.Contains("NameResolutionFailure")) // WebExceptionStatus.NameResolutionFailure doesnt exist in mono?
+				{
+					return new ListResult<TDto>{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette." };
+				}
+
                 switch (ex.Status)
                 {
                     case WebExceptionStatus.ConnectFailure:

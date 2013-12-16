@@ -7,7 +7,8 @@
     <MvxListView
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:divider="@null"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="6dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         local:MvxBind="ItemsSource ListElements"

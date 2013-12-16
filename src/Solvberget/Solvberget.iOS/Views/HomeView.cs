@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using SlidingPanels.Lib.PanelContainers;
 using Solvberget.Core.ViewModels;
 using Cirrious.MvvmCross.Binding.Touch.Views;
+using System.Linq;
 
 namespace Solvberget.iOS
 {
@@ -48,24 +49,17 @@ namespace Solvberget.iOS
 			NavigationItem.LeftBarButtonItem = CreateSliderButton("Images/SlideRight40.png", PanelType.LeftPanel);
 		}
 
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning();
-
-			// Release any cached data, images, etc that aren't in use.
-		}
+		MenuTableViewSource source;
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad();
 
-			var source = new SolvbergetTableViewSource(MenuTableView, UITableViewCellStyle.Default, new NSString("TableViewCell"), "TitleText Title;", UITableViewCellAccessory.None);
+			source = new MenuTableViewSource(MenuTableView);
 
 			source.BackgroundColor = Application.ThemeColors.Main2;
 			source.TextColor = Application.ThemeColors.MainInverse;
 			source.TintColor = Application.ThemeColors.Main;
-
 
 			View.BackgroundColor = UIColor.Clear;
 			MenuTableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
@@ -81,19 +75,19 @@ namespace Solvberget.iOS
 
 			MenuTableView.ReloadData();
 
-			View.AddSubview(MenuTableView);
+			View.Add(MenuTableView);
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
 
+			var currentView = MvxSlidingPanelsTouchViewPresenter.CurrentView;
+			var row = null == currentView || null == currentView.ViewModel 
+			          ? null 
+			          : ViewModel.MenuItems.FirstOrDefault(mi => mi.ViewModelType == currentView.ViewModel.GetType());
 
-		}
-
-		public override void ViewWillDisappear(bool animated)
-		{
-
+			source.SelectRow(row);
 		}
 	}
 }

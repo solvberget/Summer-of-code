@@ -16,10 +16,6 @@ using System.Threading;
 
 namespace Solvberget.iOS
 {
-	public static class Cache{
-
-		public static Dictionary<string, UIImage> Images = new Dictionary<string, UIImage>();
-	}
 
 	public class SimpleTableViewSource<T> : MvxTableViewSource where T : class
 	{

@@ -14,32 +14,27 @@ namespace Solvberget.iOS
         {
         }
 
-		private new LoginViewModel ViewModel { get { return base.ViewModel as LoginViewModel;}}
-
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-			
-            // Release any cached data, images, etc that aren't in use.
-        }
-
-		LoadingOverlay _loadingOverlay = new LoadingOverlay();
+		public new LoginViewModel ViewModel { get { return base.ViewModel as LoginViewModel; }}
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
+			NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Ferdig", UIBarButtonItemStyle.Done, DoLogin), false);
+
 			UsernameLAbel.Font = PinLabel.Font = Application.ThemeColors.LabelFont;
 			UsernameLAbel.TextColor = PinLabel.TextColor = Application.ThemeColors.Main;
-			LostCredentialsButton.TitleLabel.TextColor = Application.ThemeColors.Main;
+
+			LostCredentialsButton.SetTitleColor(Application.ThemeColors.Main, UIControlState.Normal);
+
+			//LostCredentialsButton.TouchUpInside += (s,e) => ViewModel... // todo!!
 
 			var set = this.CreateBindingSet<LoginView, LoginViewModel>();
 			set.Bind(Username).To(vm => vm.UserName);
 			set.Bind(Password).To(vm => vm.Pin);
 			set.Bind(ErrorMessage).To(vm => vm.Message);
 
-			set.Bind(_loadingOverlay).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
+			set.Bind(LoadingOverlay).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 
 			set.Apply();
 
@@ -51,16 +46,20 @@ namespace Solvberget.iOS
 
 			Password.ShouldReturn += txt =>
 			{
-				Password.ResignFirstResponder();
-				Add(_loadingOverlay);
-				ViewModel.LoginCommand.Execute(null);
+				DoLogin();
 				return true;
 			};
 
 			Username.BecomeFirstResponder();
 
-			// lost pin??
         }
+
+		private void DoLogin(object sender = null, EventArgs args = null)
+		{
+			Password.ResignFirstResponder();
+			LoadingOverlay.Show(View);
+			ViewModel.LoginCommand.Execute(null);
+		}
     }
 }
 

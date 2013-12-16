@@ -27,7 +27,8 @@ namespace Solvberget.iOS
 
 			var set = this.CreateBindingSet<MyPageFavoritesView, MyPageFavoritesViewModel>();
 			set.Bind(source).To(vm => vm.Favorites);
-			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailsCommand);
+
+			source.SelectedItemChanged += (s,e) => ShowPopup(source.SelectedItem as FavoriteViewModel);
 
 			set.Apply();
 
@@ -44,6 +45,38 @@ namespace Solvberget.iOS
 
 		UILabel _noRows = new UILabel();
 
+		void ShowPopup(FavoriteViewModel vm)
+		{
+			if (null == vm)
+				return;
+
+			var popup = new UIAlertView(View.Frame);
+
+			popup.Title = vm.Name;
+
+			popup.AddButton("Fjern fra favoritter");
+			popup.AddButton("Vis detaljer");
+			popup.AddButton("Avbryt");
+
+			popup.CancelButtonIndex = 2;
+
+			popup.Dismissed += (sender, e) =>
+			{
+				switch(e.ButtonIndex)
+				{
+					case 0 : 
+						ViewModel.RemoveFavorite(vm.DocumentNumber, vm);
+						break;
+
+					case 1: 
+						ViewModel.ShowDetailsCommand.Execute(vm);
+						break;
+				}
+			};
+
+			popup.Show();
+		}
     }
+
 }
 
