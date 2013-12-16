@@ -51,7 +51,7 @@ namespace Solvberget.Droid.Views.Fragments
             _webView.SetWebViewClient(webViewClient);
             _webView.SetWebChromeClient(webChromeClient);
     
-            _webView.LoadData(ViewModel.Html, "text/html", "UTF-8");
+            _webView.LoadDataWithBaseURL(null, ViewModel.Html, "text/html", "UTF-8", null);
         }
 
         protected override void OnResume()
