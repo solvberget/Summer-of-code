@@ -1,3 +1,5 @@
+using Solvberget.Domain.Documents;
+
 namespace Solvberget.Domain.Utils
 {
     public interface  IEnvironmentPathProvider
@@ -18,5 +20,6 @@ namespace Solvberget.Domain.Utils
         string ResolveUrl(string baseUrl, string serverPath);
         string GetPlaceHolderImagesPath();
         string GetFavoritesPath(string userId);
+        string GetWebAppDocumentDetailsPath(Document document);
     }
 }
