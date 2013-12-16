@@ -267,7 +267,7 @@ namespace Solvberget.Droid.Views
                     var trans = SupportFragmentManager.BeginTransaction();
                     if (shouldClearBackStack)
                     {
-                        SupportFragmentManager.PopBackStackImmediate(START_PAGE_TITLE, (int) PopBackStackFlags.None);
+                        SupportFragmentManager.PopBackStackImmediate(0, (int) PopBackStackFlags.None);
                     }
 
                     trans.Replace(Resource.Id.content_frame, frag);
