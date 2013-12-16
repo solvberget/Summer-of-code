@@ -55,8 +55,6 @@ namespace Solvberget.Droid.Views.Fragments
             // Get the layout inflater
             var inflater = Activity.LayoutInflater;
 
-            
-            builder.SetIconAttribute(Android.Resource.Attribute.AlertDialogIcon);
             builder.SetTitle("Glemt PIN");
             builder.SetView(inflater.Inflate(Resource.Layout.dialog_forgotpass, null));  
             builder.SetPositiveButton("Send PIN", (source, args) =>
