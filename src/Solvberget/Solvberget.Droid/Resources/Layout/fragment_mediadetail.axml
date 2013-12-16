@@ -34,12 +34,14 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLargeInverse"
                     android:text="A Somewhat Long Film Title"
+                    android:maxLines="2"
                     local:MvxBind="Text ItemTitle"
                     android:paddingBottom="8dp" />
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:maxLines="2"
                     android:text="Film (2005)"
                     local:MvxBind="Text SubTitle" />
               <TextView

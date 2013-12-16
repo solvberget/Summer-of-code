@@ -27,6 +27,7 @@
             android:textAppearance="@style/MediumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             android:id="@+id/textView1"
             local:MvxBind="Text Name" />
         <TextView
