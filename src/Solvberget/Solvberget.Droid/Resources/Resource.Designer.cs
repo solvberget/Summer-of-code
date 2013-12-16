@@ -1671,6 +1671,9 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f0b0080
 			public const int MyBaseTheme = 2131427456;
 			
+			// aapt resource value: 0x7f0b0087
+			public const int MyBaseTheme_Button = 2131427463;
+			
 			// aapt resource value: 0x7f0b0081
 			public const int MyTheme = 2131427457;
 			
