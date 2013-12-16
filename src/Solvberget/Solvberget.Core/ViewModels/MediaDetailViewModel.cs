@@ -305,16 +305,6 @@ namespace Solvberget.Core.ViewModels
 			}
         }
 
-        public async Task AddFavoriteNoRedirect()
-        {
-            var result = await _userService.AddUserFavorite(DocId);
-
-            if (result.Success)
-            {
-                IsFavorite = true;
-            }
-        }
-
 		public async Task RemoveFavorite()
         {
 			if (!LoggedIn)

@@ -82,46 +82,13 @@ namespace Solvberget.Droid.Views.Fragments
             switch (item.ItemId)
             {
                 case Resource.Id.menu_is_not_favorite:
-                    if (ViewModel.LoggedIn)
-                    {
-                        ViewModel.AddFavorite();
-                    }
-                    else
-                    {
-                        ShowLoginDialog();
-                    }
-
+                    ViewModel.AddFavorite();
                     break;
                 case Resource.Id.menu_is_favorite:
                     ViewModel.RemoveFavorite();
                     break;
             }
             return base.OnOptionsItemSelected(item);
-        }
-
-        private void ShowLoginDialog()
-        {
-            var builder = new AlertDialog.Builder(Activity);
-            // Get the layout inflater
-            var inflater = Activity.LayoutInflater;
-
-
-            builder.SetIconAttribute(Android.Resource.Attribute.AlertDialogIcon);
-            builder.SetTitle("Logg inn");
-            builder.SetView(inflater.Inflate(Resource.Layout.dialog_login, null));
-            builder.SetPositiveButton("Logg inn", async (source, args) =>
-                {
-                    var username = ((EditText)((Dialog) source).FindViewById(Resource.Id.dialogLoginUsername)).Text;
-                    var password =  ((EditText)((Dialog) source).FindViewById(Resource.Id.dialogLoginPin)).Text;
-                    var success = await ViewModel.Login(username, password);
-                    if (success)
-                    {
-                        _homeVm.LoggedIn = true;
-                        ViewModel.AddFavorite();
-                    }
-                });
-            builder.SetNegativeButton("Avbryt", (source, args) => { });
-            builder.Create().Show();
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
