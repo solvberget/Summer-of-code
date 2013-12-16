@@ -9,6 +9,7 @@
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
+    android:layout_gravity="top"
     android:gravity="center">
   <Solvberget.Droid.Views.Components.CustomImageView
         android:layout_height="90dp"
