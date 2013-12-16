@@ -49,7 +49,7 @@ namespace Solvberget.Droid.Views.Fragments
             if (act != null)
             {
                 act.SupportActionBar.Title = ViewModel.Title;
-                ViewModel.WaitForReady(act.InvalidateOptionsMenu);
+                ViewModel.WaitForReady(act.SupportInvalidateOptionsMenu);
             }
 
             return view;
