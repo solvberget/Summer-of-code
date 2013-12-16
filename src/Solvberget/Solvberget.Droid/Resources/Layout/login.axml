@@ -30,9 +30,7 @@
         android:textColor="@color/s_text"
         android:hint="Lånernummer"
         android:ems="10"
-        local:MvxBind="Text UserName">
-        <requestFocus />
-    </EditText>
+        local:MvxBind="Text UserName"/>
     <EditText
         android:id="@+id/editTextPasswordToLogin"
         android:layout_width="match_parent"
