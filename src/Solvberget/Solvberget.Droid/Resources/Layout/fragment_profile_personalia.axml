@@ -18,8 +18,9 @@
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
-                android:layout_height="340.0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_centerInParent="true"
                 android:layout_centerVertical="true" />
         </RelativeLayout>
         <LinearLayout
@@ -101,15 +102,14 @@
                 android:textAppearance="@style/MediumText"
                 android:singleLine="true"
                 local:MvxBind="Text Email" />
-
-          <TextView
+            <TextView
                 android:text="Bibliotek"
                 android:paddingTop="20dp"
                 android:paddingBottom="10dp"
                 android:textAppearance="@style/LargeText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
-          <TextView
+            <TextView
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_width="fill_parent"
@@ -117,15 +117,14 @@
                 android:textAppearance="@style/MediumText"
                 android:singleLine="true"
                 local:MvxBind="Text HomeLibrary" />
-
-          <TextView
+            <TextView
                 android:text="Balanse"
                 android:paddingTop="20dp"
                 android:paddingBottom="10dp"
                 android:textAppearance="@style/LargeText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
-          <TextView
+            <TextView
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_width="fill_parent"
@@ -133,15 +132,14 @@
                 android:textAppearance="@style/MediumText"
                 android:singleLine="true"
                 local:MvxBind="Text Balance" />
-
-          <TextView
+            <TextView
                 android:text="Kredittgrense"
                 android:paddingTop="20dp"
                 android:paddingBottom="10dp"
                 android:textAppearance="@style/LargeText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
-          <TextView
+            <TextView
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_width="fill_parent"
