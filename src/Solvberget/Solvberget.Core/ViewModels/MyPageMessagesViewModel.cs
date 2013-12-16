@@ -29,7 +29,7 @@ namespace Solvberget.Core.ViewModels
         public async void Load()
         {
             IsLoading = true;
-            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
+            var user = await _service.GetUserInformation();
 
             Notifications = user.Notifications == null ? new List<NotificationDto>() : user.Notifications.ToList();
 

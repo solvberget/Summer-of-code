@@ -1,20 +1,23 @@
 ﻿using System.Collections.Generic;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
+using System.Linq;
 
 namespace Solvberget.Core.ViewModels
 {
     public class HomeScreenViewModel : BaseViewModel
     {
         private readonly IUserAuthenticationDataService _userAuthenticationService;
+		IUserService _users;
 
-        public HomeScreenViewModel(IUserAuthenticationDataService userAuthenticationDataService)
+		public HomeScreenViewModel(IUserAuthenticationDataService userAuthenticationDataService, IUserService users)
         {
             _userAuthenticationService = userAuthenticationDataService;
+			_users = users;
             Load();
         }
 
-        private void Load()
+		private async void Load()
         {
             ListElements = new List<HomeScreenElementViewModel>
             {
@@ -60,6 +63,9 @@ namespace Solvberget.Core.ViewModels
                 }
             };
 
+			var user = await _users.GetUserInformation(true);
+			MyPageBadgeText = null == user ? string.Empty : user.Notifications.Count().ToString();
+
 			NotifyViewModelReady();
         }
 
@@ -67,6 +73,20 @@ namespace Solvberget.Core.ViewModels
         {
 			Title = "Sølvberget";
         }
+
+		string myPageBadgeText;
+		public string MyPageBadgeText
+		{
+			get
+			{
+				return myPageBadgeText;
+			}
+			set
+			{
+				myPageBadgeText = value;
+				RaisePropertyChanged(() => MyPageBadgeText);
+			}
+		}
 
         private List<HomeScreenElementViewModel> _listElements;
         public List<HomeScreenElementViewModel> ListElements 

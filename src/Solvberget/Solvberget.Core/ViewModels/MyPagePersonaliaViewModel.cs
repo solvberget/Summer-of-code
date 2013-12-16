@@ -120,7 +120,7 @@ namespace Solvberget.Core.ViewModels
         public async void Load()
         {
             IsLoading = true;
-            var user = await _service.GetUserInformation(_userAuthenticationService.GetUserId());
+            var user = await _service.GetUserInformation();
 
             DateOfBirth = user.DateOfBirth;
             CellPhoneNumber = user.CellPhoneNumber;

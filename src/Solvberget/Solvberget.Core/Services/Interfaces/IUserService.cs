@@ -7,7 +7,7 @@ namespace Solvberget.Core.Services.Interfaces
     public interface IUserService
     {
         //string GetUserId();
-        Task<UserInfoDto> GetUserInformation(string userId);
+		Task<UserInfoDto> GetUserInformation(bool ignoreLoginRedirect = false);
         Task<List<FavoriteDto>> GetUserFavorites();
 		Task<RequestReplyDto> AddUserFavorite(string documentNumber);
 		Task<RequestReplyDto> RemoveUserFavorite(string documentNumber);

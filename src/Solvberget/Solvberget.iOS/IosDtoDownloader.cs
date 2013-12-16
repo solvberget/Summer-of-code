@@ -22,14 +22,14 @@ namespace Solvberget.iOS
 			_viewDispatcher = viewDispatcher;
 		}
 
-		public override async System.Threading.Tasks.Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
+		public override async System.Threading.Tasks.Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET", bool ignoreError = false)
 		{
 			try
 			{
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 				var result = await base.DownloadList<TDto>(url, method);
 
-				if (!result.Success)
+				if (!result.Success && !ignoreError)
 				{
 					HandleError(result.Reply);
 				}
@@ -43,7 +43,7 @@ namespace Solvberget.iOS
 
 		}
 
-		public override async System.Threading.Tasks.Task<TDto> Download<TDto>(string url, string method = "GET")
+		public override async System.Threading.Tasks.Task<TDto> Download<TDto>(string url, string method = "GET", bool ignoreError = false)
 		{
 			try
 			{
@@ -51,7 +51,7 @@ namespace Solvberget.iOS
 
 				var result = await base.Download<TDto>(url, method);
 
-				if (!result.Success)
+				if (!result.Success && !ignoreError)
 				{
 					HandleError(result.Reply);
 				}
