@@ -64,12 +64,12 @@ namespace Solvberget.Core.Services
 			{
 				if (ex.Message.Contains("(401) Unauthorized"))
 				{
-					return new ListResult<TDto> { Success = false, Reply = Replies.RequireLoginReply };
+                    return new ListResult<TDto> { Success = false, Reply = Replies.RequireLoginReply, Results = new List<TDto>() };
 				}
 
 				if (ex.Message.Contains("NameResolutionFailure")) // WebExceptionStatus.NameResolutionFailure doesnt exist in mono?
 				{
-					return new ListResult<TDto>{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette." };
+					return new ListResult<TDto>{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette.", Results = new List<TDto>()};
 				}
 
                 switch (ex.Status)
