@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Nancy;
+using Nancy.LightningCache.Extensions;
 using Nancy.Responses;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Aleph;
@@ -24,13 +25,13 @@ namespace Solvberget.Nancy.Modules
             Get["/"] = _ =>
             {
                 var results = lists.GetAll().Select(doc => DtoMaps.Map(doc));
-                return Response.AsJson(results); //.AsCacheable(DateTime.Now.AddSeconds(30)); // fucks up CORS...
+                return Response.AsJson(results).AsCacheable(DateTime.Now.AddDays(1)); // fucks up CORS... ?
             };
 
             Get["/{id}"] = args =>
             {
                 LibrarylistDto dto = DtoMaps.Map(lists.Get(args.id), _documents);
-                return Response.AsJson(dto);
+                return Response.AsJson(dto).AsCacheable(DateTime.Now.AddDays(1));
             };
 
             Get["/{id}/thumbnail"] = args =>
@@ -43,7 +44,7 @@ namespace Solvberget.Nancy.Modules
 
                     if (String.IsNullOrEmpty(img)) continue;
 
-                    return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img));
+                    return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img)).AsCacheable(DateTime.Now.AddDays(1));
                 }
 
                 return TextResponse.NoBody; // todo: placeholder img
