@@ -250,7 +250,7 @@ namespace Solvberget.Droid.Views
                         if (request.ViewModelType == typeof (LoginViewModel))
                             frag = new LoginView(ViewModel);
                         if (request.ViewModelType == typeof (MediaDetailViewModel))
-                            frag = new MediaDetailView(ViewModel);
+                            frag = new MediaDetailView();
 
                         break;
                     }

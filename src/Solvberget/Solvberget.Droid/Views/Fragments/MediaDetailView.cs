@@ -14,7 +14,6 @@ namespace Solvberget.Droid.Views.Fragments
 {
     public class MediaDetailView : MvxFragment
     {
-        private readonly HomeViewModel _homeVm;
         private LoadingIndicator _loadingIndicator;
         private ShareActionProvider _shareActionProvider;
         private IMenu _menu;
@@ -30,12 +29,6 @@ namespace Solvberget.Droid.Views.Fragments
         public MediaDetailView()
         {
             RetainInstance = true;
-        }
-
-        public MediaDetailView(HomeViewModel homeVm)
-        {
-            RetainInstance = true;
-            _homeVm = homeVm;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
