@@ -122,7 +122,7 @@ namespace Solvberget.Core.ViewModels
         {
             if (IsReservedByUser)
             {
-				return "Kanseller reservasjon";
+				return "Reservert";
             }
 
             return "Reserver";
