@@ -55,6 +55,7 @@ namespace Solvberget.Core.ViewModels
             Author = document.MainContributor;
 			IsReservedByUser = document.IsReserved.HasValue && document.IsReserved.Value;
 			IsFavorite = document.IsFavorite.HasValue && document.IsFavorite.Value;
+            WebAppUrl = document.WebAppUrl;
 
 			ButtonText = GenerateButtonText();
 
@@ -287,6 +288,13 @@ namespace Solvberget.Core.ViewModels
         {
             get { return _buttonEnabled; }
             set { _buttonEnabled = value; RaisePropertyChanged(() => ButtonEnabled); }
+        }
+
+        private string _webAppUrl;
+        public string WebAppUrl 
+        {
+            get { return _webAppUrl; }
+            set { _webAppUrl = value; RaisePropertyChanged(() => WebAppUrl);}
         }
 
 		public async Task AddFavorite()

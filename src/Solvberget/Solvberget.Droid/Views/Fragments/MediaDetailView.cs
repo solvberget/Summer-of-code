@@ -56,6 +56,7 @@ namespace Solvberget.Droid.Views.Fragments
             if (act != null)
             {
                 act.SupportActionBar.Title = ViewModel.Title;
+                ViewModel.WaitForReady(act.InvalidateOptionsMenu);
             }
 
             return view;
@@ -124,16 +125,10 @@ namespace Solvberget.Droid.Views.Fragments
         {
             if (_shareActionProvider == null) return;
 
-            var playStoreLink = "https://play.google.com/store/apps/details?id=" + Activity.PackageName;
-            var shareTextBody = string.Format(
-                "Jeg fant {0} hos Sølvberget. Last ned app for muligheten til å låne du også: {1}",
-                ViewModel.Title,
-                playStoreLink);
-
             var shareIntent = ShareCompat.IntentBuilder.From(Activity)
                                          .SetType("text/plain")
-                                         .SetText(shareTextBody)
-                                         .SetSubject("Sølvberget")
+                                         .SetText(ViewModel.WebAppUrl)
+                                         .SetSubject(ViewModel.Title)
                                          .Intent;
             _shareActionProvider.SetShareIntent(shareIntent);
         }
