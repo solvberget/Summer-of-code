@@ -41,7 +41,8 @@ namespace Solvberget.Droid.Views
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SupportFragmentManager.PopBackStackImmediate(null, (int)PopBackStackFlags.Inclusive);
+            
+            //SupportFragmentManager.PopBackStackImmediate(null, (int)PopBackStackFlags.Inclusive);
             SetContentView(Resource.Layout.page_home_view);
 
             _title = _drawerTitle = Title;
