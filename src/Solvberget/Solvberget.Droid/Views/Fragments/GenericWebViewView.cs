@@ -59,5 +59,23 @@ namespace Solvberget.Droid.Views.Fragments
             ViewModel.OnViewReady();
             base.OnResume();
         }
+
+        public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
+        {
+            if (e.Action == KeyEventActions.Down)
+            {
+                switch (keyCode)
+                {
+                    case Keycode.Back:
+                        if(_webView.CanGoBack())
+                            _webView.GoBack();
+                        else
+                            Finish();
+                        break;
+                }
+                return true;
+            }
+            return base.OnKeyDown(keyCode, e);
+        }
     }
 }
