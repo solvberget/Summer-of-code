@@ -14,7 +14,7 @@
         android:verticalSpacing="6dp"
         android:horizontalSpacing="6dp"
         android:layout_width="400dp"
-        android:layout_height="750dp"
+        android:layout_height="800dp"
         android:stretchMode="columnWidth"
         local:MvxBind="ItemsSource ListElements"
         local:MvxItemTemplate="@layout/item_home_screen_element" />

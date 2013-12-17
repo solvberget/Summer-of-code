@@ -1,40 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:clickable="true"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:minWidth="180dp"
-    android:minHeight="180dp"
-    android:gravity="center_horizontal|bottom"
-    local:MvxBind="Click GoToCommand; BackgroundColor StringToColor(Title)">
-    <Solvberget.Droid.Views.Components.IconTextView
-        android:paddingLeft="16dp"
+    android:layout_height="wrap_content">
+
+    <Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout 
         android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:clickable="true"
         android:layout_height="wrap_content"
-        android:width="130dp"
-        android:height="130dp"
-        android:gravity="center"
-        android:textSize="70dp"
-        android:paddingRight="16dp"
-        android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textColor="#fff"
-        local:MvxBind="Text IconChar" />
-    <TextView
-        android:textColor="#fff"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:minWidth="180dp"
+        android:minHeight="180dp"
+        android:gravity="center_horizontal|bottom"
+        local:MvxBind="Click GoToCommand; BackgroundColor StringToColor(Title)">
+        <Solvberget.Droid.Views.Components.IconTextView
+            android:paddingLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="130dp"
+            android:height="130dp"
+            android:gravity="center"
+            android:textSize="70dp"
+            android:paddingRight="16dp"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:textColor="#fff"
+            local:MvxBind="Text IconChar" />
+        <TextView
+            android:textColor="#fff"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:id="@+id/textView2"
+            local:MvxBind="Text Title" />
+    </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:id="@+id/textView2"
-        local:MvxBind="Text Title" />
-</Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
+        android:layout_gravity="bottom|right"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="right"
+        local:MvxBind="Visibility Visibility(BadgeContent)">
+        <TextView
+            android:textColor="@color/white"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="2"
+            android:id="@+id/notificationAmount"
+            android:background="@drawable/badge"
+            local:MvxBind="Text BadgeContent"/>
+    </RelativeLayout>
+</RelativeLayout>
