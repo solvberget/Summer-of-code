@@ -3,14 +3,14 @@
         <div id="news-carousel" class="carousel slide" data-ride="carousel">
 
             <div class="col-xs-3 overview-column">
-                <ul class="carousel-indicators event-listing">
+                <ul class="carousel-indicators">
                     <li ng-repeat="item in items"
                         class="container-fluid"
                         ng-class="{active : $first}" data-target="#news-carousel" data-slide-to="{{ $index }}">
 
                         <div class="row">
                             <div class="col-xs-2" style="padding-right:0px">
-                                <div class="centered"><span class="item-day">MAN</span><span class="item-date">14</span><span class="item-month">DES</span></div>
+                                <div class="centered"><span class="item-day">{{ item.start|date:'EEE' }}</span><span class="item-date">{{item.start|date:'dd'}}</span><span class="item-month">{{item.start|date:'MMM'}}</span></div>
                             </div>
                             <div class="col-xs-10"><div class="item-title">{{item.name}}</div></div>
                         </div>
@@ -20,23 +20,37 @@
                 </ul>
             </div>
 
-            <div class="col-xs-9">
-                <div class="carousel-inner">
+            <div class="col-xs-7">
+                <div class="carousel-inner current-item-container">
                     <div class="item" ng-repeat="item in items" ng-class="{active : $first}">
                         <div class="row">
                             <div class="col-xs-12">
-                                <img ng-src="{{ item.imageUrl }}" alt="Bilde">
-                                <h2>{{ item.name }}</h2>
-                                <p>
-                                    {{ item.start }} - {{ item.end }}<br />
-                                    {{ item.location }}<br />
-                                    {{ item.ticketPrice }}<br />
-                                </p>
-                                <p>{{ item.description }}</p>
+                                <h1>{{ item.name }}</h1>
+                            </div>
+                        </div>
+                        <div class="row nfo">
+                            <div class="col-xs-4">
+                                <span><i class="glyphicon glyphicon-time" />{{ item.start|date:'EEEE d. MMM'}}</span>
+                                <span style="margin-left:44px" ng-show="item.start.hour != item.end.hour != 0">{{ item.start|date:'HH:mm'}} - {{item.end|date:'HH:mm'}}</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <span><i class="glyphicon glyphicon-home"></i>{{ item.location }}</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <span ng-show="item.ticketPrice > 0"><i class="glyphicon glyphicon-tags"></i>{{ item.ticketPrice }}</span>
+                                <span ng-hide="item.ticketPrice > 0"><i class="glyphicon glyphicon-tags"></i>Gratis</span>
+                            </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p ng-bind-html="item.description"></p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="col-xs-2 image-column">
             </div>
 
 
@@ -47,15 +61,35 @@
     <script>
 
         function viewLoaded(scope) {
-
+            
             var interval = scope.interval * 1000;
 
-            function startProgressAnimation() {
+            function startProgressAnimation(e) {
 
                 $('.slide-progress')
                     .stop()
                     .width('0%')
                     .animate({ width: '100%' }, interval, "linear");
+
+                var slideTo = 0;
+                if (e) slideTo = $(e.relatedTarget).index();
+
+                var item = scope.items[slideTo];
+
+
+                $(".image-column")
+                    .animate({ 'opacity': '0' }, {
+                        duration: 1000,
+                        queue: false,
+                        complete: function() {
+                            $(this)
+                            .stop()
+                                .css('background-image', 'url("' + item.imageUrl + '")')
+                                .css('background-position', '')
+                                .animate({ 'opacity': '1' }, { duration: 1000, queue: false })
+                                .animate({ 'background-position-x': '0%' }, 120000, 'linear');
+                        }
+                    });
             }
             
             scope.$watch('items.length', function () {
@@ -65,9 +99,9 @@
 
                 $(".carousel").carousel({
                     interval: interval
-                }).on('slide.bs.carousel', function () {
+                }).on('slide.bs.carousel', function (e) {
 
-                    startProgressAnimation();
+                    startProgressAnimation(e);
                 });
 
                 startProgressAnimation(); // initial slide
