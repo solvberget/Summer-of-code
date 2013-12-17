@@ -20,12 +20,11 @@
         android:paddingLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="50dp"
-        android:paddingRight="10dp"
-        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
         local:MvxBind="Text IconChar" />
     <TextView
+        android:paddingLeft="16dp"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="fill_parent"
