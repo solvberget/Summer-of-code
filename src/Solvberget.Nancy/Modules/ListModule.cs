@@ -44,7 +44,7 @@ namespace Solvberget.Nancy.Modules
 
                     if (String.IsNullOrEmpty(img)) continue;
 
-                    return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img)).AsCacheable(DateTime.Now.AddDays(1));
+                    return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img));
                 }
 
                 return TextResponse.NoBody; // todo: placeholder img

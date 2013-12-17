@@ -31,7 +31,7 @@ namespace Solvberget.Nancy.Modules
                     return ResolvePlaceHolderImageForDocumentType(pathProvider, doc);
                 }
 
-                return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img)).AsCacheable(DateTime.Now.AddDays(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetImageCachePath(), img));
             };
 
             Get["/{id}"] = args =>
@@ -81,33 +81,33 @@ namespace Solvberget.Nancy.Modules
         {
             if (doc is Cd)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Cd.png")).AsCacheable(DateTime.Now.AddMonths(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Cd.png"));
             }
             if (doc is Book)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Book.png")).AsCacheable(DateTime.Now.AddMonths(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Book.png"));
             }
             if (doc is Film)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Film.png")).AsCacheable(DateTime.Now.AddMonths(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Film.png"));
             }
             if (doc is SheetMusic)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "SheetMusic.png")).AsCacheable(DateTime.Now.AddMonths(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "SheetMusic.png"));
             }
             if (doc is Journal)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Journal.png")).AsCacheable(DateTime.Now.AddMonths(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Journal.png"));
             }
             if (doc is Game)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Game.png")).AsCacheable(DateTime.Now.AddMonths(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Game.png"));
             }
             if (doc is AudioBook)
             {
-                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "AudioBook.png")).AsCacheable(DateTime.Now.AddMonths(1));
+                return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "AudioBook.png"));
             }
-            return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Document.png")).AsCacheable(DateTime.Now.AddMonths(1));
+            return Response.AsFile(Path.Combine(pathProvider.GetPlaceHolderImagesPath(), "Document.png"));
         }
     }
 }
