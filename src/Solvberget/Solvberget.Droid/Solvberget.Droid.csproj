@@ -334,7 +334,9 @@
     <AndroidResource Include="Resources\Layout\item_home_screen_element.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Layout\SplashScreen.axml" />
+    <AndroidResource Include="Resources\Layout\SplashScreen.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout-large\item_home_screen_element.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>

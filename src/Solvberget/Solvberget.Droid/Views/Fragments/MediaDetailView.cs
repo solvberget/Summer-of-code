@@ -1,3 +1,4 @@
+using System;
 using Android.App;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
@@ -49,7 +50,7 @@ namespace Solvberget.Droid.Views.Fragments
             if (act != null)
             {
                 act.SupportActionBar.Title = ViewModel.Title;
-                ViewModel.WaitForReady(act.SupportInvalidateOptionsMenu);
+                ViewModel.WaitForReady(() => Activity.RunOnUiThread(act.SupportInvalidateOptionsMenu));
             }
 
             return view;

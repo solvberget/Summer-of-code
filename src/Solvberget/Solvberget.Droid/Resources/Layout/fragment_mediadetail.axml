@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/SmallText"
                     android:text="Review Source"
-                    local:MvxBind="Text Rating.Source; Visibility(Rating.Source)" />
+                    local:MvxBind="Text Rating.Source; Visibility Visibility(Rating.Source)" />
                 <RatingBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
