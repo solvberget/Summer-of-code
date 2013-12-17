@@ -372,35 +372,5 @@ namespace Solvberget.Core.ViewModels
                 availability.ButtonText = ButtonText;
             }
         }
-
-
-        // TODO: This really doesnt belong here. But its a quick fix in order not to have to deal with the loginview and weird backstack behavior
-        public async Task<bool> Login(string user, string pin)
-        {
-            IsLoading = true;
-
-            _userAuthService.SetUser(user);
-            _userAuthService.SetPassword(pin);
-
-            var response = await _userService.Login(user, pin);
-            IsLoading = false;
-
-            if (response.Message.Equals("Autentisering vellykket."))
-            {
-                LoggedIn = true;
-                return true;
-            }
-
-            if (response.Message.Equals("The remote server returned an error: (401) Unauthorized."))
-            {
-                _userAuthService.RemoveUser();
-                _userAuthService.RemovePassword();
-                return false;
-            }
-
-            _userAuthService.RemoveUser();
-            _userAuthService.RemovePassword();
-            return false;
-        }
     }
 }
