@@ -178,7 +178,6 @@
     <Compile Include="Views\Components\IconTextView.cs" />
     <Compile Include="Views\Components\MediaDetailInformationView.cs" />
     <Compile Include="Views\Components\CustomImageView.cs" />
-    <Compile Include="Views\FirstView.cs" />
     <Compile Include="Views\Fragments\ContactInfoView.cs" />
     <Compile Include="Views\Fragments\BlogOverviewView.cs" />
     <Compile Include="Views\Fragments\BlogView.cs" />
@@ -336,7 +335,6 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\SplashScreen.axml" />
-    <AndroidResource Include="Resources\Layout\FirstView.axml" />
     <AndroidResource Include="Resources\Layout-large\item_home_screen_element.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -421,13 +419,11 @@
     <AndroidResource Include="Resources\Drawable-hdpi\ic_3_rating_not_important.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\ic_3_rating_important.png" />
     <AndroidResource Include="Resources\Drawable\icon_512.png" />
-    <AndroidResource Include="Resources\Values\SplashStyle.xml" />
     <AndroidResource Include="Resources\Values\MvxBindingAttributes.xml" />
     <AndroidResource Include="Resources\Values-v7\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout-v11\item_menu.xml" />
-    <AndroidResource Include="Resources\Drawable\splash_logo.9.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\ic_navigation_drawer.png" />
     <AndroidResource Include="Resources\Drawable-mdpi\ic_navigation_drawer.png" />
     <AndroidResource Include="Resources\Drawable-xhdpi\ic_navigation_drawer.png" />
@@ -437,6 +433,9 @@
     <AndroidResource Include="Resources\Drawable\list_item_selector.xml" />
     <AndroidResource Include="Resources\Drawable-v7\list_item_selector.xml" />
     <AndroidResource Include="Resources\Drawable-v7\list_bg.png" />
+    <AndroidResource Include="Resources\Drawable-mdpi\splash_logo.9.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\splash_logo.9.png" />
+    <AndroidResource Include="Resources\Drawable-xhdpi\splash_logo.9.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
