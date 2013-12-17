@@ -23,6 +23,7 @@
     <item name="android:windowContentOverlay">@null</item>
     <item name="android:listViewStyle">@style/ListView</item>
     <item name="textAppearanceLargePopupMenu">@style/TextAppearance.ShareList</item>
+    <item name="android:textColorLink">@color/s_main_green</item>
   </style>
 
   <!--<style name="TextAppearance.TabPageIndicator" parent="Widget">
