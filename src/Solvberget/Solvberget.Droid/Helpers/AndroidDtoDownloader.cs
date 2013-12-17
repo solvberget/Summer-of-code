@@ -17,10 +17,10 @@ namespace Solvberget.Droid.Helpers
         {
         }
 
-        public override async Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET")
+        public override async Task<ListResult<TDto>> DownloadList<TDto>(string url, string method = "GET", bool ignoreError = false)
         {
             var result = await base.DownloadList<TDto>(url, method);
-            if (!result.Success)
+            if (!result.Success && !ignoreError)
             {
                 HandleError(result.Reply);
             }
@@ -28,10 +28,10 @@ namespace Solvberget.Droid.Helpers
             return result;
         }
 
-        public override async Task<TDto> Download<TDto>(string url, string method = "GET")
+        public override async Task<TDto> Download<TDto>(string url, string method = "GET", bool ignoreError = false)
         {
             var result = await base.Download<TDto>(url, method);
-            if (!result.Success)
+            if (!result.Success && !ignoreError)
             {
                 HandleError(result.Reply);
             }
