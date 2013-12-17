@@ -64,7 +64,7 @@ namespace Solvberget.Core.ViewModels
             };
 
 			var user = await _users.GetUserInformation(true);
-			MyPageBadgeText = null == user ? string.Empty : user.Notifications.Count().ToString();
+			MyPageBadgeText = null == user || null == user.Notifications ? string.Empty : user.Notifications.Count().ToString();
 
 			NotifyViewModelReady();
         }
