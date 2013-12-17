@@ -59,14 +59,14 @@ angular.module('Solvberget.WebApp')
         $httpProvider.interceptors.push(function() {
             return {
                 'request': function(config) {
-
+                    
                     if($$config.username && $$config.password) config.headers.Authorization = $$config.username +  ':' + $$config.password;
 
                     return config;
                 },
                 'responseError': function(response) {
 
-                    if(response.status == 401){
+                    if (response.status == 401) {
                         window.location = './#/login?redirect=' + window.location.hash.substring(1);
                     }
 

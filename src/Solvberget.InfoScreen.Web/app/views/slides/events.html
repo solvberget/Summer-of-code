@@ -1,7 +1,26 @@
-<div class="container-fluid" ng-controller="EventsCtrl">
+<div class="container-fluid span-height" ng-controller="EventsCtrl" view-loaded="viewLoaded">
     <div class="row">
         <div id="news-carousel" class="carousel slide" data-ride="carousel">
-            <div class="col-xs-8">
+
+            <div class="col-xs-3 overview-column">
+                <ul class="carousel-indicators event-listing">
+                    <li ng-repeat="item in items"
+                        class="container-fluid"
+                        ng-class="{active : $first}" data-target="#news-carousel" data-slide-to="{{ $index }}">
+
+                        <div class="row">
+                            <div class="col-xs-2" style="padding-right:0px">
+                                <div class="centered"><span class="item-day">MAN</span><span class="item-date">14</span><span class="item-month">DES</span></div>
+                            </div>
+                            <div class="col-xs-10"><div class="item-title">{{item.name}}</div></div>
+                        </div>
+                        <div class="slide-timer"></div>
+                        <div class="slide-progress"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-9">
                 <div class="carousel-inner">
                     <div class="item" ng-repeat="item in items" ng-class="{active : $first}">
                         <div class="row">
@@ -20,19 +39,44 @@
                 </div>
             </div>
 
-            <div class="col-xs-4 overview-column">
-                <ul class="carousel-indicators event-listing">
-                    <li ng-repeat="item in items" ng-class="{active : $first}">
-                        <h1 data-target="#news-carousel" data-slide-to="{{ $index }}">{{ item.name }}</h1>
-                    </li>
-                </ul>
-            </div>
+
         </div>
     </div>
 
 
-    <script>$(".carousel").carousel({
-        interval: 5000
-    });</script>
+    <script>
+
+        function viewLoaded(scope) {
+
+            var interval = scope.interval * 1000;
+
+            function startProgressAnimation() {
+
+                $('.slide-progress')
+                    .stop()
+                    .width('0%')
+                    .animate({ width: '100%' }, interval, "linear");
+            }
+            
+            scope.$watch('items.length', function () {
+
+                if (scope.items.length === 0) return;
+                console.log("events loaded, starting carousel", scope.items.length);
+
+                $(".carousel").carousel({
+                    interval: interval
+                }).on('slide.bs.carousel', function () {
+
+                    startProgressAnimation();
+                });
+
+                startProgressAnimation(); // initial slide
+            });
+
+        }
+
+    </script>
 </div>
+
+
 
