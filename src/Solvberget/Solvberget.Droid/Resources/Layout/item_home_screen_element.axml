@@ -27,8 +27,25 @@
         android:paddingLeft="16dp"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         local:MvxBind="Text Title" />
+    <RelativeLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="right"
+          local:MvxBind="Visibility Visibility(BadgeContent)">
+          <TextView
+              android:textColor="@color/white"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:paddingLeft="8dp" 
+              android:paddingRight="8dp"
+              android:text="2"
+              android:id="@+id/notificationAmount"
+              android:background="@drawable/badge"
+              local:MvxBind="Text BadgeContent"/>
+    </RelativeLayout>
 </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
