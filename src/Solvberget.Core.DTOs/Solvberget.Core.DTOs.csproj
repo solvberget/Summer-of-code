@@ -59,6 +59,7 @@
     <Compile Include="CdDto.cs" />
     <Compile Include="ContactInfoDto.cs" />
     <Compile Include="ContactPersonDto.cs" />
+    <Compile Include="SlideConfigDto.cs" />
     <Compile Include="DocumentAvailabilityDto.cs" />
     <Compile Include="DocumentDto.cs" />
     <Compile Include="DocumentRatingDto.cs" />

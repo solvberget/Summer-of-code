@@ -1,0 +1,32 @@
+<div ng-controller="NewsCtrl">
+    <div class="row">
+        <div id="news-carousel" class="carousel slide" data-ride="carousel">
+            <div class="col-xs-8">
+                <div class="carousel-inner">
+                    <div class="item" ng-repeat="item in items" ng-class="{active : $first}">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2>{{ item.title }}</h2>
+                                <p>{{ item.published }}</p>
+                                <p>{{ item.ingress }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4 overview-column">
+                <ul class="carousel-indicators event-listing">
+                    <li ng-repeat="item in items" ng-class="{active : $first}">
+                        <h3 data-target="#news-carousel" data-slide-to="{{ $index }}">{{ item.title }}</h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script>$(".carousel").carousel({
+        interval: 3000
+    });</script>
+</div>

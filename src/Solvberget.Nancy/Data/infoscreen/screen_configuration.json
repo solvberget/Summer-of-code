@@ -1,0 +1,4 @@
+{
+    "default": [{"template": "events", "duration": 600}],
+    "PBZJGT": [{"template": "news", "duration": 60},{"template": "events", "duration": 10}]
+}

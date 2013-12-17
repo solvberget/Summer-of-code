@@ -147,5 +147,10 @@ namespace Solvberget.Nancy
                     return "annet";
             }
         }
+
+        public string GetSlideConfigurationPath()
+        {
+            return Path.Combine(_applicationAppDataPath, @"infoscreen\screen_configuration.json");
+        }
     }
 }
