@@ -1677,8 +1677,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f0b007f
 			public const int MyBaseTheme = 2131427455;
 			
-			// aapt resource value: 0x7f0b0088
-			public const int MyBaseTheme_Button = 2131427464;
+			// aapt resource value: 0x7f0b0089
+			public const int MyBaseTheme_Button = 2131427465;
 			
 			// aapt resource value: 0x7f0b0080
 			public const int MyTheme = 2131427456;
@@ -1802,6 +1802,9 @@ namespace Solvberget.Droid
 			
 			// aapt resource value: 0x7f0b002d
 			public const int TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131427373;
+			
+			// aapt resource value: 0x7f0b0088
+			public const int TextAppearance_ShareList = 2131427464;
 			
 			// aapt resource value: 0x7f0b0060
 			public const int TextAppearance_Widget_AppCompat_Base_ExpandedMenu_Item = 2131427424;
