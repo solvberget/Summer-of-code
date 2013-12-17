@@ -934,13 +934,19 @@ namespace Solvberget.Droid
 			public const int icon_512 = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int logo_white = 2130837609;
+			public const int list_bg = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int splash = 2130837610;
+			public const int list_item_selector = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int splash_logo = 2130837611;
+			public const int logo_white = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int splash = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int splash_logo = 2130837613;
 			
 			static Drawable()
 			{
@@ -1659,6 +1665,9 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f0b0082
 			public const int LargeText = 2131427458;
 			
+			// aapt resource value: 0x7f0b0087
+			public const int ListView = 2131427463;
+			
 			// aapt resource value: 0x7f0b0085
 			public const int MediaDetailFieldContent = 2131427461;
 			
@@ -1671,8 +1680,8 @@ namespace Solvberget.Droid
 			// aapt resource value: 0x7f0b0080
 			public const int MyBaseTheme = 2131427456;
 			
-			// aapt resource value: 0x7f0b0087
-			public const int MyBaseTheme_Button = 2131427463;
+			// aapt resource value: 0x7f0b0088
+			public const int MyBaseTheme_Button = 2131427464;
 			
 			// aapt resource value: 0x7f0b0081
 			public const int MyTheme = 2131427457;

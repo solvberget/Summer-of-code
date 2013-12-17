@@ -21,6 +21,7 @@
     -->
     <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     <item name="android:windowContentOverlay">@null</item>
+    <item name="android:listViewStyle">@style/ListView</item>
   </style>
 
   <!--<style name="TextAppearance.TabPageIndicator" parent="Widget">
@@ -53,7 +54,7 @@
   </style>
 
   <style name="ListView" parent="@android:style/Widget.ListView">
-    <item name="android:background">@color/transparent</item>
+    <item name="android:background">@android:color/transparent</item>
     <item name="android:cacheColorHint">@android:color/transparent</item>
     <item name="android:divider">@android:color/transparent</item>
     <item name="android:dividerHeight">0dp</item>

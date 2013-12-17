@@ -243,16 +243,16 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_loan.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_fine.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_favorite.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\item_message.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\fragment_profile_favorites.axml" />
     <AndroidResource Include="Resources\Layout\fragment_profile_fines.axml" />
@@ -435,6 +435,8 @@
     <AndroidResource Include="Resources\Drawable\logo_white.png" />
     <AndroidResource Include="Resources\Drawable\default_list.png" />
     <AndroidResource Include="Resources\Drawable\list_item_selector.xml" />
+    <AndroidResource Include="Resources\Drawable-v7\list_item_selector.xml" />
+    <AndroidResource Include="Resources\Drawable-v7\list_bg.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Solvberget.Core\Solvberget.Core.csproj">
