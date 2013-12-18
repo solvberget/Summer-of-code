@@ -79,14 +79,14 @@
 
                 $(".image-column")
                     .animate({ 'opacity': '0' }, {
-                        duration: 1000,
+                        duration: 700,
                         queue: false,
                         complete: function() {
                             $(this)
                             .stop()
                                 .css('background-image', 'url("' + item.imageUrl + '")')
-                                .css('background-position', '')
-                                .animate({ 'opacity': '1' }, { duration: 1000, queue: false })
+                                .css('background-position', '100% 50%')
+                                .animate({ 'opacity': '1' }, { duration: 700, queue: false })
                                 .animate({ 'background-position-x': '0%' }, 120000, 'linear');
                         }
                     });
