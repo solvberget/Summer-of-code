@@ -31,110 +31,118 @@ namespace Solvberget.Core.ViewModels
         {
             _userAuthenticationService = userAuthenticationDataService;
             _menuItems = new List<MenuViewModel>
-                              {
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.Home,
-                                          Title = "Hjem",
-										  IconChar = "1",
-											ViewModelType = typeof(HomeScreenViewModel)
-                                      },
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.MyPage,
-                                          Title = "Min Side",
-					IconChar = "m",
-					ViewModelType = typeof(MyPageViewModel)
-                                      },
-                                 new MenuViewModel
-                                      {
-                                          Section = Section.Events,
-                                          Title = "Arrangementer",
-					IconChar = "a",
-					ViewModelType = typeof(EventListViewModel)
-                                      },
-                                      new MenuViewModel
-                                      {
-                                          Section = Section.Search,
-                                          Title = "Søk",
-					IconChar = "s",
-					ViewModelType = typeof(SearchViewModel)
-                                      },
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.Blogs,
-                                          Title = "Blogger",
-					IconChar = "e",
-					ViewModelType = typeof(BlogOverviewViewModel)
-                                      },
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.News,
-                                          Title = "Nyheter",
-					IconChar = "n",
-					ViewModelType = typeof(NewsListingViewModel)
-                                      },
-                                      new MenuViewModel
-                                      {
-                                          Section = Section.Lists,
-                                          Title = "Anbefalinger",
-					IconChar = "h",
-					ViewModelType = typeof(SuggestionsListListViewModel)
-                                      },
-                                      new MenuViewModel
-                                      {
-                                          Section = Section.OpeningHours,
-                                          Title = "Åpningstider",
-					IconChar = "å",
-					ViewModelType = typeof(OpeningHoursViewModel)
-                                      },
-                                  new MenuViewModel
-                                      {
-                                          Section = Section.Contact,
-                                          Title = "Kontakt oss",
-					IconChar = "c",
-					ViewModelType = typeof(ContactInfoViewModel)
-                                      },
-                                  new MenuViewModel
-                                  {
-                                          Section = Section.Logout,
-                                          Title = "Logg ut",
-					IconChar = "2",
-                                  }
-                              };
+                {
+                    new MenuViewModel
+                        {
+                            Section = Section.Home,
+                            Title = "Hjem",
+                            IconChar = "1",
+                            ViewModelType = typeof (HomeScreenViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.MyPage,
+                            Title = "Min Side",
+                            IconChar = "m",
+                            ViewModelType = typeof (MyPageViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.Events,
+                            Title = "Arrangementer",
+                            IconChar = "a",
+                            ViewModelType = typeof (EventListViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.Search,
+                            Title = "Søk",
+                            IconChar = "s",
+                            ViewModelType = typeof (SearchViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.Blogs,
+                            Title = "Blogger",
+                            IconChar = "e",
+                            ViewModelType = typeof (BlogOverviewViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.News,
+                            Title = "Nyheter",
+                            IconChar = "n",
+                            ViewModelType = typeof (NewsListingViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.Lists,
+                            Title = "Anbefalinger",
+                            IconChar = "h",
+                            ViewModelType = typeof (SuggestionsListListViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.OpeningHours,
+                            Title = "Åpningstider",
+                            IconChar = "å",
+                            ViewModelType = typeof (OpeningHoursViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.Contact,
+                            Title = "Kontakt oss",
+                            IconChar = "c",
+                            ViewModelType = typeof (ContactInfoViewModel)
+                        },
+                    new MenuViewModel
+                        {
+                            Section = Section.Logout,
+                            Title = "Logg ut",
+                            IconChar = "2",
+                        }
+                };
 
             LoggedIn = IsAuthenticated();
         }
 
         private List<MenuViewModel> _menuItems;
+
         public List<MenuViewModel> MenuItems
         {
             get
             {
                 if (LoggedIn)
                     return _menuItems;
-                
+
                 return _menuItems.Where(mi => mi.Section != Section.Logout).ToList();
             }
-            set { _menuItems = value; RaisePropertyChanged(() => MenuItems); }
+            set
+            {
+                _menuItems = value;
+                RaisePropertyChanged(() => MenuItems);
+            }
         }
 
         private MvxCommand<MenuViewModel> _selectMenuItemCommand;
+
         public ICommand SelectMenuItemCommand
         {
             get
             {
-                return _selectMenuItemCommand ?? (_selectMenuItemCommand = new MvxCommand<MenuViewModel>(ExecuteSelectMenuItemCommand));
+                return _selectMenuItemCommand ??
+                       (_selectMenuItemCommand = new MvxCommand<MenuViewModel>(ExecuteSelectMenuItemCommand));
             }
         }
 
         private bool _loggedIn;
-        public bool LoggedIn 
+
+        public bool LoggedIn
         {
             get { return _loggedIn; }
             set
             {
-                _loggedIn = value; 
+                _loggedIn = value;
                 RaisePropertyChanged(() => LoggedIn);
                 RaisePropertyChanged(() => MenuItems);
             }
@@ -177,22 +185,21 @@ namespace Solvberget.Core.ViewModels
                     break;
                 case Section.Logout:
                     LogOut();
-                    
+
                     ShowViewModel<HomeScreenViewModel>();
                     break;
-
             }
         }
 
         public Section GetSectionForViewModelType(Type type)
         {
-            if (type == typeof(MyPageViewModel))
+            if (type == typeof (MyPageViewModel))
                 return Section.MyPage;
-            if (type == typeof(HomeScreenViewModel))
+            if (type == typeof (HomeScreenViewModel))
                 return Section.Home;
             if (type == typeof (LoginViewModel))
                 return Section.Unknown;
-            if (type == typeof(SearchViewModel))
+            if (type == typeof (SearchViewModel))
                 return Section.Search;
             if (type == typeof (NewsListingViewModel))
                 return Section.News;
