@@ -100,7 +100,8 @@ namespace Solvberget.Nancy.Mapping
                 dto = new DocumentDto(); // todo other types
             }
 
-            dto.WebAppUrl = Bootstrapper.Container.Resolve<IEnvironmentPathProvider>().GetWebAppDocumentDetailsPath(document);
+
+            dto.WebAppUrl = Bootstrapper.Container != null ? Bootstrapper.Container.Resolve<IEnvironmentPathProvider>().GetWebAppDocumentDetailsPath(document) : string.Empty;
             dto.Id = document.DocumentNumber;
             dto.Type = document.DocType;
             dto.Title = document.Title;
