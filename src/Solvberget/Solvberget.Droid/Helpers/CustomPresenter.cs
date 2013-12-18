@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Cirrious.MvvmCross.Droid.Views;
 using Cirrious.MvvmCross.ViewModels;
+using Solvberget.Core.ViewModels;
+using Solvberget.Droid.ActionBar;
 
 namespace Solvberget.Droid.Helpers
 {
@@ -38,6 +40,23 @@ namespace Solvberget.Droid.Helpers
         public void Register(Type viewModelType, IFragmentHost host)
         {
             _dictionary[viewModelType] = host;
+        }
+
+        public override void Close(IMvxViewModel viewModel)
+        {
+            if (viewModel is LoginViewModel)
+            {
+                var act = Activity as MvxActionBarActivity;
+                if (act != null)
+                {
+                    act.SupportFragmentManager.PopBackStackImmediate();
+                }
+            }
+            else
+            {
+                base.Close(viewModel);
+            }
+            
         }
     }
 

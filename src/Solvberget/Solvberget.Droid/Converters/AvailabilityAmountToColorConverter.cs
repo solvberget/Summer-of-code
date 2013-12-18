@@ -9,7 +9,7 @@ namespace Solvberget.Droid.Converters
     {
         protected override Color Convert(int value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value > 0) ? new Color(0x88, 0xBB, 0x00) : new Color(0xFF, 0x99, 0x00);
+            return (value > 0) ? new Color(0x34, 0xB4, 0x45) : new Color(0xFF, 0x99, 0x00);
         }
     }
 }

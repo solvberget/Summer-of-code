@@ -4,11 +4,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@color/ui_itembackground"
+    android:background="@color/s_boxes"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
+    android:layout_gravity="top"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
@@ -24,24 +25,28 @@
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="phone"
         local:MvxBind="Text Phone; Visibility Visibility(Phone)" />
     <TextView
         android:text="Something@example.com"
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="email"
         local:MvxBind="Text Email; Visibility Visibility(Email)" />
     <TextView
         android:text="Street Streetname 4"
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="map"
         local:MvxBind="Text Address; Visibility Visibility(Address)" />
     <TextView
         android:text="Street Namestreet 10"
         android:textAppearance="@style/SmallText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autoLink="map"
         local:MvxBind="Text VisitingAddress; Visibility Visibility(VisitingAddress)" />
     <MvxLinearLayout
         android:orientation="vertical"

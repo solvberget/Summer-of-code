@@ -25,14 +25,16 @@ namespace Solvberget.Droid.Views.Components
         {
         }
 
+        private Color _backgroundColor;
         public Color BackgroundColor
         {
             get
             {
-                return BackgroundColor;
+                return _backgroundColor;
             }
             set
             {
+                _backgroundColor = value;
                 SetBackgroundColor(value);
             }
         }

@@ -11,6 +11,12 @@ namespace Solvberget.Droid.Views.Fragments
 {
     public class MyPageLoansView : MvxFragment
     {
+        private MyPageLoansViewModel _viewModel;
+        public new MyPageLoansViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as MyPageLoansViewModel); }
+        }
+
         public MyPageLoansView()
         {
             RetainInstance = true;
@@ -20,7 +26,7 @@ namespace Solvberget.Droid.Views.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            ((MyPageLoansViewModel)ViewModel).PropertyChanged += MyPageLoansView_PropertyChanged;
+            ViewModel.PropertyChanged += MyPageLoansView_PropertyChanged;
 
             return this.BindingInflate(Resource.Layout.fragment_profile_loans, null);
         }
@@ -30,7 +36,12 @@ namespace Solvberget.Droid.Views.Fragments
             var isChanged = e.PropertyName;
 
             if (isChanged == "RenewalStatus")
-                Toast.MakeText(Application.Context, ((MyPageLoansViewModel)ViewModel).RenewalStatus, ToastLength.Long).Show();
+                Toast.MakeText(Application.Context, ViewModel.RenewalStatus, ToastLength.Long).Show();
+        }
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
         }
     }
 }

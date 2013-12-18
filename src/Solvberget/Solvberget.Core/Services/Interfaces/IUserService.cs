@@ -18,5 +18,6 @@ namespace Solvberget.Core.Services.Interfaces
         Task<List<string>> GetUserReserverdDocuments();
         Task<bool> IsFavorite(string documentNumber);
         Task<RequestReplyDto> ExpandLoan(string documentNumber);
+        Task<RequestReplyDto> RequestPinCode(string userId);
     }
 }

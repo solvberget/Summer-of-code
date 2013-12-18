@@ -99,23 +99,26 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-		public string Balance
-		{
-			get;
-			set;
-		}
+        private string _balance;
+        public string Balance 
+        {
+            get { return _balance; }
+            set { _balance = value; RaisePropertyChanged(() => Balance);}
+        }
 
-		public string Credit
-		{
-			get;
-			set;
-		}
+        private string _credit;
+        public string Credit 
+        {
+            get { return _credit; }
+            set { _credit = value; RaisePropertyChanged(() => Credit);}
+        }
 
-		public string HomeLibrary
-		{
-			get;
-			set;
-		}
+        private string _homeLibrary;
+        public string HomeLibrary 
+        {
+            get { return _homeLibrary; }
+            set { _homeLibrary = value; RaisePropertyChanged(() => HomeLibrary);}
+        }
 
         public async void Load()
         {

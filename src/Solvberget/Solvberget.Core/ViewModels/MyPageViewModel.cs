@@ -5,7 +5,7 @@ namespace Solvberget.Core.ViewModels
 {
     public class MyPageViewModel : BaseViewModel
     {
-		IUserAuthenticationDataService _userAuthenticationDataService;
+        readonly IUserAuthenticationDataService _userAuthenticationDataService;
 
         public MyPageViewModel(IUserService service, IUserAuthenticationDataService userAuthenticationDataService)
         {

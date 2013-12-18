@@ -3,7 +3,6 @@ using Android.Graphics;
 using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
-using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
@@ -18,6 +17,12 @@ namespace Solvberget.Droid.Views.Fragments
         private Android.Support.V7.Widget.SearchView _searchView;
         private ViewPager _viewPager;
         private MvxViewPagerSearchResultFragmentAdapter _adapter;
+
+        private SearchViewModel _viewModel;
+        public new SearchViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as SearchViewModel); }
+        }
 
         public SearchView()
         {
@@ -116,12 +121,8 @@ namespace Solvberget.Droid.Views.Fragments
 
             var actionView = MenuItemCompat.GetActionView(inflatedSearchView);
 
-            try
-            {
-                _searchView = (Android.Support.V7.Widget.SearchView)actionView;
-            }
-            catch { }
-
+            
+            _searchView = actionView as Android.Support.V7.Widget.SearchView;
             if (_searchView != null)
             {
                 _searchView.QueryTextSubmit += sView_QueryTextSubmit;
@@ -141,17 +142,21 @@ namespace Solvberget.Droid.Views.Fragments
 
         void sView_QueryTextChange(object sender, Android.Support.V7.Widget.SearchView.QueryTextChangeEventArgs e)
         {
-            var vm = (SearchViewModel) ViewModel;
-            vm.Query = e.NewText;
+            ViewModel.Query = e.NewText;
         }
 
         void sView_QueryTextSubmit(object sender, Android.Support.V7.Widget.SearchView.QueryTextSubmitEventArgs e)
         {
-            var vm = (SearchViewModel)ViewModel;
-            vm.SearchAndLoad();
+            ViewModel.SearchAndLoad();
 
             _searchView.SetQuery("", false);
             _searchView.Iconified = true;
+        }
+
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
         }
     }
 }

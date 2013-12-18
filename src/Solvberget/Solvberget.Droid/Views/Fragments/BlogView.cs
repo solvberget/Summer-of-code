@@ -11,6 +11,12 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private LoadingIndicator _loadingIndicator;
 
+        private BlogViewModel _viewModel;
+        public new BlogViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as BlogViewModel); }
+        }
+
         public BlogView()
         {
             RetainInstance = true;
@@ -27,7 +33,19 @@ namespace Solvberget.Droid.Views.Fragments
 
             set.Apply();
 
+            var act = Activity as MvxActionBarActivity;
+            if (act != null)
+            {
+                act.SupportActionBar.Title = ViewModel.Title;
+            }
+
             return this.BindingInflate(Resource.Layout.fragment_blog, null);
+        }
+
+        public override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
         }
     }
 }

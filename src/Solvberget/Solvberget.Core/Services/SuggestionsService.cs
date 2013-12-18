@@ -1,7 +1,5 @@
-﻿﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.Properties;
@@ -21,15 +19,7 @@ namespace Solvberget.Core.Services
         {
             var response = await _downloader.DownloadList<LibrarylistDto>(Resources.ServiceUrl + Resources.ServiceUrl_Lists);
 
-            if (response.Success) return response.Results;
-
-            return new List<LibrarylistDto>
-            {
-                new LibrarylistDto
-                {
-                    Name = "Feil ved lasting, kunne desverre ikke finne noen lister. Prøv igjen senere.",
-                }
-            };
+            return response.Results;
         }
 
         public async Task<LibrarylistDto> GetList(string id)

@@ -9,11 +9,12 @@
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
+    android:layout_gravity="top"
     android:gravity="center">
   <Solvberget.Droid.Views.Components.CustomImageView
     android:layout_height="90dp"
     android:layout_width="60dp"
-    android:src="@drawable/ic_launcher"
+    android:src="@drawable/default_list"
     local:MvxBind="ImageUrl Image" />
     <LinearLayout
         android:orientation="vertical"
@@ -27,6 +28,7 @@
             android:textAppearance="@style/MediumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             android:id="@+id/textView1"
             local:MvxBind="Text Name" />
         <TextView
@@ -38,14 +40,4 @@
             android:id="@+id/textView2"
             local:MvxBind="Text Year; Visibility Visibility(Year)" />
     </LinearLayout>
-    <Button
-        android:text="Fjern"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:background="@color/s_main_green"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:width="80dp"
-        local:MvxBind="Click ShowDetailsCommand; Visibility Visibility(ButtonVisible)" />
 </LinearLayout>

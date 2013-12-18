@@ -4,7 +4,6 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Solvberget.Core.DTOs;
-using Solvberget.Core.Services.Interfaces;
 
 namespace Solvberget.Core.Services
 {
@@ -65,26 +64,26 @@ namespace Solvberget.Core.Services
 			{
 				if (ex.Message.Contains("(401) Unauthorized"))
 				{
-					return new ListResult<TDto> { Success = false, Reply = Replies.RequireLoginReply };
+                    return new ListResult<TDto> { Success = false, Reply = Replies.RequireLoginReply, Results = new List<TDto>() };
 				}
 
 				if (ex.Message.Contains("NameResolutionFailure")) // WebExceptionStatus.NameResolutionFailure doesnt exist in mono?
 				{
-					return new ListResult<TDto>{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette." };
+					return new ListResult<TDto>{ Success = false, Reply = "App´en trenger tilgang til internett for å fortsette.", Results = new List<TDto>()};
 				}
 
                 switch (ex.Status)
                 {
                     case WebExceptionStatus.ConnectFailure:
-                        return new ListResult<TDto> { Success = false, Reply = "Får ikke kontakt med bibliotekssystemet." };
+                        return new ListResult<TDto> { Success = false, Reply = "Får ikke kontakt med bibliotekssystemet.", Results = new List<TDto>()};
                     default:
-                        return new ListResult<TDto> { Success = false, Reply = "En ukjent feil oppstod." };
+                        return new ListResult<TDto> { Success = false, Reply = "En ukjent feil oppstod.", Results = new List<TDto>()};
                 }
 
             }
             catch (Exception ex)
             {
-                return new ListResult<TDto> { Success = false, Reply = ex.Message };
+                return new ListResult<TDto> { Success = false, Reply = ex.Message, Results = new List<TDto>()};
             }
         }
     }

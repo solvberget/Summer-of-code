@@ -15,6 +15,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:cacheColorHint="#111"
         android:background="#111" />
     <FrameLayout
         android:id="@+id/content_frame"

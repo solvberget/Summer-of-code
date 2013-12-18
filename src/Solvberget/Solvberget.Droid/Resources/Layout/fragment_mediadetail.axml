@@ -21,7 +21,7 @@
             <Solvberget.Droid.Views.Components.CustomImageView
                 android:layout_width="100.0dp"
                 android:layout_height="140.0dp"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/default_list"
                 local:MvxBind="ImageUrl Image" />
             <LinearLayout
                 android:orientation="vertical"
@@ -34,12 +34,14 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLargeInverse"
                     android:text="A Somewhat Long Film Title"
+                    android:maxLines="2"
                     local:MvxBind="Text ItemTitle"
                     android:paddingBottom="8dp" />
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:maxLines="2"
                     android:text="Film (2005)"
                     local:MvxBind="Text SubTitle" />
               <TextView
@@ -48,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/SmallText"
                     android:text="Review Source"
-                    local:MvxBind="Text Rating.Source; Visibility(Rating.Source)" />
+                    local:MvxBind="Text Rating.Source; Visibility Visibility(Rating.Source)" />
                 <RatingBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,6 +82,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="TILGJENGELIGHET"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true" />
             <MvxLinearLayout
@@ -99,6 +103,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="ANMELDELSE"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true"
                 local:MvxBind="Text ReviewType; Visibility Visibility(Review)" />
@@ -122,6 +128,8 @@
                 android:paddingRight="8dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
                 android:text="FAKTA"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:singleLine="true"
@@ -142,6 +150,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Språk"
                     local:MvxBind="Visibility Visibility(Language)" />
                 <TextView
@@ -157,6 +167,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Alternative språk"
                     local:MvxBind="Visibility Visibility(Languages.Length)" />
                 <Mvx.MvxLinearLayout
@@ -174,6 +186,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Utgiver"
                     local:MvxBind="Visibility Visibility(Publisher)" />
                 <TextView
@@ -189,6 +203,8 @@
                     android:textAppearance="@style/MediaDetailFieldName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
                     android:text="Opphavsperson"
                     local:MvxBind="Visibility Visibility(MainContributor)" />
                 <TextView

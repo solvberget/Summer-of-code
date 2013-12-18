@@ -6,7 +6,6 @@ namespace Solvberget.Droid.Views.Fragments
 {
     class HomeScreenView : MvxFragment
     {
-
         public HomeScreenView()
         {
             RetainInstance = true;

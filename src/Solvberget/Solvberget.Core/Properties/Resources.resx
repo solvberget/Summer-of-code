@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ServiceUrl" xml:space="preserve">
-    <value>http://0684aa9afb9d4ed68633773e9b3cc26d.cloudapp.net/</value>
+    <value>http://0684aa9afb9d4ed68633773e9b3cc26d.cloudapp.net</value>
     <comment>Base API URL</comment>
   </data>
   <data name="ServiceUrl_List" xml:space="preserve">
@@ -194,5 +194,9 @@
   <data name="ServiceUrl_ListImage" xml:space="preserve">
     <value>/lists/{0}/thumbnail</value>
     <comment>0 =List Id</comment>
+  </data>
+  <data name="ServiceUrl_RequestPin" xml:space="preserve">
+    <value>/login/forgot/{0}</value>
+    <comment>0 =User Id</comment>
   </data>
 </root>

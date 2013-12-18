@@ -4,8 +4,6 @@ using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
 using System.Linq;
-using System.Threading;
-using System;
 
 namespace Solvberget.Core.ViewModels
 {

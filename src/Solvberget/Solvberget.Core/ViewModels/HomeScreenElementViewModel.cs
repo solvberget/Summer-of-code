@@ -41,6 +41,13 @@ namespace Solvberget.Core.ViewModels
             return _userAuthenticationService.UserInfoRegistered();
         }
 
+        private string _badgeContent;
+        public string BadgeContent 
+        {
+            get { return _badgeContent; }
+            set { _badgeContent = value; RaisePropertyChanged(() => BadgeContent);}
+        }
+
         private void ExecuteGoToCommand(HomeScreenElementViewModel element)
         {
             switch (Title)
