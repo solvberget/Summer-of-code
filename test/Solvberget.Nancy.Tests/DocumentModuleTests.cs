@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Net.Mime;
 using FakeItEasy;
-using Nancy;
 using Nancy.Testing;
 
 using Should;
@@ -20,17 +18,14 @@ using Xunit;
 
 namespace Solvberget.Nancy.Tests
 {
+
     public class DocumentModuleTests
     {
         private readonly IRepository _documentRepository;
-
         private readonly IImageRepository _imageRepository;
-
         private readonly IRatingRepository _ratingRepository;
-
         private readonly IReviewRepository _reviewRepository;
-
-        private IEnvironmentPathProvider _pathProvider;
+        private readonly IEnvironmentPathProvider _pathProvider;
 
         private readonly Browser _browser;
 
@@ -41,7 +36,7 @@ namespace Solvberget.Nancy.Tests
             _ratingRepository = A.Fake<IRatingRepository>();
             _reviewRepository = A.Fake<IReviewRepository>();
             _pathProvider = A.Fake<IEnvironmentPathProvider>();
-            
+
             _browser = new Browser(with =>
             {
                 with.Module<DocumentModule>();
