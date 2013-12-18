@@ -20,7 +20,7 @@ using SearchView = Solvberget.Droid.Views.Fragments.SearchView;
 
 namespace Solvberget.Droid.Views
 {
-    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher", WindowSoftInputMode = SoftInput.AdjustResize)]
+    [Activity(Label = "Sølvberget", LaunchMode = LaunchMode.SingleTop, Theme = "@style/MyTheme", Icon = "@drawable/ic_launcher",  WindowSoftInputMode = SoftInput.AdjustResize)]
     public class HomeView : MvxActionBarActivity, IFragmentHost
     {
         private const string START_PAGE_TITLE = "Startside";
@@ -41,7 +41,8 @@ namespace Solvberget.Droid.Views
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SupportFragmentManager.PopBackStackImmediate(null, (int)PopBackStackFlags.Inclusive);
+            
+            //SupportFragmentManager.PopBackStackImmediate(null, (int)PopBackStackFlags.Inclusive);
             SetContentView(Resource.Layout.page_home_view);
 
             _title = _drawerTitle = Title;
@@ -52,6 +53,8 @@ namespace Solvberget.Droid.Views
             
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true); 
+            SupportActionBar.SetBackgroundDrawable(Resources.GetDrawable(Resource.Color.s_main_green));
+            SupportActionBar.SetLogo(Resource.Drawable.logo_white);
             
             
 
@@ -63,7 +66,7 @@ namespace Solvberget.Droid.Views
                 //DrawerToggle is the animation that happens with the indicator next to the
                 //ActionBar icon. You can choose not to use this.
                 _drawerToggle = new MyActionBarDrawerToggle(this, _drawer,
-                    Resource.Drawable.ic_drawer_light,
+                    Resource.Drawable.ic_navigation_drawer,
                     Resource.String.drawer_open,
                     Resource.String.drawer_close);
 
@@ -114,6 +117,8 @@ namespace Solvberget.Droid.Views
             customPresenter.Register(typeof (LoginViewModel), this);
             customPresenter.Register(typeof (EventListViewModel), this);
             customPresenter.Register(typeof (HomeScreenViewModel), this);
+
+            customPresenter.Register(typeof (MediaDetailViewModel), this);
         }
 
         /// <summary>
@@ -143,7 +148,7 @@ namespace Solvberget.Droid.Views
                             if (SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as LoginView != null)
                                 return true;
 
-                            frag = new LoginView();
+                            frag = new LoginView(ViewModel);
                             title = "Logg inn";
                         }
                         else
@@ -238,12 +243,16 @@ namespace Solvberget.Droid.Views
                     case HomeViewModel.Section.Unknown:
                     {
                         shouldAddToBackStack = true;
+                        shouldClearBackStack = false;
                         if (request.ViewModelType == typeof (SuggestionsListViewModel))
                             frag = new SuggestionsListView();
                         if (request.ViewModelType == typeof(BlogViewModel))
                             frag = new BlogView();
-                        if (request.ViewModelType == typeof(LoginViewModel)) 
-                            frag = new LoginView();
+                        if (request.ViewModelType == typeof (LoginViewModel))
+                            frag = new LoginView(ViewModel);
+                        if (request.ViewModelType == typeof (MediaDetailViewModel))
+                            frag = new MediaDetailView();
+
                         break;
                     }
                 }
@@ -258,7 +267,7 @@ namespace Solvberget.Droid.Views
                     var trans = SupportFragmentManager.BeginTransaction();
                     if (shouldClearBackStack)
                     {
-                        SupportFragmentManager.PopBackStackImmediate(START_PAGE_TITLE, (int) PopBackStackFlags.None);
+                        SupportFragmentManager.PopBackStackImmediate(0, (int) PopBackStackFlags.None);
                     }
 
                     trans.Replace(Resource.Id.content_frame, frag);

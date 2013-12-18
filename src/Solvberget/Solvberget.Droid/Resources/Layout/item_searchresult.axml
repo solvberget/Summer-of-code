@@ -5,6 +5,7 @@
     android:layout_height="90dp"
     android:orientation="horizontal"
     android:background="@color/ui_itembackground"
+    android:layout_gravity="top"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
@@ -14,7 +15,7 @@
         android:layout_width="60dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/default_list"
         local:MvxBind="ImageUrl Image" />
     <LinearLayout
         android:orientation="vertical"

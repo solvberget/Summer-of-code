@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:local="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldName"
-    android:layout_width="fill_parent"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Kategorier"
-    local:MvxBind="Visibility Visibility(Subjects.Length)" />
-  <Mvx.MvxLinearLayout
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource Subjects; Visibility Visibility(Subjects.Length)"
-    local:MvxItemTemplate="@layout/item_genrestring" />
+    android:orientation="vertical">
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
+        android:text="Kategorier"
+        local:MvxBind="Visibility Visibility(Subjects.Length)" />
+    <Mvx.MvxLinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/ui_itembackground"
+        local:MvxBind="ItemsSource Subjects; Visibility Visibility(Subjects.Length)"
+        local:MvxItemTemplate="@layout/item_genrestring" />
 </LinearLayout>

@@ -83,7 +83,7 @@ namespace Solvberget.Core.Services
 
         public async Task<List<ReservationDto>> GetUerReservations()
         {
-            var result = await _downloader.DownloadList<ReservationDto>(Resources.ServiceUrl + Resources.ServiceUrl_Reservations, "GET");
+            var result = await _downloader.DownloadList<ReservationDto>(Resources.ServiceUrl + Resources.ServiceUrl_Reservations);
 
             if (result.Success) return result.Results;
 
@@ -120,6 +120,11 @@ namespace Solvberget.Core.Services
         public async Task<RequestReplyDto> ExpandLoan(string documentNumber)
         {
             return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + Resources.ServiceUrl_Renew + documentNumber, "PUT");
+        }
+
+        public async Task<RequestReplyDto> RequestPinCode(string userId)
+        {
+            return await _downloader.Download<RequestReplyDto>(Resources.ServiceUrl + string.Format(Resources.ServiceUrl_RequestPin, userId));
         }
     }
 }

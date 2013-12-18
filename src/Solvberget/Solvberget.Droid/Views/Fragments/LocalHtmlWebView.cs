@@ -16,11 +16,19 @@ namespace Solvberget.Droid.Views.Fragments
     {
         private WebView _webView;
 
+        private LocalHtmlWebViewModel _viewModel;
+        public new LocalHtmlWebViewModel ViewModel
+        {
+            get { return _viewModel ?? (_viewModel = base.ViewModel as LocalHtmlWebViewModel); }
+        }
+
         protected override void OnViewModelSet()
         {
             Window.RequestFeature(WindowFeatures.Progress);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetBackgroundDrawable(Resources.GetDrawable(Resource.Color.s_main_green));
+            SupportActionBar.SetLogo(Resource.Drawable.logo_white);
 
             base.OnViewModelSet();
 
@@ -43,7 +51,31 @@ namespace Solvberget.Droid.Views.Fragments
             _webView.SetWebViewClient(webViewClient);
             _webView.SetWebChromeClient(webChromeClient);
     
-            _webView.LoadData(((LocalHtmlWebViewModel)ViewModel).Html, "text/html", "UTF-8");
+            _webView.LoadDataWithBaseURL(null, ViewModel.Html, "text/html", "UTF-8", null);
+        }
+
+        protected override void OnResume()
+        {
+            ViewModel.OnViewReady();
+            base.OnResume();
+        }
+
+        public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
+        {
+            if (e.Action == KeyEventActions.Down)
+            {
+                switch (keyCode)
+                {
+                    case Keycode.Back:
+                        if (_webView.CanGoBack())
+                            _webView.GoBack();
+                        else
+                            Finish();
+                        break;
+                }
+                return true;
+            }
+            return base.OnKeyDown(keyCode, e);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Solvberget.Core.ViewModels
 {
     public class HomeScreenViewModel : BaseViewModel
     {
+        private const string MY_PAGE_TITLE = "Min Side";
         private readonly IUserAuthenticationDataService _userAuthenticationService;
 		IUserService _users;
 
@@ -19,11 +20,11 @@ namespace Solvberget.Core.ViewModels
 
 		private async void Load()
         {
-            ListElements = new List<HomeScreenElementViewModel>
+		    ListElements = new List<HomeScreenElementViewModel>
             {
                 new HomeScreenElementViewModel(_userAuthenticationService)
                 {
-                    Title = "Min Side",
+                    Title = MY_PAGE_TITLE,
                     IconChar = "m",
                 },
                 new HomeScreenElementViewModel(_userAuthenticationService)
@@ -63,10 +64,12 @@ namespace Solvberget.Core.ViewModels
                 }
             };
 
-			var user = await _users.GetUserInformation(true);
-			MyPageBadgeText = null == user ? string.Empty : user.Notifications.Count().ToString();
+            var user = await _users.GetUserInformation(true);
+            MyPageBadgeText = null == user || null == user.Notifications ? string.Empty : user.Notifications.Count().ToString();
+            var myPageElement = ListElements.SingleOrDefault(le => le.Title == MY_PAGE_TITLE);
+            if (myPageElement != null) myPageElement.BadgeContent = MyPageBadgeText;
 
-			NotifyViewModelReady();
+		    NotifyViewModelReady();
         }
 
         public void Init()
@@ -74,16 +77,16 @@ namespace Solvberget.Core.ViewModels
 			Title = "Sølvberget";
         }
 
-		string myPageBadgeText;
+		string _myPageBadgeText;
 		public string MyPageBadgeText
 		{
 			get
 			{
-				return myPageBadgeText;
+				return _myPageBadgeText;
 			}
 			set
 			{
-				myPageBadgeText = value;
+				_myPageBadgeText = value;
 				RaisePropertyChanged(() => MyPageBadgeText);
 			}
 		}

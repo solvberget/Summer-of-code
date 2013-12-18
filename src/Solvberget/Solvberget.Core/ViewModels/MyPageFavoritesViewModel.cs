@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Solvberget.Core.DTOs;
 using Solvberget.Core.Properties;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
@@ -47,14 +46,14 @@ namespace Solvberget.Core.ViewModels
 
             Favorites = new ObservableCollection<FavoriteViewModel>();
 
-            foreach (FavoriteDto f in favs)
+            foreach (var f in favs)
             {
                 Favorites.Add(new FavoriteViewModel
                 {
                     ButtonVisible = true,
                     Name = f.Document.Title,
                     Year = f.Document.Year,
-					Type = f.Document.Type,
+                    Type = f.Document.Type,
                     Parent = this,
                     DocumentNumber = f.Document.Id,
                     Image = Resources.ServiceUrl + string.Format(Resources.ServiceUrl_MediaImage, f.Document.Id)

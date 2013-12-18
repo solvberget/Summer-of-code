@@ -8,7 +8,7 @@ namespace Solvberget.Core.ViewModels.Base
     {
 		public static bool AddEmptyItemForEmptyLists = true;
 
-		ManualResetEvent _viewModelReady = new ManualResetEvent(false);
+        readonly ManualResetEvent _viewModelReady = new ManualResetEvent(false);
 
 		public void WaitForReady(Action onReady)
 		{

@@ -83,6 +83,7 @@ namespace Solvberget.Core.ViewModels
 
             if (response.Message.Equals("Autentisering vellykket."))
             {
+                LoggedIn = true;
 				if (_navigateBackOnLogin) Close(this);
 				else ShowViewModel<MyPageViewModel>();
             }
@@ -98,6 +99,40 @@ namespace Solvberget.Core.ViewModels
                 _userAuthenticationService.RemoveUser();
                 _userAuthenticationService.RemovePassword();
             }
+        }
+
+        private MvxCommand<string> _forgotPasswordCommand;
+        public ICommand ForgotPasswordCommand
+        {
+            get
+            {
+                return _forgotPasswordCommand ?? (_forgotPasswordCommand = new MvxCommand<string>(ExecuteForgotPasswordCommand));
+            }
+        }
+
+        private async void ExecuteForgotPasswordCommand(string userId)
+        {
+            IsLoading = true;
+            if (string.IsNullOrEmpty(userId))
+            {
+                Message = "Ugyldig lånernummer";
+                IsLoading = false;
+                return;
+            }
+
+            var result = await _service.RequestPinCode(userId);
+            if (result.Success)
+            {
+                Message = "SMS med din PIN-kode har blitt sendt.";
+            }
+            else
+            {
+                Message = result.Reply.Contains("Vennligst sjekk lånenummeret.") 
+                    ? "Kunne ikke sende PIN-kode. Lånernummeret ble ikke funnet." 
+                    : "Kunne ikke sende PIN-kode. Prøv igjen senere eller ta kontakt med Sølvberget.";
+            }
+
+            IsLoading = false;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Solvberget.Core.ViewModels
     public class DocumentAvailabilityViewModel : BaseViewModel
     {
         private readonly IUserService _userService;
-        private MediaDetailViewModel _parent;
+        private readonly MediaDetailViewModel _parent;
 
         public DocumentAvailabilityViewModel(IUserService userService, MediaDetailViewModel parent)
         {
@@ -87,7 +87,6 @@ namespace Solvberget.Core.ViewModels
             }
         }
 
-        private string _availabilitySummary;
         public string AvailabilitySummary
         {
             get

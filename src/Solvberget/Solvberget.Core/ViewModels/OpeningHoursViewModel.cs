@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using Solvberget.Core.Services.Interfaces;
 using Solvberget.Core.ViewModels.Base;
-using Solvberget.Core.DTOs;
 using System;
 
 namespace Solvberget.Core.ViewModels
@@ -63,13 +62,13 @@ namespace Solvberget.Core.ViewModels
 
 		private void ExecuteShowDetailsCommand(OpeningHoursLocationViewModel model)
         {
-			this.ShowViewModel<OpeningHoursLocationViewModel>(new {id = model.Id, title = model.Title});
+			ShowViewModel<OpeningHoursLocationViewModel>(new {id = model.Id, title = model.Title});
         }
     }
 
     public class OpeningHoursLocationViewModel : BaseViewModel
 	{
-		IOpeningHoursService _service;
+        readonly IOpeningHoursService _service;
 
 		public OpeningHoursLocationViewModel(IOpeningHoursService openingHoursService)
 		{
@@ -89,16 +88,18 @@ namespace Solvberget.Core.ViewModels
 			var ohs = await _service.GetOpeningHours();
 				
 			var oh = ohs.Skip(id).FirstOrDefault();
+		    if (oh != null)
+		    {
+		        Hours = oh.Hours.ToDictionary(k => k.Title, v => v.Hours);
 
-		    Hours = oh.Hours.ToDictionary(k => k.Title, v => v.Hours);
+		        LocationName = oh.Title;
+		        Phone = oh.Phone;
+		        Title = oh.Title;
+		        Url = oh.Url;
+		        UrlText = oh.UrlText;
+		    }
 
-			LocationName = oh.Title;
-			Phone = oh.Phone;
-			Title = oh.Title;
-			Url = oh.Url;
-			UrlText = oh.UrlText;
-			
-          	IsLoading = false;
+		    IsLoading = false;
 			NotifyViewModelReady();
 		}
 

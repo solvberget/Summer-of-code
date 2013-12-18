@@ -1,57 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:local="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldName"
-    android:layout_width="fill_parent"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Komponist"
-    local:MvxBind="Visibility Visibility(ComposerName)" />
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldContent"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    local:MvxBind="Text ComposerName; Visibility Visibility(ComposerName)" />
-
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldName"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Komposisjonstype"
-    local:MvxBind="Visibility Visibility(CompositionType)" />
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldContent"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    local:MvxBind="Text CompositionType; Visibility Visibility(CompositionType)" />
-
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldName"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Sidetall, type noter og antall stemmer"
-    local:MvxBind="Visibility Visibility(NumberOfPagesAndParts)" />
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldContent"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    local:MvxBind="Text NumberOfPagesAndParts; Visibility Visibility(NumberOfPagesAndParts)" />
-
-  <TextView
-    android:textAppearance="@style/MediaDetailFieldName"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Besetning"
-    local:MvxBind="Visibility Visibility(MusicalLineup.Length)" />
-  <Mvx.MvxLinearLayout
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/ui_itembackground"
-    local:MvxBind="ItemsSource MusicalLineup; Visibility Visibility(MusicalLineup.Length)"
-    local:MvxItemTemplate="@layout/item_genrestring" />
+    android:orientation="vertical">
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
+        android:text="Komponist"
+        local:MvxBind="Visibility Visibility(ComposerName)" />
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text ComposerName; Visibility Visibility(ComposerName)" />
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
+        android:text="Komposisjonstype"
+        local:MvxBind="Visibility Visibility(CompositionType)" />
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text CompositionType; Visibility Visibility(CompositionType)" />
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sidetall, type noter og antall stemmer"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
+        local:MvxBind="Visibility Visibility(NumberOfPagesAndParts)" />
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text NumberOfPagesAndParts; Visibility Visibility(NumberOfPagesAndParts)" />
+    <TextView
+        android:textAppearance="@style/MediaDetailFieldName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Besetning"
+        android:textColor="@color/s_main_green"
+        android:textAllCaps="true"
+        local:MvxBind="Visibility Visibility(MusicalLineup.Length)" />
+    <Mvx.MvxLinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/ui_itembackground"
+        local:MvxBind="ItemsSource MusicalLineup; Visibility Visibility(MusicalLineup.Length)"
+        local:MvxItemTemplate="@layout/item_genrestring" />
 </LinearLayout>

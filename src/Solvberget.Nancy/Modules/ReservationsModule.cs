@@ -21,7 +21,12 @@ namespace Solvberget.Nancy.Modules
             {
                 var user = Context.GetAlephUserIdentity();
 
-                return repository.GetUserInformation(user.UserName, user.Password).Reservations.Select(r => DtoMaps.Map(r, repository)).ToArray();
+                var reservations = repository.GetUserInformation(user.UserName, user.Password).Reservations;
+                if (reservations == null)
+                {
+                    return new ReservationDto[0];
+                }
+                return reservations.Select(r => DtoMaps.Map(r, repository)).ToArray();
             };
 
             Delete["/{documentId}"] = args =>

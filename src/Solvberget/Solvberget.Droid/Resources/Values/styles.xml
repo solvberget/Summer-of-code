@@ -21,6 +21,9 @@
     -->
     <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     <item name="android:windowContentOverlay">@null</item>
+    <item name="android:listViewStyle">@style/ListView</item>
+    <item name="textAppearanceLargePopupMenu">@style/TextAppearance.ShareList</item>
+    <item name="android:textColorLink">@color/s_main_green</item>
   </style>
 
   <!--<style name="TextAppearance.TabPageIndicator" parent="Widget">
@@ -50,6 +53,19 @@
 
   <style name="MediaDetailFieldName" parent="@style/MediaDetailFieldContent">
     <item name="android:textSize">10dp</item>
+  </style>
+
+  <style name="ListView" parent="@android:style/Widget.ListView">
+    <item name="android:background">@android:color/transparent</item>
+    <item name="android:cacheColorHint">@android:color/transparent</item>
+    <item name="android:divider">@android:color/transparent</item>
+    <item name="android:dividerHeight">0dp</item>
+    <item name="android:listSelector">@drawable/list_item_selector</item>
+  </style>
+
+  <style name="TextAppearance.ShareList" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:textSize">18sp</item>
   </style>
 
 </resources>

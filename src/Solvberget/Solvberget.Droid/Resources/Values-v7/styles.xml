@@ -6,6 +6,12 @@
     -->
   <style name="MyBaseTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
     <!-- API 7 theme customizations can go here. -->
+    <item name="android:buttonStyle">@style/MyBaseTheme.Button</item>
+  </style>
+
+  <style name="MyBaseTheme.Button" parent="@android:style/Widget.Button">
+    <item name="android:paddingTop">10dp</item>
+    <item name="android:paddingBottom">10dp</item>
   </style>
 
 </resources>

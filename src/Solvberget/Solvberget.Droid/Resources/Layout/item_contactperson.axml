@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/ui_itembackground"
+    android:background="@color/s_boxes"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="8dp">
@@ -26,6 +26,7 @@
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autoLink="email"
         local:MvxBind="Text Email; Visibility Visibility(Email)" />
     <TextView
         android:text="Key"
@@ -33,5 +34,6 @@
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autoLink="phone"
         local:MvxBind="Text Phone; Visibility Visibility(Phone)" />
 </LinearLayout>

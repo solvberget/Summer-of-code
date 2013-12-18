@@ -1,5 +1,3 @@
-using System;
-using Cirrious.CrossCore;
 using Solvberget.Core.ViewModels.Base;
 
 namespace Solvberget.Core.ViewModels

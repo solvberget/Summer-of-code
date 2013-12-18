@@ -6,6 +6,7 @@
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
+    android:layout_gravity="top"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
@@ -19,16 +20,32 @@
         android:paddingLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="50dp"
-        android:paddingRight="10dp"
-        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
         local:MvxBind="Text IconChar" />
     <TextView
+        android:paddingLeft="16dp"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         local:MvxBind="Text Title" />
+    <RelativeLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="right"
+          local:MvxBind="Visibility Visibility(BadgeContent)">
+          <TextView
+              android:textColor="@color/white"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:paddingLeft="8dp" 
+              android:paddingRight="8dp"
+              android:text="2"
+              android:id="@+id/notificationAmount"
+              android:background="@drawable/badge"
+              local:MvxBind="Text BadgeContent"/>
+    </RelativeLayout>
 </Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>
