@@ -15,7 +15,11 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
                 if($scope.count>=$scope.slides.length) {
                     $scope.count=0;
                 }
-                $scope.nextSlide($scope.slides[$scope.template].duration * 1000);
+
+                console.log("slides", $scope.slides);
+                console.log("template", $scope.template);   
+
+                $scope.nextSlide($scope.template.duration * 1000);
             }, timeOut);
         };
 

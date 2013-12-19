@@ -6,7 +6,6 @@
 @transition-carousel-in: opacity 1s ease-in-out 1s;
 
 body {
-  padding: 100px 20px 20px 20px;
   background: @solvberget-bg;
   color: @solvberget-white;
   height: 100%;
@@ -35,24 +34,75 @@ body {
 }
 
 .carousel-indicators {
-  position: relative;
+
+    position:inherit;
+    bottom:inherit;
+    left:inherit;
+    width:100%;
+    margin:inherit;
 }
 
 .carousel-indicators li {
-  display: inline;
+    
+    height:88px;
+    opacity:0.7;
   text-indent: 0px;
+  width:100%;
+  border-radius:0px;
   border: none;
   margin: 0px;
-  transition: color 1s ease-in-out 0s;
+  transition: opacity 0.5s ease-in-out 0s;  
 }
 
 .carousel-indicators li.active {
-  color: @solvberget-green;
-  transition: color 1s ease-in-out 0s;
+    opacity:1;
+    background-color:@solvberget-green;
+    width:100%;
+    height:88px;
+    margin:0px;
+    transition: background-color 0.5s ease-in-out 0s;
+    transition: opacity 0.5s ease-in-out 0s; 
+}
+
+.carousel-indicators .row
+{
+   height:88px;
+}
+
+.carousel-indicators li .row>div>div
+{
+    display:table-cell;
+    height:88px;
+    vertical-align:middle;
+    text-align:left;
+}
+
+.container-fluid.span-height > .row
+{
+    height:100%;
+    display:table-row;
+    overflow-y:hidden;
+}
+
+.container-fluid.span-height
+{
+    display:table;
+    position:absolute;
+    top:0px;
+    height:100%;
+    bottom:0px;
+}
+
+.container-fluid.span-height > .row > div
+{
+    display:table-cell;
 }
 
 .overview-column {
-  border-left: 1px solid white;
+    
+    background-color:black;
+    height:100%;
+    padding:0px;
 }
 
 .navbar {
@@ -66,6 +116,99 @@ body {
   padding-left: 30px;
 }
 
+.centered {
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .navbar-brand img{
   width:36px;
+}
+
+.item-day, .item-month, .item-date{
+    font-size:13px;
+    display:block;
+    text-align:center;
+    opacity:0.75;
+}
+
+.item-date{
+    font-family:"Open Sans Bold";
+    font-size:25px;
+}
+
+.item-day{
+    margin-top:9px;
+}
+
+.item-title{
+    font-size:25px;
+    padding-right:10px;
+}
+
+.carousel-indicators li .slide-progress
+{
+    position:absolute;
+    opacity:0;    
+    height:3px;
+    background-color:white;
+}
+
+.carousel-indicators li.active .slide-progress{
+    opacity:1;
+}
+
+.current-item-container{
+    padding:50px;
+}
+
+.current-item-container h1{
+
+    font-weight:normal;
+    font-family: "Open Sans Light";
+    font-size:80px;
+
+}
+
+.current-item-container p{
+    font-size:30px;
+    line-height:150%;
+    font-family:"Open Sans";
+    opacity:0.8;
+    
+}
+
+.current-item-container p:first-of-type{
+    font-size:40px;
+    opacity:1;
+    font-family:"Open Sans";
+}
+
+.current-item-container .nfo{
+    font-size:25px;
+    color:@solvberget-green;
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+.current-item-container .nfo span i{
+    display:inline-block;
+    margin-right:20px;
+}
+
+.current-item-container .nfo span{
+    display:block;
+}
+
+.image-column{
+    height:100%;
+    background-color:black;
+}
+
+.image-column{
+    overflow:hidden;
+    background-size: cover;
+    background-repeat: repeat;
 }
