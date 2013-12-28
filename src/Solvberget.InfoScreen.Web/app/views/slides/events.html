@@ -30,8 +30,8 @@
                         </div>
                         <div class="row nfo">
                             <div class="col-xs-4">
-                                <span><i class="glyphicon glyphicon-time" />{{ item.start|date:'EEEE d. MMM'}}</span>
-                                <span style="margin-left:44px" ng-show="item.start.hour != item.end.hour != 0">{{ item.start|date:'HH:mm'}} - {{item.end|date:'HH:mm'}}</span>
+                                <span><i class="glyphicon glyphicon-time" />{{ item.start|date:'EEE d. MMM'}}</span>
+                                <span style="margin-left:38px" ng-show="item.start.hour != item.end.hour != 0">{{ item.start|date:'HH:mm'}} - {{item.end|date:'HH:mm'}}</span>
                             </div>
                             <div class="col-xs-4">
                                 <span><i class="glyphicon glyphicon-home"></i>{{ item.location }}</span>
@@ -43,7 +43,7 @@
                             </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p ng-bind-html="item.description"></p>
+                                <p ng-bind-html="item.description|firstParagraph"></p>
                             </div>
                         </div>
                     </div>
@@ -51,6 +51,7 @@
             </div>
             
             <div class="col-xs-2 image-column">
+                <div id="qrc"></div>
             </div>
 
 
@@ -64,6 +65,9 @@
             
             var interval = scope.interval * 1000;
 
+            var qrcode = $("#qrc");
+            
+
             function startProgressAnimation(e) {
 
                 $('.slide-progress')
@@ -76,12 +80,24 @@
 
                 var item = scope.items[slideTo];
 
-
                 $(".image-column")
                     .animate({ 'opacity': '0' }, {
                         duration: 700,
                         queue: false,
-                        complete: function() {
+                        complete: function () {
+
+                            if (item.ticketUrl) {
+                                new QRCode(qrcode.get(0), {
+                                    text: item.ticketUrl,
+                                    width: 128,
+                                    height: 128,
+                                    colorDark: "#000000",
+                                    colorLight: "#ffffff",
+                                    correctLevel: QRCode.CorrectLevel.H
+                                });
+                            }
+                            else qrcode.empty();
+                            
                             $(this)
                             .stop()
                                 .css('background-image', 'url("' + item.imageUrl + '")')

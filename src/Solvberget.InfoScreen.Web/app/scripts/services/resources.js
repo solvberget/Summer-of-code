@@ -32,4 +32,13 @@ angular.module('solvbergetinfoScreenwebApp')
     };
 
         return { link: link };
-    });
+    })
+.filter('firstParagraph', function() {
+    return function(input) {
+
+        var i = input.indexOf("</p>");
+
+        if (i < 0) return input;
+        else return input.substring(0,i) + "</p>";
+    };
+});
