@@ -39,7 +39,7 @@
       <Value Profile="(Default)">http://aleph.stavanger.kommune.no/wtw/glemtpassord.php</Value>
     </Setting>
     <Setting Name="NewsRssUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://stavanger-kulturhus.no/index.php/rss/feed/test</Value>
+      <Value Profile="(Default)">http://stavanger-kulturhus.no/rss/feed/solvberget</Value>
     </Setting>
   </Settings>
 </SettingsFile>

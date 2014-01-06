@@ -134,7 +134,7 @@ namespace Solvberget.Domain.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://stavanger-kulturhus.no/index.php/rss/feed/test")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://stavanger-kulturhus.no/rss/feed/solvberget")]
         public string NewsRssUrl {
             get {
                 return ((string)(this["NewsRssUrl"]));

@@ -17,13 +17,7 @@ namespace Solvberget.Domain.Info
 
             if (feed != null)
             {
-                newsItems.AddRange(feed.Items.Select(item => new NewsItem
-                                                                 {
-                                                                     Title = item.Title.Text,
-                                                                     PublishedDateAsDateTime = item.PublishDate,
-                                                                     Link = item.Links.First().Uri,
-                                                                     DescriptionUnescaped = item.Summary.Text
-                                                                 }));
+                newsItems.AddRange(feed.Items.Select(MapItem));
 
                 return limitCount != null ? newsItems.Take((int)limitCount).ToList() : newsItems;
 
@@ -33,5 +27,15 @@ namespace Solvberget.Domain.Info
 
         }
 
+        private NewsItem MapItem(SyndicationItem item)
+        {
+            var eventImage = item.Links.FirstOrDefault(l => l.RelationshipType.Equals("enclosure"));
+
+            return new NewsItem
+            {
+                Title = item.Title.Text, PublishedDateAsDateTime = item.PublishDate, Link = item.Links.First().Uri, DescriptionUnescaped = item.Summary.Text,
+                EnclosureUrl = null == eventImage ? null : eventImage.Uri.OriginalString
+            };
+        }
     }
 }

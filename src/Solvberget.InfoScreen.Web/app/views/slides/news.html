@@ -1,32 +1,126 @@
-<div ng-controller="NewsCtrl">
+<div class="container-fluid span-height" ng-controller="NewsCtrl" view-loaded="viewLoaded">
     <div class="row">
         <div id="news-carousel" class="carousel slide" data-ride="carousel">
-            <div class="col-xs-8">
-                <div class="carousel-inner">
+
+            <div class="col-xs-3 overview-column">
+                <ul class="carousel-indicators">
+                    <li ng-repeat="item in items"
+                        class="container-fluid"
+                        ng-class="{active : $first}" data-target="#news-carousel" data-slide-to="{{ $index }}">
+
+                        <div class="row">
+                            <div class="col-xs-2" style="padding-right:0px">
+                                <div class="centered"><span class="item-day">{{ item.published|date:'EEE' }}</span><span class="item-date">{{item.published|date:'dd'}}</span><span class="item-month">{{item.published|date:'MMM'}}</span></div>
+                            </div>
+                            <div class="col-xs-10"><div class="item-title">{{item.title}}</div></div>
+                        </div>
+                        <div class="slide-timer"></div>
+                        <div class="slide-progress"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-7">
+                <div class="carousel-inner current-item-container">
                     <div class="item" ng-repeat="item in items" ng-class="{active : $first}">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h2>{{ item.title }}</h2>
-                                <p>{{ item.published }}</p>
-                                <p>{{ item.ingress }}</p>
+                                <h1>{{ item.title }}</h1>
+                            </div>
+                        </div>
+                        <div class="row nfo">
+                            <div class="col-xs-4">
+                                <span><i class="glyphicon glyphicon-time" />{{ item.published|date:'EEE d. MMM'}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p ng-bind-html="item.ingress|firstParagraph"></p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div id="qrc"></div>
+
             </div>
 
-            <div class="col-xs-4 overview-column">
-                <ul class="carousel-indicators event-listing">
-                    <li ng-repeat="item in items" ng-class="{active : $first}">
-                        <h3 data-target="#news-carousel" data-slide-to="{{ $index }}">{{ item.title }}</h3>
-                    </li>
-                </ul>
+            <div class="col-xs-2 image-column">
             </div>
+
+
         </div>
     </div>
 
 
-    <script>$(".carousel").carousel({
-        interval: 3000
-    });</script>
+    <script>
+
+        function viewLoaded(scope) {
+
+            var interval = scope.interval * 1000;
+
+            var qrcode = $("#qrc");
+
+
+            function startProgressAnimation(e) {
+
+                $('.slide-progress')
+                    .stop()
+                    .width('0%')
+                    .animate({ width: '100%' }, interval, "linear");
+
+                var slideTo = 0;
+                if (e) slideTo = $(e.relatedTarget).index();
+
+                var item = scope.items[slideTo];
+
+                $(".image-column")
+                    .animate({ 'opacity': '0' }, {
+                        duration: 700,
+                        queue: false,
+                        complete: function () {
+
+                            qrcode.empty();
+                            
+                            if (item.link) {
+                                new QRCode(qrcode.get(0), {
+                                    text: item.link,
+                                    width: 100,
+                                    height: 100,
+                                    colorDark: "#000000",
+                                    colorLight: "#ffffff",
+                                    correctLevel: QRCode.CorrectLevel.H
+                                });
+                            }
+
+                            $(this)
+                            .stop()
+                                .css('background-image', 'url("' + item.imageUrl + '")')
+                                .css('background-position', '100% 50%')
+                                .animate({ 'opacity': '1' }, { duration: 700, queue: false })
+                                .animate({ 'background-position-x': '0%' }, 120000, 'linear');
+                        }
+                    });
+            }
+
+            scope.$watch('items.length', function () {
+
+                if (scope.items.length === 0) return;
+                console.log("items loaded, starting carousel", scope.items.length);
+
+                $(".carousel").carousel({
+                    interval: interval
+                }).on('slide.bs.carousel', function (e) {
+
+                    startProgressAnimation(e);
+                });
+
+                startProgressAnimation(); // initial slide
+            });
+
+        }
+
+    </script>
 </div>
+
+
+

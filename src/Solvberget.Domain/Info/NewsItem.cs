@@ -19,5 +19,7 @@ namespace Solvberget.Domain.Info
                 return Regex.Replace(desc, "\\n", "");
             }
         }
+
+        public string EnclosureUrl { get; set; }
     }
 }

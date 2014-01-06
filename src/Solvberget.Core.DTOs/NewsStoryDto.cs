@@ -8,5 +8,6 @@ namespace Solvberget.Core.DTOs
         public string Ingress { get; set; }
         public DateTime Published { get; set; }
         public Uri Link { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

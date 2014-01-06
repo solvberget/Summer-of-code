@@ -10,7 +10,7 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
         $scope.nextSlide=function(timeOut) {
             $timeout(function() {
                 $scope.template = $scope.slides[$scope.count];
-                $scope.templateName = "/views/slides/"+$scope.template.template+".html";
+                $scope.templateName = "views/slides/"+$scope.template.template+".html";
                 $scope.count+=1;
                 if($scope.count>=$scope.slides.length) {
                     $scope.count=0;

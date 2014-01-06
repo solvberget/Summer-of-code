@@ -23,6 +23,7 @@ namespace Solvberget.Nancy.Modules
                     Title = ni.Title,
                     Ingress = ni.Description,
                     Link = ni.Link,
+                    ImageUrl = ni.EnclosureUrl,
                     Published = ni.PublishedDateAsDateTime.DateTime
                 })).AsCacheable(DateTime.Now.AddHours(1));
             };
