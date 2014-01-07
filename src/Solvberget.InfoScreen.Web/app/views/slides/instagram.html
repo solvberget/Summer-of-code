@@ -1,0 +1,34 @@
+﻿<div id="instagram-slide" class="container-fluid span-height" ng-controller="InstagramCtrl" view-loaded="viewLoaded">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="ig-carousel" class="carousel slide" data-ride="carousel">
+                <div id="carousel-items" class="carousel-inner">
+                </div>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+    var feed = new Instafeed({
+        template: '<div class="item ig-item"><div class="col-xs-7"><img src="{{image}}" /></div><div class="col-xs-5 ig-item-caption"><p>{{caption}}</p><h1>Fra @{{model.user.username}} på Instagram.</h1><h2>Tagg dine bilder med #sølvberget!</h2></div></div>',
+        target: 'carousel-items',
+        get: 'tagged',
+        tagName: 'sølvberget',
+        resolution: 'standard_resolution',
+        links: false,
+        limit:10,
+        clientId: '8cb0d60e537d4098b2c0f79194b2f82e',
+        after : function() {
+
+            $(".ig-item:first").addClass("active");
+            
+            $(".carousel").carousel({
+                interval: 8000
+            });
+
+        }
+    });
+    feed.run();
+
+    
+
+</script>

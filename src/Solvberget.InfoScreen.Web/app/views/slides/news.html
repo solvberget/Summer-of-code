@@ -9,10 +9,8 @@
                         ng-class="{active : $first}" data-target="#news-carousel" data-slide-to="{{ $index }}">
 
                         <div class="row">
-                            <div class="col-xs-2" style="padding-right:0px">
-                                <div class="centered"><span class="item-day">{{ item.published|date:'EEE' }}</span><span class="item-date">{{item.published|date:'dd'}}</span><span class="item-month">{{item.published|date:'MMM'}}</span></div>
-                            </div>
-                            <div class="col-xs-10"><div class="item-title">{{item.title}}</div></div>
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-11"><div class="item-title">{{item.title}}</div></div>
                         </div>
                         <div class="slide-timer"></div>
                         <div class="slide-progress"></div>
@@ -30,7 +28,7 @@
                         </div>
                         <div class="row nfo">
                             <div class="col-xs-4">
-                                <span><i class="glyphicon glyphicon-time" />{{ item.published|date:'EEE d. MMM'}}</span>
+                                <span><i class="glyphicon glyphicon-bullhorn" />Nyhet, publisert {{ item.published|date:'EEE d. MMM'}}</span>
                             </div>
                         </div>
                         <div class="row">

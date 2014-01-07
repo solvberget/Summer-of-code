@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Web.Configuration;
 using Nancy;
 using Nancy.Helpers;
 using Solvberget.Domain.Documents;
@@ -19,10 +20,14 @@ namespace Solvberget.Nancy
         public EnvironmentPathProvider(IRootPathProvider rootPathProvider)
         {
             _rootPath = rootPathProvider.GetRootPath();
+
             _rootUrl = "http://localhost:39465/"; // todo: 
-         
-            _applicationAppDataPath = Path.Combine(_rootPath, @"Data");
-            _applicationContentDataPath = Path.Combine(_rootPath, @"Content");
+
+            var dataPath = WebConfigurationManager.AppSettings["DataPath"];
+            if (String.IsNullOrEmpty(dataPath)) dataPath = _rootPath;
+
+            _applicationAppDataPath = Path.Combine(dataPath, @"Data");
+            _applicationContentDataPath = Path.Combine(rootPathProvider.GetRootPath(), @"Content");
         }
 
         public string GetDictionaryPath()
