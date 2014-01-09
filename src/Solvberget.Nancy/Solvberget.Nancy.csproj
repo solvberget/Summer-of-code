@@ -103,6 +103,7 @@
     <Content Include="Data\blogs\feeds.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\events\events.xml" />
     <Content Include="Data\info\contact.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

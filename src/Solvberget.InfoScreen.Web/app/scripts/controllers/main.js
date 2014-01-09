@@ -44,16 +44,7 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
     var screenId = ($routeParams.id) ? $routeParams.id : "default";
     // Load slides and start slideshow
     
-    var testSlides = [
-        {
-            template: "instagram",
-            duration: 600
-        }
-    ];
-
-    $scope.slides = testSlides; //slides(screenId).query($scope.onSlidesReceived);
-
-    $scope.onSlidesReceived();
+    $scope.slides = slides(screenId).query($scope.onSlidesReceived);
 
     // Start reload rotation of slides
     $scope.reloadSlides(2 * 60 * 1000, screenId);

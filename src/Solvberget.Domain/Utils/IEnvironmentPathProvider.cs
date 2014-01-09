@@ -22,5 +22,7 @@ namespace Solvberget.Domain.Utils
         string GetFavoritesPath(string userId);
         string GetWebAppDocumentDetailsPath(Document document);
         string GetSlideConfigurationPath();
+
+        string GetEventsPath();
     }
 }

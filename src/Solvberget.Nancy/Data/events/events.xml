@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<events>
+  <event>
+    <id>1</id>
+    <name>Åpningsfest</name>
+    <description>11. januar 2014 åpner vi dørene. Da står et splitter nytt, lyst, åpent og innbydende bibliotektilbud klart til å ta imot regionens befolkning.</description>
+    <imageUrl>https://tuploads.s3.amazonaws.com/production/uploads/event/image/853/default_11jan_595x265.png</imageUrl>
+    <location>Sølvberget, Stavanger Kulturhus</location>
+    <start>11.01.2014 10:00</start>
+    <end>11.01.2014 22:00</end>
+    <ticketPrice>0</ticketPrice>
+    <ticketUrl>https://solvberget.ticketco.no/apningsfest2</ticketUrl>
+  </event>
+</events>

@@ -20,7 +20,7 @@
 
             <div class="col-xs-7">
                 <div class="carousel-inner current-item-container">
-                    <div class="item" ng-repeat="item in items" ng-class="{active : $first}">
+                    <div class="item" ng-repeat="item in items | limitTo:7" ng-class="{active : $first}">
                         <div class="row">
                             <div class="col-xs-12">
                                 <h1>{{ item.title }}</h1>
