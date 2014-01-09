@@ -17,7 +17,7 @@ angular.module('Solvberget.WebApp', ['globalErrors', 'ngCookies', 'ngResource', 
                 reloadOnSearch: false
             })
             .when('/min-side', {
-                redirectTo: '/minside/favoritter'
+                redirectTo: '/min-side/favoritter'
             })
             .when('/min-side/favoritter', {
                 templateUrl: 'views/my.favorites.html',
