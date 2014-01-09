@@ -1,16 +1,17 @@
+<div id="qrc"></div>
 <div class="container-fluid span-height" ng-controller="NewsCtrl" view-loaded="viewLoaded">
     <div class="row">
         <div id="news-carousel" class="carousel slide" data-ride="carousel">
 
             <div class="col-xs-3 overview-column">
                 <ul class="carousel-indicators">
-                    <li ng-repeat="item in items"
+                    <li ng-repeat="item in items|limitTo:7"
                         class="container-fluid"
                         ng-class="{active : $first}" data-target="#news-carousel" data-slide-to="{{ $index }}">
 
                         <div class="row">
                             <div class="col-xs-1"></div>
-                            <div class="col-xs-11"><div class="item-title">{{item.title}}</div></div>
+                            <div class="col-xs-10"><div class="item-title">{{item.title}}</div></div>
                         </div>
                         <div class="slide-timer"></div>
                         <div class="slide-progress"></div>
@@ -28,18 +29,15 @@
                         </div>
                         <div class="row nfo">
                             <div class="col-xs-4">
-                                <span><i class="glyphicon glyphicon-bullhorn" />Nyhet, publisert {{ item.published|date:'EEE d. MMM'}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p ng-bind-html="item.ingress|firstParagraph"></p>
+                                <p ng-bind-html="item.ingress|characters:250"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="qrc"></div>
-
             </div>
 
             <div class="col-xs-2 image-column">
@@ -77,7 +75,7 @@
                         queue: false,
                         complete: function () {
 
-                            qrcode.empty();
+                            qrcode.empty().hide();
                             
                             if (item.link) {
                                 new QRCode(qrcode.get(0), {
@@ -88,8 +86,10 @@
                                     colorLight: "#ffffff",
                                     correctLevel: QRCode.CorrectLevel.H
                                 });
-                            }
 
+                                qrcode.show();
+                            }
+                            
                             $(this)
                             .stop()
                                 .css('background-image', 'url("' + item.imageUrl + '")')

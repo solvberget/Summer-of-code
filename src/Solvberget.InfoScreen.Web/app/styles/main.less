@@ -6,7 +6,7 @@
 @transition-carousel-in: opacity 1s ease-in-out 1s;
 
 body {
-  background: @solvberget-bg;
+  background: black;
   color: @solvberget-white;
   height: 100%;
 }
@@ -100,7 +100,7 @@ body {
 
 .overview-column {
     
-    background-color:black;
+    background-color:@solvberget-bg;
     height:100%;
     padding:0px;
 }
@@ -162,26 +162,20 @@ body {
 
 .current-item-container{
     padding:50px;
+    padding-right:5px;
+    padding-bottom:25px;
 }
 
 .current-item-container h1{
 
+    margin-top:0px;
     font-weight:normal;
     font-family: "Open Sans Light";
-    font-size:60px;
-
-}
-
-.current-item-container p{
-    font-size:30px;
-    line-height:150%;
-    font-family:"Open Sans";
-    opacity:0.8;
-    
+    font-size:70px;
 }
 
 .current-item-container p:first-of-type{
-    font-size:25px;
+    font-size:40px;
     opacity:1;
     font-family:"Open Sans";
 }
@@ -214,16 +208,18 @@ body {
 }
 
 #qrc{
-    margin-left:50px;
     padding:10px;
     background-color:white;
-    display:inline-block;
-
+    position: absolute;
+    top: 580px;
+    left: 1140px;
+    z-index:1000;
+    display:none;
 }
 
 /* instagram slide */
 
-#instagram-slide h1{
+#instagram-slide h1, .ig-item-user{
     font-size:25px;
     text-align:left;
     margin:0px;
@@ -249,7 +245,7 @@ body {
 }
 
 .ig-item-caption{
-    font-size:30px;
+    font-size:40px;
     margin-top:40px;
     text-align:left;
 }

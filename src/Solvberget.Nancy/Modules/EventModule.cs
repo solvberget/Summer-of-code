@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Nancy;
@@ -18,7 +19,7 @@ namespace Solvberget.Nancy.Modules
         {
             var events = new List<EventDto>();
 
-            using (var file = File.OpenRead(env.GetEventsPath()))
+            using (var file = new StreamReader(env.GetEventsPath(), Encoding.GetEncoding("ISO-8859-1")))
             {
                 XDocument doc = XDocument.Load(file);
 

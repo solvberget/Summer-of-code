@@ -45,7 +45,7 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
     // Load slides and start slideshow
     
     $scope.slides = slides(screenId).query($scope.onSlidesReceived);
-
+    
     // Start reload rotation of slides
     $scope.reloadSlides(2 * 60 * 1000, screenId);
     $rootScope.title = "Sølvberget";

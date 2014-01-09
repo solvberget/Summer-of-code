@@ -1,3 +1,4 @@
+<div id="qrc"></div>
 <div class="container-fluid span-height" ng-controller="EventsCtrl" view-loaded="viewLoaded">
     <div class="row">
         <div id="news-carousel" class="carousel slide" data-ride="carousel">
@@ -43,12 +44,11 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p ng-bind-html="item.description|firstParagraph"></p>
+                                <p ng-bind-html="item.description|characters:250"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="qrc"></div>
 
             </div>
             
@@ -87,6 +87,8 @@
                         queue: false,
                         complete: function () {
 
+                            qrcode.empty().hide();
+                            
                             if (item.ticketUrl) {
                                 new QRCode(qrcode.get(0), {
                                     text: item.ticketUrl,
@@ -96,8 +98,9 @@
                                     colorLight: "#ffffff",
                                     correctLevel: QRCode.CorrectLevel.H
                                 });
+
+                                qrcode.show();
                             }
-                            else qrcode.empty();
                             
                             $(this)
                             .stop()
