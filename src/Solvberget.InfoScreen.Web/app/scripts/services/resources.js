@@ -18,7 +18,7 @@ angular.module('solvbergetinfoScreenwebApp')
             return {
                 'responseError': function(response) {
 
-                    alert("En feil oppstod (status " + response.status + "). " + response.data);
+                    console.error("En feil oppstod (status " + response.status + "). " + response.data);
 
                     return response;
                 }

@@ -33,11 +33,8 @@
     function viewLoaded(scope) {
 
         scope.$watch('items.length', function() {
-
-            console.log("items.length " + scope.items.length);
-
+            
             if (scope.items.length === 0) return;
-            console.log("items loaded, starting carousel", scope.items.length);
             
             $(".carousel").carousel({
                 interval: 10000

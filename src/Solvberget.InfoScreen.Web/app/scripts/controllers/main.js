@@ -15,10 +15,7 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
                 if($scope.count>=$scope.slides.length) {
                     $scope.count=0;
                 }
-
-                console.log("slides", $scope.slides);
-                console.log("template", $scope.template);   
-
+                
                 $scope.nextSlide($scope.template.duration * 1000);
             }, timeOut);
         };
@@ -43,6 +40,8 @@ angular.module('solvbergetinfoScreenwebApp').controller('MainCtrl', function ($s
 
     var screenId = ($routeParams.id) ? $routeParams.id : "default";
     // Load slides and start slideshow
+
+    console.log("screenId = " + screenId);
     
     $scope.slides = slides(screenId).query($scope.onSlidesReceived);
     

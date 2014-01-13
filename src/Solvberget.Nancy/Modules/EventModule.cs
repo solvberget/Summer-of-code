@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Xml.XPath;
 using Nancy;
 using Solvberget.Core.DTOs;
 using Solvberget.Domain.Events;
@@ -23,7 +24,7 @@ namespace Solvberget.Nancy.Modules
             {
                 XDocument doc = XDocument.Load(file);
 
-                foreach (var element in doc.Elements(XName.Get("events")))
+                foreach (var element in doc.XPathSelectElements("/events/event"))
                 {
                     var ev = new EventDto();
                     events.Add(ev);
@@ -41,7 +42,7 @@ namespace Solvberget.Nancy.Modules
             }
 
             // todo: implement after new events integration in place
-            Get["/"] = _ => events.OrderByDescending(ev => ev.Start).ToArray();
+            Get["/"] = _ => events.OrderBy(ev => ev.Start).ToArray();
 
             Get["/{id}"] = args => events.FirstOrDefault(ev => ev.Id == args.id);
         }

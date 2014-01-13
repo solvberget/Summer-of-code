@@ -6,9 +6,76 @@
     <description>11. januar 2014 åpner vi dørene. Da står et splitter nytt, lyst, åpent og innbydende bibliotektilbud klart til å ta imot regionens befolkning.</description>
     <imageUrl>https://tuploads.s3.amazonaws.com/production/uploads/event/image/853/default_11jan_595x265.png</imageUrl>
     <location>Sølvberget, Stavanger Kulturhus</location>
-    <start>11.01.2014 10:00</start>
-    <end>11.01.2014 22:00</end>
+    <start>01.11.2014 10:00</start>
+    <end>01.11.2014 22:00</end>
     <ticketPrice>0</ticketPrice>
     <ticketUrl>https://solvberget.ticketco.no/apningsfest2</ticketUrl>
   </event>
+
+<event>
+<id>2</id> 
+    <name>Bokprat: Nicolai Houm</name> 
+    <description>Houm ble nominert til bokhandlerprisen i 2013 for romanen De håpefulle, en episk, bredt anlagt fortelling hvor vi følger en familie fra 1960 årene fram til vår tid. Kulissene for romanen er et Norge i utvikling hvor forfatteren tar for seg blant annet norsk oljeindustri, nyrikdom, så vel som krigen i Afghanistan og operahus på 2000-tallet.</description> 
+    <imageUrl>https://tuploads.s3.amazonaws.com/production/uploads/event/image/860/default_Skjermbilde_2014-01-03_kl._11.16.24_AM.png</imageUrl> 
+    <location>Kulturbiblioteket, 2. etasje</location> 
+    <start>01.16.2014 12:00</start> 
+    <end>01.16.2014 13:00</end> 
+    <ticketPrice>0</ticketPrice> 
+    <ticketUrl>https://solvberget.ticketco.no/bokprathoum</ticketUrl> 
+  </event> 
+
+<event> 
+    <id>3</id> 
+    <name>Litteraturkveld: Jamie Ford: Sanger til Willow Frost</name> 
+    <description>Jamie Ford solgte to millioner eksemplarer av debutromanen. I januar kommer han til Norge for å presentere oppfølgeren - "Sanger til Willow Frost". 
+Seattle-forfatteren Ford (f. 1969) debuterte i 2009 med "Hotellet på hjørnet av bitter og søt". Romanen om det unge paret Henry og Keiko, som blir revet fra hverandre som følge av Japans og USAs fiendskap under Andre verdenskrig, ble en verdensomspennende bestselger. I forfatterens hjemland USA solgte boken mer enn 1,3 millioner eksemplarer. I Norge lå boken på bestselgerlistene i over et år.</description> 
+    <imageUrl>https://tuploads.s3.amazonaws.com/production/uploads/event/image/879/default_Sanger-til-Willow-Frost_hd_image_Ford_Jamie.jpg</imageUrl> 
+    <location>Kulturbiblioteket, 2. etasje</location> 
+    <start>01.30.2014 20:00</start> 
+    <end>01.30.2014 21:00</end> 
+    <ticketPrice>130</ticketPrice> 
+    <ticketUrl>https://solvberget.ticketco.no/jamieford</ticketUrl> 
+  </event> 
+
+<event> 
+    <id>4</id> 
+    <name>Biblåsessions: Eltervaag</name> 
+    <description>Eltervaag byr på melankolsk pop, vokalharmonier med mye kjærlighet og et snev av faenskap. Høyrefoten er godt plantet i singer/songwriter-sjangeren, mens venstre stortå leker med knotter og gitareffekter.</description> 
+    <imageUrl>https://tuploads.s3.amazonaws.com/production/uploads/event/image/862/default_08-Eltervaag-e1332921461566.jpg</imageUrl> 
+    <location>Musikk- og filmbiblioteket, 2. etasje</location> 
+    <start>01.18.2014 14:00</start> 
+    <end>01.18.2014 15:00</end> 
+    <ticketPrice>0</ticketPrice> 
+    <ticketUrl>https://solvberget.ticketco.no/eltervaag</ticketUrl> 
+  </event> 
+
+<event> 
+    <id>5</id> 
+    <name>Bokprat - Guro Sibeko: Krigerhjerte: Min fars reise</name> 
+    <description>Sibeko er forfatter og aktiv samfunnsdebattant. Hun har skrevet boka Krigerhjerte: Min fars reise (2013) hvor hun forteller sin egen fars historie. Faren vokste opp under apartheid-regimet i Sør-Afrika. I ung alder ble han en del av den væpnede motstandskampen. Boka stiller spørsmål ved og viser andre sider av Sør- Afrika enn de vi allerede kjenner.</description> 
+    <imageUrl>https://tuploads.s3.amazonaws.com/production/uploads/event/image/931/default_Guro_Sibeko.jpg</imageUrl> 
+    <location>Kulturbiblioteket, 2. etasje</location> 
+    <start>02.06.2014 12:00</start> 
+    <end>02.06.2014 13:00</end> 
+    <ticketPrice>0</ticketPrice> 
+    <ticketUrl>https://solvberget.ticketco.no/gurosibeko</ticketUrl> 
+  </event> 
+
+<event> 
+    <id>6</id> 
+    <name>Søndagsbarn: Anne Furubotn</name> 
+    <description>urubotn er platedebutant og synger deg inn i et univers med hverdagslige tema som krangling, forelskelse, sykdom og pepperkaker, alt sett gjennom underfundige barneøyne. På debutalbumet Bestemme selv synger hun for store og små. Passer for barn og familier.
+
+Søndagsbarn er et tilbud til barn og voksne som liker fortellinger, film, teater, musikk, tull og tøys. 
+
+Husk å løse ut fribillett i skranken i 1. etasje før forestillingen for å sikre deg plass.
+</description> 
+    <imageUrl>https://tuploads.s3.amazonaws.com/production/uploads/redactor_rails/picture/data/81/Anne_Furubotn_-_12._januar_og_24._februar.jpg</imageUrl> 
+    <location>Møteplassen, 1. etasje</location> 
+    <start>01.12.2014 14:00</start> 
+    <end>01.12.2014 15:00</end> 
+    <ticketPrice>0</ticketPrice> 
+    <ticketUrl>https://solvberget.ticketco.no/furubotn</ticketUrl>
+  </event> 
+
 </events>

@@ -44,7 +44,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p ng-bind-html="item.description|characters:250"></p>
+                                <p ng-bind-html="item.description|characters:300"></p>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                                 .css('background-image', 'url("' + item.imageUrl + '")')
                                 .css('background-position', '100% 50%')
                                 .animate({ 'opacity': '1' }, { duration: 700, queue: false })
-                                .animate({ 'background-position-x': '0%' }, 120000, 'linear');
+                                .animate({ 'background-position-x': '0%' }, interval*5, 'linear');
                         }
                     });
             }

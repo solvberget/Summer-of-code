@@ -12,10 +12,13 @@ SceneScene1.prototype.initialize = function () {
 	$('#id-label').html(tvID);
 };
 
+var pluginAPI = new Common.API.Plugin();
+
 SceneScene1.prototype.handleKeyDown = function (keyCode) {
 	switch (keyCode) {
 		case sf.key.ENTER:
-			document.location = 'http://solvberget.prestegarden.com/#/'+tvID;
+			document.location = 'http://solvbergetapp.cloudapp.net/infoscreen/#/'+tvID;
+			pluginAPI.setOffScreenSaver();
 			break;
 		default:
 			break;
