@@ -114,7 +114,9 @@
             
             scope.$watch('items.length', function () {
 
+                if (!scope.items) return;
                 if (scope.items.length === 0) return;
+                
                 console.log("events loaded, starting carousel", scope.items.length);
 
                 $(".carousel").carousel({

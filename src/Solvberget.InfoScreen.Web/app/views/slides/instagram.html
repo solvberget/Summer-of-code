@@ -8,27 +8,37 @@
         </div>
 </div>
 <script type="text/javascript">
-    var feed = new Instafeed({
-        template: '<div class="item ig-item"><div class="col-xs-7"><img src="{{image}}" /></div><div class="col-xs-5 ig-item-caption"><p>{{caption}}</p><h1>Fra @{{model.user.username}} på Instagram.</h1><h2>Tagg dine bilder med #sølvberget!</h2></div></div>',
-        target: 'carousel-items',
-        get: 'tagged',
-        tagName: 'sølvberget',
-        resolution: 'standard_resolution',
-        links: false,
-        limit:10,
-        clientId: '8cb0d60e537d4098b2c0f79194b2f82e',
-        after : function() {
 
-            $(".ig-item:first").addClass("active");
-            
-            $(".carousel").carousel({
-                interval: 10000
-            });
+    function viewLoaded($scope) {
+        
+        var feed = new Instafeed({
+            template: '<div class="item ig-item"><div class="col-xs-7"><img src="{{image}}" /></div><div class="col-xs-5 ig-item-caption"><div class="ig-item-caption">{{caption}}</div><h1>Fra @{{model.user.username}} på Instagram.</h1><h2>Tagg dine bilder med #sølvberget!</h2></div></div>',
+            target: 'carousel-items',
+            get: 'tagged',
+            tagName: 'sølvberget',
+            resolution: 'standard_resolution',
+            links: false,
+            limit: 10,
+            clientId: '8cb0d60e537d4098b2c0f79194b2f82e',
+            after: function () {
 
-        }
-    });
-    feed.run();
+                delete $scope.lastError;
 
-    
+                $(".ig-item:first").addClass("active");
+
+                $(".carousel").carousel({
+                    interval: 10000
+                });
+
+            },
+            error: function(msg) {
+
+                console.log("insta error", msg);
+                $scope.lastError = msg;
+            }
+        });
+
+        feed.run();
+    }
 
 </script>

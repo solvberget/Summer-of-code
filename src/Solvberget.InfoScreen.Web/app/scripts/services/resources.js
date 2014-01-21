@@ -14,14 +14,27 @@ angular.module('solvbergetinfoScreenwebApp')
         return function(screenId) { return $resource($$config.apiPrefixEscaped() + 'slides/' + screenId); };
     }).config(function($httpProvider) {
 
-        $httpProvider.interceptors.push(function() {
-            return {
-                'responseError': function(response) {
 
-                    console.error("En feil oppstod (status " + response.status + "). " + response.data);
+        $httpProvider.responseInterceptors.push(function ($timeout, $q, $rootScope) {
+            return function (promise) {
+                return promise.then(function (successResponse) {
+                    
+                    delete $rootScope.lastError;
+                    return successResponse;
 
-                    return response;
-                }
+                }, function (errorResponse) {
+
+                    console.log("ERROR: ", errorResponse);
+                    console.log("NETWORK CONNECTED? " + navigator.onLine);
+
+                    var status = errorResponse.status;
+
+                    if (status == 0) status = "offline";
+                    
+                    $rootScope.lastError = status;
+
+                    return $q.reject(errorResponse);
+                });
             };
         });
 
