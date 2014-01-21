@@ -21,7 +21,7 @@
                 </ul>
             </div>
 
-            <div class="col-xs-7">
+            <div class="col-xs-9">
                 <div class="carousel-inner current-item-container">
                     <div class="item" ng-repeat="item in items | limitTo:7" ng-class="{active : $first}">
                         <div class="row">
@@ -52,10 +52,6 @@
 
             </div>
             
-            <div class="col-xs-2 image-column">
-            </div>
-
-
         </div>
     </div>
 
@@ -81,35 +77,20 @@
 
                 var item = scope.items[slideTo];
 
-                $(".image-column")
-                    .animate({ 'opacity': '0' }, {
-                        duration: 700,
-                        queue: false,
-                        complete: function () {
+				qrcode.empty().hide();
+				
+				if (item.ticketUrl) {
+					new QRCode(qrcode.get(0), {
+						text: item.ticketUrl,
+						width: 100,
+						height: 100,
+						colorDark: "#000000",
+						colorLight: "#ffffff",
+						correctLevel: QRCode.CorrectLevel.H
+					});
 
-                            qrcode.empty().hide();
-                            
-                            if (item.ticketUrl) {
-                                new QRCode(qrcode.get(0), {
-                                    text: item.ticketUrl,
-                                    width: 100,
-                                    height: 100,
-                                    colorDark: "#000000",
-                                    colorLight: "#ffffff",
-                                    correctLevel: QRCode.CorrectLevel.H
-                                });
-
-                                qrcode.show();
-                            }
-                            
-                            $(this)
-                            .stop()
-                                .css('background-image', 'url("' + item.imageUrl + '")')
-                                .css('background-position', '100% 50%')
-                                .animate({ 'opacity': '1' }, { duration: 700, queue: false })
-                                .animate({ 'background-position-x': '0%' }, interval*5, 'linear');
-                        }
-                    });
+					qrcode.show();
+				}
             }
             
             scope.$watch('items.length', function () {
