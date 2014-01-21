@@ -27,7 +27,7 @@ angular.module('solvbergetinfoScreenwebApp', [
       .otherwise({
         redirectTo: '/'
       });
-  }).run(function () {
-    console.log($$config.apiPrefix);
+  }).run(function ($locale) {
+    console.log("Current locale: " + $locale.id);
   });
     
