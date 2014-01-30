@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+  <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+  <style name="MyBaseTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+  </style>
+
+  <!-- Application theme. -->
+  <style name="MyTheme" parent="MyBaseTheme">
+    <!--
+    <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
+    <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+    -->
+    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:listViewStyle">@style/ListView</item>
+    <item name="textAppearanceLargePopupMenu">@style/TextAppearance.ShareList</item>
+    <item name="android:textColorLink">@color/s_main_green</item>
+  </style>
+
+  <!--<style name="TextAppearance.TabPageIndicator" parent="Widget">
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/vpi__light_theme</item>
+  </style>-->
+
+  <style name="Theme.Splash" parent="android:Theme">
+    <item name="android:windowBackground">@drawable/splash_logo</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+
+  <style name="LargeText" parent="@android:style/TextAppearance.Large">
+    <item name="android:textColor">@color/s_text</item>
+  </style>
+
+  <style name="MediumText" parent="@android:style/TextAppearance.Medium">
+    <item name="android:textColor">@color/s_text</item>
+  </style>
+
+  <style name="SmallText" parent="@android:style/TextAppearance.Small">
+    <item name="android:textColor">@color/s_text_weak</item>
+  </style>
+
+  <style name="MediaDetailFieldContent" parent="@android:style/TextAppearance.Small">
+  </style>
+
+  <style name="MediaDetailFieldName" parent="@style/MediaDetailFieldContent">
+    <item name="android:textSize">10dp</item>
+  </style>
+
+  <style name="ListView" parent="@android:style/Widget.ListView">
+    <item name="android:background">@android:color/transparent</item>
+    <item name="android:cacheColorHint">@android:color/transparent</item>
+    <item name="android:divider">@android:color/transparent</item>
+    <item name="android:dividerHeight">0dp</item>
+    <item name="android:listSelector">@drawable/list_item_selector</item>
+  </style>
+
+  <style name="TextAppearance.ShareList" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:textSize">18sp</item>
+  </style>
+
+</resources>

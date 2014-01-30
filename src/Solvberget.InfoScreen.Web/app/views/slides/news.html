@@ -1,0 +1,105 @@
+<div id="qrc"></div>
+<div class="container-fluid span-height" ng-controller="NewsCtrl" view-loaded="viewLoaded">
+    <div class="row">
+        <div id="news-carousel" class="carousel slide" data-ride="carousel">
+
+            <div class="col-xs-3 overview-column">
+                <ul class="carousel-indicators">
+                    <li ng-repeat="item in items|limitTo:7"
+                        class="container-fluid"
+                        ng-class="{active : $first}" data-target="#news-carousel" data-slide-to="{{ $index }}">
+
+                        <div class="row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-10"><div class="item-title">{{item.title}}</div></div>
+                        </div>
+                        <div class="slide-timer"></div>
+                        <div class="slide-progress"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-9">
+                <div class="carousel-inner current-item-container">
+                    <div class="item" ng-repeat="item in items | limitTo:7" ng-class="{active : $first}">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h1>{{ item.title }}</h1>
+                            </div>
+                        </div>
+                        <div class="row nfo">
+                            <div class="col-xs-4">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p ng-bind-html="item.ingress|characters:250"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function viewLoaded(scope) {
+
+            var interval = scope.interval * 1000;
+
+            var qrcode = $("#qrc");
+
+
+            function startProgressAnimation(e) {
+
+                $('.slide-progress')
+                    .stop()
+                    .width('0%')
+                    .animate({ width: '100%' }, interval, "linear");
+
+                var slideTo = 0;
+                if (e) slideTo = $(e.relatedTarget).index();
+
+                var item = scope.items[slideTo];
+                
+				qrcode.empty().hide();
+				
+				if (item.link) {
+					new QRCode(qrcode.get(0), {
+						text: item.link,
+						width: 100,
+						height: 100,
+						colorDark: "#000000",
+						colorLight: "#ffffff",
+						correctLevel: QRCode.CorrectLevel.H
+					});
+
+					qrcode.show();
+				}                            
+            }
+
+            scope.$watch('items.length', function () {
+
+                if (!scope.items) return;
+                if (scope.items.length === 0) return;
+                console.log("items loaded, starting carousel", scope.items.length);
+
+                $(".carousel").carousel({
+                    interval: interval
+                }).on('slide.bs.carousel', function (e) {
+
+                    startProgressAnimation(e);
+                });
+
+                startProgressAnimation(); // initial slide
+            });
+
+        }
+
+    </script>
+</div>
+
+
+

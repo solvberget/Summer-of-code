@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="90dp"
+    android:orientation="horizontal"
+    android:background="@color/ui_itembackground"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_gravity="top"
+    android:gravity="center">
+  <Solvberget.Droid.Views.Components.CustomImageView
+    android:layout_height="90dp"
+    android:layout_width="60dp"
+    android:src="@drawable/default_list"
+    local:MvxBind="ImageUrl Image; Visibility InvertedVisibility(ListEmpty)" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="300"
+        android:layout_width="fill_parent"
+        android:width="0dip"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textAppearance="@style/MediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:id="@+id/textView1"
+            local:MvxBind="Text DocumentTitle" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:width="0dip"
+            android:layout_height="wrap_content"
+            local:MvxBind="Visibility Visibility(ReadyForPickup)">
+            <TextView
+                android:text="Kan hentes hos "
+                android:paddingLeft="10dp"
+                android:textAppearance="@style/SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1" />
+            <TextView
+                android:paddingLeft="10dp"
+                android:textAppearance="@style/SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                local:MvxBind="Text PickupLocation" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:width="0dip"
+                android:layout_height="wrap_content"
+                local:MvxBind="Visibility Visibility(PickupDeadline)">
+                <TextView
+                    android:text="Innen "
+                    android:paddingLeft="10dp"
+                    android:textAppearance="@style/SmallText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1" />
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:textAppearance="@style/SmallText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1"
+                    local:MvxBind="Text PickupDeadline" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:width="0dip"
+            android:layout_height="wrap_content"
+            local:MvxBind="Visibility InvertedVisibility(ReadyForPickup)">
+            <TextView
+                android:text="Ikke klar for henting"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textAppearance="@style/SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                local:MvxBind="Text Status" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:width="0dip"
+        android:layout_weight="600"
+        android:layout_height="wrap_content"
+        local:MvxBind="Visibility InvertedVisibility(ListEmpty)">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1"
+            android:gravity="center"
+            android:background="@color/s_main_green"
+            android:textColor="@color/white"
+            android:width="80dp"
+            local:MvxBind="Click RemoveReservationCommand; Text ButtonText; Visibility Visibility(ButtonVisible)" />
+        <Button
+            android:text="Avbryt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@color/s_main_green"
+            android:textColor="@color/white"
+            android:id="@+id/button1"
+            android:gravity="center"
+            android:width="80dp"
+            local:MvxBind="Click CancelRemoveCommand; Visibility Visibility(CancellationButtonVisible)" />
+    </LinearLayout>
+</LinearLayout>

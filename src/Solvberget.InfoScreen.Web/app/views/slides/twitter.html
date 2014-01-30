@@ -1,0 +1,46 @@
+﻿<div id="twitter-slide" class="container-fluid span-height" ng-controller="TwitterCtrl" view-loaded="viewLoaded">
+            <div id="tw-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner current-item-container">
+                    <div class="item" ng-repeat="tweet in items" ng-class="{active : $first}">
+                        <div class="row" ng-show="tweet.mediaUrl">
+                            <div class="col-xs-6">
+                                <img src="{{tweet.mediaUrl}}"
+                                     style="width:100%; margin-bottom:20px" />
+                            </div>
+                            <div class="col-xs-6">
+                                <div style="height:620px; padding-left:30px; display:table-cell; vertical-align: middle">
+                                    <div class="ig-item-caption">{{tweet.text}}</div>
+                                    <div style="margin-top:20px" class="ig-item-user">
+                                        <div>fra {{tweet.username}} via Twitter</div>
+                                        <img ng-src="{{tweet.userProfileImageUrl}}" style="height:80px; margin-top:20px; border:solid 2px white" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-hide="tweet.mediaUrl" style="display:table-cell; height:620px; width:1180px; padding-left:200px; padding-right:200px; vertical-align:middle">
+                            <div class="ig-item-caption">{{tweet.text}}</div>
+                            <div style="margin-top:20px" class="ig-item-user">
+                                <div>fra {{tweet.username}} via Twitter</div>
+                                <img ng-src="{{tweet.userProfileImageUrl}}" style="height: 80px; margin-top: 20px; border: solid 2px white" />
+                            </div>
+                        </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function viewLoaded(scope) {
+
+        scope.$watch('items.length', function() {
+
+            if (!scope.items) return;
+            if (scope.items.length === 0) return;
+            
+            $(".carousel").carousel({
+                interval: 10000
+            });
+        });
+    }    
+
+</script>

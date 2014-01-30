@@ -1,0 +1,10 @@
+<h2>Våre Blogger</h2>
+
+<div ng-repeat="item in items"
+     ng-click="navigate(pathFor(item))"
+     class="media-item-info-box box-action">
+    <h4><a ng-href="{{pathFor(item)}}">{{item.title}}</a></h4>
+    <p ng-bind-html="item.description" />
+</div>
+
+<img src="/img/ajax-loader.gif" ng-hide="items.length" />

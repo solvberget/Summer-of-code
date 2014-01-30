@@ -1,0 +1,46 @@
+<div ng-include="'views/media.common.html'" />
+
+<div ng-show="review.review">
+    <h2>Bokbasens omtale</h2>
+    <div class="media-item-info-box">
+    {{review.review}}
+    </div>
+</div>
+
+<h2>Fakta om boka</h2>
+<div class="media-item-info-box">
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Forfatter</div>
+            <div class="meta-value">{{document.authorName}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Språk</div>
+            <div class="meta-value">{{document.language}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Forlag</div>
+            <div class="meta-value">{{document.publisher}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Publikasjonsår</div>
+            <div class="meta-value">{{document.year}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3" ng-show="document.series">
+            <div class="meta-label">Serietittel</div>
+            <div class="meta-value">{{document.series.title}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3" ng-show="document.series">
+            <div class="meta-label">Serienummer</div>
+            <div class="meta-value">{{document.series.sequenceNo}}</div>
+        </div>
+    </div>
+
+</div>
+<div ng-include="'views/media.share.html'"/>

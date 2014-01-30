@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    orientation="horizontal"
+    local:MvxBind="BackgroundColor SelectedMenuItemBackground(IsSelected)">
+    <Solvberget.Droid.Views.Components.IconTextView
+        android:paddingLeft="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        local:MvxBind="Text IconChar"
+        android:textAppearance="?attr/textAppearanceListItem" />
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="#fff"
+        local:MvxBind="Text Title"
+        android:singleLine="true"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:minHeight="?attr/listPreferredItemHeight" />
+<!-- 
+    -->
+</Solvberget.Droid.Views.Components.BackgroundBindableLinearLayout>

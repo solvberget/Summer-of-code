@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="btn-group btn-group-justified hidden-xs">
+        <a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default">Meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a>
+        <a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Lån</a>
+        <a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Reservasjoner</a>    
+        <a ng-href="{{path('MyFinesCtrl')}}" type="button" class="btn btn-default">Gebyrer</a>
+        <a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a>
+        <a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default active">Profil</a>
+    </div>
+    <div class="btn-group btn-group-justified visible-xs">
+        <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Profil
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a ng-href="{{path('MyMessagesCtrl')}}" type="button" class="btn btn-default">Meldinger<span ng-show="newMessagesCount>0" class="badge pull-right">{{newMessagesCount}}</span></a></li>
+            <li><a ng-href="{{path('MyLoansCtrl')}}" type="button" class="btn btn-default">Lån</a></li>
+            <li><a ng-href="{{path('MyReservationsCtrl')}}" type="button" class="btn btn-default">Reservasjoner</a></li>    
+            <li><a ng-href="{{path('MyFinesCtrl')}}" type="button" class="btn btn-default">Gebyrer</a></li>    
+    		<li><a ng-href="{{path('MyFavoritesCtrl')}}" type="button" class="btn btn-default">Favoritter</a></li>
+            <li><a ng-href="{{path('MyDetailsCtrl')}}" type="button" class="btn btn-default">Profil</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="media-item-info-box" ng-show="userInfo.name.length >= 0">
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Navn</div>
+            <div class="meta-value">{{userInfo.name}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Adresse</div>
+            <div class="meta-value">{{userInfo.streetAddress}}
+                <br/>{{userInfo.cityAddress}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">E-post</div>
+            <div class="meta-value">{{userInfo.email}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Fødselsdato</div>
+            <div class="meta-value">{{userInfo.dateOfBirth}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Telefon</div>
+            <div class="meta-value">{{userInfo.homePhoneNumber}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Mobiltelefon</div>
+            <div class="meta-value">{{userInfo.cellPhoneNumber}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Bibliotek</div>
+            <div class="meta-value">{{userInfo.homeLibrary}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Balanse</div>
+            <div class="meta-value">{{userInfo.balance}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Kredittgrense</div>
+            <div class="meta-value">{{userInfo.cashLimit}}</div>
+        </div>
+    </div>
+
+</div>
+
+<img src="/img/ajax-loader.gif" ng-hide="userInfo.name.length >= 0" />

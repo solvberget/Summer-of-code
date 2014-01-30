@@ -1,0 +1,253 @@
+@solvberget-green: #34B445;
+@solvberget-bg: #090909;
+@solvberget-white: #FFFFFF; 
+
+@transition-carousel-out: opacity 1s ease-in-out 0s;
+@transition-carousel-in: opacity 1s ease-in-out 1s;
+
+body {
+  background: black;
+  color: @solvberget-white;
+  height: 100%;
+}
+
+.carousel .item {
+
+  left:0;
+  opacity:1;
+  z-index:2;
+  transition: @transition-carousel-out;
+}
+
+.carousel .active.left {
+  left:0;
+  opacity:0;
+  z-index:2;
+  transition: @transition-carousel-out;
+}
+
+.carousel .next {
+  left:0;
+  opacity:0;
+  z-index:1;
+  transition: @transition-carousel-in;
+}
+
+.carousel-indicators {
+
+    position:inherit;
+    bottom:inherit;
+    left:inherit;
+    width:100%;
+    margin:inherit;
+}
+
+.carousel-indicators li {
+    
+    height:88px;
+    opacity:0.7;
+  text-indent: 0px;
+  width:100%;
+  border-radius:0px;
+  border: none;
+  margin: 0px;
+  transition: opacity 0.5s ease-in-out 0s;  
+}
+
+.carousel-indicators li.active {
+    opacity:1;
+    background-color:@solvberget-green;
+    width:100%;
+    height:88px;
+    margin:0px;
+    transition: background-color 0.5s ease-in-out 0s;
+    transition: opacity 0.5s ease-in-out 0s; 
+}
+
+.carousel-indicators .row
+{
+   height:88px;
+}
+
+.carousel-indicators li .row>div>div
+{
+    display:table-cell;
+    height:88px;
+    vertical-align:middle;
+    text-align:left;
+}
+
+.container-fluid.span-height > .row
+{
+    height:100%;
+    display:table-row;
+    overflow-y:hidden;
+}
+
+.container-fluid.span-height
+{
+    display:table;
+    position:absolute;
+    top:0px;
+    height:100%;
+    bottom:0px;
+}
+
+.container-fluid.span-height > .row > div
+{
+    display:table-cell;
+}
+
+.overview-column {
+    
+    background-color:@solvberget-bg;
+    height:100%;
+    padding:0px;
+}
+
+.navbar {
+  background: @solvberget-green;
+  height: 60px;
+}
+
+.navbar-brand span{
+  color: white;
+  font-size: 28px;
+  padding-left: 30px;
+}
+
+.centered {
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.navbar-brand img{
+  width:36px;
+}
+
+.item-day, .item-month, .item-date{
+    font-size:10px;
+    display:block;
+    text-align:center;
+    opacity:0.75;
+}
+
+.item-date{
+    font-family:"Open Sans";
+	font-weight:600;
+    font-size:19px;
+}
+
+.item-day{
+    margin-top:16px;
+}
+
+.item-title{
+    font-size:19px;
+    padding-right:10px;
+}
+
+.carousel-indicators li .slide-progress
+{
+    position:absolute;
+    opacity:0;    
+    height:3px;
+    background-color:white;
+}
+
+.carousel-indicators li.active .slide-progress{
+    opacity:1;
+}
+
+.current-item-container{
+    padding:50px;
+    padding-right:5px;
+    padding-bottom:25px;
+}
+
+.current-item-container h1{
+
+    margin-top:0px;
+    font-family: 'Open Sans';
+	font-weight:300;
+    font-size:70px;
+}
+
+.current-item-container{
+    font-size:30px;
+    opacity:1;
+    font-family:"Open Sans";
+	font-weight:300;
+}
+
+.current-item-container .nfo{
+    font-size:19px;
+    color:@solvberget-green;
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+.current-item-container .nfo span i{
+    display:inline-block;
+    margin-right:20px;
+}
+
+.current-item-container .nfo span{
+    display:block;
+}
+
+.image-column{
+    height:100%;
+    background-color:black;
+}
+
+.image-column{
+    overflow:hidden;
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+#qrc{
+    padding:10px;
+    background-color:white;
+    position: absolute;
+    top: 580px;
+    left: 1140px;
+    z-index:1000;
+    display:none;
+}
+
+/* instagram slide */
+
+#instagram-slide h1, .ig-item-user{
+    font-size:25px;
+    text-align:left;
+    margin:0px;
+    margin-top:30px;
+    color:@solvberget-green;
+}
+
+#instagram-slide h2{
+    font-size:20px;
+    text-align:left;
+    margin:0px;
+    margin-top:10px;
+    color:@solvberget-green;
+}
+
+#ig-carousel{
+    margin-top:40px;
+}
+
+.ig-item img{
+    margin-left:25px;
+
+}
+
+.ig-item-caption{
+    font-size:40px;
+    margin-top:40px;
+    text-align:left;
+}

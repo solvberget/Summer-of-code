@@ -1,0 +1,9 @@
+<h2>Nyheter fra <a href="http://www.solvberget.no">Sølvberget.no</a></h2>
+
+<div ng-repeat="item in items"
+     ng-click="navigate(item.link)"
+     class="media-item-info-box box-action">
+    <h4><a ng-href="{{item.link}}">{{item.title}}</a></h4>
+    <div class="subhead">{{item.published|date:shortDate}}</div>
+    <p ng-bind-html="item.ingress" />
+</div>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ui_background">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <!-- dark box on top-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/ui_grey_dark"
+            android:layout_height="160dp">
+            <Solvberget.Droid.Views.Components.CustomImageView
+                android:layout_width="100.0dp"
+                android:layout_height="140.0dp"
+                android:src="@drawable/default_list"
+                local:MvxBind="ImageUrl Image" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="140.00dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                    android:text="A Somewhat Long Film Title"
+                    android:maxLines="2"
+                    local:MvxBind="Text ItemTitle"
+                    android:paddingBottom="8dp" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:maxLines="2"
+                    android:text="Film (2005)"
+                    local:MvxBind="Text SubTitle" />
+              <TextView
+                    android:paddingTop="12dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/SmallText"
+                    android:text="Review Source"
+                    local:MvxBind="Text Rating.Source; Visibility Visibility(Rating.Source)" />
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="10"
+                    local:MvxBind="NumStars Rating.MaxScore; Rating Rating.Score; Visibility Visibility(Rating);"
+                    android:stepSize="0.1"
+                    android:isIndicator="true"
+                    android:layout_marginBottom="0.0dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="0.0dp"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_weight="0" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="TILGJENGELIGHET"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:singleLine="true" />
+            <MvxLinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout1"
+                android:background="@color/ui_itembackground"
+                local:MvxBind="ItemsSource Availabilities"
+                local:MvxItemTemplate="@layout/item_media_availability">
+            </MvxLinearLayout>
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="ANMELDELSE"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:singleLine="true"
+                local:MvxBind="Text ReviewType; Visibility Visibility(Review)" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/ui_itembackground"
+                local:MvxBind="Visibility Visibility(Review)">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    local:MvxBind="TextFormatted StringToHtml(Review); Visibility Visibility(Review)" />
+            </LinearLayout>
+            <TextView
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/s_main_green"
+                android:textAllCaps="true"
+                android:text="FAKTA"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:singleLine="true"
+                android:id="@+id/textView1" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/ui_itembackground">
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/MediaDetailFieldName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
+                    android:text="Språk"
+                    local:MvxBind="Visibility Visibility(Language)" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text Language; Visibility Visibility(Language)" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/MediaDetailFieldName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
+                    android:text="Alternative språk"
+                    local:MvxBind="Visibility Visibility(Languages.Length)" />
+                <Mvx.MvxLinearLayout
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/ui_itembackground"
+                    local:MvxBind="ItemsSource Languages; Visibility Visibility(Languages.Length)"
+                    local:MvxItemTemplate="@layout/item_genrestring" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/MediaDetailFieldName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
+                    android:text="Utgiver"
+                    local:MvxBind="Visibility Visibility(Publisher)" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text Publisher; Visibility Visibility(Publisher)" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/MediaDetailFieldName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/s_main_green"
+                    android:textAllCaps="true"
+                    android:text="Opphavsperson"
+                    local:MvxBind="Visibility Visibility(MainContributor)" />
+                <TextView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="10dp"
+                    android:textAppearance="@style/MediaDetailFieldContent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text MainContributor; Visibility Visibility(MainContributor)" />
+                <Solvberget.Droid.Views.Components.MediaDetailInformationView
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="DataContext RawDto"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

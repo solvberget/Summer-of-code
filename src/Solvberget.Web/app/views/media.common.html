@@ -1,0 +1,78 @@
+<header class="media-item-details">
+
+    <img ng-src="{{imageUrl}}" err-src="{{'img/placeholder/' + document.type + '.png'}}" />
+    <h1>{{document.title}}</h1>
+    <p>{{document.subTitle}}</p>
+    <p>{{document.type|translate}}</p>
+
+    <a ng-show="rating.score" class="document-rating" title="{{rating.source + ': ' + rating.score + '/' + rating.maxScore}}" ng-href="{{rating.sourceUrl}}">
+        <img ng-src="{{'img/' + rating.source + '-logo.png'}}" />
+        <i ng-repeat="n in range(rating.score)" class="glyphicon glyphicon-star"/><i ng-repeat="n in range(rating.maxScore-rating.score)" class="glyphicon glyphicon-star empty"/>
+    </a>
+
+    <div class="clearfix"></div>
+</header>
+
+<div class="media-item-details-actions">
+    <button type="button" class="btn btn-primary" ng-click="toggleFavorite()">
+        <i class="glyphicon glyphicon-star" ng-class="{ 'active' : document.isFavorite, 'inactive' : !document.isFavorite }"></i>
+        Favoritt
+    </button>
+</div>
+
+<h2>Tilgjengelighet</h2>
+
+<div class="media-item-info-box" ng-show="!document.availability || document.availability.length == 0">
+    Ukjent
+</div>
+
+<div class="media-item-info-box" ng-repeat="a in document.availability">
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Filial</div>
+            <strong>{{a.branch}}</strong>
+            <span class="meta-value placeholder" ng-hide="a.branch">Ukjent</span>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Avdeling</div>
+            <div class="meta-value">{{a.department}}
+                <span class="meta-value placeholder" ng-hide="a.department">Ukjent</span>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Samling</div>
+            <div class="meta-value">{{a.collection}}
+                <span class="meta-value placeholder" ng-hide="a.collection">Ukjent</span>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Finnes på hylle</div>
+            <div class="meta-value">
+                {{document.classification}} {{a.location}}
+                <span class="meta-value placeholder" ng-hide="document.classification || a.location">Ukjent</span>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="meta-label">Tilgjengelighet</div>
+            <div class="meta-value">
+                <i class="glyphicon glyphicon-ok-sign text-success" ng-hide="a.availableCount == 0"></i>
+                <i class="glyphicon glyphicon-minus-sign text-error" ng-show="a.availableCount == 0"></i>
+                {{a.availableCount}} av {{a.totalCount}} er tilgjengelig for utlån.</div>
+        </div>
+        <div class="colxs-12 col-md-3" ng-show="a.estimatedAvailableDate">
+            <div class="meta-label">Tidligst tilgjengelig</div>
+            <div class="meta-value">{{a.estimatedAvailableDate|date:'d. MMM yyyy'}}</div>
+        </div>
+        <div class="colxs-12 col-md-3">
+            <button type="button" class="btn btn-primary" ng-click="toggleReservation(a.branch)"><i class="glyphicon glyphicon-bookmark" ng-class="{ 'is-reserved' : document.isReserved }"></i>
+                <span ng-show="document.isReserved">Kanseller reservasjon</span>
+                <span ng-hide="document.isReserved">Reserver</span>
+            </button>
+        </div>
+    </div>
+</div>

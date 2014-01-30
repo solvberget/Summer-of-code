@@ -1,0 +1,28 @@
+<div ng-include="'views/media.common.html'" />
+<h2>Fakta om spillet</h2>
+
+<div class="media-item-info-box">
+    <div class="row">
+        <div class="col-xs-6 col-md-3" ng-show="document.platform">
+            <div class="meta-label">Platform</div>
+            <div class="meta-value">{{document.platform}}</div>
+        </div>
+        <div class="col-xs-6 col-md-3" ng-show="document.language">
+            <div class="meta-label">Språk</div>
+            <div class="meta-value">{{document.language}}</div>
+        </div>
+        <div class="col-xs-6 col-md-3" ng-show="document.languages">
+            <div class="meta-label">Oversatt til</div>
+            <div class="meta-value"><span ng-repeat="p in document.languages">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
+        <div class="col-xs-6 col-md-3" ng-show="document.publisher">
+            <div class="meta-label">Utgiver</div>
+            <div class="meta-value">{{document.publisher}}</div>
+        </div>
+        <div class="col-xs-6 col-md-3" ng-show="document.year">
+            <div class="meta-label">Publikasjonsår</div>
+            <div class="meta-value">{{document.year}}</div>
+        </div>
+    </div>
+</div>
+<div ng-include="'views/media.share.html'"/>

@@ -1,0 +1,8 @@
+<h2>LISTER</h2>
+
+<ul class="media-list">
+    <div ng-repeat="item in items" list-item="item.name" subtext="item.subTitle" document-type="'List'"
+         image-url="apiPrefix + 'lists/' + item.id + '/thumbnail'" url="pathFor(item)" show-chevron="true" />
+
+    <img src="/img/ajax-loader.gif" ng-hide="items.length > 0" />
+</ul>

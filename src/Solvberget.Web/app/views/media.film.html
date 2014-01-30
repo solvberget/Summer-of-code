@@ -1,0 +1,70 @@
+<div ng-include="'views/media.common.html'" />
+<h2>Fakta om filmen</h2>
+<div class="media-item-info-box">
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Publikasjonsår</div>
+            <div class="meta-value">{{document.year}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Type og antall plater</div>
+            <div class="meta-value">{{document.mediaInfo}}</div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Aldersgrense</div>
+            <div class="meta-value">{{document.ageLimit}}</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Omtalte steder</div>
+            <div class="meta-value"><span ng-repeat="p in document.referencedPlaces">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Skuespillere</div>
+            <div class="meta-value">
+                <div class="meta-value"><span ng-repeat="p in document.actorNames">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Tekstet på</div>
+            <div class="meta-value">
+                <div class="meta-value"><span ng-repeat="p in document.subtitleLanguages">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Sjanger</div>
+            <div class="meta-value"><span ng-repeat="p in document.genres">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Involverte personer</div>
+            <div class="meta-value"><span ng-repeat="p in document.involvedPersonNames">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Språk</div>
+            <div class="meta-value">{{document.language}}</div>
+            <div class="meta-value"><span ng-repeat="p in document.languages">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
+
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Ansvarlige personer</div>
+            <div class="meta-value"><span ng-repeat="p in document.responsiblePersonNames">{{p}}<span ng-show=" ! $last ">, </span></span></div>
+        </div>
+
+
+        <div class="col-xs-6 col-md-3">
+            <div class="meta-label">Utgiver</div>
+            <div class="meta-value">{{document.publisher}}</div>
+        </div>
+
+    </div>
+
+</div>
+<div ng-include="'views/media.share.html'"/>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/s_boxes"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="8dp">
+    <TextView
+        android:text="Key"
+        android:textAppearance="@style/SmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text Name" />
+    <TextView
+        android:text="Key"
+        android:textAppearance="@style/SmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text Position; Visibility Visibility(Position)" />
+    <TextView
+        android:text="Key"
+        android:textAppearance="@style/SmallText"
+        android:textSize="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="email"
+        local:MvxBind="Text Email; Visibility Visibility(Email)" />
+    <TextView
+        android:text="Key"
+        android:textAppearance="@style/SmallText"
+        android:textSize="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="phone"
+        local:MvxBind="Text Phone; Visibility Visibility(Phone)" />
+</LinearLayout>

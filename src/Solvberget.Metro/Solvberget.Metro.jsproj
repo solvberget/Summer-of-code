@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="CI|AnyCPU">
+      <Configuration>CI</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CI|ARM">
+      <Configuration>CI</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CI|x64">
+      <Configuration>CI</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="CI|x86">
+      <Configuration>CI</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>6a9bd7d1-7ef3-44cd-8b39-b4eb0daadc04</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <PropertyGroup>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <DefaultLanguage>nb-no</DefaultLanguage>
+    <PackageCertificateKeyFile>Solvberget.Metro_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <PackageCertificateThumbprint>36D616CBFD5A6AA9454BE5B336DF6246EFE8DB1F</PackageCertificateThumbprint>
+    <AppxPackageDir>C:\apppackages\</AppxPackageDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="css\default.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="css\font-awesome.css" />
+    <Content Include="default.html" />
+    <Content Include="font\fontawesome-webfont.eot" />
+    <Content Include="font\fontawesome-webfont.svg" />
+    <Content Include="font\fontawesome-webfont.ttf" />
+    <Content Include="font\fontawesome-webfont.woff" />
+    <Content Include="fragments\documentFragments\document\document.css" />
+    <Content Include="fragments\documentFragments\document\document.html" />
+    <Content Include="fragments\documentFragments\document\document.js" />
+    <Content Include="fragments\documentFragments\game\game.css" />
+    <Content Include="fragments\documentFragments\game\game.html" />
+    <Content Include="fragments\documentFragments\game\game.js" />
+    <Content Include="fragments\documentFragments\journal\journal.css" />
+    <Content Include="fragments\documentFragments\journal\journal.html" />
+    <Content Include="fragments\documentFragments\journal\journal.js" />
+    <Content Include="fragments\documentFragments\languageCourse\languageCourse.css" />
+    <Content Include="fragments\documentFragments\languageCourse\languageCourse.html" />
+    <Content Include="fragments\documentFragments\languageCourse\languageCourse.js" />
+    <Content Include="fragments\documentFragments\cd\cd.css" />
+    <Content Include="fragments\documentFragments\cd\cd.html" />
+    <Content Include="fragments\documentFragments\cd\cd.js" />
+    <Content Include="fragments\documentFragments\audioBook\audioBook.css" />
+    <Content Include="fragments\documentFragments\audioBook\audioBook.html" />
+    <Content Include="fragments\documentFragments\audioBook\audioBook.js" />
+    <Content Include="fragments\documentFragments\book\book.css" />
+    <Content Include="fragments\documentFragments\book\book.html" />
+    <Content Include="fragments\documentFragments\book\book.js" />
+    <Content Include="fragments\documentFragments\film\film.css" />
+    <Content Include="fragments\documentFragments\film\film.html" />
+    <Content Include="fragments\documentFragments\film\film.js" />
+    <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.css" />
+    <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.html" />
+    <Content Include="fragments\documentFragments\sheetMusic\sheetMusic.js" />
+    <Content Include="fragments\addToFavorites\addToFavorites.css" />
+    <Content Include="fragments\addToFavorites\addToFavorites.html" />
+    <Content Include="fragments\addToFavorites\addToFavorites.js" />
+    <Content Include="fragments\holdRequest\holdRequest.css" />
+    <Content Include="fragments\holdRequest\holdRequest.html" />
+    <Content Include="fragments\cancelReservation\cancelReservation.css" />
+    <Content Include="fragments\cancelReservation\cancelReservation.html" />
+    <Content Include="fragments\cancelReservation\cancelReservation.js" />
+    <Content Include="fragments\loanRenewal\loanRenewal.css" />
+    <Content Include="fragments\loanRenewal\loanRenewal.html" />
+    <Content Include="fragments\loanRenewal\loanRenewal.js" />
+    <Content Include="fragments\login\login.html" />
+    <Content Include="fragments\login\login.css" />
+    <Content Include="fragments\holdRequest\holdRequest.js" />
+    <Content Include="fragments\login\login.js" />
+    <Content Include="fragments\pinRequest\pinRequest.css" />
+    <Content Include="fragments\pinRequest\pinRequest.html" />
+    <Content Include="fragments\pinRequest\pinRequest.js" />
+    <Content Include="images\appbar\blogs.png" />
+    <Content Include="images\appbar\contact.png" />
+    <Content Include="images\appbar\events.png" />
+    <Content Include="images\appbar\home.png" />
+    <Content Include="images\appbar\lists.png" />
+    <Content Include="images\appbar\mypage.png" />
+    <Content Include="images\appbar\news.png" />
+    <Content Include="images\appbar\opening.png" />
+    <Content Include="images\appbar\search.png" />
+    <Content Include="images\externalSites\bokelskere\bokelskere.png" />
+    <Content Include="images\externalSites\imdb\imdb-16x16.png" />
+    <Content Include="images\externalSites\imdb\imdb-24x24.png" />
+    <Content Include="images\externalSites\imdb\imdb-32x32.png" />
+    <Content Include="images\externalSites\imdb\imdb-48x48.png" />
+    <Content Include="images\login\Login.png" />
+    <Content Include="images\login\Logout.png" />
+    <Content Include="images\login\User.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\placeholders\3D.png" />
+    <Content Include="images\placeholders\AudioBook.png" />
+    <Content Include="images\placeholders\Blu-ray.png" />
+    <Content Include="images\placeholders\Book.png" />
+    <Content Include="images\placeholders\Cd.png" />
+    <Content Include="images\placeholders\Document.png" />
+    <Content Include="images\placeholders\Film.png" />
+    <Content Include="images\placeholders\Game.png" />
+    <Content Include="images\placeholders\Journal.png" />
+    <Content Include="images\placeholders\LanguageCourse.png" />
+    <Content Include="images\placeholders\SheetMusic.png" />
+    <Content Include="images\placeholders\transp.png" />
+    <Content Include="images\smalllogo.png" />
+    <Content Include="images\solvberget150.png" />
+    <Content Include="images\solvberget30.png" />
+    <Content Include="images\solvberget50.png" />
+    <Content Include="images\solvberget_125.svg" />
+    <Content Include="images\solvberget_125_nosvg.svg" />
+    <Content Include="images\solvberget_splash.png" />
+    <Content Include="images\solvberget_wide.png" />
+    <Content Include="images\sølvberget_sort.eps" />
+    <Content Include="images\sølvberget_sort.tif" />
+    <Content Include="js\documentImage.js" />
+    <Content Include="js\lib\jquery-1.7.2.js" />
+    <Content Include="js\lib\jquery-ui-1.8.21.custom.min.js" />
+    <Content Include="js\localizationConverter.js" />
+    <Content Include="js\localizationHelper.js" />
+    <Content Include="js\data.js" />
+    <Content Include="js\default.js" />
+    <None Include="Solvberget.Metro_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="pages\blogs\entries\entries.css" />
+    <Content Include="pages\blogs\entries\entries.html" />
+    <Content Include="pages\blogs\entries\entries.js" />
+    <Content Include="pages\blogs\entry\entry.css" />
+    <Content Include="pages\blogs\entry\entry.html" />
+    <Content Include="pages\blogs\entry\entry.js" />
+    <Content Include="pages\blogs\main\blogs.css" />
+    <Content Include="pages\blogs\main\blogs.html" />
+    <Content Include="pages\blogs\main\blogs.js" />
+    <Content Include="pages\charms\attr\attribution.html" />
+    <Content Include="pages\charms\attr\attribution.js" />
+    <Content Include="pages\contact\contact.css" />
+    <Content Include="pages\contact\contact.html" />
+    <Content Include="pages\contact\contact.js" />
+    <Content Include="pages\documentDetail\documentDetail.css" />
+    <Content Include="pages\documentDetail\documentDetail.html" />
+    <Content Include="pages\documentDetail\documentDetail.js" />
+    <Content Include="pages\events\eventsData.js" />
+    <Content Include="pages\events\eventGroupDetail\eventGroupDetail.css" />
+    <Content Include="pages\events\eventGroupDetail\eventGroupDetail.html" />
+    <Content Include="pages\events\eventGroupDetail\eventGroupDetail.js" />
+    <Content Include="pages\events\groupedEvents\groupedEvents.css" />
+    <Content Include="pages\events\groupedEvents\groupedEvents.html" />
+    <Content Include="pages\events\groupedEvents\groupedEvents.js" />
+    <Content Include="pages\events\eventDetail\eventDetail.css" />
+    <Content Include="pages\events\eventDetail\eventDetail.html" />
+    <Content Include="pages\events\eventDetail\eventDetail.js" />
+    <Content Include="pages\lists\libraryLists.css" />
+    <Content Include="pages\lists\libraryLists.html" />
+    <Content Include="pages\lists\libraryLists.js" />
+    <Content Include="pages\news\news.css" />
+    <Content Include="pages\news\news.html" />
+    <Content Include="pages\news\news.js" />
+    <Content Include="pages\mypage\mypage.css" />
+    <Content Include="pages\mypage\mypage.html" />
+    <Content Include="pages\mypage\mypage.js" />
+    <Content Include="pages\openingHours\openingHours.css" />
+    <Content Include="pages\openingHours\openingHours.html" />
+    <Content Include="pages\openingHours\openingHours.js" />
+    <None Include="js\lib\jquery-1.7.2.intellisense.js">
+      <DependentUpon>jquery-1.7.2.js</DependentUpon>
+    </None>
+    <Content Include="js\lib\jquery-1.7.2.intellisense.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\lib\jquery-1.7.2.min.js">
+      <DependentUpon>jquery-1.7.2.js</DependentUpon>
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\navigator.js" />
+    <Content Include="js\utils.js" />
+    <Content Include="js\navigator.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="js\utils.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\home\home.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\home\home.html" />
+    <Content Include="pages\home\home.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\searchResults\searchResults.css">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <Content Include="pages\searchResults\searchResults.html" />
+    <Content Include="pages\searchResults\searchResults.js">
+      <Compile>True</Compile>
+      <Minify>False</Minify>
+      <OutputFolder>
+      </OutputFolder>
+      <IncludedFiles>
+      </IncludedFiles>
+    </Content>
+    <None Include="Solvberget.Metro_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\nb-NO\resources.resjson" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

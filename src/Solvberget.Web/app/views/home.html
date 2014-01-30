@@ -1,0 +1,84 @@
+<div class="hero-img"></div>
+
+<div id="home-content" class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="big-box">
+                    <h1>Velkommen til Sølvberget-appen!</h1>
+                    <p>Logg inn på <a href="#/min-side">Min Side</a>, <a href="#/sok">søk i biblioteket</a>, <a href="#/anbefalinger">finn anbefalinger</a> fra våre bibliotekarer og mye mer!</p>
+
+                    <div class="input-group">
+                        <form ng-submit="search()">
+                            <input name="query" type="search" class="form-control" ng-model="searchQuery" placeholder="Søk etter bøker, filmer, spill og mer i biblioteket" />
+                        </form>
+                        <span class="input-group-btn">
+                            <button ng-click="search()" class="btn btn-primary" type="button">Søk...</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="row hidden-xs">
+                    <div class="col-sm-6 hidden-xs">
+                        <h2>Kommende arrangementer</h2>
+                        <ul ng-repeat="event in events|limitTo:3">
+                            <li class="home-li">
+                                <a ng-href="{{event.ticketUrl}}">{{event.name}}</a>
+                                <div class="subhead">{{event.location}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 hidden-xs">
+
+                        <h2>Siste nytt</h2>
+
+                        <ul ng-repeat="item in news|limitTo:3">
+                            <li class="home-li">
+                                <a ng-href="{{item.link}}">{{item.title}}</a>
+                                <div class="subhead">{{item.published|date:shortDate}}</div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-4 hidden-xs">
+
+            <div class="sm-box">
+                <a href="http://www.facebook.com/sølvberget"><img src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png" /></a>
+                <a href="http://www.twitter.com/solvberget"><img src="https://g.twimg.com/Twitter_logo_blue.png" /></a>
+                <a href="http://www.instagram.com/stavangerbibliotek"><img src="http://dragon.ak.fbcdn.net/hphotos-ak-prn1/851582_417171855069447_55288290_n.png" /></a>
+            </div>
+
+            <h2><a href="http://www.twitter.com/solvberget">@Solvberget</a> på Twitter</h2>
+
+            <div style="overflow-y: scroll; height: 380px">
+                <div twitter-timeline="403619659007537152" auto-resize="true" css-url="demo/demo.css" data-tweet-limit="6">Loading tweets...</div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="row visible-xs">
+        <div class="col-xs-6">
+            <ul class="home-nav-xs">
+                <li><a href="{{path('SearchCtrl')}}">Søk</a></li>
+                <li><a href="{{path('NewsCtrl')}}">Nyheter</a></li>
+                <li><a href="{{path('EventsCtrl')}}">Arrangementer</a></li>
+                <li><a href="{{path('MyFavoritesCtrl')}}">Min side<span ng-show="newMessagesCount.count > 0" style="margin-left:6px" class="badge">{{newMessagesCount.count}}</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6">
+            <ul class="home-nav-xs">
+                <li><a href="{{path('ListsCtrl')}}">Anbefalinger</a></li>
+                <li><a href="{{path('BlogsCtrl')}}">Blogger</a></li>
+                <li><a href="{{path('OpeningHoursCtrl')}}">Åpningstider</a></li>
+                <li><a href="{{path('ContactCtrl')}}">Kontakt oss</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

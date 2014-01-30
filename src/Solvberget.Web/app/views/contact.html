@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-sm-6" ng-repeat="nfo in contacts">
+
+        <h2>{{nfo.title}}</h2>
+        <div class="media-item-info-box">
+            <div class="meta-label" ng-show="nfo.phone">Telefon</div>
+            <div class="meta-value" ng-show="nfo.phone">{{nfo.phone}}</div>
+
+            <div class="meta-label" ng-show="nfo.fax">Faks</div>
+            <div class="meta-value" ng-show="nfo.fax">{{nfo.fax}}</div>
+
+            <div class="meta-label" ng-show="nfo.visitingAddress">Besøksadresse</div>
+            <div class="meta-value" ng-show="nfo.visitingAddress">{{nfo.visitingAddress}}</div>
+
+            <div ng-show="nfo.email">
+                <div class="meta-label">Epost</div>
+                <a ng-href="{{'mailto:' + nfo.email}}">Send epost til {{nfo.title}}</a>
+            </div>
+
+            <div ng-repeat="person in nfo.contactPersons" style="margin-bottom:10px">
+                <div class="meta-group-title">{{person.position}}</div>
+
+                <div class="meta-label">Navn</div>
+                <div class=meta-value>{{person.name}}</div>
+
+                <div class="meta-label">Telefon</div>
+                <div class="meta-value">{{person.phone}}</div>
+
+                <div class="meta-label">Epost</div>
+                <a ng-href="{{'mailto:' + person.email}}">Send epost til {{person.name}}</a>
+            </div>
+            <div ng-repeat="g in nfo.genericFields">
+                {{g}}
+            </div>
+</div>
+</div>
+</div>

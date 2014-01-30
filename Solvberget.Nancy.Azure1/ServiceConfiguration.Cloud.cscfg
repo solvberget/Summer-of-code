@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Solvberget.Nancy.Azure1" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2013-10.2.2">
+  <Role name="Solvberget.Nancy">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=solvberget;AccountKey=kRbaRjG7pMP7hD3VYJzjkVSl+jb1ffD0pKC43WHxrLvTTRaoboxnxdcYZYvoD9kw5m+lDTj6wpinG7poyUSg7Q==" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="Solvberget" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDI917kmdhKzSh6bl2ETBRIwDQYJKoZIhvcNAQEBBQAEggEAFyLOXetTmSkhrzgT/3qlyJnbp2qOT1OKxuQSlfvPbxLLjBU/WnyOaVFXYr6LwhzeE1vlYJJyidBkiiOOK5A/vovUTPqSTA/YEgBSoI29CZeeD0ZUsw2OTX5gkpzYAWokxSkgc4PegMi6wu1AoDbELjxdwy7Rvh9gbhiGaquMmAUaUrSJ8+Uia9RNd0/GOw7kR6L8AuiuQL/wGoAwv7QineYVnkaDaNLMWvferOHPYmNaljNpDkTaEHqjGXol9IWR7zHVaorW6cWovDiuCt6vlkw8kOabV7WSqPv7cDW5+tfc8ZFefVNRs2JFVeczE+wNc921Jlqq1oDfBhdI0V4heDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECHnjNH1Zaz1wgBBXd9UqtJtg9a2KHnIPSByB" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2015-01-01T23:59:59.0000000+01:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="43B0A2810566CBB74A436570C0CF96F346E7497A" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

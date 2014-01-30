@@ -1,0 +1,17 @@
+<li class="listitem" ng-hide="hide">
+    <div>
+    <a href="{{url}}"><span><img class='list-item-thumb' ng-src='{{imageUrl}}' err-src="{{'img/placeholder/' + type + '.png'}}"></span></a>
+    <div class='media-body'>
+        <a href="{{url}}"><h4>{{title}}</h4></a>
+        <p ng-show="subtext" ng-bind-html="subtext"></p>
+        <button style="margin-top:4px; margin-bottom:4px" class="btn btn-sm btn-primary" ng-click="renew()" ng-show="showRenew">Utvid lånetid</button>
+
+    </div>
+    <span class='list-item-actions'>
+        <span class='glyphicon glyphicon-star active' ng-show="showFavorite && isFavorite" ng-click="toggleFavorite()" />
+        <span class='glyphicon glyphicon-star inactive' ng-show="showFavorite && !isFavorite" ng-click="toggleFavorite()" />
+        <span class='glyphicon glyphicon-remove' ng-show="showDelete" ng-click="delete()" />
+    </span>
+    </div>
+    <div class="gutter"><span ng-show="gutterText || gutterTextPrefix">{{gutterTextPrefix}}{{gutterText}}</span></div>
+</li>
